@@ -4,8 +4,8 @@ export default function Home() {
     <div>
       <h1>Hello World</h1>
       <p>Kevin Schultz</p>
+      <p> Alan Tan </p>
       <p>Simon Kwong</p>
-      <p> Alan </p>
       <p>Philsim Nepacena</p>
     </div>
   );
