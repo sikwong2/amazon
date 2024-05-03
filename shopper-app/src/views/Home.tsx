@@ -1,8 +1,11 @@
+import { useTranslation } from "next-i18next";
+
 export default function Home() {
+  const { t } = useTranslation('common')
     return (
       <div>
-        <h1>Hello World</h1>
-        <h2>Group 2</h2>
+        <h1>{t('title')}</h1>
+        <h2>{t('group')}</h2>
         <p>Kevin Schultz</p>
         <p> Alan Tan </p>
         <p>Simon Kwong</p>
