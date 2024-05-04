@@ -7,12 +7,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LoginContext } from '../context/Login'
-
+import { useRouter } from 'next/router';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({email: '', password: ''});
 
+  // router to change pages
+  const router = useRouter(); 
 
   const handleInputChange = (event: any) => {
     const {value, name} = event.target;
@@ -44,6 +46,7 @@ export function Login() {
         } else {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
+          router.push('/'); // sets path to home page
         }
       })
       .catch((e) => {
@@ -51,7 +54,7 @@ export function Login() {
       });
   };
 
-  const LoginComponent = (
+  return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -107,13 +110,4 @@ export function Login() {
       </Box>
     </Container>
   );
-
-  if (loginContext.accessToken.length < 1) {
-    return (
-      LoginComponent
-    )
-  }
-  else {
-    return null
-  }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import Head from 'next/head'
 import { Fragment } from 'react'
-import { App } from '../views/App'
+import Link from 'next/link';
 
+// use Link to navigate to another page
 export default function Index() {
   const title = 'CSE187 Admin App'
   return (
@@ -12,7 +13,9 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <App/>
+      <div>
+        Go to Login <Link href="/login"> here </Link>
+      </div>
     </Fragment>
   )
 }
