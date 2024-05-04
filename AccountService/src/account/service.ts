@@ -1,14 +1,3 @@
-/*
-#######################################################################
-#
-# Copyright (C) 2022-2024 David C. Harrison. All right reserved.
-#
-# You may not use, distribute, publish, or modify this code without 
-# the express written permission of the copyright holder.
-#
-#######################################################################
-*/
-
 import * as jwt from "jsonwebtoken";
 import { Authenticated, Credentials, SessionUser } from '.';
 import {pool} from '../db'
@@ -35,11 +24,8 @@ export class AccountService {
   }
 
   public async login(credentials: Credentials): Promise<Authenticated|undefined>  {
-    // console.log('tag1')
     const account = await this.find(credentials);
-    // console.log('tag2')
     if (account) {
-      // console.log('here')
       const accessToken = jwt.sign(
         {id: account.id, role: account.role}, 
         `${process.env.MASTER_SECRET}`, {
