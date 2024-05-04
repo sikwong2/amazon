@@ -71,7 +71,7 @@ export function Login() {
         }}
       >
         <Typography component="h1" variant="h5">
-          UCSC-Amazon Admin Login
+          UCSC-Amazon Vendor Login
         </Typography>
         <Box aria-label='form'
           component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
