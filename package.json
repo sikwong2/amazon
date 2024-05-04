@@ -1,0 +1,17 @@
+{
+  "name": "ucsc-amazon",
+  "version": "0.1.0",
+  "description": "ucsc-amazon",
+  "author": "CSE187 Group 2",
+  "license": "UNLICENSED",
+  "repository": "none",
+  "scripts": {
+    "docker-accounts": "cd AccountService && docker-compose up -d",
+    "dev": "concurrently --kill-others \"npm run accounts\" \"npm run admin\"",
+    "accounts": "cd AccountService && npm run dev",
+    "admin": "cd admin-app && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "*"
+  }
+}
