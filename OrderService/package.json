@@ -1,7 +1,7 @@
 {
   "name": "cse187-microservice-book",
   "version": "1.1.0",
-  "description": "CSE187 Book Micro Service",
+  "description": "CSE187 Order Micro Service",
   "author": "Alan <wtan40@ucsc.edu>",
   "license": "UNLICENSED",
   "repository": "none",
