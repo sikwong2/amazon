@@ -1,13 +1,3 @@
-/*
-#######################################################################
-#
-# Copyright (C) 2022-2024 David C. Harrison. All right reserved.
-#
-# You may not use, distribute, publish, or modify this code without 
-# the express written permission of the copyright holder.
-#
-#######################################################################
-*/
 
 import {
   Body,
@@ -38,19 +28,5 @@ export class OrderController extends Controller {
         return OrderReponse;
       });
   }
-
-  //@Get()
-  //@Response('401', 'Unauthorized')
-  //public async check(
-  //  @Query() accessToken: string,
-  //): Promise<SessionUser|undefined> {
-  //  return new AccountService().check(accessToken)
-  //    .then(async (account: SessionUser|undefined): Promise<SessionUser|undefined> => {
-  //      if (!account) {
-  //        this.setStatus(401)
-  //      }
-  //      return account
-  //    });
-  //}
 }
 
