@@ -2,7 +2,7 @@
   "name": "cse187-microservice-product",
   "version": "1.0.0",
   "description": "CSE187 Product Micro Service",
-  "author": "CSE187 Group2 <dcharris@ucsc.edu>",
+  "author": "CSE187 Group2",
   "license": "UNLICENSED",
   "repository": "none",
   "devDependencies": {
