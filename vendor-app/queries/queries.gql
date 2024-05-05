@@ -1,0 +1,8 @@
+query login {
+  login(
+    account: "molly"
+    password: "mollymember"
+  ) {
+    name, accessToken
+  }
+}
