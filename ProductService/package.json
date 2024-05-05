@@ -1,8 +1,8 @@
 {
-  "name": "cse187-microservice-book",
+  "name": "cse187-microservice-product",
   "version": "1.0.0",
-  "description": "CSE187 Book Micro Service",
-  "author": "David Harrison <dcharris@ucsc.edu>",
+  "description": "CSE187 Product Micro Service",
+  "author": "CSE187 Group2 <dcharris@ucsc.edu>",
   "license": "UNLICENSED",
   "repository": "none",
   "devDependencies": {
