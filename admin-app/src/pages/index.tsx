@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const LanguageSwitcherButton = () => {
   const router = useRouter()
