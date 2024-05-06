@@ -27,6 +27,7 @@ AccountService:
   script: 
     - echo "Building accountservice"
     - apt-get update && apt-get install -y nodejs npm
+    - apt install docker-compose-plugin -y
     - cd AccountService
     - npm install
     - docker-compose up -d
@@ -39,6 +40,7 @@ ProductService:
   script:
     - echo "Building productservice"
     - apt-get update && apt-get install -y nodejs npm
+    - apt install docker-compose-plugin -y
     - cd ProductService
     - npm install
     - docker-compose up -d
@@ -51,6 +53,7 @@ OrderService:
   script:
     - echo "Building orderservice"
     - apt-get update && apt-get install -y nodejs npm
+    - apt install docker-compose-plugin -y
     - cd OrderService
     - npm install
     - docker-compose up -d
