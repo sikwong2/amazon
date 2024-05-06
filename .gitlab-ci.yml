@@ -29,31 +29,33 @@ AccountService:
     - apt-get update && apt-get install -y nodejs npm
     - cd AccountService
     - npm install
-    - npm docker-compose up -d
+    - docker-compose up -d
     - sleep 20
-    - npm docker-compose down
+    - docker-compose down
     - echo "Build complete"
 
 ProductService:
   stage: build
   script:
     - echo "Building productservice"
+    - apt-get update && apt-get install -y nodejs npm
     - cd ProductService
     - npm install
-    - npm docker-compose up -d
+    - docker-compose up -d
     - sleep 20
-    - npm docker-compose down
+    - docker-compose down
     - echo "Build complete"
 
 OrderService:
   stage: build
   script:
     - echo "Building orderservice"
+    - apt-get update && apt-get install -y nodejs npm
     - cd OrderService
     - npm install
-    - npm docker-compose up -d
+    - docker-compose up -d
     - sleep 20
-    - npm docker-compose down
+    - docker-compose down
     - echo "Build complete"
 
 build-job:       # This job runs in the build stage, which runs first.
