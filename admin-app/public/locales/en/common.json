@@ -1,0 +1,10 @@
+{
+  "change-locale": "Change locale to \"{{changeTo}}\"",
+  "login": {
+    "title": "UCSC-Amazon Admin Login",
+    "signin": "Sign In",
+    "email": "Email",
+    "emailaddress": "Email Adress",
+    "password": "Password"
+  }
+}
