@@ -7,10 +7,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LoginContext } from '../context/Login'
+import { useTranslation } from 'next-i18next';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({email: '', password: ''});
+  const { t } = useTranslation('common');
 
   const handleInputChange = (event: any) => {
     const {value, name} = event.target;
@@ -61,7 +63,7 @@ export function Login() {
         }}
       >
         <Typography component="h1" variant="h5">
-          UCSC-Amazon Admin Login
+          {t("login.title")}
         </Typography>
         <Box aria-label='form'
           component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
@@ -71,9 +73,9 @@ export function Login() {
             required
             fullWidth
             id="email"
-            label="Email"
+            label={t("login.email")}
             aria-label="Email"
-            placeholder="Email Address"
+            placeholder={t("login.emailaddress")!}
             name="email"
             autoComplete="email"
             autoFocus
@@ -84,11 +86,11 @@ export function Login() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label={t("login.password")}
             type="password"
             id="password"
             aria-label="Password"
-            placeholder="Password"
+            placeholder={t("login.password")!}
             autoComplete="current-password"
             onChange={handleInputChange}
           />
@@ -99,7 +101,7 @@ export function Login() {
             sx={{mt: 3, mb: 2}}
             aria-label='sign in'
           >
-            Sign In
+            {t("login.signin")}
           </Button>
         </Box>
       </Box>
