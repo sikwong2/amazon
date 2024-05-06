@@ -1,5 +1,12 @@
 {
-  "change-locale": "Change locale to \"{{changeTo}}\"",
+  "change-locale": "将语言环境更改为 \"{{changeTo}}\"",
   "go-to-login": "前往登录",
-  "here": "这里"
+  "here": "这里",
+  "login": {
+    "title": "UCSC-亚马逊购物者登录",
+    "signin": "登入",
+    "email": "电子邮件",
+    "emailaddress": "电子邮件地址",
+    "password": "密码"
+  }
 }
