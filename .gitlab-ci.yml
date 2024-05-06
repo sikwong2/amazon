@@ -26,6 +26,7 @@ AccountService:
   stage: build
   script: 
     - echo "Building accountservice"
+    - apt-get update && apt-get install -y nodejs npm
     - cd AccountService
     - npm install
     - npm docker-compose up -d
