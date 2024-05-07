@@ -1,5 +1,5 @@
 
-import {OrderInfo, OrderResponse } from '.';
+import {OrderInfo, OrderResponse, OrderUpdate } from '.';
 import { pool } from '../db';
 
 export class OrderService {
@@ -60,6 +60,32 @@ export class OrderService {
       return returnObj;
     } catch (error) {
       console.error('Error getting Id', error);
+      return undefined;
+    }
+  }
+
+  public async updateOrder(status: OrderUpdate, id: string):Promise<OrderInfo|undefined> {
+    const statusMap : {[key: number]: string} = {
+      0: 'pending',
+      1: 'shipped',
+      2: 'completed',
+      3: 'cancelled'
+    };
+    
+    const statusString = statusMap[status.statusCode];
+    
+    let update = `UPDATE orders SET order_status = $1
+    WHERE id = $2`;
+    const query = {
+      text: update,
+      values: [statusString, id]
+    }
+    try {
+      await pool.query(query);
+      const returnObj = this.selectById(id);
+      return returnObj;
+    } catch (error){
+      console.log('Error updating', error);
       return undefined;
     }
   }

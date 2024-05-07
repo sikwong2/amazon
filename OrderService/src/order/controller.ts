@@ -8,9 +8,10 @@ import {
   Get,
   Response,
   Route,
+  Put,
 } from 'tsoa';
 
-import { OrderInfo, OrderResponse} from '.';
+import { OrderInfo, OrderResponse, OrderUpdate} from '.';
 import { OrderService } from './service';
 
 @Route('order')
@@ -59,5 +60,20 @@ export class OrderController extends Controller {
     }); 
   }
 
-
+ @Put("{orderId}")
+ @Response('200', 'Successful Update')
+ @Response('404', 'Order Not Found')
+ public async updateOrder(
+  @Path() orderId: string,
+  @Body() orderUpdate:  OrderUpdate
+ ): Promise<OrderInfo | undefined> {
+   return new OrderService().updateOrder(orderUpdate, orderId)
+     .then(async (OrderInfo: OrderInfo | undefined):
+       Promise<OrderInfo | undefined> => {
+       if (!OrderInfo) {
+         this.setStatus(400)
+       }
+       return OrderInfo;
+     });
+   }
 }

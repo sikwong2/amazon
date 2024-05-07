@@ -26,4 +26,8 @@ export type OrderResponse = {
   orderId: string
 }
 
+export type OrderUpdate = {
+  statusCode: number
+}
+
 
