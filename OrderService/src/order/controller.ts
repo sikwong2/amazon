@@ -2,6 +2,7 @@
 import {
   Body,
   Query,
+  Path,
   Controller,
   Post,
   Get,
@@ -42,5 +43,19 @@ export class OrderController extends Controller {
       return OrderResponse;
     });
   }
-}
 
+  @Get("{orderId}")
+  @Response('200', 'Successful')
+  public async getOrderById(
+    @Path() orderId: string
+  ): Promise<OrderInfo | undefined>{
+    return new OrderService().selectById(orderId)
+    .then(async (OrderInfo: OrderInfo | undefined):
+      Promise<OrderInfo | undefined> => {
+      if (!OrderInfo) {
+        this.setStatus(400)
+      }
+      return OrderInfo;
+    }); 
+  }
+}
