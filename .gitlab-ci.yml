@@ -17,6 +17,13 @@ variables:
   POSTGRES_USER: $POSTGRES_USER
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
+image:
+  name: docker/compose:latest
+
+before_script:
+  - docker version
+  - docker-compose version
+
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
