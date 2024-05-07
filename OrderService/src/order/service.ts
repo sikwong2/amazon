@@ -43,7 +43,7 @@ export class OrderService {
   }
 
   public async selectById(id: string):Promise<OrderInfo|undefined> {
-    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId FROM orders WHERE id = $1`;
+    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE id = $1`;
     const query = {
       text: select,
       values: [id]
@@ -53,7 +53,8 @@ export class OrderService {
       const returnObj = {
         productId: rows[0].productid,
         shopperId: rows[0].shopperid,
-        vendorId: rows[0].vendorid
+        vendorId: rows[0].vendorid, 
+        orderStatus: rows[0].orderstatus
       }
       console.log(returnObj.productId);
       return returnObj;

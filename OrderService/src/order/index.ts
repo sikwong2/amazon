@@ -19,6 +19,7 @@ export type OrderInfo = {
   productId: string
   shopperId: string
   vendorId: string
+  orderStatus: boolean
 }
 
 export type OrderResponse = {
