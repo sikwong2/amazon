@@ -49,7 +49,6 @@ ProductService:
   script:
     - echo "Building productservice"
     - apk add --update nodejs npm docker-compose
-    - apt install docker-compose-plugin -y
     - cd ProductService
     - npm install
     - docker-compose up -d
