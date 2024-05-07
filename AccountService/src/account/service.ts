@@ -19,12 +19,16 @@ export class AccountService {
       text: select,
       values: [creds.email, creds.password],
     };
+    console.log(1);
     const {rows} = await pool.query(query)
+    console.log(2);
     return rows.length === 1 ? rows[0].account : undefined
   }
 
   public async login(credentials: Credentials): Promise<Authenticated|undefined>  {
     const account = await this.find(credentials);
+    console.log(account);
+    console.log('check');
     if (account) {
       const accessToken = jwt.sign(
         {id: account.id, role: account.role}, 
