@@ -24,20 +24,23 @@ export class OrderService {
     }
   }
 
-  public async selectAll(): Promise<OrderResponse[] | undefined> {
-    let select = `SELECT id FROM orders`;
+  public async selectByShopperId(id: string): Promise<OrderInfo[] | undefined> {
+    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE shopper_id = $1`;
     const query = {
-      text: select
+      text: select,
+      values: [id]
     };
     try {
-      const { rows } = await pool.query(query);
-      // Map rows to an array of objects with orderId property
-      const orderIds = rows.map(row => ({
-        orderId: row.id
+      const { rows } = await pool.query(query); 
+      const orders = rows.map(row => ({
+        productId: row.productid,
+        shopperId: row.shopperid,
+        vendorId: row.vendorid,
+        orderStatus: row.orderstatus
       }));
-      return orderIds;
+      return orders;
     } catch (error) {
-      console.error('Error executing select all orders query:', error);
+      console.error('Error getting Id', error);
       return undefined;
     }
   }
@@ -64,7 +67,7 @@ export class OrderService {
     }
   }
 
-  public async updateOrder(status: OrderUpdate, id: string):Promise<OrderInfo|undefined> {
+  public async updateOrderStatus(status: OrderUpdate, id: string):Promise<OrderInfo|undefined> {
     const statusMap : {[key: number]: string} = {
       0: 'pending',
       1: 'shipped',

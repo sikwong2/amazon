@@ -31,17 +31,19 @@ export class OrderController extends Controller {
       });
   }
 
-  @Get()
+  @Get("{shopperId}")
   @Response('200', 'Successful')
-  public async getAllOrders():
-  Promise<OrderResponse[]|undefined> {
-    return new OrderService().selectAll()
-    .then(async (OrderResponse: OrderResponse[]|undefined):
-    Promise<OrderResponse[]|undefined> => {
-      if (!OrderResponse){
+  public async getByShopperId(
+    @Path() shopperId: string
+  ):
+  Promise<OrderInfo[]|undefined> {
+    return new OrderService().selectByShopperId(shopperId)
+    .then(async (OrderInfo:OrderInfo[]|undefined):
+    Promise<OrderInfo[]|undefined> => {
+      if (!OrderInfo){
         this.setStatus(400)
       }
-      return OrderResponse;
+      return OrderInfo;
     });
   }
 
@@ -63,11 +65,11 @@ export class OrderController extends Controller {
  @Put("{orderId}")
  @Response('200', 'Successful Update')
  @Response('404', 'Order Not Found')
- public async updateOrder(
+ public async updateOrderStatus(
   @Path() orderId: string,
   @Body() orderUpdate:  OrderUpdate
  ): Promise<OrderInfo | undefined> {
-   return new OrderService().updateOrder(orderUpdate, orderId)
+   return new OrderService().updateOrderStatus(orderUpdate, orderId)
      .then(async (OrderInfo: OrderInfo | undefined):
        Promise<OrderInfo | undefined> => {
        if (!OrderInfo) {
