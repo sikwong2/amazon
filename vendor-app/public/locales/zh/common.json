@@ -1,0 +1,10 @@
+{
+  "change-locale": "将语言环境更改为 \"{{changeTo}}\"",
+  "login": {
+    "title": "UCSC-亚马逊供应商登录",
+    "signin": "登入",
+    "email": "电子邮件",
+    "emailaddress": "电子邮件地址",
+    "password": "密码"
+  }
+}
