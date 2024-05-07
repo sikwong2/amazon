@@ -36,7 +36,7 @@ AccountService:
   stage: build
   script: 
     - echo "Building accountservice"
-    - apk add --update -y nodejs npm docker-compose
+    - apk add --update nodejs npm docker-compose
     - cd AccountService
     - npm install
     - docker-compose up -d
@@ -48,7 +48,7 @@ ProductService:
   stage: build
   script:
     - echo "Building productservice"
-    - apk add --update -y nodejs npm docker-compose
+    - apk add --update nodejs npm docker-compose
     - apt install docker-compose-plugin -y
     - cd ProductService
     - npm install
@@ -61,7 +61,7 @@ OrderService:
   stage: build
   script:
     - echo "Building orderservice"
-    - apk add --update -y nodejs npm docker-compose
+    - apk add --update nodejs npm docker-compose
     - cd OrderService
     - npm install
     - docker-compose up -d
