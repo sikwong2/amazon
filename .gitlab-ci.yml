@@ -20,9 +20,9 @@ variables:
 image:
   name: docker/compose:latest
 
-before_script:
-  - docker version
-  - docker-compose version
+# before_script:
+#   - docker version
+#   - docker-compose version
 
 stages:          # List of stages for jobs, and their order of execution
   - build
