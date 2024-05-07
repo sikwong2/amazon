@@ -21,7 +21,7 @@ export type OrderInfo = {
   vendorId: string
 }
 
-export type OrderReponse = {
+export type OrderResponse = {
   orderId: string
 }
 
