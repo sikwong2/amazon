@@ -1,0 +1,12 @@
+{
+  "change-locale": "Change locale to \"{{changeTo}}\"",
+  "go-to-login": "Go to Login",
+  "here": "here",
+  "login": {
+    "title": "UCSC-Amazon Shopper Login",
+    "signin": "Sign In",
+    "email": "Email",
+    "emailaddress": "Email Adress",
+    "password": "Password"
+  }
+}
