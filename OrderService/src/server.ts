@@ -1,11 +1,8 @@
 
 import dotenv from 'dotenv';
-dotenv.config({path : '../.env'});
-
-console.log(process.cwd());
+dotenv.config();
 
 import app from './app';
-
 
 app.listen(Number(process.env.ORDER_SERVICE_PORT), () => {
   console.log(`Order Service Server Running on port ${process.env.ORDER_SERVICE_PORT}`);

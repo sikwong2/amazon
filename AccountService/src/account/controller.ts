@@ -24,6 +24,10 @@ export class AccountController extends Controller {
           this.setStatus(401)
         }
         return account
+      })
+      .catch((err) => {
+        console.error(err);
+        return undefined
       });
   }
 
