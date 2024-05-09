@@ -5,8 +5,7 @@ import { pool } from '../db';
 export class OrderService {
   public async create(OrderInfo: OrderInfo): Promise<OrderReponse|undefined> {
     let insert = 
-      `INSERT INTO orders (data, vendor_id, shopper_id) VALUES 
-     (jsonb_build_object('productId', $1::uuid), $2::uuid, $3::uuid) RETURNING id;`;
+      `INSERT INTO order_(data, vendor_id, shopper_id) VALUES(jsonb_build_object('productId', $1::UUID), $2::UUID, $3::UUID) RETURNING id;`;
     const query = {
       text: insert,
       values: [OrderInfo.productId, OrderInfo.vendorId, OrderInfo.shopperId],
