@@ -8,6 +8,8 @@ services:
       - postgres
     ports:
       - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
 
   postgres:
     container_name: database
@@ -18,8 +20,12 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
+      - ./AccountService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
       - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
       - ./AccountService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
-      - ./BookService/sql/schema.sql:/docker-entrypoint-initdb.d/4.schema.sql
-      - ./BookService/sql/data.sql:/docker-entrypoint-initdb.d/5.data.sql
+      - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
+      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
+      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
+      - ./ProductService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
+      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
+      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql

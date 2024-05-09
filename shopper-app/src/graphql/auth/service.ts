@@ -5,7 +5,7 @@ import { SessionUser } from '../../types/next';
 export class AuthService {
   public async login(credentials: Credentials): Promise<Authenticated>  {
     return new Promise((resolve, reject) => {
-      fetch('http://localhost:3011/api/v0/authenticate', {
+      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/authenticate`, {
         method: 'POST',
         body: JSON.stringify(credentials),
         headers: {
@@ -39,7 +39,7 @@ export class AuthService {
           reject(new Error("Unauthorised"))
         }
         else {
-          fetch('http://localhost:3011/api/v0/authenticate?accessToken=' + tokens[1], {
+          fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/authenticate?accessToken=` + tokens[1], {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
