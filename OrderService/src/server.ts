@@ -1,10 +1,13 @@
 
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({path : '../.env'});
+
+console.log(process.cwd());
 
 import app from './app';
 
-app.listen(process.env.ORDER_SERVICE_PORT, () => {
+
+app.listen(Number(process.env.ORDER_SERVICE_PORT), () => {
   console.log(`Order Service Server Running on port ${process.env.ORDER_SERVICE_PORT}`);
   console.log(`Order Service API Testing UI: http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/docs/`);
 });

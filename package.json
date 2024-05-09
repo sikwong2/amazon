@@ -15,7 +15,7 @@
     "docker-down-products": "cd ProductService && docker-compose down",
     "docker-down": "concurrently \"npm run docker-down-accounts\" \"npm run docker-down-orders\" \"npm run docker-down-products\"",
 
-    "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin\" \"npm run vendor\" \"npm run shopper\"",
+    "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"",
     "vendor": "concurrently --kill-others \"npm run accounts\" \"npm run vendor-app\"",
     "admin": "concurrently --kill-others \"npm run accounts\" \"npm run admin-app\"",
     "shopper": "concurrently --kill-others \"npm run accounts\" \"npm run shopper-app\"",

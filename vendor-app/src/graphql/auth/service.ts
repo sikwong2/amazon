@@ -1,10 +1,12 @@
 import { Credentials, Authenticated } from './schema';
 import { SessionUser } from '../../types/next';
+import dotenv from 'dotenv';
+dotenv.config({path : '../.env'});
 
 export class AuthService {
   public async login(credentials: Credentials): Promise<Authenticated>  {
     return new Promise((resolve, reject) => {
-      fetch(`http://localhost:${ACCOUNT_SERVICE_PORT}/api/v0/authenticate`, {
+      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/authenticate`, {
         method: 'POST',
         body: JSON.stringify(credentials),
         headers: {

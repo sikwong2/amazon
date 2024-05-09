@@ -1,6 +1,8 @@
 
 import { Credentials, Authenticated } from './schema';
 import { SessionUser } from '../../types/next';
+import dotenv from 'dotenv';
+dotenv.config({path : '../.env'});
 
 export class AuthService {
   public async login(credentials: Credentials): Promise<Authenticated>  {

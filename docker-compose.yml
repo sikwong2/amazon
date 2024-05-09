@@ -1,7 +1,8 @@
-version: "1.0"
+version: "3.7"
+
 services:
   app:
-    container_name: amazon
+    container_name: app
     env_file: .env
     build: .
     depends_on:
@@ -23,9 +24,9 @@ services:
       - ./AccountService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
       - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
       - ./AccountService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
-      - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
-      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
-      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
-      - ./ProductService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
-      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
-      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
+      - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/4.databases.sql
+      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/5.schema.sql
+      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/6.data.sql
+      - ./ProductService/sql/databases.sql:/docker-entrypoint-initdb.d/7.databases.sql
+      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/8.schema.sql
+      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/9.data.sql
