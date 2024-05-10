@@ -31,13 +31,13 @@ export class OrderController extends Controller {
       });
   }
 
-  @Get("{shopperId}")
+  @Get("{Id}")
   @Response('200', 'Successful')
   public async getByShopperId(
-    @Path() shopperId: string
+    @Path() Id: string
   ):
   Promise<OrderInfo[]|undefined> {
-    return new OrderService().selectByShopperId(shopperId)
+    return new OrderService().selectById(Id)
     .then(async (OrderInfo:OrderInfo[]|undefined):
     Promise<OrderInfo[]|undefined> => {
       if (!OrderInfo){
@@ -52,7 +52,7 @@ export class OrderController extends Controller {
   public async getOrderById(
     @Path() orderId: string
   ): Promise<OrderInfo | undefined>{
-    return new OrderService().selectById(orderId)
+    return new OrderService().selectByOrderId(orderId)
     .then(async (OrderInfo: OrderInfo | undefined):
       Promise<OrderInfo | undefined> => {
       if (!OrderInfo) {

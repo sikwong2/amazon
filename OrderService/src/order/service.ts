@@ -24,8 +24,8 @@ export class OrderService {
     }
   }
 
-  public async selectByShopperId(id: string): Promise<OrderInfo[] | undefined> {
-    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE shopper_id = $1`;
+  public async selectById (id: string): Promise<OrderInfo[] | undefined> {
+    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE vendor_id = $1 OR sender_id = $1`;
     const query = {
       text: select,
       values: [id]
@@ -45,7 +45,7 @@ export class OrderService {
     }
   }
 
-  public async selectById(id: string):Promise<OrderInfo|undefined> {
+  public async selectByOrderId(id: string):Promise<OrderInfo|undefined> {
     let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE id = $1`;
     const query = {
       text: select,
@@ -85,7 +85,7 @@ export class OrderService {
     }
     try {
       await pool.query(query);
-      const returnObj = this.selectById(id);
+      const returnObj = this.selectByOrderId(id);
       return returnObj;
     } catch (error){
       console.log('Error updating', error);
