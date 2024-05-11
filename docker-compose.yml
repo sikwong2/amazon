@@ -21,7 +21,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./AccountService/sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
+      - ./sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
       - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
       - ./AccountService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
       - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/4.databases.sql

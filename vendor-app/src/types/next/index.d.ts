@@ -4,6 +4,7 @@ export type SessionUser = {
 
 declare module 'next' {
   export interface NextApiRequest {
+    req: any
     user: SessionUser
   }
 }
