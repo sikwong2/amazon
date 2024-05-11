@@ -39,7 +39,7 @@ AccountService:
     - echo "Building accountservice"
     - apk add --update nodejs npm docker-compose
     - cd AccountService
-    - npm install
+    - npm ci
     - docker-compose up -d
     - sleep 20
     - docker-compose down
@@ -51,7 +51,7 @@ ProductService:
     - echo "Building productservice"
     - apk add --update nodejs npm docker-compose
     - cd ProductService
-    - npm install
+    - npm ci
     - docker-compose up -d
     - sleep 20
     - docker-compose down
@@ -63,7 +63,7 @@ OrderService:
     - echo "Building orderservice"
     - apk add --update nodejs npm docker-compose
     - cd OrderService
-    - npm install
+    - npm ci
     - docker-compose up -d
     - sleep 20
     - docker-compose down
@@ -73,7 +73,7 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - apk add --update nodejs npm docker-compose
-    - npm install
+    - npm ci
     - echo "Compiling the code..."
     - echo "Compile complete."
 
