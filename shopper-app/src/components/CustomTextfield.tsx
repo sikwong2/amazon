@@ -23,12 +23,6 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-interface CustomTextFieldProps {
-  label: string,
-  placeholder: string,
-  width?: string,
-}
-
 // TODO:
 // - ...rest
 // - fonts
@@ -45,8 +39,7 @@ export default function CustomTextField({ label='', placeholder='', width='', he
   )
 }
 
-const InputElement = styled('input')(
-  ({ theme }) => `
+const InputElement = styled('input')( () => `
   width: 300px;
   font-family: 'Amazon Ember', sans-serif;
   font-size: 100%;
@@ -59,7 +52,8 @@ const InputElement = styled('input')(
 
   &:focus {
     background-color: #f7feff;
-    border: 0px solid #007185;
+    border: 1px solid #007185;
+    outline: none;
     box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgba(15,17,17,.15) inset
   }
 `,
