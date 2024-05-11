@@ -17,30 +17,27 @@ const CustomInput = React.forwardRef(function CustomInput(
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <div {...getRootProps()}>
+    <div {...getRootProps()} style={{width: '100%'}}>
       <InputElement {...props} {...inputProps} />
     </div>
   );
 });
 
-// TODO:
-// - ...rest
-// - fonts
-// sizing
-
 export default function CustomTextField({ label='', placeholder='', width='', height='2.5rem', ...rest }) {
   return (
     <CustomInput 
-      aria-label={label} 
+      aria-label={label}
+      id={label}
+      name={label}
       placeholder={placeholder}
-      style={{ width, height} }
+      style={{ width, height } }
       {...rest} // for other props
     />
   )
 }
 
 const InputElement = styled('input')( () => `
-  width: 300px;
+  width: 100%;
   font-family: 'Amazon Ember', sans-serif;
   font-size: 100%;
   line-height: normal;
@@ -51,7 +48,7 @@ const InputElement = styled('input')( () => `
   box-shadow: 0 1px 2px rgba(15,17,17,.15) inset;
 
   &:focus {
-    background-color: #f7feff;
+    background-color: #F7FEFF;
     border: 1px solid #007185;
     outline: none;
     box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgba(15,17,17,.15) inset
