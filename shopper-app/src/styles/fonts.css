@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'Amazon Ember';
+  /* can import more Amazon Ember font types from ../../public/fonts */
+  src: url('../../public/fonts/Ember/AmazonEmber_Rg.ttf') format('truetype');
+}
