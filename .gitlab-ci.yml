@@ -38,7 +38,7 @@ AccountService:
   script: 
     - echo "Building accountservice"
     - apk add --update nodejs npm docker-compose
-    - echo "Node Version: $(node -v)"
+    - node --version
     - cd AccountService
     - npm ci
     - docker-compose up -d
