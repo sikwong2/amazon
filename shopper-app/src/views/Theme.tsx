@@ -44,6 +44,7 @@ export const buttonTheme = createTheme(
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
               borderRadius: 8,
+              border: "1px solid transparent",
               "&:hover": {
                 color: globalTheme.palette.primary.contrastText,
                 outline: `solid 1px rgba(250, 137, 0, 0.5)`
@@ -68,6 +69,24 @@ export const buttonTheme = createTheme(
                 fontWeight: "bold",
                 backgroundColor: '#EDFCFF',
                 outline: `solid 3px #017185`
+              },
+            }
+          },
+          {
+            props: {variant: "outlined", color: "info"},
+            style: {
+              border: "solid 3px #017185",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: 'rgba(136, 140, 140, 0.1)',
+                border: "solid 3px #017185",
+                outline: "none"
+              },
+              "&:active": {
+                fontWeight: "bold",
+                backgroundColor: '#EDFCFF',
+                border: `solid 3px #017185`,
+                outline: "none"
               },
             }
           }

@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import {buttonTheme} from './Theme'
 import { ThemeProvider } from '@mui/material';
+import CustomButton from './Button';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -101,38 +102,16 @@ export function Login() {
             autoComplete="current-password"
             onChange={handleInputChange}
           />
-          <ThemeProvider theme={buttonTheme}>
-            <Button
-              type="submit"
-              fullWidth
-              variant='contained'
-              color='primary'
-              sx={{mt: 3, mb: 2}}
-              aria-label='sign in'
-            >
-              {t("login.signin")}
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              sx={{mt: 3, mb: 2}}
-              aria-label='sign in'
-            >
-              {t("login.signin")}
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="secondary"
-              sx={{mt: 3, mb: 2, borderRadius: 9999}}
-              aria-label='sign in'
-            >
-              {t("login.signin")}
-            </Button>
-          </ThemeProvider>
-
+          <CustomButton
+            type="submit"
+            label="sign in"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{mt: 3, mb: 2}}
+          >
+            {t("login.signin")}
+          </CustomButton>
         </Box>
       </Box>
     </Container>
