@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
-import CustomTextField from '@/components/CustomTextField';
+import CustomTextField from '@/components/CustomTextfield';
+import CustomButton from '@/components/Button';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -86,15 +87,16 @@ export function Login() {
             autoComplete="current-password"
             onChange={handleInputChange}
           />
-          <Button
+          <CustomButton
             type="submit"
+            label="sign in"
             fullWidth
             variant="contained"
+            color="primary"
             sx={{mt: 3, mb: 2}}
-            aria-label='sign in'
           >
             {t("login.signin")}
-          </Button>
+          </CustomButton>
         </Box>
       </Box>
     </Container>

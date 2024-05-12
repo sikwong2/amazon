@@ -8,9 +8,7 @@ import { LoginContext } from '../context/Login'
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
-import {buttonTheme} from './Theme'
-import { ThemeProvider } from '@mui/material';
-import CustomButton from './Button';
+import CustomButton from '../components/Button';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
