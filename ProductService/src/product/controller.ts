@@ -10,7 +10,7 @@ import {
   Path,
   Response,
 } from 'tsoa'
-import { Product } from '.'
+import { NewProduct, Product } from '.'
 import { ProductService } from './service'
 
 @Route('product')
@@ -23,7 +23,7 @@ export class ProductController extends Controller {
   @Post('')
   @Response('201', 'Created')
   public async makeProduct(
-    @Body() product: Product
+    @Body() product: NewProduct
   ): Promise<Product> {
     return await new ProductService().makeProduct(product);
   }

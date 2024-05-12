@@ -1,5 +1,5 @@
 import { pool } from '../db'
-import { Product } from '.'
+import { NewProduct, Product } from '.'
 
 export class ProductService {
   public async getAll(): Promise<Product[]> {
@@ -7,29 +7,32 @@ export class ProductService {
       text: 'SELECT * FROM product;',
       values: [],
     }
-    const {rows} = await pool.query(query);
+    const { rows } = await pool.query(query);
     const products: Product[] = [];
 
     for (const row of rows) {
       products.push({
-        name: row.data.name,
-        price: row.data.name,
-        stock: row.data.stock,
-        image: row.data.image,
-        rating: row.data.rating,
+        id: row.id,
+        data: {
+          name: row.data.name,
+          price: row.data.name,
+          stock: row.data.stock,
+          image: row.data.image,
+          rating: row.data.rating,
+        }
       })
     }
     return products;
   }
 
-  public async makeProduct(product: Product): Promise<Product> {
+  public async makeProduct(product: NewProduct): Promise<Product> {
     const query = {
       text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::text, 'rating', $5::int)) RETURNING *;`,
       values: [product.name, product.price, product.stock, product.image, product.rating],
     }
-    const {rows} = await pool.query(query);
+    const { rows } = await pool.query(query);
 
-    return product;
+    return rows[0];
   }
 
   /**
@@ -41,7 +44,7 @@ export class ProductService {
       values: [uuid],
     }
 
-    const {rows} = await pool.query(query);
-    return rows[0].data;
+    const { rows } = await pool.query(query);
+    return rows[0];
   }
 }
