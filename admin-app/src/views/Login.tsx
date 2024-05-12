@@ -14,19 +14,13 @@ export function Login() {
   const [user, setUser] = React.useState({email: '', password: ''});
   const { t } = useTranslation('common');
 
-  const handleInputChange = (event: any) => {
-    const {value, name} = event.target;
-    const u = user;
-    if (name == 'email') {
-      u.email = value;
-    } else {
-      u.password = value;
-    }
-    setUser(u);
-  };
-
   const onSubmit = (event: any) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const u = user;
+    u.email = data.get('Email Address')!.toString();
+    u.password = data.get('Password')!.toString();
+    setUser(u);
     const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
     fetch('/api/graphql', {
       method: 'POST',
@@ -73,19 +67,19 @@ export function Login() {
             placeholder={t("login.emailaddress")!}
             required
             type="email"
+            name='Email Address'
             sx={{mt: 1, mb: 1}}
             autoComplete="email"
             autoFocus
-            onChange={handleInputChange}
           />
           <CustomTextField
             label={t("login.password") || 'password'}
             placeholder={t("login.password")!}
             required
             type="password"
+            name='Password'
             sx={{mt: 1}}
             autoComplete="current-password"
-            onChange={handleInputChange}
           />
           <CustomButton
             type="submit"
