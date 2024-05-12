@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: app
+    env_file: .env
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+
+  postgres:
+    container_name: database
+    image: postgres:alpine
+    environment:
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
+      - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
+      - ./AccountService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
+      - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/4.databases.sql
+      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/5.schema.sql
+      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/6.data.sql
+      - ./ProductService/sql/databases.sql:/docker-entrypoint-initdb.d/7.databases.sql
+      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/8.schema.sql
+      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/9.data.sql

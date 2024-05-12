@@ -6,8 +6,10 @@
   "license": "UNLICENSED",
   "repository": "none",
   "scripts": {
-    "dev": "next dev",
-    "lint": "next lint --fix"
+    "start": "next start -p 3002",
+    "dev": "next dev -p 3002",
+    "lint": "next lint --fix",
+    "build": "next build"
   },
   "devDependencies": {
     "@types/node": "*",
@@ -24,17 +26,18 @@
     "@emotion/styled": "*",
     "@mui/material": "*",
     "class-validator": "*",
+    "dotenv": "^16.4.5",
     "graphql": "*",
     "graphql-request": "*",
     "graphql-yoga": "*",
+    "i18next": "^22.4.10",
     "next": "*",
+    "next-i18next": "^13.1.5",
     "react": "*",
     "react-dom": "*",
+    "react-i18next": "^12.2.0",
     "reflect-metadata": "*",
-    "type-graphql": "*",
-    "i18next": "^22.4.10",
-    "next-i18next": "^13.1.5",
-    "react-i18next": "^12.2.0"
+    "type-graphql": "*"
   },
   "eslintConfig": {
     "extends": [

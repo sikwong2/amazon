@@ -1,5 +1,5 @@
 {
-  "name": "cse187-microservice-book",
+  "name": "cse187-microservice-order",
   "version": "1.1.0",
   "description": "CSE187 Order Micro Service",
   "author": "Alan <wtan40@ucsc.edu>",
@@ -15,8 +15,8 @@
     "concurrently": "*",
     "eslint": "*",
     "eslint-config-typescript": "",
-    "joi": "*",
     "jest": "*",
+    "joi": "^17.13.1",
     "nodemon": "*",
     "supertest": "*",
     "ts-jest": "*",
