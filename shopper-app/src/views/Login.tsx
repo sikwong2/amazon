@@ -1,14 +1,13 @@
 import React from 'react';
-
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LoginContext } from '../context/Login'
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import CustomTextField from '../components/CustomTextfield'
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -70,32 +69,25 @@ export function Login() {
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
-        <Box aria-label='form'
+        <Box aria-label='form' width={500}
           component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
         >
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label={t("login.email")}
-            aria-label="Email"
+          <CustomTextField
+            label={t("login.email") || 'email'}
             placeholder={t("login.emailaddress")!}
-            name="email"
+            required
+            type="email"
+            sx={{mt: 1, mb: 1}}
             autoComplete="email"
             autoFocus
             onChange={handleInputChange}
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label={t("login.password")}
-            type="password"
-            id="password"
-            aria-label="Password"
+          <CustomTextField
+            label={t("login.password") || 'password'}
             placeholder={t("login.password")!}
+            required
+            type="password"
+            sx={{mt: 1}}
             autoComplete="current-password"
             onChange={handleInputChange}
           />
