@@ -4,7 +4,7 @@ dotenv.config();
 
 import app from './app';
 
-app.listen(3013, () => {
-  console.log(`Server Running on port 3013`);
-  console.log('API Testing UI: http://localhost:3013/api/v0/docs/');
+app.listen(Number(process.env.ORDER_SERVICE_PORT), () => {
+  console.log(`Order Service Server Running on port ${process.env.ORDER_SERVICE_PORT}`);
+  console.log(`Order Service API Testing UI: http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/docs/`);
 });
