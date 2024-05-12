@@ -8,6 +8,7 @@ import { LoginContext } from '../context/Login'
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
+import CustomButton from '../components/Button';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -17,19 +18,14 @@ export function Login() {
   // router to change pages
   const router = useRouter(); 
 
-  const handleInputChange = (event: any) => {
-    const {value, name} = event.target;
-    const u = user;
-    if (name == 'email') {
-      u.email = value;
-    } else {
-      u.password = value;
-    }
-    setUser(u);
-  };
-
   const onSubmit = (event: any) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const u = user;
+    u.email = data.get('Email Address')!.toString();
+    u.password = data.get('Password')!.toString();
+    setUser(u);
+    // console.log(user);
     const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
     fetch('/api/graphql', {
       method: 'POST',
@@ -77,29 +73,30 @@ export function Login() {
             placeholder={t("login.emailaddress")!}
             required
             type="email"
+            name='Email Address'
             sx={{mt: 1, mb: 1}}
             autoComplete="email"
             autoFocus
-            onChange={handleInputChange}
           />
           <CustomTextField
             label={t("login.password") || 'password'}
             placeholder={t("login.password")!}
             required
             type="password"
+            name='Password'
             sx={{mt: 1}}
             autoComplete="current-password"
-            onChange={handleInputChange}
           />
-          <Button
+          <CustomButton
             type="submit"
+            label="sign in"
             fullWidth
             variant="contained"
+            color="primary"
             sx={{mt: 3, mb: 2}}
-            aria-label='sign in'
           >
             {t("login.signin")}
-          </Button>
+          </CustomButton>
         </Box>
       </Box>
     </Container>
