@@ -23,7 +23,7 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-export default function CustomTextField({ label='', placeholder='', width='', height='2.5rem', ...rest }) {
+export default function CustomTextField({ label='', placeholder='', width='100%', height='2.5rem', ...rest }) {
   return (
     <CustomInput 
       aria-label={label}
