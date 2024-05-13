@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
-
+import { Logo } from '@/components/Logo';
 export function Login() {
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({email: '', password: ''});
@@ -62,6 +62,7 @@ export function Login() {
           alignItems: 'center',
         }}
       >
+        <Logo />
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
