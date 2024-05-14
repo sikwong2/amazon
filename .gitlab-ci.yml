@@ -18,11 +18,7 @@ variables:
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
 # can make own image later
-image:
-  name: docker/compose:latest
-
-services:
-  - docker:dind
+image: node:lts-alpine
   
 # before_script:
 #   - docker version
@@ -33,56 +29,18 @@ stages:          # List of stages for jobs, and their order of execution
   - test
   - deploy
 
-AccountService:
+ContainerizedBuild:
   stage: build
   script: 
-    - echo "Building accountservice"
-    - apk add --update nodejs npm docker-compose
-    - npm install -g n
-    - n lts
-    - cd AccountService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
+    - echo "Running containerized build"
+    - apk add --update docker-compose
+    - node --version
+    - docker --version
+    - docker-compose --version
   when: manual
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-ProductService:
-  stage: build
-  script:
-    - echo "Building productservice"
-    - apk add --update nodejs npm docker-compose
-    - cd ProductService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-OrderService:
-  stage: build
-  script:
-    - echo "Building orderservice"
-    - apk add --update nodejs npm docker-compose
-    - cd OrderService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
 
 AccountService-test:
   stage: test
@@ -91,7 +49,6 @@ AccountService-test:
       - apk add --update nodejs npm
       - npm install -g n
       - cd AccountService
-      - npm install
       - npm test
       - echo "Test complete"
   when: manual
@@ -106,7 +63,6 @@ ProductService-test:
     - apk add --update nodejs npm
     - npm install -g n
     - cd ProductService
-    - npm install
     - npm test
     - echo "Test complete"
   when: manual
