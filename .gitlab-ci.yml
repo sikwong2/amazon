@@ -26,12 +26,7 @@ variables:
   ORDER_SERVICE_PORT: $ORDER_SERVICE_PORT
 
 # can make own image later
-image:
-  name: docker/compose:latest
-
-
-services:
-  - docker:dind
+image: ubuntu:jammy
   
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -41,8 +36,12 @@ Build:
   stage: build
   script: 
     - echo "Running build"
-    - apk add nodejs-current npm
-    - node --version  
+    - apt install nodejs npm
+    - node --version
+    - npm --version
+    - npm install -g n
+    - n lts
+    - node --version
     - npm run installs
     - npm run build
     - echo "Build complete" 
