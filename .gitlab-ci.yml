@@ -91,6 +91,7 @@ AccountService-test:
       - apk add --update nodejs npm
       - npm install -g n
       - cd AccountService
+      - npm install
       - npm test
       - echo "Test complete"
   when: manual
@@ -105,6 +106,7 @@ ProductService-test:
     - apk add --update nodejs npm
     - npm install -g n
     - cd ProductService
+    - npm install
     - npm test
     - echo "Test complete"
   when: manual
