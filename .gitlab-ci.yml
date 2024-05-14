@@ -36,59 +36,7 @@ services:
 #   - docker-compose version
 
 stages:          # List of stages for jobs, and their order of execution
-  - build
   - test
-  - deploy
-
-AccountService:
-  stage: build
-  script: 
-    - echo "Building accountservice"
-    - apk add --update nodejs npm docker-compose
-    - node --version
-    - cd AccountService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-ProductService:
-  stage: build
-  script:
-    - echo "Building productservice"
-    - apk add --update nodejs npm docker-compose
-    - cd ProductService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-OrderService:
-  stage: build
-  script:
-    - echo "Building orderservice"
-    - apk add --update nodejs npm docker-compose
-    - cd OrderService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
 
 Test:
   stage: test
@@ -106,45 +54,10 @@ Test:
     - echo "ACCOUNT_SERVICE_PORT=$ACCOUNT_SERVICE_PORT" >> .env
     - echo "PRODUCT_SERVICE_PORT=$PRODUCT_SERVICE_PORT" >> .env
     - echo "ORDER_SERVICE_PORT=$ORDER_SERVICE_PORT" >> .env
+    - ls
+    - pwd
     - npm run installs
     - npm run test
     - echo "Test complete"
   when: manual
-
-AccountService-test:
-  stage: test
-  script:
-      - echo "Testing accountservice"
-      - apk add --update nodejs npm
-      - npm install -g n
-      - cd AccountService
-      - npm install
-      - npm test
-      - echo "Test complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-ProductService-test:
-  stage: test
-  script:
-    - echo "Testing productservice"
-    - apk add --update nodejs npm
-    - npm install -g n
-    - cd ProductService
-    - npm install
-    - npm test
-    - echo "Test complete"
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-# deploy-job:      # This job runs in the deploy stage.
-#   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-#   environment: production
-#   script:
-#     - echo "Deploying application..."
-#     - echo "Application successfully deployed."
 
