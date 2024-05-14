@@ -13,7 +13,7 @@ const LanguageSwitcherButton = () => {
   const changeTo = router.locale === 'en' ? 'zh' : 'en'
   const { t } = useTranslation('common')
   return (
-    <Link href="/" locale={changeTo}>
+    <Link href="/admin" locale={changeTo}>
       <button>{t('change-locale', { changeTo })}</button>
     </Link>
   )
