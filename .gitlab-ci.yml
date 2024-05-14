@@ -29,13 +29,13 @@ stages:          # List of stages for jobs, and their order of execution
   - test
   - deploy
 
-ContainerizedBuild:
+Build:
   stage: build
   script: 
     - echo "Running containerized build"
     - apk add --update docker-compose
     - npm run installs
-    - npm run containerized
+    - npm run build
     - echo "Build complete" 
     
   when: manual
