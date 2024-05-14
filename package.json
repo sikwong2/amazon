@@ -76,7 +76,7 @@
     "clean-docker": "npm run docker-down",
     
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
-    "containerized": "npm run build && docker-compose up --build"
+    "containerized": "npm run build && docker-compose up --build -d"
   },
   "devDependencies": {
     "concurrently": "*"

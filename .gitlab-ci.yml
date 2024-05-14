@@ -34,9 +34,10 @@ ContainerizedBuild:
   script: 
     - echo "Running containerized build"
     - apk add --update docker-compose
-    - node --version
-    - docker --version
-    - docker-compose --version
+    - npm run installs
+    - npm run containerized
+    - echo "Build complete" 
+    
   when: manual
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
