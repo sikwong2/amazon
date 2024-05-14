@@ -6,8 +6,8 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import { useRouter } from 'next/router'
-import RadioHoverButton from '@/components/Language';
-import { createTheme } from '@mui/material/styles';
+import LanguageButton from '@/components/Language';
+import { radioButtonTheme } from '@/components/Theme';
 
 const LanguageSwitcherButton = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const LanguageSwitcherButton = () => {
 
   const handleLanguageChange = (newLanguage: string) => {
     setSelectedLanguage(newLanguage);
-    router.push('/', '/', { locale: newLanguage }); // Change locale directly to the selected language
+    router.push('/', '/', { locale: newLanguage });
   };
 
   const options = [
@@ -24,25 +24,12 @@ const LanguageSwitcherButton = () => {
     { value: 'zh', label: 'Mandarin' },
   ];
 
-  const radioButtonTheme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            backgroundColor: 'lightblue',
-            color: 'black',
-          },
-        },
-      },
-    },
-  });
-
   return (
-    <RadioHoverButton
+    <LanguageButton
       options={options}
       buttonTheme={radioButtonTheme}
-      selectedValue={selectedLanguage} // Pass selected value to RadioHoverButton
-      onChange={handleLanguageChange} // Pass language change handler to RadioHoverButton
+      selectedValue={selectedLanguage}
+      onChange={handleLanguageChange}
     />
   );
 };

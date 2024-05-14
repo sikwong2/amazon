@@ -105,3 +105,18 @@ export const buttonTheme = createTheme(
   },
   globalTheme
 );
+
+export const radioButtonTheme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'lightblue',
+          color: 'black',
+          fontWeight: "bold",
+          fontFamily: ["sans-serif", "Amazon Ember"],
+        },
+      },
+    },
+  },
+});

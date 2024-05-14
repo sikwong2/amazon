@@ -9,11 +9,11 @@ interface Option {
 interface Props {
   options: Option[];
   buttonTheme: any;
-  selectedValue: string; // New prop for selected value
-  onChange: (newValue: string) => void; // New prop for change handler
+  selectedValue: string; 
+  onChange: (newValue: string) => void;
 }
 
-export default function RadioHoverButton({ options, buttonTheme, selectedValue, onChange }: Props) {
+export default function LanguageButton({ options, buttonTheme, selectedValue, onChange }: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,13 +25,11 @@ export default function RadioHoverButton({ options, buttonTheme, selectedValue, 
   };
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value); // Call the onChange handler with new value
+    onChange(event.target.value); 
   };
 
   const open = Boolean(anchorEl);
-
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
-
   const buttonWidth = buttonRef.current ? buttonRef.current.getBoundingClientRect().width : 0;
 
   return (
@@ -41,7 +39,7 @@ export default function RadioHoverButton({ options, buttonTheme, selectedValue, 
           ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
-          aria-label="Options"
+          aria-label={'change-language'}
           onClick={handlePopoverOpen}
         >
           Change Language
@@ -53,13 +51,12 @@ export default function RadioHoverButton({ options, buttonTheme, selectedValue, 
           onClose={handlePopoverClose}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center',
+            horizontal: 'left',
           }}
           transformOrigin={{
             vertical: 'top',
-            horizontal: 'center',
+            horizontal: 'left',
           }}
-        //   PaperProps={{ style: { minWidth: buttonWidth } }}
         >
           <RadioGroup value={selectedValue} onChange={handleOptionChange}>
             {options.map((option, index) => (
