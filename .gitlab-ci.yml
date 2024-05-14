@@ -56,8 +56,12 @@ AccountService-test:
   stage: test
   script:
       - echo "Testing accountservice"
-      - apk add --update docker-compose
-      - apk add nodejs-current npm
+      - apk add --update curl bash ca-certificates
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - source ~/.nvm/nvm.sh
+      - nvm install --lts
+      - node --version
+      - npm --version
       - node --version
       - cd AccountService
       - docker-compose up -d
