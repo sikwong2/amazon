@@ -27,6 +27,9 @@ variables:
 
 # can make own image later
 image: node:lts-alpine
+
+services:
+  - docker:dind
   
 stages:          # List of stages for jobs, and their order of execution
   - build
