@@ -58,8 +58,8 @@
     "start-products": "cd ProductService && npm start",
 
     "test": "docker-compose up -d postgres && npm run test-accounts && npm run test-products",
-    "test-accounts": "cd AccountService && npm test",
-    "test-orders": "cd OrderService && npm test",
+    "test-accounts": "cd AccountService && pwd && npm test",
+    "test-orders": "cd OrderService && pwd && npm test",
     "test-products": "cd ProductService && npm test",
     "test-vendor": "cd vendor-app && npm test",
     "test-admin": "cd admin-app && npm test",
