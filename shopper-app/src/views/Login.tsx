@@ -9,7 +9,8 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
-import { Logo } from '@/components/Logo';
+import Logo from '../components/Logo';
+
 export function Login() {
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({email: '', password: ''});

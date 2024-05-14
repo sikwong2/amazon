@@ -7,7 +7,7 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import { Logo } from '@/components/Logo';
+import Logo from '../components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
