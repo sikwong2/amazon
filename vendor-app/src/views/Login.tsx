@@ -8,6 +8,8 @@ import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
 import Logo from '../components/Logo';
+import CustomDivider from '@/components/Divider';
+import CustomCard from '@/components/Card';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -61,7 +63,7 @@ export function Login() {
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}
+          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
         >
           <CustomTextField
             label={t("login.email") || 'email'}
@@ -69,7 +71,7 @@ export function Login() {
             required
             type="email"
             name='Email Address'
-            sx={{ mt: 1, mb: 1 }}
+            sx={{mt: 1, mb: 1}}
             autoComplete="email"
             autoFocus
           />
@@ -79,7 +81,7 @@ export function Login() {
             required
             type="password"
             name='Password'
-            sx={{ mt: 1 }}
+            sx={{mt: 1}}
             autoComplete="current-password"
           />
           <CustomButton
@@ -88,15 +90,16 @@ export function Login() {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{mt: 3, mb: 2}}
           >
             {t("login.signin")}
           </CustomButton>
           <CustomDivider></CustomDivider>
         </Box>
+        <CustomCard>
+          <CustomDivider> {t("new-to-amazon")} </CustomDivider>
         </CustomCard>
       </Box>
-      <CustomDivider> {t("new-to-amazon")} </CustomDivider>
     </Container>
   );
 
