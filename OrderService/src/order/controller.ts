@@ -31,9 +31,9 @@ export class OrderController extends Controller {
       });
   }
 
-  @Get("{Id}")
+  @Get("by-id/{Id}")
   @Response('200', 'Successful')
-  public async getByShopperId(
+  public async getById(
     @Path() Id: string
   ):
   Promise<OrderInfo[]|undefined> {
@@ -47,7 +47,7 @@ export class OrderController extends Controller {
     });
   }
 
-  @Get("{orderId}")
+  @Get("by-order-id/{orderId}")
   @Response('200', 'Successful')
   public async getOrderById(
     @Path() orderId: string

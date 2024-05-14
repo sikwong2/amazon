@@ -25,7 +25,7 @@ export class OrderService {
   }
 
   public async selectById (id: string): Promise<OrderInfo[] | undefined> {
-    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE vendor_id = $1 OR sender_id = $1`;
+    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE vendor_id = $1 OR shopper_id = $1`;
     const query = {
       text: select,
       values: [id]
