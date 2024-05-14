@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Head from 'next/head'
 import { Fragment } from 'react'
 import Link from 'next/link';
@@ -6,17 +6,46 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import { useRouter } from 'next/router'
+import RadioHoverButton from '@/components/Language';
+import { createTheme } from '@mui/material/styles';
 
 const LanguageSwitcherButton = () => {
-  const router = useRouter()
-  const changeTo = router.locale === 'en' ? 'zh' : 'en'
-  const { t } = useTranslation('common')
+  const router = useRouter();
+  const { t } = useTranslation('common');
+  const [selectedLanguage, setSelectedLanguage] = useState(router.locale === 'en' ? 'en' : 'zh');
+
+  const handleLanguageChange = (newLanguage: string) => {
+    setSelectedLanguage(newLanguage);
+    router.push('/', '/', { locale: newLanguage }); // Change locale directly to the selected language
+  };
+
+  const options = [
+    { value: 'en', label: 'English' },
+    { value: 'zh', label: 'Mandarin' },
+  ];
+
+  const radioButtonTheme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'lightblue',
+            color: 'black',
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <Link href="/" locale={changeTo}>
-      <button>{t('change-locale', { changeTo })}</button>
-    </Link>
-  )
-}
+    <RadioHoverButton
+      options={options}
+      buttonTheme={radioButtonTheme}
+      selectedValue={selectedLanguage} // Pass selected value to RadioHoverButton
+      onChange={handleLanguageChange} // Pass language change handler to RadioHoverButton
+    />
+  );
+};
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({

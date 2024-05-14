@@ -9,11 +9,12 @@ interface Option {
 interface Props {
   options: Option[];
   buttonTheme: any;
+  selectedValue: string; // New prop for selected value
+  onChange: (newValue: string) => void; // New prop for change handler
 }
 
-export default function RadioHoverButton({ options, buttonTheme }: Props) {
+export default function RadioHoverButton({ options, buttonTheme, selectedValue, onChange }: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const [selectedValue, setSelectedValue] = useState<string>('');
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,14 +25,13 @@ export default function RadioHoverButton({ options, buttonTheme }: Props) {
   };
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
+    onChange(event.target.value); // Call the onChange handler with new value
   };
 
   const open = Boolean(anchorEl);
 
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
-  // Measure the button's width
   const buttonWidth = buttonRef.current ? buttonRef.current.getBoundingClientRect().width : 0;
 
   return (

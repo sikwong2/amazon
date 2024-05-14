@@ -9,9 +9,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
-import RadioHoverButton from '@/components/Language';
-import { createTheme } from '@mui/material/styles';
-
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -53,24 +50,6 @@ export function Login() {
         alert(e)
       });
   };
-
-  const radioButtonTheme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            backgroundColor: 'lightblue',
-            color: 'black',
-          },
-        },
-      },
-    },
-  });
-  
-  const options = [
-    { value: 'option1', label: 'English' },
-    { value: 'option2', label: 'Mandarin' },
-  ];
 
   return (
     <Container component="main" maxWidth="xs">
@@ -118,7 +97,6 @@ export function Login() {
           >
             {t("login.signin")}
           </CustomButton>
-          <RadioHoverButton options={options} buttonTheme={radioButtonTheme} />
           
         </Box>
       </Box>
