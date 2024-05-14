@@ -51,6 +51,7 @@ Test:
   script:
     - echo "Running tests"
     - apk add --update docker-compose
+    - npm run installs
     - npm run test
     - echo "Tests complete"
   when: manual
