@@ -26,7 +26,9 @@ variables:
   ORDER_SERVICE_PORT: $ORDER_SERVICE_PORT
 
 # can make own image later
-image: node:lts-alpine
+image:
+  name: docker/compose:latest
+
 
 services:
   - docker:dind
@@ -39,6 +41,8 @@ Build:
   stage: build
   script: 
     - echo "Running build"
+    - apk add nodejs-current npm
+    - node --version  
     - npm run installs
     - npm run build
     - echo "Build complete" 
@@ -53,6 +57,8 @@ AccountService-test:
   script:
       - echo "Testing accountservice"
       - apk add --update docker-compose
+      - apk add nodejs-current npm
+      - node --version
       - cd AccountService
       - docker-compose up -d
       - npm install
@@ -68,6 +74,8 @@ ProductService-test:
   script:
     - echo "Testing productservice"
     - apk add --update docker-compose
+    - apk add nodejs-current npm
+    - node --version
     - cd ProductService
     - docker-compose up -d 
     - npm install
