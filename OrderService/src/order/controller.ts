@@ -29,25 +29,9 @@ export class OrderController extends Controller {
         }
         return OrderReponse;
       });
-  }
+  } 
 
-  @Get("by-id/{Id}")
-  @Response('200', 'Successful')
-  public async getById(
-    @Path() Id: string
-  ):
-  Promise<OrderInfo[]|undefined> {
-    return new OrderService().selectById(Id)
-    .then(async (OrderInfo:OrderInfo[]|undefined):
-    Promise<OrderInfo[]|undefined> => {
-      if (!OrderInfo){
-        this.setStatus(400)
-      }
-      return OrderInfo;
-    });
-  }
-
-  @Get("by-order-id/{orderId}")
+  @Get("{orderId}")
   @Response('200', 'Successful')
   public async getOrderById(
     @Path() orderId: string
