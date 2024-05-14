@@ -154,3 +154,17 @@ export const cardTheme = createTheme({
     }
   }
 }, globalTheme); // Include globalTheme to ensure consistent theme overrides
+
+export const dividerTheme = createTheme(globalTheme, {
+  components: {
+    MuiDivider: {
+      styleOverrides: { 
+        root: {
+          color: 'rgba(0, 0, 0, 0.54)', 
+          fontFamily: 'Amazon Ember', 
+          fontSize: '8'
+        }
+      }
+    }
+  }
+});
