@@ -18,11 +18,7 @@ variables:
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
 # can make own image later
-image:
-  name: docker/compose:latest
-
-services:
-  - docker:dind
+image: node:lts-alpine
   
 # before_script:
 #   - docker version
@@ -33,63 +29,47 @@ stages:          # List of stages for jobs, and their order of execution
   - test
   - deploy
 
-AccountService:
+Build:
   stage: build
   script: 
-    - echo "Building accountservice"
-    - apk add --update nodejs npm docker-compose
-    - cd AccountService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
+    - echo "Running containerized build"
+    - apk add --update docker-compose
+    - npm run installs
+    - npm run build
+    - echo "Build complete" 
+    
+  when: manual
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
-ProductService:
-  stage: build
+AccountService-test:
+  stage: test
   script:
-    - echo "Building productservice"
-    - apk add --update nodejs npm docker-compose
+      - echo "Testing accountservice"
+      - apk add --update nodejs npm
+      - npm install -g n
+      - cd AccountService
+      - npm test
+      - echo "Test complete"
+  when: manual
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
+
+ProductService-test:
+  stage: test
+  script:
+    - echo "Testing productservice"
+    - apk add --update nodejs npm
+    - npm install -g n
     - cd ProductService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-
-OrderService:
-  stage: build
-  script:
-    - echo "Building orderservice"
-    - apk add --update nodejs npm docker-compose
-    - cd OrderService
-    - npm install
-    - docker-compose up -d
-    - sleep 20
-    - docker-compose down
-    - echo "Build complete"
-
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build
-  script:
-    - apk add --update nodejs npm docker-compose
-    - npm install
-    - echo "Compiling the code..."
-    - echo "Compile complete."
-
-unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
-  script:
-    - echo "Running unit tests... This will take about 60 seconds."
-    - sleep 60
-    - echo "Code coverage is 90%"
-
-lint-test-job:   # This job also runs in the test stage.
-  stage: test    # It can run at the same time as unit-test-job (in parallel).
-  script:
-    - echo "Linting code... This will take about 10 seconds."
-    - sleep 10
-    - echo "No lint issues found."
+    - npm test
+    - echo "Test complete"
+  when: manual
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
 # deploy-job:      # This job runs in the deploy stage.
 #   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
