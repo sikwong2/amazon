@@ -93,8 +93,11 @@ export function Login() {
           >
             {t("login.signin")}
           </CustomButton>
+          <CustomDivider></CustomDivider>
         </Box>
+        </CustomCard>
       </Box>
+      <CustomDivider> {t("new-to-amazon")} </CustomDivider>
     </Container>
   );
 

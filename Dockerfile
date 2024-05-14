@@ -45,6 +45,11 @@ COPY vendor-app/next-i18next.config.js/ /home/app/vendor-app/
 COPY vendor-app/next.config.js/ /home/app/vendor-app/
 COPY vendor-app/public/ /home/app/vendor-app/public/
 
+COPY vendor-api/build/ /home/app/vendor-api/build/
+COPY vendor-api/package.json /home/app/vendor-api/
+COPY vendor-api/package-lock.json /home/app/vendor-api/
+COPY vendor-api/tsoa.json /home/app/vendor-api/
+
 RUN npm run cis
 
 CMD npm run start

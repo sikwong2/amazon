@@ -2,7 +2,7 @@ export interface NewProduct {
   name: string,
   price: number,
   stock: number,
-  image?: string,
+  image?: string[],
   rating?: number,
 }
 
@@ -12,7 +12,7 @@ export interface Product {
     name: string,
     price: number,
     stock: number,
-    image?: string,
+    image?: string[],
     rating?: number,
   }
 }

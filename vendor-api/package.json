@@ -1,0 +1,92 @@
+{
+  "name": "vendor-api",
+  "version": "1.0.0",
+  "description": "CSE 187 Vendor API",
+  "main": "index.js",
+  "author": "Norton Choy <nochoy@ucsc.edu>",
+  "license": "ISC",
+
+  "devDependencies": {
+    "@types/cors": "*",
+    "@types/express": "*",
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@types/supertest": "*",
+    "@types/swagger-ui-express": "*",
+    "concurrently": "*",
+    "eslint": "*",
+    "eslint-config-typescript": "*",
+    "jest": "*",
+    "joi": "*",
+    "nodemon": "*",
+    "supertest": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "cors": "*",
+    "dotenv": "*",
+    "express": "*",
+    "swagger-ui-express": "*",
+    "tsoa": "*"
+  },
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node build/src/server.js",
+    "prebuild": "npm run swagger",
+    "build": "tsc",
+    "predev": "npm run swagger",
+    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "swagger": "tsoa spec-and-routes",
+    "pretest": "npm run swagger",
+    "test": "jest --runInBand --coverage --verbose --forceExit",
+    "lint": "eslint test/**/*.[jt]s src/**/*.[jt]s --fix"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src/server.ts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testTimeout": 500,
+    "collectCoverageFrom": [
+      "src/**/*.[jt]s"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/server.[jt]s"
+    ],
+    "testMatch": [
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "build"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "typescript"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 13
+    },
+    "rules": {
+      "indent": [
+        "warn",
+        2
+      ]
+    }
+  }
+}

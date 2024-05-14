@@ -4,7 +4,8 @@
     "title": "UCSC-Amazon Admin Login",
     "signin": "Sign In",
     "email": "Email",
-    "emailaddress": "Email Adress",
+    "emailaddress": "Email Address",
     "password": "Password"
-  }
+  },
+  "new-to-amazon": "New to Amazon?"
 }
