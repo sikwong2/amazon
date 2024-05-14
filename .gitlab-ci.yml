@@ -106,6 +106,7 @@ Test:
     - echo "ACCOUNT_SERVICE_PORT=$ACCOUNT_SERVICE_PORT" >> .env
     - echo "PRODUCT_SERVICE_PORT=$PRODUCT_SERVICE_PORT" >> .env
     - echo "ORDER_SERVICE_PORT=$ORDER_SERVICE_PORT" >> .env
+    - npm run installs
     - npm run test
     - echo "Test complete"
   when: manual
