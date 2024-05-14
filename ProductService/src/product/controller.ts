@@ -20,6 +20,13 @@ export class ProductController extends Controller {
     return await new ProductService().getAll();
   }
 
+  @Get('{productId}')
+  public async getId(
+    @Path() productId: string,
+  ): Promise<Product|undefined> {
+    return await new ProductService().getId(productId);
+  }
+
   @Post('')
   @Response('201', 'Created')
   public async makeProduct(
