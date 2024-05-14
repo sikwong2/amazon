@@ -36,7 +36,6 @@ Build:
   stage: build
   script: 
     - echo "Running build"
-    - apk add --update docker-compose
     - npm run installs
     - npm run build
     - echo "Build complete" 
@@ -46,18 +45,36 @@ Build:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
-Test:
+AccountService-test:
   stage: test
   script:
-  - echo "Running tests"
-  - apk add --update docker-compose
-  - npm run installs
-  - npm run test
-  - echo "Tests complete"
+      - echo "Testing accountservice"
+      - apk add --update docker-compose
+      - cd AccountService
+      - docker-compose up -d
+      - npm install
+      - npm test
+      - echo "Test complete"
   when: manual
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
+
+ProductService-test:
+  stage: test
+  script:
+    - echo "Testing productservice"
+    - apk add --update docker-compose
+    - cd ProductService
+    - docker-compose up -d 
+    - npm install
+    - npm test
+    - echo "Test complete"
+  when: manual
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
+
 
 # deploy-job:      # This job runs in the deploy stage.
 #   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
