@@ -8,8 +8,7 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import CustomCard from '@/components/Card';
-import CustomDivider from '@/components/Divider';
+import Logo from '@/components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -58,8 +57,8 @@ export function Login() {
           alignItems: 'center',
         }}
       >
-        <CustomCard>
-        <Typography component="h1">
+        <Logo />
+        <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}

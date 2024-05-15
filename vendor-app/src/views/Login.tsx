@@ -7,12 +7,11 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import CustomCard from '@/components/Card';
-import CustomDivider from '@/components/Divider';
+import Logo from '../components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
-  const [user, setUser] = React.useState({email: '', password: ''});
+  const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
   const onSubmit = (event: any) => {
@@ -22,7 +21,7 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
+    const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}` }
     fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -57,12 +56,12 @@ export function Login() {
           alignItems: 'center',
         }}
       >
-        <CustomCard>
-        <Typography component="h1">
+        <Logo />
+        <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+          component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}
         >
           <CustomTextField
             label={t("login.email") || 'email'}
@@ -70,7 +69,7 @@ export function Login() {
             required
             type="email"
             name='Email Address'
-            sx={{mt: 1, mb: 1}}
+            sx={{ mt: 1, mb: 1 }}
             autoComplete="email"
             autoFocus
           />
@@ -80,7 +79,7 @@ export function Login() {
             required
             type="password"
             name='Password'
-            sx={{mt: 1}}
+            sx={{ mt: 1 }}
             autoComplete="current-password"
           />
           <CustomButton
@@ -89,7 +88,7 @@ export function Login() {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{mt: 3, mb: 2}}
+            sx={{ mt: 3, mb: 2 }}
           >
             {t("login.signin")}
           </CustomButton>
@@ -100,7 +99,7 @@ export function Login() {
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
   );
-  
+
   if (loginContext.accessToken.length < 1) {
     return (
       LoginComponent
