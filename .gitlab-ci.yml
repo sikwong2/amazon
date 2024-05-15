@@ -51,6 +51,23 @@ AccountService-Test:
       - apk add --update nodejs npm
       - cd AccountService
       - npm install
+      - echo "$POSTGRES_HOST"
+      - echo "$POSTGRES_PORT"
+      - echo "$POSTGRES_DB"
+      - echo "$POSTGRES_USER"
+      - echo "$POSTGRES_PASSWORD"
+      - echo "$POSTGRES_ACCOUNT_DB"
+      - echo "$POSTGRES_ACCOUNT_PORT"
+      - echo "$POSTGRES_ORDER_DB"
+      - echo "$POSTGRES_ORDER_PORT"
+      - echo "$POSTGRES_PRODUCT_DB"
+      - echo "$POSTGRES_PRODUCT_PORT"
+      - echo "$ACCOUNT_SERVICE_PORT"
+      - echo "$PRODUCT_SERVICE_PORT"
+      - echo "$ORDER_SERVICE_PORT"
+      - echo "$SHOPPER_APP_PORT"
+      - echo "$VENDOR_APP_PORT"
+      - echo "$ADMIN_APP_PORT"
       - docker compose up -d
       - npm test
       - echo "Test complete"
