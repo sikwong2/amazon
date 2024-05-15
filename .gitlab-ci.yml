@@ -69,6 +69,7 @@ AccountService-Test:
       - echo "$VENDOR_APP_PORT"
       - echo "$ADMIN_APP_PORT"
       - docker compose up -d
+      - sleep 15
       - npm test
       - echo "Test complete"
   when: manual
