@@ -5,9 +5,9 @@ services:
     container_name: cse187-microservice-account
     image: postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_ACCOUNT_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
     volumes:
