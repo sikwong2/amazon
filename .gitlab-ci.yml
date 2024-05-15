@@ -24,40 +24,57 @@ variables:
   ACCOUNT_SERVICE_PORT: $ACCOUNT_SERVICE_PORT
   PRODUCT_SERVICE_PORT: $PRODUCT_SERVICE_PORT
   ORDER_SERVICE_PORT: $ORDER_SERVICE_PORT
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
+  POSTGRES_ACCOUNT_DB: $POSTGRES_ACCOUNT_DB
+  POSTGRES_ACCOUNT_PORT: $POSTGRES_ACCOUNT_PORT
+  POSTGRES_ORDER_DB: $POSTGRES_ORDER_DB
+  POSTGRES_ORDER_PORT: $POSTGRES_ORDER_PORT
+  POSTGRES_PRODUCT_DB: $POSTGRES_PRODUCT_DB
+  POSTGRES_PRODUCT_PORT: $POSTGRES_PRODUCT_PORT
 
 # can make own image later
-image: node:lts-alpine
+image: docker:latest
 
 services:
-  - docker:19.03.12-dind
-
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
+  - docker:dind
   
+# before_script:
+#   - docker version
+#   - docker-compose version
+
 stages:          # List of stages for jobs, and their order of execution
-  - build
   - test
 
-Build:
-  stage: build
-  script: 
-    - echo "Running build"
-    - apk add --update docker-compose
-    - npm run installs
-    - npm run build
-    - echo "Build complete" 
-    
+AccountService-Test:
+  stage: test
+  script:
+      - echo "Testing accountservice"
+      - apk add --update nodejs npm
+      - cd AccountService
+      - npm install
+      - echo "$POSTGRES_HOST"
+      - echo "$POSTGRES_PORT"
+      - echo "$POSTGRES_DB"
+      - echo "$POSTGRES_USER"
+      - echo "$POSTGRES_PASSWORD"
+      - echo "$POSTGRES_ACCOUNT_DB"
+      - echo "$POSTGRES_ACCOUNT_PORT"
+      - echo "$POSTGRES_ORDER_DB"
+      - echo "$POSTGRES_ORDER_PORT"
+      - echo "$POSTGRES_PRODUCT_DB"
+      - echo "$POSTGRES_PRODUCT_PORT"
+      - echo "$ACCOUNT_SERVICE_PORT"
+      - echo "$PRODUCT_SERVICE_PORT"
+      - echo "$ORDER_SERVICE_PORT"
+      - echo "$SHOPPER_APP_PORT"
+      - echo "$VENDOR_APP_PORT"
+      - echo "$ADMIN_APP_PORT"
+      - docker compose up -d
+      - sleep 15
+      - npm test
+      - echo "Test complete"
   when: manual
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
-# deploy-job:      # This job runs in the deploy stage.
-#   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-#   environment: production
-#   script:
-#     - echo "Deploying application..."
-#     - echo "Application successfully deployed."
+

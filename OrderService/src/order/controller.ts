@@ -29,23 +29,7 @@ export class OrderController extends Controller {
         }
         return OrderReponse;
       });
-  }
-
-  @Get("{Id}")
-  @Response('200', 'Successful')
-  public async getByShopperId(
-    @Path() Id: string
-  ):
-  Promise<OrderInfo[]|undefined> {
-    return new OrderService().selectById(Id)
-    .then(async (OrderInfo:OrderInfo[]|undefined):
-    Promise<OrderInfo[]|undefined> => {
-      if (!OrderInfo){
-        this.setStatus(400)
-      }
-      return OrderInfo;
-    });
-  }
+  } 
 
   @Get("{orderId}")
   @Response('200', 'Successful')

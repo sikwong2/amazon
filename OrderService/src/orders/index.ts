@@ -15,7 +15,7 @@ export type SessionUser = {
   role: string
 }
 
-export type OrderInfo = {
+export type OrdersInfo = {
   productId: string
   shopperId: string
   vendorId: string

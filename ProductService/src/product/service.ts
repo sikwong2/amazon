@@ -38,12 +38,21 @@ export class ProductService {
   /**
    * Returns the product deleted or undefined if the product doesn't exist
    */
-  public async removeProduct(uuid: string): Promise<Product|undefined> {
+  public async removeProduct(productId: string): Promise<Product | undefined> {
     const query = {
       text: `DELETE FROM product WHERE id = $1 RETURNING *;`,
-      values: [uuid],
+      values: [productId],
     }
 
+    const { rows } = await pool.query(query);
+    return rows[0];
+  }
+
+  public async getId(productId: string): Promise<Product | undefined> {
+    const query = {
+      text: `SELECT * FROM product WHERE id = $1;`,
+      values: [productId]
+    }
     const { rows } = await pool.query(query);
     return rows[0];
   }
