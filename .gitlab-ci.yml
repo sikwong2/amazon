@@ -48,7 +48,7 @@ AccountService-Test:
   stage: test
   script:
       - echo "Testing accountservice"
-      - apk add --update nodejs npm
+      - apk add --update nodejs npm docker-compose
       - cd AccountService
       - npm install
       - echo "$POSTGRES_HOST"
