@@ -10,8 +10,8 @@ import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
 import Logo from '../components/Logo';
-import CustomDivider from '../components/Divider'; // Add the import for CustomDivider
-import CustomCard from '../components/Card'; // Add the import for CustomCard
+import CustomCard from '@/components/Card';
+import CustomDivider from '@/components/Divider';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -66,6 +66,7 @@ export function Login() {
         }}
       >
         <Logo />
+        <CustomCard>
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
@@ -103,10 +104,9 @@ export function Login() {
           </CustomButton>
           <CustomDivider></CustomDivider>
         </Box>
-        <CustomCard>
-          <CustomDivider> {t("new-to-amazon")} </CustomDivider>
         </CustomCard>
       </Box>
+      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
   );
 }

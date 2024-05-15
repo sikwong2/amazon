@@ -6,11 +6,11 @@ import { CardProps } from '@mui/material/Card';
 import { ThemeProvider } from '@emotion/react';
 import { cardTheme } from './Theme';
 
-const CustomCard = ({children}: CardProps) => { // Accepting title as a prop
+const CustomCard = ({children, ...rest}: CardProps) => { // Accepting title as a prop
   return (
     <ThemeProvider theme = {cardTheme}>
     <Box sx={{ minWidth: 275 }}>
-        <Card variant='outlined'>
+        <Card variant='outlined' {...rest}>
         <React.Fragment>
           <CardContent>
             {children}

@@ -59,6 +59,7 @@ export function Login() {
         }}
       >
         <Logo />
+        <CustomCard>
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
@@ -96,10 +97,9 @@ export function Login() {
           </CustomButton>
           <CustomDivider></CustomDivider>
         </Box>
-        <CustomCard>
-          <CustomDivider> {t("new-to-amazon")} </CustomDivider>
         </CustomCard>
       </Box>
+      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
   );
 
