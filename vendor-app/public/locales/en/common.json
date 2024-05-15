@@ -5,7 +5,7 @@
     "signin": "Sign In",
     "email": "Email",
     "emailaddress": "Email Address",
-    "password": "Password"
-  },
-  "new-to-amazon": "New to Amazon?"
+    "password": "Password",
+    "new-to-amazon": "New to Amazon?"
+  }
 }

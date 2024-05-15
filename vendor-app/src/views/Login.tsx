@@ -97,7 +97,7 @@ export function Login() {
         </Box>
         </CustomCard>
       </Box>
-      <CustomDivider> {t("new-to-amazon")} </CustomDivider>
+      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
   );
   
