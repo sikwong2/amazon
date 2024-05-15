@@ -41,7 +41,7 @@ export const buttonTheme = createTheme(
             props: {},
             style: {
               fontWeight: "bold",
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
               borderRadius: 8,
@@ -59,7 +59,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -77,7 +77,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined", color: "info"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 3px #017185",
               fontWeight: "bold",
               "&:hover": {
@@ -141,7 +141,7 @@ export const cardTheme = createTheme({
         {
           props: { component: "h1" },
           style: {
-            fontFamily: ["sans-serif", "Amazon Ember"],
+            fontFamily: ["Amazon Ember", "sans-serif"],
             fontSize: 28,
             fontWeight: 400,
             lineHeight: 1.2,
