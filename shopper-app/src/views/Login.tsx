@@ -10,6 +10,8 @@ import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
 import Logo from '../components/Logo';
+import CustomCard from '@/components/Card';
+import CustomDivider from '@/components/Divider';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -64,6 +66,7 @@ export function Login() {
         }}
       >
         <Logo />
+        <CustomCard>
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
