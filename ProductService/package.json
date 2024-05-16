@@ -79,9 +79,6 @@
     "testMatch": [
       "**/?(*.)+(spec|test).[jt]s?(x)"
     ],
-    "testPathIgnorePatterns": [
-      "build"
-    ],
     "coverageThreshold": {
       "global": {
         "branches": 50,
