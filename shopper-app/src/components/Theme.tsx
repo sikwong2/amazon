@@ -106,7 +106,7 @@ export const buttonTheme = createTheme(
   globalTheme
 );
 
-export const radioButtonTheme = createTheme({
+export const languageButtonTheme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {

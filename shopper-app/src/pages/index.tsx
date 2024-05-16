@@ -7,7 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import { useRouter } from 'next/router'
 import LanguageButton from '@/components/Language';
-import { radioButtonTheme } from '@/components/Theme';
+import { languageButtonTheme } from '@/components/Theme';
 
 const LanguageSwitcherButton = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const LanguageSwitcherButton = () => {
   return (
     <LanguageButton
       options={options}
-      buttonTheme={radioButtonTheme}
+      buttonTheme={languageButtonTheme}
       selectedValue={selectedLanguage}
       onChange={handleLanguageChange}
     />
