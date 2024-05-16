@@ -30,7 +30,6 @@ export default function LanguageButton({ options, buttonTheme, selectedValue, on
 
   const open = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
-//   const buttonWidth = buttonRef.current ? buttonRef.current.getBoundingClientRect().width : 0;
 
   return (
     <ThemeProvider theme={buttonTheme}>
