@@ -49,7 +49,7 @@ AccountService-Test:
   script:
       - echo "Testing accountservice"
       - apk add --update nodejs npm docker-compose
-      - npm installs
+      - sudo npm run installs
       - sudo npm run docker
       - cd AccountService
       - npm install
