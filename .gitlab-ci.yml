@@ -44,6 +44,9 @@ services:
 stages:          # List of stages for jobs, and their order of execution
   - test
 
+before_script:
+  - apk add --no-cache docker-compose
+
 AccountService-Test:
   stage: test
   script:
@@ -53,6 +56,7 @@ AccountService-Test:
       - npm run docker
       - cd AccountService
       - npm install
+      - docker info
       - echo "$POSTGRES_HOST"
       - echo "$POSTGRES_PORT"
       - echo "$POSTGRES_DB"
@@ -70,7 +74,8 @@ AccountService-Test:
       - echo "$SHOPPER_APP_PORT"
       - echo "$VENDOR_APP_PORT"
       - echo "$ADMIN_APP_PORT"
-      - docker compose up -d
+      - docker info
+      - docker-compose up -d
       - sleep 15
       - npm test
       - echo "Test complete"
