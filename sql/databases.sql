@@ -2,10 +2,10 @@
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE DATABASE account;
+CREATE DATABASE accountdatabase;
 
-CREATE DATABASE product;
+CREATE DATABASE productdatabase;
 
-create DATABASE order;
+CREATE DATABASE orderdatabase;
 
 ----- DO NOT CHANGE ANYTHING IN THIS FILE ------

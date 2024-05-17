@@ -24,6 +24,11 @@ COPY ProductService/package.json /home/app/ProductService/
 COPY ProductService/package-lock.json /home/app/ProductService/
 COPY ProductService/tsoa.json /home/app/ProductService/
 
+COPY vendor-api/build/ /home/app/vendor-api/build/
+COPY vendor-api/package.json /home/app/vendor-api/
+COPY vendor-api/package-lock.json /home/app/vendor-api/
+COPY vendor-api/tsoa.json /home/app/vendor-api/
+
 COPY shopper-app/.next/ /home/app/shopper-app/.next/
 COPY shopper-app/package.json /home/app/shopper-app/
 COPY shopper-app/package-lock.json /home/app/shopper-app/
@@ -44,11 +49,6 @@ COPY vendor-app/package-lock.json /home/app/vendor-app/
 COPY vendor-app/next-i18next.config.js/ /home/app/vendor-app/
 COPY vendor-app/next.config.js/ /home/app/vendor-app/
 COPY vendor-app/public/ /home/app/vendor-app/public/
-
-COPY vendor-api/build/ /home/app/vendor-api/build/
-COPY vendor-api/package.json /home/app/vendor-api/
-COPY vendor-api/package-lock.json /home/app/vendor-api/
-COPY vendor-api/tsoa.json /home/app/vendor-api/
 
 RUN npm run cis
 
