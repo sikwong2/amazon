@@ -40,7 +40,6 @@ export const buttonTheme = createTheme(
           {
             props: {},
             style: {
-              fontWeight: "bold",
               fontFamily: ["Amazon Ember", "sans-serif"],
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
@@ -79,7 +78,6 @@ export const buttonTheme = createTheme(
             style: {
               fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 3px #017185",
-              fontWeight: "bold",
               "&:hover": {
                 backgroundColor: 'rgba(136, 140, 140, 0.1)',
                 border: "solid 3px #017185",
@@ -92,7 +90,25 @@ export const buttonTheme = createTheme(
                 outline: "none"
               },
             }
-          }
+          },
+          {
+            props: {variant: "text"},
+            style: {
+              fontFamily: ["Amazon Ember", "sans-serif"],
+              border: "solid 1px #888C8C",
+              fontWeight: "normal",
+              "&:hover": {
+                backgroundColor: 'rgba(136, 140, 140, 0.1)',
+                border: "solid 1px #888C8C",
+                outline: "none"
+              },
+              "&:active": {
+                backgroundColor: '#EDFCFF',
+                border: "solid 1px #017185",
+                outline: `solid 3px #C9F3FA`
+              },
+            }
+          },
         ],
         defaultProps: {
           disableRipple: true,

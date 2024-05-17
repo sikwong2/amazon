@@ -21,6 +21,10 @@ export function Login() {
   // router to change pages
   const router = useRouter(); 
 
+  const createAccount = () => {
+    router.push('/signup');
+  }
+
   const onSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -66,12 +70,12 @@ export function Login() {
         }}
       >
         <Logo />
-        <CustomCard>
+        <CustomCard sx={{mb: 3}}>
         <Typography component="h1" variant="h5">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1, mb: 1}}
         >
           <CustomTextField
             label={t("login.email") || 'email'}
@@ -107,6 +111,9 @@ export function Login() {
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
-  );
+  )
 }
