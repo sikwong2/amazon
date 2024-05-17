@@ -168,3 +168,49 @@ export const dividerTheme = createTheme(globalTheme, {
     }
   }
 });
+
+export const linkThemes = {
+  'blue1': createTheme({ // most used one on most pages
+    components: {
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            fontFamily: ["Amazon Ember", "sans-serif"],
+            color: '#007185',
+            "&:hover": {
+              color: '#c7511f'
+            },
+          }
+        }
+      }
+    }
+  }),
+  'blue2': createTheme({ // used in sign in page 
+    components: {
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            fontFamily: ["Amazon Ember", "sans-serif"],
+            color: '#0066c0',
+            "&:hover": {
+              color: '#c45500'
+            },
+          }
+        }
+      }
+    }
+  }),
+  'gray': createTheme({ // used in footer
+    components: {
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            fontFamily: ["Amazon Ember", "sans-serif"],
+            color: '#DDD',
+          }
+        }
+      }
+    }
+  })
+
+};
