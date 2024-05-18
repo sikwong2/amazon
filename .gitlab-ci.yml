@@ -25,6 +25,8 @@ image: docker:latest
 
 services:
   - docker:dind
+  - name: postgres:latest
+    alias: test
 
 stages:
   - test
