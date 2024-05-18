@@ -45,8 +45,7 @@ const run = async (file: string) => {
 };
 
 const reset = async () => {
-  await run('sql/schema.sql');
-  // await run('sql/test.sql');
+  await run('sql/testschema.sql');
 };
 
 const shutdown = () => {

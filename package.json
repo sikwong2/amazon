@@ -6,14 +6,8 @@
   "license": "UNLICENSED",
   "repository": "none",
   "scripts": {
-    "docker": "concurrently \"npm run docker-accounts\" \"npm run docker-orders\" \"npm run docker-products\"",
-    "docker-accounts": "cd AccountService && docker-compose up -d",
-    "docker-orders": "cd OrderService && docker-compose up -d",
-    "docker-products": "cd ProductService && docker-compose up -d",
-    "docker-down-accounts": "cd AccountService && docker-compose down",
-    "docker-down-orders": "cd OrderService && docker-compose down",
-    "docker-down-products": "cd ProductService && docker-compose down",
-    "docker-down": "concurrently \"npm run docker-down-accounts\" \"npm run docker-down-orders\" \"npm run docker-down-products\"",
+    "docker": "docker-compose up postgres",
+    "docker-down": "docker-compose down",
 
     "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"  \"npm run vendor-api\"",
     "vendor": "concurrently --kill-others \"npm run accounts\" \"npm run vendor-app\"",
