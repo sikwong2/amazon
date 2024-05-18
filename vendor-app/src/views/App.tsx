@@ -1,10 +1,13 @@
-import { Login } from '../views/Login'
 import { LoginProvider } from '../context/Login'
+import { SignupProvider } from '@/context/Signup'
+import { Home } from './Home'
 
 export function App() {
   return (
     <LoginProvider>
-        <Login/>
+      <SignupProvider>
+        <Home/>
+      </SignupProvider>
     </LoginProvider>
   )
 }

@@ -7,12 +7,12 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import Logo from '../components/Logo';
 import CustomDivider from '@/components/Divider';
 import CustomCard from '@/components/Card';
 import { Login } from './Login';
 import { SignupContext } from '@/context/Signup';
 import { SignUp } from './Signup';
+import Logo from '../components/Logo';
 
 
 
@@ -31,7 +31,11 @@ export function Home() {
       )
     }
     else {
-      return null
+      return (
+        <div>
+          <Logo/>
+        </div>
+      )
     }
   }
 }

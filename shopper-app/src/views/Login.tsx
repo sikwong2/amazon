@@ -70,7 +70,7 @@ export function Login() {
         }}
       >
         <Logo />
-        <CustomCard sx={{mb: 3}}>
+        <CustomCard sx={{mb: 1, mt: 3}}>
         <Typography component="h1" variant="h5" align='center'>
           {t("login.title")}
         </Typography>

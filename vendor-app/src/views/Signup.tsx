@@ -44,7 +44,7 @@ export function SignUp() {
       setError(e);
       return;
     } else {
-      const query = {query: `mutation createaccount{ createaccount( input: {name: "${user.name}"  email: "${user.email}" password: "${user.password}" role: "shopper"} ) { role }}`}
+      const query = {query: `mutation createaccount{ createaccount( input: {name: "${user.name}"  email: "${user.email}" password: "${user.password}" role: "vendor"} ) { role }}`}
       fetch('/api/graphql', {
         method: 'POST',
         body: JSON.stringify(query),
@@ -86,7 +86,7 @@ export function SignUp() {
         }}
       >
         <Logo/>
-        <CustomCard sx={{mt: 3}}>
+        <CustomCard sx={{mt: 3, mb: 5}}>
           <Typography component="h1" variant="h5">
             {t("signup.title")}
           </Typography>

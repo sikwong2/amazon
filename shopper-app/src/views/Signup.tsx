@@ -70,7 +70,7 @@ export function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{mb: 1}}>
       <CssBaseline />
       <Box
         sx={{
@@ -81,7 +81,7 @@ export function SignUp() {
         }}
       >
         <Logo/>
-        <CustomCard sx={{mt: 3}}>
+        <CustomCard sx={{mt: 3, mb: 5}}>
           <Typography component="h1" variant="h5">
             {t("signup.title")}
           </Typography>

@@ -66,12 +66,12 @@ export function Login() {
         }}
       >
         <Logo />
-        <CustomCard>
+        <CustomCard sx={{mb: 1, mt: 3}}>
         <Typography component="h1" variant="h5" align="center">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1, mb: 1}}
         >
           <CustomTextField
             label={t("login.email") || 'email'}
