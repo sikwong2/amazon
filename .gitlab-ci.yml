@@ -33,6 +33,7 @@ AccountService-Test:
   stage: test
   script:
     - apk add --update nodejs npm
+    - npm run install-accounts
     - npm run test-accounts
   when: manual
 
