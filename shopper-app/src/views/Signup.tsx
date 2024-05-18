@@ -31,7 +31,6 @@ export function SignUp() {
     u.reenter = data.get('Re-enter password')!.toString();
     u.name = data.get('Name')!.toString();
     setUser(u);
-    console.log(user);
     setError('');
     setBlankError('');
     if (u.email == '' || u.password == '' || u.name == '') {
@@ -56,14 +55,12 @@ export function SignUp() {
         })
         .then((json) => {
           if (json.errors) {
-            console.log(json.errors)
             alert(`${json.errors[0].message}`)
           } else {
             router.push('/')
           }
         })
         .catch((e) => {
-          console.log(e)
           alert(e)
         });
     }
