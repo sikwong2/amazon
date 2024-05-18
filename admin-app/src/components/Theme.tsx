@@ -41,7 +41,7 @@ export const buttonTheme = createTheme(
             props: {},
             style: {
               fontWeight: "bold",
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
               borderRadius: 8,
@@ -59,7 +59,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined"},
             style: {
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -77,7 +77,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined", color: "info"},
             style: {
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 3px #017185",
               fontWeight: "bold",
               "&:hover": {
@@ -141,7 +141,7 @@ export const cardTheme = createTheme({
         {
           props: { component: "h1" },
           style: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             fontSize: 28,
             fontWeight: 400,
             lineHeight: 1.2,
@@ -173,7 +173,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#007185',
             "&:hover": {
               color: '#c7511f'
@@ -188,7 +188,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#0066c0',
             "&:hover": {
               color: '#c45500'
@@ -203,7 +203,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#DDD',
           }
         }
