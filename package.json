@@ -62,8 +62,8 @@
     "start-products": "cd ProductService && npm start",
     "start-vendor-api": "cd vendor-api && npm start",
 
-    "test": "docker-compose up -d postgres && npm run test-accounts && npm run test-products",
-    "test-accounts": "cd AccountService && pwd && npm test",
+    "test": "npm run test-accounts && npm run test-products",
+    "test-accounts": "cd AccountService && npm run build && docker-compose up -d && npm test && docker-compose down",
     "test-orders": "cd OrderService && pwd && npm test",
     "test-products": "cd ProductService && npm test",
     "test-vendor": "cd vendor-app && npm test",

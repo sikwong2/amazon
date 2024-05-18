@@ -11,7 +11,7 @@ if (!POSTGRES_PORT) {
 }
 
 if (!POSTGRES_ACCOUNT_DATABASE) {
-  console.warn('Error: POSTGRES_ACCOUNT_DB is not defined in db.ts AccountService.');
+  console.warn('Error: POSTGRES_ACCOUNT_DATABASE is not defined in db.ts AccountService.');
 }
 
 if (!POSTGRES_USER) {
