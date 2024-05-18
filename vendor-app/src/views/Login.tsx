@@ -67,7 +67,7 @@ export function Login() {
       >
         <Logo />
         <CustomCard>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" align="center">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
