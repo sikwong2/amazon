@@ -63,7 +63,7 @@
     "start-vendor-api": "cd vendor-api && npm start",
 
     "test": "npm run test-accounts && npm run test-products",
-    "test-accounts": "cd AccountService && npm run build && docker-compose up -d && sleep 10 && npm test && docker-compose down",
+    "test-accounts": "cd AccountService && npm run build && npm test",
     "test-orders": "cd OrderService && pwd && npm test",
     "test-products": "cd ProductService && npm test",
     "test-vendor": "cd vendor-app && npm test",

@@ -19,7 +19,6 @@ variables:
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
   POSTGRES_ACCOUNT_DATABASE: $POSTGRES_ACCOUNT_DATABASE
   ACCOUNT_SERVICE_PORT: $ACCOUNT_SERVICE_PORT
-  DOCKER_HOST: tcp://docker:2375
 
 
 # can make own image later
@@ -29,6 +28,10 @@ services:
   - docker:dind
   - name: postgres:latest
     alias: test
+    variables:
+      POSTGRES_DB: $POSTGRES_ACCOUNT_DATABASE
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
 stages:
   - test

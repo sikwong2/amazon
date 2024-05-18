@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   postgres:
-    container_name: testpostgres
+    container_name: testdatabase
     image: postgres
     environment:
       POSTGRES_DB: ${POSTGRES_ACCOUNT_DATABASE}
