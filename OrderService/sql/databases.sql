@@ -1,5 +1,1 @@
------ DO NOT CHANGE ANYTHING IN THIS FILE ------
-
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-
------ DO NOT CHANGE ANYTHING IN THIS FILE ------
+\c orderdatabase;

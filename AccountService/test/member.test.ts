@@ -62,6 +62,7 @@ async function loginAs(member: Member): Promise<string | undefined> {
 }
 
 test('Sally can make an account', async () => {
+
   await supertest(server)
     .post('/api/v0/account')
     .send(sally)

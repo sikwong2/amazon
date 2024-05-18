@@ -3,19 +3,42 @@ import * as fs from 'fs';
 
 import dotenv from 'dotenv';
 dotenv.config();
-process.env.POSTGRES_DB = 'test';
+
+const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ACCOUNT_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
+
+if (!POSTGRES_HOST) {
+  console.warn('Error: POSTGRES_HOST is not defined in db.ts AccountService/test.');
+}
+
+if (!POSTGRES_PORT) {
+  console.warn('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService/test.');
+}
+
+if (!POSTGRES_ACCOUNT_DATABASE) {
+  console.warn('Error: POSTGRES_ACCOUNT_DATABASE is not defined in db.ts AccountService/test.');
+}
+
+if (!POSTGRES_USER) {
+  console.warn('Error: POSTGRES_USER is not defined in db.ts AccountService/test.');
+}
+
+if (!POSTGRES_PASSWORD) {
+  console.warn('Error: POSTGRES_PASSWORD is not defined in db.ts AccountService/test.');
+}
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 5433,
-  database: 'test',
-  user: 'postgres',
-  password: 'postgres',
+  host: POSTGRES_HOST,
+  port: Number(POSTGRES_PORT),
+  database: POSTGRES_ACCOUNT_DATABASE,
+  user: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
 });
 
 const run = async (file: string) => {
   const content = fs.readFileSync(file, 'utf8');
+
   const statements = content.split(/\r?\n/);
+
   for (const statement of statements) {
     if (statement) {
       await pool.query(statement);
@@ -24,7 +47,7 @@ const run = async (file: string) => {
 };
 
 const reset = async () => {
-  await run('sql/schema.sql');
+  await run('sql/testschema.sql');
   await run('sql/test.sql');
 };
 
