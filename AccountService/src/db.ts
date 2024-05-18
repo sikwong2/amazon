@@ -2,12 +2,6 @@ import { Pool } from 'pg';
 
 const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ACCOUNT_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
 
-console.log('POSTGRES_HOST:', POSTGRES_HOST);
-console.log('POSTGRES_PORT:', POSTGRES_PORT);
-console.log('POSTGRES_ACCOUNT_DATABASE:', POSTGRES_ACCOUNT_DATABASE);
-console.log('POSTGRES_USER:', POSTGRES_USER);
-console.log('POSTGRES_PASSWORD:', POSTGRES_PASSWORD);
-
 if (!POSTGRES_HOST) {
   console.warn('Error: POSTGRES_HOST is not defined in db.ts AccountService.');
 }
