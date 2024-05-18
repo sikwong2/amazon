@@ -15,63 +15,24 @@
 variables:
   POSTGRES_HOST: $POSTGRES_HOST
   POSTGRES_PORT: $POSTGRES_PORT
-  POSTGRES_DB: $POSTGRES_DB
   POSTGRES_USER: $POSTGRES_USER
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  SHOPPER_APP_PORT: $SHOPPER_APP_PORT
-  VENDOR_APP_PORT: $VENDOR_APP_PORT
-  ADMIN_APP_PORT: $ADMIN_APP_PORT
+  POSTGRES_ACCOUNT_DATABASE: $POSTGRES_ACCOUNT_DATABASE
   ACCOUNT_SERVICE_PORT: $ACCOUNT_SERVICE_PORT
-  PRODUCT_SERVICE_PORT: $PRODUCT_SERVICE_PORT
-  ORDER_SERVICE_PORT: $ORDER_SERVICE_PORT
-  POSTGRES_ACCOUNT_DB: $POSTGRES_ACCOUNT_DB
-  POSTGRES_ACCOUNT_PORT: $POSTGRES_ACCOUNT_PORT
-  POSTGRES_ORDER_DB: $POSTGRES_ORDER_DB
-  POSTGRES_ORDER_PORT: $POSTGRES_ORDER_PORT
-  POSTGRES_PRODUCT_DB: $POSTGRES_PRODUCT_DB
-  POSTGRES_PRODUCT_PORT: $POSTGRES_PRODUCT_PORT
 
 # can make own image later
 image: docker:latest
 
 services:
   - docker:dind
-  
-# before_script:
-#   - docker version
-#   - docker-compose version
 
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - test
 
 AccountService-Test:
   stage: test
   script:
-      - echo "Testing accountservice"
-      - apk add --update nodejs npm docker-compose
-      - cd AccountService
-      - npm install
-      - echo "$POSTGRES_HOST"
-      - echo "$POSTGRES_PORT"
-      - echo "$POSTGRES_DB"
-      - echo "$POSTGRES_USER"
-      - echo "$POSTGRES_PASSWORD"
-      - echo "$POSTGRES_ACCOUNT_DB"
-      - echo "$POSTGRES_ACCOUNT_PORT"
-      - echo "$POSTGRES_ORDER_DB"
-      - echo "$POSTGRES_ORDER_PORT"
-      - echo "$POSTGRES_PRODUCT_DB"
-      - echo "$POSTGRES_PRODUCT_PORT"
-      - echo "$ACCOUNT_SERVICE_PORT"
-      - echo "$PRODUCT_SERVICE_PORT"
-      - echo "$ORDER_SERVICE_PORT"
-      - echo "$SHOPPER_APP_PORT"
-      - echo "$VENDOR_APP_PORT"
-      - echo "$ADMIN_APP_PORT"
-      - docker compose up -d
-      - sleep 15
-      - npm test
-      - echo "Test complete"
+    - npm run test-accounts
   when: manual
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
