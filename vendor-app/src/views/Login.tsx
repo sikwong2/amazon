@@ -10,9 +10,12 @@ import CustomButton from '@/components/Button';
 import Logo from '../components/Logo';
 import CustomDivider from '@/components/Divider';
 import CustomCard from '@/components/Card';
+import { SignupContext } from '@/context/Signup';
+
 
 export function Login() {
-  const loginContext = React.useContext(LoginContext)
+  const loginContext = React.useContext(LoginContext);
+  const singupContext = React.useContext(SignupContext);
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
@@ -47,7 +50,11 @@ export function Login() {
       });
   };
 
-  const LoginComponent = (
+  const createAccount = () => {
+    singupContext.setSignUp(true);
+  }
+
+  return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -100,15 +107,10 @@ export function Login() {
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
   );
 
-  if (loginContext.accessToken.length < 1) {
-    return (
-      LoginComponent
-    )
-  }
-  else {
-    return null
-  }
 }
