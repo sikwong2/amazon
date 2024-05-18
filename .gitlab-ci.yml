@@ -22,16 +22,14 @@ variables:
 
 
 # can make own image later
-image: docker:latest
+image: node:latest
 
 services:
-  - docker:dind
-  - name: postgres:latest
-    alias: test
-    variables:
-      POSTGRES_DB: $POSTGRES_ACCOUNT_DATABASE
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  - postgres
+  variables:
+    POSTGRES_DB: $POSTGRES_ACCOUNT_DATABASE
+    POSTGRES_USER: $POSTGRES_USER
+    POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
 stages:
   - test
@@ -39,7 +37,6 @@ stages:
 AccountService-Test:
   stage: test
   script:
-    - apk add --update nodejs npm
     - npm run install-accounts
     - npm run test-accounts
   when: manual
