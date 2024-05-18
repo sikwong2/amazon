@@ -174,7 +174,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#007185',
             "&:hover": {
               color: '#c7511f'
@@ -189,7 +189,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#0066c0',
             "&:hover": {
               color: '#c45500'
@@ -204,7 +204,7 @@ export const linkThemes = {
       MuiLink: {
         styleOverrides: {
           root: {
-            fontFamily: ["Amazon Ember", "sans-serif"],
+            fontFamily: ["sans-serif", "Amazon Ember"],
             color: '#DDD',
           }
         }
