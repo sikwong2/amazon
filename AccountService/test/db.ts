@@ -47,7 +47,7 @@ const run = async (file: string) => {
 };
 
 const reset = async () => {
-  await run('sql/testschema.sql');
+  await run('sql/schema.sql');
   await run('sql/test.sql');
 };
 

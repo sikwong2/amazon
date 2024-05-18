@@ -3,14 +3,35 @@ import * as fs from 'fs';
 
 import dotenv from 'dotenv';
 dotenv.config();
-process.env.POSTGRES_PRODUCT_DB = 'test';
+
+const  { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_PRODUCT_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
+
+if (!POSTGRES_HOST) {
+  console.warn('Error: POSTGRES_HOST is not defined in db.ts ProductService/test.');
+}
+
+if (!POSTGRES_PORT) {
+  console.warn('Error: POSTGRES_PORT is not defined in db.ts ProductService/test.');
+}
+
+if (!POSTGRES_PRODUCT_DATABASE) {
+  console.warn('Error: POSTGRES_PRODUCT_DATABASE is not defined in db.ts ProductService/test.');
+}
+
+if (!POSTGRES_USER) {
+  console.warn('Error: POSTGRES_USER is not defined in db.ts ProductService/test.');
+}
+
+if (!POSTGRES_PASSWORD) {
+  console.warn('Error: POSTGRES_PASSWORD is not defined in db.ts ProductService/test.');
+}
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 5434,
-  database: 'test',
-  user: 'postgres',
-  password: 'postgres',
+  host: POSTGRES_HOST,
+  port: Number(POSTGRES_PORT),
+  database: POSTGRES_PRODUCT_DATABASE,
+  user: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
 });
 
 const run = async (file: string) => {
