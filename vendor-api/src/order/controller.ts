@@ -13,7 +13,7 @@ import {
 
 import * as express from 'express';
 import { OrderService } from './service';
-import { order } from '.';
+import { order } from './index';
 
 @Route('order')
 export class OrderController extends Controller {
