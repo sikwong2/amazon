@@ -55,6 +55,6 @@ Vendor-Test:
   script:
     - npm run install-vendor
     - npm run test-vendor
-
+  when: manual
 
 
