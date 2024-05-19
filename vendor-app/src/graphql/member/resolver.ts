@@ -1,10 +1,7 @@
 import { 
-  Query, 
   Resolver, 
   Mutation,
   Arg,
-  Authorized, 
-  // Ctx, 
 } from "type-graphql"
 
 import { Member } from "./schema"

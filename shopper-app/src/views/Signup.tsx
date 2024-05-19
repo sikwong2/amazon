@@ -60,9 +60,6 @@ export function SignUp() {
             router.push('/')
           }
         })
-        .catch((e) => {
-          alert(e)
-        });
     }
   };
 
@@ -94,7 +91,7 @@ export function SignUp() {
               {t("signup.name")}
             </Typography>
             <CustomTextField
-              label={t("signup.name") || 'name'}
+              label={t("signup.name") as string}
               placeholder={t("signup.name")!}
               required
               type="name"
@@ -106,7 +103,7 @@ export function SignUp() {
               {t("signup.email")}
             </Typography>
             <CustomTextField
-              label={t("signup.email") || 'email'}
+              label={t("signup.email") as string}
               placeholder={t("signup.email")!}
               required
               type="email"
@@ -118,7 +115,7 @@ export function SignUp() {
               {t("signup.password")}
             </Typography>
             <CustomTextField
-              label={t("signup.password") || 'password'}
+              label={t("signup.password") as string}
               placeholder={t("signup.password")!}
               required
               type="password"
@@ -130,7 +127,7 @@ export function SignUp() {
               {t("signup.re-enter")}
             </Typography>
             <CustomTextField
-              label={t("signup.re-enter") || 're-enter password'}
+              label={t("signup.re-enter") as string}
               required
               type="password"
               name='Re-enter password'
