@@ -8,6 +8,7 @@ export default function Logo({width=200, height='auto', ...rest}) {
   const router = useRouter();
   return (
     <Button
+      sx={{ p:'unset' }}
       disabled={loginContext.accessToken.length > 0 ? false : true}
       onClick={() => {
         router.push('/');
