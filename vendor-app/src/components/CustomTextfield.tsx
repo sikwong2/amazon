@@ -4,6 +4,7 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { useInput } from '@mui/base/useInput';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { InputLabel } from '@mui/material';
 
 const CustomInput = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
@@ -23,8 +24,15 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-export default function CustomTextField({ label='', placeholder='', width='100%', height='2.5rem', ...rest }) {
+export default function CustomTextField({ label='', placeholder='', width='100%', height='2rem', inputLabel='', ...rest }) {
   return (
+    <>
+    {
+      inputLabel &&
+      <InputLabel sx={{ fontWeight:'bold', fontSize:'13px', color:'#111111', pl:'2px', pb:'2px' }}>
+        {inputLabel}
+      </InputLabel>
+    }
     <CustomInput 
       aria-label={label}
       id={label}
@@ -32,14 +40,15 @@ export default function CustomTextField({ label='', placeholder='', width='100%'
       placeholder={placeholder}
       style={{ width, height } }
       {...rest} // for other props
-    />
+      />
+    </>
   )
 }
 
 const InputElement = styled('input')( () => `
   width: 100%;
   font-family: 'Amazon Ember', sans-serif;
-  font-size: 100%;
+  font-size: 80%;
   line-height: normal;
   padding: 3px 7px;
   border-radius: 4px;
