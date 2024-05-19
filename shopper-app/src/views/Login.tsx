@@ -21,6 +21,10 @@ export function Login() {
   // router to change pages
   const router = useRouter(); 
 
+  const createAccount = () => {
+    router.push('/signup');
+  }
+
   const onSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,7 +32,6 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    // console.log(user);
     const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
     fetch('/api/graphql', {
       method: 'POST',
@@ -66,15 +69,15 @@ export function Login() {
         }}
       >
         <Logo />
-        <CustomCard>
+        <CustomCard sx={{mb: 1, mt: 3}}>
         <Typography component="h1" variant="h5" align='center'>
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1, mb: 1}}
         >
           <CustomTextField
-            label={t("login.email") || 'email'}
+            label={t("login.email") as string}
             placeholder={t("login.emailaddress")!}
             required
             type="email"
@@ -84,7 +87,7 @@ export function Login() {
             autoFocus
           />
           <CustomTextField
-            label={t("login.password") || 'password'}
+            label={t("login.password") as string}
             placeholder={t("login.password")!}
             required
             type="password"
@@ -107,6 +110,9 @@ export function Login() {
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton label={t("login.create-account")  as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
-  );
+  )
 }

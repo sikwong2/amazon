@@ -9,10 +9,10 @@ export class MemberService {
     let select = 
       ` SELECT jsonb_build_object('id', id, 'name', data->>'name', 'role', data->>'role')` +
       ` AS account FROM account` +
-      ` WHERE data->>'email' = $1`
+      ` WHERE data->>'email' = $1 AND data->>'role' = $2`
     const query = {
       text: select,
-      values: [memberinput.email],
+      values: [memberinput.email, memberinput.role],
     };
     const {rows} = await pool.query(query)
     return rows.length === 1 ? true : false
