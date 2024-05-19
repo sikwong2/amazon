@@ -155,9 +155,16 @@ export function SignUp() {
             >
               {t("signup.continue")}
             </CustomButton>
+            <CustomDivider sx={{mt: 2, mb: 2}}/>
+              <Typography>
+                {t('buying-for-yourself')}
+              </Typography>
+              <CustomLink label="shopper-account" href="/" variant='blue2'>
+                {t('shopper-account')}
+              </CustomLink>
             <CustomDivider sx={{mt: 2, mb: 3}}/>
             <Typography>
-              {t("signup.account-exists")} <Link onClick={loginAccount}> {t("signup.sign-in")} </Link>
+              {t("signup.account-exists")} <CustomLink label="sign in" onClick={loginAccount}> {t("signup.sign-in")} </CustomLink>
             </Typography>
           </Box>
         </CustomCard>

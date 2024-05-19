@@ -1,5 +1,8 @@
 {
   "change-locale": "将语言环境更改为 \"{{changeTo}}\"",
+  "go-to-signup": "创建一个帐户",
+  "buying-for-yourself": "给自己用?",
+  "shopper-account": "创建购物者帐户",
   "login": {
     "title": "UCSC-亚马逊供应商登录",
     "signin": "登入",

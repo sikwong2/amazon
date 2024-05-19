@@ -2,6 +2,8 @@
   "change-locale": "Change locale to \"{{changeTo}}\"",
   "go-to-login": "Go to Login",
   "go-to-signup": "Create an account",
+  "buying-for-work": "Buying for work?",
+  "vendor-account": "Create a free vendor account",
   "here": "here",
   "login": {
     "title": "UCSC-Amazon Shopper Login",

@@ -6,13 +6,14 @@ import { ThemeProvider } from '@emotion/react';
 import { linkThemes } from './Theme';
 
 interface CustomLinkProps{
-  href: string,
+  href?: string,
   label: string,
   variant?: 'blue1' | 'blue2' | 'gray';
   children: React.ReactNode
+  onClick?: () => void; 
 }
 
-export default function CustomLink({ href, label, variant='blue1', children, ...rest }: CustomLinkProps) {
+export default function CustomLink({ href, label, variant='blue1', children, onClick, ...rest }: CustomLinkProps) {
   const theme = linkThemes[variant];
   return (
     <ThemeProvider theme={theme}>
@@ -21,6 +22,7 @@ export default function CustomLink({ href, label, variant='blue1', children, ...
         aria-label={label}
         id={label}
         underline="hover"
+        onClick={onClick}
         {...rest}
       >
         {children}

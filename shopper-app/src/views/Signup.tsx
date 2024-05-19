@@ -13,6 +13,7 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import { Link } from '@mui/material';
+import CustomLink from '@/components/Link';
 
 export function SignUp() {
   const router = useRouter(); 
@@ -149,9 +150,16 @@ export function SignUp() {
             >
               {t("signup.continue")}
             </CustomButton>
+            <CustomDivider sx={{mt: 2, mb: 2}}/>
+              <Typography>
+                {t('buying-for-work')}
+              </Typography>
+              <CustomLink label="vendor-account" href="/vendor" variant='blue2'>
+                {t('vendor-account')}
+              </CustomLink>
             <CustomDivider sx={{mt: 2, mb: 3}}/>
             <Typography>
-              {t("signup.account-exists")} <Link href="/login"> {t("signup.sign-in")} </Link>
+              {t("signup.account-exists")} <CustomLink label="login" variant="blue2" href="/login"> {t("signup.sign-in")} </CustomLink>
             </Typography>
           </Box>
         </CustomCard>
