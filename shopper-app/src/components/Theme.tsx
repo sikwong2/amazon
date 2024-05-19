@@ -130,10 +130,8 @@ export const cardTheme = createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '16px',
-          "&:last-child": {
-            paddingBottom: '16px' 
-          }
+          fontFamily: ["sans-serif", "Amazon Ember"],
+          padding: '0px',
         }
       }
     },
