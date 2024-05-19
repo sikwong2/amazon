@@ -8,6 +8,12 @@
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
-    "new-to-amazon": "New to Amazon?"
+    "new-to-amazon": "New to Amazon?",
+    "agreement": "By continuing, you agree to Amazon's ",
+    "conditions": "Conditions of Use",
+    "and": " and ",
+    "privacy-notice": "Privacy Notice",
+    "need-help": "Need help?",
+    "create-account": "Create your Amazon account"
   }
 }

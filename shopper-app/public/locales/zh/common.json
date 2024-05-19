@@ -8,6 +8,12 @@
     "email": "电子邮件",
     "emailaddress": "电子邮件地址",
     "password": "密码",
-    "new-to-amazon": "亚马逊新手?"
+    "new-to-amazon": "亚马逊新手?",
+    "agreement": "继续即表示您同意亚马逊的",
+    "conditions": "使用条件",
+    "and": "和",
+    "privacy-notice": "隐私声明",
+    "need-help": "需要帮忙?",
+    "create-account": "创建您的亚马逊帐户"
   }
 }
