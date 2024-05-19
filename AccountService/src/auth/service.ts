@@ -38,20 +38,20 @@ export class AccountService {
     }
   }
 
-  public async check(accessToken: string): Promise<SessionUser>  {
+  public async check(accessToken: string): Promise<SessionUser|undefined>  {
     return new Promise((resolve, reject) => {
       try {
         jwt.verify(accessToken, 
           `${process.env.MASTER_SECRET}`, 
           (err: jwt.VerifyErrors | null, decoded?: object | string) => {
             if (err) {
-              reject(err);
+              resolve(undefined);
             } 
             const account = decoded as Account
             resolve({id: account.id, role: account.role});
           });
       } catch (e) {
-        reject(e);
+        resolve(undefined);
       }
     });
   }

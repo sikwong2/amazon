@@ -4,16 +4,16 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import { ThemeProvider } from '@emotion/react';
 import { linkThemes } from './Theme';
+import { LinkProps } from 'next/link';
 
-interface CustomLinkProps{
-  href?: string,
+interface CustomLinkProps extends LinkProps{
+  href: string,
   label: string,
   variant?: 'blue1' | 'blue2' | 'gray';
   children: React.ReactNode
-  onClick?: () => void; 
 }
 
-export default function CustomLink({ href, label, variant='blue1', children, onClick, ...rest }: CustomLinkProps) {
+export default function CustomLink({ href, label, variant='blue1', children, ...rest }: CustomLinkProps) {
   const theme = linkThemes[variant];
   return (
     <ThemeProvider theme={theme}>
@@ -22,7 +22,6 @@ export default function CustomLink({ href, label, variant='blue1', children, onC
         aria-label={label}
         id={label}
         underline="hover"
-        onClick={onClick}
         {...rest}
       >
         {children}

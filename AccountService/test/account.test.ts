@@ -78,10 +78,10 @@ test('Anna invalid accesstoken', async () => {
   expect(accessToken).toBeDefined();
   await supertest(server)
     .get(`/api/v0/authenticate?accessToken=123`)
-    .expect(500)
+    .expect(401)
   await supertest(server)
     .get(`/api/v0/authenticate?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`)
-    .expect(500)
+    .expect(401)
 });
 
 test('invalid account', async () => {
