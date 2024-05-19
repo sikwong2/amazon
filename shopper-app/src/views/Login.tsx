@@ -55,17 +55,23 @@ export function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
+    <Container component="main" 
+      sx={{ mb:'28px', pt:'14px', pb:'18px', display: 'flex',
+          flexDirection: 'column', alignItems: 'center'
+      }}>
       <CssBaseline />
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:'18px'}}>
+        <Logo width={100} height='auto'/>
+      </Container>
       <Box
         sx={{
-          marginTop: 8,
+          width:700,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
-      >
-        <Logo />
+        >
         <CustomCard>
         <Typography component="h1" variant="h5" align='center'>
           {t("login.title")}
@@ -108,5 +114,6 @@ export function Login() {
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
+  </>
   );
 }
