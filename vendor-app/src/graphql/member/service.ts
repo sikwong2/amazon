@@ -21,6 +21,7 @@ export class MemberService {
           resolve(member)
         })
         .catch((err) => {
+          console.log(err)
           reject(new Error("Unauthorized"))
         });
     })
