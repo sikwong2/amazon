@@ -3,23 +3,28 @@ import { Pool } from 'pg';
 const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ACCOUNT_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
 
 if (!POSTGRES_HOST) {
-  console.warn('Error: POSTGRES_HOST is not defined in db.ts AccountService.');
+  console.error('Error: POSTGRES_HOST is not defined in db.ts AccountService.');
+  process.exit(1);
 }
 
 if (!POSTGRES_PORT) {
-  console.warn('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService.');
+  console.error('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService.');
+  process.exit(1);
 }
 
 if (!POSTGRES_ACCOUNT_DATABASE) {
-  console.warn('Error: POSTGRES_ACCOUNT_DATABASE is not defined in db.ts AccountService.');
+  console.error('Error: POSTGRES_ACCOUNT_DATABASE is not defined in db.ts AccountService.');
+  process.exit(1);
 }
 
 if (!POSTGRES_USER) {
-  console.warn('Error: POSTGRES_USER is not defined in db.ts AccountService.');
+  console.error('Error: POSTGRES_USER is not defined in db.ts AccountService.');
+  process.exit(1);
 }
 
 if (!POSTGRES_PASSWORD) {
-  console.warn('Error: POSTGRES_PASSWORD is not defined in db.ts AccountService.');
+  console.error('Error: POSTGRES_PASSWORD is not defined in db.ts AccountService.');
+  process.exit(1);
 }
 
 const pool = new Pool({
