@@ -23,7 +23,6 @@ export class AuthService {
           resolve(authenticated)
         })
         .catch((err) => {
-          console.log(err)
           reject(new Error("Unauthorised"))
         });
     });

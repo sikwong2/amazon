@@ -15,7 +15,7 @@ import { SignupContext } from '@/context/Signup';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext);
-  const singupContext = React.useContext(SignupContext);
+  const signupContext = React.useContext(SignupContext);
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
@@ -51,7 +51,7 @@ export function Login() {
   };
 
   const createAccount = () => {
-    singupContext.setSignUp(true);
+    signupContext.setSignUp(true);
   }
 
   return (
@@ -74,7 +74,7 @@ export function Login() {
           component="form" onSubmit={onSubmit} noValidate sx={{mt: 1, mb: 1}}
         >
           <CustomTextField
-            label={t("login.email") || 'email'}
+            label={t("login.email") as string}
             placeholder={t("login.emailaddress")!}
             required
             type="email"
@@ -84,7 +84,7 @@ export function Login() {
             autoFocus
           />
           <CustomTextField
-            label={t("login.password") || 'password'}
+            label={t("login.password") as string}
             placeholder={t("login.password")!}
             required
             type="password"
@@ -107,7 +107,7 @@ export function Login() {
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
-      <CustomButton variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+      <CustomButton label={t("login.create-account") as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
         {t("login.create-account")}
       </CustomButton>
     </Container>

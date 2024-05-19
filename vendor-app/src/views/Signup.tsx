@@ -14,6 +14,7 @@ import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import { Link } from '@mui/material';
 import { SignupContext } from '@/context/Signup';
+import CustomLink from '@/components/Link';
 
 export function SignUp() {
   const signupContext = React.useContext(SignupContext);
@@ -61,9 +62,6 @@ export function SignUp() {
             signupContext.setSignUp(false)
           }
         })
-        .catch((e) => {
-          alert(e)
-        });
     }
   };
 
@@ -99,7 +97,7 @@ export function SignUp() {
               {t("signup.name")}
             </Typography>
             <CustomTextField
-              label={t("signup.name") || 'name'}
+              label={t("signup.name") as string}
               placeholder={t("signup.name")!}
               required
               type="name"
@@ -111,7 +109,7 @@ export function SignUp() {
               {t("signup.email")}
             </Typography>
             <CustomTextField
-              label={t("signup.email") || 'email'}
+              label={t("signup.email") as string}
               placeholder={t("signup.email")!}
               required
               type="email"
@@ -123,7 +121,7 @@ export function SignUp() {
               {t("signup.password")}
             </Typography>
             <CustomTextField
-              label={t("signup.password") || 'password'}
+              label={t("signup.password") as string}
               placeholder={t("signup.password")!}
               required
               type="password"
@@ -135,7 +133,7 @@ export function SignUp() {
               {t("signup.re-enter")}
             </Typography>
             <CustomTextField
-              label={t("signup.re-enter") || 're-enter password'}
+              label={t("signup.re-enter") as string}
               required
               type="password"
               name='Re-enter password'
