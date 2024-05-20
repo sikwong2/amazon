@@ -1,5 +1,5 @@
 import { Field, ObjectType, InputType, ID } from "type-graphql"
-import { Matches } from "class-validator";
+import { Length, Matches } from "class-validator";
 import { IsNotEmpty } from "class-validator";
 
 @ObjectType()
@@ -13,6 +13,7 @@ export class MemberRequest {
     email!: string
   @Field()
   @IsNotEmpty()
+  @Length(8, 16)
     password!: string
   @Field()
     role!: string

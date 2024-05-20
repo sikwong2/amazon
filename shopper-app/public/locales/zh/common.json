@@ -19,7 +19,7 @@
     "name": "名字",
     "first-last": "名字和姓氏",
     "email": "电子邮件",
-    "password": "电子邮件地址",
+    "password": "六个字符以上",
     "re-enter": "重新输入密码",
     "create-vendor": "创建免费供应商帐户",
     "account-exists": "已经有帐户？",

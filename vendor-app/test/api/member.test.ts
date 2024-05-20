@@ -147,7 +147,7 @@ test("Invalid Role", async() => {
     .expect(200)
     .then((res) => {
       expect(res.body.errors.length).toEqual(1)
-      expect(res.body.errors[0].message).toEqual('Unexpected error.')
+      expect(res.body.errors[0].message).toEqual('Argument Validation Error')
     })
 })
 
