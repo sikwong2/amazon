@@ -22,6 +22,10 @@ export function Login() {
   // router to change pages
   const router = useRouter(); 
 
+  const createAccount = () => {
+    router.push('/signup');
+  }
+
   const onSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -126,7 +130,10 @@ export function Login() {
         </CustomCard>
       <CustomDivider sx={{fontSize:'12px', mb:'14px'}}>{t('login.new-to-amazon')}</CustomDivider>
       </Box>
+      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton label={t("login.create-account")  as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
-  </>
-  );
+  )
 }

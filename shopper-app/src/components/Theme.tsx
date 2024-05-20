@@ -1,4 +1,5 @@
-import { createTheme} from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
+import { createTheme, hexToRgb} from '@mui/material/styles';
 
 
 // themed option 
@@ -28,6 +29,13 @@ export const globalTheme = createTheme({
       main: '#EDFCFF'
     }
   },
+  typography: {
+    fontFamily: [
+      'Amazon Ember',
+      'Helvetica',
+      'sans-serif'
+    ].join(','),
+  }
 })
 
 // https://mui.com/material-ui/customization/theme-components/
@@ -40,7 +48,6 @@ export const buttonTheme = createTheme(
           {
             props: {},
             style: {
-              fontWeight: "bold",
               fontFamily: ["sans-serif", "Amazon Ember"],
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
@@ -59,7 +66,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -77,9 +84,8 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined", color: "info"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 3px #017185",
-              fontWeight: "bold",
               "&:hover": {
                 backgroundColor: 'rgba(136, 140, 140, 0.1)',
                 border: "solid 3px #017185",
@@ -92,7 +98,25 @@ export const buttonTheme = createTheme(
                 outline: "none"
               },
             }
-          }
+          },
+          {
+            props: {variant: "text"},
+            style: {
+              fontFamily: ["Amazon Ember", "sans-serif"],
+              border: "solid 1px #888C8C",
+              fontWeight: "normal",
+              "&:hover": {
+                backgroundColor: 'rgba(136, 140, 140, 0.1)',
+                border: "solid 1px #888C8C",
+                outline: "none"
+              },
+              "&:active": {
+                backgroundColor: '#EDFCFF',
+                border: "solid 1px #017185",
+                outline: `solid 3px #C9F3FA`
+              },
+            }
+          },
         ],
         defaultProps: {
           disableRipple: true,

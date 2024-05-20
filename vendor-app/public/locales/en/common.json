@@ -1,11 +1,29 @@
 {
   "change-locale": "Change locale to \"{{changeTo}}\"",
+  "go-to-signup": "Create an account",
+  "buying-for-yourself": "Buying for yourself?",
+  "shopper-account": "Create a shopper account",
   "login": {
     "title": "UCSC-Amazon Vendor Login",
     "signin": "Sign in",
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
-    "new-to-amazon": "New to Amazon?"
+    "new-to-amazon": "New to Amazon?",
+    "create-account": "Create your Amazon account"
+  },
+  "signup": {
+    "title": "Create account",
+    "name": "Your name",
+    "first-last": "First and last name",
+    "email": "Email",
+    "password": "More than 6 characters",
+    "re-enter": "Re-enter password",
+    "create-shopper": "Create a free shopper account",
+    "account-exists": "Already have an account?",
+    "sign-in": "Sign in",
+    "password-must-match": "Passwords must match",
+    "continue": "Continue",
+    "blank-error": "All fields must be filled"
   }
 }

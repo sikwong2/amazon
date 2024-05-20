@@ -4,8 +4,9 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import { ThemeProvider } from '@emotion/react';
 import { linkThemes } from './Theme';
+import { LinkProps } from 'next/link';
 
-interface CustomLinkProps{
+interface CustomLinkProps extends LinkProps{
   href: string,
   label: string,
   variant?: 'blue1' | 'blue2' | 'gray';
