@@ -58,9 +58,9 @@
 
     "test": "npm run test-accounts && npm run test-products",
     "test-accounts": "cd AccountService && npm run build && npm test",
-    "test-orders": "cd OrderService && npm test",
+    "test-orders": "cd OrderService && npm run build && npm test",
     "test-products": "cd ProductService && npm run build && npm test",
-    "test-vendor": "cd vendor-app && npm test",
+    "test-vendor": "cd vendor-app && npm run build && npm test",
     "test-admin": "cd admin-app && npm run build && npm test",
     "test-shopper": "cd shopper-app && npm run build && npm test",
 
