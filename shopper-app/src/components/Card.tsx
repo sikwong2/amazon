@@ -12,7 +12,7 @@ const CustomCard = ({ children, type = 'rounded', ...rest }: CardProps & { type?
       <Box sx={{ minWidth: 275 }}>
         <Card
           style={{
-            borderRadius: type === 'pointy' ? '1px' : '6px',
+            borderRadius: type === 'pointy' ? '1px' : '8px',
           }}
           variant='outlined'
           {...rest}>
