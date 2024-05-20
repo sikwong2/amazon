@@ -12,10 +12,6 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -126,21 +122,6 @@ export function Login() {
               .
             </Typography>
           </Box>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={'x'}
-              aria-controls="panel2-content"
-              id="panel2-header"
-            >
-              <Typography>Accordion 2</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
