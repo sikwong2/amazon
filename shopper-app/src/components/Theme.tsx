@@ -157,6 +157,7 @@ export const dividerTheme = createTheme(globalTheme, {
     MuiDivider: {
       styleOverrides: { 
         root: {
+          width: '100%',
           color: 'rgba(0, 0, 0, 0.54)', 
           fontFamily: 'Amazon Ember', 
           fontSize: '8'
