@@ -6,7 +6,7 @@
   "vendor-app": {
     "return-shopper-app": "Return to Shopper App",
     "vendors-only" : "This app is for vendors only!",
-    "vendor-account-approval" : "Vendor Account Approval Status"
+    "vendor-account-approval" : "Vendor Account Approval"
   },
   "login": {
     "title": "UCSC-Amazon Vendor Login",

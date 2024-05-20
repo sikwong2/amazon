@@ -12,9 +12,6 @@ export class AuthResolver {
 
   @Query(() => Boolean)
   async status(@Args() accessToken: AccessToken): Promise<Boolean> {
-
-    console.log("From Status : " + accessToken);
-
     return Promise.resolve(true);
   }
 }
