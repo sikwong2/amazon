@@ -131,7 +131,6 @@ export function Login() {
         <CustomButton 
           label={t("login.create-account") as string} 
           variant="text" 
-          caps={true}
           disableElevation={false} 
           onClick={createAccount} 
           fullWidth 
