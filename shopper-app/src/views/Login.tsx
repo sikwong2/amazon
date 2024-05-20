@@ -58,24 +58,23 @@ export function Login() {
   };
 
   return (
-    <>
     <Container component="main" 
       sx={{ mb:'28px', pt:'14px', pb:'18px', display: 'flex',
           flexDirection: 'column', alignItems: 'center'
-      }}>
+      }}
+    >
       <CssBaseline />
-      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:'18px'}}>
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
         <Logo width={100} height='auto'/>
       </Container>
       <Box
         sx={{
-          width:348,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
-        >
-        <CustomCard sx={{ borderRadius:'8px', width:348, p: '20px 26px', mb:'22px' }}>
+      >
+        <CustomCard sx={{ borderRadius:'8px', width:348, p: '20px 26px', mb:2.5 }}>
           <Typography component="h1" variant="h5" sx={{ mb:'10px', pb:'4px' }}>
             {t("login.signin")}
           </Typography>
@@ -83,8 +82,8 @@ export function Login() {
             component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
             >
             <CustomTextField
-              inputLabel={t("login.email") || 'email'}
-              label={t("login.email") || 'email'}
+              inputLabel={t("login.email") as string}
+              label={t("login.email") as string}
               required
               type="email"
               name='Email Address'
@@ -93,8 +92,8 @@ export function Login() {
               autoFocus
               />
             <CustomTextField
-              inputLabel={t("login.password") || 'password'}
-              label={t("login.password") || 'password'}
+              inputLabel={t("login.password") as string}
+              label={t("login.password") as string}
               required
               type="password"
               name='Password'
@@ -111,7 +110,7 @@ export function Login() {
               {t("login.signin")}
             </CustomButton>
           </Box>
-          <Box aria-label='agreement'>
+          <Box aria-label='link-to-agreement'>
             <Typography variant='body1' sx={{ mt:2, fontSize:'12px' }}>
               {t("login.agreement")}
               <CustomLink label='conditions-of-use' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use'>
@@ -124,14 +123,16 @@ export function Login() {
               .
             </Typography>
           </Box>
-          <CustomDivider sx={{mt: 2, mb: 2}}/>
-          <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
-            {t('buying-for-work')}
-          </Typography>
-          <Box sx={{ fontSize:'13px' }}>
-            <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
-              {t('vendor-account')}
-            </CustomLink>
+          <Box aria-label='link-to-vendor'>
+            <CustomDivider sx={{mt: 2, mb: 2}}/>
+            <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
+              {t('buying-for-work')}
+            </Typography>
+            <Box sx={{ fontSize:'13px' }}>
+              <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
+                {t('vendor-account')}
+              </CustomLink>
+            </Box>
           </Box>
         </CustomCard>
         <CustomDivider sx={{fontSize:'12px', mb:2}}>{t('login.new-to-amazon')}</CustomDivider>
@@ -147,6 +148,5 @@ export function Login() {
         </CustomButton>
       </Box>
     </Container>
-  </>
   )
 }
