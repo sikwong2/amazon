@@ -35,7 +35,7 @@ const LanguageButton = () => {
 
   const options: Option[] = [
     { value: 'en', label: 'English - EN' },
-    { value: 'zh', label: 'Mandarin- ZH' },
+    { value: 'zh', label: 'Mandarin - ZH' },
   ];
 
   const customButtonStyles = {
@@ -50,7 +50,7 @@ const LanguageButton = () => {
           ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
-          aria-label={'change-language'}
+          label={'change-language'}
           style={customButtonStyles}
           onClick={handlePopoverOpen}
         >
@@ -77,6 +77,7 @@ const LanguageButton = () => {
                 value={option.value}
                 control={<Radio />}
                 label={option.label}
+                aria-label={option.label}
                 style={{ marginLeft: '1px' }}
               />
             ))}
