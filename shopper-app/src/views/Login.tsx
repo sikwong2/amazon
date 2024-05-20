@@ -12,7 +12,6 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
-import { Divider } from '@mui/material';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -128,12 +127,20 @@ export function Login() {
             </Typography>
           </Box>
         </CustomCard>
-      <CustomDivider sx={{fontSize:'12px', mb:'14px'}}>{t('login.new-to-amazon')}</CustomDivider>
+        <CustomDivider sx={{fontSize:'12px', mb:2}}>{t('login.new-to-amazon')}</CustomDivider>
+        <CustomButton 
+          label={t("login.create-account") as string} 
+          variant="text" 
+          caps={true}
+          disableElevation={false} 
+          onClick={createAccount} 
+          fullWidth 
+          sx={{fontSize:'13px'}}
+        >
+          {t("login.create-account")}
+        </CustomButton>
       </Box>
-      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
-      <CustomButton label={t("login.create-account")  as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
-        {t("login.create-account")}
-      </CustomButton>
     </Container>
+  </>
   )
 }
