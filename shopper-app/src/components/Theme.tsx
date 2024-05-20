@@ -154,6 +154,9 @@ export const cardTheme = createTheme({
         root: {
           fontFamily: ["sans-serif", "Amazon Ember"],
           padding: '0px',
+          "&:last-child": {
+            paddingBottom: '0px'
+          }
         }
       }
     },
