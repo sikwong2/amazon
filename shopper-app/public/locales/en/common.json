@@ -19,7 +19,7 @@
     "name": "Your name",
     "first-last": "First and last name",
     "email": "Email",
-    "password": "Password",
+    "password": "More than 6 characters",
     "re-enter": "Re-enter password",
     "create-vendor": "Create a free vendor account",
     "account-exists": "Already have an account?",
