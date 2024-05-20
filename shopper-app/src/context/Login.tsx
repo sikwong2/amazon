@@ -15,5 +15,5 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
     <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken}}>
       {children}
     </LoginContext.Provider>
-  );
+  )
 };

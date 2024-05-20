@@ -1,11 +1,29 @@
 {
   "change-locale": "将语言环境更改为 \"{{changeTo}}\"",
+  "go-to-signup": "创建一个帐户",
+  "buying-for-yourself": "给自己用?",
+  "shopper-account": "创建购物者帐户",
   "login": {
     "title": "UCSC-亚马逊供应商登录",
     "signin": "登入",
     "email": "电子邮件",
     "emailaddress": "电子邮件地址",
     "password": "密码",
-    "new-to-amazon": "亚马逊新手?"
+    "new-to-amazon": "亚马逊新手?",
+    "create-account": "创建您的亚马逊帐户"
+  },
+  "signup": {
+    "title": "创建购物者帐户",
+    "name": "名字",
+    "first-last": "名字和姓氏",
+    "email": "电子邮件",
+    "password": "六个字符以上",
+    "re-enter": "重新输入密码",
+    "create-shopper": "创建免费供应商帐户",
+    "account-exists": "已经有帐户？",
+    "sign-in": "登入",
+    "password-must-match": "密码必须匹配",
+    "continue": "继续",
+    "blank-error": "必须填写所有字段"
   }
 }

@@ -32,26 +32,26 @@ export class AccountService {
         expiresIn: '30m',
         algorithm: 'HS256'
       });
-      return { id: account.id, name: account.name, accessToken: accessToken };
+      return { id: account.id, name: account.name, role: account.role, accessToken: accessToken };
     } else {
       return undefined;
     }
   }
 
-  public async check(accessToken: string): Promise<SessionUser> {
+  public async check(accessToken: string): Promise<SessionUser|undefined>  {
     return new Promise((resolve, reject) => {
       try {
         jwt.verify(accessToken,
           `${process.env.MASTER_SECRET}`,
           (err: jwt.VerifyErrors | null, decoded?: object | string) => {
             if (err) {
-              reject(err);
-            }
+              resolve(undefined);
+            } 
             const account = decoded as Account
             resolve({ id: account.id, role: account.role });
           });
       } catch (e) {
-        reject(e);
+        resolve(undefined);
       }
     });
   }
@@ -67,7 +67,13 @@ export class AccountService {
    * @returns {Promise<boolean>} - A promise that resolves to the status of the account if it's a vendor account, or false otherwise.
    */
   public async vendorStatus(accessToken: string): Promise<boolean> {
-    const { id, role } = await this.check(accessToken);
+    const user = await this.check(accessToken);
+
+    if (!user) {
+      return false
+    }
+
+    const {id, role} = user;
 
     if (role !== 'vendor') {
       return false;

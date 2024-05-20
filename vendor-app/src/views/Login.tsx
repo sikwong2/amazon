@@ -10,9 +10,12 @@ import CustomButton from '@/components/Button';
 import Logo from '../components/Logo';
 import CustomDivider from '@/components/Divider';
 import CustomCard from '@/components/Card';
+import { SignupContext } from '@/context/Signup';
+
 
 export function Login() {
-  const loginContext = React.useContext(LoginContext)
+  const loginContext = React.useContext(LoginContext);
+  const signupContext = React.useContext(SignupContext);
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
@@ -36,10 +39,11 @@ export function Login() {
       })
       .then((json) => {
         if (json.errors) {
-          alert(`${json.errors[0].message}`)
+          alert(`${json.errors[0].message}`);
         } else {
-          loginContext.setAccessToken(json.data.login.accessToken)
-          loginContext.setUserName(json.data.login.name)
+          loginContext.setAccessToken(json.data.login.accessToken);
+          loginContext.setUserName(json.data.login.name);
+          loginContext.setRole(json.data.login.role);
         }
       })
       .catch((e) => {
@@ -47,7 +51,11 @@ export function Login() {
       });
   };
 
-  const LoginComponent = (
+  const createAccount = () => {
+    signupContext.setSignUp(true);
+  }
+
+  return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -59,56 +67,51 @@ export function Login() {
         }}
       >
         <Logo />
-        <CustomCard>
-        <Typography component="h1" variant="h5" align="center">
-          {t("login.title")}
-        </Typography>
-        <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
-        >
-          <CustomTextField
-            label={t("login.email") || 'email'}
-            placeholder={t("login.emailaddress")!}
-            required
-            type="email"
-            name='Email Address'
-            sx={{mt: 1, mb: 1}}
-            autoComplete="email"
-            autoFocus
-          />
-          <CustomTextField
-            label={t("login.password") || 'password'}
-            placeholder={t("login.password")!}
-            required
-            type="password"
-            name='Password'
-            sx={{mt: 1}}
-            autoComplete="current-password"
-          />
-          <CustomButton
-            type="submit"
-            label="sign in"
-            fullWidth
-            variant="contained"
-            color="primary"
-            sx={{mt: 3, mb: 2}}
+        <CustomCard sx={{ mb: 1, mt: 3 }}>
+          <Typography component="h1" variant="h5" align="center">
+            {t("login.title")}
+          </Typography>
+          <Box aria-label='form' width={500}
+            component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1, mb: 1 }}
           >
-            {t("login.signin")}
-          </CustomButton>
-          <CustomDivider></CustomDivider>
-        </Box>
+            <CustomTextField
+              label={t("login.email") as string}
+              placeholder={t("login.emailaddress")!}
+              required
+              type="email"
+              name='Email Address'
+              sx={{ mt: 1, mb: 1 }}
+              autoComplete="email"
+              autoFocus
+            />
+            <CustomTextField
+              label={t("login.password") as string}
+              placeholder={t("login.password")!}
+              required
+              type="password"
+              name='Password'
+              sx={{ mt: 1 }}
+              autoComplete="current-password"
+            />
+            <CustomButton
+              type="submit"
+              label="sign in"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {t("login.signin")}
+            </CustomButton>
+            <CustomDivider></CustomDivider>
+          </Box>
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton label={t("login.create-account") as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{ mt: 2 }}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
   );
 
-  if (loginContext.accessToken.length < 1) {
-    return (
-      LoginComponent
-    )
-  }
-  else {
-    return null
-  }
 }

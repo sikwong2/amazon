@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
-
-import { Login } from '../views/Login'
-import { Approval } from '../views/Approval'
 import { LoginProvider, LoginContext } from '../context/Login'
+import { SignupProvider } from '@/context/Signup'
+import { Home } from './Home'
 
 export function App() {
   return (
     <LoginProvider>
-      <Login />
-      <Approval />
+      <SignupProvider>
+        <Home/>
+      </SignupProvider>
     </LoginProvider>
   )
 }

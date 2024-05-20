@@ -43,5 +43,18 @@ ProductService-Test:
     - npm run test-products
   when: manual
 
+Shopper-Test:
+  stage: test
+  script:
+    - npm run install-shopper
+    - npm run test-shopper
+  when: manual
+
+Vendor-Test:
+  stage: test
+  script:
+    - npm run install-vendor
+    - npm run test-vendor
+  when: manual
 
 
