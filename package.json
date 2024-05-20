@@ -61,8 +61,8 @@
     "test-orders": "cd OrderService && npm test",
     "test-products": "cd ProductService && npm run build && npm test",
     "test-vendor": "cd vendor-app && npm test",
-    "test-admin": "cd admin-app && npm test",
-    "test-shopper": "cd shopper-app && npm test",
+    "test-admin": "cd admin-app && npm run build && npm test",
+    "test-shopper": "cd shopper-app && npm run build && npm test",
 
     "test-with-docker": "npm run test-with-docker-accounts && npm run test-with-docker-products",
     "test-with-docker-accounts": "cd AccountService && docker-compose up -d && npm run build && npm test && docker-compose down",
