@@ -3,6 +3,11 @@
   "go-to-signup": "Create an account",
   "buying-for-yourself": "Buying for yourself?",
   "shopper-account": "Create a shopper account",
+  "vendor-app": {
+    "return-shopper-app": "Return to Shopper App",
+    "vendors-only" : "This app is for vendors only!",
+    "vendor-account-approval" : "Vendor Account Approval Status"
+  },
   "login": {
     "title": "UCSC-Amazon Vendor Login",
     "signin": "Sign In",
