@@ -50,7 +50,7 @@ const LanguageButton = () => {
           ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
-          aria-label={'change-language'}
+          label={'change-language'}
           style={customButtonStyles}
           onClick={handlePopoverOpen}
         >
