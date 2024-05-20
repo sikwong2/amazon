@@ -1,4 +1,5 @@
-import { createTheme} from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
+import { createTheme, hexToRgb} from '@mui/material/styles';
 
 
 // themed option 
@@ -65,7 +66,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -83,7 +84,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined", color: "info"},
             style: {
-              fontFamily: ["sans-serif", "Amazon Ember"],
+              fontFamily: ["Amazon Ember", "sans-serif"],
               border: "solid 3px #017185",
               "&:hover": {
                 backgroundColor: 'rgba(136, 140, 140, 0.1)',
