@@ -6,7 +6,7 @@ import { Role } from ".";
 export class MemberService {
   // checks if member existing from email before creating account
   private async find(memberinput: MemberInput): Promise<boolean> {
-    let select = 
+    let select =
       ` SELECT jsonb_build_object('id', id, 'name', data->>'name', 'role', data->>'role')` +
       ` AS account FROM account` +
       ` WHERE data->>'email' = $1`
@@ -14,7 +14,7 @@ export class MemberService {
       text: select,
       values: [memberinput.email],
     };
-    const {rows} = await pool.query(query)
+    const { rows } = await pool.query(query)
     return rows.length === 1 ? true : false
   }
 
@@ -24,7 +24,8 @@ export class MemberService {
     if (exists) { // if account already exists 
       return undefined;
     }
-    let insert = 
+
+    let insert =
       `INSERT INTO account(data) VALUES (
         jsonb_build_object(
           'email', $1::varchar,
@@ -34,11 +35,26 @@ export class MemberService {
         )::jsonb
       )
       RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role`
+
+    if (memberinput.role == "vendor") {
+      insert =
+        `INSERT INTO account(data) VALUES (
+        jsonb_build_object(
+          'email', $1::varchar,
+          'name', $2::varchar,
+          'pwhash', crypt($3::varchar,'87'),
+          'role', $4::varchar,
+          'status', FALSE
+        )::jsonb
+      )
+      RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role`
+    }
+
     const query = {
       text: insert,
       values: [memberinput.email, memberinput.name, memberinput.password, memberinput.role]
     };
-    const {rows} = await pool.query(query);
+    const { rows } = await pool.query(query);
     return rows[0];
   }
 

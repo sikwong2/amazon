@@ -15,6 +15,7 @@ export interface Member {
   email: Email,
   name: string,
   role: Role
+  status: boolean
 }
 
 // can only be shopper or vendor

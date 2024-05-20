@@ -44,5 +44,18 @@ export class AccountController extends Controller {
         return account
       });
   }
+
+  @Get('vendorstatus')
+  @Response('401', 'Unauthorized')  
+  public async vendorStatus(
+    @Query() accessToken: string,
+  ): Promise<boolean> {
+    return new AccountService().vendorStatus(accessToken)
+      .then(async (status: boolean): Promise<boolean> => {
+        console.log(typeof(status));
+        return status
+      });
+  }
+
 }
 
