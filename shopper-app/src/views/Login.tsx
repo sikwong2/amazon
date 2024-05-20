@@ -85,7 +85,6 @@ export function Login() {
             <CustomTextField
               inputLabel={t("login.email") || 'email'}
               label={t("login.email") || 'email'}
-              placeholder={t("login.emailaddress")!}
               required
               type="email"
               name='Email Address'
@@ -96,7 +95,6 @@ export function Login() {
             <CustomTextField
               inputLabel={t("login.password") || 'password'}
               label={t("login.password") || 'password'}
-              placeholder={t("login.password")!}
               required
               type="password"
               name='Password'
@@ -125,6 +123,15 @@ export function Login() {
               </CustomLink>
               .
             </Typography>
+          </Box>
+          <CustomDivider sx={{mt: 2, mb: 2}}/>
+          <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
+            {t('buying-for-work')}
+          </Typography>
+          <Box sx={{ fontSize:'13px' }}>
+            <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
+              {t('vendor-account')}
+            </CustomLink>
           </Box>
         </CustomCard>
         <CustomDivider sx={{fontSize:'12px', mb:2}}>{t('login.new-to-amazon')}</CustomDivider>
