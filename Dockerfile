@@ -24,6 +24,11 @@ COPY ProductService/package.json /home/app/ProductService/
 COPY ProductService/package-lock.json /home/app/ProductService/
 COPY ProductService/tsoa.json /home/app/ProductService/
 
+COPY vendor-api/build/ /home/app/vendor-api/build/
+COPY vendor-api/package.json /home/app/vendor-api/
+COPY vendor-api/package-lock.json /home/app/vendor-api/
+COPY vendor-api/tsoa.json /home/app/vendor-api/
+
 COPY shopper-app/.next/ /home/app/shopper-app/.next/
 COPY shopper-app/package.json /home/app/shopper-app/
 COPY shopper-app/package-lock.json /home/app/shopper-app/

@@ -7,10 +7,16 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
+import Logo from '../components/Logo';
+import CustomDivider from '@/components/Divider';
+import CustomCard from '@/components/Card';
+import { SignupContext } from '@/context/Signup';
+
 
 export function Login() {
-  const loginContext = React.useContext(LoginContext)
-  const [user, setUser] = React.useState({email: '', password: ''});
+  const loginContext = React.useContext(LoginContext);
+  const signupContext = React.useContext(SignupContext);
+  const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
   const onSubmit = (event: any) => {
@@ -20,7 +26,7 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
+    const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}` }
     fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -44,7 +50,11 @@ export function Login() {
       });
   };
 
-  const LoginComponent = (
+  const createAccount = () => {
+    signupContext.setSignUp(true);
+  }
+
+  return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -55,14 +65,16 @@ export function Login() {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Logo />
+        <CustomCard sx={{mb: 1, mt: 3}}>
+        <Typography component="h1" variant="h5" align="center">
           {t("login.title")}
         </Typography>
         <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1, mb: 1}}
         >
           <CustomTextField
-            label={t("login.email") || 'email'}
+            label={t("login.email") as string}
             placeholder={t("login.emailaddress")!}
             required
             type="email"
@@ -72,7 +84,7 @@ export function Login() {
             autoFocus
           />
           <CustomTextField
-            label={t("login.password") || 'password'}
+            label={t("login.password") as string}
             placeholder={t("login.password")!}
             required
             type="password"
@@ -90,17 +102,15 @@ export function Login() {
           >
             {t("login.signin")}
           </CustomButton>
+          <CustomDivider></CustomDivider>
         </Box>
+        </CustomCard>
       </Box>
+      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
+      <CustomButton label={t("login.create-account") as string} variant="text" disableElevation={false} onClick={createAccount} fullWidth sx={{mt: 2}}>
+        {t("login.create-account")}
+      </CustomButton>
     </Container>
   );
-  
-  if (loginContext.accessToken.length < 1) {
-    return (
-      LoginComponent
-    )
-  }
-  else {
-    return null
-  }
+
 }

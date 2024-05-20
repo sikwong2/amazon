@@ -1,79 +1,60 @@
-# A pipeline is composed of independent jobs that run scripts, grouped into stages.
-# Stages run in sequential order, but jobs within stages run in parallel.
+# .gitlab-ci.yml
 #
-# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+# This GitLab CI configuration sets up a pipeline with a single test stage.
+# It uses the lts Node.js Docker image and a PostgreSQL service.
 #
-# You can copy and paste this template into a new `.gitlab-ci.yml` file.
-# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+# All jobs in this pipeline must be run manually.
 #
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+# Environment variables are used to configure the PostgreSQL service and the ports for the account and product services.
+# These variables should be set in the CI/CD settings of the GitLab project.
 
-# These variables are stored in Gitlab under Settings->CI/CD->Variables
 variables:
-  POSTGRES_DB: $POSTGRES_DB
+  POSTGRES_HOST: $POSTGRES_HOST
+  POSTGRES_PORT: $POSTGRES_PORT
   POSTGRES_USER: $POSTGRES_USER
   POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  POSTGRES_DB: $POSTGRES_TEST_DATABASE
+  POSTGRES_ACCOUNT_DATABASE: $POSTGRES_TEST_DATABASE
+  POSTGRES_PRODUCT_DATABASE: $POSTGRES_TEST_DATABASE
+  POSTGRES_ORDER_DATABASE: $POSTGRES_TEST_DATABASE
+  ACCOUNT_SERVICE_PORT: $ACCOUNT_SERVICE_PORT
+  PRODUCT_SERVICE_PORT: $PRODUCT_SERVICE_PORT
+  ORDER_SERVICE_PORT: $ORDER_SERVICE_PORT
 
-# can make own image later
-image: node:lts-alpine
-  
-# before_script:
-#   - docker version
-#   - docker-compose version
+image: node:lts
 
-stages:          # List of stages for jobs, and their order of execution
-  - build
+services:
+  - postgres
+
+stages:
   - test
-  - deploy
 
-Build:
-  stage: build
-  script: 
-    - echo "Running containerized build"
-    - apk add --update docker-compose
-    - npm run installs
-    - npm run build
-    - echo "Build complete" 
-    
-  when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
-
-AccountService-test:
+AccountService-Test:
   stage: test
   script:
-      - echo "Testing accountservice"
-      - apk add --update nodejs npm
-      - npm install -g n
-      - cd AccountService
-      - npm test
-      - echo "Test complete"
+    - npm run install-accounts
+    - npm run test-accounts
   when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
-ProductService-test:
+ProductService-Test:
   stage: test
   script:
-    - echo "Testing productservice"
-    - apk add --update nodejs npm
-    - npm install -g n
-    - cd ProductService
-    - npm test
-    - echo "Test complete"
+    - npm run install-products
+    - npm run test-products
   when: manual
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
 
-# deploy-job:      # This job runs in the deploy stage.
-#   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-#   environment: production
-#   script:
-#     - echo "Deploying application..."
-#     - echo "Application successfully deployed."
+Shopper-Test:
+  stage: test
+  script:
+    - npm run install-shopper
+    - npm run test-shopper
+  when: manual
+
+Vendor-Test:
+  stage: test
+  script:
+    - npm run install-vendor
+    - npm run test-vendor
+  when: manual
+
+

@@ -5,7 +5,7 @@
     "signin": "登入",
     "email": "电子邮件",
     "emailaddress": "电子邮件地址",
-    "password": "密码"
-  },
-  "Change Language": "更改语言"
+    "password": "密码",
+    "new-to-amazon": "亚马逊新手?"
+  }
 }

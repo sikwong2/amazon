@@ -18,7 +18,7 @@ const theme = createTheme({
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme} >
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ThemeProvider>
   )
 }

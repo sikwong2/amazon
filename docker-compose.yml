@@ -13,20 +13,19 @@ services:
       - "3002:3002"
 
   postgres:
-    container_name: database
+    container_name: pginstance
     image: postgres:alpine
     environment:
       POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
     volumes:
       - ./sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
       - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql
       - ./AccountService/sql/data.sql:/docker-entrypoint-initdb.d/3.data.sql
-      - ./OrderService/sql/databases.sql:/docker-entrypoint-initdb.d/4.databases.sql
-      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/5.schema.sql
-      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/6.data.sql
-      - ./ProductService/sql/databases.sql:/docker-entrypoint-initdb.d/7.databases.sql
-      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/8.schema.sql
-      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/9.data.sql
+      - ./OrderService/sql/schema.sql:/docker-entrypoint-initdb.d/4.schema.sql
+      - ./OrderService/sql/data.sql:/docker-entrypoint-initdb.d/5.data.sql
+      - ./ProductService/sql/schema.sql:/docker-entrypoint-initdb.d/6.schema.sql
+      - ./ProductService/sql/data.sql:/docker-entrypoint-initdb.d/7.data.sql

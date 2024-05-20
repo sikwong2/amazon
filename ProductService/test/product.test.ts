@@ -47,6 +47,14 @@ test('GET all Products', async () => {
     })
 });
 
+test('GET productId', async () => {
+  await supertest(server)
+    .get(`/api/v0/product/${productId}`)
+    .then((res) => {
+      expect(res.body.id).toBe(productId);
+    })
+})
+
 test('DELETE product', async () => {
   await supertest(server)
     .delete(`/api/v0/product/${productId}`)

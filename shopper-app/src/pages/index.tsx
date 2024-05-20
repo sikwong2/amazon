@@ -33,6 +33,9 @@ export default function Index() {
       <div>
         {t("go-to-login")} <Link href="/login"> {t("here")} </Link>
       </div>
+      <div>
+        {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
+      </div>
     </Fragment>
   )
 }
