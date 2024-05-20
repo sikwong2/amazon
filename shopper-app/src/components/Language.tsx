@@ -58,7 +58,7 @@ const LanguageButton = () => {
         </CustomButton>
         <Popover
           id="language-selection-menu"
-          aria-label="Language Selection Menu"
+          aria-label="language-selection-menu"
           open={open}
           anchorEl={anchorEl}
           onClose={handlePopoverClose}
@@ -74,7 +74,7 @@ const LanguageButton = () => {
           <RadioGroup 
           value={selectedLanguage} 
           onChange={(e) => handleLanguageChange(e.target.value)}
-          aria-label="Language Options"
+          aria-label="language-options"
           >
             {options.map((option, index) => (
               <FormControlLabel
