@@ -7,12 +7,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import LanguageButton from '@/components/Language';
 
-const LanguageSwitcherButton = () => {
-
-  return (
-    <LanguageButton/>
-  );
-};
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -35,7 +29,7 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LanguageSwitcherButton />
+      <LanguageButton />
       <div>
         {t("go-to-login")} <Link href="/login"> {t("here")} </Link>
       </div>
