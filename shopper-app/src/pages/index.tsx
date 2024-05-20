@@ -5,32 +5,12 @@ import Link from 'next/link';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
-import { useRouter } from 'next/router'
 import LanguageButton from '@/components/Language';
-import { languageButtonTheme } from '@/components/Theme';
 
 const LanguageSwitcherButton = () => {
-  const router = useRouter();
-  const { t } = useTranslation('common');
-  const [selectedLanguage, setSelectedLanguage] = useState(router.locale === 'en' ? 'en' : 'zh');
-
-  const handleLanguageChange = (newLanguage: string) => {
-    setSelectedLanguage(newLanguage);
-    router.push('/', '/', { locale: newLanguage });
-  };
-
-  const options = [
-    { value: 'en', label: 'English' },
-    { value: 'zh', label: 'Mandarin' },
-  ];
 
   return (
-    <LanguageButton
-      options={options}
-      buttonTheme={languageButtonTheme}
-      selectedValue={selectedLanguage}
-      onChange={handleLanguageChange}
-    />
+    <LanguageButton/>
   );
 };
 

@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { Button, Popover, Radio, RadioGroup, FormControlLabel, ThemeProvider } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { Popover, Radio, RadioGroup, FormControlLabel, ThemeProvider } from '@mui/material';
+import CustomButton from './Button';
+import { buttonTheme } from './Theme';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
 
-interface Props {
-  options: Option[];
-  buttonTheme: any;
-  selectedValue: string; 
-  onChange: (newValue: string) => void;
-}
-
-export default function LanguageButton({ options, buttonTheme, selectedValue, onChange }: Props) {
+const LanguageButton = () => {
+  const router = useRouter();
+  const { t } = useTranslation('common');
+  const [selectedLanguage, setSelectedLanguage] = useState(router.locale === 'en' ? 'en' : 'zh');
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleLanguageChange = (newLanguage: string) => {
+    setSelectedLanguage(newLanguage);
+    router.push('/', '/', { locale: newLanguage });
+    handlePopoverClose();
+  };
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,25 +30,32 @@ export default function LanguageButton({ options, buttonTheme, selectedValue, on
     setAnchorEl(null);
   };
 
-  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value); 
-  };
-
   const open = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+
+  const options: Option[] = [
+    { value: 'en', label: 'English - EN' },
+    { value: 'zh', label: 'Mandarin- ZH' },
+  ];
+
+  const customButtonStyles = {
+    backgroundColor: 'rgba(35,47,62)', 
+    color: 'rgba(242,242,242)', 
+  };
 
   return (
     <ThemeProvider theme={buttonTheme}>
       <div>
-        <Button
+        <CustomButton
           ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
           aria-label={'change-language'}
+          style={customButtonStyles}
           onClick={handlePopoverOpen}
         >
-          Change Language
-        </Button>
+          {t("Change Language")}
+        </CustomButton>
         <Popover
           id="radio-menu"
           open={open}
@@ -57,7 +70,7 @@ export default function LanguageButton({ options, buttonTheme, selectedValue, on
             horizontal: 'left',
           }}
         >
-          <RadioGroup value={selectedValue} onChange={handleOptionChange}>
+          <RadioGroup value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
             {options.map((option, index) => (
               <FormControlLabel
                 key={index}
@@ -72,4 +85,6 @@ export default function LanguageButton({ options, buttonTheme, selectedValue, on
       </div>
     </ThemeProvider>
   );
-}
+};
+
+export default LanguageButton;

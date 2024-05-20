@@ -1,4 +1,5 @@
-import { createTheme} from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
+import { createTheme, hexToRgb} from '@mui/material/styles';
 
 
 // themed option 
@@ -105,18 +106,3 @@ export const buttonTheme = createTheme(
   },
   globalTheme
 );
-
-export const languageButtonTheme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: 'lightblue',
-          color: 'black',
-          fontWeight: "bold",
-          fontFamily: ['Amazon Ember', 'sans-serif'],
-        },
-      },
-    },
-  },
-});
