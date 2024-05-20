@@ -12,6 +12,10 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -71,7 +75,7 @@ export function Login() {
           alignItems: 'center',
         }}
         >
-        <CustomCard sx={{ borderRadius:'8px', width:348, height:367, p: '20px 26px' }}>
+        <CustomCard sx={{ borderRadius:'8px', width:348, p: '20px 26px', mb:'22px' }}>
           <Typography component="h1" variant="h5" sx={{ mb:'10px', pb:'4px' }}>
             {t("login.signin")}
           </Typography>
@@ -109,7 +113,7 @@ export function Login() {
               {t("login.signin")}
             </CustomButton>
           </Box>
-          <Box>
+          <Box aria-label='agreement'>
             <Typography variant='body1' sx={{ mt:2, fontSize:'12px' }}>
               {t("login.agreement")}
               <CustomLink label='conditions-of-use' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use'>
@@ -122,6 +126,21 @@ export function Login() {
               .
             </Typography>
           </Box>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={'x'}
+              aria-controls="panel2-content"
+              id="panel2-header"
+            >
+              <Typography>Accordion 2</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                malesuada lacus ex, sit amet blandit leo lobortis eget.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
