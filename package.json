@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "repository": "none",
   "scripts": {
-    "docker": "docker-compose up postgres",
+    "docker": "docker-compose up -d postgres",
     "docker-down": "docker-compose down",
 
     "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"  \"npm run vendor-api\"",
