@@ -11,16 +11,7 @@ export class ProductService {
     const products: Product[] = [];
 
     for (const row of rows) {
-      products.push({
-        id: row.id,
-        data: {
-          name: row.data.name,
-          price: row.data.name,
-          stock: row.data.stock,
-          image: row.data.image,
-          rating: row.data.rating,
-        }
-      })
+      products.push({...row.data, id: row.id})
     }
     return products;
   }
@@ -32,7 +23,7 @@ export class ProductService {
     }
     const { rows } = await pool.query(query);
 
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   /**
@@ -45,15 +36,15 @@ export class ProductService {
     }
 
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   public async getId(productId: string): Promise<Product | undefined> {
     const query = {
-      text: `SELECT * FROM product WHERE id = $1;`,
+      text: `SELECT data FROM product WHERE id = $1;`,
       values: [productId]
     }
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 }

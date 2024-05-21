@@ -9,6 +9,7 @@ import {
   Response,
   Route,
   Put,
+  Delete,
 } from 'tsoa';
 
 import { OrdersInfo, OrderResponse, OrderUpdate} from '.';
@@ -46,5 +47,11 @@ export class OrdersController extends Controller {
         }
         return OrderInfo;
       });
+  }
+  @Delete("{orderId}")
+  public async deleteOrder(
+    @Path() orderId: string
+  ): Promise<OrdersInfo> {
+    return await new OrdersService().deleteOrder(orderId);
   }
 }

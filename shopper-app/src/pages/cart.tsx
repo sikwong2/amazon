@@ -1,5 +1,6 @@
-import { LoginProvider } from '@/context/Login'
-import { Login } from '@/views/Login'
+import { OrderProvider } from "@/context/Order"
+import { LoginProvider } from "@/context/Login";
+import { Cart } from "@/views/Cart"
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // this must be in page-level components (not in components in /view)
@@ -11,12 +12,12 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   },
 })
 
-// to create new page add a new file with page name under pages
-// https://nextjs.org/learn-pages-router/basics/navigate-between-pages
-export default function LoginPage() {
+export default function CartPage() {
   return (
     <LoginProvider>
-      <Login/>
+      <OrderProvider>
+        <Cart />
+      </OrderProvider>
     </LoginProvider>
   )
 }

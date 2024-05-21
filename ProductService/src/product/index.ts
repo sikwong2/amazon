@@ -8,12 +8,10 @@ export interface NewProduct {
 
 export interface Product {
   id: string,
-  data: {
-    name: string,
-    price: number,
-    stock: number,
-    image?: string[],
-    rating?: number,
-  }
+  name: string,
+  price: number,
+  stock: number,
+  image?: string[],
+  rating?: number,
 }
 
