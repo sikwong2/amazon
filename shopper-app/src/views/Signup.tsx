@@ -1,10 +1,8 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { LoginContext } from '../context/Login'
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
@@ -12,7 +10,6 @@ import CustomButton from '../components/Button';
 import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
-import { Link } from '@mui/material';
 import CustomLink from '@/components/Link';
 
 export function SignUp() {
@@ -99,6 +96,7 @@ export function SignUp() {
               placeholder={t("signup.first-last")!}
               required
               type="name"
+              name='Name'
               sx={{mb: 1.8}}
               autoFocus
             />
@@ -108,6 +106,7 @@ export function SignUp() {
               placeholder={t("signup.email")!}
               required
               type="email"
+              name='Email'
               sx={{mb: 1.8}}
               autoFocus
             />
@@ -117,6 +116,7 @@ export function SignUp() {
               placeholder={t("signup.password-min")!}
               required
               type="password"
+              name='Password'
               sx={{mb: 2}}
               autoFocus
             />
@@ -125,6 +125,7 @@ export function SignUp() {
               label={t("signup.re-enter") as string}
               required
               type="password"
+              name='Re-enter password'
               sx={{mb: 2}}
               autoFocus
             />
