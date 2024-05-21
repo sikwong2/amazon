@@ -81,7 +81,7 @@ it('Signs Molly In', async () => {
   await userEvent.type(email, 'molly@books.com')
   const passwd = screen.getByLabelText('login.password')
   await userEvent.type(passwd, 'mollymember')
-  fireEvent.click(screen.getByText('login.signin'))
+  fireEvent.click(screen.getByRole('button', { name: 'sign in'}))
   await waitFor(() => {
     expect(accessToken).toBe('Some JWT')
   });
@@ -95,7 +95,7 @@ it('Signs Molly In with Default Context', async () => {
   await userEvent.type(email, 'molly@books.com')
   const passwd = screen.getByLabelText('login.password')
   await userEvent.type(passwd, 'mollymember')
-  fireEvent.click(screen.getByText('login.signin'))
+  fireEvent.click(screen.getByRole('button', { name: 'sign in'}))
   await waitFor(() => {
     expect(apiCalled).toBe(true)
   });
@@ -114,6 +114,7 @@ it('Can Click SignIn Button', async () => {
 });
 
 
+
 it('Rejects Bad Credentials', async () => {
   let alerted = false
   window.alert = () => { alerted = true }
@@ -122,7 +123,7 @@ it('Rejects Bad Credentials', async () => {
   await userEvent.type(email, 'anna@books.com')
   const passwd = screen.getByLabelText('login.password')
   await userEvent.type(passwd, 'not-annas-password')
-  fireEvent.click(screen.getByText('login.signin'))
+  fireEvent.click(screen.getByRole('button', { name: 'sign in'}))
   await waitFor(() => {
     expect(alerted).toBeTruthy()
   });
@@ -150,7 +151,7 @@ it('Alerts When No Server', async () => {
   await userEvent.type(email, 'anna@books.com')
   const passwd = screen.getByLabelText('login.password')
   await userEvent.type(passwd, 'not-annas-password')
-  fireEvent.click(screen.getByText('login.signin'))
+  fireEvent.click(screen.getByRole('button', { name: 'sign in'}))
   await waitFor(() => {
     expect(alerted).toBeTruthy()
   });
