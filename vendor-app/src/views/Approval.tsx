@@ -18,8 +18,6 @@ export function Approval() {
   const { t } = useTranslation('common');
 
   const fetchStatus = () => {
-    console.log(loginContext.accessToken);
-
     const query = { query: `query { status(accessToken: "${loginContext.accessToken}") }` };
     fetch('/api/graphql', {
       method: 'POST',
@@ -36,16 +34,16 @@ export function Approval() {
       });
   };
 
-  // useEffect(() => {
-  //   // Call fetchStatus immediately after component mount
-  //   fetchStatus();
+  useEffect(() => {
+    // Call fetchStatus immediately after component mount
+    fetchStatus();
 
-  //   // Set up the interval
-  //   const intervalId = setInterval(fetchStatus, 5000); // 5000 ms = 5 seconds
+    // Set up the interval
+    const intervalId = setInterval(fetchStatus, 5000); // 5000 ms = 5 seconds
 
-  //   // Clean up function
-  //   return () => clearInterval(intervalId); // This will clear the interval on component unmount
-  // }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
+    // Clean up function
+    return () => clearInterval(intervalId); // This will clear the interval on component unmount
+  }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
 
   const ApprovalComponent = (
     <Container component="main" maxWidth="xs">

@@ -69,29 +69,4 @@ export class AuthService {
       }
     });
   }
-
-  public async status(accessToken: string): Promise<Boolean> {
-    return new Promise((resolve, reject) => {
-      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/autthenticate?accessToken=` + accessToken, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw res;
-          }
-          return res.json();
-        })
-        .then((json) => {
-          console.log()
-          resolve(true);
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(false);
-        });
-    }
-  }
 }

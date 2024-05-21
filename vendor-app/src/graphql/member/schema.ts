@@ -1,4 +1,4 @@
-import { Field, ObjectType, InputType, ID } from "type-graphql"
+import { ArgsType, Field, ObjectType, InputType, ID } from "type-graphql"
 import { Length, Matches } from "class-validator";
 import { IsNotEmpty } from "class-validator";
 
@@ -32,4 +32,10 @@ export class Member {
     email!: string
   @Field()
     role!: string
+}
+
+@ArgsType()
+export class AccessToken {
+  @Field()
+    accessToken!: string
 }

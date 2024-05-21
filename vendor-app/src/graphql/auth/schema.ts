@@ -21,8 +21,3 @@ export class Authenticated {
     role!: string
 }
 
-@ArgsType()
-export class AccessToken {
-  @Field()
-    accessToken!: string
-}

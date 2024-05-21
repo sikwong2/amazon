@@ -2,10 +2,12 @@ import {
   Resolver, 
   Mutation,
   Arg,
+  Query,
 } from "type-graphql"
 
 import { Member } from "./schema"
 import { MemberRequest } from "./schema"
+import { AccessToken } from "./schema"
 import { MemberService } from "./service"
 
 @Resolver()
@@ -22,6 +24,11 @@ export class MemberResolver {
         }
         return response;
       })
+  }
+
+  @Query(() => Boolean)
+  async status(@Arg("accessToken") accessToken : string): Promise<Boolean> {
+    return new MemberService().status(accessToken);
   }
 
 }
