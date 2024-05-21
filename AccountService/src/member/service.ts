@@ -1,6 +1,7 @@
 import { Member } from ".";
 import { MemberInput } from ".";
 import { pool } from "../db";
+import { AccountService } from "../auth/service";
 import { Role } from ".";
 
 export class MemberService {
@@ -58,6 +59,52 @@ export class MemberService {
     return rows[0];
   }
 
+  /**
+   * Retrieves the approval status of a vendor account.
+   *
+   * This method first checks the role of the account associated with the provided access token.
+   * If the role is not 'vendor', it returns false.
+   * If the role is 'vendor', it queries the database for the status of the account and returns it.
+   *
+   * @param {string} accessToken - The access token associated with the account.
+   * @returns {Promise<boolean>} - A promise that resolves to the status of the account if it's a vendor account, or false otherwise.
+   */
+  public async vendorStatus(accessToken: string): Promise<boolean> {
+    const user = await new AccountService().check(accessToken);
 
+    if (!user) {
+      return false
+    }
+
+    const {id, role} = user;
+
+    if (role !== 'vendor') {
+      return false;
+    }
+
+    let select =
+      ` SELECT data->>'status' as status FROM account` +
+      ` WHERE id = $1`
+
+    const query = {
+      text: select,
+      values: [`${id}`],
+    };
+
+    const { rows } = await pool.query(query);
+
+    if (rows.length !== 1) {
+      return false;
+    }
+
+    console.log(rows[0].status);
+
+    if (rows[0].status === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 
 }
