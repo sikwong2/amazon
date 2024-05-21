@@ -10,7 +10,12 @@
     "emailaddress": "Email Address",
     "password": "Password",
     "new-to-amazon": "New to Amazon?",
-    "create-account": "Create your Amazon account"
+    "create-account": "Create your Amazon account",
+    "agreement": "By continuing, you agree to Amazon's ",
+    "conditions": "Conditions of Use",
+    "and": " and ",
+    "privacy-notice": "Privacy Notice",
+    "need-help": "Need help?"
   },
   "signup": {
     "title": "Create account",
@@ -24,6 +29,10 @@
     "sign-in": "Sign in",
     "password-must-match": "Passwords must match",
     "continue": "Continue",
-    "blank-error": "All fields must be filled"
+    "blank-error": "All fields must be filled",
+    "agreement": "By creating an account, you agree to Amazon's ",
+    "conditions": "Conditions of Use",
+    "and": " and ",
+    "privacy-notice": "Privacy Notice"
   }
 }

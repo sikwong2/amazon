@@ -1,18 +1,14 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { LoginContext } from '../context/Login'
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
 import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
-import { Link } from '@mui/material';
 import { SignupContext } from '@/context/Signup';
 import CustomLink from '@/components/Link';
 
@@ -70,74 +66,71 @@ export function SignUp() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+<Container component="main"
+      sx={{ mb:'28px', pt:'14px', pb:'18px', display: 'flex',
+        flexDirection: 'column', alignItems: 'center'
+      }}
+    >
       <CssBaseline />
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
+        <Logo width={100} height='auto'/>
+      </Container>
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Logo/>
-        <CustomCard sx={{mt: 3, mb: 5}}>
-          <Typography component="h1" variant="h5">
+        <CustomCard sx={{ borderRadius:'8px', width:348, p: '14px 18px', mb:3 }}>
+          <Typography component="h1" variant="h5" sx={{ mb:'10px', pb:'4px' }}>
             {t("signup.title")}
           </Typography>
-          <Box aria-label='form' width={400}
-            component="form" onSubmit={onSubmit} noValidate sx={{mt: 3}}
+          <Box aria-label='form'
+            component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
           >
             {blankerror != '' &&
               <Typography color="red" sx={{ml: 0.1, mb: 2}}>
                 ! {blankerror}
               </Typography>
             }
-            <Typography component="h3" sx={{ml: 0.1}}>
-              {t("signup.name")}
-            </Typography>
             <CustomTextField
+              inputLabel={t("signup.name") as string}
               label={t("signup.name") as string}
-              placeholder={t("signup.name")!}
+              placeholder={t("signup.first-last")!}
               required
               type="name"
               name='Name'
-              sx={{mt: 0.5, mb: 2}}
+              sx={{mb: 1.8}}
               autoFocus
             />
-            <Typography component="h3" sx={{ml: 0.1}}>
-              {t("signup.email")}
-            </Typography>
             <CustomTextField
+              inputLabel={t("signup.email") as string}
               label={t("signup.email") as string}
               placeholder={t("signup.email")!}
               required
               type="email"
               name='Email'
-              sx={{mt: 0.5, mb: 2}}
+              sx={{mb: 1.8}}
               autoFocus
             />
-            <Typography component="h3" sx={{ml: 0.1}}>
-              {t("signup.password")}
-            </Typography>
             <CustomTextField
+              inputLabel={t("signup.password") as string}
               label={t("signup.password") as string}
-              placeholder={t("signup.password")!}
+              placeholder={t("signup.password-min")!}
               required
               type="password"
               name='Password'
-              sx={{mt: 0.5, mb: 2}}
+              sx={{mb: 2}}
               autoFocus
             />
-            <Typography component="h3" sx={{ml: 0.1}}>
-              {t("signup.re-enter")}
-            </Typography>
             <CustomTextField
+              inputLabel={t("signup.re-enter") as string}
               label={t("signup.re-enter") as string}
               required
               type="password"
               name='Re-enter password'
-              sx={{mt: 0.5, mb: 0.5}}
+              sx={{mb: 2}}
               autoFocus
             />
             {error != '' &&
@@ -151,20 +144,39 @@ export function SignUp() {
               fullWidth
               variant="contained"
               color="primary"
-              sx={{mt: 3, mb: 2}}
+              sx={{height:'30px', fontSize:'12px'}}
             >
               {t("signup.continue")}
             </CustomButton>
+          </Box>
+          <Box aria-label='link-to-agreement'>
+            <Typography variant='body1' sx={{ mt:2, mb:3, fontSize:'12px' }}>
+              {t("signup.agreement")}
+              <CustomLink label='conditions-of-use' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use'>
+                {t("signup.conditions")}
+              </CustomLink>
+              {t("signup.and")}
+              <CustomLink label='privacy-notice' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496'>
+                {t("signup.privacy-notice")}
+              </CustomLink>
+              .
+            </Typography>
+          </Box>
+          <Box aria-label='link-to-shopper'>
             <CustomDivider sx={{mt: 2, mb: 2}}/>
-              <Typography>
-                {t('buying-for-yourself')}
-              </Typography>
+            <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
+              {t('buying-for-yourself')}
+            </Typography>
+            <Box sx={{ fontSize:'13px' }}>
               <CustomLink label="shopper-account" href="/" variant='blue2'>
                 {t('shopper-account')}
               </CustomLink>
+            </Box>
+          </Box>
+          <Box>
             <CustomDivider sx={{mt: 2, mb: 3}}/>
-            <Typography>
-              {t("signup.account-exists")} <CustomLink href='/vendor' label="sign in" onClick={loginAccount}> {t("signup.sign-in")} </CustomLink>
+            <Typography sx={{fontSize:'13px'}}>
+              {t("signup.account-exists")} <CustomLink label="login" variant="blue2" href="/vendor"> {t("signup.sign-in")} </CustomLink>
             </Typography>
           </Box>
         </CustomCard>
