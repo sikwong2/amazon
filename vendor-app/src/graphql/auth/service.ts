@@ -69,4 +69,11 @@ export class AuthService {
       }
     });
   }
+
+  public async status(accessToken: string): Promise<Boolean> {
+
+    
+
+    return false;
+  }
 }
