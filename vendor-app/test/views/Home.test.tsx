@@ -74,7 +74,7 @@ it('Renders Login page', async () => {
       </SignupContext.Provider>
     </LoginContext.Provider>
   )
-  expect(screen.queryByText("login.signin")).toBeDefined()
+  expect(screen.queryAllByText("login.signin").length).toEqual(2)
 });
 
 

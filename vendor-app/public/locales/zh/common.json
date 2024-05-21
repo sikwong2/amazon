@@ -15,7 +15,12 @@
     "emailaddress": "电子邮件地址",
     "password": "密码",
     "new-to-amazon": "亚马逊新手?",
-    "create-account": "创建您的亚马逊帐户"
+    "create-account": "创建您的亚马逊帐户",
+    "agreement": "继续即表示您同意亚马逊的",
+    "conditions": "使用条件",
+    "and": "和",
+    "privacy-notice": "隐私声明",
+    "need-help": "需要帮忙?"
   },
   "signup": {
     "title": "创建购物者帐户",
@@ -29,6 +34,10 @@
     "sign-in": "登入",
     "password-must-match": "密码必须匹配",
     "continue": "继续",
-    "blank-error": "必须填写所有字段"
+    "blank-error": "必须填写所有字段",
+    "agreement": "创建帐户即表示您同意亚马逊的",
+    "conditions": "使用条件",
+    "and": "和",
+    "privacy-notice": "隐私声明"
   }
 }
