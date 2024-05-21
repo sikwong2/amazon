@@ -28,8 +28,7 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    // console.log(user);
-    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
+    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken }}`}
     fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -46,7 +45,8 @@ export function Login() {
         } else {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
-          router.push('/'); // sets path to home page
+          loginContext.setId(json.data.login.id);
+          router.push('/cart'); // sets path to home page
         }
       })
       .catch((e) => {
