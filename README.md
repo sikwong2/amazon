@@ -19,7 +19,7 @@ This project is a clone of Amazon developed as a school project by CSE187 Group 
 
 ## Getting Started
 
-To get started with the UCSC Amazon project, you need to have Docker and Node.js installed on your system. 
+To get started with the UCSC Amazon project, you need to have Docker and Node.js LTS installed on your system. 
 
 1. Clone the repository:
    ```sh
