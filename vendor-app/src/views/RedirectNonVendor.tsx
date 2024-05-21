@@ -16,23 +16,28 @@ export function RedirectNonVendor() {
   const { t } = useTranslation('common');
 
   const RedirectNonVendorComponent = (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      sx={{
+        mb: '28px',
+        pt: '14px',
+        pb: '18px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Box
-          sx={{
-            marginBottom: 2,
-          }}
-        >
-          <Logo />
-        </Box>
+        <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
+          <Logo width={100} height="auto" />
+        </Container>
         <CustomCard>
           <Typography mt={2} component="h1" variant="h5" align="center">
             {t('vendor-app.vendors-only')}
@@ -40,7 +45,7 @@ export function RedirectNonVendor() {
           <Box
             aria-label="form"
             width={500}
-            sx={{p: 5, display: 'flex', justifyContent: 'center' }}
+            sx={{ p: 5, display: 'flex', justifyContent: 'center' }}
           >
             <CustomButton label="shopper-app-button" href="/">
               {t('vendor-app.return-shopper-app')}

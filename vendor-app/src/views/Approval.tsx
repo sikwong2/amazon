@@ -46,37 +46,50 @@ export function Approval() {
   }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
 
   const ApprovalComponent = (
-    <Container component="main" maxWidth="xs">
+    <Container
+      component="main"
+      sx={{
+        mb: '28px',
+        pt: '14px',
+        pb: '18px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Box
-          sx={{
-            marginBottom: 2,
-          }}
-        >
-          <Logo />
-        </Box>
+        <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
+          <Logo width={100} height="auto" />
+        </Container>
         <CustomCard>
-          <Typography gutterBottom component="h1" variant="h5" align="center">
-            {t('vendor-app.vendor-account-approval')}
-          </Typography>
-          <CustomDivider />
-          <Box aria-label="form" width={500} sx={{ mt: 1 }}>
-            <Paper
-              elevation={1}
-              style={{ padding: '20px', margin: '100px', backgroundColor: '#f5f5f5' }}
-            >
-              <Typography component="h1" variant="h5">
-                Status pending <WorkHistoryIcon style={{ transform: 'translate(20px, 3px)' }} />
-              </Typography>
-            </Paper>
+          <Box sx={{p: '14px'}}>
+            <Typography gutterBottom component="h1" variant="h5" align="center">
+              {t('vendor-app.vendor-account-approval')}
+            </Typography>
+            <CustomDivider />
+            <Box sx={{ mt: 1 }}>
+              <Paper
+                elevation={1}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '20px',
+                  margin: '100px',
+                  backgroundColor: '#f5f5f5',
+                }}
+              >
+                <Typography component="h1" variant="h5">
+                  Status pending <WorkHistoryIcon style={{ transform: 'translate(0px, 3px)' }} />
+                </Typography>
+              </Paper>
+            </Box>
           </Box>
         </CustomCard>
       </Box>
