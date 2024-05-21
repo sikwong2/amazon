@@ -13,6 +13,8 @@ import {
 
 import { MemberInput, Member, Role } from '.';
 import { MemberService } from './service';
+import { query } from 'express';
+import { access } from 'fs';
 
 @Route('account')
 export class MemberController extends Controller {
@@ -39,4 +41,18 @@ export class MemberController extends Controller {
         return status;
       });
   }
+
+  @Post('approvevendor')
+  @Response('401', 'Unauthorized')
+  public async approveVendor(@Query() accessToken: string, @Body() memberinput: MemberInput): Promise<Member | undefined> {
+    return new MemberService()
+      .approveVendor(memberinput)
+      .then(async (response: Member | undefined): Promise<Member | undefined> => {
+        if (response === undefined) {
+          this.setStatus(401);
+        }
+        return response;
+      });
+  }
+
 }

@@ -104,7 +104,25 @@ export class MemberService {
     } else {
       return false;
     }
+  }
 
+  public async approveVendor(memberinput: MemberInput): Promise<Member | undefined> {
+    const exists = await this.find(memberinput);
+    if (!exists) {
+      return undefined;
+    }
+
+    let update =
+      `UPDATE account SET data = jsonb_set(data, '{status}', '"true"')` +
+      ` WHERE data->>'email' = $1 AND data->>'role' = $2` +
+      ` RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role`
+
+    const query = {
+      text: update,
+      values: [memberinput.email, memberinput.role]
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
   }
 
 }
