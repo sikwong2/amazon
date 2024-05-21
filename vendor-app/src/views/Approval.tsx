@@ -58,6 +58,9 @@ export function Approval() {
       }}
     >
       <CssBaseline />
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
+        <Logo width={100} height="auto" />
+      </Container>
       <Box
         sx={{
           display: 'flex',
@@ -65,11 +68,8 @@ export function Approval() {
           alignItems: 'center',
         }}
       >
-        <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
-          <Logo width={100} height="auto" />
-        </Container>
         <CustomCard>
-          <Box sx={{p: '14px'}}>
+          <Box sx={{ p: '14px' }}>
             <Typography gutterBottom component="h1" variant="h5" align="center">
               {t('vendor-app.vendor-account-approval')}
             </Typography>
