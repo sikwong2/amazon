@@ -6,7 +6,8 @@
   "vendor-app": {
     "return-shopper-app": "Return to Shopper App",
     "vendors-only" : "This app is for vendors only!",
-    "vendor-account-approval" : "Vendor Account Approval"
+    "vendor-account-approval" : "Vendor Account Approval",
+    "status-pending" : "Status pending"
   },
   "login": {
     "title": "UCSC-Amazon Vendor Login",
@@ -27,7 +28,8 @@
     "name": "Your name",
     "first-last": "First and last name",
     "email": "Email",
-    "password": "More than 6 characters",
+    "password": "Password",
+    "password-min": "More than 6 characters",
     "re-enter": "Re-enter password",
     "create-shopper": "Create a free shopper account",
     "account-exists": "Already have an account?",

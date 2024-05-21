@@ -125,11 +125,11 @@ export function Login() {
           <Box aria-label='link-to-vendor'>
             <CustomDivider sx={{mt: 2, mb: 2}}/>
             <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
-              {t('buying-for-work')}
+              {t('buying-for-yourself')}
             </Typography>
             <Box sx={{ fontSize:'13px' }}>
               <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
-                {t('vendor-account')}
+                {t('shopper-account')}
               </CustomLink>
             </Box>
           </Box>

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../context/Login';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -16,6 +16,7 @@ import { padding } from '@mui/system';
 export function Approval() {
   const loginContext = useContext(LoginContext);
   const { t } = useTranslation('common');
+  const [status, setStatus] = useState(false);
 
   const fetchStatus = () => {
     const query = { query: `query { status(accessToken: "${loginContext.accessToken}") }` };
@@ -30,7 +31,8 @@ export function Approval() {
         return res.json();
       })
       .then((json) => {
-        console.log('response : ' + JSON.stringify(json, null, 2));
+        console.log(json.data.status);
+        setStatus(json.data.status);
       });
   };
 
@@ -86,7 +88,7 @@ export function Approval() {
                 }}
               >
                 <Typography component="h1" variant="h5">
-                  Status pending <WorkHistoryIcon style={{ transform: 'translate(0px, 3px)' }} />
+                  {t("vendor-app.status-pending")} <WorkHistoryIcon style={{ transform: 'translate(0px, 3px)' }} />
                 </Typography>
               </Paper>
             </Box>
