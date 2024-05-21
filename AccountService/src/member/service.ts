@@ -125,4 +125,30 @@ export class MemberService {
     return rows[0];
   }
 
+  public async unapprovedVendors(accessToken: string): Promise<Member[] | undefined> {
+    const user = await new AccountService().check(accessToken);
+
+    if (!user) {
+      return undefined
+    }
+
+    const {id, role} = user;
+
+    if (role !== 'shopper') {
+      return undefined;
+    }
+
+    let select =
+      ` SELECT id, data->>'name' as name, data->>'email' as email, data->>'role' as role` +
+      ` FROM account` +
+      ` WHERE data->>'role' = 'vendor' AND data->>'status' = 'false'`
+
+    const query = {
+      text: select,
+    };
+
+    const { rows } = await pool.query(query);
+    return rows;
+  }
+
 }
