@@ -1,3 +1,4 @@
+\c orderdatabase;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 DROP TYPE IF EXISTS order_status_type CASCADE;

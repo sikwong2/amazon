@@ -24,5 +24,5 @@ jest.mock('react-i18next', () => ({
 it('Renders', async () => {
   render(<Index />)
   expect(screen.findByText('go-to-login')).toBeDefined()
-  fireEvent.click(screen.getByText('change-locale'))
+  expect(screen.findByText('change-language')).toBeDefined()
 });

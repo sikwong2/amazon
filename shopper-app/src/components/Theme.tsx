@@ -1,6 +1,4 @@
-import { blue } from '@mui/material/colors';
-import { createTheme, hexToRgb} from '@mui/material/styles';
-
+import { createTheme} from '@mui/material/styles';
 
 // themed option 
 // https://codesandbox.io/p/sandbox/mui-button-variant-override-e18vg?file=%2Fdemo.js%3A31%2C27
@@ -66,7 +64,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined"},
             style: {
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -84,7 +82,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "outlined", color: "info"},
             style: {
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 3px #017185",
               "&:hover": {
                 backgroundColor: 'rgba(136, 140, 140, 0.1)',
@@ -102,7 +100,7 @@ export const buttonTheme = createTheme(
           {
             props: {variant: "text"},
             style: {
-              fontFamily: ["Amazon Ember", "sans-serif"],
+              fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 1px #888C8C",
               fontWeight: "normal",
               "&:hover": {
@@ -154,9 +152,10 @@ export const cardTheme = createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '16px',
+          fontFamily: ["sans-serif", "Amazon Ember"],
+          padding: '0px',
           "&:last-child": {
-            paddingBottom: '16px' 
+            paddingBottom: '0px'
           }
         }
       }
@@ -183,6 +182,7 @@ export const dividerTheme = createTheme(globalTheme, {
     MuiDivider: {
       styleOverrides: { 
         root: {
+          width: '100%',
           color: 'rgba(0, 0, 0, 0.54)', 
           fontFamily: 'Amazon Ember', 
           fontSize: '8'

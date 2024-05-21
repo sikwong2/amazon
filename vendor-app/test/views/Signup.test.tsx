@@ -116,9 +116,9 @@ it('Fields not filled', async () => {
   const signup = true;
   const setSignUp = () => {}
   render(
-      <SignupContext.Provider value ={{signup, setSignUp}}>
-        <SignUp/>
-      </SignupContext.Provider>
+    <SignupContext.Provider value ={{signup, setSignUp}}>
+      <SignUp/>
+    </SignupContext.Provider>
   )
 
   const email = screen.getByLabelText('signup.email')
@@ -136,9 +136,9 @@ it('Shows unexpected error', async () => {
   const signup = true;
   const setSignUp = () => {}
   render(
-      <SignupContext.Provider value ={{signup, setSignUp}}>
-        <SignUp/>
-      </SignupContext.Provider>
+    <SignupContext.Provider value ={{signup, setSignUp}}>
+      <SignUp/>
+    </SignupContext.Provider>
   )
   const name = screen.getByLabelText('signup.name');
   await userEvent.type(name, 'sally shopper')

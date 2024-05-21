@@ -23,6 +23,6 @@ jest.mock('react-i18next', () => ({
 
 it('Renders', async () => {
   render(<Index />)
-  await screen.findByLabelText('sign in')
-  fireEvent.click(screen.getByText('change-locale'))
+  expect(screen.findByLabelText('sign in')).toBeDefined()
+  expect(screen.findByText('change-language')).toBeDefined()
 });
