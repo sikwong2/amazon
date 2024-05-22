@@ -1,17 +1,12 @@
 import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction } from "react";
 
-// export const OrderContext = createContext({
-//     orders: [],
-//   setOrders: (orders: string[]) => {}
-// });
-
 interface IOrdersContext {
   orders: string[],
   setOrders: Dispatch<SetStateAction<string[]>>;
 }
 export const OrderContext = createContext<IOrdersContext>({
   orders: [],
-  setOrders: () => {},
+  setOrders: (orders) => {},
 })
 
 export const OrderProvider = ({ children }: PropsWithChildren<{}>) => {

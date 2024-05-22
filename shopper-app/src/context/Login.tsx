@@ -1,6 +1,7 @@
 
 import { PropsWithChildren, useState, createContext, SetStateAction } from "react";
 import { Dispatch } from "react";
+
 export const LoginContext = createContext({
   userName: '',
   setUserName: (userName: string) => {},
@@ -9,24 +10,6 @@ export const LoginContext = createContext({
   id: '',
   setId: (id: string) => {}
 });
-
-// interface ILoginContext {
-//   userName: string,
-//   setUserName: Dispatch<SetStateAction<string>>,
-//   accessToken: string,
-//   setAccessToken: Dispatch<SetStateAction<string>>,
-//   id: string,
-//   setId: Dispatch<SetStateAction<string>>,
-// }
-
-// export const LoginContext = createContext<ILoginContext>({
-//   userName: '',
-//   setUserName: () => {},
-//   accessToken: '',
-//   setAccessToken: () => {},
-//   id: '',
-//   setId: () => {},
-// })
 
 export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
   const [userName, setUserName] = useState('');
