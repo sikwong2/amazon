@@ -15,11 +15,11 @@ import CustomDivider from '@/components/Divider';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
-  const [user, setUser] = React.useState({email: '', password: ''});
+  const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
   // router to change pages
-  const router = useRouter(); 
+  const router = useRouter();
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -28,7 +28,7 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken }}`}
+    const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken }}` }
     fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -46,7 +46,7 @@ export function Login() {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
           loginContext.setId(json.data.login.id);
-          router.push('/cart'); // sets path to home page
+          router.push('/'); // sets path to home page
         }
       })
       .catch((e) => {
@@ -67,43 +67,43 @@ export function Login() {
       >
         <Logo />
         <CustomCard>
-        <Typography component="h1" variant="h5" align='center'>
-          {t("login.title")}
-        </Typography>
-        <Box aria-label='form' width={500}
-          component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
-        >
-          <CustomTextField
-            label={t("login.email") || 'email'}
-            placeholder={t("login.emailaddress")!}
-            required
-            type="email"
-            name='Email Address'
-            sx={{mt: 1, mb: 1}}
-            autoComplete="email"
-            autoFocus
-          />
-          <CustomTextField
-            label={t("login.password") || 'password'}
-            placeholder={t("login.password")!}
-            required
-            type="password"
-            name='Password'
-            sx={{mt: 1}}
-            autoComplete="current-password"
-          />
-          <CustomButton
-            type="submit"
-            label="sign in"
-            fullWidth
-            variant="contained"
-            color="primary"
-            sx={{mt: 3, mb: 2}}
+          <Typography component="h1" variant="h5" align='center'>
+            {t("login.title")}
+          </Typography>
+          <Box aria-label='form' width={500}
+            component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}
           >
-            {t("login.signin")}
-          </CustomButton>
-          <CustomDivider></CustomDivider>
-        </Box>
+            <CustomTextField
+              label={t("login.email") || 'email'}
+              placeholder={t("login.emailaddress")!}
+              required
+              type="email"
+              name='Email Address'
+              sx={{ mt: 1, mb: 1 }}
+              autoComplete="email"
+              autoFocus
+            />
+            <CustomTextField
+              label={t("login.password") || 'password'}
+              placeholder={t("login.password")!}
+              required
+              type="password"
+              name='Password'
+              sx={{ mt: 1 }}
+              autoComplete="current-password"
+            />
+            <CustomButton
+              type="submit"
+              label="sign in"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {t("login.signin")}
+            </CustomButton>
+            <CustomDivider></CustomDivider>
+          </Box>
         </CustomCard>
       </Box>
       <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>

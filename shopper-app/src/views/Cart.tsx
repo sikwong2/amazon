@@ -9,11 +9,12 @@ import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CustomDivider from '@/components/Divider';
+import { useRouter } from 'next/router';
 
 const fetchOrders = async (shopperId: string) => {
   try {
     const query = { query: `query orders{getByShopperId(shopperId: "${shopperId}") { productId, orderId }}` };
-    const res = await fetch('api/graphql', {
+    const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -39,7 +40,7 @@ const fetchOrders = async (shopperId: string) => {
 const deleteOrder = async (orderId: string): Promise<string> => {
   try {
     const query = {query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}`};
-    const res = await fetch('api/graphql', {
+    const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -61,7 +62,7 @@ const deleteOrder = async (orderId: string): Promise<string> => {
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
     const query = { query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock}}` };
-    const res = await fetch('api/graphql', {
+    const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -85,11 +86,10 @@ export function Cart() {
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
   const [cart, setCart] = useState([]);
-  console.log(loginContext);
+  const router = useRouter();
   useEffect(() => {
     (async () => {
       // Remember to  change the id]
-      console.log(loginContext);
       const newOrders = await fetchOrders(loginContext.id);
       // const newOrders = await fetchOrders('92846fcb-9c73-4fc6-b652-3443874118b8');
       setOrders([...Object.keys(newOrders)]);
@@ -119,8 +119,9 @@ export function Cart() {
                     <CustomButton
                       color="primary"
                       onClick={async () => {
+                        await deleteOrder(orderId);
                         setOrders(orders.filter((order:string) => order !== orderId));
-                        console.log(orderId, orders);
+                        setSubtotal(0); // set subtotal to 0 to force the page to rerender
                       }}
                     >
                       <DeleteOutlineIcon />
@@ -135,13 +136,13 @@ export function Cart() {
       setCart(temp);
       setSubtotal(total)
     })()
-  }, [])
+  }, [subtotal])
   return (
     <Container maxWidth="md">
       <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
           <Typography variant='h4' component='h1' gutterBottom sx={{ marginLeft: '1em' }}>
-            Shopping Cart
+            {t("cart.shopping-cart")}
           </Typography>
           <List>
             {cart}
@@ -153,8 +154,8 @@ export function Cart() {
             flexDirection: 'column',
             alignItems: 'center'
           }}>
-            {`Subtotal 
-          (${cart.length} ${cart.length == 1 ? "item" : "items"}): 
+            {t("cart.subtotal") +
+          `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
           $ ${subtotal / 100}`}
             <CustomButton
               type='submit'
@@ -162,8 +163,11 @@ export function Cart() {
               variant='contained'
               color='primary'
               sx={{ mt: 3, mb: 2 }}
+              onClick={() =>{
+                router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
+              }}
             >
-              {"Proceed to Checkout"}
+              {t("cart.proceed-to-checkout")}
             </CustomButton>
           </Box>
         </CustomCard>
