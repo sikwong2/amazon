@@ -9,5 +9,12 @@
     "emailaddress": "Email Address",
     "password": "Password",
     "new-to-amazon": "New to Amazon?"
+  },
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
   }
 }
