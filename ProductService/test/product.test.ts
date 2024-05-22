@@ -43,14 +43,17 @@ test('GET all Products', async () => {
     .get('/api/v0/product')
     .then((res) => {
       productId = res.body[0].id;
+      console.log(productId)
       expect(res.body.length).toBe(1);
     })
 });
 
 test('GET productId', async () => {
+  console.log(productId)
   await supertest(server)
     .get(`/api/v0/product/${productId}`)
     .then((res) => {
+      console.log(res.body)
       expect(res.body.id).toBe(productId);
     })
 })

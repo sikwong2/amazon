@@ -10,14 +10,38 @@ import {
   Path,
   Response,
 } from 'tsoa'
-import { NewProduct, Product } from '.'
+import { NewProduct, Product, Order } from '.'
 import { ProductService } from './service'
 
 @Route('product')
 export class ProductController extends Controller {
+  // for getting all products regardless of category
   @Get('')
-  public async getAll(): Promise<Product[]> {
-    return await new ProductService().getAll();
+  public async getAll(
+    @Query() page?: number,
+    @Query() size?: number,
+    @Query() order?: Order,
+  ): Promise<Product[]> {
+    if (page || size || order) {
+      const p: number = page ? (page - 1) : 0;
+      const s: number = size ? size : 30;
+      const o = order ? order : 'price'
+      return await new ProductService().getByPage(p, s, o)
+    } else {
+      return await new ProductService().getAll()
+    }
+  }
+
+  // for getting products in a specific category
+  @Get('/category/{category}')
+  public async getCategory(
+    @Path() category: string,
+    @Query() page?: number,
+    @Query() size?: number 
+  ): Promise<Product[]> {
+    const p: number = page ? (page - 1) : 0;
+    const s: number = size ? size : 30;
+    return await new ProductService().getByCategory(category, p, s);
   }
 
   @Get('{productId}')
