@@ -18,7 +18,7 @@ const LanguageButton = () => {
 
   const handleLanguageChange = (newLanguage: string) => {
     setSelectedLanguage(newLanguage);
-    router.push('/vendor', '/vendor', { locale: newLanguage });
+    router.push('/', '/', { locale: newLanguage });
     handlePopoverClose();
   };
 

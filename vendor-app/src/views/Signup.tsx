@@ -41,7 +41,8 @@ export function SignUp() {
       return;
     } else {
       const query = {query: `mutation createaccount{ createaccount( input: {name: "${user.name}"  email: "${user.email}" password: "${user.password}" role: "vendor"} ) { role }}`}
-      fetch('/api/graphql', {
+      // NOTE: on the server, URL should be /api/graphql
+      fetch('/vendor/api/graphql', {
         method: 'POST',
         body: JSON.stringify(query),
         headers: {

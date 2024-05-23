@@ -11,7 +11,7 @@ export default function Logo({width=200, height='auto', ...rest}) {
       sx={{ p:'unset' }}
       disabled={loginContext.accessToken.length > 0 ? false : true}
       onClick={() => {
-        router.push('/vendor');
+        router.push('/');
       }}
       >
       <img
