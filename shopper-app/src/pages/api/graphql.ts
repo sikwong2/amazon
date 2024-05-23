@@ -7,8 +7,10 @@ import { AuthResolver } from '../../graphql/auth/resolver'
 import { nextAuthChecker } from '../../graphql/auth/checker';
 import { OrdersResolver } from '@/graphql/orders/resolver';
 import { ProductResolver } from '@/graphql/product/resolver';
+import { MemberResolver } from '@/graphql/member/resolver';
+
 const schema = buildSchemaSync({
-  resolvers: [AuthResolver, OrdersResolver, ProductResolver],
+  resolvers: [AuthResolver, MemberResolver,OrdersResolver, ProductResolver],
   validate: true, 
   authChecker: nextAuthChecker,
 });

@@ -1,6 +1,5 @@
 import { createTheme} from '@mui/material/styles';
 
-
 // themed option 
 // https://codesandbox.io/p/sandbox/mui-button-variant-override-e18vg?file=%2Fdemo.js%3A31%2C27
 // https://mui.com/material-ui/customization/default-theme/
@@ -28,6 +27,13 @@ export const globalTheme = createTheme({
       main: '#EDFCFF'
     }
   },
+  typography: {
+    fontFamily: [
+      'Amazon Ember',
+      'Helvetica',
+      'sans-serif'
+    ].join(','),
+  }
 })
 
 // https://mui.com/material-ui/customization/theme-components/
@@ -40,7 +46,6 @@ export const buttonTheme = createTheme(
           {
             props: {},
             style: {
-              fontWeight: "bold",
               fontFamily: ["sans-serif", "Amazon Ember"],
               color: globalTheme.palette.primary.contrastText,
               boxSizing: "border-box",
@@ -79,7 +84,6 @@ export const buttonTheme = createTheme(
             style: {
               fontFamily: ["sans-serif", "Amazon Ember"],
               border: "solid 3px #017185",
-              fontWeight: "bold",
               "&:hover": {
                 backgroundColor: 'rgba(136, 140, 140, 0.1)',
                 border: "solid 3px #017185",
@@ -92,7 +96,25 @@ export const buttonTheme = createTheme(
                 outline: "none"
               },
             }
-          }
+          },
+          {
+            props: {variant: "text"},
+            style: {
+              fontFamily: ["sans-serif", "Amazon Ember"],
+              border: "solid 1px #888C8C",
+              fontWeight: "normal",
+              "&:hover": {
+                backgroundColor: 'rgba(136, 140, 140, 0.1)',
+                border: "solid 1px #888C8C",
+                outline: "none"
+              },
+              "&:active": {
+                backgroundColor: '#EDFCFF',
+                border: "solid 1px #017185",
+                outline: `solid 3px #C9F3FA`
+              },
+            }
+          },
         ],
         defaultProps: {
           disableRipple: true,
@@ -105,8 +127,6 @@ export const buttonTheme = createTheme(
   },
   globalTheme
 );
-
-
 
 export const cardTheme = createTheme({
   components: {
@@ -131,9 +151,10 @@ export const cardTheme = createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: '16px',
+          fontFamily: ["sans-serif", "Amazon Ember"],
+          padding: '0px',
           "&:last-child": {
-            paddingBottom: '16px' 
+            paddingBottom: '0px'
           }
         }
       }
@@ -153,13 +174,14 @@ export const cardTheme = createTheme({
       ]
     }
   }
-}, globalTheme); // Include globalTheme to ensure consistent theme overrides
+}, globalTheme);
 
 export const dividerTheme = createTheme(globalTheme, {
   components: {
     MuiDivider: {
       styleOverrides: { 
         root: {
+          width: '100%',
           color: 'rgba(0, 0, 0, 0.54)', 
           fontFamily: 'Amazon Ember', 
           fontSize: '8'

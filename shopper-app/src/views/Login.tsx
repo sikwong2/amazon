@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,6 +11,7 @@ import CustomButton from '../components/Button';
 import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
+import CustomLink from '@/components/Link';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -20,6 +20,10 @@ export function Login() {
 
   // router to change pages
   const router = useRouter();
+
+  const createAccount = () => {
+    router.push('/signup');
+  }
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -55,41 +59,46 @@ export function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" 
+      sx={{ mb:'28px', pt:'14px', pb:'18px', display: 'flex',
+          flexDirection: 'column', alignItems: 'center'
+      }}
+    >
       <CssBaseline />
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
+        <Logo width={100} height='auto'/>
+      </Container>
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <Logo />
-        <CustomCard>
-          <Typography component="h1" variant="h5" align='center'>
-            {t("login.title")}
+        <CustomCard sx={{ borderRadius:'8px', width:348, p: '20px 26px', mb:2.5 }}>
+          <Typography component="h1" variant="h5" sx={{ mb:'10px', pb:'4px' }}>
+            {t("login.signin")}
           </Typography>
-          <Box aria-label='form' width={500}
-            component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}
-          >
+          <Box aria-label='form'
+            component="form" onSubmit={onSubmit} noValidate sx={{mt: 1}}
+            >
             <CustomTextField
-              label={t("login.email") || 'email'}
-              placeholder={t("login.emailaddress")!}
+              inputLabel={t("login.email") as string}
+              label={t("login.email") as string}
               required
               type="email"
               name='Email Address'
-              sx={{ mt: 1, mb: 1 }}
+              sx={{mb:2}}
               autoComplete="email"
               autoFocus
-            />
+              />
             <CustomTextField
-              label={t("login.password") || 'password'}
-              placeholder={t("login.password")!}
+              inputLabel={t("login.password") as string}
+              label={t("login.password") as string}
               required
               type="password"
               name='Password'
-              sx={{ mt: 1 }}
+              sx={{mb: 3}}
               autoComplete="current-password"
             />
             <CustomButton
@@ -98,15 +107,47 @@ export function Login() {
               fullWidth
               variant="contained"
               color="primary"
-              sx={{ mt: 3, mb: 2 }}
-            >
+              >
               {t("login.signin")}
             </CustomButton>
-            <CustomDivider></CustomDivider>
+          </Box>
+          <Box aria-label='link-to-agreement'>
+            <Typography variant='body1' sx={{ mt:2, fontSize:'12px' }}>
+              {t("login.agreement")}
+              <CustomLink label='conditions-of-use' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use'>
+                {t("login.conditions")}
+              </CustomLink>
+              {t("login.and")}
+              <CustomLink label='privacy-notice' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496'>
+                {t("login.privacy-notice")}
+              </CustomLink>
+              .
+            </Typography>
+          </Box>
+          <Box aria-label='link-to-vendor'>
+            <CustomDivider sx={{mt: 2, mb: 2}}/>
+            <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
+              {t('buying-for-work')}
+            </Typography>
+            <Box sx={{ fontSize:'13px' }}>
+              <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
+                {t('vendor-account')}
+              </CustomLink>
+            </Box>
           </Box>
         </CustomCard>
+        <CustomDivider sx={{fontSize:'12px', mb:2}}>{t('login.new-to-amazon')}</CustomDivider>
+        <CustomButton 
+          label={t("login.create-account") as string} 
+          variant="text" 
+          disableElevation={false} 
+          onClick={createAccount} 
+          fullWidth 
+          sx={{fontSize:'13px'}}
+        >
+          {t("login.create-account")}
+        </CustomButton>
       </Box>
-      <CustomDivider> {t("login.new-to-amazon")} </CustomDivider>
     </Container>
-  );
+  )
 }
