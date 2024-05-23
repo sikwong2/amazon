@@ -20,3 +20,5 @@ export interface Product {
 }
 
 export type Order = 'price' | 'name' | 'stock' | 'image' | 'rating' | 'category';
+
+export type Sort = 'ASC' | 'DESC'

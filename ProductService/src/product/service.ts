@@ -1,5 +1,5 @@
 import { pool } from '../db'
-import { NewProduct, Product, Order } from '.'
+import { NewProduct, Product, Order, Sort } from '.'
 
 export class ProductService {
   public async getAll(): Promise<Product[]> {
@@ -22,14 +22,23 @@ export class ProductService {
     return products;
   }
 
-  public async getByPage(page: number, size: number, order: Order) {
-      const select = `SELECT id, data FROM product 
+  public async getByPage(page: number, size: number, order: Order, sort: Sort) {
+    let select;
+    if (order === 'price' || order === 'rating' || order === 'stock') {
+      console.log(order)
+      select = `SELECT id, data FROM product 
       AS subquery 
-      ORDER BY (subquery.data->>'$3') DESC 
+      ORDER BY (subquery.data->>'${order}')::int ${sort} 
       LIMIT $1 OFFSET $2`
+    } else {
+      select = `SELECT id, data FROM product 
+      AS subquery 
+      ORDER BY (subquery.data->>'${order}') ${sort} 
+      LIMIT $1 OFFSET $2`
+    }
     const query = {
       text: select,
-      values: [size, `${page * 30}`, order]
+      values: [size, `${page * 30}`]
     }
     const {rows} = await pool.query(query);
     const products: Product[] = [];
@@ -45,12 +54,20 @@ export class ProductService {
   }
 
   // https://stackoverflow.com/questions/45918260/restful-api-multiple-query-strings-over-multiple-resources-for-filtering
-  public async getByCategory(category: string, page: number, size: number): Promise<Product[]> {
-    const select = `SELECT id, data FROM product 
-      WHERE (data->'category')::jsonb ? '$1' 
-      AS subquery 
-      ORDER BY (subquery.data->>'price') DESC 
-      LIMIT $2 OFFSET $3`
+  public async getByCategory(category: string, page: number, size: number, order: Order, sort: Sort): Promise<Product[]> {
+    let select;
+    if (order === 'price' || order === 'rating' || order === 'stock') {
+      select = `SELECT id, data FROM product 
+      WHERE (data->'category') ? $1
+      ORDER BY (data->>'${order}')::int ${sort} 
+      LIMIT $2 OFFSET $3`;
+    } else {
+      select = `SELECT id, data FROM product 
+      WHERE (data->'category') ? $1
+      ORDER BY (data->>'${order}') ${sort} 
+      LIMIT $2 OFFSET $3`;
+    }
+
     const query = {
       text: select,
       values: [category, size, `${page * 30}`]
@@ -71,8 +88,8 @@ export class ProductService {
 
   public async makeProduct(product: NewProduct): Promise<Product> {
     const query = {
-      text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::text, 'rating', $5::int, 'category', $6::text)) RETURNING *;`,
-      values: [product.name, product.price, product.stock, product.image, product.rating, product.category],
+      text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::jsonb, 'rating', $5::int, 'category', $6::jsonb)) RETURNING *;`,
+      values: [product.name, product.price, product.stock, JSON.stringify(product.image), product.rating, JSON.stringify(product.category)],
     }
     const { rows } = await pool.query(query);
 
