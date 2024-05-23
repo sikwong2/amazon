@@ -54,4 +54,12 @@ export class OrdersController extends Controller {
   ): Promise<OrdersInfo> {
     return await new OrdersService().deleteOrder(orderId);
   }
+
+  @Get("shopper/{shopperId}/{status}")
+  public async getOrdersByStatus(
+    @Path() shopperId: string,
+    @Path() status: string
+  ): Promise<OrdersInfo[]> {
+    return await new OrdersService().getOrdersByStatus(shopperId, status);
+  }
 }

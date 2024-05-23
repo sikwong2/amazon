@@ -11,6 +11,14 @@ export class OrdersResolver {
     return await new OrdersService().getByShopperId(shopperId);
   }
 
+  @Query(() => [OrdersInfo])
+  async getOrdersByStatus(
+    @Arg('shopperId') shopperId: string,
+    @Arg('status') status: string,
+  ): Promise<OrdersInfo[]> {
+    return await new OrdersService().getOrdersByStatus(shopperId, status);
+  }
+
   @Mutation(() => OrdersInfo)
   async deleteOrder(
     @Arg('orderId') orderId: string,

@@ -11,9 +11,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CustomDivider from '@/components/Divider';
 import { useRouter } from 'next/router';
 
-const fetchOrders = async (shopperId: string) => {
+const fetchOrders = async (shopperId: string, status: string) => {
   try {
-    const query = { query: `query orders{getByShopperId(shopperId: "${shopperId}") { productId, orderId }}` };
+    const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -27,7 +27,7 @@ const fetchOrders = async (shopperId: string) => {
       return [];
     }
     const orders:any = {};
-    for (const {orderId, productId} of json.data.getByShopperId) {
+    for (const {orderId, productId} of json.data.getOrdersByStatus) {
       orders[orderId] = productId;
     }
     return orders;
@@ -90,8 +90,8 @@ export function Cart() {
   useEffect(() => {
     (async () => {
       // Remember to  change the id]
-      const newOrders = await fetchOrders(loginContext.id);
-      // const newOrders = await fetchOrders('92846fcb-9c73-4fc6-b652-3443874118b8');
+      const newOrders = await fetchOrders(loginContext.id, "pending");
+      // const newOrders = await fetchOrders('92846fcb-9c73-4fc6-b652-3443874118b8', "pending");
       setOrders([...Object.keys(newOrders)]);
       let total = 0;
       const temp: any = [];

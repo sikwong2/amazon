@@ -65,4 +65,23 @@ export class OrdersService {
       throw new Error('OrdersService: deleteOrder');
     }
   }
+
+  public async getOrdersByStatus(shopperId: string, status: string): Promise<OrdersInfo[]> {
+    const query = {
+      text: 'SELECT * FROM orders WHERE shopper_id=$1 AND order_status=$2;',
+      values: [shopperId, status],
+    }
+    const {rows} = await pool.query(query);
+    const orders = [];
+    for (const row of rows) {
+      orders.push({
+        orderId: row.id,
+        productId: row.data['product'],
+        vendorId: row.vendor_id,
+        shopperId: row.shopper_id,
+        orderStatus: row.order_status,
+      })
+    }
+    return orders;
+  }
 }
