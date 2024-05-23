@@ -3,6 +3,7 @@ import { LoginProvider } from "@/context/Login";
 import { Cart } from "@/views/Cart"
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
@@ -14,10 +15,6 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 
 export default function CartPage() {
   return (
-    <LoginProvider>
-      <OrderProvider>
-        <Cart />
-      </OrderProvider>
-    </LoginProvider>
+    <Cart />
   )
 }

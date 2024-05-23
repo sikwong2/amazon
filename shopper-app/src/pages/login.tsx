@@ -15,8 +15,6 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 // https://nextjs.org/learn-pages-router/basics/navigate-between-pages
 export default function LoginPage() {
   return (
-    <LoginProvider>
-      <Login/>
-    </LoginProvider>
+    <Login/>
   )
 }

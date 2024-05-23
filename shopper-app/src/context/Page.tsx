@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState, createContext } from "react";
 
 export const PageContext = createContext({
-  page: '',
+  page: 'home',
   setPage: (page: string) => { }
 });
 
