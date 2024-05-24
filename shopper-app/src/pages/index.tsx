@@ -6,6 +6,7 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import LanguageButton from '@/components/Language';
+import CustomButton from '@/components/Button';
 
 
 // this must be in page-level components (not in components in /view)
@@ -36,6 +37,9 @@ export default function Index() {
       <div>
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
+      <CustomButton label='product' href="/product/fcab207a-fd48-4e81-a15d-a754f49fcd15">
+        Go to product
+      </CustomButton>
     </Fragment>
   )
 }
