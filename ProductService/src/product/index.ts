@@ -4,16 +4,16 @@ export interface NewProduct {
   stock: number,
   image?: string[],
   rating?: number,
+  description?: string[],
 }
 
 export interface Product {
   id: string,
-  data: {
-    name: string,
-    price: number,
-    stock: number,
-    image?: string[],
-    rating?: number,
-  }
+  name: string,
+  price: number,
+  stock: number,
+  image?: string[],
+  rating?: number,
+  description?: string[],
 }
 
