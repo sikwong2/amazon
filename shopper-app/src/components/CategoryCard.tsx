@@ -32,8 +32,8 @@ export default function CategoryCard({images, title}: CategoryCardProps) {
         <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle1'>
           {title}
         </Typography>
-        {images.slice(0,4).map((image) => (
-          <Box display="flex" flexDirection="column" alignItems="start">
+        {images.slice(0,4).map((image, key) => (
+          <Box key={key+image.title} display="flex" flexDirection="column" alignItems="start">
             <Box
               sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', minHeight: '50px' }}
               component="img"

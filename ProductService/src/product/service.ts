@@ -9,7 +9,6 @@ export class ProductService {
     }
     const { rows } = await pool.query(query);
     const products: Product[] = [];
-    console.log(rows[0]);
     for (const row of rows) {
       products.push({
         id: row.id,
@@ -18,14 +17,12 @@ export class ProductService {
         }
       })
     }
-    console.log(products)
     return products;
   }
 
   public async getByPage(page: number, size: number, order: Order, sort: Sort) {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
-      console.log(order)
       select = `SELECT id, data FROM product 
       AS subquery 
       ORDER BY (subquery.data->>'${order}')::int ${sort} 
@@ -82,7 +79,6 @@ export class ProductService {
         }
       })
     }
-    console.log(products)
     return products;
   }
 
@@ -106,18 +102,15 @@ export class ProductService {
     }
 
     const { rows } = await pool.query(query);
-    console.log(rows);
     return rows[0];
   }
 
   public async getId(productId: string): Promise<Product | undefined> {
-    console.log('get id')
     const query = {
       text: `SELECT id, data FROM product WHERE id = $1;`,
       values: [productId]
     }
     const { rows } = await pool.query(query);
-    console.log(rows)
     return rows[0];
   }
 }

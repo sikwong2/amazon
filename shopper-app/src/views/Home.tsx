@@ -6,7 +6,7 @@ import { Fragment } from 'react'
 import Link from 'next/link';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 import LanguageButton from '@/components/Language';
 import Logo from "@/components/Logo";
 import { Toolbar } from "@mui/material";
@@ -24,9 +24,8 @@ import CustomLink from "@/components/Link";
 import { Product } from "@/graphql/product/schema";
 
 const fetchProducts = async (category: string): Promise<Product[]> => {
-  console.log(category)
   try {
-    const query = { query: `query getMovies{
+    const query = { query: `query getByCategory{
       getByCategory(category: "movie", page: 1, size: 5, order: "price", sort: "DESC") {
         price
         name
@@ -42,8 +41,6 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
       }
     })
     const json = await res.json();
-    console.log('json:')
-    console.log(json)
     if (json.errors) {
       console.log(json.errors[0].message);
       throw new Error(json.errors[0].message);
@@ -51,7 +48,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
     return json.data.getByCategory;
   } catch (e) {
     console.log(e);
-    throw new Error('FETCH PRODUCTS BROKEN PLS FIX');
+    throw new Error('Unable to fetch products');
   }
 }
 
@@ -60,19 +57,17 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
 // card of category component
 export function Home() {
   const [images, setImages] = React.useState<Image[]>([]);
+  const { t } = useTranslation('common');
 
   React.useEffect(() => {
-    console.log('use effecting');
     const fetchData = async () => {
       try {
         const products = await fetchProducts('movie');
-        console.log('products', products);
         const imgs = products.map((product) => ({
           image: product.image[0],
           description: product.name,
           title: 'sale',
         }));
-        console.log('imgs', imgs);
         setImages(imgs);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -84,31 +79,31 @@ export function Home() {
 
   const easyReturns = (
     <CustomCard elevation={0} sx={{width:"auto", height: 'auto', margin: 1, maxWidth: '300px', alignItems: 'start', justifyContent: 'center', display: 'flex', flexGrow: 1}}>
-                <Box
-                  sx={{
-                    display: 'grid',
-                    columnGap: 0.5,
-                    rowGap: 0.5,
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    flexGrow: 1,
-                    m: 2
-                    }}
-                  alignItems='start'
-                  justifyContent='center'
-                >
-                  <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle1'>
-                    Easy Returns
-                  </Typography>
-                  <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle2'>
-                    Amazon has flexible return shipping on orders & gifts
-                  </Typography>
-                  <CustomLink label="learn-more" href="/">
-                    <Typography variant='caption'>
-                      Learn More
-                    </Typography> 
-                  </CustomLink>
-                </Box>
-              </CustomCard>
+      <Box
+        sx={{
+          display: 'grid',
+          columnGap: 0.5,
+          rowGap: 0.5,
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          flexGrow: 1,
+          m: 2
+          }}
+        alignItems='start'
+        justifyContent='center'
+      >
+        <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle1'>
+          {t('home.easy-returns')}
+        </Typography>
+        <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle2'>
+          {t('home.easy-returns-body')}
+        </Typography>
+        <CustomLink label="learn-more" href="/">
+          <Typography variant='caption'>
+            {t('home.learn-more')}
+          </Typography> 
+        </CustomLink>
+      </Box>
+    </CustomCard>
   )
 
   return (
@@ -120,20 +115,19 @@ export function Home() {
           </Box>
           <Grid container spacing={0} justifyContent="flex-start">
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title="Pick up where you left off" />
+              <CategoryCard images={images} title={t('home.pick-up')} />
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title="Keep shopping for" />
+              <CategoryCard images={images} title={t('home.keep-shopping')} />
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title="Top Deal" />
+              <CategoryCard images={images} title={t('home.top-deal')} />
             </Grid>
             <Grid item xs={0} sm={0} md={3}>
               {easyReturns}
             </Grid>
           </Grid>
         </Box>
-
       </Box>
 
     </React.Fragment>
