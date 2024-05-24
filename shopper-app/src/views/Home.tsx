@@ -16,6 +16,8 @@ import {Box} from "@mui/material";
 import CustomButton from "@/components/Button";
 import ImageCarousel from "@/components/Carousel";
 import type { Image } from "@/components/Carousel";
+import CategoryCard from "@/components/CategoryCard";
+import {Grid} from "@mui/material";
 
 import { Product } from "@/graphql/product/schema";
 
@@ -25,6 +27,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
     const query = { query: `query getMovies{
       getByCategory(category: "movie", page: 1, size: 5, order: "price", sort: "DESC") {
         price
+        name
         image
         category
       }
@@ -79,8 +82,26 @@ export function Home() {
 
   return (
     <React.Fragment>
-      <ImageCarousel images={images} height={400}/>
-      <div> Home </div>
+      <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight='100%' margin={1}>
+        <Box position='static' margin={1} justifyContent="center" alignItems="center" bgcolor="#FFFFFF">
+          <ImageCarousel images={images} height={400}/>
+        </Box>
+        <Grid container spacing={0} justifyContent="flex-start">
+          <Grid item xs={12} sm={4} md={3}>
+            <CategoryCard images={images} title="Shrek" />
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <CategoryCard images={images} title="Movies" />
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <CategoryCard images={images} title="Books" />
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <CategoryCard images={images} title="On Sale" />
+          </Grid>
+        </Grid>
+      </Box>
+
     </React.Fragment>
 
   )

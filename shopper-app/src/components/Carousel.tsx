@@ -4,6 +4,7 @@ import { Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import CustomCard from './Card';
 import {Typography} from '@mui/material';
+import { BoxProps } from '@mui/material/Box';
 
 export type Image = {
   image: string,
@@ -11,18 +12,17 @@ export type Image = {
   title: string
 }
 
-type ImageCarouselProps = {
+interface ImageCarouselProps extends BoxProps {
   images: Image[],
   height: number
 }
 
-export type ItemProps = {
-  key: number,
+interface ItemProps extends BoxProps {
   item: Image,
   height: number
 }
 
-export default function ImageCarousel({images, height}: ImageCarouselProps) {
+export default function ImageCarousel({images, height, ...rest}: ImageCarouselProps) {
   return (
     <Carousel
         animation='slide'
@@ -32,7 +32,7 @@ export default function ImageCarousel({images, height}: ImageCarouselProps) {
     >
         {
           images.map( (item, i) => (
-              <Item key={i} item={item} height={height}/> 
+              <Item key={i} item={item} height={height} {...rest}/> 
             )
           )
         }
@@ -40,21 +40,21 @@ export default function ImageCarousel({images, height}: ImageCarouselProps) {
   )
 }
 
-function Item(props: ItemProps) {
-    console.log('item')
+function Item({item, height, ...rest}: ItemProps) {
     return (
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
-          maxHeight={props.height}
+          maxHeight={height}
           sx={{backgroundColor: 'E4E6E6'}}
           overflow="hidden"
+          {...rest}
         >
           <img 
-            style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }} 
-            alt={props.item.description} 
-            src={props.item.image}
+            style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'cover' }} 
+            alt={item.description} 
+            src={item.image}
           />
         </Box>
     )
