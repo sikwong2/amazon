@@ -10,6 +10,7 @@ import { Product } from '@/graphql/product/schema';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CustomDivider from '@/components/Divider';
 import { useRouter } from 'next/router';
+import { CartItem } from '@/components/CartItem';
 
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
@@ -81,56 +82,31 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 }
 export function Cart() {
-  const {cart, setCart} = useContext(CartContext);
-  const loginContext = useContext(LoginContext);
+  const {cart} = useContext(CartContext);
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
   const router = useRouter();
+  const [cartItems, setCartItems]: any = useState([]);
   useEffect(() => {
     (async () => {
       let total = 0;
-      const temp: any = [];
+      const temp: any = []
       for (const productId of cart) {
         const product = await fetchProduct(productId);
         total += product!.price;
         temp.push(
-          <CustomDivider key={productId}>
-            <Paper elevation={0}  sx={{ marginBottom: '16px'}} >
-              <ListItem sx={{display: 'flex', justifyContent: 'space-evenly', minWidth: '100%' }}>
-                <ListItemAvatar>
-                  <Avatar variant='square' src={`${product.image[0]}`} sx={{ width: '150px', height: '150px' }} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={product.name}
-                  secondary={`$${product.price / 100}`}
-                  sx={{ marginLeft: '16px' }}
-                />
-                <Grid
-                  container
-                  alignItems="center"
-                  spacing={1}
-                  sx={{ marginLeft: '16px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <Grid item>
-                    <CustomButton
-                      label={`${productId}`}
-                      color="primary"
-                      onClick={async () => {
-                        setCart(cart.filter((product:string) => product !== productId));
-                        setSubtotal(0); // set subtotal to 0 to force the page to rerender
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </CustomButton>
-                  </Grid>
-                </Grid>
-              </ListItem>
-            </Paper>
-          </CustomDivider>
+          <CartItem 
+            productId={productId}
+            name={product.name}
+            image={product.image[0]}
+            price={product.price}
+          />
         )
       }
+      setCartItems(temp);
       setSubtotal(total)
     })()
-  }, [subtotal])
+  }, [subtotal, cart])
   return (
     <Container maxWidth="md">
       <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -139,7 +115,7 @@ export function Cart() {
             {t("cart.shopping-cart")}
           </Typography>
           <List>
-            {cart}
+            {cartItems}
           </List>
         </CustomCard>
         <CustomCard>
