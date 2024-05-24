@@ -18,6 +18,8 @@ import ImageCarousel from "@/components/Carousel";
 import type { Image } from "@/components/Carousel";
 import CategoryCard from "@/components/CategoryCard";
 import {Grid} from "@mui/material";
+import CustomCard from "@/components/Card";
+import CustomLink from "@/components/Link";
 
 import { Product } from "@/graphql/product/schema";
 
@@ -80,26 +82,58 @@ export function Home() {
     fetchData();
   }, [])
 
+  const easyReturns = (
+    <CustomCard elevation={0} sx={{width:"auto", height: 'auto', margin: 1, maxWidth: '300px', alignItems: 'start', justifyContent: 'center', display: 'flex', flexGrow: 1}}>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    columnGap: 0.5,
+                    rowGap: 0.5,
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    flexGrow: 1,
+                    m: 2
+                    }}
+                  alignItems='start'
+                  justifyContent='center'
+                >
+                  <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle1'>
+                    Easy Returns
+                  </Typography>
+                  <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle2'>
+                    Amazon has flexible return shipping on orders & gifts
+                  </Typography>
+                  <CustomLink label="learn-more" href="/">
+                    <Typography variant='caption'>
+                      Learn More
+                    </Typography> 
+                  </CustomLink>
+                </Box>
+              </CustomCard>
+  )
+
   return (
     <React.Fragment>
       <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight='100%' margin={1}>
-        <Box position='static' margin={1} justifyContent="center" alignItems="center" bgcolor="#FFFFFF">
-          <ImageCarousel images={images} height={400}/>
+        <Box sx={{maxWidth: {md: '80%', sm: '100%'}}} alignItems='center' justifyContent="center" margin='auto'>
+          <Box position='static' margin={1} justifyContent="center" alignItems="center" bgcolor="#FFFFFF">
+            <ImageCarousel images={images} height={400}/>
+          </Box>
+          <Grid container spacing={0} justifyContent="flex-start">
+            <Grid item xs={12} sm={4} md={3}>
+              <CategoryCard images={images} title="Pick up where you left off" />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <CategoryCard images={images} title="Keep shopping for" />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3}>
+              <CategoryCard images={images} title="Top Deal" />
+            </Grid>
+            <Grid item xs={0} sm={0} md={3}>
+              {easyReturns}
+            </Grid>
+          </Grid>
         </Box>
-        <Grid container spacing={0} justifyContent="flex-start">
-          <Grid item xs={12} sm={4} md={3}>
-            <CategoryCard images={images} title="Shrek" />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3}>
-            <CategoryCard images={images} title="Movies" />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3}>
-            <CategoryCard images={images} title="Books" />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3}>
-            <CategoryCard images={images} title="On Sale" />
-          </Grid>
-        </Grid>
+
       </Box>
 
     </React.Fragment>

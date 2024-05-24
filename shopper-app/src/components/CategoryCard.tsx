@@ -16,7 +16,7 @@ export interface CategoryCardProps {
 
 export default function CategoryCard({images, title}: CategoryCardProps) {
   return (
-    <CustomCard elevation={0} sx={{width:"auto", height: 'auto', margin: 1, minWidth: '200px', alignItems: 'center', justifyContent: 'center', display: 'flex', flexGrow: 1}}>
+    <CustomCard elevation={0} sx={{width:"auto", height: 'auto', margin: 1, alignItems: 'center', maxHeight: '100%', maxWidth: '300px', justifyContent: 'center', display: 'flex', flexGrow: 1}}>
       <Box
         sx={{
           display: 'grid',
@@ -29,17 +29,17 @@ export default function CategoryCard({images, title}: CategoryCardProps) {
         alignItems='start'
         justifyContent='center'
       >
-        <Typography sx={{ gridColumn: 'span 2', mb: 1}} align='left' variant='subtitle1'>
+        <Typography sx={{ gridColumn: 'span 2', mb: 0.1}} align='left' variant='subtitle1'>
           {title}
         </Typography>
         {images.slice(0,4).map((image) => (
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Box display="flex" flexDirection="column" alignItems="start">
             <Box
-              sx={{ maxWidth: '100%', maxHeight: '100%', width: '100px', height: 'auto', minHeight: '50px' }}
+              sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', minHeight: '50px' }}
               component="img"
               src={image.image}
             />
-            <Typography align='center' variant='caption'>
+            <Typography align='left' variant='caption'>
               {image.description}
             </Typography>
           </Box>
