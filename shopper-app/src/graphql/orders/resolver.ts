@@ -1,4 +1,4 @@
-import { OrdersInfo } from "./shema";
+import { OrdersInfo } from "./schema";
 import { OrdersService } from "./service";
 import { Query, Resolver, Arg, Mutation } from "type-graphql"
 

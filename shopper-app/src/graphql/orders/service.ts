@@ -1,4 +1,4 @@
-import { OrdersInfo } from './shema';
+import { OrdersInfo } from './schema';
 import dotenv from 'dotenv';
 dotenv.config({path : '../.env'});
 
