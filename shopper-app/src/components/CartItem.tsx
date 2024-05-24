@@ -43,7 +43,7 @@ export function CartItem({ productId, name, image, price, ...rest }: CartItemPro
               <CustomButton
                 label={`${productId}`}
                 color="primary"
-                onClick={async () => {
+                onClick={() => {
                   handleDelete(productId);
                 }}
               >
