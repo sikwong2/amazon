@@ -1,4 +1,4 @@
-import { OrderContext } from '@/context/Order'
+import { CartContext } from '@/context/Cart'
 import { Avatar, Box, Container, Grid, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
 import { useContext, useState } from 'react'
 import CustomCard from '../components/Card'
@@ -81,25 +81,20 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 }
 export function Cart() {
-  const {orders, setOrders} = useContext(OrderContext);
+  const {cart, setCart} = useContext(CartContext);
   const loginContext = useContext(LoginContext);
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
-  const [cart, setCart] = useState([]);
   const router = useRouter();
   useEffect(() => {
     (async () => {
-      // Remember to  change the id]
-      const newOrders = await fetchOrders(loginContext.id, "pending");
-      // const newOrders = await fetchOrders('92846fcb-9c73-4fc6-b652-3443874118b8', "pending");
-      setOrders([...Object.keys(newOrders)]);
       let total = 0;
       const temp: any = [];
-      for (const [orderId, productId] of Object.entries(newOrders)) {
+      for (const productId of cart) {
         const product = await fetchProduct(productId);
         total += product!.price;
         temp.push(
-          <CustomDivider key={orderId}>
+          <CustomDivider key={productId}>
             <Paper elevation={0}  sx={{ marginBottom: '16px'}} >
               <ListItem sx={{display: 'flex', justifyContent: 'space-evenly', minWidth: '100%' }}>
                 <ListItemAvatar>
@@ -117,10 +112,10 @@ export function Cart() {
                   sx={{ marginLeft: '16px', display: 'flex', justifyContent: 'flex-end' }}>
                   <Grid item>
                     <CustomButton
+                      label={`${productId}`}
                       color="primary"
                       onClick={async () => {
-                        await deleteOrder(orderId);
-                        setOrders(orders.filter((order:string) => order !== orderId));
+                        setCart(cart.filter((product:string) => product !== productId));
                         setSubtotal(0); // set subtotal to 0 to force the page to rerender
                       }}
                     >
@@ -133,7 +128,6 @@ export function Cart() {
           </CustomDivider>
         )
       }
-      setCart(temp);
       setSubtotal(total)
     })()
   }, [subtotal])
