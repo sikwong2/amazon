@@ -1,8 +1,9 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@mui/material';
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import CustomCard from './Card';
+import {Typography} from '@mui/material';
 
 export type Image = {
   image: string,
@@ -17,7 +18,8 @@ type ImageCarouselProps = {
 
 export type ItemProps = {
   key: number,
-  item: Image
+  item: Image,
+  height: number
 }
 
 export default function ImageCarousel({images, height}: ImageCarouselProps) {
@@ -25,10 +27,12 @@ export default function ImageCarousel({images, height}: ImageCarouselProps) {
     <Carousel
         animation='slide'
         height={height}
+        indicators={false}
+        navButtonsAlwaysVisible={true}
     >
         {
           images.map( (item, i) => (
-              <Item key={i} item={item} /> 
+              <Item key={i} item={item} height={height}/> 
             )
           )
         }
@@ -37,11 +41,21 @@ export default function ImageCarousel({images, height}: ImageCarouselProps) {
 }
 
 function Item(props: ItemProps) {
+    console.log('item')
     return (
-        <Paper>
-            <h2>{props.item.title}</h2>
-            <p>{props.item.description}</p>
-            <Box component="img" alt={props.item.description} src={props.item.image}/>
-        </Paper>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          maxHeight={props.height}
+          sx={{backgroundColor: 'E4E6E6'}}
+          overflow="hidden"
+        >
+          <img 
+            style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }} 
+            alt={props.item.description} 
+            src={props.item.image}
+          />
+        </Box>
     )
 }

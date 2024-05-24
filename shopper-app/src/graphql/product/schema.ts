@@ -5,16 +5,24 @@ import { IsIn, IsNotEmpty, Min } from "class-validator";
 export class Product {
   @Field()
   @IsNotEmpty()
+    id!: string
+  @Field()
+  @IsNotEmpty()
     name!: string
   @Field()
+  @IsNotEmpty()
     price!: number
   @Field()
+  @IsNotEmpty()
     stock!: number
   @Field(() => [String])
+  @IsNotEmpty()
     image!: string[]
   @Field()
+  @IsNotEmpty()
     rating!: number
   @Field(() => [String])
+  @IsNotEmpty()
     category!: string[]
 }
 

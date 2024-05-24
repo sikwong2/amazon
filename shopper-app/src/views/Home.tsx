@@ -20,16 +20,25 @@ import type { Image } from "@/components/Carousel";
 import { Product } from "@/graphql/product/schema";
 
 const fetchProducts = async (category: string): Promise<Product[]> => {
+  console.log(category)
   try {
-    const query = { query: `query product{getByCategory(category: "${category}") {name, price, image}}` };
+    const query = { query: `query getMovies{
+      getByCategory(category: "movie", page: 1, size: 5, order: "price", sort: "DESC") {
+        price
+        image
+        category
+      }
+    }`};
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+    })
     const json = await res.json();
+    console.log('json:')
+    console.log(json)
     if (json.errors) {
       console.log(json.errors[0].message);
       throw new Error(json.errors[0].message);
@@ -37,7 +46,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
     return json.data.getByCategory;
   } catch (e) {
     console.log(e);
-    throw new Error('');
+    throw new Error('FETCH PRODUCTS BROKEN PLS FIX');
   }
 }
 
@@ -48,18 +57,31 @@ export function Home() {
   const [images, setImages] = React.useState<Image[]>([]);
 
   React.useEffect(() => {
-    (async () => {
-      const products = await fetchProducts('sale');
-      const imgs = products.map((product) => ({
-        image: product.image[0],
-        description: product.name,
-        title: 'sale',
-      }))
-      setImages(imgs)
-    })
-  })
+    console.log('use effecting');
+    const fetchData = async () => {
+      try {
+        const products = await fetchProducts('movie');
+        console.log('products', products);
+        const imgs = products.map((product) => ({
+          image: product.image[0],
+          description: product.name,
+          title: 'sale',
+        }));
+        console.log('imgs', imgs);
+        setImages(imgs);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
 
   return (
-    <ImageCarousel images={images} height={500}/>
+    <React.Fragment>
+      <ImageCarousel images={images} height={400}/>
+      <div> Home </div>
+    </React.Fragment>
+
   )
 }
