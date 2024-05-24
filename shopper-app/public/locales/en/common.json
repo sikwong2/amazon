@@ -11,22 +11,14 @@
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
-    "new-to-amazon": "New to Amazon?"
+    "new-to-amazon": "New to Amazon?",
+    "agreement": "By continuing, you agree to Amazon's ",
+    "conditions": "Conditions of Use",
+    "and": " and ",
+    "privacy-notice": "Privacy Notice",
+    "need-help": "Need help?",
+    "create-account": "Create your Amazon account"
   },
-  "cart": {
-    "proceed-to-checkout": "Proceed to Checkout",
-    "shopping-cart": "Shopping Cart",
-    "items": "items",
-    "item": "item",
-    "subtotal": "Subtotal"
-  },
-  "new-to-amazon": "New to Amazon?",
-  "agreement": "By continuing, you agree to Amazon's ",
-  "conditions": "Conditions of Use",
-  "and": " and ",
-  "privacy-notice": "Privacy Notice",
-  "need-help": "Need help?",
-  "create-account": "Create your Amazon account",
   "signup": {
     "title": "Create account",
     "name": "Your name",
@@ -45,5 +37,12 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice"
+  },
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
   }
 }
