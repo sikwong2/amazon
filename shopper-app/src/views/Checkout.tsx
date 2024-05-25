@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
 import { useRouter } from 'next/router';
 import { CartItem } from '@/components/CartItem';
-import { PageContext } from '@/context/Page';
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
     const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
@@ -24,8 +23,8 @@ const fetchOrders = async (shopperId: string, status: string) => {
       console.log(json.errors[0].message);
       return [];
     }
-    const orders:any = {};
-    for (const {orderId, productId} of json.data.getOrdersByStatus) {
+    const orders: any = {};
+    for (const { orderId, productId } of json.data.getOrdersByStatus) {
       orders[orderId] = productId;
     }
     return orders;
@@ -37,7 +36,7 @@ const fetchOrders = async (shopperId: string, status: string) => {
 
 const deleteOrder = async (orderId: string): Promise<string> => {
   try {
-    const query = {query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}`};
+    const query = { query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}` };
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -51,7 +50,7 @@ const deleteOrder = async (orderId: string): Promise<string> => {
       throw new Error(json.errors[0].message);
     }
     return json.data.deleteOrder.orderId;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
     throw new Error('Cart.tsx: deleteOrder');
   }
@@ -78,9 +77,8 @@ const fetchProduct = async (productId: any): Promise<Product> => {
     throw new Error('');
   }
 }
-export function Cart() {
-  const { setPage } = useContext(PageContext);
-  const {cart} = useContext(CartContext);
+export function Checkout() {
+  const { cart } = useContext(CartContext);
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
   const router = useRouter();
@@ -94,7 +92,7 @@ export function Cart() {
         total += product.price;
         temp.push(
           <CartItem
-            key={productId} 
+            key={productId}
             productId={productId}
             name={product.name}
             image={product.image ? product.image[0] : undefined}
@@ -125,7 +123,7 @@ export function Cart() {
             alignItems: 'center'
           }}>
             {t("cart.subtotal") +
-          `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
+              `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
           $ ${subtotal}`}
             <CustomButton
               type='submit'
@@ -133,8 +131,8 @@ export function Cart() {
               variant='contained'
               color='primary'
               sx={{ mt: 3, mb: 2 }}
-              onClick={() =>{
-                setPage('checkout');
+              onClick={() => {
+                router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
               }}
             >
               {t("cart.proceed-to-checkout")}

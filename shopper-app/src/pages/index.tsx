@@ -8,6 +8,7 @@ import { useTranslation } from "next-i18next";
 import LanguageButton from '@/components/Language';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
+import { Checkout } from '@/views/Checkout'
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -40,7 +41,7 @@ export default function Index() {
       </div>
     </>
   )
-  
+   
   return (
     <Fragment>
       <p>
@@ -48,6 +49,7 @@ export default function Index() {
       </p>
       {pageContext.page === 'home' && home}
       {pageContext.page === 'cart' && <Cart/>}
+      {pageContext.page === 'checkout' && <Checkout/>}
     </Fragment>
   )
 }

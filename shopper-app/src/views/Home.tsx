@@ -153,7 +153,6 @@ export function Home() {
           </Grid>
         </Box>
       </Box>
-
     </React.Fragment>
 
   )

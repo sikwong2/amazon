@@ -6,6 +6,7 @@ import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { LoginProvider } from "@/context/Login";
 import { CartProvider } from "@/context/Cart";
+import { PageProvider } from "@/context/Page";
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -20,9 +21,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme} >
       <LoginProvider>
-        <CartProvider>
-          <Component {...pageProps} />
-        </CartProvider>
+        <PageProvider>
+          <CartProvider>
+            <Component {...pageProps} />
+          </CartProvider>
+        </PageProvider>
       </LoginProvider>
     </ThemeProvider>
   )

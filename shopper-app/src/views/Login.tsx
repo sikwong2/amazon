@@ -12,8 +12,11 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
+import { PageContext } from '@/context/Page';
+
 
 export function Login() {
+  const { page, setPage } = React.useContext(PageContext)
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
@@ -50,6 +53,7 @@ export function Login() {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
           loginContext.setId(json.data.login.id);
+          setPage('cart'); // setting this to cart just to test cart page
           router.push('/'); // sets path to home page
         }
       })
