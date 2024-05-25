@@ -26,7 +26,7 @@ import { Product } from "@/graphql/product/schema";
 const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
     const query = { query: `query getByCategory{
-      getByCategory(category: "movie", page: 1, size: 5, order: "price", sort: "DESC") {
+      getByCategory(category: "${category}", page: 1, size: 5, order: "price", sort: "DESC") {
         price
         name
         image
@@ -56,19 +56,43 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
 // carosoul component
 // card of category component
 export function Home() {
-  const [images, setImages] = React.useState<Image[]>([]);
+  const [ads, setAds] = React.useState<Image[]>([]);
+  const [category1, setCategory1] = React.useState<Image[]>([]);
+  const [category2, setCategory2] = React.useState<Image[]>([]);
+  const [category3, setCategory3] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const products = await fetchProducts('movie');
-        const imgs = products.map((product) => ({
+        const adproducts = await fetchProducts('sale');
+        const ad = adproducts.map((product) => ({
           image: product.image[0],
           description: product.name,
           title: 'sale',
         }));
-        setImages(imgs);
+        setAds(ad);
+        const category1products = await fetchProducts('movie');
+        const cat1 = category1products.map((product) => ({
+          image: product.image[0],
+          description: product.name,
+          title: 'sale',
+        }));
+        setCategory1(cat1);
+        const category2products = await fetchProducts('electronics');
+        const cat2 = category2products.map((product) => ({
+          image: product.image[0],
+          description: product.name,
+          title: 'sale',
+        }));
+        setCategory2(cat2);
+        const products = await fetchProducts('sports');
+        const cat3 = products.map((product) => ({
+          image: product.image[0],
+          description: product.name,
+          title: 'sale',
+        }));
+        setCategory3(cat3);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -111,17 +135,17 @@ export function Home() {
       <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight='100%' margin={1}>
         <Box sx={{maxWidth: {md: '80%', sm: '100%'}}} alignItems='center' justifyContent="center" margin='auto'>
           <Box position='static' margin={1} justifyContent="center" alignItems="center" bgcolor="#FFFFFF">
-            <ImageCarousel images={images} height={400}/>
+            <ImageCarousel images={ads} height={400}/>
           </Box>
           <Grid container spacing={0} justifyContent="flex-start">
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title={t('home.pick-up')} />
+              <CategoryCard images={category1} title={t('home.pick-up')} />
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title={t('home.keep-shopping')} />
+              <CategoryCard images={category2} title={t('home.keep-shopping')} />
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={images} title={t('home.top-deal')} />
+              <CategoryCard images={category3} title={t('home.top-deal')} />
             </Grid>
             <Grid item xs={0} sm={0} md={3}>
               {easyReturns}
