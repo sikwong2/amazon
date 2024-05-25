@@ -9,9 +9,9 @@ import StarIcon from '@mui/icons-material/Star';
 interface CartItemProps {
   productId: string,
   name: string,
-  image: string,
+  image?: string,
   price: number,
-  rating: number
+  rating?: number
 }
 export function CartItem({ productId, name, image, price, rating, ...rest }: CartItemProps) {
   const { cart, setCart } = useContext(CartContext);

@@ -95,9 +95,9 @@ export function Cart() {
             key={productId} 
             productId={productId}
             name={product.name}
-            image={product.image[0]}
+            image={product.image ? product.image[0] : undefined}
             price={product.price}
-            rating={product.rating}
+            rating={product?.rating}
           />
         )
       }

@@ -6,8 +6,8 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import LanguageButton from '@/components/Language';
-import { PageContext } from '@/context/Page';
-import { Cart } from '@/views/Cart';
+import { Home } from '@/views/Home';
+
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -22,10 +22,9 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 export default function Index() {
   const title = 'CSE187 Shopper App'
   const { t } = useTranslation('common');
-  const pageContext = React.useContext(PageContext);
 
-  const home = (
-    <>
+  return (
+    <Fragment>
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,16 +37,7 @@ export default function Index() {
       <div>
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
-    </>
-  )
-  
-  return (
-    <Fragment>
-      <p>
-        {pageContext.page}
-      </p>
-      {pageContext.page === 'home' && home}
-      {pageContext.page === 'cart' && <Cart/>}
+      <Home/>
     </Fragment>
   )
 }

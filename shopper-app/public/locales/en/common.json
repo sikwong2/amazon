@@ -45,5 +45,13 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice"
+  },
+  "home": {
+    "pick-up": "Pick up where you left off",
+    "keep-shopping": "Keep shopping for",
+    "top-deal": "Top Deal",
+    "easy-returns": "Easy returns",
+    "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
+    "learn-more": "Learn More"
   }
 }
