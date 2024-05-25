@@ -41,7 +41,7 @@ export class ProductService {
 
   public async getId(productId: string): Promise<Product | undefined> {
     const query = {
-      text: `SELECT data FROM product WHERE id = $1;`,
+      text: `SELECT * FROM product WHERE id = $1;`,
       values: [productId]
     }
     const { rows } = await pool.query(query);

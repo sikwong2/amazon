@@ -1,16 +1,13 @@
-import { OrderContext } from '@/context/Order'
-import { Avatar, Box, Container, Grid, List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
+import { CartContext } from '@/context/Cart'
+import { Box, Container, List, Typography } from '@mui/material';
 import { useContext, useState } from 'react'
 import CustomCard from '../components/Card'
 import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
-import { LoginContext } from '@/context/Login';
 import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import CustomDivider from '@/components/Divider';
 import { useRouter } from 'next/router';
-
+import { CartItem } from '@/components/CartItem';
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
     const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
@@ -61,7 +58,7 @@ const deleteOrder = async (orderId: string): Promise<string> => {
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
-    const query = { query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock}}` };
+    const query = { query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock, rating}}` };
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -81,62 +78,33 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 }
 export function Cart() {
-  const {orders, setOrders} = useContext(OrderContext);
-  const loginContext = useContext(LoginContext);
+  const {cart} = useContext(CartContext);
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
-  const [cart, setCart] = useState([]);
   const router = useRouter();
+  const [cartItems, setCartItems]: any = useState([]);
   useEffect(() => {
     (async () => {
-      // Remember to  change the id]
-      const newOrders = await fetchOrders(loginContext.id, "pending");
-      // const newOrders = await fetchOrders('92846fcb-9c73-4fc6-b652-3443874118b8', "pending");
-      setOrders([...Object.keys(newOrders)]);
       let total = 0;
-      const temp: any = [];
-      for (const [orderId, productId] of Object.entries(newOrders)) {
+      const temp: any = []
+      for (const productId of cart) {
         const product = await fetchProduct(productId);
-        total += product!.price;
+        total += product.price;
         temp.push(
-          <CustomDivider key={orderId}>
-            <Paper elevation={0}  sx={{ marginBottom: '16px'}} >
-              <ListItem sx={{display: 'flex', justifyContent: 'space-evenly', minWidth: '100%' }}>
-                <ListItemAvatar>
-                  <Avatar variant='square' src={`${product.image[0]}`} sx={{ width: '150px', height: '150px' }} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={product.name}
-                  secondary={`$${product.price / 100}`}
-                  sx={{ marginLeft: '16px' }}
-                />
-                <Grid
-                  container
-                  alignItems="center"
-                  spacing={1}
-                  sx={{ marginLeft: '16px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <Grid item>
-                    <CustomButton
-                      color="primary"
-                      onClick={async () => {
-                        await deleteOrder(orderId);
-                        setOrders(orders.filter((order:string) => order !== orderId));
-                        setSubtotal(0); // set subtotal to 0 to force the page to rerender
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </CustomButton>
-                  </Grid>
-                </Grid>
-              </ListItem>
-            </Paper>
-          </CustomDivider>
+          <CartItem
+            key={productId} 
+            productId={productId}
+            name={product.name}
+            image={product.image[0]}
+            price={product.price}
+            rating={product.rating}
+          />
         )
       }
-      setCart(temp);
-      setSubtotal(total)
+      setCartItems(temp);
+      setSubtotal(Number(Number(total).toFixed(2)));
     })()
-  }, [subtotal])
+  }, [subtotal, cart])
   return (
     <Container maxWidth="md">
       <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -145,7 +113,7 @@ export function Cart() {
             {t("cart.shopping-cart")}
           </Typography>
           <List>
-            {cart}
+            {cartItems}
           </List>
         </CustomCard>
         <CustomCard>
@@ -156,7 +124,7 @@ export function Cart() {
           }}>
             {t("cart.subtotal") +
           `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
-          $ ${subtotal / 100}`}
+          $ ${subtotal}`}
             <CustomButton
               type='submit'
               label='checkout'
