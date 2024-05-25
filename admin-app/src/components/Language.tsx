@@ -10,7 +10,7 @@ export interface Option {
   label: string;
 }
 
-const LanguageButton = () => {
+const LanguageButton = ({ ...rest }) => {
   const router = useRouter();
   const { t } = useTranslation('common');
   const [selectedLanguage, setSelectedLanguage] = useState(router.locale === 'en' ? 'en' : 'zh');
@@ -18,7 +18,7 @@ const LanguageButton = () => {
 
   const handleLanguageChange = (newLanguage: string) => {
     setSelectedLanguage(newLanguage);
-    router.push('/admin', '/admin', { locale: newLanguage });
+    router.push('/', '/', { locale: newLanguage });
     handlePopoverClose();
   };
 
@@ -38,11 +38,6 @@ const LanguageButton = () => {
     { value: 'zh', label: 'Mandarin - ZH' },
   ];
 
-  const customButtonStyles = {
-    backgroundColor: 'rgba(35,47,62)', 
-    color: 'rgba(242,242,242)', 
-  };
-
   return (
     <ThemeProvider theme={buttonTheme}>
       <div>
@@ -51,10 +46,13 @@ const LanguageButton = () => {
           aria-haspopup="true"
           aria-controls="radio-menu"
           label={'change-language'}
-          style={customButtonStyles}
           onClick={handlePopoverOpen}
+          style={{ textTransform: 'uppercase', 
+          backgroundColor: 'rgba(35,47,62)', 
+          color: 'rgba(242,242,242)', }}
+          {...rest}
         >
-          {t("Change Language")}
+          {selectedLanguage}
         </CustomButton>
         <Popover
           id="language-selection-menu"
@@ -72,9 +70,9 @@ const LanguageButton = () => {
           }}
         >
           <RadioGroup 
-          value={selectedLanguage} 
-          onChange={(e) => handleLanguageChange(e.target.value)}
-          aria-label="language-options"
+            value={selectedLanguage} 
+            onChange={(e) => handleLanguageChange(e.target.value)}
+            aria-label="language-options"
           >
             {options.map((option, index) => (
               <FormControlLabel
