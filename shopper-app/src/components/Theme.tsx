@@ -24,7 +24,7 @@ export const globalTheme = createTheme({
       contrastText: '#0F1111'
     },
     info: {
-      main: '#EDFCFF'
+      main: '#EDFCFF',
     }
   },
   typography: {

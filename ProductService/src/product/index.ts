@@ -4,6 +4,8 @@ export interface NewProduct {
   stock: number,
   image?: string[],
   rating?: number,
+  category?: string[],
+  description?: string[]
 }
 
 export interface Product {
@@ -14,6 +16,11 @@ export interface Product {
     stock: number,
     image?: string[],
     rating?: number,
+    category?: string[],
+    description?: string[]
   }
 }
 
+export type Order = 'price' | 'name' | 'stock' | 'image' | 'rating' | 'category';
+
+export type Sort = 'ASC' | 'DESC'
