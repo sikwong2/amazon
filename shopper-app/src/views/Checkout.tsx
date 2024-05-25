@@ -77,6 +77,7 @@ const fetchProduct = async (productId: any): Promise<Product> => {
     throw new Error('');
   }
 }
+
 export function Checkout() {
   const { cart } = useContext(CartContext);
   const { t } = useTranslation('common');
@@ -105,6 +106,7 @@ export function Checkout() {
       setSubtotal(Number(Number(total).toFixed(2)));
     })()
   }, [subtotal, cart])
+
   return (
     <Container maxWidth="md">
       <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
