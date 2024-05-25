@@ -25,7 +25,8 @@ export function Login() {
     u.password = data.get('Password')!.toString();
     setUser(u);
     const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
-    fetch('/api/graphql', {
+    // NOTE: on the server, URL should be /api/graphql
+    fetch('/admin/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {

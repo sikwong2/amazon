@@ -18,7 +18,7 @@ const LanguageButton = () => {
 
   const handleLanguageChange = (newLanguage: string) => {
     setSelectedLanguage(newLanguage);
-    router.push('/admin', '/admin', { locale: newLanguage });
+    router.push('/', '/', { locale: newLanguage });
     handlePopoverClose();
   };
 

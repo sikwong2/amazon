@@ -27,7 +27,8 @@ export function Login() {
     u.password = data.get('Password')!.toString();
     setUser(u);
     const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}` }
-    fetch('/api/graphql', {
+    // NOTE: on the server, URL should be /api/graphql
+    fetch('/vendor/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -120,14 +121,14 @@ export function Login() {
               .
             </Typography>
           </Box>
-          <Box aria-label='link-to-vendor'>
+          <Box aria-label='link-to-shopper'>
             <CustomDivider sx={{mt: 2, mb: 2}}/>
             <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
-              {t('buying-for-work')}
+              {t('buying-for-yourself')}
             </Typography>
             <Box sx={{ fontSize:'13px' }}>
-              <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
-                {t('vendor-account')}
+              <CustomLink label="shopper-account" href="/" variant='blue2' >
+                {t('shopper-account')}
               </CustomLink>
             </Box>
           </Box>
