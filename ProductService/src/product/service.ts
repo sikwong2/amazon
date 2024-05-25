@@ -25,7 +25,7 @@ export class ProductService {
     if (order === 'price' || order === 'rating' || order === 'stock') {
       select = `SELECT id, data FROM product 
       AS subquery 
-      ORDER BY (subquery.data->>'${order}')::int ${sort} 
+      ORDER BY (subquery.data->>'${order}')::numeric ${sort} 
       LIMIT $1 OFFSET $2`
     } else {
       select = `SELECT id, data FROM product 
@@ -56,7 +56,7 @@ export class ProductService {
     if (order === 'price' || order === 'rating' || order === 'stock') {
       select = `SELECT id, data FROM product 
       WHERE (data->'category') ? $1
-      ORDER BY (data->>'${order}')::int ${sort} 
+      ORDER BY (data->>'${order}')::numeric ${sort} 
       LIMIT $2 OFFSET $3`;
     } else {
       select = `SELECT id, data FROM product 

@@ -5,6 +5,7 @@ export interface NewProduct {
   image?: string[],
   rating?: number,
   category?: string[],
+  description?: string[]
 }
 
 export interface Product {
@@ -16,6 +17,7 @@ export interface Product {
     image?: string[],
     rating?: number,
     category?: string[],
+    description?: string[]
   }
 }
 

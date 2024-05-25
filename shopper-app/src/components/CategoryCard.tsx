@@ -33,14 +33,14 @@ export default function CategoryCard({images, title}: CategoryCardProps) {
           {title}
         </Typography>
         {images.slice(0,4).map((image, key) => (
-          <Box key={key+image.title} display="flex" flexDirection="column" alignItems="start">
+          <Box key={key+image.title} display="flex" flexDirection="column" alignItems="start" sx={{height: 'auto', width: 'auto', maxHeight: '100%', maxWidth: '100%'}}>
             <Box
-              sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', minHeight: '50px' }}
+              sx={{ maxWidth: '100%', width: 'auto', height: '100px', minHeight: '50px', objectFit: 'contain' }}
               component="img"
               src={image.image}
             />
             <Typography align='left' variant='caption'>
-              {image.description}
+            {image.description.length > 13 ? `${image.description.slice(0, 12)}...` : image.description}
             </Typography>
           </Box>
         ))}
