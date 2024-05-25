@@ -11,6 +11,10 @@ import Box from '@mui/material/Box';
 import CustomCard from '@/components/Card';
 import { Typography } from '@mui/material';
 import CustomPrice from '@/components/Price';
+import CustomLink from '@/components/Link';
+
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 interface Product {
   name: string,
@@ -22,7 +26,7 @@ interface Product {
 }
 
 interface ProductProp {
-  product: Product // update to Product defined in /api
+  product: Product
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -57,6 +61,49 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
+// Returns date 7 days from today for delivery
+function getRandomDeliveryDate(offset: number) {
+  const today = new Date();
+  const nextWeek = new Date();
+  nextWeek.setDate(today.getDate() + offset);
+  return (
+    <>
+      {days[nextWeek.getDay()]}, {months[nextWeek.getMonth()]} {nextWeek.getDate()}
+    </>
+  )
+}
+
+// Returns hours and mins until midnight
+function getTimeTillMidnight() {
+  const currentTime = new Date();
+  const hours = 24 - currentTime.getHours() - 1;
+  const minutes = 60 - currentTime.getMinutes() - 1;
+
+  return (
+    <>
+      {hours} hrs {minutes} mins
+    </>
+  )
+}
+
+function getStock(stock: number) {
+  const lowStock = stock < 10;
+
+  if (stock < 10) {
+    return (
+        <Typography>
+          Only {stock} left in stock - order soon.
+        </Typography>
+    )
+  } else {
+    return (
+      <Typography sx={{ fontSize:'1.2rem', color:'#007600', pt:0.5, mb:1.5 }}>
+        In Stock
+      </Typography>
+    )
+  }
+}
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   padding: '0px',
@@ -78,7 +125,7 @@ export default function Product({ product }: ProductProp) {
       <p> {product.rating} </p>
       <p> {product.image} </p>
       <p> {product.description} </p>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, p:2.2 }}>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4.5}>
             <Item>xs=4.5</Item>
@@ -89,8 +136,23 @@ export default function Product({ product }: ProductProp) {
           <Grid item xs={12} sm={2.5}>
             <Item>xs=2.5</Item>
             <Box>
-              <CustomCard type='pointy' sx={{ p:2 }}>
-                <CustomPrice value={product.price}/>
+              <CustomCard type='pointy' sx={{ p:2}}>
+                <CustomPrice value={product.price} sx={{ mb:2}}/>
+                <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+                <Box sx={{mt:1.6, mb:1.6}}>
+                  <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
+                  <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
+                    {getRandomDeliveryDate(7)}
+                  </Typography>
+                </Box>
+                <Box sx={{mb:1.5}}>
+                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Or fastest delivery </Typography>
+                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
+                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Order within </Typography>
+                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
+                </Box>
+                {getStock(product.stock)}
+
               </CustomCard>
             </Box>
           </Grid>
