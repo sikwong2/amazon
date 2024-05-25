@@ -12,6 +12,8 @@ import CustomCard from '@/components/Card';
 import { Typography } from '@mui/material';
 import CustomPrice from '@/components/Price';
 import CustomLink from '@/components/Link';
+import CustomButton from '@/components/Button';
+import CustomDropdown from '@/components/Dropdown';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -45,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     console.error("Error retrieving product: ", json.errors);
   }
   const data = await json.data;
-  if (!data.getByProductId) {
+  if (!data || !data.getByProductId) {
     console.error("No product returned");
   } else {
     return_product = data.getByProductId;
@@ -86,9 +88,8 @@ function getTimeTillMidnight() {
   )
 }
 
+// Returns red text if low stock, green text if in stock
 function getStock(stock: number) {
-  const lowStock = stock < 10;
-
   if (stock < 10) {
     return (
         <Typography>
@@ -104,6 +105,7 @@ function getStock(stock: number) {
   }
 }
 
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   padding: '0px',
@@ -116,6 +118,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
+  
+  const addToCart = () => {
+    // add productId to cart context
+    // product added to cart popup???
+  }
+
+  const buyNow = () => {
+    // clear cart context
+    // add productId to cart context 
+    // go to checkout page
+  }
 
   return (
     <>
@@ -152,6 +165,30 @@ export default function Product({ product }: ProductProp) {
                   <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
                 </Box>
                 {getStock(product.stock)}
+                <CustomDropdown label='Quantity' values={Array.from({ length: Math.min(product.stock, 100)}, (_, i) => (i+1).toString())}/>
+                <Box>
+                  <CustomButton 
+                    label='add-to-cart' 
+                    pill 
+                    fullWidth 
+                    onClick={addToCart}
+                    sx={{height:'30px', mt: 1, mb:1}}
+                  >
+                    Add to Cart
+                  </CustomButton>
+                </Box>
+                <Box>
+                  <CustomButton 
+                    label='buy-now' 
+                    color='secondary' 
+                    pill 
+                    fullWidth
+                    onClick={buyNow}
+                    sx={{height:'30px'}}
+                  >
+                    Buy Now
+                  </CustomButton>
+                </Box>
 
               </CustomCard>
             </Box>
