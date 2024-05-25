@@ -10,6 +10,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { useTranslation } from 'next-i18next';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useRouter } from 'next/router';
+import { LoginContext } from '../context/Login'
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: 'rgba(35,47,62)', 
@@ -21,9 +23,7 @@ const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: 'white',
-    '&:hover': {
-        backgroundColor: 'white',
-    },
+    overflow: 'hidden',
     marginLeft: theme.spacing(20), 
     flexGrow: 2,
 }));
@@ -33,8 +33,8 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
     width: '100%',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1),
-        paddingLeft: theme.spacing(2), // Adjust padding to align text to the left
-        paddingRight: `calc(0.5em + ${theme.spacing(2)})`, // Space for the search icon on the right
+        paddingLeft: theme.spacing(2),
+        paddingRight: `calc(0.5em + ${theme.spacing(2)})`, 
         transition: theme.transitions.create('width'),
         width: '100%',
     },
@@ -45,26 +45,30 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   height: '100%',
   position: 'absolute',
   right: 0,
-  pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: '#FFA41C'
+  backgroundColor: '#FFA41C',
+  cursor: 'pointer',
+  borderTopRightRadius: theme.shape.borderRadius,
+  borderBottomRightRadius: theme.shape.borderRadius,
 }));
 
 const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
-    color: 'black', // Set the color of the search icon to black
+    color: 'black', 
 }));
 
-const customButtonStyles = {
+const customButtonStyles: React.CSSProperties = {
     backgroundColor: 'rgba(35,47,62)', 
     color: 'rgba(242,242,242)', 
+    textTransform: 'none'
 };
-
 
 export default function TopBar() {
     const { t } = useTranslation('common');
+    const loginContext = React.useContext(LoginContext)
     const [searchValue, setSearchValue] = React.useState('');
+    const router = useRouter(); 
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
@@ -80,34 +84,45 @@ export default function TopBar() {
       }
     };
 
+    const handleSignIn = () => {
+      router.push('/login');
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <StyledAppBar position="static">
                 <Toolbar>
                     <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                        <CustomButton label='sign-in'>
-                            <Logo width={80} />
-                        </CustomButton>
-                        <Search>
-                            <SearchInput
-                                placeholder={"Search…"}
-                                inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
-                            />
-                            <StyledSearchIcon onClick={handleSearch}/>
-                        </Search>
+                      <Logo width={80} />
+                      <Search>
+                          <SearchInput
+                              placeholder={t("Search") as string}
+                              inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+                          />
+                          <SearchIconWrapper aria-label= 'search-icon' onClick={handleSearch}>
+                              <StyledSearchIcon />
+                          </SearchIconWrapper>
+                      </Search>
                     </Box>
-                    <LanguageButton sx={{ ml: 2 }} style={customButtonStyles} variant='text'/>
+                    <LanguageButton sx={{ ml: 2 }} variant='text'/>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }}>
+                      {loginContext.accessToken.length == 0 && (
+                        <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }} onClick={handleSignIn} caps={false}>
                             {t("Sign in")}
                         </CustomButton> 
-                        <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }}>
-                            {t("Orders")}
-                        </CustomButton>
-                        <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }}>
-                            <ShoppingCartIcon />
-                            {t("Cart")}
-                        </CustomButton>
+                      )}
+                      {loginContext.accessToken.length > 0 && (
+                        <CustomButton style={customButtonStyles} label='user' variant='text' sx={{ ml: 2 }} caps={false}>
+                        {t("Hello") + " " + loginContext.userName}
+                        </CustomButton> 
+                      )}
+                      <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} caps={false}>
+                          {t("Orders")}
+                      </CustomButton>
+                      <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }}>
+                          <ShoppingCartIcon />
+                          {t("Cart")}
+                      </CustomButton> 
                     </Box>
                 </Toolbar>
             </StyledAppBar>
