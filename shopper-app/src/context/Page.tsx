@@ -6,7 +6,7 @@ export const PageContext = createContext({
 });
 
 export const PageProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [page, setPage] = useState('');
+  const [page, setPage] = useState('home');
 
   return (
     <PageContext.Provider value={{ page, setPage }}>
