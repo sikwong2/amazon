@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react"
 import { Product } from "@/graphql/product/schema";
 import { OrderItem } from "@/components/OrderItem";
 import CustomButton from "@/components/Button";
-
+import { useTranslation } from "next-i18next";
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
     const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
@@ -59,6 +59,7 @@ export function OrderHistory() {
   const { id } = useContext(LoginContext);
   const [orders, setOrders] = useState<any[]>([]);
   const [status, setStatus] = useState('pending');
+  const { t } = useTranslation('common');
   useEffect(() => {
     (async () => {
       const shippedOrders = await fetchOrders(id, status);
@@ -81,7 +82,7 @@ export function OrderHistory() {
     <Container maxWidth='md'>
       <CustomDivider>
         <Typography variant='h4' component='h1' gutterBottom sx={{ color: 'black' }}>
-          Your Orders
+          {t("history.your-orders")}
         </Typography>
       </CustomDivider>
       <Toolbar sx={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -90,21 +91,21 @@ export function OrderHistory() {
           sx={{ margin: '1em' }}
           onClick={() => setStatus('pending')}
         >
-          Pending
+          {t("history.pending")}
         </CustomButton>
         <CustomButton
           label='shipped'
           sx={{ margin: '1em' }}
           onClick={() => setStatus('shipped')}
         >
-          Shipped
+          {t("history.shipped")}
         </CustomButton>
         <CustomButton
           label='Completed'
           sx={{ margin: '1em' }}
           onClick={() => setStatus('shipped')}
         >
-          Completed
+          {t("history.completed")}
         </CustomButton>
       </Toolbar>
       {

@@ -44,5 +44,11 @@
     "items": "items",
     "item": "item",
     "subtotal": "Subtotal"
+  },
+  "history": {
+    "your-orders": "Your Orders",
+    "shipped": "Shipped",
+    "pending": "Pending",
+    "completed": "Completed"
   }
 }

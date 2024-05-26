@@ -44,5 +44,11 @@
     "items": "项目",
     "item": "物品",
     "subtotal": "小计"
+  },
+  "history": {
+    "your-orders": "你的命令",
+    "shipped": "已发货",
+    "pending": "待办的",
+    "completed": "完全的"
   }
 }

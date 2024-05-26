@@ -9,6 +9,7 @@ import LanguageButton from '@/components/Language';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
 import { OrderHistory } from '@/views/OrderHistory';
+import { Home } from '@/views/Home';
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
@@ -38,6 +39,7 @@ export default function Index() {
       <div>
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
+      <Home />
     </>
   )
   
