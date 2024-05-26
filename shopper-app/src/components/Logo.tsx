@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import { LoginContext } from "@/context/Login";
 import { useRouter } from 'next/router';
 
+
 export default function Logo({width=200, height='auto', ...rest}) {
   const loginContext = React.useContext(LoginContext)
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function Logo({width=200, height='auto', ...rest}) {
       }}
       >
       <img
-        src={'https://upload.wikimedia.org/wikipedia/commons/4/41/Amazon_PNG6.png'}
+        src={'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'}
         alt='Amazon Logo'
         width={width}
         height={height}

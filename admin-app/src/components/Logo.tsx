@@ -15,7 +15,7 @@ export default function Logo({width=200, height='auto', ...rest}) {
       }}
       >
       <img
-        src={'https://upload.wikimedia.org/wikipedia/commons/4/41/Amazon_PNG6.png'}
+        src={'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'}
         alt='Amazon Logo'
         width={width}
         height={height}
