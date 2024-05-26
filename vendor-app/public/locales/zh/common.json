@@ -35,9 +35,11 @@
     "and": "和",
     "privacy-notice": "隐私声明"
   },
-  "Sign in": "登录",
-  "Orders": "订单",
-  "Cart": "购物车",
-  "Search": "搜索",
-  "Hello": "你好"
+  "topbar": {
+    "Sign-in": "登录",
+    "Orders": "订单",
+    "Cart": "购物车",
+    "Search": "搜索",
+    "Hello": "你好"
+  }
 }

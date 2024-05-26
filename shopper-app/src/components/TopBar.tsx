@@ -96,7 +96,7 @@ export default function TopBar() {
                       <Logo width={80} />
                       <Search>
                           <SearchInput
-                              placeholder={t("Search") as string}
+                              placeholder={t("topbar.Search") as string}
                               inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
                           />
                           <SearchIconWrapper aria-label= 'search-icon' onClick={handleSearch}>
@@ -108,20 +108,20 @@ export default function TopBar() {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       {loginContext.accessToken.length == 0 && (
                         <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }} onClick={handleSignIn} caps={false}>
-                            {t("Sign in")}
+                            {t("topbar.Sign-in")}
                         </CustomButton> 
                       )}
                       {loginContext.accessToken.length > 0 && (
                         <CustomButton style={customButtonStyles} label='user' variant='text' sx={{ ml: 2 }} caps={false}>
-                        {t("Hello") + " " + loginContext.userName}
+                        {t("topbar.Hello") + " " + loginContext.userName}
                         </CustomButton> 
                       )}
                       <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} caps={false}>
-                          {t("Orders")}
+                          {t("topbar.Orders")}
                       </CustomButton>
                       <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }}>
                           <ShoppingCartIcon />
-                          {t("Cart")}
+                          {t("topbar.Cart")}
                       </CustomButton> 
                     </Box>
                 </Toolbar>
