@@ -19,8 +19,8 @@ export function Approval() {
   const [status, setStatus] = useState(false);
 
   const fetchStatus = () => {
-    const query = { query: `query { status(accessToken: "${loginContext.accessToken}") }` };
-    fetch('/api/graphql', {
+    const query = { query: `query { status }` };
+    fetch('/vendor/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -31,8 +31,7 @@ export function Approval() {
         return res.json();
       })
       .then((json) => {
-        console.log(json.data.status);
-        setStatus(json.data.status);
+        console.log(json);
       });
   };
 
@@ -99,7 +98,6 @@ export function Approval() {
   );
 
   if (loginContext.role !== 'vendor') {
-    console.log(loginContext.role);
     return <RedirectNonVendor />;
   }
 

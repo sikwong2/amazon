@@ -33,9 +33,3 @@ export class Member {
   @Field()
     role!: string
 }
-
-@ArgsType()
-export class AccessToken {
-  @Field()
-    accessToken!: string
-}

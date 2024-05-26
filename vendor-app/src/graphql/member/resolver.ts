@@ -1,4 +1,6 @@
-import { 
+import {
+  Authorized,
+  Ctx, 
   Resolver, 
   Mutation,
   Arg,
@@ -7,8 +9,9 @@ import {
 
 import { Member } from "./schema"
 import { MemberRequest } from "./schema"
-import { AccessToken } from "./schema"
 import { MemberService } from "./service"
+import type { NextApiRequest } from 'next'
+
 
 @Resolver()
 export class MemberResolver {
@@ -25,10 +28,10 @@ export class MemberResolver {
         return response;
       })
   }
-
+ 
+  @Authorized('vendor')
   @Query(() => Boolean)
-  async status(@Arg("accessToken") accessToken : string): Promise<Boolean> {
-    return new MemberService().status(accessToken);
+  async status(@Ctx() request: NextApiRequest): Promise<Boolean> {
+    return new MemberService().status(request.user?.id);
   }
-
 }

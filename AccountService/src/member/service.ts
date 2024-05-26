@@ -66,21 +66,10 @@ export class MemberService {
    * If the role is not 'vendor', it returns false.
    * If the role is 'vendor', it queries the database for the status of the account and returns it.
    *
-   * @param {string} accessToken - The access token associated with the account.
+   * @param {string} id - The id of the account.
    * @returns {Promise<boolean>} - A promise that resolves to the status of the account if it's a vendor account, or false otherwise.
    */
-  public async vendorStatus(accessToken: string): Promise<boolean> {
-    const user = await new AccountService().check(accessToken);
-
-    if (!user) {
-      return false
-    }
-
-    const {id, role} = user;
-
-    if (role !== 'vendor') {
-      return false;
-    }
+  public async vendorStatus(id: string): Promise<boolean> {
 
     let select =
       ` SELECT data->>'status' as status FROM account` +
@@ -96,8 +85,6 @@ export class MemberService {
     if (rows.length !== 1) {
       return false;
     }
-
-    console.log(rows[0].status);
 
     if (rows[0].status === 'true') {
       return true;

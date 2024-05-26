@@ -45,7 +45,7 @@ export function Login() {
           loginContext.setAccessToken(json.data.login.accessToken);
           loginContext.setUserName(json.data.login.name);
           loginContext.setRole(json.data.login.role);
-          console.log(json.data);
+          loginContext.setId(json.data.login.id);
         }
       })
       .catch((e) => {

@@ -27,9 +27,9 @@ export class MemberService {
     })
   }
 
-  async status(accessToken: string): Promise<boolean> {
+  async status(id: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/vendorstatus?accessToken=` + accessToken, {
+      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/vendorstatus?id=${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
