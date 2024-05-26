@@ -103,7 +103,7 @@ export function OrderHistory() {
         <CustomButton
           label='Completed'
           sx={{ margin: '1em' }}
-          onClick={() => setStatus('shipped')}
+          onClick={() => setStatus('completed')}
         >
           {t("history.completed")}
         </CustomButton>
