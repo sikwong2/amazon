@@ -7,7 +7,7 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import Logo from '../components/Logo';
+import Logo, { defaultLogoWidth } from '../components/Logo';
 import CustomDivider from '@/components/Divider';
 import CustomCard from '@/components/Card';
 import { SignupContext } from '@/context/Signup';
@@ -63,7 +63,7 @@ export function Login() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={100} height='auto'/>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{
