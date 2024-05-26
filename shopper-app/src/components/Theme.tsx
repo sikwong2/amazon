@@ -291,6 +291,7 @@ export const dropdownTheme = createTheme(globalTheme, {
     MuiFormControl: {
       styleOverrides: {
         root: {
+          width: '100%',
           marginBottom:8,
           borderRadius: 8,
           position: 'relative',

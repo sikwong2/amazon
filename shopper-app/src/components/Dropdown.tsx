@@ -1,7 +1,7 @@
 // source: https://mui.com/material-ui/react-select/
 
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
@@ -12,7 +12,7 @@ import { dropdownTheme } from './Theme';
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
-interface CustomDropdownProps extends Omit<SelectProps<string>, 'value' | 'onChange'> {
+interface CustomDropdownProps extends BoxProps {
   label: string,
   values: string[],
   selectedValue: string,
@@ -26,7 +26,7 @@ export default function CustomDropdown({ label, values, selectedValue, setSelect
 
   return (
     <ThemeProvider theme={dropdownTheme}>
-      <Box sx={{ minWidth: 120 }}>
+      <Box {...rest}>
         <FormControl>
           <Select
             labelId={label}
@@ -37,7 +37,6 @@ export default function CustomDropdown({ label, values, selectedValue, setSelect
             renderValue={() => `${label}: ${selectedValue}`}
             onChange={handleChange}
             input={<BootstrapInput/>}
-            {...rest}
             >
             {values.map(value => (
               <MenuItem key={value} value={value}>{value}</MenuItem>

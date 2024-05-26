@@ -192,8 +192,8 @@ export default function Product({ product }: ProductProp) {
   )
 
   const RightContainer = (
-    <CustomCard type='pointy' sx={{ p:2}}>
-      <CustomPrice value={product.price} sx={{ mb:2}}/>
+    <CustomCard type='pointy' sx={{ p:2 }}>
+      <CustomPrice value={product.price} sx={{ mb:2 }}/>
       <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
       <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}}>
         <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
@@ -212,7 +212,7 @@ export default function Product({ product }: ProductProp) {
         label='Quantity' 
         selectedValue={quantity.toString()} // default quantity
         setSelectedValue={handleSetValue}
-        sx={{ width:215 }}
+        sx={{ mr:3 }}
         values={Array.from({ length: Math.min(product.stock, 10)}, (_, i) => (i+1).toString())}
       />
       <Box>
