@@ -39,15 +39,12 @@ export default function Index() {
       <div>
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
-      <Home />
+      <Home/>
     </>
   )
   
   return (
     <Fragment>
-      <p>
-        {pageContext.page}
-      </p>
       {pageContext.page === 'home' && home}
       {pageContext.page === 'cart' && <Cart/>}
       {pageContext.page === 'orderHistory' && <OrderHistory />}
