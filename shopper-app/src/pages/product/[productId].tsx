@@ -9,13 +9,15 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CustomCard from '@/components/Card';
-import { Typography } from '@mui/material';
+import { List, ListItem, Typography } from '@mui/material';
 import CustomPrice from '@/components/Price';
 import CustomLink from '@/components/Link';
 import CustomButton from '@/components/Button';
 import CustomDropdown from '@/components/Dropdown';
 import { useRouter } from 'next/router';
 import CustomRating from '@/components/Rating';
+import CustomDivider from '@/components/Divider';
+import AmazonChoice from '@/components/AmazonChoice';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -25,8 +27,8 @@ interface Product {
   price: number,
   stock: number,
   rating: number,
-  image: String[],
-  description: String[]
+  image: string[],
+  description: string[]
 }
 
 interface ProductProp {
@@ -107,6 +109,20 @@ function getStock(stock: number) {
   }
 }
 
+function productDescription(description: string[]) {
+  return (
+    <>
+      <List sx={{ listStyleType: 'disc', pl:2, lineHeight:1.4 }}>
+        {description.map((des) => (
+            <ListItem key={des} sx={{ display: 'list-item', p:0, mb:1 }}>
+              {des}
+            </ListItem>
+        ))}
+      </List>
+    </>
+  )
+}
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -139,17 +155,17 @@ export default function Product({ product }: ProductProp) {
     // go to checkout page
   }
 
-  const RightBar = (
+  const RightContainer = (
     <CustomCard type='pointy' sx={{ p:2}}>
       <CustomPrice value={product.price} sx={{ mb:2}}/>
       <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
-      <Box sx={{mt:1.6, mb:1.6}}>
+      <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}}>
         <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
         <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
           {getRandomDeliveryDate(7)}
         </Typography>
       </Box>
-      <Box sx={{mb:1.5}}>
+      <Box aria-label='fastest-delivery' sx={{mb:1.5}}>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Or fastest delivery </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Order within </Typography>
@@ -204,18 +220,26 @@ export default function Product({ product }: ProductProp) {
           </Grid>
           <Grid item xs={12} sm={5}>
             <Item>xs=5</Item>
-            <Box>
+            <Box aria-label='product-details'>
               <Typography component='h1' variant='h1' sx={{fontSize:'1.5em', lineHeight:1.33}}>
                 {product.name}
               </Typography>
               <CustomLink href={`/product/${productId}`} label='visit-product-store'>Visit the Amazon Store</CustomLink>
               <CustomRating rating={product.rating} size='small'/>
-
+              <AmazonChoice/>
+              <CustomDivider sx={{mt:2, mb:2}}/>
+              <CustomPrice value={product.price} sx={{mb:1}}/>
+              <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+              <CustomDivider sx={{mt:2, mb:2}}/>
+              <Box>
+                <Typography fontWeight='bold'>About this item</Typography>
+                {productDescription(product.description)}
+              </Box>
             </Box>
           </Grid>
           <Grid item xs={12} sm={2.5}>
             <Item>xs=2.5</Item>
-            {RightBar}
+            {RightContainer}
           </Grid>
         </Grid>
       </Box>
