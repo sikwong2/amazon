@@ -8,8 +8,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import CustomCard from '@/components/Card';
 import { List, ListItem, Typography } from '@mui/material';
+import CustomCard from '@/components/Card';
 import CustomPrice from '@/components/Price';
 import CustomLink from '@/components/Link';
 import CustomButton from '@/components/Button';
@@ -18,9 +18,21 @@ import { useRouter } from 'next/router';
 import CustomRating from '@/components/Rating';
 import CustomDivider from '@/components/Divider';
 import AmazonChoice from '@/components/AmazonChoice';
+import ProductDisplay from '@/components/ProductDisplay';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/*
+TODO:
+ - add to cart button
+ - buy now button
+ - translations
+ - fix quantity dropdown width
+ - add categories 
+
+*/
+
 
 interface Product {
   name: string,
@@ -109,6 +121,7 @@ function getStock(stock: number) {
   }
 }
 
+// Displays product description in a bulleted list
 function productDescription(description: string[]) {
   return (
     <>
@@ -122,7 +135,6 @@ function productDescription(description: string[]) {
     </>
   )
 }
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -154,6 +166,30 @@ export default function Product({ product }: ProductProp) {
     // add productId to cart context 
     // go to checkout page
   }
+
+  const MiddleContainer = (
+    <Box aria-label='product-details'>
+      <Typography component='h1' variant='h1' sx={{fontSize:'1.5em', lineHeight:1.33}}>
+        {product.name}
+      </Typography>
+      <CustomLink href={`/product/${productId}`} label='visit-product-store'>Visit the Amazon Store</CustomLink>
+      <CustomRating rating={product.rating} size='small'/>
+      <Box>
+        <AmazonChoice sx={{mt:1}}/>
+        <Typography sx={{ml:0.5}}>
+          in [insert product category]
+        </Typography>
+      </Box>
+      <CustomDivider sx={{mt:2, mb:2, width:'98%'}}/>
+      <CustomPrice value={product.price} sx={{mb:1}}/>
+      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+      <CustomDivider sx={{mt:2, mb:2, width:'98%'}}/>
+      <Box>
+        <Typography fontWeight='bold'>About this item</Typography>
+        {productDescription(product.description)}
+      </Box>
+    </Box>
+  )
 
   const RightContainer = (
     <CustomCard type='pointy' sx={{ p:2}}>
@@ -207,38 +243,15 @@ export default function Product({ product }: ProductProp) {
 
   return (
     <>
-      <p> {product.name} </p>
-      <p> {product.stock} </p>
-      <p> {product.price} </p>
-      <p> {product.rating} </p>
-      <p> {product.image} </p>
-      <p> {product.description} </p>
       <Box sx={{ flexGrow: 1, p:2.2 }}>
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={4.5}>
-            <Item>xs=4.5</Item>
+          <Grid item xs={12} sm={4.5} sx={{padding:'0px'}}>
+            <ProductDisplay images={product.image}/>
           </Grid>
           <Grid item xs={12} sm={5}>
-            <Item>xs=5</Item>
-            <Box aria-label='product-details'>
-              <Typography component='h1' variant='h1' sx={{fontSize:'1.5em', lineHeight:1.33}}>
-                {product.name}
-              </Typography>
-              <CustomLink href={`/product/${productId}`} label='visit-product-store'>Visit the Amazon Store</CustomLink>
-              <CustomRating rating={product.rating} size='small'/>
-              <AmazonChoice/>
-              <CustomDivider sx={{mt:2, mb:2}}/>
-              <CustomPrice value={product.price} sx={{mb:1}}/>
-              <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
-              <CustomDivider sx={{mt:2, mb:2}}/>
-              <Box>
-                <Typography fontWeight='bold'>About this item</Typography>
-                {productDescription(product.description)}
-              </Box>
-            </Box>
+            {MiddleContainer}
           </Grid>
           <Grid item xs={12} sm={2.5}>
-            <Item>xs=2.5</Item>
             {RightContainer}
           </Grid>
         </Grid>
