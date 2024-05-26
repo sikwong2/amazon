@@ -2,7 +2,7 @@ export interface NewProduct {
   name: string,
   price: number,
   stock: number,
-  image?: string[],
+  image: string[],
   rating?: number,
   category?: string[],
   description?: string[]
@@ -14,7 +14,7 @@ export interface Product {
     name: string,
     price: number,
     stock: number,
-    image?: string[],
+    image: string[],
     rating?: number,
     category?: string[],
     description?: string[]

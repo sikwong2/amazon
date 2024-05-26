@@ -16,11 +16,11 @@ import { defaultLogoWidth } from '../components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
-  const [user, setUser] = React.useState({email: '', password: ''});
+  const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
 
   // router to change pages
-  const router = useRouter(); 
+  const router = useRouter();
 
   const createAccount = () => {
     router.push('/signup');
@@ -33,7 +33,7 @@ export function Login() {
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
     setUser(u);
-    const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
+    const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken }}` }
     fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -50,6 +50,7 @@ export function Login() {
         } else {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
+          loginContext.setId(json.data.login.id);
           router.push('/'); // sets path to home page
         }
       })

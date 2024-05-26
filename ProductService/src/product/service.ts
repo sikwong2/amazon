@@ -89,7 +89,7 @@ export class ProductService {
     }
     const { rows } = await pool.query(query);
 
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   /**
@@ -102,7 +102,7 @@ export class ProductService {
     }
 
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   public async getId(productId: string): Promise<Product | undefined> {
@@ -111,6 +111,6 @@ export class ProductService {
       values: [productId]
     }
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 }
