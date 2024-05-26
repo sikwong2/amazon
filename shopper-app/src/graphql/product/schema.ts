@@ -16,7 +16,7 @@ export class Product {
   @IsNotEmpty()
     stock!: number
   @Field(() => [String])
-    image?: string[]
+    image!: string[]
   @Field()
     rating?: number
   @Field(() => [String])

@@ -11,22 +11,14 @@
     "email": "电子邮件",
     "emailaddress": "电子邮件地址",
     "password": "密码",
-    "new-to-amazon": "亚马逊新手?"
+    "new-to-amazon": "亚马逊新手?",
+    "agreement": "继续即表示您同意亚马逊的",
+    "conditions": "使用条件",
+    "and": "和",
+    "privacy-notice": "隐私声明",
+    "need-help": "需要帮忙?",
+    "create-account": "创建您的亚马逊帐户"
   },
-  "cart": {
-    "proceed-to-checkout": "进行结算",
-    "shopping-cart": "购物车",
-    "items": "项目",
-    "item": "物品",
-    "subtotal": "小计"
-  },
-  "new-to-amazon": "亚马逊新手?",
-  "agreement": "继续即表示您同意亚马逊的",
-  "conditions": "使用条件",
-  "and": "和",
-  "privacy-notice": "隐私声明",
-  "need-help": "需要帮忙?",
-  "create-account": "创建您的亚马逊帐户",
   "signup": {
     "title": "创建购物者帐户",
     "name": "名字",
@@ -46,12 +38,11 @@
     "and": "和",
     "privacy-notice": "隐私声明"
   },
-  "home": {
-    "pick-up": "继续逛",
-    "keep-shopping": "继续买",
-    "top-deal": "优惠",
-    "easy-returns": "轻松退货",
-    "easy-returns-body": "亚马逊对订单和礼品提供灵活的退货运费",
-    "learn-more": "了解更多"
+  "cart": {
+    "proceed-to-checkout": "进行结算",
+    "shopping-cart": "购物车",
+    "items": "项目",
+    "item": "物品",
+    "subtotal": "小计"
   }
 }
