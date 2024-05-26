@@ -14,6 +14,8 @@ import CustomPrice from '@/components/Price';
 import CustomLink from '@/components/Link';
 import CustomButton from '@/components/Button';
 import CustomDropdown from '@/components/Dropdown';
+import { useRouter } from 'next/router';
+import CustomRating from '@/components/Rating';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -119,6 +121,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
   const [quantity, setQuantity] = useState(1)
+  const router = useRouter();
+  const { productId } = router.query;
 
   const handleSetValue = (value: string) => {
     setQuantity(parseInt(value));
@@ -135,6 +139,56 @@ export default function Product({ product }: ProductProp) {
     // go to checkout page
   }
 
+  const RightBar = (
+    <CustomCard type='pointy' sx={{ p:2}}>
+      <CustomPrice value={product.price} sx={{ mb:2}}/>
+      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+      <Box sx={{mt:1.6, mb:1.6}}>
+        <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
+        <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
+          {getRandomDeliveryDate(7)}
+        </Typography>
+      </Box>
+      <Box sx={{mb:1.5}}>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Or fastest delivery </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Order within </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
+      </Box>
+      {getStock(product.stock)}
+      <CustomDropdown 
+        label='Quantity' 
+        selectedValue={quantity.toString()} // default quantity
+        setSelectedValue={handleSetValue}
+        sx={{ width:215 }}
+        values={Array.from({ length: Math.min(product.stock, 10)}, (_, i) => (i+1).toString())}
+      />
+      <Box>
+        <CustomButton 
+          label='add-to-cart' 
+          pill 
+          fullWidth 
+          onClick={addToCart}
+          sx={{height:'30px', mt: 1, mb:1}}
+        >
+          Add to Cart
+        </CustomButton>
+      </Box>
+      <Box>
+        <CustomButton 
+          label='buy-now' 
+          color='secondary' 
+          pill 
+          fullWidth
+          onClick={buyNow}
+          sx={{height:'30px'}}
+        >
+          Buy Now
+        </CustomButton>
+      </Box>
+    </CustomCard>
+  )
+
   return (
     <>
       <p> {product.name} </p>
@@ -150,59 +204,18 @@ export default function Product({ product }: ProductProp) {
           </Grid>
           <Grid item xs={12} sm={5}>
             <Item>xs=5</Item>
+            <Box>
+              <Typography component='h1' variant='h1' sx={{fontSize:'1.5em', lineHeight:1.33}}>
+                {product.name}
+              </Typography>
+              <CustomLink href={`/product/${productId}`} label='visit-product-store'>Visit the Amazon Store</CustomLink>
+              <CustomRating rating={product.rating} size='small'/>
+
+            </Box>
           </Grid>
           <Grid item xs={12} sm={2.5}>
             <Item>xs=2.5</Item>
-            <Box>
-              <CustomCard type='pointy' sx={{ p:2}}>
-                <CustomPrice value={product.price} sx={{ mb:2}}/>
-                <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
-                <Box sx={{mt:1.6, mb:1.6}}>
-                  <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
-                  <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
-                    {getRandomDeliveryDate(7)}
-                  </Typography>
-                </Box>
-                <Box sx={{mb:1.5}}>
-                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Or fastest delivery </Typography>
-                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
-                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Order within </Typography>
-                  <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
-                </Box>
-                {getStock(product.stock)}
-                <CustomDropdown 
-                  label='Quantity' 
-                  selectedValue={quantity.toString()} // default quantity
-                  setSelectedValue={handleSetValue}
-                  sx={{ width:215 }}
-                  values={Array.from({ length: Math.min(product.stock, 10)}, (_, i) => (i+1).toString())}
-                />
-                <Box>
-                  <CustomButton 
-                    label='add-to-cart' 
-                    pill 
-                    fullWidth 
-                    onClick={addToCart}
-                    sx={{height:'30px', mt: 1, mb:1}}
-                  >
-                    Add to Cart
-                  </CustomButton>
-                </Box>
-                <Box>
-                  <CustomButton 
-                    label='buy-now' 
-                    color='secondary' 
-                    pill 
-                    fullWidth
-                    onClick={buyNow}
-                    sx={{height:'30px'}}
-                  >
-                    Buy Now
-                  </CustomButton>
-                </Box>
-
-              </CustomCard>
-            </Box>
+            {RightBar}
           </Grid>
         </Grid>
       </Box>
