@@ -28,7 +28,7 @@ TODO:
  - add to cart button
  - buy now button
  - translations
- - fix quantity dropdown width
+ -x fix quantity dropdown width
  - add categories 
 
 */
@@ -48,7 +48,6 @@ interface ProductProp {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log("productID: ", context.query.productId);
   const query = { query: `query product{getByProductId(productId: "${(context.query.productId)}") {name, price, stock, rating, image, description}}` };
   const res = await fetch('http://localhost:3000/api/graphql', {
     method: 'POST',
@@ -104,23 +103,6 @@ function getTimeTillMidnight() {
   )
 }
 
-// Returns red text if low stock, green text if in stock
-function getStock(stock: number) {
-  if (stock < 10) {
-    return (
-        <Typography>
-          Only {stock} left in stock - order soon.
-        </Typography>
-    )
-  } else {
-    return (
-      <Typography sx={{ fontSize:'1.2rem', color:'#007600', pt:0.5, mb:1.5 }}>
-        In Stock
-      </Typography>
-    )
-  }
-}
-
 // Displays product description in a bulleted list
 function productDescription(description: string[]) {
   return (
@@ -167,12 +149,29 @@ export default function Product({ product }: ProductProp) {
     // go to checkout page
   }
 
+  // Returns red text if low stock, green text if in stock
+  function getStock() {
+    if (product.stock < 10) {
+      return (
+          <Typography sx={{ fontSize:'1.2rem', color:'#b12704', pt: 0.5, mb: 1.5}}>
+            {t("product.stock.only")} {product.stock} {t("product.stock.order-soon")}
+          </Typography>
+      )
+    } else {
+      return (
+        <Typography sx={{ fontSize:'1.2rem', color:'#007600', pt:0.5, mb:1.5 }}>
+          {t("product.stock.in-stock")}
+        </Typography>
+      )
+    }
+  }
+
   const MiddleContainer = (
     <Box aria-label='product-details'>
       <Typography component='h1' variant='h1' sx={{fontSize:'1.5em', lineHeight:1.33}}>
         {product.name}
       </Typography>
-      <CustomLink href={`/product/${productId}`} label='visit-product-store'>Visit the Amazon Store</CustomLink>
+      <CustomLink href={`/product/${productId}`} label='visit-product-store'>{t("product.visit-amazon")}</CustomLink>
       <CustomRating rating={product.rating} size='small'/>
       <Box>
         <AmazonChoice sx={{mt:1}}/>
@@ -182,10 +181,10 @@ export default function Product({ product }: ProductProp) {
       </Box>
       <CustomDivider sx={{mt:2, mb:2, width:'98%'}}/>
       <CustomPrice value={product.price} sx={{mb:1}}/>
-      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>{t("product.free-returns")}</CustomLink>
       <CustomDivider sx={{mt:2, mb:2, width:'98%'}}/>
       <Box>
-        <Typography fontWeight='bold'>About this item</Typography>
+        <Typography fontWeight='bold'>{t("product.about-item")}</Typography>
         {productDescription(product.description)}
       </Box>
     </Box>
@@ -194,26 +193,26 @@ export default function Product({ product }: ProductProp) {
   const RightContainer = (
     <CustomCard type='pointy' sx={{ p:2 }}>
       <CustomPrice value={product.price} sx={{ mb:2 }}/>
-      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>FREE Returns</CustomLink>
+      <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>{t("product.free-returns")}</CustomLink>
       <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}}>
-        <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> FREE delivery </CustomLink>
+        <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> {t("product.free-delivery")} </CustomLink>
         <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
           {getRandomDeliveryDate(7)}
         </Typography>
       </Box>
       <Box aria-label='fastest-delivery' sx={{mb:1.5}}>
-        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Or fastest delivery </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.fastest-delivery")} </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
-        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>Order within </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.order-within")} </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
       </Box>
-      {getStock(product.stock)}
+      {getStock()}
       <CustomDropdown 
-        label='Quantity' 
+        label={t("product.quantity")} 
         selectedValue={quantity.toString()} // default quantity
         setSelectedValue={handleSetValue}
         sx={{ mr:3 }}
-        values={Array.from({ length: Math.min(product.stock, 10)}, (_, i) => (i+1).toString())}
+        values={Array.from({ length: Math.min(product.stock, 100)}, (_, i) => (i+1).toString())}
       />
       <Box>
         <CustomButton 
@@ -223,7 +222,7 @@ export default function Product({ product }: ProductProp) {
           onClick={addToCart}
           sx={{height:'30px', mt: 1, mb:1}}
         >
-          Add to Cart
+          {t("product.add-to-cart")}
         </CustomButton>
       </Box>
       <Box>
@@ -235,7 +234,7 @@ export default function Product({ product }: ProductProp) {
           onClick={buyNow}
           sx={{height:'30px'}}
         >
-          Buy Now
+          {t("product.buy-now")}
         </CustomButton>
       </Box>
     </CustomCard>

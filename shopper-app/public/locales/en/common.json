@@ -37,5 +37,21 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice"
+  },
+  "product": {
+    "stock": {
+      "only": "only",
+      "order-soon": "left in stock - order soon.",
+      "in-stock": "In Stock"
+    },
+    "about-item": "About this item",
+    "free-returns": "FREE Returns",
+    "free-delivery": "FREE delivery",
+    "fastest-delivery": "Or fastest delivery",
+    "order-within": "Order within",
+    "add-to-cart": "Add to Cart",
+    "buy-now": "Buy Now",
+    "visit-amazon": "Visit the Amazon Store",
+    "quantity": "Quantity"
   }
 }

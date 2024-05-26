@@ -37,5 +37,21 @@
     "conditions": "使用条件",
     "and": "和",
     "privacy-notice": "隐私声明"
+  },
+  "product": {
+    "stock": {
+      "only": "仅有的",
+      "order-soon": "尚有库存 - 请尽快订购",
+      "in-stock": "有存货"
+    },
+    "about-item": "关于此商品",
+    "free-returns": "免费退货",
+    "free-delivery": "免费送货",
+    "fastest-delivery": "或者最快的交货",
+    "order-within": "订购范围内",
+    "add-to-cart": "添加到购物车",
+    "buy-now": "立即购买",
+    "visit-amazon": "访问亚马逊商店",
+    "quantity": "数量"
   }
 }
