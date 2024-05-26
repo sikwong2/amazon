@@ -236,4 +236,77 @@ export const linkThemes = {
     }
   })
 
+  
 };
+
+export const dropdownTheme = createTheme(globalTheme, {
+  components: {
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          '&:focus': {
+            outline: '3px solid #007185',
+            outlineOffset: '2px',
+            borderColor: '#d5d9d9',
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&:focus': {
+            outline: '3px solid #007185',
+            outlineOffset: '2px',
+            borderColor: '#d5d9d9',
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontSize: '1rem',
+          padding: '2px 12px 1px 13px',
+          border: '1px solid transparent',
+          whiteSpace: 'nowrap',
+          ml: '1px',
+          '&:hover': {
+            backgroundColor: '#f0f2f2',
+          },
+          '&.Mui-selected': {
+            backgroundColor: '#EDFDFF', 
+            border: '1px solid transparent',
+            borderColor: '#007185',
+            '&:hover': {
+              backgroundColor: '#f0f2f2',
+            },
+          },
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          marginBottom:8,
+          borderRadius: 8,
+          position: 'relative',
+          backgroundColor: '#f0f2f2',
+          border: '1px solid #ced4da',
+          fontSize: 14,
+          padding: '0px 10px 0px 12px',
+          lineHeight: '2',
+          '&:active': {
+            outline: '3px solid #007185',
+            outlineOffset: '2px',
+            borderColor: '#d5d9d9',
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  },
+});

@@ -1,6 +1,6 @@
 // source: https://mui.com/material-ui/react-grid/#responsive-values
 
-import React from 'react';
+import React, { useState } from 'react';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
@@ -118,6 +118,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
+  const [quantity, setQuantity] = useState(1)
+
+  const handleSetValue = (value: string) => {
+    setQuantity(parseInt(value));
+  }
   
   const addToCart = () => {
     // add productId to cart context
@@ -165,7 +170,13 @@ export default function Product({ product }: ProductProp) {
                   <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
                 </Box>
                 {getStock(product.stock)}
-                <CustomDropdown label='Quantity' values={Array.from({ length: Math.min(product.stock, 100)}, (_, i) => (i+1).toString())}/>
+                <CustomDropdown 
+                  label='Quantity' 
+                  selectedValue={quantity.toString()} // default quantity
+                  setSelectedValue={handleSetValue}
+                  sx={{ width:215 }}
+                  values={Array.from({ length: Math.min(product.stock, 10)}, (_, i) => (i+1).toString())}
+                />
                 <Box>
                   <CustomButton 
                     label='add-to-cart' 

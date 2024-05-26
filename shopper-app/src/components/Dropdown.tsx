@@ -1,39 +1,48 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
+import { InputBase, ThemeProvider, styled } from '@mui/material';
+import { dropdownTheme } from './Theme';
 
-interface CustomDropdownProps {
+// leave this here or mystery padding appears 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+}));
+
+interface CustomDropdownProps extends Omit<SelectProps<string>, 'value' | 'onChange'> {
   label: string,
-  values: string[]
+  values: string[],
+  selectedValue: string,
+  setSelectedValue: any
 }
 
-export default function CustomDropdown({ label, values, ...rest}: CustomDropdownProps & SelectProps) {
-  const [age, setAge] = React.useState('');
-
+export default function CustomDropdown({ label, values, selectedValue, setSelectedValue, ...rest}: CustomDropdownProps) {
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setSelectedValue(event.target.value as string);
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        {/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age} // + values[0]
-          aria-label={label}
-          // onChange={handleChange}
-          {...rest}
-        >
-          {values.map(value => (
-            <MenuItem key={value} value={value}>{value}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <ThemeProvider theme={dropdownTheme}>
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl>
+          <Select
+            labelId={label}
+            id={label}
+            aria-label={label}
+            defaultValue={values[0]}
+            value={selectedValue}
+            renderValue={() => `${label}: ${selectedValue}`}
+            onChange={handleChange}
+            input={<BootstrapInput/>}
+            {...rest}
+            >
+            {values.map(value => (
+              <MenuItem key={value} value={value}>{value}</MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+      </Box>
+    </ThemeProvider>
   );
 }
