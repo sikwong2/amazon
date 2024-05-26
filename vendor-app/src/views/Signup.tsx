@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield'
 import CustomButton from '../components/Button';
-import Logo from '../components/Logo';
+import Logo, { defaultLogoWidth } from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import { SignupContext } from '@/context/Signup';
@@ -74,7 +74,7 @@ export function SignUp() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={100} height='auto'/>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{

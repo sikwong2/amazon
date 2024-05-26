@@ -12,6 +12,7 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
+import { defaultLogoWidth } from '../components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -65,7 +66,7 @@ export function Login() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={100} height='auto'/>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{
