@@ -41,12 +41,12 @@ export default function Index() {
       </div>
     </>
   )
-   
+
   return (
     <Fragment>
-      <p>
+      {/* <p>
         {pageContext.page}
-      </p>
+      </p> */}
       {pageContext.page === 'home' && home}
       {pageContext.page === 'cart' && <Cart/>}
       {pageContext.page === 'checkout' && <Checkout/>}

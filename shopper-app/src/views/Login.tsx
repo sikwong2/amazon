@@ -13,10 +13,12 @@ import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
 import { PageContext } from '@/context/Page';
+import { CartContext } from '@/context/Cart';
 
 
 export function Login() {
-  const { page, setPage } = React.useContext(PageContext)
+  const { setPage } = React.useContext(PageContext)
+  const { setCart } = React.useContext(CartContext)
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
@@ -53,6 +55,7 @@ export function Login() {
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
           loginContext.setId(json.data.login.id);
+          setCart(['6a2212e5-af0b-4472-a724-537bdc6c571c', '20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', 'fb31be70-f4f3-4ccc-b483-14e831dc61d1', 'e64edcc9-3262-49b8-bda4-066c34089e05']);
           setPage('cart'); // setting this to cart just to test cart page
           router.push('/'); // sets path to home page
         }
