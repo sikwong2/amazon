@@ -14,8 +14,6 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 
 export default function SignupPage() {
   return (
-    <LoginProvider>
-      <SignUp/>
-    </LoginProvider>
+    <SignUp/>
   )
 }

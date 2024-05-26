@@ -5,7 +5,7 @@ services:
     container_name: testdatabase
     image: postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_ACCOUNT_DATABASE}
+      POSTGRES_DB: ${POSTGRES_ORDER_DATABASE}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:

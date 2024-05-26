@@ -16,6 +16,7 @@ export type SessionUser = {
 }
 
 export type OrdersInfo = {
+  orderId: string
   productId: string
   shopperId: string
   vendorId: string

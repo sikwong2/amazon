@@ -2,6 +2,7 @@
 const { i18n } = require('./next-i18next.config')
 
 const nextConfig = {
+  basePath: '/admin',
   reactStrictMode: true,
   i18n,
   webpack: (config) => {

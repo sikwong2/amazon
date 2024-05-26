@@ -1,24 +1,81 @@
 import { pool } from '../db'
-import { NewProduct, Product } from '.'
+import { NewProduct, Product, Order, Sort } from '.'
 
 export class ProductService {
   public async getAll(): Promise<Product[]> {
     const query = {
-      text: 'SELECT * FROM product;',
+      text: 'SELECT id, data FROM product;',
       values: [],
     }
     const { rows } = await pool.query(query);
     const products: Product[] = [];
-
     for (const row of rows) {
       products.push({
         id: row.id,
         data: {
-          name: row.data.name,
-          price: row.data.name,
-          stock: row.data.stock,
-          image: row.data.image,
-          rating: row.data.rating,
+          ...row.data
+        }
+      })
+    }
+    return products;
+  }
+
+  public async getByPage(page: number, size: number, order: Order, sort: Sort) {
+    let select;
+    if (order === 'price' || order === 'rating' || order === 'stock') {
+      select = `SELECT id, data FROM product 
+      AS subquery 
+      ORDER BY (subquery.data->>'${order}')::numeric ${sort} 
+      LIMIT $1 OFFSET $2`
+    } else {
+      select = `SELECT id, data FROM product 
+      AS subquery 
+      ORDER BY (subquery.data->>'${order}') ${sort} 
+      LIMIT $1 OFFSET $2`
+    }
+    const query = {
+      text: select,
+      values: [size, `${page * 30}`]
+    }
+    const {rows} = await pool.query(query);
+    const products: Product[] = [];
+    for (const row of rows) {
+      products.push({
+        id: row.id,
+        data: {
+          ...row.data
+        }
+      })
+    }
+    return products;
+  }
+
+  // https://stackoverflow.com/questions/45918260/restful-api-multiple-query-strings-over-multiple-resources-for-filtering
+  public async getByCategory(category: string, page: number, size: number, order: Order, sort: Sort): Promise<Product[]> {
+    let select;
+    if (order === 'price' || order === 'rating' || order === 'stock') {
+      select = `SELECT id, data FROM product 
+      WHERE (data->'category') ? $1
+      ORDER BY (data->>'${order}')::numeric ${sort} 
+      LIMIT $2 OFFSET $3`;
+    } else {
+      select = `SELECT id, data FROM product 
+      WHERE (data->'category') ? $1
+      ORDER BY (data->>'${order}') ${sort} 
+      LIMIT $2 OFFSET $3`;
+    }
+
+    const query = {
+      text: select,
+      values: [category, size, `${page * 30}`]
+    }
+    const {rows} = await pool.query(query);
+    const products: Product[] = [];
+    for (const row of rows) {
+      products.push({
+        id: row.id,
+        data: {
+          ...row.data
         }
       })
     }
@@ -27,12 +84,12 @@ export class ProductService {
 
   public async makeProduct(product: NewProduct): Promise<Product> {
     const query = {
-      text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::text, 'rating', $5::int)) RETURNING *;`,
-      values: [product.name, product.price, product.stock, product.image, product.rating],
+      text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::jsonb, 'rating', $5::int, 'category', $6::jsonb)) RETURNING *;`,
+      values: [product.name, product.price, product.stock, JSON.stringify(product.image), product.rating, JSON.stringify(product.category)],
     }
     const { rows } = await pool.query(query);
 
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   /**
@@ -40,20 +97,20 @@ export class ProductService {
    */
   public async removeProduct(productId: string): Promise<Product | undefined> {
     const query = {
-      text: `DELETE FROM product WHERE id = $1 RETURNING *;`,
+      text: `DELETE FROM product WHERE id = $1 RETURNING id, data;`,
       values: [productId],
     }
 
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 
   public async getId(productId: string): Promise<Product | undefined> {
     const query = {
-      text: `SELECT * FROM product WHERE id = $1;`,
+      text: `SELECT id, data FROM product WHERE id = $1;`,
       values: [productId]
     }
     const { rows } = await pool.query(query);
-    return rows[0];
+    return {...rows[0].data, id: rows[0].id};
   }
 }

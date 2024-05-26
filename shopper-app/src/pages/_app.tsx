@@ -4,7 +4,9 @@ import type { AppProps } from "next/app";
 import { appWithTranslation } from 'next-i18next'
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-
+import { LoginProvider } from "@/context/Login";
+import { CartProvider } from "@/context/Cart";
+import { PageProvider } from "@/context/Page";
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -18,7 +20,13 @@ const theme = createTheme({
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme} >
-      <Component {...pageProps} />
+      <LoginProvider>
+        <CartProvider>
+          <PageProvider>
+            <Component {...pageProps} />
+          </PageProvider>
+        </CartProvider>
+      </LoginProvider>
     </ThemeProvider>
   )
 }

@@ -37,5 +37,12 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice"
+  },
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
   }
 }

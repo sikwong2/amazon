@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '../components/CustomTextfield';
 import CustomButton from '../components/Button';
-import Logo from '../components/Logo';
+import Logo, { defaultLogoWidth } from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import { SignupContext } from '@/context/Signup';
@@ -42,7 +42,8 @@ export function SignUp() {
       const query = {
         query: `mutation createaccount{ createaccount( input: {name: "${user.name}"  email: "${user.email}" password: "${user.password}" role: "vendor"} ) { role }}`,
       };
-      fetch('/api/graphql', {
+      // NOTE: on the server, URL should be /api/graphql
+      fetch('/vendor/api/graphql', {
         method: 'POST',
         body: JSON.stringify(query),
         headers: {
@@ -79,8 +80,8 @@ export function SignUp() {
       }}
     >
       <CssBaseline />
-      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
-        <Logo width={100} height="auto" />
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{
