@@ -44,5 +44,11 @@
     "Cart": "Cart",
     "Search": "Search",
     "Hello": "Hello"
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
   }
 }

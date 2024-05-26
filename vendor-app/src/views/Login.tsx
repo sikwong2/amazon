@@ -7,7 +7,7 @@ import { LoginContext } from '../context/Login'
 import { useTranslation } from 'next-i18next';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
-import Logo from '../components/Logo';
+import Logo, { defaultLogoWidth } from '../components/Logo';
 import CustomDivider from '@/components/Divider';
 import CustomCard from '@/components/Card';
 import { SignupContext } from '@/context/Signup';
@@ -27,7 +27,8 @@ export function Login() {
     u.password = data.get('Password')!.toString();
     setUser(u);
     const query = { query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}` }
-    fetch('/api/graphql', {
+    // NOTE: on the server, URL should be /api/graphql
+    fetch('/vendor/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -62,7 +63,7 @@ export function Login() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={100} height='auto'/>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{
@@ -120,14 +121,14 @@ export function Login() {
               .
             </Typography>
           </Box>
-          <Box aria-label='link-to-vendor'>
+          <Box aria-label='link-to-shopper'>
             <CustomDivider sx={{mt: 2, mb: 2}}/>
             <Typography variant='body1' sx={{ mt:2, mb:.5, fontSize:'13px', fontWeight:'bold' }}>
-              {t('buying-for-work')}
+              {t('buying-for-yourself')}
             </Typography>
             <Box sx={{ fontSize:'13px' }}>
-              <CustomLink label="vendor-account" href="/vendor" variant='blue2' >
-                {t('vendor-account')}
+              <CustomLink label="shopper-account" href="/" variant='blue2' >
+                {t('shopper-account')}
               </CustomLink>
             </Box>
           </Box>
