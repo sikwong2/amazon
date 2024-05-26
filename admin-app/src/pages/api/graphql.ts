@@ -3,10 +3,11 @@ import 'reflect-metadata'; // must come before buildSchema
 import { buildSchemaSync } from "type-graphql"
 
 import { AuthResolver } from '../../graphql/auth/resolver'
+import { MemberResolver } from '@/graphql/member/resolver';
 import { nextAuthChecker } from '../../graphql/auth/checker';
 
 const schema = buildSchemaSync({
-  resolvers: [AuthResolver],
+  resolvers: [AuthResolver, MemberResolver ],
   validate: true, 
   authChecker: nextAuthChecker,
 });

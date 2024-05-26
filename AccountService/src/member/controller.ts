@@ -41,6 +41,20 @@ export class MemberController extends Controller {
         return status;
       });
   }
+
+  @Get('unapprovedvendors')
+  @Response('401', 'Unauthorized')
+  public async unapprovedVendors(): Promise<Member[] | undefined> {
+    return new MemberService()
+      .unapprovedVendors()
+      .then(async (response: Member[] | undefined): Promise<Member[] | undefined> => {
+        if (response === undefined) {
+          this.setStatus(401);
+        }
+        return response;
+      });
+  }
+
 }
 
 //   @Post('approvevendor')
