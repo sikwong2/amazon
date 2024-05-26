@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
+import TopBar from '@/components/TopBar';
 import LanguageButton from '@/components/Language';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
@@ -32,7 +33,7 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LanguageButton />
+      <TopBar />
       <div>
         {t("go-to-login")} <Link href="/login"> {t("here")} </Link>
       </div>
