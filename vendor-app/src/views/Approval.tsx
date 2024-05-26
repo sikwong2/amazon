@@ -25,6 +25,7 @@ export function Approval() {
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${loginContext.accessToken}`,
       },
     })
       .then((res) => {
