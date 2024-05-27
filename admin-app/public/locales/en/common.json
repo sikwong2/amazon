@@ -2,7 +2,7 @@
   "change-locale": "Change locale to \"{{changeTo}}\"",
   "login": {
     "title": "UCSC-Amazon Admin Login",
-    "signin": "Sign in",
+    "signin": "Admin Sign in",
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
@@ -38,6 +38,6 @@
     "Orders": "Orders",
     "Cart": "Cart",
     "Search": "Search",
-    "Hello": "Hello"
+    "Hello": "Hello,"
   }
 }
