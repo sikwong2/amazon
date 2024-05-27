@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import CustomCard from './Card';
 import {Typography} from '@mui/material';
 import { BoxProps } from '@mui/material/Box';
+import { useRouter } from 'next/router';
 
 export type Image = {
   image: string,
@@ -42,14 +43,20 @@ export default function ImageCarousel({images, height, ...rest}: ImageCarouselPr
 }
 
 function Item({item, height, ...rest}: ItemProps) {
+    const router = useRouter();
+    const handleProductRedirect = (id: string) => {
+      router.push(`/product/${id}`)
+    }
+
     return (
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           maxHeight={height}
-          sx={{backgroundColor: 'E4E6E6'}}
+          sx={{backgroundColor: 'E4E6E6', cursor: 'pointer'}}
           overflow="hidden"
+          onClick={() => handleProductRedirect(item.id)}
           {...rest}
         >
           <img 
