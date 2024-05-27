@@ -27,7 +27,7 @@ export class MemberResolver {
   }
 
   @Query(returns => MemberInfo)
-  async getMemeberInfo(
+  async getMemberInfo(
     @Arg('memberId') memberId: string,
   ): Promise <MemberInfo> {
     return new MemberService().getMemberInfo(memberId)

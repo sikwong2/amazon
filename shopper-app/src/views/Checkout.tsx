@@ -11,6 +11,12 @@ import { CartItem } from '@/components/CartItem';
 import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
+import { LoginContext } from '@/context/Login';
+
+interface UserDetails {
+  name: string;
+  address: string;
+}
 
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
@@ -38,22 +44,25 @@ const fetchOrders = async (shopperId: string, status: string) => {
   }
 }
 
-const fetchUserDetails = async (shopperId: string) => {
+const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefined> => {
   try {
-    const query = {query: `query member{getMemberInfo(memberId: "${shopperId}) { name, address }}` };
+    const query = {query: `query member{getMemberInfo(memberId: "${shopperId}") { name, address }}` };
     const res = await fetch('/api/graphql', {
-      method: 'GET',
+      method: 'POST',
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json'
       }
     });
+    console.log('this is res');
+    console.log(res)
     const json = await res.json();
     if (json.errors) {
       console.log(json.errors[0].message);
-      return [];
+      return undefined;
     }
     const { name, address } = json.data.getMemberInfo;
+    console.log(name)
     return { name, address };
   } catch (error) {
     console.error('Error fetching member info:', error);
@@ -107,10 +116,30 @@ const fetchProduct = async (productId: any): Promise<Product> => {
 
 export function Checkout() {
   const { cart } = useContext(CartContext);
+  const { id } = useContext(LoginContext);
   const { t } = useTranslation('common');
+  const [memberName, setMemberName] = useState('');
+  const [address, setAddress] = useState('');
   const [subtotal, setSubtotal] = useState(0);
   const router = useRouter();
   const [cartItems, setCartItems]: any = useState([]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userDetails = await fetchUserDetails(id);
+        if (userDetails) {
+          const { name, address } = userDetails;
+          setMemberName(name);
+          setAddress(address);
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+    fetchUserData();
+  }, [id]);
+
   useEffect(() => {
     (async () => {
       let total = 0;
@@ -182,7 +211,7 @@ export function Checkout() {
             <Grid item xs = {6}>
               <List sx={{ padding: 0, marginTop: 0.3}}>
                 <ListItem sx={{ padding: 0, margin: 0 }}>
-                    name
+                    {memberName}
                 </ListItem>
                 <ListItem sx={{ padding: 0, margin: 0 }}>
                     address

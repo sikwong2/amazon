@@ -29,7 +29,7 @@ export class MemberService {
   async getMemberInfo(memberId: string): Promise <MemberInfo | undefined> {
     try {
       const res = await fetch(
-        `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/orders/shopper/${memberId}`, {
+        `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/${memberId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
