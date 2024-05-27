@@ -22,9 +22,7 @@ import ProductDisplay from '@/components/ProductDisplay';
 import { CartContext } from '@/context/Cart';
 import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
-
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+import RandomDeliveryDate from '@/components/DeliveryDate';
 
 /*
 TODO:
@@ -83,18 +81,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-// Returns date 7 days from today for delivery
-function getRandomDeliveryDate(offset: number) {
-  const today = new Date();
-  const nextWeek = new Date();
-  nextWeek.setDate(today.getDate() + offset);
-  return (
-    <>
-      {days[nextWeek.getDay()]}, {months[nextWeek.getMonth()]} {nextWeek.getDate()}
-    </>
-  )
-}
-
 // Returns hours and mins until midnight
 function getTimeTillMidnight() {
   const currentTime = new Date();
@@ -122,16 +108,6 @@ function productDescription(description: string[]) {
     </>
   )
 }
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  padding: '0px',
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  boxShadow: 'none',
-  border: 'none',
-  margin: '0px',
-}));
 
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
@@ -209,12 +185,12 @@ export default function Product({ product }: ProductProp) {
       <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}}>
         <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> {t("product.free-delivery")} </CustomLink>
         <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
-          {getRandomDeliveryDate(7)}
+          <RandomDeliveryDate offset={7}/>
         </Typography>
       </Box>
       <Box aria-label='fastest-delivery' sx={{mb:1.5}}>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.fastest-delivery")} </Typography>
-        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}>{getRandomDeliveryDate(4)}. </Typography>
+        <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}><RandomDeliveryDate offset={7}/>. </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.order-within")} </Typography>
         <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', color:'#007600' }}>{getTimeTillMidnight()}</Typography>
       </Box>
