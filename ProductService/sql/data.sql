@@ -2,7 +2,7 @@
 DELETE FROM product;
 
 -- empty product
--- INSERT INTO product(data) VALUES (jsonb_build_object('name', '', 'price', 0, 'stock', 0, 'rating', 0.0, 'image', ARRAY[''], 'description', ARRAY[''], 'category', ARRAY['movie']));
+-- INSERT INTO product(data) VALUES (jsonb_build_object('name', '', 'price', 0, 'stock', 0, 'rating', 0.0, 'image', ARRAY[''], 'description', ARRAY[''], 'category', ARRAY['']));
 
 -- IDs are hardcoded for testing
 INSERT INTO product(id, data) VALUES ('6a2212e5-af0b-4472-a724-537bdc6c571c', jsonb_build_object('name', 'Shrek DVD', 'price', 19.99, 'stock', 1, 'rating', 4.8, 'image', ARRAY['https://m.media-amazon.com/images/I/51JSHMYGTYL._AC_UF894,1000_QL80_.jpg'], 'description', ARRAY['Once upon a time in a far away swamp, there lived an ornery ogre named Shrek whose precious solitude is suddenly shattered by an invasion of annoying fairy-tale characters. There are blind mice in his food, a big, bad wolf in his bed, three little homeless pigs and more, all banished from their kingdom by the evil Lord Farquaad.'], 'category', ARRAY['movie', 'dvd', 'shrek']));

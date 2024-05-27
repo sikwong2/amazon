@@ -38,6 +38,20 @@
     "and": " and ",
     "privacy-notice": "Privacy Notice"
   },
+  "topbar": {
+    "Sign-in": "Sign in",
+    "Orders": "Orders",
+    "Cart": "Cart",
+    "Search": "Search",
+    "Hello": "Hello"
+  },
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
+  },
   "product": {
     "stock": {
       "only": "only",
