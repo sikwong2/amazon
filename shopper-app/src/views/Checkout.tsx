@@ -1,5 +1,5 @@
 import { CartContext } from '@/context/Cart'
-import { Box, Grid, Container, List, ListItem, Typography, autocompleteClasses } from '@mui/material';
+import { Box, Grid, Container, List, ListItem, Typography, autocompleteClasses, Table, TableBody, TableRow, TableCell, TableContainer } from '@mui/material';
 import { useContext, useState } from 'react'
 import CustomCard from '../components/Card'
 import CustomButton from '@/components/Button';
@@ -190,7 +190,7 @@ export function Checkout() {
           marginLeft: '242px', marginRight: 'auto',
           marginBottom: 10,
         }}>
-          Checkout (1 item)
+          Checkout ({cart.length} item)
         </div>
       </div> 
       <Container sx={{ display: 'flex',  flexDirection: 'row' }}>
@@ -216,9 +216,6 @@ export function Checkout() {
                 <ListItem sx={{ padding: 0, margin: 0 }}>
                     {address}
                 </ListItem>
-                <ListItem sx={{ padding: 0, margin: 0 }}>
-                  Add delivery instructions *link*
-                </ListItem>
               </List>
             </Grid>
           </Grid> 
@@ -242,12 +239,6 @@ export function Checkout() {
               <List sx={{ padding: 0, marginTop: 0.3 }}>
                 <ListItem sx={{ padding: 0, margin: 0, fontWeight: 'bold' }}>
                   Paying with ****
-                </ListItem>
-                <ListItem sx={{ padding: 0, margin: 0 }}>
-                  Billing address: Same as shipping address
-                </ListItem>
-                <ListItem sx={{ padding: 0, margin: 0 }}>
-                  Add delivery instructions *link*
                 </ListItem>
               </List>
             </Grid>
@@ -340,6 +331,39 @@ export function Checkout() {
               }}>
                  Order Summary
               </Typography>
+
+              <Table sx={{ border: 'none' }}>
+                <TableBody>
+                  <TableRow sx={{ mb: '1px' }}>
+                    <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>Items:</TableCell>
+                    <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>{subtotal}</TableCell>
+                  </TableRow>
+                  <TableRow sx={{ mb: '5px' }}> 
+                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px'}}>Shipping & handling:</TableCell>
+                    <TableCell align="right" sx={{ paddingBottom: '1px', paddingTop: '1px'}}>$0.00</TableCell>
+                  </TableRow>
+                  <TableRow sx={{ mb: '5px' }}> 
+                    <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>Total before tax:</TableCell>
+                    <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>{subtotal}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>Estimated tax to be collected:</TableCell>
+                    <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>$0.00</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+
+              <CustomDivider sx={{ margin: 'auto', width: '235px', marginBottom: '8px' }}></CustomDivider>
+
+              <Table sx={{border:'none', marginBottom: '12px'}} >
+                <TableBody>
+                  <TableRow>
+                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px', color: 'rgb(177, 39, 4)', fontSize: '18px', fontWeight:'700' }}>Order Total:</TableCell>
+                  <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px', color: 'rgb(177, 39, 4)', fontSize: '18px', fontWeight: '700' }}>{subtotal}</TableCell> 
+                  </TableRow>
+                </TableBody>
+              </Table>
+
               
           </CustomCard>
         </Container>
