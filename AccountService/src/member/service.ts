@@ -2,6 +2,7 @@ import { Member } from ".";
 import { MemberInput } from ".";
 import { pool } from "../db";
 import { Role } from ".";
+import { MemberInfo } from ".";
 
 export class MemberService {
   // checks if member existing from email before creating account
@@ -42,6 +43,9 @@ export class MemberService {
     return rows[0];
   }
 
-
+  public async getInfo (memberId: string): Promise <MemberInfo | undefined> {
+    let select = ``
+    return 
+  }
 
 }

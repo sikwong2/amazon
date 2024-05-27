@@ -38,11 +38,11 @@ const fetchOrders = async (shopperId: string, status: string) => {
   }
 }
 
-// const fetchUserDetails = async () => {
-//   try {
-//     const query = {query: `query`}
-//   }
-// }
+const fetchUserDetails = async () => {
+  try {
+    const query = {query: `query`}
+  }
+}
 
 const deleteOrder = async (orderId: string): Promise<string> => {
   try {

@@ -33,3 +33,11 @@ export class Member {
   @Field()
     role!: string
 }
+
+@ObjectType("AccountInfo")
+export class MemberInfo {
+  @Field()
+  name!: string
+  @Field()
+  address!: string
+}

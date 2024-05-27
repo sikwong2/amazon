@@ -1,4 +1,4 @@
-import type { Member } from "./schema";
+import type { Member, MemberInfo } from "./schema";
 import type { MemberRequest } from "./schema";
 
 export class MemberService {
@@ -25,5 +25,9 @@ export class MemberService {
         });
     })
   }
-  async 
+  async getInfo(memberId: string): Promise <MemberInfo | undefined> {
+    return new Promise((resolve, reject) => {
+      
+    })
+  }
 }
