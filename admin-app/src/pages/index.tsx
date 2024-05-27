@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { App } from '../views/App'
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import LanguageButton from '@/components/Language';
+import TopBar from '@/components/TopBar';
 
 
 // this must be in page-level components (not in components in /view)

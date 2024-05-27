@@ -38,6 +38,12 @@
     "and": "和",
     "privacy-notice": "隐私声明"
   },
+  "topbar": {
+    "Sign-in": "登录",
+    "Orders": "订单",
+    "Cart": "购物车",
+    "Search": "搜索",
+    "Hello": "你好"
   "cart": {
     "proceed-to-checkout": "进行结算",
     "shopping-cart": "购物车",
