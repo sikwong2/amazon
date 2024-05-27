@@ -11,7 +11,9 @@ import CustomDivider from '@/components/Divider';
 import Paper from '@mui/material/Paper';
 import { RedirectNonVendor } from './RedirectNonVendor';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import VendorPortal from './VendorPortal';
 import { padding } from '@mui/system';
+import TopBar from '@/components/TopBar';
 
 export function Approval() {
   const loginContext = useContext(LoginContext);
@@ -25,7 +27,7 @@ export function Approval() {
       body: JSON.stringify(query),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${loginContext.accessToken}`,
+        Authorization: `Bearer ${loginContext.accessToken}`,
       },
     })
       .then((res) => {
@@ -52,54 +54,55 @@ export function Approval() {
   }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
 
   const ApprovalComponent = (
-    <Container
-      component="main"
-      sx={{
-        mb: '28px',
-        pt: '14px',
-        pb: '18px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <CssBaseline />
-      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
-        <Logo width={100} height="auto" />
-      </Container>
-      <Box
+    <>
+      <TopBar />
+      <Container
+        component="main"
         sx={{
+          mb: '28px',
+          pt: '14px',
+          pb: '18px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
         }}
       >
-        <CustomCard>
-          <Box sx={{ p: '14px' }}>
-            <Typography gutterBottom component="h1" variant="h5" align="center">
-              {t('vendor-app.vendor-account-approval')}
-            </Typography>
-            <CustomDivider />
-            <Box sx={{ mt: 1 }}>
-              <Paper
-                elevation={1}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  padding: '20px',
-                  margin: '100px',
-                  backgroundColor: '#f5f5f5',
-                }}
-              >
-                <Typography component="h1" variant="h5">
-                  {t("vendor-app.status-pending")} <WorkHistoryIcon style={{ transform: 'translate(0px, 3px)' }} />
-                </Typography>
-              </Paper>
+        <CssBaseline />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <CustomCard>
+            <Box sx={{ p: '14px' }}>
+              <Typography gutterBottom component="h1" variant="h5" align="center">
+                {t('vendor-app.vendor-account-approval')}
+              </Typography>
+              <CustomDivider />
+              <Box sx={{ mt: 1 }}>
+                <Paper
+                  elevation={1}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: '20px',
+                    margin: '100px',
+                    backgroundColor: '#f5f5f5',
+                  }}
+                >
+                  <Typography component="h1" variant="h5">
+                    {t('vendor-app.status-pending')}{' '}
+                    <WorkHistoryIcon style={{ transform: 'translate(0px, 3px)' }} />
+                  </Typography>
+                </Paper>
+              </Box>
             </Box>
-          </Box>
-        </CustomCard>
-      </Box>
-    </Container>
+          </CustomCard>
+        </Box>
+      </Container>
+    </>
   );
 
   if (loginContext.role !== 'vendor') {
@@ -109,6 +112,6 @@ export function Approval() {
   if (loginContext.accessToken !== '' && status !== true) {
     return ApprovalComponent;
   } else {
-    return null;
+    return <VendorPortal />;
   }
 }

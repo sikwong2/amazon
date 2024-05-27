@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay';
 import CustomButton from './Button';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridSlots } from '@mui/x-data-grid';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default function PendingVendorApprovalsTable() {
   const loginContext = useContext(LoginContext);
@@ -28,8 +29,8 @@ export default function PendingVendorApprovalsTable() {
             color="primary"
             size="small"
             onClick={() => {
+              setLoading(true);
               approveVendor(params.row.id);
-              fetchPendingVendors();
             }}
             disabled={loading}
           >
@@ -40,9 +41,7 @@ export default function PendingVendorApprovalsTable() {
     },
   ];
 
-  const approveVendor = (id: string) => {
-    setLoading(true);
-    console.log('approve vendor with id: ' + id);
+  const approveVendor = (id) => {
     const query = {
       query: `mutation {
         approvevendor(id: "${id}") {
@@ -61,12 +60,10 @@ export default function PendingVendorApprovalsTable() {
         Authorization: `Bearer ${loginContext.accessToken}`,
       },
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        setLoading(false);
+        fetchPendingVendors();
       })
       .catch((error) => {
         console.error(error);
@@ -76,16 +73,17 @@ export default function PendingVendorApprovalsTable() {
 
   const fetchPendingVendors = () => {
     console.log('bearer token: ' + loginContext.accessToken);
+    setLoading(true);
 
     const query = {
       query: `query {
         unapprovedvendors {
-        id
-        name
-        email
-        role
-      }
-    }`,
+          id
+          name
+          email
+          role
+        }
+      }`,
     };
     fetch('/admin/api/graphql', {
       method: 'POST',
@@ -95,43 +93,41 @@ export default function PendingVendorApprovalsTable() {
         Authorization: `Bearer ${loginContext.accessToken}`,
       },
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (!json.data || !json.data.unapprovedvendors) {
           console.log('No data');
-          return;
+          setVendors([]);
+        } else {
+          setVendors(json.data.unapprovedvendors);
         }
-
-        console.log(json.data.unapprovedvendors);
-
-        setVendors(json.data.unapprovedvendors);
+      })
+      .finally(() => {
+        setTimeout(() => setLoading(false), 500); // Delay to ensure DataGrid renders
       });
   };
 
   useEffect(() => {
-    // Call fetchStatus immediately after component mount
     fetchPendingVendors();
 
-    // Set up the interval
-    const intervalId = setInterval(fetchPendingVendors, 5000); // 5000 ms = 5 seconds
+    const intervalId = setInterval(fetchPendingVendors, 10000); // 5000 ms = 5 seconds
 
-    // Clean up function
     return () => clearInterval(intervalId); // This will clear the interval on component unmount
-  }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
+  }, []);
 
   return (
     <Box width={'80vw'} sx={{ mt: 1 }}>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <DataGrid
           rows={vendors}
+          getRowId={(row) => row.id}
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: () => <CustomNoRowsOverlay sx={{p: '14px'}} label="No Pending Vendor Approvals" />,
+            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No Pending Vendor Approvals" />,
+            loadingOverlay: LinearProgress as GridSlots['loadingOverlay'],
           }}
+          loading={loading}
           initialState={{
             pagination: {
               paginationModel: {

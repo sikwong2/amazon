@@ -7,14 +7,98 @@ import CustomButton from './Button';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { IconButton, Tooltip } from '@mui/material';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default function APIKeysTable() {
   const loginContext = useContext(LoginContext);
-  const [vendors, setVendors] = useState([]);
+  const [keys, setKeys] = useState([]);
+  const [loading, setLoading] = useState(false); // New loading state
+
+  const activateKey = (key) => {
+    console.log(`Activate ${key}`);
+
+    const query = {
+      query: `mutation {
+        activateAPIKey(key: "${key}")
+      }`,
+    };
+    fetch('/admin/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginContext.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        fetchKeys();
+      });
+  };
+
+  const deactivateKey = (key) => {
+    console.log(`Deactivate ${key}`);
+
+    const query = {
+      query: `mutation {
+        deactivateAPIKey(key: "${key}")
+      }`,
+    };
+    fetch('/admin/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginContext.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        fetchKeys();
+      });
+  };
+
+  const fetchKeys = () => {
+    console.log('bearer token: ' + loginContext.accessToken);
+    setLoading(true);
+
+    const query = {
+      query: `query {
+        allKeys {
+          account_id
+          api_key
+          active
+        }
+      }`,
+    };
+    fetch('/admin/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginContext.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (!json.data || !json.data.allKeys) {
+          console.log('No data');
+          setKeys([]);
+        } else {
+          setKeys(json.data.allKeys);
+        }
+      })
+      .finally(() => {
+        setTimeout(() => setLoading(false), 500); // Delay to ensure DataGrid renders
+      });
+  };
 
   const columns: GridColDef[] = [
     {
-      field: 'id',
+      field: 'api_key',
       headerName: 'Key',
       flex: 1,
       sortable: false,
@@ -33,7 +117,8 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'name', headerName: 'Owner', flex: 1 },
+    { field: 'account_id', headerName: 'Owner ID', flex: 1 },
+    { field: 'active', headerName: 'Status', flex: 1 },
     {
       field: 'action',
       headerName: 'Action',
@@ -47,10 +132,11 @@ export default function APIKeysTable() {
             color="primary"
             size="small"
             onClick={() => {
-              console.log(`Activate ${params.row.id}`);
+              activateKey(params.row.api_key);
             }}
+            disabled={loading}
           >
-            Activate
+            {loading ? 'Loading...' : 'Activate'}
           </CustomButton>
           <CustomButton
             label={`deactivate-${params.row.id}`}
@@ -58,58 +144,24 @@ export default function APIKeysTable() {
             color="secondary"
             size="small"
             onClick={() => {
-              console.log(`Deactivate ${params.row.id}`);
+              deactivateKey(params.row.api_key);
             }}
+            disabled={loading}
             sx={{ ml: 1 }}
           >
-            Deactivate
+            {loading ? 'Loading...' : 'Deactivate'}
           </CustomButton>
         </Box>
       ),
     },
   ];
 
-  const fetchPendingVendors = () => {
-    console.log('bearer token: ' + loginContext.accessToken);
-
-    const query = {
-      query: `query {
-        unapprovedvendors {
-        id
-        name
-      }
-    }`,
-    };
-    fetch('/admin/api/graphql', {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${loginContext.accessToken}`,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        console.log(json);
-        if (!json.data || !json.data.unapprovedvendors) {
-          console.log('No data');
-          return;
-        }
-
-        console.log(json.data.unapprovedvendors);
-
-        setVendors(json.data.unapprovedvendors);
-      });
-  };
-
   useEffect(() => {
     // Call fetchStatus immediately after component mount
-    fetchPendingVendors();
+    fetchKeys();
 
     // Set up the interval
-    const intervalId = setInterval(fetchPendingVendors, 5000); // 5000 ms = 5 seconds
+    const intervalId = setInterval(fetchKeys, 10000); // 5000 ms = 5 seconds
 
     // Clean up function
     return () => clearInterval(intervalId); // This will clear the interval on component unmount
@@ -119,12 +171,15 @@ export default function APIKeysTable() {
     <Box width={'80vw'} sx={{ mt: 1 }}>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <DataGrid
-          rows={vendors}
+          rows={keys}
+          getRowId={(row) => row.account_id}
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: () => <CustomNoRowsOverlay sx={{p: '14px'}} label="No API Keys" />,
+            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No API Keys" />,
+            loadingOverlay: LinearProgress,
           }}
+          loading={loading}
           initialState={{
             pagination: {
               paginationModel: {
