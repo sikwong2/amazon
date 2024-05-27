@@ -44,8 +44,20 @@ export class MemberService {
   }
 
   public async getInfo (memberId: string): Promise <MemberInfo | undefined> {
-    let select = ``
-    return 
+    const returnObj = {
+      name: '',
+      address: ''
+    }
+    let select = `SELECT jsonb_build_object('name',  data->>'name', 'address', data->>'address') 
+    AS accountInfo FROM account 
+    WHERE id = $1`;
+    const query = {
+      text: select,
+      values: [memberId],
+    };
+    const {rows} = await pool.query(query)
+    returnObj.name = rows[0].name;
+    returnObj.address = rows[0].address;
+    return returnObj;
   }
-
 }
