@@ -14,7 +14,6 @@ import {
 import {MemberInput, Member, Role} from '.';
 import { MemberService } from './service';
 
-
 @Route('account')
 export class MemberController extends Controller {
   @Post()

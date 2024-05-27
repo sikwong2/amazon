@@ -38,6 +38,12 @@ const fetchOrders = async (shopperId: string, status: string) => {
   }
 }
 
+// const fetchUserDetails = async () => {
+//   try {
+//     const query = {query: `query`}
+//   }
+// }
+
 const deleteOrder = async (orderId: string): Promise<string> => {
   try {
     const query = { query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}` };
@@ -288,6 +294,7 @@ export function Checkout() {
               }}>
                  Order Summary
               </Typography>
+              
           </CustomCard>
         </Container>
       </Container>
