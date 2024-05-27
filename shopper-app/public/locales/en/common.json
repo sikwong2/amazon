@@ -62,7 +62,7 @@
   },
   "product": {
     "stock": {
-      "only": "only",
+      "only": "Only",
       "order-soon": "left in stock - order soon.",
       "in-stock": "In Stock"
     },
