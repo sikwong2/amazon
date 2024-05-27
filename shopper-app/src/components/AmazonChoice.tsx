@@ -29,7 +29,7 @@ const StyledContainer = styled(Box)(({ theme }) => ({
 export default function AmazonChoice({...rest}) {
   return (
     <StyledContainer {...rest}>
-      <Typography variant="body2" display='inline'> Amazon's</Typography>
+      <Typography variant="body2" display='inline'> Amazon&apos;s</Typography>
       <Typography variant="body2" display='inline' sx={{color:'#FFA41C', ml:0.5}}>Choice</Typography>
     </StyledContainer>
   );
