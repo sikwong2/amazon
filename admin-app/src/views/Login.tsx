@@ -11,7 +11,6 @@ import Logo from '@/components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
-import { defaultLogoWidth } from '@/components/Logo';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext)
@@ -26,7 +25,7 @@ export function Login() {
     u.password = data.get('Password')!.toString();
     setUser(u);
     const query = {query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`}
-    // NOTE: on the server, URL should be /api/graphql
+
     fetch('/admin/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -41,6 +40,7 @@ export function Login() {
         if (json.errors) {
           alert(`${json.errors[0].message}`)
         } else {
+          console.log("LOGIN.TSX ACCESS TOKEN: " + json.data.login.accessToken);
           loginContext.setAccessToken(json.data.login.accessToken)
           loginContext.setUserName(json.data.login.name)
         }
@@ -58,7 +58,7 @@ export function Login() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={defaultLogoWidth} height='auto'/>
+        <Logo height='auto'/>
       </Container>
       <Box
         sx={{

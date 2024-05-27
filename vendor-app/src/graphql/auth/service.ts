@@ -30,9 +30,6 @@ export class AuthService {
   }
 
   public async check(authHeader?: string, roles?: string[]): Promise<SessionUser> {
-    console.log("CHECK");
-    console.log(authHeader);
-    console.log(roles);
     return new Promise((resolve, reject) => {
       if (!authHeader) {
         reject(new Error("Unauthorised"))
