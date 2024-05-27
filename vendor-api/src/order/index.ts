@@ -1,3 +1,3 @@
 export interface StatusUpdate {
-  status: string
+  status: 'pending' | 'confirmed' | 'shipped' | 'delayed' | 'out for delivery' | 'delivered' | 'cancelled' | 'refunded' | 'returned'
 }
