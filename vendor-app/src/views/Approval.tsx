@@ -32,7 +32,11 @@ export function Approval() {
         return res.json();
       })
       .then((json) => {
-        console.log(json);
+        if (json.errors) {
+          console.error(json.errors[0].message);
+          return;
+        }
+        setStatus(json.data.status);
       });
   };
 
@@ -102,7 +106,7 @@ export function Approval() {
     return <RedirectNonVendor />;
   }
 
-  if (loginContext.accessToken !== '') {
+  if (loginContext.accessToken !== '' && status !== true) {
     return ApprovalComponent;
   } else {
     return null;

@@ -26,10 +26,9 @@ const StyledGridOverlay = styled('div')(({ theme }) => ({
   },
 }));
 
-type CustomNoRowsOverlayProps = GridOverlayProps;
+type CustomNoRowsOverlayProps = GridOverlayProps & { label: string };
 
-
-export default function CustomNoRowsOverlay({...rest} : CustomNoRowsOverlayProps) {
+export default function CustomNoRowsOverlay({ label, ...rest }: CustomNoRowsOverlayProps) {
   return (
     <StyledGridOverlay {...rest}>
       <svg width="120" height="100" viewBox="0 0 184 152" aria-hidden focusable="false">
@@ -59,7 +58,7 @@ export default function CustomNoRowsOverlay({...rest} : CustomNoRowsOverlayProps
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>No Vendor Approval Requests</Box>
+      <Box sx={{ mt: 1 }}>{label}</Box>
     </StyledGridOverlay>
   );
 }

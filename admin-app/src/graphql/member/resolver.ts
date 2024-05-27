@@ -19,4 +19,12 @@ export class MemberResolver {
   async unapprovedvendors(): Promise<Member[] | undefined> {
     return new MemberService().unapprovedvendors();
   }
+
+  @Authorized('admin')
+  @Mutation(() => Member)
+  async approvevendor(
+    @Arg('id') id: string
+  ): Promise<Member | undefined> {
+    return new MemberService().approvevendor(id);
+  }
 }

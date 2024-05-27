@@ -27,4 +27,31 @@ export class MemberService {
         });
     });
   }
+
+  async approvevendor(id: string): Promise<Member | undefined> {
+    return new Promise((resolve, reject) => {
+      fetch(
+        `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/approvevendor?id=${id}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw res;
+          }
+          return res.json();
+        })
+        .then((member) => {
+          resolve(member);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(new Error('Unauthorized'));
+        });
+    });
+  }
 }

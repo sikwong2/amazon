@@ -1,4 +1,4 @@
-import {useEffect, useState, useContext} from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { LoginContext } from '../context/Login';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -7,9 +7,9 @@ import CustomButton from './Button';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 export default function PendingVendorApprovalsTable() {
-
   const loginContext = useContext(LoginContext);
   const [vendors, setVendors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', flex: 1, sortable: false },
@@ -21,20 +21,58 @@ export default function PendingVendorApprovalsTable() {
       flex: 1,
       sortable: false,
       renderCell: (params) => (
-        <CustomButton
-          label={`approve-${params.row.id}`}
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() => {
-            console.log(params.row);
-          }}
-        >
-          Approve
-        </CustomButton>
+        <div>
+          <CustomButton
+            label={`approve-${params.row.id}`}
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => {
+              approveVendor(params.row.id);
+              fetchPendingVendors();
+            }}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Approve'}
+          </CustomButton>
+        </div>
       ),
     },
   ];
+
+  const approveVendor = (id: string) => {
+    setLoading(true);
+    console.log('approve vendor with id: ' + id);
+    const query = {
+      query: `mutation {
+        approvevendor(id: "${id}") {
+          id
+          name
+          email
+          role
+        }
+      }`,
+    };
+    fetch('/admin/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginContext.accessToken}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  };
 
   const fetchPendingVendors = () => {
     console.log('bearer token: ' + loginContext.accessToken);
@@ -92,7 +130,7 @@ export default function PendingVendorApprovalsTable() {
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: CustomNoRowsOverlay,
+            noRowsOverlay: () => <CustomNoRowsOverlay sx={{p: '14px'}} label="No Pending Vendor Approvals" />,
           }}
           initialState={{
             pagination: {

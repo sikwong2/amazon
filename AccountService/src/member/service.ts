@@ -89,20 +89,15 @@ export class MemberService {
     }
   }
 
-  public async approveVendor(memberinput: MemberInput): Promise<Member | undefined> {
-    const exists = await this.find(memberinput);
-    if (!exists) {
-      return undefined;
-    }
-
+  public async approveVendor(id: string): Promise<Member | undefined> {
     let update =
       `UPDATE account SET data = jsonb_set(data, '{status}', '"true"')` +
-      ` WHERE data->>'email' = $1 AND data->>'role' = $2` +
+      ` WHERE id = $1` +
       ` RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role`;
 
     const query = {
       text: update,
-      values: [memberinput.email, memberinput.role],
+      values: [`${id}`],
     };
     const { rows } = await pool.query(query);
     return rows[0];

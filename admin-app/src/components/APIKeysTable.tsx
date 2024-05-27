@@ -123,7 +123,7 @@ export default function APIKeysTable() {
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: CustomNoRowsOverlay,
+            noRowsOverlay: () => <CustomNoRowsOverlay sx={{p: '14px'}} label="No API Keys" />,
           }}
           initialState={{
             pagination: {
