@@ -27,9 +27,10 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 TODO:
  - add to cart button
  - buy now button
- - translations
+ -x translations
  -x fix quantity dropdown width
- - add categories 
+ -x add categories 
+ - invalid product id breaks everything
 
 */
 
@@ -41,6 +42,7 @@ interface Product {
   rating: number,
   image: string[],
   description: string[]
+  category: string[]
 }
 
 interface ProductProp {
@@ -48,7 +50,7 @@ interface ProductProp {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const query = { query: `query product{getByProductId(productId: "${(context.query.productId)}") {name, price, stock, rating, image, description}}` };
+  const query = { query: `query product{getByProductId(productId: "${(context.query.productId)}") {name, price, stock, rating, image, category, description}}` };
   const res = await fetch('http://localhost:3000/api/graphql', {
     method: 'POST',
     body: JSON.stringify(query),
@@ -173,10 +175,10 @@ export default function Product({ product }: ProductProp) {
       </Typography>
       <CustomLink href={`/product/${productId}`} label='visit-product-store'>{t("product.visit-amazon")}</CustomLink>
       <CustomRating rating={product.rating} size='small'/>
-      <Box>
+      <Box aria-label='amazons-choice'>
         <AmazonChoice sx={{mt:1}}/>
-        <Typography sx={{ml:0.5}}>
-          in [insert product category]
+        <Typography display='inline' sx={{ml:2}}>
+          in {product.category[0].charAt(0).toUpperCase() + product.category[0].slice(1)}
         </Typography>
       </Box>
       <CustomDivider sx={{mt:2, mb:2, width:'98%'}}/>

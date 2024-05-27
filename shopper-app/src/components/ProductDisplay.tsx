@@ -38,8 +38,8 @@ export default function ProductDisplay({ images }: ProductDisplayProps) {
         ))}
       </ImageList>
       </Box>
-      <Box aria-label='selected-image' sx={{ flexGrow: 1 }}>
-        <Card sx={{ maxWidth: 600, margin: 'auto' }}>
+      <Box aria-label='selected-image' sx={{ flexGrow: 1, height:500, display: 'flex' }}>
+        <Card sx={{ maxWidth: 500, margin: 'auto' }}>
           <CardMedia
             component="img"
             image={selectedImage}
