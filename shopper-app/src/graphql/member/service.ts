@@ -27,7 +27,10 @@ export class MemberService {
   }
   async getInfo(memberId: string): Promise <MemberInfo | undefined> {
     return new Promise((resolve, reject) => {
-      
+      fetch(`http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account`, {
+        method: 'GET',
+        body: JSON
+      }
     })
   }
 }

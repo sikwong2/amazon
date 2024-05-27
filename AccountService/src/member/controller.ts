@@ -33,11 +33,11 @@ export class MemberController extends Controller {
       })
   }
 
-  @Get()
+  @Get('memberId')
   @Response('400', 'Bad')
   @SuccessResponse('200', 'Good')
   public async getAccountInfo(
-    @Query() memberId: string
+    @Path() memberId: string
   ): Promise <MemberInfo | undefined> {
     return new MemberService()
       .getInfo(memberId)
