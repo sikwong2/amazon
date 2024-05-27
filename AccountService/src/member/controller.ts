@@ -32,12 +32,12 @@ export class MemberController extends Controller {
         return response;
       })
   }
-  
+
   @Get()
   @Response('400', 'Bad')
   @SuccessResponse('200', 'Good')
   public async getAccountInfo(
-    @Body() memberId: string
+    @Query() memberId: string
   ): Promise <MemberInfo | undefined> {
     return new MemberService()
       .getInfo(memberId)

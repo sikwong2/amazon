@@ -56,8 +56,8 @@ export class MemberService {
       values: [memberId],
     };
     const {rows} = await pool.query(query)
-    returnObj.name = rows[0].name;
-    returnObj.address = rows[0].address;
+    returnObj.name = rows[0].accountinfo.name;
+    returnObj.address = rows[0].accountinfo.address;
     return returnObj;
   }
 }
