@@ -24,3 +24,5 @@ export default function Logo({width=200, height='auto', transparent= 'false', ..
     </Button>
   )
 }
+
+export const defaultLogoWidth = 120;

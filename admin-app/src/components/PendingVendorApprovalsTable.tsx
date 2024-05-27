@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay';
 import CustomButton from './Button';
-import { DataGrid, GridColDef, GridSlots } from '@mui/x-data-grid';
+import { DataGrid, GridColDef} from '@mui/x-data-grid';
 import LinearProgress from '@mui/material/LinearProgress';
 
 export default function PendingVendorApprovalsTable() {
@@ -41,7 +41,7 @@ export default function PendingVendorApprovalsTable() {
     },
   ];
 
-  const approveVendor = (id) => {
+  const approveVendor = (id: string) => {
     const query = {
       query: `mutation {
         approvevendor(id: "${id}") {
@@ -123,7 +123,7 @@ export default function PendingVendorApprovalsTable() {
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
             noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No Pending Vendor Approvals" />,
-            loadingOverlay: LinearProgress as GridSlots['loadingOverlay'],
+            loadingOverlay: LinearProgress,
           }}
           loading={loading}
           initialState={{
