@@ -1,6 +1,6 @@
 // source: https://mui.com/material-ui/react-grid/#responsive-values
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
@@ -19,14 +19,17 @@ import CustomRating from '@/components/Rating';
 import CustomDivider from '@/components/Divider';
 import AmazonChoice from '@/components/AmazonChoice';
 import ProductDisplay from '@/components/ProductDisplay';
+import { CartContext } from '@/context/Cart';
+import TopBar from '@/components/TopBar';
+import { PageContext } from '@/context/Page';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 /*
 TODO:
- - add to cart button
- - buy now button
+ -x add to cart button
+ -x buy now button
  -x translations
  -x fix quantity dropdown width
  -x add categories 
@@ -133,6 +136,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
   const [quantity, setQuantity] = useState(1)
+  const cartContext = useContext(CartContext);
+  const pageContext = useContext(PageContext);
   const router = useRouter();
   const { productId } = router.query;
 
@@ -140,15 +145,20 @@ export default function Product({ product }: ProductProp) {
     setQuantity(parseInt(value));
   }
   
-  const addToCart = () => {
-    // add productId to cart context
-    // product added to cart popup???
+  const handleAddToCartClick = () => {
+    const cart = cartContext.cart;
+    for (let i = 0; i < quantity; i++) {
+      cart.push(productId as string)
+      cartContext.setCart(cart);
+    }
+    pageContext.setPage('cart');
+    router.push('/');
   }
 
-  const buyNow = () => {
-    // clear cart context
-    // add productId to cart context 
-    // go to checkout page
+  const handleBuyNowClick = () => {
+    cartContext.setCart([productId as string]);
+    // pageContext.setPage('checkout');
+    router.push('/');
   }
 
   // Returns red text if low stock, green text if in stock
@@ -221,7 +231,7 @@ export default function Product({ product }: ProductProp) {
           label='add-to-cart' 
           pill 
           fullWidth 
-          onClick={addToCart}
+          onClick={handleAddToCartClick}
           sx={{height:'30px', mt: 1, mb:1}}
         >
           {t("product.add-to-cart")}
@@ -233,7 +243,7 @@ export default function Product({ product }: ProductProp) {
           color='secondary' 
           pill 
           fullWidth
-          onClick={buyNow}
+          onClick={handleBuyNowClick}
           sx={{height:'30px'}}
         >
           {t("product.buy-now")}
@@ -244,6 +254,7 @@ export default function Product({ product }: ProductProp) {
 
   return (
     <>
+      <TopBar/>
       <Box sx={{ flexGrow: 1, p:2.2 }}>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4.5} sx={{padding:'0px'}}>
