@@ -8,6 +8,7 @@ import { BoxProps } from '@mui/material/Box';
 
 export type Image = {
   image: string,
+  id: string,
   description: string,
   title: string
 }
