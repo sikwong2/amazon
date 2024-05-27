@@ -60,6 +60,12 @@
     "item": "item",
     "subtotal": "Subtotal"
   },
+  "history": {
+    "your-orders": "Your Orders",
+    "shipped": "Shipped",
+    "pending": "Pending",
+    "completed": "Completed"
+  },
   "product": {
     "stock": {
       "only": "Only",
