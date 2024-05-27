@@ -53,8 +53,6 @@ export class AuthService {
               return res.json();
             })
             .then((sessionUser) => {
-              console.log(sessionUser);
-              console.log(roles);
               if (roles){
                 if (!roles.includes(sessionUser.role)) {
                   reject(new Error("Unauthorised"))
