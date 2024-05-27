@@ -26,7 +26,7 @@ export class MemberService {
     })
   }
   
-  async getInfo(memberId: string): Promise <MemberInfo | undefined> {
+  async getMemberInfo(memberId: string): Promise <MemberInfo | undefined> {
     try {
       const res = await fetch(
         `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/orders/shopper/${memberId}`, {

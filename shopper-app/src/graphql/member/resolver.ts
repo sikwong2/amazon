@@ -30,7 +30,7 @@ export class MemberResolver {
   async getMemeberInfo(
     @Arg('memberId') memberId: string,
   ): Promise <MemberInfo> {
-    return new MemberService().getInfo(memberId)
+    return new MemberService().getMemberInfo(memberId)
     .then(async(response: MemberInfo | undefined): Promise <MemberInfo> => {
       if (response == undefined){
         throw new Error ("Cannot get Member info")

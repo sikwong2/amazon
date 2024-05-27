@@ -38,9 +38,26 @@ const fetchOrders = async (shopperId: string, status: string) => {
   }
 }
 
-const fetchUserDetails = async () => {
+const fetchUserDetails = async (shopperId: string) => {
   try {
-    const query = {query: `query`}
+    const query = {query: `query member{getMemberInfo(memberId: "${shopperId}) { name, address }}` };
+    const res = await fetch('/api/graphql', {
+      method: 'GET',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      return [];
+    }
+    const { name, address } = json.data.getMemberInfo;
+    return { name, address };
+  } catch (error) {
+    console.error('Error fetching member info:', error);
+    return { name: 'name error', address: 'address error'};
   }
 }
 
