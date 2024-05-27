@@ -214,7 +214,7 @@ export function Checkout() {
                     {memberName}
                 </ListItem>
                 <ListItem sx={{ padding: 0, margin: 0 }}>
-                    address
+                    {address}
                 </ListItem>
                 <ListItem sx={{ padding: 0, margin: 0 }}>
                   Add delivery instructions *link*
