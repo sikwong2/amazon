@@ -19,19 +19,52 @@ export default function APIKeysTable() {
   const [loading, setLoading] = useState(false); // New loading state
 
   const fetchVendorKeys = () => {
-    console.log('bearer token: ' + loginContext.accessToken);
     setLoading(true);
 
     const query = {
       query: `query {
-        allKeys {
-          account_id
+        vendorKeys(id: "${loginContext.id}") {
           api_key
+          account_id
           active
         }
       }`,
     };
-    fetch('/admin/api/graphql', {
+    fetch('/vendor/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${loginContext.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (!json.data || !json.data.vendorKeys) {
+          console.log('No data');
+          setKeys([]);
+        } else {
+          setKeys(json.data.vendorKeys);
+        }
+      })
+      .finally(() => {
+        setTimeout(() => setLoading(false), 500); // Delay to ensure DataGrid renders
+      });
+  };
+
+  const createAPIKey = () => {
+    setLoading(true);
+
+    const query = {
+      query: `mutation {
+        createAPIKey(id: "${loginContext.id}") {
+          api_key
+          account_id
+          active
+        }
+      }`,
+    };
+    fetch('/vendor/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
@@ -42,15 +75,11 @@ export default function APIKeysTable() {
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        if (!json.data || !json.data.allKeys) {
+        if (!json.data || !json.data.createAPIKey) {
           console.log('No data');
-          setKeys([]);
         } else {
-          setKeys(json.data.allKeys);
+          fetchVendorKeys();
         }
-      })
-      .finally(() => {
-        setTimeout(() => setLoading(false), 500); // Delay to ensure DataGrid renders
       });
   };
 
@@ -58,7 +87,7 @@ export default function APIKeysTable() {
     {
       field: 'api_key',
       headerName: 'Key',
-      flex: 1,
+      flex: 9,
       sortable: false,
       renderCell: (params) => (
         <Box display="flex" width={'100%'}>
@@ -75,17 +104,14 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'account_id', headerName: 'Owner ID', flex: 1 },
     { field: 'active', headerName: 'Status', flex: 1 },
   ];
 
   useEffect(() => {
     // Call fetchStatus immediately after component mount
-    // fetchVendorKeys();
-
-    // // Set up the interval
-    // const intervalId = setInterval(fetchVendorKeys, 10000); // 5000 ms = 5 seconds
-
+    fetchVendorKeys();
+    // Set up the interval
+    const intervalId = setInterval(fetchVendorKeys, 10000);
     // Clean up function
     // return () => clearInterval(intervalId); // This will clear the interval on component unmount
   }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
@@ -93,15 +119,26 @@ export default function APIKeysTable() {
   return (
     <CustomCard sx={{ m: '28px' }}>
       <Box sx={{ p: '14px' }}>
-        <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-          API Keys <KeyIcon style={{ transform: 'translate(0px, 3px)' }} />
-        </Typography>
+        <Box display="flex" justifyContent="space-between">
+          <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
+            API Keys <KeyIcon style={{ transform: 'translate(0px, 3px)' }} />
+          </Typography>
+          <CustomButton
+            label="generate-new-key"
+            variant="contained"
+            color="primary"
+            onClick={createAPIKey}
+            sx={{ mr: '14px', mb: '10px' }}
+          >
+            Generate New Key
+          </CustomButton>
+        </Box>
         <CustomDivider />
-        <Box  sx={{ mt: 1 }}>
+        <Box sx={{ mt: 1 }}>
           <Paper sx={{ width: '100%', overflow: 'hidden' }}>
             <DataGrid
               rows={keys}
-              getRowId={(row) => row.account_id}
+              getRowId={(row) => row.api_key}
               columns={columns}
               style={{ backgroundColor: '#f5f5f5' }}
               slots={{
@@ -112,7 +149,7 @@ export default function APIKeysTable() {
               initialState={{
                 pagination: {
                   paginationModel: {
-                    pageSize: 5,
+                    pageSize: 10,
                   },
                 },
               }}

@@ -15,8 +15,6 @@ export default function APIKeysTable() {
   const [loading, setLoading] = useState(false); // New loading state
 
   const activateKey = (key) => {
-    console.log(`Activate ${key}`);
-
     const query = {
       query: `mutation {
         activateAPIKey(key: "${key}")
@@ -38,8 +36,6 @@ export default function APIKeysTable() {
   };
 
   const deactivateKey = (key) => {
-    console.log(`Deactivate ${key}`);
-
     const query = {
       query: `mutation {
         deactivateAPIKey(key: "${key}")
@@ -61,7 +57,6 @@ export default function APIKeysTable() {
   };
 
   const fetchKeys = () => {
-    console.log('bearer token: ' + loginContext.accessToken);
     setLoading(true);
 
     const query = {
@@ -88,6 +83,7 @@ export default function APIKeysTable() {
           console.log('No data');
           setKeys([]);
         } else {
+          console.log("ALL KEYS: ", json.data.allKeys);
           setKeys(json.data.allKeys);
         }
       })
@@ -127,7 +123,7 @@ export default function APIKeysTable() {
       renderCell: (params) => (
         <Box display="flex">
           <CustomButton
-            label={`activate-${params.row.id}`}
+            label={`activate-${params.row.api_key}`}
             variant="contained"
             color="primary"
             size="small"
@@ -172,7 +168,7 @@ export default function APIKeysTable() {
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <DataGrid
           rows={keys}
-          getRowId={(row) => row.account_id}
+          getRowId={(row) => row.api_key}
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{

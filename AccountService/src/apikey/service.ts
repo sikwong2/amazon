@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import { v4 as uuidv4 } from 'uuid';
 import { APIKey } from '.';
 import { pool } from '../db';
 
@@ -11,6 +12,7 @@ export class APIKeyService {
     };
 
     const { rows } = await pool.query(query);
+    console.log(rows);
     return rows;
   }
 
@@ -24,13 +26,19 @@ export class APIKeyService {
 
     const { rows } = await pool.query(query);
 
+    console.log(rows);
+
     return rows;
   }
 
   public async createAPIKey(id: string): Promise<APIKey> {
-    const key = jwt.sign({ account_id: id }, `${process.env.MASTER_SECRET}`, {
-      algorithm: 'HS256',
-    });
+    const key = jwt.sign(
+      { uuid: uuidv4(), account_id: id },
+      `${process.env.MASTER_SECRET}`,
+      {
+        algorithm: 'HS256',
+      },
+    );
 
     let insert =
       ` INSERT INTO apikeytable (account_id, api_key, active)` +

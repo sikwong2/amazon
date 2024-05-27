@@ -19,5 +19,7 @@ export class Authenticated {
     accessToken!: string
   @Field()
     role!: string
+  @Field()
+    id!: string
 }
 
