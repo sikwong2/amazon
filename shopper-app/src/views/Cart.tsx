@@ -8,53 +8,7 @@ import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
 import { useRouter } from 'next/router';
 import { CartItem } from '@/components/CartItem';
-const fetchOrders = async (shopperId: string, status: string) => {
-  try {
-    const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
-    const res = await fetch('/api/graphql', {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.log(json.errors[0].message);
-      return [];
-    }
-    const orders:any = {};
-    for (const {orderId, productId} of json.data.getOrdersByStatus) {
-      orders[orderId] = productId;
-    }
-    return orders;
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
-
-const deleteOrder = async (orderId: string): Promise<string> => {
-  try {
-    const query = {query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}`};
-    const res = await fetch('/api/graphql', {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.log(json.errors[0].message);
-      throw new Error(json.errors[0].message);
-    }
-    return json.data.deleteOrder.orderId;
-  } catch(e) {
-    console.log(e);
-    throw new Error('Cart.tsx: deleteOrder');
-  }
-}
+import TopBar from '@/components/TopBar';
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
@@ -106,40 +60,43 @@ export function Cart() {
     })()
   }, [subtotal, cart])
   return (
-    <Container maxWidth="md">
-      <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
-          <Typography variant='h4' component='h1' gutterBottom sx={{ marginLeft: '1em' }}>
-            {t("cart.shopping-cart")}
-          </Typography>
-          <List>
-            {cartItems}
-          </List>
-        </CustomCard>
-        <CustomCard>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            {t("cart.subtotal") +
-          `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
-          $ ${subtotal}`}
-            <CustomButton
-              type='submit'
-              label='checkout'
-              variant='contained'
-              color='primary'
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() =>{
-                router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
-              }}
-            >
-              {t("cart.proceed-to-checkout")}
-            </CustomButton>
-          </Box>
-        </CustomCard>
+    <>
+      <TopBar/>
+      <Container maxWidth="md">
+        <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
+            <Typography variant='h4' component='h1' gutterBottom sx={{ marginLeft: '1em' }}>
+              {t("cart.shopping-cart")}
+            </Typography>
+            <List>
+              {cartItems}
+            </List>
+          </CustomCard>
+          <CustomCard>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}>
+              {t("cart.subtotal") +
+            `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
+            $ ${subtotal}`}
+              <CustomButton
+                type='submit'
+                label='checkout'
+                variant='contained'
+                color='primary'
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() =>{
+                  router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
+                }}
+                >
+                {t("cart.proceed-to-checkout")}
+              </CustomButton>
+            </Box>
+          </CustomCard>
+        </Container>
       </Container>
-    </Container>
+    </>
   )
 }
