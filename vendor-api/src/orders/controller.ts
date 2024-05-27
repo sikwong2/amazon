@@ -1,14 +1,9 @@
 import {
   Controller,
   Get,
-  Delete,
-  Post,
   Path,
   Response,
-  Request,
   Route,
-  Security,
-  SuccessResponse,
 } from 'tsoa';
 
 import { OrdersService } from './service';
