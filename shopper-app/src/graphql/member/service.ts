@@ -1,5 +1,5 @@
-import type { Member } from "./schema";
-import type { MemberRequest } from "./schema";
+import { Member } from "./schema";
+import { MemberRequest } from "./schema";
 
 export class MemberService {
   async createaccount(memberinput: MemberRequest): Promise <Member | undefined> {
