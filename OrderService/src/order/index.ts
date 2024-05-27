@@ -11,5 +11,5 @@ export type OrderResponse = {
 }
 
 export type OrderUpdate = {
-  statusCode: number
+  status: string
 }

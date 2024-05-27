@@ -47,32 +47,24 @@ export class OrderService {
   }
   
   public async updateOrderStatus(status: OrderUpdate, id: string):Promise<OrderInfo|undefined> {
-    const statusMap : {[key: number]: string} = {
-      0: 'pending',
-      1: 'confirmed',
-      2: 'shipped',
-      3: 'delayed',
-      4: 'out for delivery',
-      5: 'delivered',
-      6: 'cancelled',
-      7: 'refunded',
-      8: 'returned',
-    };
-    
-    const statusString = statusMap[status.statusCode];
-    
-    let update = `UPDATE orders SET order_status = $1
-    WHERE id = $2`;
+    const statuses = ['pending', 'confirmed', 'shipped', 'delayed', 'out for delivery', 'delivered', 'cancelled', 'refunded', 'returned'];
+    if (!statuses.includes(status.status)) {
+      return undefined;
+    }
+    let update = `UPDATE orders SET order_status = $1 WHERE id = $2`;
     const query = {
       text: update,
-      values: [statusString, id]
+      values: [status.status, id]
     }
     try {
       await pool.query(query);
       const returnObj = this.selectByOrderId(id);
+      if(!returnObj) {
+        return undefined;
+      }
       return returnObj;
     } catch (error){
-      console.log('Error updating', error);
+      console.error('Error updating order status', error);
       return undefined;
     }
   }

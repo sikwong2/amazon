@@ -1,7 +1,3 @@
-// copy from OrderService
-export interface order {
-  productId: string
-  shopperId: string
-  vendorId: string
-  orderStatus: string
+export interface StatusUpdate {
+  status: string
 }
