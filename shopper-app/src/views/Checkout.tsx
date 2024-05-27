@@ -285,7 +285,7 @@ export function Checkout() {
                   router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
                 }}
               >
-                {t("cart.proceed-to-checkout")}
+                Place your Order
               </CustomButton>
             </Box>
           </CustomCard>
