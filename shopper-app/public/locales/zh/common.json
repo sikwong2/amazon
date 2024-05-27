@@ -45,6 +45,14 @@
     "Search": "搜索",
     "Hello": "你好"
   },
+  "home": {
+    "pick-up": "继续逛",
+    "keep-shopping": "继续买",
+    "top-deal": "优惠",
+    "easy-returns": "轻松退货",
+    "easy-returns-body": "亚马逊对订单和礼品提供灵活的退货运费",
+    "learn-more": "了解更多"
+  },
   "cart": {
     "proceed-to-checkout": "进行结算",
     "shopping-cart": "购物车",
