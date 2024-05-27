@@ -6,10 +6,10 @@ export class OrderService {
   public async create(OrderInfo: OrderInfo): Promise<OrderResponse|undefined> {
     let insert = 
       `INSERT INTO orders (data, vendor_id, shopper_id) VALUES 
-     (jsonb_build_object('productId', $1::uuid), $2::uuid, $3::uuid) RETURNING id`;
+     (jsonb_build_object('products', $1::jsonb), $2::uuid, $3::uuid) RETURNING id`;
     const query = {
       text: insert,
-      values: [OrderInfo.productId, OrderInfo.vendorId, OrderInfo.shopperId],
+      values: [JSON.stringify(OrderInfo.products), OrderInfo.vendorId, OrderInfo.shopperId],
     };
     const {rows} = await pool.query(query);
     if (rows.length != 0){
@@ -25,7 +25,7 @@ export class OrderService {
   }
 
   public async selectByOrderId(id: string):Promise<OrderInfo|undefined> {
-    let select = `SELECT data->>'product' as productId, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE id = $1`;
+    let select = `SELECT data->>'products' as products, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE id = $1`;
     const query = {
       text: select,
       values: [id]
@@ -33,25 +33,30 @@ export class OrderService {
     try {
       const { rows } = await pool.query(query); 
       const returnObj = {
-        productId: rows[0].productid,
+        products: rows[0].products,
         shopperId: rows[0].shopperid,
         vendorId: rows[0].vendorid, 
         orderStatus: rows[0].orderstatus
       }
-      console.log(returnObj.productId);
+      console.log(returnObj.products);
       return returnObj;
     } catch (error) {
       console.error('Error getting Id', error);
       return undefined;
     }
   }
-
+  
   public async updateOrderStatus(status: OrderUpdate, id: string):Promise<OrderInfo|undefined> {
     const statusMap : {[key: number]: string} = {
       0: 'pending',
-      1: 'shipped',
-      2: 'completed',
-      3: 'cancelled'
+      1: 'confirmed',
+      2: 'shipped',
+      3: 'delayed',
+      4: 'out for delivery',
+      5: 'delivered',
+      6: 'cancelled',
+      7: 'refunded',
+      8: 'returned',
     };
     
     const statusString = statusMap[status.statusCode];
