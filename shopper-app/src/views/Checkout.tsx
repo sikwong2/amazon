@@ -352,9 +352,7 @@ export function Checkout() {
                   </TableRow>
                 </TableBody>
               </Table>
-
               <CustomDivider sx={{ margin: 'auto', width: '235px', marginBottom: '8px' }}></CustomDivider>
-
               <Table sx={{border:'none', marginBottom: '12px'}} >
                 <TableBody>
                   <TableRow>
@@ -363,8 +361,6 @@ export function Checkout() {
                   </TableRow>
                 </TableBody>
               </Table>
-
-              
           </CustomCard>
         </Container>
       </Container>
