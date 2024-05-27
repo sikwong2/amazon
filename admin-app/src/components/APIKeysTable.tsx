@@ -14,7 +14,7 @@ export default function APIKeysTable() {
   const [keys, setKeys] = useState([]);
   const [loading, setLoading] = useState(false); // New loading state
 
-  const activateKey = (key) => {
+  const activateKey = (key: string) => {
     const query = {
       query: `mutation {
         activateAPIKey(key: "${key}")
@@ -35,7 +35,7 @@ export default function APIKeysTable() {
       });
   };
 
-  const deactivateKey = (key) => {
+  const deactivateKey = (key: string) => {
     const query = {
       query: `mutation {
         deactivateAPIKey(key: "${key}")
@@ -113,8 +113,8 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'account_id', headerName: 'Owner ID', flex: 1 },
-    { field: 'active', headerName: 'Status', flex: 1 },
+    { field: 'account_id', headerName: 'Owner ID', flex: 1, sortable: false},
+    { field: 'active', headerName: 'Status', flex: 1, sortable: false},
     {
       field: 'action',
       headerName: 'Action',
@@ -135,7 +135,7 @@ export default function APIKeysTable() {
             {loading ? 'Loading...' : 'Activate'}
           </CustomButton>
           <CustomButton
-            label={`deactivate-${params.row.id}`}
+            label={`deactivate-${params.row.api_key}`}
             variant="contained"
             color="secondary"
             size="small"

@@ -5,7 +5,7 @@ import { pool } from '../db';
 
 export class APIKeyService {
   public async getAllKeys(): Promise<APIKey[]> {
-    let select = ` SELECT account_id, api_key, active FROM apikeytable`;
+    let select = `SELECT account_id, api_key, active FROM apikeytable ORDER BY api_key ASC`;
 
     const query = {
       text: select,
