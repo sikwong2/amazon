@@ -12,7 +12,6 @@ export default function Logo({width=200, height='auto', ...rest}) {
   return (
     <Button
       sx={{ p:'unset' }}
-      disabled={loginContext.accessToken.length > 0 ? false : true}
       onClick={() => {
         pageContext.setPage('home');
         router.push('/');

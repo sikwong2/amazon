@@ -92,6 +92,7 @@ export default function TopBar() {
 
     const handleOrders = () => {
         // set page context to order history
+        pageContext.setPage('orderHistory');
         router.push('/');
     }
 
