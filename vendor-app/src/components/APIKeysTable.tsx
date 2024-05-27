@@ -74,7 +74,6 @@ export default function APIKeysTable() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (!json.data || !json.data.createAPIKey) {
           console.log('No data');
         } else {

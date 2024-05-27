@@ -70,7 +70,6 @@ export function Approval() {
   );
 
   if (loginContext.accessToken !== '') {
-    console.log(vendors);
     return ApprovalComponent;
   } else {
     return null;

@@ -12,7 +12,6 @@ export class APIKeyService {
     };
 
     const { rows } = await pool.query(query);
-    console.log(rows);
     return rows;
   }
 
@@ -25,9 +24,6 @@ export class APIKeyService {
     };
 
     const { rows } = await pool.query(query);
-
-    console.log(rows);
-
     return rows;
   }
 

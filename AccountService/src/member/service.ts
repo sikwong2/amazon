@@ -119,8 +119,6 @@ export class MemberService {
     };
 
     const { rows } = await pool.query(query);
-
-    console.log(rows);
     return rows;
   }
 }

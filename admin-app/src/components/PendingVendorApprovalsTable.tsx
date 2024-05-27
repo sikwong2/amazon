@@ -62,7 +62,6 @@ export default function PendingVendorApprovalsTable() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         fetchPendingVendors();
       })
       .catch((error) => {
@@ -72,7 +71,6 @@ export default function PendingVendorApprovalsTable() {
   };
 
   const fetchPendingVendors = () => {
-    console.log('bearer token: ' + loginContext.accessToken);
     setLoading(true);
 
     const query = {

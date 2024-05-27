@@ -30,7 +30,6 @@ export default function APIKeysTable() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         fetchKeys();
       });
   };
@@ -51,7 +50,6 @@ export default function APIKeysTable() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         fetchKeys();
       });
   };
@@ -78,12 +76,10 @@ export default function APIKeysTable() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (!json.data || !json.data.allKeys) {
           console.log('No data');
           setKeys([]);
         } else {
-          console.log("ALL KEYS: ", json.data.allKeys);
           setKeys(json.data.allKeys);
         }
       })

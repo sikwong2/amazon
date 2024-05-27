@@ -19,8 +19,6 @@ import { order } from './index';
 export class OrderController extends Controller {
   @Get('')
   public async getOrders( @Request() request: express.Request):Promise<order[]> {
-    console.log("request: ", request);
-    // return new OrderService().getOrders(request.user!.id);
     return new OrderService().getOrders();
   }
 }
