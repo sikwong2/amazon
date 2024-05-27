@@ -49,6 +49,20 @@ export class ProductController extends Controller {
     const sorted = sort ? sort : "DESC"
     return await new ProductService().getByCategory(category, p, s, o, sorted);
   }
+  @Get('/name/{name}')
+  public async getName(
+    @Path() name: string,
+    @Query() page?: number,
+    @Query() size?: number,
+    @Query() order?: Order,
+    @Query() sort?: Sort
+  ): Promise<Product[]> {
+    const p: number = page ? (page - 1) : 0;
+    const s: number = size ? size : 30;
+    const o = order ? order : 'price';
+    const sorted = sort ? sort : "DESC"
+    return await new ProductService().getByName(name, p, s, o, sorted);
+  }
 
   @Get('{productId}')
   public async getId(
