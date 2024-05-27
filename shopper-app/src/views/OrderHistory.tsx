@@ -7,6 +7,7 @@ import { Product } from "@/graphql/product/schema";
 import { OrderItem } from "@/components/OrderItem";
 import CustomButton from "@/components/Button";
 import { useTranslation } from "next-i18next";
+import TopBar from "@/components/TopBar";
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
     const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
@@ -79,44 +80,47 @@ export function OrderHistory() {
     })()
   }, [status])
   return (
-    <Container maxWidth='md'>
-      <CustomDivider>
-        <Typography variant='h4' component='h1' gutterBottom sx={{ color: 'black' }}>
-          {t("history.your-orders")}
-        </Typography>
-      </CustomDivider>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <CustomButton
-          label='pending'
-          sx={{ margin: '1em' }}
-          onClick={() => setStatus('pending')}
-        >
-          {t("history.pending")}
-        </CustomButton>
-        <CustomButton
-          label='shipped'
-          sx={{ margin: '1em' }}
-          onClick={() => setStatus('shipped')}
-        >
-          {t("history.shipped")}
-        </CustomButton>
-        <CustomButton
-          label='Completed'
-          sx={{ margin: '1em' }}
-          onClick={() => setStatus('completed')}
-        >
-          {t("history.completed")}
-        </CustomButton>
-      </Toolbar>
-      {
-        orders.length > 0 ?
-          <CustomCard>
-            <List>
-              {orders}
-            </List>
-          </CustomCard> :
-          <></>
-      }
-    </Container>
+    <>
+      <TopBar />
+      <Container maxWidth='md'>
+        <CustomDivider>
+          <Typography variant='h4' component='h1' gutterBottom sx={{ color: 'black' }}>
+            {t("history.your-orders")}
+          </Typography>
+        </CustomDivider>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <CustomButton
+            label='pending'
+            sx={{ margin: '1em' }}
+            onClick={() => setStatus('pending')}
+          >
+            {t("history.pending")}
+          </CustomButton>
+          <CustomButton
+            label='shipped'
+            sx={{ margin: '1em' }}
+            onClick={() => setStatus('shipped')}
+          >
+            {t("history.shipped")}
+          </CustomButton>
+          <CustomButton
+            label='Completed'
+            sx={{ margin: '1em' }}
+            onClick={() => setStatus('completed')}
+          >
+            {t("history.completed")}
+          </CustomButton>
+        </Toolbar>
+        {
+          orders.length > 0 ?
+            <CustomCard>
+              <List>
+                {orders}
+              </List>
+            </CustomCard> :
+            <></>
+        }
+      </Container>
+    </>
   )
 }

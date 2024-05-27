@@ -34,5 +34,12 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice"
+  },
+  "topbar": {
+    "Sign-in": "Sign in",
+    "Orders": "Orders",
+    "Cart": "Cart",
+    "Search": "Search",
+    "Hello": "Hello"
   }
 }

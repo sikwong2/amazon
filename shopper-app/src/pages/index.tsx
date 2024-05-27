@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
+import TopBar from '@/components/TopBar';
 import LanguageButton from '@/components/Language';
+import CustomButton from '@/components/Button';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
 import { OrderHistory } from '@/views/OrderHistory';
@@ -32,13 +34,23 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LanguageButton />
+      <TopBar />
       <div>
         {t("go-to-login")} <Link href="/login"> {t("here")} </Link>
       </div>
       <div>
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
+      <CustomButton label='product' >
+        <Link href="/product/fcab207a-fd48-4e81-a15d-a754f49fcd15">
+          Go to product 1
+        </Link>
+      </CustomButton>
+      <CustomButton label='product' >
+        <Link href="/product/c5f199c9-0799-43ad-848b-f7e8e76ee0e4">
+          Go to product 2
+        </Link>
+      </CustomButton>
       <Home/>
     </>
   )

@@ -22,6 +22,8 @@ export class Product {
   @Field(() => [String])
   @IsNotEmpty()
     category!: string[]
+  @Field(() => [String])
+    description?: string[]
 }
 
 @ArgsType()

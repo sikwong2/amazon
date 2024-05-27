@@ -38,6 +38,21 @@
     "and": " and ",
     "privacy-notice": "Privacy Notice"
   },
+  "topbar": {
+    "Sign-in": "Sign in",
+    "Orders": "Orders",
+    "Cart": "Cart",
+    "Search": "Search",
+    "Hello": "Hello"
+  },
+  "home": {
+    "pick-up": "Pick up where you left off",
+    "keep-shopping": "Keep shopping for",
+    "top-deal": "Top Deal",
+    "easy-returns": "Easy returns",
+    "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
+    "learn-more": "Learn More"
+  },
   "cart": {
     "proceed-to-checkout": "Proceed to Checkout",
     "shopping-cart": "Shopping Cart",
@@ -51,12 +66,20 @@
     "pending": "Pending",
     "completed": "Completed"
   },
-  "home": {
-    "pick-up": "Pick up where you left off",
-    "keep-shopping": "Keep shopping for",
-    "top-deal": "Top Deal",
-    "easy-returns": "Easy returns",
-    "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
-    "learn-more": "Learn More"
+  "product": {
+    "stock": {
+      "only": "Only",
+      "order-soon": "left in stock - order soon.",
+      "in-stock": "In Stock"
+    },
+    "about-item": "About this item",
+    "free-returns": "FREE Returns",
+    "free-delivery": "FREE delivery",
+    "fastest-delivery": "Or fastest delivery",
+    "order-within": "Order within",
+    "add-to-cart": "Add to Cart",
+    "buy-now": "Buy Now",
+    "visit-amazon": "Visit the Amazon Store",
+    "quantity": "Quantity"
   }
 }

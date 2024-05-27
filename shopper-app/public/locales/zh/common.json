@@ -38,6 +38,21 @@
     "and": "和",
     "privacy-notice": "隐私声明"
   },
+  "topbar": {
+    "Sign-in": "登录",
+    "Orders": "订单",
+    "Cart": "购物车",
+    "Search": "搜索",
+    "Hello": "你好"
+  },
+  "home": {
+    "pick-up": "继续逛",
+    "keep-shopping": "继续买",
+    "top-deal": "优惠",
+    "easy-returns": "轻松退货",
+    "easy-returns-body": "亚马逊对订单和礼品提供灵活的退货运费",
+    "learn-more": "了解更多"
+  },
   "cart": {
     "proceed-to-checkout": "进行结算",
     "shopping-cart": "购物车",
@@ -51,12 +66,20 @@
     "pending": "待办的",
     "completed": "完全的"
   },
-  "home": {
-    "pick-up": "继续逛",
-    "keep-shopping": "继续买",
-    "top-deal": "优惠",
-    "easy-returns": "轻松退货",
-    "easy-returns-body": "亚马逊对订单和礼品提供灵活的退货运费",
-    "learn-more": "了解更多"
+  "product": {
+    "stock": {
+      "only": "仅有的",
+      "order-soon": "尚有库存 - 请尽快订购",
+      "in-stock": "有存货"
+    },
+    "about-item": "关于此商品",
+    "free-returns": "免费退货",
+    "free-delivery": "免费送货",
+    "fastest-delivery": "或者最快的交货",
+    "order-within": "订购范围内",
+    "add-to-cart": "添加到购物车",
+    "buy-now": "立即购买",
+    "visit-amazon": "访问亚马逊商店",
+    "quantity": "数量"
   }
 }
