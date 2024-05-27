@@ -11,7 +11,8 @@ import InputBase from '@mui/material/InputBase';
 import { useTranslation } from 'next-i18next';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/router';
-import { LoginContext } from '../context/Login'
+import { LoginContext } from '@/context/Login'
+import { PageContext } from '@/context/Page';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: 'rgba(35,47,62)', 
@@ -67,6 +68,7 @@ const customButtonStyles: React.CSSProperties = {
 export default function TopBar() {
     const { t } = useTranslation('common');
     const loginContext = React.useContext(LoginContext)
+    const pageContext = React.useContext(PageContext);
     const [searchValue, setSearchValue] = React.useState('');
     const router = useRouter(); 
 
@@ -87,6 +89,16 @@ export default function TopBar() {
     const handleSignIn = () => {
       router.push('/login');
     };
+
+    const handleOrders = () => {
+        // set page context to order history
+        router.push('/');
+    }
+
+    const handleCart = () => {
+        pageContext.setPage('cart');
+        router.push('/');
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -116,10 +128,10 @@ export default function TopBar() {
                         {t("topbar.Hello") + " " + loginContext.userName}
                         </CustomButton> 
                       )}
-                      <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} caps={false}>
+                      <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} onClick={handleOrders} caps={false}>
                           {t("topbar.Orders")}
                       </CustomButton>
-                      <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }}>
+                      <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }} onClick={handleCart}>
                           <ShoppingCartIcon />
                           {t("topbar.Cart")}
                       </CustomButton> 
