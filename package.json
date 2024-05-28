@@ -47,7 +47,7 @@
     "build-products": "cd ProductService && npm run build",
     "build-vendor-api": "cd vendor-api && npm run build",
 
-    "start": "concurrently --kill-others \"npm run start-vendor\" \"npm run start-admin\" \"npm run start-shopper\" \"npm run start-accounts\" \"npm run start-orders\" \"npm run start-products\"",
+    "start": "concurrently --kill-others \"npm run start-vendor\" \"npm run start-vendor-api\" \"npm run start-admin\" \"npm run start-shopper\" \"npm run start-accounts\" \"npm run start-orders\" \"npm run start-products\"",
     "start-vendor": "cd vendor-app && npm start",
     "start-admin": "cd admin-app && npm start",
     "start-shopper": "cd shopper-app && npm start",

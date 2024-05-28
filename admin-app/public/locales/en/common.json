@@ -12,7 +12,9 @@
     "and": " and ",
     "privacy-notice": "Privacy Notice",
     "need-help": "Need help?",
-    "create-account": "Create your Amazon account"
+    "create-account": "Create your Amazon account",
+    "buying-for-work": "Buying for work?",
+    "vendor-account": "Create a free vendor account"
   },
   "signup": {
     "title": "Create account",
