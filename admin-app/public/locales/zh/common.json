@@ -39,5 +39,9 @@
     "Cart": "购物车",
     "Search": "搜索",
     "Hello": "你好"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon 是一个亚马逊克隆学生项目。所有展示的产品都是假货。",
+    "back-to-top": "回到顶部"
   }
 }

@@ -41,5 +41,9 @@
     "Cart": "Cart",
     "Search": "Search",
     "Hello": "Hello"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
+    "back-to-top": "Back to top"
   }
 }
