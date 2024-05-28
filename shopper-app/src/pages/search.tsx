@@ -68,9 +68,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
           <Typography variant="h4" gutterBottom>
             {t('search.results-for')} "{query}"
           </Typography>
-          <Grid container spacing={2} justifyContent="flex-start">
+          <Grid container spacing={1} justifyContent="flex-start">
             {products.map((product) => (    
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+              <Grid item xs={12} sm={8} md={6} lg={3} key={product.id}>
                 <SearchResultCard
                   images={[{ image: product.image[0], description: product.name, title: product.name, id: product.id, price: product.price, rating: product.rating
                    }]}

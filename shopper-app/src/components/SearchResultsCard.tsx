@@ -81,9 +81,9 @@ export default function SearchResultCard({ images, title }: SearchResultCardProp
           src={images[0].image}
           sx={{ 
             width: '100%', 
-            height: '200px', // Set the fixed height
-            maxWidth: '300px', // Set the fixed width
-            objectFit: 'contain' // Scale down larger images to fit within the dimensions
+            height: '200px',
+            maxWidth: '300px',
+            objectFit: 'contain'
           }}
         />
       </Box>
