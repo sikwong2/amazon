@@ -68,7 +68,7 @@ const customButtonStyles: React.CSSProperties = {
 export default function TopBar() {
     const { t } = useTranslation('common');
     const loginContext = React.useContext(LoginContext);
-    const { searchValue, setSearchValue, handleSearch } = useSearch(); // Use the SearchContext
+    const { searchValue, setSearchValue, handleSearch } = useSearch();
     const router = useRouter();
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -52,10 +52,6 @@ const fetchProducts = async (name: string): Promise<Product[]> => {
     throw new Error('Unable to fetch products');
   }
 }
-
-// outer container of ads / cards once signed in
-// carosoul component
-// card of category component
 export function Search() {
   const [ads, setAds] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
@@ -63,7 +59,7 @@ export function Search() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const adproducts = await fetchProducts('apple');
+        const adproducts = await fetchProducts('e');
         const ad = adproducts.map((product) => ({
           image: product.image[0],
           description: product.name,
