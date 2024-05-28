@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "repository": "none",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "*",
     "@types/jest": "*",
     "@types/node": "*",
@@ -25,9 +26,11 @@
     "typescript": "*"
   },
   "dependencies": {
-    "dotenv": "*",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "*",
     "pg": "*",
+    "stripe": "^15.8.0",
     "swagger-ui-express": "*",
     "tsoa": "*"
   },

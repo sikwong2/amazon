@@ -76,8 +76,15 @@ export class ProductController extends Controller {
   @Response('201', 'Created')
   public async makeProduct(
     @Body() product: NewProduct
-  ): Promise<Product> {
-    return await new ProductService().makeProduct(product);
+  ): Promise<Product|undefined> {
+    return await new ProductService().makeProduct(product)
+      .then( async (success: Product|undefined): Promise<Product|undefined> => {
+        if(!success) {
+          console.error("Product Service: failed to create new product");
+          this.setStatus(500);
+        }
+        return success;
+      })
   }
 
   @Delete('{productId}')
