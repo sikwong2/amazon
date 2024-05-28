@@ -12,9 +12,14 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
+import { PageContext } from '@/context/Page';
+import { CartContext } from '@/context/Cart';
 import { defaultLogoWidth } from '../components/Logo';
 
+
 export function Login() {
+  const { setPage } = React.useContext(PageContext)
+  const { setCart } = React.useContext(CartContext)
   const loginContext = React.useContext(LoginContext)
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
