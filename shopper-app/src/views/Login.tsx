@@ -14,6 +14,7 @@ import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
+import { defaultLogoWidth } from '../components/Logo';
 
 
 export function Login() {
@@ -73,7 +74,7 @@ export function Login() {
     >
       <CssBaseline />
       <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={100} height='auto'/>
+        <Logo width={defaultLogoWidth} height='auto'/>
       </Container>
       <Box
         sx={{

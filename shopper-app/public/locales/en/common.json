@@ -11,22 +11,14 @@
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
-    "new-to-amazon": "New to Amazon?"
+    "new-to-amazon": "New to Amazon?",
+    "agreement": "By continuing, you agree to Amazon's ",
+    "conditions": "Conditions of Use",
+    "and": " and ",
+    "privacy-notice": "Privacy Notice",
+    "need-help": "Need help?",
+    "create-account": "Create your Amazon account"
   },
-  "cart": {
-    "proceed-to-checkout": "Proceed to Checkout",
-    "shopping-cart": "Shopping Cart",
-    "items": "items",
-    "item": "item",
-    "subtotal": "Subtotal"
-  },
-  "new-to-amazon": "New to Amazon?",
-  "agreement": "By continuing, you agree to Amazon's ",
-  "conditions": "Conditions of Use",
-  "and": " and ",
-  "privacy-notice": "Privacy Notice",
-  "need-help": "Need help?",
-  "create-account": "Create your Amazon account",
   "signup": {
     "title": "Create account",
     "name": "Your name",
@@ -46,6 +38,13 @@
     "and": " and ",
     "privacy-notice": "Privacy Notice"
   },
+  "topbar": {
+    "Sign-in": "Sign in",
+    "Orders": "Orders",
+    "Cart": "Cart",
+    "Search": "Search",
+    "Hello": "Hello"
+  },
   "home": {
     "pick-up": "Pick up where you left off",
     "keep-shopping": "Keep shopping for",
@@ -53,5 +52,34 @@
     "easy-returns": "Easy returns",
     "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
     "learn-more": "Learn More"
+  },
+  "cart": {
+    "proceed-to-checkout": "Proceed to Checkout",
+    "shopping-cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "subtotal": "Subtotal"
+  },
+  "history": {
+    "your-orders": "Your Orders",
+    "shipped": "Shipped",
+    "pending": "Pending",
+    "completed": "Completed"
+  },
+  "product": {
+    "stock": {
+      "only": "Only",
+      "order-soon": "left in stock - order soon.",
+      "in-stock": "In Stock"
+    },
+    "about-item": "About this item",
+    "free-returns": "FREE Returns",
+    "free-delivery": "FREE delivery",
+    "fastest-delivery": "Or fastest delivery",
+    "order-within": "Order within",
+    "add-to-cart": "Add to Cart",
+    "buy-now": "Buy Now",
+    "visit-amazon": "Visit the Amazon Store",
+    "quantity": "Quantity"
   }
 }
