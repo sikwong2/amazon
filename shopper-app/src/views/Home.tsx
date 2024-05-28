@@ -27,6 +27,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
     const query = { query: `query getByCategory{
       getByCategory(category: "${category}", page: 1, size: 5, order: "price", sort: "DESC") {
+        id
         price
         name
         image
@@ -68,6 +69,7 @@ export function Home() {
         const adproducts = await fetchProducts('sale');
         const ad = adproducts.map((product) => ({
           image: product.image[0],
+          id: product.id,
           description: product.name,
           title: 'sale',
         }));
@@ -75,6 +77,7 @@ export function Home() {
         const category1products = await fetchProducts('movie');
         const cat1 = category1products.map((product) => ({
           image: product.image[0],
+          id: product.id,
           description: product.name,
           title: 'sale',
         }));
@@ -82,6 +85,7 @@ export function Home() {
         const category2products = await fetchProducts('electronics');
         const cat2 = category2products.map((product) => ({
           image: product.image[0],
+          id: product.id,
           description: product.name,
           title: 'sale',
         }));
@@ -89,6 +93,7 @@ export function Home() {
         const products = await fetchProducts('sports');
         const cat3 = products.map((product) => ({
           image: product.image[0],
+          id: product.id,
           description: product.name,
           title: 'sale',
         }));
