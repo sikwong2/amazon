@@ -3,10 +3,6 @@ import { Button, styled } from "@mui/material";
 import {Box} from "@mui/material";
 import { useTranslation } from 'next-i18next';
 
-// colors:
-// 37475A
-// 222F3E
-// 121A22
 
 const Header = styled('span')(({ theme }) => ({
   lineHeight: '19px',
