@@ -357,7 +357,7 @@ export function Checkout() {
                 <TableBody>
                   <TableRow>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px', color: 'rgb(177, 39, 4)', fontSize: '18px', fontWeight:'700' }}>Order Total:</TableCell>
-                  <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px', color: 'rgb(177, 39, 4)', fontSize: '18px', fontWeight: '700' }}>{subtotal}</TableCell> 
+                  <TableCell align="right" sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px', color: 'rgb(177, 39, 4)', fontSize: '18px', fontWeight: '700' }}>${subtotal}</TableCell> 
                   </TableRow>
                 </TableBody>
               </Table>

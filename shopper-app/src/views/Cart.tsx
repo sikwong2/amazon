@@ -9,6 +9,7 @@ import { Product } from '@/graphql/product/schema';
 import { useRouter } from 'next/router';
 import { CartItem } from '@/components/CartItem';
 import TopBar from '@/components/TopBar';
+import { PageContext } from '@/context/Page';
 
 
 const fetchProduct = async (productId: any): Promise<Product> => {
@@ -90,7 +91,7 @@ export function Cart() {
                 color='primary'
                 sx={{ mt: 3, mb: 2 }}
                 onClick={() =>{
-                  router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
+                  setPage('checkout')
                 }}
                 >
                 {t("cart.proceed-to-checkout")}
