@@ -49,6 +49,7 @@ export class ProductController extends Controller {
     const sorted = sort ? sort : "DESC"
     return await new ProductService().getByCategory(category, p, s, o, sorted);
   }
+  
   @Get('/name/{name}')
   public async getName(
     @Path() name: string,
