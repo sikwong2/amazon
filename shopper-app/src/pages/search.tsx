@@ -15,6 +15,7 @@ const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Produ
     const query = {
       query: `query getByName {
         getByName(name: "${name}", page: 1, size: 5, order: "price", sort: "DESC") {
+          id
           price
           name
           image
@@ -64,7 +65,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
       <Box aria-label="search-results" bgcolor="#E4E6E6" maxHeight="100%" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }}} alignItems="center" justifyContent="center" margin="auto">
           <Typography variant="h4" gutterBottom>
-            {t('search.resultsFor')} "{query}"
+            {t('search.results-for')} "{query}"
           </Typography>
           <Grid container spacing={2} justifyContent="flex-start">
             {products.map((product) => (
@@ -87,12 +88,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (searchQuery) {
     products = await fetchProducts(searchQuery, context.req);
+    console.log(products)
   }
 
   return {
     props: {
       products,
-      ...(await serverSideTranslations(locale || 'en', ['common'])), // Provide a default locale, e.g., 'en'
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   };
 };
