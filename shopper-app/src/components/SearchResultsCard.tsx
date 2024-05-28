@@ -97,13 +97,13 @@ export default function SearchResultCard({ images, title }: SearchResultCardProp
           </Box>
         )}
         <CustomPrice value={images[0].price} onClick={handleProductRedirect} />
-        <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}}>
+        <Box aria-label='delivery-date' sx={{mt:1.6, mb:1.6}} onClick={handleProductRedirect}>
             <CustomLink href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GZXW7X6AKTHNUP6H' label='free-delivery'> {t("product.free-delivery")} </CustomLink>
             <Typography display='inline' sx={{ fontWeight:'bold', fontSize:'1rem' }}>
             <RandomDeliveryDate offset={7}/>
             </Typography>
         </Box>
-        <Box aria-label='fastest-delivery' sx={{mb:1.5}}>
+        <Box aria-label='fastest-delivery' sx={{mb:1.5}} onClick={handleProductRedirect}>
             <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.fastest-delivery")} </Typography>
             <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3', fontWeight:'bold' }}><RandomDeliveryDate offset={7}/>. </Typography>
             <Typography display='inline' sx={{ fontSize:'1rem', lineHeight:'1.3' }}>{t("product.order-within")} </Typography>
