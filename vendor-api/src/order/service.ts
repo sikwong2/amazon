@@ -1,29 +1,27 @@
-import { order } from '.';
+import { StatusUpdate } from '.';
+import { Order } from '../orders';
 
 export class OrderService {
-  // public async getOrders(vendorId: string): Promise<order[]> {
-  public async getOrders(): Promise<order[]> {
-    return new Promise((resolve, reject) => {
-      // fetch(`http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/order/${vendorId}`, {
-      fetch(`http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/order`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw res
-          }
-          return res.json()
-        })
-        .then((orders) => {
-          resolve(orders)
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(new Error("Failed to retrieve vendor's orders"))
-        });
-    })
+  public async updateOrderStatus(orderId: string, statusUpdate: StatusUpdate): Promise<Order|undefined> {
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/order/${orderId}`, {
+          method: 'PUT',
+          body: JSON.stringify(statusUpdate),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      const json = await res.json();
+      if(!json || json.length === 0) {
+        return undefined;
+      } else {
+        return json;
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error('Vendor API: failed to update order status')
+    }
   }
 }
