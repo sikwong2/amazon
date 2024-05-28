@@ -58,7 +58,6 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { query } = router.query;
-  const [ads, setAds] = React.useState<Image[]>([]);
 
   return (
     <SearchProvider>
