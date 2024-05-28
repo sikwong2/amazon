@@ -25,9 +25,10 @@
     "typescript": "*"
   },
   "dependencies": {
-    "dotenv": "*",
+    "dotenv": "^16.4.5",
     "express": "*",
     "pg": "*",
+    "stripe": "^15.8.0",
     "swagger-ui-express": "*",
     "tsoa": "*"
   },
