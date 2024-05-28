@@ -13,7 +13,7 @@ import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
 import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: '../../.env' });
 
 interface UserDetails {
   name: string;
@@ -87,11 +87,9 @@ export function Checkout() {
   const [stripeProducts, setStripeProducts]: any = useState([]);
 
   const placeOrder = async (stripeProducts: StripeProduct[]) => {
-    console.log('clicked on me');
-    console.log(process.env.ORDER_SERVICE_PORT)
     try {
       const res = await fetch(
-        `http://localhost:${process.env.ORDER_SERVICE_PORT}/create-checkout-session`, {
+        `http://localhost:3013/create-checkout-session`, {
         method: 'POST',
         body: JSON.stringify(stripeProducts),
         headers: {
@@ -315,7 +313,7 @@ export function Checkout() {
               </CustomButton>
               </Typography>
             <Typography variant='body1' sx={{ mt: 1, mb: 1, fontSize: '12px', textAlign:'center', ml: '20px', mr: '20px' }}>
-                By placing your order, you agree to Amazon's&nbsp;
+                By placing your order, you agree to Amazon&nbsps;
                 <CustomLink label='privacy-notice' variant='blue2' href='https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496'>
                   {t("signup.privacy-notice")}
                 </CustomLink>

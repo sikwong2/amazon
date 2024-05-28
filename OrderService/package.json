@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "repository": "none",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "*",
     "@types/jest": "*",
     "@types/node": "*",
@@ -25,6 +26,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "*",
     "pg": "*",
