@@ -12,18 +12,11 @@ import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
-import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+import { StripeProduct } from '@/graphql/stripe/schema';
 
 interface UserDetails {
   name: string;
   address: string;
-}
-
-interface StripeProduct {
-  name: string;
-  price: number;
-  quantity: number;
 }
 
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefined> => {
@@ -36,15 +29,12 @@ const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefine
         'Content-Type': 'application/json'
       }
     });
-    console.log('this is res');
-    console.log(res)
     const json = await res.json();
     if (json.errors) {
       console.log(json.errors[0].message);
       return undefined;
     }
     const { name, address } = json.data.getMemberInfo;
-    console.log(name)
     return { name, address };
   } catch (error) {
     console.error('Error fetching member info:', error);
@@ -75,6 +65,37 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 }
 
+const placeOrder = async (products: StripeProduct[]) => {
+  console.log('placeOrder', products);
+  try {
+    const query = `
+      query checkoutURL($products: [StripeProduct!]!) {
+        getCheckoutURL(products: $products)
+      }
+    `;
+    
+    const variables = {
+      products: products
+    };
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({query, variables}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    window.location.href = json.data.getCheckoutURL;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export function Checkout() {
   const { cart } = useContext(CartContext);
   const { id } = useContext(LoginContext);
@@ -85,45 +106,6 @@ export function Checkout() {
   const router = useRouter();
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
-
-  const placeOrder = async (stripeProducts: StripeProduct[]) => {
-    try {
-      const res = await fetch(
-        `http://localhost:3013/create-checkout-session`, {
-        method: 'POST',
-        body: JSON.stringify(stripeProducts),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const json = await res.json();
-      if (json.errors) {
-        console.log(json.errors[0].message);
-        throw new Error(json.errors[0].message);
-      }
-      window.location.href = json.url;
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  useEffect(() => {
-    (async () => {
-      let total = 0;
-      const temp: StripeProduct[] = [];
-      for (const productId of cart) {
-        const product = await fetchProduct(productId);
-        total += product.price;
-        temp.push({
-          name: product.name,
-          price: product.price * 100,
-          quantity: 1
-        });
-      }
-      setStripeProducts(temp);
-      setSubtotal(Number(Number(total.toFixed(2))));
-    })();
-  }, [subtotal, cart]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -145,6 +127,7 @@ export function Checkout() {
     (async () => {
       let total = 0;
       const temp: any = []
+      const tempStripe: StripeProduct[] = [];
       for (const productId of cart) {
         const product = await fetchProduct(productId);
         total += product.price;
@@ -158,8 +141,15 @@ export function Checkout() {
             rating={product?.rating}
           />
         )
+
+        tempStripe.push({
+          name: product.name,
+          price: product.price * 100,
+          quantity: 1
+        });
       }
       setCartItems(temp);
+      setStripeProducts(tempStripe);
       setSubtotal(Number(Number(total).toFixed(2)));
     })()
   }, [subtotal, cart])
