@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import CategoryCard from '@/components/CategoryCard';
+import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
 import { SearchProvider } from '../context/SearchContext';
 import TopBar from '@/components/TopBar';
@@ -18,6 +18,7 @@ const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Produ
           id
           price
           name
+          rating
           image
           category
         }
@@ -62,15 +63,19 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
   return (
     <SearchProvider>
       <TopBar />
-      <Box aria-label="search-results" bgcolor="#E4E6E6" maxHeight="100%" margin={1}>
-        <Box sx={{ maxWidth: { md: '80%', sm: '100%' }}} alignItems="center" justifyContent="center" margin="auto">
+      <Box aria-label="search-results" bgcolor="#E4E6E6" margin={1}>
+        <Box sx={{ maxWidth: { md: '80%', sm: '100%' }, margin: 'auto', padding: 2 }}>
           <Typography variant="h4" gutterBottom>
             {t('search.results-for')} "{query}"
           </Typography>
           <Grid container spacing={2} justifyContent="flex-start">
-            {products.map((product) => (
-              <Grid item xs={12} sm={6} md={4} key={product.name}>
-                <CategoryCard images={[{ image: product.image[0], description: product.name, title: product.name, id: product.id}]} title={product.name} />
+            {products.map((product) => (    
+              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+                <SearchResultCard
+                  images={[{ image: product.image[0], description: product.name, title: product.name, id: product.id, price: product.price, rating: product.rating
+                   }]}
+                  title={product.name}
+                />
               </Grid>
             ))}
           </Grid>
