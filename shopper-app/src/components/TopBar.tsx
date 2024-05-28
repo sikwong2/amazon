@@ -12,7 +12,7 @@ import { useTranslation } from 'next-i18next';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/router';
 import { LoginContext } from '../context/Login';
-import { useSearch } from '../context/SearchContext'; // Import the SearchContext
+import { useSearch } from '../context/SearchContext';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: 'rgba(35,47,62)',

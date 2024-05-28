@@ -10,7 +10,6 @@ import LanguageButton from '@/components/Language';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
 import { Home } from '@/views/Home';
-import { Search } from '@/views/Search';
 import { SearchProvider } from '../context/SearchContext';
 
 // this must be in page-level components (not in components in /view)
@@ -44,7 +43,6 @@ export default function Index() {
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
       <Home/>
-      <Search />
       </SearchProvider>
     </>
   )

@@ -51,5 +51,8 @@
     "items": "项目",
     "item": "物品",
     "subtotal": "小计"
+  },
+  "search": {
+    "results-for": "搜索结果"
   }
 }

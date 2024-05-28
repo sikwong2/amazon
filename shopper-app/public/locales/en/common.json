@@ -51,5 +51,8 @@
     "items": "items",
     "item": "item",
     "subtotal": "Subtotal"
+  },
+  "search": {
+    "results-for": "Results for"
   }
 }
