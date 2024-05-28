@@ -10,6 +10,7 @@ import LanguageButton from '@/components/Language';
 import CustomButton from '@/components/Button';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
+import { Checkout } from '@/views/Checkout'
 import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
 import Footer from '@/components/Footer';
@@ -47,11 +48,15 @@ export default function Index() {
       <Footer/>
     </>
   )
-  
+
   return (
     <Fragment>
+      {/* <p>
+        {pageContext.page}
+      </p> */}
       {pageContext.page === 'home' && home}
       {pageContext.page === 'cart' && <Cart/>}
+      {pageContext.page === 'checkout' && <Checkout/>}
       {pageContext.page === 'orderHistory' && <OrderHistory />}
     </Fragment>
   )
