@@ -6,7 +6,6 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import CategoryCard from '@/components/CategoryCard';
 import { Product } from '@/graphql/product/schema';
-import type { Image } from "@/components/Carousel";
 import { SearchProvider } from '../context/SearchContext';
 import TopBar from '@/components/TopBar';
 import { IncomingMessage } from 'http';
@@ -65,12 +64,12 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
       <Box aria-label="search-results" bgcolor="#E4E6E6" maxHeight="100%" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }}} alignItems="center" justifyContent="center" margin="auto">
           <Typography variant="h4" gutterBottom>
-            {t('search.results-for')} "{query}"
+            {t('search.resultsFor')} "{query}"
           </Typography>
           <Grid container spacing={2} justifyContent="flex-start">
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product.name}>
-                <CategoryCard images={[{ image: product.image[0], description: product.name, title: product.name }]} title={product.name} />
+                <CategoryCard images={[{ image: product.image[0], description: product.name, title: product.name, id: product.id}]} title={product.name} />
               </Grid>
             ))}
           </Grid>
@@ -81,21 +80,21 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { query, locale } = context;
-    let products: Product[] = [];
-  
-    const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
-  
-    if (searchQuery) {
-      products = await fetchProducts(searchQuery, context.req);
-    }
-  
-    return {
-      props: {
-        products,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
-      },
-    };
+  const { query, locale } = context;
+  let products: Product[] = [];
+
+  const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
+
+  if (searchQuery) {
+    products = await fetchProducts(searchQuery, context.req);
+  }
+
+  return {
+    props: {
+      products,
+      ...(await serverSideTranslations(locale || 'en', ['common'])), // Provide a default locale, e.g., 'en'
+    },
   };
+};
 
 export default SearchPage;

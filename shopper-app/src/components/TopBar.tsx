@@ -11,9 +11,8 @@ import InputBase from '@mui/material/InputBase';
 import { useTranslation } from 'next-i18next';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/router';
+import { LoginContext } from '../context/Login';
 import { useSearch } from '../context/SearchContext';
-import { LoginContext } from '@/context/Login'
-import { PageContext } from '@/context/Page';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: 'rgba(35,47,62)',
@@ -68,10 +67,9 @@ const customButtonStyles: React.CSSProperties = {
 
 export default function TopBar() {
     const { t } = useTranslation('common');
-    const loginContext = React.useContext(LoginContext)
-    const pageContext = React.useContext(PageContext);
+    const loginContext = React.useContext(LoginContext);
     const { searchValue, setSearchValue, handleSearch } = useSearch();
-    const router = useRouter(); 
+    const router = useRouter();
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
@@ -86,17 +84,6 @@ export default function TopBar() {
     const handleSignIn = () => {
         router.push('/login');
     };
-
-    const handleOrders = () => {
-        // set page context to order history
-        pageContext.setPage('orderHistory');
-        router.push('/');
-    }
-
-    const handleCart = () => {
-        pageContext.setPage('cart');
-        router.push('/');
-    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -116,23 +103,23 @@ export default function TopBar() {
                     </Box>
                     <LanguageButton sx={{ ml: 2 }} variant='text' />
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      {loginContext.accessToken.length == 0 && (
-                        <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }} onClick={handleSignIn} caps={false}>
-                            {t("topbar.Sign-in")}
-                        </CustomButton> 
-                      )}
-                      {loginContext.accessToken.length > 0 && (
-                        <CustomButton style={customButtonStyles} label='user' variant='text' sx={{ ml: 2 }} caps={false}>
-                        {t("topbar.Hello") + " " + loginContext.userName}
-                        </CustomButton> 
-                      )}
-                      <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} onClick={handleOrders} caps={false}>
-                          {t("topbar.Orders")}
-                      </CustomButton>
-                      <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }} onClick={handleCart}>
-                          <ShoppingCartIcon />
-                          {t("topbar.Cart")}
-                      </CustomButton> 
+                        {loginContext.accessToken.length === 0 && (
+                            <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }} onClick={handleSignIn} caps={false}>
+                                {t("topbar.Sign-in")}
+                            </CustomButton>
+                        )}
+                        {loginContext.accessToken.length > 0 && (
+                            <CustomButton style={customButtonStyles} label='user' variant='text' sx={{ ml: 2 }} caps={false}>
+                                {t("topbar.Hello") + " " + loginContext.userName}
+                            </CustomButton>
+                        )}
+                        <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} caps={false}>
+                            {t("topbar.Orders")}
+                        </CustomButton>
+                        <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }}>
+                            <ShoppingCartIcon />
+                            {t("topbar.Cart")}
+                        </CustomButton>
                     </Box>
                 </Toolbar>
             </StyledAppBar>
