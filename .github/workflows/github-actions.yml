@@ -1,10 +1,16 @@
+# This is a GitHub Actions workflow for a Node.js application.
+# It is triggered on push and pull request events to the "main" branch.
+# The workflow sets up a PostgreSQL service and runs tests against the latest LTS version of Node.js.
+# Environment variables for the PostgreSQL service and the application are set at the workflow level.
+# The PostgreSQL service is configured with its own set of environment variables.
+# The workflow checks out the code, sets up Node.js, installs dependencies, and runs tests.
 name: Node.js CI
 
 on:
   push:
-    branches: [ "ci" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "ci" ]
+    branches: [ "main" ]
 
 env:
   POSTGRES_HOST: localhost
