@@ -4,7 +4,7 @@ import { pool } from '../db';
 
 export class OrdersService {
   public async selectByVendorId (id: string): Promise<OrdersInfo[] | undefined> {
-    let select = `SELECT id, data->>'products' as products, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE vendor_id = $1`;
+    let select = `SELECT * FROM orders WHERE vendor_id = $1`;
     const query = {
       text: select,
       values: [id]
@@ -13,10 +13,10 @@ export class OrdersService {
       const { rows } = await pool.query(query); 
       const orders = rows.map(row => ({
         orderId: row.id,
-        products: row.products,
-        shopperId: row.shopperid,
-        vendorId: row.vendorid,
-        orderStatus: row.orderstatus
+        products: row.data.products,
+        shopperId: row.shopper_id,
+        vendorId: row.vendor_id,
+        orderStatus: row.order_status
       }));
       return orders;
     } catch (error) {
@@ -26,7 +26,7 @@ export class OrdersService {
   } 
 
   public async selectByShopperId(id: string): Promise<OrdersInfo[] | undefined> {
-    let select = `SELECT id, data->>'products' as products, vendor_id as vendorId, shopper_id as shopperId, order_status as orderstatus FROM orders WHERE shopper_id = $1`;
+    let select = `SELECT * FROM orders WHERE shopper_id = $1`;
     const query = {
       text: select,
       values: [id]
@@ -35,10 +35,10 @@ export class OrdersService {
       const { rows } = await pool.query(query);
       const orders = rows.map(row => ({
         orderId: row.id,
-        products: row.products,
-        shopperId: row.shopperid,
-        vendorId: row.vendorid,
-        orderStatus: row.orderstatus
+        products: row.data.products,
+        shopperId: row.shopper_id,
+        vendorId: row.vendor_id,
+        orderStatus: row.order_status
       }));
       return orders;
     } catch (error) {
