@@ -91,7 +91,7 @@ export default function TopBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <StyledAppBar position="static">
-                <Toolbar>
+                <Toolbar id="back-to-top-anchor">
                     <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
                       <Logo width={80} />
                       <Search>

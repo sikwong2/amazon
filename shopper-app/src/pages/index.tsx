@@ -12,6 +12,8 @@ import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
 import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
+import Footer from '@/components/Footer';
+
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
@@ -42,6 +44,7 @@ export default function Index() {
         {t("go-to-signup")} <Link href="/signup"> {t("here")} </Link>
       </div>
       <Home/>
+      <Footer/>
     </>
   )
   
