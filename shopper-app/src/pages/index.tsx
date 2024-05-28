@@ -33,7 +33,6 @@ export default function Index() {
 
   const home = (
     <>
-      <SearchProvider>
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,7 +47,6 @@ export default function Index() {
       </div>
       <Home/>
       <Footer/>
-      </SearchProvider>
     </>
   )
 
