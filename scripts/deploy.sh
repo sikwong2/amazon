@@ -27,7 +27,7 @@ EOF
 docker build -t app:latest $LOCAL_PATH
 docker save -o $LOCAL_PATH/app.tar app:latest
 
-# scp $LOCAL_PATH/app.tar $SERVER_HOST:$SERVER_BUILD/app.tar
+scp $LOCAL_PATH/app.tar $SERVER_HOST:$SERVER_BUILD/app.tar
 
 scp $SCRIPT_PATH/docker-compose.yml $SERVER_HOST:$SERVER_BUILD/docker-compose.yml
 scp $SCRIPT_PATH/.env $SERVER_HOST:$SERVER_BUILD/

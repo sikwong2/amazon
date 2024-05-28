@@ -9,7 +9,7 @@ import Stripe from 'stripe';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 import swaggerUi from 'swagger-ui-express';
 
 import {RegisterRoutes} from "../build/routes";
