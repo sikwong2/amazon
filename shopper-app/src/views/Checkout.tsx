@@ -12,36 +12,18 @@ import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
 
 interface UserDetails {
   name: string;
   address: string;
 }
 
-const fetchOrders = async (shopperId: string, status: string) => {
-  try {
-    const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
-    const res = await fetch('/api/graphql', {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.log(json.errors[0].message);
-      return [];
-    }
-    const orders: any = {};
-    for (const { orderId, productId } of json.data.getOrdersByStatus) {
-      orders[orderId] = productId;
-    }
-    return orders;
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
+interface StripeProduct {
+  name: string;
+  price: number;
+  quantity: number;
 }
 
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefined> => {
@@ -70,27 +52,6 @@ const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefine
   }
 }
 
-const deleteOrder = async (orderId: string): Promise<string> => {
-  try {
-    const query = { query: `mutation deleteOrder{ deleteOrder(orderId: "${orderId}") {orderId}}` };
-    const res = await fetch('/api/graphql', {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.log(json.errors[0].message);
-      throw new Error(json.errors[0].message);
-    }
-    return json.data.deleteOrder.orderId;
-  } catch (e) {
-    console.log(e);
-    throw new Error('Cart.tsx: deleteOrder');
-  }
-}
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
@@ -123,6 +84,48 @@ export function Checkout() {
   const [subtotal, setSubtotal] = useState(0);
   const router = useRouter();
   const [cartItems, setCartItems]: any = useState([]);
+  const [stripeProducts, setStripeProducts]: any = useState([]);
+
+  const placeOrder = async (stripeProducts: StripeProduct[]) => {
+    console.log('clicked on me');
+    console.log(process.env.ORDER_SERVICE_PORT)
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.ORDER_SERVICE_PORT}/create-checkout-session`, {
+        method: 'POST',
+        body: JSON.stringify(stripeProducts),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const json = await res.json();
+      if (json.errors) {
+        console.log(json.errors[0].message);
+        throw new Error(json.errors[0].message);
+      }
+      window.location.href = json.url;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      let total = 0;
+      const temp: StripeProduct[] = [];
+      for (const productId of cart) {
+        const product = await fetchProduct(productId);
+        total += product.price;
+        temp.push({
+          name: product.name,
+          price: product.price * 100,
+          quantity: 1
+        });
+      }
+      setStripeProducts(temp);
+      setSubtotal(Number(Number(total.toFixed(2))));
+    })();
+  }, [subtotal, cart]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -282,7 +285,7 @@ export function Checkout() {
                 color='primary'
                 sx={{ mt: 3, mb: 2 }}
                 onClick={() => {
-                  router.push('/'); // CHANGE THIS TO REDIRECT TO CHECKOUT
+                  placeOrder(stripeProducts);
                 }}
               >
                 Place your Order
@@ -303,6 +306,9 @@ export function Checkout() {
                 height: '33px', 
                 fontSize: '13px',
                 margin: 'auto'
+              }}
+              onClick={() => {
+                placeOrder(stripeProducts);
               }}
               >
               Place your Order
