@@ -8,16 +8,16 @@ on:
 
 env:
   POSTGRES_HOST: localhost
-  POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-  POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-  POSTGRES_DB: ${{ secrets.POSTGRES_TEST_DATABASE }}
-  POSTGRES_ACCOUNT_DATABASE: ${{ secrets.POSTGRES_TEST_DATABASE }}
-  POSTGRES_PRODUCT_DATABASE: ${{ secrets.POSTGRES_TEST_DATABASE }}
-  POSTGRES_ORDER_DATABASE: ${{ secrets.POSTGRES_TEST_DATABASE }}
-  ACCOUNT_SERVICE_PORT: ${{ secrets.ACCOUNT_SERVICE_PORT }}
-  PRODUCT_SERVICE_PORT: ${{ secrets.PRODUCT_SERVICE_PORT }}
-  ORDER_SERVICE_PORT: ${{ secrets.ORDER_SERVICE_PORT }}
+  POSTGRES_PORT: 5432
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: test
+  POSTGRES_ACCOUNT_DATABASE: test
+  POSTGRES_PRODUCT_DATABASE: test
+  POSTGRES_ORDER_DATABASE: test
+  ACCOUNT_SERVICE_PORT: 3011
+  PRODUCT_SERVICE_PORT: 3012
+  ORDER_SERVICE_PORT: 3013
 
 jobs:
   build:
@@ -28,10 +28,10 @@ jobs:
         image: postgres:13
         env:
             POSTGRES_HOST: localhost
-            POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-            POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-            POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-            POSTGRES_DB: ${{ secrets.POSTGRES_TEST_DATABASE }}
+            POSTGRES_PORT: 5432
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
