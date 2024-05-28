@@ -30,9 +30,7 @@ export class ProductArgs {
   @Min(1)
     page?: number
   @Field({ nullable: true })
-  @IsIn(['price', 'name', 'stock', 'rating', 'image', 'category'], { message: 'Order must be one of the following values: price, name, stock, rating, image, category' })
     order?: string
   @Field({ nullable: true })
-  @IsIn(['ASC', 'DESC'], { message: 'Sort must be one of the following values: ASC, DESC' })
     sort?: string
 }
