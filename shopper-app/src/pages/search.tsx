@@ -88,7 +88,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (searchQuery) {
     products = await fetchProducts(searchQuery, context.req);
-    console.log(products)
   }
 
   return {

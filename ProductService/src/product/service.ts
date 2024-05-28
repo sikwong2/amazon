@@ -87,12 +87,12 @@ export class ProductService {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
       select = `SELECT id, data FROM product 
-      WHERE (data->>'name') ILIKE '%' || $1 || '%'
+      WHERE (data->>'name' ILIKE '%' || $1 || '%' OR data->>'category' ILIKE '%' || $1 || '%')
       ORDER BY (data->>'${order}')::numeric ${sort} 
       LIMIT $2 OFFSET $3`;
     } else {
       select = `SELECT id, data FROM product 
-      WHERE (data->>'name') ILIKE '%' || $1 || '%'
+      WHERE (data->>'name' ILIKE '%' || $1 || '%' OR data->>'category' ILIKE '%' || $1 || '%')
       ORDER BY (data->>'${order}') ${sort} 
       LIMIT $2 OFFSET $3`;
     }
