@@ -10,7 +10,7 @@ import { MemberResolver } from '@/graphql/member/resolver';
 import { ProductResolver } from '@/graphql/product/resolver';
 
 const schema = buildSchemaSync({
-  resolvers: [AuthResolver, MemberResolver, ProductResolver],
+  resolvers: [AuthResolver, MemberResolver, ProductResolver, OrdersResolver],
   validate: true, 
   authChecker: nextAuthChecker,
 });

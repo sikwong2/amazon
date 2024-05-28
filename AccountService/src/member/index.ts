@@ -17,5 +17,11 @@ export interface Member {
   role: Role
 }
 
+// getting member info for pages like checkout
+export interface MemberInfo {
+  name: string,
+  address: string
+}
+
 // can only be shopper or vendor
 export type Role = "shopper" | "vendor";

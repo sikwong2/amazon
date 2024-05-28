@@ -1,18 +1,14 @@
 
 import {
-  Body,
-  Query,
   Path,
   Controller,
-  Post,
   Get,
   Response,
   Route,
-  Put,
   Delete,
 } from 'tsoa';
 
-import { OrdersInfo, OrderResponse, OrderUpdate} from '.';
+import { OrdersInfo} from '.';
 import { OrdersService } from './service';
 
 @Route('orders')

@@ -21,11 +21,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme} >
       <LoginProvider>
-        <CartProvider>
-          <PageProvider>
+        <PageProvider>
+          <CartProvider>
             <Component {...pageProps} />
-          </PageProvider>
-        </CartProvider>
+          </CartProvider>
+        </PageProvider>
       </LoginProvider>
     </ThemeProvider>
   )

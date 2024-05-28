@@ -79,6 +79,7 @@ export class ProductService {
         }
       })
     }
+
     return products;
   }
 
@@ -117,10 +118,29 @@ export class ProductService {
     const query = {
       text: `INSERT INTO product(data) VALUES(jsonb_build_object('name', $1::text, 'price', $2::int, 'stock', $3::int, 'image', $4::jsonb, 'rating', $5::int, 'category', $6::jsonb)) RETURNING *;`,
       values: [product.name, product.price, product.stock, JSON.stringify(product.image), product.rating, JSON.stringify(product.category)],
+      
+  public async makeProduct(product: NewProduct): Promise<Product|undefined> {
+    try {
+      const query = {
+        text: `INSERT INTO product(data) VALUES(
+          jsonb_build_object(
+          'name', $1::text, 
+          'price', $2::numeric, 
+          'stock', $3::int, 
+          'image', $4::jsonb, 
+          'rating', $5::numeric, 
+          'description', $6::jsonb,
+          'category', $7::jsonb
+          )
+        ) RETURNING *;`,
+        values: [product.name, product.price, product.stock, JSON.stringify(product.image), product.rating, JSON.stringify(product.description), JSON.stringify(product.category)],
+      }
+      const { rows } = await pool.query(query);
+      return {...rows[0].data, id: rows[0].id};
+    } catch (e) {
+      console.error("Error making product: ", e)
+      return undefined;
     }
-    const { rows } = await pool.query(query);
-
-    return {...rows[0].data, id: rows[0].id};
   }
 
   /**

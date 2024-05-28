@@ -39,7 +39,8 @@ export class ProductService {
         stock: item.data.stock,
         image: item.data.image,
         rating: item.data.rating,
-        category: item.data.category
+        category: item.data.category,
+        description: item.data.description
       }));
       return products;
     } catch(e) {
@@ -66,7 +67,8 @@ export class ProductService {
         stock: item.data.stock,
         image: item.data.image,
         rating: item.data.rating,
-        category: item.data.category
+        category: item.data.category,
+        description: item.data.description
       }));
       return products;
     } catch(e) {
