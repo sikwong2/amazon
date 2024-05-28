@@ -3,6 +3,7 @@ import { MemberInput } from '.';
 import { pool } from '../db';
 import { AccountService } from '../auth/service';
 import { Role } from '.';
+import { MemberInfo } from '.';
 
 export class MemberService {
   // checks if member existing from email before creating account
@@ -120,5 +121,23 @@ export class MemberService {
 
     const { rows } = await pool.query(query);
     return rows;
+  }
+
+  public async getInfo(memberId: string): Promise<MemberInfo | undefined> {
+    const returnObj = {
+      name: '',
+      address: '',
+    };
+    let select = `SELECT jsonb_build_object('name',  data->>'name', 'address', data->>'address') 
+    AS accountInfo FROM account 
+    WHERE id = $1`;
+    const query = {
+      text: select,
+      values: [memberId],
+    };
+    const { rows } = await pool.query(query);
+    returnObj.name = rows[0].accountinfo.name;
+    returnObj.address = rows[0].accountinfo.address;
+    return returnObj;
   }
 }

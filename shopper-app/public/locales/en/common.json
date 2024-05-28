@@ -81,5 +81,9 @@
     "buy-now": "Buy Now",
     "visit-amazon": "Visit the Amazon Store",
     "quantity": "Quantity"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
+    "back-to-top": "Back to top"
   }
 }

@@ -137,7 +137,7 @@ export function Home() {
 
   return (
     <React.Fragment>
-      <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight='100%' margin={1}>
+      <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight='100%' margin={1} sx={{mb: 0}}>
         <Box sx={{maxWidth: {md: '80%', sm: '100%'}}} alignItems='center' justifyContent="center" margin='auto'>
           <Box position='static' margin={1} justifyContent="center" alignItems="center" bgcolor="#FFFFFF">
             <ImageCarousel images={ads} height={400}/>
@@ -158,7 +158,6 @@ export function Home() {
           </Grid>
         </Box>
       </Box>
-
     </React.Fragment>
 
   )

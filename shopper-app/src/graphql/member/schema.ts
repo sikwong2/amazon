@@ -1,6 +1,5 @@
 import { Field, ObjectType, InputType, ID } from "type-graphql"
 import { Length, Matches } from "class-validator";
-import { IsNotEmpty } from "class-validator";
 
 @ObjectType()
 @InputType("NewAccount")
@@ -29,4 +28,12 @@ export class Member {
     email!: string
   @Field()
     role!: string
+}
+
+@ObjectType("AccountInfo")
+export class MemberInfo {
+  @Field()
+  name!: string
+  @Field()
+  address!: string
 }

@@ -1,5 +1,5 @@
 import { ArgsType, Field, Int, ObjectType } from "type-graphql"
-import { IsIn, IsNotEmpty, Min } from "class-validator";
+import { IsIn, Min } from "class-validator";
 
 @ObjectType()
 export class Product {

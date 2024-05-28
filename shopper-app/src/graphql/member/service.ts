@@ -1,5 +1,6 @@
 import { Member } from "./schema";
 import { MemberRequest } from "./schema";
+import type { MemberInfo } from "./schema";
 
 export class MemberService {
   async createaccount(memberinput: MemberRequest): Promise <Member | undefined> {
@@ -24,5 +25,23 @@ export class MemberService {
           reject(new Error("Account already exists"))
         });
     })
+  }
+  
+  async getMemberInfo(memberId: string): Promise <MemberInfo | undefined> {
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/${memberId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      );
+      const json = await res.json();
+      return json;
+    } catch (e) {
+      console.log(e);
+      throw new Error('Error in AccountSerivce: getInfo')
+    }
   }
 }
