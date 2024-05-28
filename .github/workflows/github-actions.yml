@@ -1,7 +1,10 @@
 name: CI Pipeline
 
 on: 
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'refs/heads/*'  # This will run on all branches
 
 jobs:
   setup:
