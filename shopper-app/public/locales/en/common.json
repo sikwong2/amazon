@@ -64,7 +64,7 @@
     "your-orders": "Your Orders",
     "shipped": "Shipped",
     "pending": "Pending",
-    "completed": "Completed"
+    "delivered": "Delivered"
   },
   "product": {
     "stock": {

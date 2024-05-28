@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 import TopBar from "@/components/TopBar";
 const fetchOrders = async (shopperId: string, status: string) => {
   try {
-    const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { productId, orderId }}` };
+    const query = { query: `query orders{getOrdersByStatus(shopperId: "${shopperId}", status: "${status}") { products, orderId, vendorId, orderStatus }}` };
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -24,9 +24,9 @@ const fetchOrders = async (shopperId: string, status: string) => {
       throw new Error('OrderHistory.tsx: fetchOrders');
     }
     const orders: any = {};
-    for (const { orderId, productId } of json.data.getOrdersByStatus) {
-      orders[orderId] = productId;
-    }
+    json.data.getOrdersByStatus.forEach((order: any) => {
+      orders[order.orderId] = order.products[0];
+    })
     return orders;
   } catch (e) {
     console.log(e);
@@ -104,11 +104,11 @@ export function OrderHistory() {
             {t("history.shipped")}
           </CustomButton>
           <CustomButton
-            label='Completed'
+            label='Delivered'
             sx={{ margin: '1em' }}
-            onClick={() => setStatus('completed')}
+            onClick={() => setStatus('delivered')}
           >
-            {t("history.completed")}
+            {t("history.delivered")}
           </CustomButton>
         </Toolbar>
         {
