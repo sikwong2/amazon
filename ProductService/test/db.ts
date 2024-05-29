@@ -7,7 +7,7 @@ dotenv.config({ path: '../.env' });
 const {
   POSTGRES_HOST,
   POSTGRES_PORT,
-  POSTGRES_DATABASE,
+  POSTGRES_DB,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
 } = process.env;
@@ -22,8 +22,8 @@ if (!POSTGRES_PORT) {
   process.exit(1);
 }
 
-if (!POSTGRES_DATABASE) {
-  console.error('Error: POSTGRES_DATABASE is not defined in db.ts ProductService/test.');
+if (!POSTGRES_DB) {
+  console.error('Error: POSTGRES_DB is not defined in db.ts ProductService/test.');
   process.exit(1);
 }
 
@@ -40,7 +40,7 @@ if (!POSTGRES_PASSWORD) {
 const pool = new Pool({
   host: POSTGRES_HOST,
   port: Number(POSTGRES_PORT),
-  database: POSTGRES_DATABASE,
+  database: POSTGRES_DB,
   user: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
 });

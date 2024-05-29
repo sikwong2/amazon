@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 
-const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ORDER_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } =
+const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD } =
   process.env;
 
 if (!POSTGRES_HOST) {
@@ -13,8 +13,8 @@ if (!POSTGRES_PORT) {
   process.exit(1);
 }
 
-if (!POSTGRES_ORDER_DATABASE) {
-  console.error('Error: POSTGRES_ORDER_DB is not defined in db.ts OrderService.');
+if (!POSTGRES_DB) {
+  console.error('Error: POSTGRES_DB is not defined in db.ts OrderService.');
   process.exit(1);
 }
 
@@ -31,7 +31,7 @@ if (!POSTGRES_PASSWORD) {
 const pool = new Pool({
   host: POSTGRES_HOST,
   port: Number(POSTGRES_PORT),
-  database: POSTGRES_ORDER_DATABASE,
+  database: POSTGRES_DB,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
 });
