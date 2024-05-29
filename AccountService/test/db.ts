@@ -22,7 +22,7 @@ if (!POSTGRES_PORT) {
   process.exit(1);
 }
 
-if (!POSTGRES_DB {
+if (!POSTGRES_DB) {
   console.error('Error: POSTGRES_DB is not defined in db.ts AccountService/test.');
   process.exit(1);
 }
