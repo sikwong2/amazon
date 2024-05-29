@@ -15,7 +15,6 @@ import RandomDeliveryDate from './DeliveryDate';
 export type Product = {
   image: string,
   id: string,
-  description: string,
   title: string,
   price: number,
   rating?: number

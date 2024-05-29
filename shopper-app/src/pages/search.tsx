@@ -14,7 +14,7 @@ const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Produ
   try {
     const query = {
       query: `query getByName {
-        getByName(name: "${name}", page: 1, size: 5, order: "price", sort: "DESC") {
+        getByName(name: "${name}", page: 1, size: 12, order: "price", sort: "DESC") {
           id
           price
           name
@@ -72,7 +72,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
             {products.map((product) => (    
               <Grid item xs={12} sm={8} md={6} lg={3} key={product.id}>
                 <SearchResultCard
-                  images={[{ image: product.image[0], description: product.name, title: product.name, id: product.id, price: product.price, rating: product.rating
+                  images={[{ image: product.image[0], title: product.name, id: product.id, price: product.price, rating: product.rating
                    }]}
                   title={product.name}
                 />
