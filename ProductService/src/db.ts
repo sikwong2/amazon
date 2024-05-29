@@ -13,7 +13,7 @@ if (!POSTGRES_PORT) {
 }
 
 if (!POSTGRES_PRODUCT_DATABASE) {
-  console.error('Error: POSTGRES_PRODUCT_DB is not defined in db.ts ProductService.');
+  console.error('Error: POSTGRES_PRODUCT_DATABASE is not defined in db.ts ProductService.');
   process.exit(1);
 }
 

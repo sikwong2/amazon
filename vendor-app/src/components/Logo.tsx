@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { LoginContext } from "@/context/Login";
 import { useRouter } from 'next/router';
 
-export default function Logo({width=200, height='auto', ...rest}) {
+export default function Logo({width=200, height='auto', transparent= 'false', ...rest}) {
   const loginContext = React.useContext(LoginContext)
   const router = useRouter();
   return (
@@ -15,7 +15,7 @@ export default function Logo({width=200, height='auto', ...rest}) {
       }}
       >
       <img
-        src={'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'}
+        src={transparent === 'true' ? 'https://i.ibb.co/h8nx4Yd/buffsammy-removebg-preview.png' : 'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'}
         alt='Amazon Logo'
         width={width}
         height={height}

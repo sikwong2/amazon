@@ -4,10 +4,9 @@ import { Length } from "class-validator";
 @ArgsType()
 export class Credentials {
   @Field()
-  @Length(4, 16)
     email!: string
   @Field()
-  @Length(8, 16)
+  @Length(6, 64)
     password!: string
 }
 
@@ -17,4 +16,9 @@ export class Authenticated {
     name!: string
   @Field()
     accessToken!: string
+  @Field()
+    role!: string
+  @Field()
+    id!: string
 }
+

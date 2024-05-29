@@ -12,7 +12,7 @@ export class ProductResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Query(returns => [Product])
+  @Query(() => [Product])
   async getAll(
     @Args() {page, size, order, sort}: ProductArgs
   ): Promise <Product[]> {
@@ -20,7 +20,7 @@ export class ProductResolver {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Query(returns => [Product])
+  @Query(() => [Product])
   async getByCategory(
     @Arg('category') category: string,
     @Args() {page, size, order, sort}: ProductArgs

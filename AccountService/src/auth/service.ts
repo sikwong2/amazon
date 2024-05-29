@@ -1,6 +1,6 @@
 import * as jwt from "jsonwebtoken";
 import { Authenticated, Credentials, SessionUser } from '.';
-import {pool} from '../db'
+import { pool } from '../db'
 
 interface Account {
   id: string,
@@ -9,8 +9,8 @@ interface Account {
 }
 
 export class AccountService {
-  private async find(creds: Credentials): Promise<Account|undefined> {
-    let select = 
+  private async find(creds: Credentials): Promise<Account | undefined> {
+    let select =
       ` SELECT jsonb_build_object('id', id, 'name', data->>'name', 'role', data->>'role')` +
       ` AS account FROM account` +
       ` WHERE data->>'email' = $1` +
@@ -19,20 +19,20 @@ export class AccountService {
       text: select,
       values: [creds.email, creds.password],
     };
-    const {rows} = await pool.query(query)
+    const { rows } = await pool.query(query)
     return rows.length === 1 ? rows[0].account : undefined
   }
 
-  public async login(credentials: Credentials): Promise<Authenticated|undefined>  {
+  public async login(credentials: Credentials): Promise<Authenticated | undefined> {
     const account = await this.find(credentials);
     if (account) {
       const accessToken = jwt.sign(
-        {id: account.id, role: account.role}, 
+        { id: account.id, role: account.role },
         `${process.env.MASTER_SECRET}`, {
-          expiresIn: '30m',
-          algorithm: 'HS256'
-        });
-      return {id: account.id, name: account.name, accessToken: accessToken};
+        expiresIn: '30m',
+        algorithm: 'HS256'
+      });
+      return { id: account.id, name: account.name, role: account.role, accessToken: accessToken };
     } else {
       return undefined;
     }
@@ -41,14 +41,14 @@ export class AccountService {
   public async check(accessToken: string): Promise<SessionUser|undefined>  {
     return new Promise((resolve, reject) => {
       try {
-        jwt.verify(accessToken, 
-          `${process.env.MASTER_SECRET}`, 
+        jwt.verify(accessToken,
+          `${process.env.MASTER_SECRET}`,
           (err: jwt.VerifyErrors | null, decoded?: object | string) => {
             if (err) {
               resolve(undefined);
             } 
             const account = decoded as Account
-            resolve({id: account.id, role: account.role});
+            resolve({ id: account.id, role: account.role });
           });
       } catch (e) {
         resolve(undefined);

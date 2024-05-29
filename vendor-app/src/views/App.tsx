@@ -1,4 +1,5 @@
-import { LoginProvider } from '../context/Login'
+import { useContext, useEffect, useState } from 'react';
+import { LoginProvider, LoginContext } from '../context/Login'
 import { SignupProvider } from '@/context/Signup'
 import { Home } from './Home'
 

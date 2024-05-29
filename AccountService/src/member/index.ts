@@ -15,6 +15,7 @@ export interface Member {
   email: Email,
   name: string,
   role: Role
+  status: boolean
 }
 
 // getting member info for pages like checkout

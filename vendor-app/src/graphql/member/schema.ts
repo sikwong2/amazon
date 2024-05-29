@@ -1,4 +1,4 @@
-import { Field, ObjectType, InputType, ID } from "type-graphql"
+import { ArgsType, Field, ObjectType, InputType, ID } from "type-graphql"
 import { Length, Matches } from "class-validator";
 import { IsNotEmpty } from "class-validator";
 

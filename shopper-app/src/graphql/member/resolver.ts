@@ -13,7 +13,7 @@ import { MemberService } from "./service"
 @Resolver()
 export class MemberResolver {
   //  eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @Mutation(returns => Member)
+  @Mutation(() => Member)
   async createaccount(
     @Arg("input") input: MemberRequest,
   ): Promise <Member> {

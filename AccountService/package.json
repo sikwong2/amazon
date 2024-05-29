@@ -21,6 +21,7 @@
     "@types/react-dom": "*",
     "@types/supertest": "*",
     "@types/swagger-ui-express": "*",
+    "@types/uuid": "^9.0.8",
     "bestzip": "*",
     "concurrently": "*",
     "dotenv": "*",
@@ -45,7 +46,8 @@
     "jsonwebtoken": "*",
     "pg": "*",
     "swagger-ui-express": "*",
-    "tsoa": "*"
+    "tsoa": "*",
+    "uuid": "^9.0.1"
   },
   "scripts": {
     "not-prestart": "npm run build",

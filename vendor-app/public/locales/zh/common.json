@@ -3,6 +3,12 @@
   "go-to-signup": "创建一个帐户",
   "buying-for-yourself": "给自己用?",
   "shopper-account": "创建购物者帐户",
+  "vendor-app": {
+    "return-shopper-app": "返回购物者应用程序",
+    "vendors-only" : "该应用程序仅供供应商使用！",
+    "vendor-account-approval" : "供应商帐户批准状态",
+    "status-pending": "状态待定"
+  },
   "login": {
     "title": "UCSC-亚马逊供应商登录",
     "signin": "登入",
@@ -15,7 +21,8 @@
     "conditions": "使用条件",
     "and": "和",
     "privacy-notice": "隐私声明",
-    "need-help": "需要帮忙?"
+    "need-help": "需要帮忙?",
+    "shopper": "去购物者应用"
   },
   "signup": {
     "title": "创建购物者帐户",
@@ -23,6 +30,7 @@
     "first-last": "名字和姓氏",
     "email": "电子邮件",
     "password": "六个字符以上",
+    "password-min": "超过6个字符",
     "re-enter": "重新输入密码",
     "create-shopper": "创建免费供应商帐户",
     "account-exists": "已经有帐户？",
@@ -45,5 +53,13 @@
   "footer": {
     "disclaimer": "Ucsc-amazon 是一个亚马逊克隆学生项目。所有展示的产品都是假货。",
     "back-to-top": "回到顶部"
+  },
+  "vendorportal": {
+    "title": "供应商门户",
+    "key" : "钥匙",
+    "status": "地位",
+    "api-keys": "键",
+    "generate": "生成新密钥",
+    "no-keys": "没有键"
   }
 }
