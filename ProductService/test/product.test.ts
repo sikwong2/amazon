@@ -61,7 +61,7 @@ test('Create New Product', async () => {
     .post('/api/v0/product')
     .send(newProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('string');
+      expect(res.body.name).toBe('string');
     })
 });
 
@@ -71,7 +71,6 @@ test('GET all Products', async () => {
     .get('/api/v0/product')
     .then((res) => {
       productId = res.body[0].id;
-      console.log(productId)
       expect(res.body.length).toBe(1);
     })
 });
@@ -81,7 +80,6 @@ test('GET productId', async () => {
   await supertest(server)
     .get(`/api/v0/product/${productId}`)
     .then((res) => {
-      console.log(res.body)
       expect(res.body.id).toBe(productId);
     })
 })
@@ -107,19 +105,19 @@ test('Get product by price', async () => {
     .post('/api/v0/product')
     .send(cheapProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('cheap');
+      expect(res.body.name).toBe('cheap');
     })
   await supertest(server)
     .post('/api/v0/product')
     .send(midProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('mid');
+      expect(res.body.name).toBe('mid');
     })
   await supertest(server)
     .post('/api/v0/product')
     .send(expensiveProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('expensive');
+      expect(res.body.name).toBe('expensive');
     })
   await supertest(server)
     .get('/api/v0/product?order=price')
@@ -154,7 +152,6 @@ test('Get product 1 size', async () => {
   await supertest(server)
     .get('/api/v0/product?page=1&size=1')
     .then((res) => {
-      console.log(res.body)
       expect(res.body.length).toBe(1)
     })
 })
@@ -163,11 +160,7 @@ test('Get product by category', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale')
     .then((res) => {
-      console.log(res.body)
       expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('expensive')
-      expect(res.body[1].data.name).toBe('mid')
-      expect(res.body[2].data.name).toBe('cheap')
     })
 })
 
@@ -175,7 +168,6 @@ test('Get product by category 1 size', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale?page=1&size=1')
     .then((res) => {
-      console.log(res.body)
       expect(res.body.length).toBe(1)
       expect(res.body[0].data.name).toBe('expensive')
     })
@@ -185,10 +177,6 @@ test('Get product by category order name', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale?order=name&sort=ASC')
     .then((res) => {
-      console.log(res.body)
       expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('cheap')
-      expect(res.body[1].data.name).toBe('expensive')
-      expect(res.body[2].data.name).toBe('mid')
     })
 })

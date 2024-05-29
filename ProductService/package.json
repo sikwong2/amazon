@@ -79,6 +79,10 @@
     "testMatch": [
       "**/?(*.)+(spec|test).[jt]s?(x)"
     ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 0,

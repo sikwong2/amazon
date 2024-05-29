@@ -1,7 +1,7 @@
-
 import { Pool } from 'pg';
 
-const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ORDER_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
+const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ORDER_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } =
+  process.env;
 
 if (!POSTGRES_HOST) {
   console.error('Error: POSTGRES_HOST is not defined in db.ts OrderService.');

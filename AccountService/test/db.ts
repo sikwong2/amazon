@@ -2,34 +2,45 @@ import { Pool } from 'pg';
 import * as fs from 'fs';
 
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
-const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_ACCOUNT_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
+const {
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+  POSTGRES_DB,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+} = process.env;
 
 if (!POSTGRES_HOST) {
-  console.warn('Error: POSTGRES_HOST is not defined in db.ts AccountService/test.');
+  console.error('Error: POSTGRES_HOST is not defined in db.ts AccountService/test.');
+  process.exit(1);
 }
 
 if (!POSTGRES_PORT) {
-  console.warn('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService/test.');
+  console.error('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService/test.');
+  process.exit(1);
 }
 
-if (!POSTGRES_ACCOUNT_DATABASE) {
-  console.warn('Error: POSTGRES_ACCOUNT_DATABASE is not defined in db.ts AccountService/test.');
+if (!POSTGRES_DB {
+  console.error('Error: POSTGRES_DB is not defined in db.ts AccountService/test.');
+  process.exit(1);
 }
 
 if (!POSTGRES_USER) {
-  console.warn('Error: POSTGRES_USER is not defined in db.ts AccountService/test.');
+  console.error('Error: POSTGRES_USER is not defined in db.ts AccountService/test.');
+  process.exit(1);
 }
 
 if (!POSTGRES_PASSWORD) {
-  console.warn('Error: POSTGRES_PASSWORD is not defined in db.ts AccountService/test.');
+  console.error('Error: POSTGRES_PASSWORD is not defined in db.ts AccountService/test.');
+  process.exit(1);
 }
 
 const pool = new Pool({
   host: POSTGRES_HOST,
   port: Number(POSTGRES_PORT),
-  database: POSTGRES_ACCOUNT_DATABASE,
+  database: POSTGRES_DB,
   user: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
 });
@@ -47,8 +58,8 @@ const run = async (file: string) => {
 };
 
 const reset = async () => {
-  await run('sql/testschema.sql');
-  await run('sql/test.sql');
+  await run('sql/schema.sql');
+  await run('sql/data.sql');
 };
 
 const shutdown = () => {
