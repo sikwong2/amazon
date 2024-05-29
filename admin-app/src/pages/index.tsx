@@ -5,6 +5,7 @@ import { App } from '../views/App'
 import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import TopBar from '@/components/TopBar';
+import Footer from '@/components/Footer';
 
 
 // this must be in page-level components (not in components in /view)
@@ -26,6 +27,7 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <App/>
+      <Footer/>
     </Fragment>
   )
 }
