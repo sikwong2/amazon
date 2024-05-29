@@ -41,5 +41,23 @@
     "Cart": "Cart",
     "Search": "Search",
     "Hello": "Hello,"
+  },
+  "adminportal": {
+    "pending-vendor": "Pending Vendor Approvals",
+    "api-keys": "API Keys",
+    "key": "Key",
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "owner-id": "Owner ID",
+    "status": "Status",
+    "action": "Action",
+    "approve": "Approve",
+    "loading": "Loading...",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "no-vendors": "No pending vendors",
+    "no-keys": "No API keys",
+    "title": "Admin Portal"
   }
 }

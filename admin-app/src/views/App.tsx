@@ -1,12 +1,12 @@
 import { Login } from '../views/Login'
 import { LoginProvider } from '../context/Login'
-import { Approval } from '../views/Approval'
+import { AdminPortal } from './AdminPortal'
 
 export function App() {
   return (
     <LoginProvider>
         <Login/>
-        <Approval/>
+        <AdminPortal/>
     </LoginProvider>
   )
 }

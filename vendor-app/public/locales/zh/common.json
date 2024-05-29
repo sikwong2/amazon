@@ -21,7 +21,8 @@
     "conditions": "使用条件",
     "and": "和",
     "privacy-notice": "隐私声明",
-    "need-help": "需要帮忙?"
+    "need-help": "需要帮忙?",
+    "shopper": "去购物者应用"
   },
   "signup": {
     "title": "创建购物者帐户",
@@ -29,6 +30,7 @@
     "first-last": "名字和姓氏",
     "email": "电子邮件",
     "password": "六个字符以上",
+    "password-min": "超过6个字符",
     "re-enter": "重新输入密码",
     "create-shopper": "创建免费供应商帐户",
     "account-exists": "已经有帐户？",
@@ -47,5 +49,13 @@
     "Cart": "购物车",
     "Search": "搜索",
     "Hello": "你好"
+  },
+  "vendorportal": {
+    "title": "供应商门户",
+    "key" : "钥匙",
+    "status": "地位",
+    "api-keys": "键",
+    "generate": "生成新密钥",
+    "no-keys": "没有键"
   }
 }

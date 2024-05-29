@@ -12,8 +12,10 @@ import { IconButton, Tooltip } from '@mui/material';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import LinearProgress from '@mui/material/LinearProgress';
 import KeyIcon from '@mui/icons-material/Key';
+import { useTranslation } from 'next-i18next';
 
 export default function APIKeysTable() {
+  const { t } = useTranslation('common');
   const loginContext = useContext(LoginContext);
   const [keys, setKeys] = useState([]);
   const [loading, setLoading] = useState(false); // New loading state
@@ -85,7 +87,7 @@ export default function APIKeysTable() {
   const columns: GridColDef[] = [
     {
       field: 'api_key',
-      headerName: 'Key',
+      headerName: t('vendorportal.key') as string,
       flex: 9,
       sortable: false,
       renderCell: (params) => (
@@ -103,7 +105,7 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'active', headerName: 'Status', flex: 1 },
+    { field: 'active', headerName: t('vendorportal.status') as string, flex: 1 },
   ];
 
   useEffect(() => {
@@ -120,7 +122,7 @@ export default function APIKeysTable() {
       <Box sx={{ p: '14px' }}>
         <Box display="flex" justifyContent="space-between">
           <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-            API Keys <KeyIcon style={{ transform: 'translate(0px, 3px)' }} />
+            {t('vendorportal.api-keys')} <KeyIcon style={{ transform: 'translate(0px, 3px)' }} />
           </Typography>
           <CustomButton
             label="generate-new-key"
@@ -129,7 +131,7 @@ export default function APIKeysTable() {
             onClick={createAPIKey}
             sx={{ mr: '14px', mb: '10px' }}
           >
-            Generate New Key
+            {t('vendorportal.generate')}
           </CustomButton>
         </Box>
         <CustomDivider />
@@ -141,7 +143,7 @@ export default function APIKeysTable() {
               columns={columns}
               style={{ backgroundColor: '#f5f5f5' }}
               slots={{
-                noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No API Keys" />,
+                noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('vendorportal.no-keys')} />,
                 loadingOverlay: LinearProgress,
               }}
               loading={loading}

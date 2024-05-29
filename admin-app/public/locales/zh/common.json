@@ -41,5 +41,23 @@
     "Cart": "购物车",
     "Search": "搜索",
     "Hello": "你好"
+  },
+  "adminportal": {
+    "pending-vendor": "等待供应商的批准",
+    "api-keys": "键",
+    "key": "钥匙",
+    "id": "身分证",
+    "name": "姓名",
+    "email": "电子邮件",
+    "owner-id": "所有者",
+    "status": "地位",
+    "action": "行动",
+    "approve": "批准",
+    "loading": "加载中...",
+    "activate": "启用",
+    "deactivate": "停用",
+    "no-vendors": "没有待处理的供应商",
+    "no-keys": "没有键",
+    "title": "管理门户"
   }
 }

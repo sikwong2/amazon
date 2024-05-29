@@ -96,10 +96,10 @@ export default function TopBar() {
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
             <Logo width={60} transparent="true" />
             <Typography variant="h6" sx={{ ml: 2, color: 'rgba(242,242,242)' }}>
-              Vendor Portal
+              {t('vendorportal.title')}
             </Typography>
           </Box>
-          <LanguageButton sx={{ ml: 2 }} variant="text" />
+          <LanguageButton sx={{ ml: 2, color: "white" }} variant="text" />
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {loginContext.accessToken.length == 0 && (
               <CustomButton

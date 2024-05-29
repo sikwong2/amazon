@@ -4,21 +4,23 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import CustomNoRowsOverlay from './CustomNoRowsOverlay';
 import CustomButton from './Button';
-import { DataGrid, GridColDef} from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import LinearProgress from '@mui/material/LinearProgress';
+import { useTranslation } from 'next-i18next';
 
 export default function PendingVendorApprovalsTable() {
+  const { t } = useTranslation('common');
   const loginContext = useContext(LoginContext);
   const [vendors, setVendors] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', flex: 1, sortable: false },
-    { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'email', headerName: 'Email', flex: 1 },
+    { field: 'id', headerName: t('adminportal.id') as string, flex: 1, sortable: false },
+    { field: 'name', headerName: t('adminportal.name') as string, flex: 1 },
+    { field: 'email', headerName: t('adminportal.email') as string, flex: 1 },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('adminportal.action') as string,
       flex: 1,
       sortable: false,
       renderCell: (params) => (
@@ -34,7 +36,7 @@ export default function PendingVendorApprovalsTable() {
             }}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Approve'}
+            {loading ? t('adminportal.loading') : t('adminportal.approve')}
           </CustomButton>
         </div>
       ),
@@ -122,7 +124,9 @@ export default function PendingVendorApprovalsTable() {
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No Pending Vendor Approvals" />,
+            noRowsOverlay: () => (
+              <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('adminportal.no-vendors')} />
+            ),
             loadingOverlay: LinearProgress,
           }}
           loading={loading}

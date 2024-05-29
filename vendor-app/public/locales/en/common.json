@@ -21,7 +21,8 @@
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice",
-    "need-help": "Need help?"
+    "need-help": "Need help?",
+    "shopper": "Go to shopper app"
   },
   "signup": {
     "title": "Create account",
@@ -47,6 +48,14 @@
     "Orders": "Orders",
     "Cart": "Cart",
     "Search": "Search",
-    "Hello": "Hello"
+    "Hello": "Hello,"
+  },
+  "vendorportal": {
+    "title": "Vendor Portal",
+    "key" : "Key",
+    "status": "Status",
+    "api-keys": "API Keys",
+    "generate": "Generate New Key",
+    "no-keys": "No API Keys"
   }
 }

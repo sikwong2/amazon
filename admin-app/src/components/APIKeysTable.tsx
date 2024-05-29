@@ -8,8 +8,10 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { IconButton, Tooltip } from '@mui/material';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import LinearProgress from '@mui/material/LinearProgress';
+import { useTranslation } from 'next-i18next';
 
 export default function APIKeysTable() {
+  const { t } = useTranslation('common');
   const loginContext = useContext(LoginContext);
   const [keys, setKeys] = useState([]);
   const [loading, setLoading] = useState(false); // New loading state
@@ -91,7 +93,7 @@ export default function APIKeysTable() {
   const columns: GridColDef[] = [
     {
       field: 'api_key',
-      headerName: 'Key',
+      headerName: t('adminportal.key') as string,
       flex: 1,
       sortable: false,
       renderCell: (params) => (
@@ -109,11 +111,11 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'account_id', headerName: 'Owner ID', flex: 1, sortable: false},
-    { field: 'active', headerName: 'Status', flex: 1, sortable: false},
+    { field: 'account_id', headerName: t('adminportal.owner-id') as string, flex: 1, sortable: false },
+    { field: 'active', headerName: t('adminportal.status') as string, flex: 1, sortable: false },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('adminportal.action') as string,
       flex: 1,
       sortable: false,
       renderCell: (params) => (
@@ -128,7 +130,7 @@ export default function APIKeysTable() {
             }}
             disabled={loading}
           >
-            {loading ? 'Loading...' : 'Activate'}
+            {loading ? t('adminportal.loading') : t('adminportal.activate')}
           </CustomButton>
           <CustomButton
             label={`deactivate-${params.row.api_key}`}
@@ -141,7 +143,7 @@ export default function APIKeysTable() {
             disabled={loading}
             sx={{ ml: 1 }}
           >
-            {loading ? 'Loading...' : 'Deactivate'}
+            {loading ? t('adminportal.loading') : t('adminportal.deactivate')}
           </CustomButton>
         </Box>
       ),
@@ -168,7 +170,7 @@ export default function APIKeysTable() {
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label="No API Keys" />,
+            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('adminportal.no-keys')}/>,
             loadingOverlay: LinearProgress,
           }}
           loading={loading}

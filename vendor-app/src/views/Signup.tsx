@@ -11,6 +11,7 @@ import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import { SignupContext } from '@/context/Signup';
 import CustomLink from '@/components/Link';
+import LanguageButton from '@/components/Language';
 
 export function SignUp() {
   const signupContext = React.useContext(SignupContext);
@@ -80,8 +81,8 @@ export function SignUp() {
       }}
     >
       <CssBaseline />
-      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb:2.5}}>
-        <Logo width={defaultLogoWidth} height='auto'/>
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2.5 }}>
+        <Logo width={defaultLogoWidth} height="auto" />
       </Container>
       <Box
         sx={{
@@ -184,10 +185,19 @@ export function SignUp() {
             >
               {t('buying-for-yourself')}
             </Typography>
-            <Box sx={{ fontSize: '13px' }}>
+            <Box
+              sx={{
+                fontSize: '13px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+            >
               <CustomLink label="shopper-account" href="/" variant="blue2">
                 {t('shopper-account')}
               </CustomLink>
+              <LanguageButton variant="text" />
             </Box>
           </Box>
           <Box>

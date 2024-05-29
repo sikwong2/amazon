@@ -5,26 +5,20 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useTranslation } from 'next-i18next';
-import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
-import Paper from '@mui/material/Paper';
 import KeyIcon from '@mui/icons-material/Key';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import PendingVendorApprovalsTable from '@/components/PendingVendorApprovalsTable';
 import APIKeysTable from '@/components/APIKeysTable';
-
-
-import Button from '@mui/material/Button';
-import { padding } from '@mui/system';
 import TopBar from '../components/TopBar';
 
-export function Approval() {
+export function AdminPortal() {
   const loginContext = useContext(LoginContext);
   const { t } = useTranslation('common');
   const [vendors, setVendors] = useState([]);
 
-  const ApprovalComponent = (
+  const AdminPortalComponent = (
     <>
       <TopBar />
       <Container
@@ -49,7 +43,7 @@ export function Approval() {
           <CustomCard>
             <Box sx={{ p: '14px' }}>
               <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-                Pending Vendor Approvals <PendingActionsIcon style={{ transform: 'translate(0px, 3px)' }}/>
+                {t('adminportal.pending-vendor')} <PendingActionsIcon style={{ transform: 'translate(0px, 3px)' }}/>
               </Typography>
               <CustomDivider />
               <PendingVendorApprovalsTable />
@@ -58,7 +52,7 @@ export function Approval() {
           <CustomCard  sx={{m: '28px'}}>
             <Box sx={{ p: '14px' }}>
               <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-                API Keys <KeyIcon style={{ transform: 'translate(0px, 3px)' }}/>
+                {t('adminportal.api-keys')} <KeyIcon style={{ transform: 'translate(0px, 3px)' }}/>
               </Typography>
               <CustomDivider />
               <APIKeysTable />
@@ -70,7 +64,7 @@ export function Approval() {
   );
 
   if (loginContext.accessToken !== '') {
-    return ApprovalComponent;
+    return AdminPortalComponent;
   } else {
     return null;
   }
