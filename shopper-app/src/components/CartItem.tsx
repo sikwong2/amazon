@@ -11,14 +11,14 @@ interface CartItemProps {
   name: string,
   image?: string,
   price: number,
-  rating?: number
+  rating?: number,
+  quantity: number
 }
-export function CartItem({ productId, name, image, price, rating, ...rest }: CartItemProps) {
-  const { cart, setCart } = useContext(CartContext);
+export function CartItem({ productId, name, image, price, rating, quantity, ...rest }: CartItemProps) {
+  const { removeFromCart } = useContext(CartContext);
 
   const handleDelete = (productId: string) => {
-    const copy = cart.splice(0);
-    setCart(copy.filter((product) => product != productId));
+    removeFromCart(productId);
   }
 
   return (
@@ -36,6 +36,9 @@ export function CartItem({ productId, name, image, price, rating, ...rest }: Car
             <Typography>
               {rating}
             </Typography><StarIcon />
+            <Typography>
+              Qty: {quantity}
+            </Typography>
           </Box>
         }
         sx={{ maxWidth: 'calc(100% - 200px)', wordWrap: 'break-word', margin: '16px' }}

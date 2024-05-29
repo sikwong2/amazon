@@ -35,33 +35,37 @@ const fetchProduct = async (productId: any): Promise<Product> => {
 }
 export function Cart() {
   const { setPage } = useContext(PageContext);
-  const {cart} = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const { t } = useTranslation('common');
   const [subtotal, setSubtotal] = useState(0);
-  const router = useRouter();
   const [cartItems, setCartItems]: any = useState([]);
-  useEffect(() => {
-    (async () => {
-      let total = 0;
-      const temp: any = []
-      for (const productId of cart) {
-        const product = await fetchProduct(productId);
-        total += product.price;
-        temp.push(
-          <CartItem
-            key={productId} 
-            productId={productId}
-            name={product.name}
-            image={product.image ? product.image[0] : undefined}
-            price={product.price}
-            rating={product?.rating}
-          />
+  
+    useEffect(() => {
+      (async () => {
+        let total = 0;
+        const temp: any = []
+        await Promise.all(
+          Object.entries(cart).map(async ([productId, quantity]) => {
+            const product = await fetchProduct(productId);
+            total += product.price;
+            temp.push(
+              <CartItem
+                key={productId} 
+                productId={productId}
+                name={product.name}
+                image={product.image ? product.image[0] : undefined}
+                price={product.price}
+                rating={product?.rating}
+                quantity={quantity}
+              />
+            )
+          })
         )
-      }
-      setCartItems(temp);
-      setSubtotal(Number(Number(total).toFixed(2)));
-    })()
-  }, [subtotal, cart])
+        setCartItems(temp);
+        setSubtotal(Number(Number(total).toFixed(2)));
+      })()
+    }, [cart])
+
   return (
     <>
       <TopBar/>
@@ -82,7 +86,7 @@ export function Cart() {
               alignItems: 'center'
             }}>
               {t("cart.subtotal") +
-            `(${cart.length} ${cart.length == 1 ? t("cart.item") : t("cart.items")}): 
+            `(${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): 
             $ ${subtotal}`}
               <CustomButton
                 type='submit'

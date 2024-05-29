@@ -5,8 +5,6 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next";
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { List, ListItem, Typography } from '@mui/material';
 import CustomCard from '@/components/Card';
@@ -23,17 +21,6 @@ import { CartContext } from '@/context/Cart';
 import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
 import RandomDeliveryDate from '@/components/DeliveryDate';
-
-/*
-TODO:
- -x add to cart button
- -x buy now button
- -x translations
- -x fix quantity dropdown width
- -x add categories 
- - invalid product id breaks everything
-
-*/
 
 
 interface Product {
@@ -112,7 +99,7 @@ function productDescription(description: string[]) {
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
   const [quantity, setQuantity] = useState(1)
-  const cartContext = useContext(CartContext);
+  const {cart, setCart, addToCart } = useContext(CartContext);
   const pageContext = useContext(PageContext);
   const router = useRouter();
   const { productId } = router.query;
@@ -122,18 +109,15 @@ export default function Product({ product }: ProductProp) {
   }
   
   const handleAddToCartClick = () => {
-    const cart = cartContext.cart;
-    for (let i = 0; i < quantity; i++) {
-      cart.push(productId as string)
-      cartContext.setCart(cart);
-    }
+    addToCart(productId as string, quantity)
     pageContext.setPage('cart');
     router.push('/');
   }
 
   const handleBuyNowClick = () => {
-    cartContext.setCart([productId as string]);
-    // pageContext.setPage('checkout');
+    setCart({});
+    addToCart(productId as string, quantity);
+    pageContext.setPage('checkout');
     router.push('/');
   }
 
