@@ -49,9 +49,9 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Development
 
 - **First Run Docker and Start the Root Database for Dev**:
-```sh
-npm run docker
-```
+  ```sh
+  npm run docker
+  ```
 
 - **Run all services and apps for development**:
   ```sh
