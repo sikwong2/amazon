@@ -55,9 +55,7 @@ function Item({ item, height, ...rest }: ItemProps) {
         style={{
           maxWidth: '100%',
           maxHeight: '100%',
-          width: 'auto',
-          height: 'auto',
-          objectFit: 'cover',
+          width: '50%'
         }}
         alt={item.description}
         src={item.image}
