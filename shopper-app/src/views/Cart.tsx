@@ -10,6 +10,7 @@ import { CartItem } from '@/components/CartItem';
 import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
 import CustomLink from '@/components/Link';
+import CustomDivider from '@/components/Divider';
 
 
 const fetchProduct = async (productId: any): Promise<Product> => {
@@ -69,6 +70,20 @@ export function Cart() {
     })()
   }, [cart])
 
+  const subtotalText = (
+    <Box aria-label='cart-subtotal'>
+      <Typography display='inline' fontSize='1.1em'>
+        {t("cart.subtotal")}
+      </Typography>
+      <Typography display='inline' fontSize='1.1em'>
+        {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): `}
+      </Typography>
+      <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
+        {`$${subtotal}`}
+      </Typography>
+    </Box>
+  )
+
   const old = (
     <Container maxWidth="md">
         <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -125,17 +140,7 @@ export function Cart() {
           </Box>
         </Box>
       </Box>
-      <Box aria-label='cart-subtotal'>
-        <Typography display='inline' fontSize='1.1em'>
-          {t("cart.subtotal")}
-        </Typography>
-        <Typography display='inline' fontSize='1.1em'>
-          {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): `}
-        </Typography>
-        <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
-          {`$${subtotal}`}
-        </Typography>
-      </Box>
+      {subtotalText}
       <FormControlLabel 
         control={<Checkbox color='default'/>} 
         label="This order contains a gift" 
@@ -162,15 +167,32 @@ export function Cart() {
     </CustomCard>
   )
 
+  const shoppingCart = (
+    <CustomCard type='pointy' sx={{ display: 'block', minHeight: '100%', p:1.75}}>
+      <Typography component='h1' sx={{mb:2}}>
+        {t("cart.shopping-cart")}
+      </Typography>
+      <Typography>
+        Price
+      </Typography>
+      <CustomDivider/>
+      <List>
+        {cartItems}
+      </List>
+      <CustomDivider/>
+      {subtotalText}
+    </CustomCard>
+  )
+
   return (
     <div style={{backgroundColor: '#EAEDED', minHeight: '100vh' }}>
       <TopBar/>
       <Box sx={{ p:2.2 }}>
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={ true }  order={{ xs: 2, sm: 1}} sx={{ padding:'0px' }}>
-            left bottom
+            {shoppingCart}
           </Grid>
-          <Grid item xs={12} sm={ 'auto'} order={{ xs: 1, sm: 2 }} style={{width: isMobile ? '100%' : '300px'}}>
+          <Grid item xs={12} sm={ 'auto'} order={{ xs: 1, sm: 2 }} style={{width: isMobile ? '100%' : '316px'}}>
             {total}
           </Grid>
         </Grid>
