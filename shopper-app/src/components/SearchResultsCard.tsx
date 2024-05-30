@@ -69,6 +69,7 @@ export default function SearchResultCard({ images, title }: SearchResultCardProp
         maxHeight: '100%', 
         maxWidth: '300px', 
         display: 'flex', 
+        mx: 'auto',
         flexDirection: 'column',
         flexGrow: 1,
         cursor: 'pointer'
