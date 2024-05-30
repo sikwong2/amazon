@@ -3,26 +3,34 @@
   "go-to-signup": "Create an account",
   "buying-for-yourself": "Buying for yourself?",
   "shopper-account": "Create a shopper account",
+  "vendor-app": {
+    "return-shopper-app": "Return to Shopper App",
+    "vendors-only": "This app is for vendors only!",
+    "vendor-account-approval": "Vendor Account Approval",
+    "status-pending": "Status pending"
+  },
   "login": {
     "title": "UCSC-Amazon Vendor Login",
-    "signin": "Sign in",
+    "signin": "Vendor Sign in",
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
     "new-to-amazon": "New to Amazon?",
-    "create-account": "Create your Amazon account",
+    "create-account": "Create your Vendor Amazon account",
     "agreement": "By continuing, you agree to Amazon's ",
     "conditions": "Conditions of Use",
     "and": " and ",
     "privacy-notice": "Privacy Notice",
-    "need-help": "Need help?"
+    "need-help": "Need help?",
+    "shopper": "Go to shopper app"
   },
   "signup": {
     "title": "Create account",
     "name": "Your name",
     "first-last": "First and last name",
     "email": "Email",
-    "password": "More than 6 characters",
+    "password": "Password",
+    "password-min": "More than 6 characters",
     "re-enter": "Re-enter password",
     "create-shopper": "Create a free shopper account",
     "account-exists": "Already have an account?",
@@ -40,6 +48,18 @@
     "Orders": "Orders",
     "Cart": "Cart",
     "Search": "Search",
-    "Hello": "Hello"
+    "Hello": "Hello,"
+  },
+  "vendorportal": {
+    "title": "Vendor Portal",
+    "key": "Key",
+    "status": "Status",
+    "api-keys": "API Keys",
+    "generate": "Generate New Key",
+    "no-keys": "No API Keys"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
+    "back-to-top": "Back to top"
   }
 }

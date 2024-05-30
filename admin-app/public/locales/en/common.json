@@ -2,7 +2,7 @@
   "change-locale": "Change locale to \"{{changeTo}}\"",
   "login": {
     "title": "UCSC-Amazon Admin Login",
-    "signin": "Sign in",
+    "signin": "Admin Sign in",
     "email": "Email",
     "emailaddress": "Email Address",
     "password": "Password",
@@ -12,7 +12,9 @@
     "and": " and ",
     "privacy-notice": "Privacy Notice",
     "need-help": "Need help?",
-    "create-account": "Create your Amazon account"
+    "create-account": "Create your Amazon account",
+    "buying-for-work": "Buying for work?",
+    "vendor-account": "Create a free vendor account"
   },
   "signup": {
     "title": "Create account",
@@ -38,6 +40,28 @@
     "Orders": "Orders",
     "Cart": "Cart",
     "Search": "Search",
-    "Hello": "Hello"
+    "Hello": "Hello,"
+  },
+  "adminportal": {
+    "pending-vendor": "Pending Vendor Approvals",
+    "api-keys": "API Keys",
+    "key": "Key",
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "owner-id": "Owner ID",
+    "status": "Status",
+    "action": "Action",
+    "approve": "Approve",
+    "loading": "Loading...",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "no-vendors": "No pending vendors",
+    "no-keys": "No API keys",
+    "title": "Admin Portal"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
+    "back-to-top": "Back to top"
   }
 }

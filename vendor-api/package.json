@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Norton Choy <nochoy@ucsc.edu>",
   "license": "ISC",
-
   "devDependencies": {
     "@types/cors": "*",
     "@types/express": "*",

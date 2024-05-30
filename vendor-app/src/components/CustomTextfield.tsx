@@ -18,34 +18,43 @@ const CustomInput = React.forwardRef(function CustomInput(
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <div {...getRootProps()} style={{width: '100%'}}>
+    <div {...getRootProps()} style={{ width: '100%' }}>
       <InputElement {...props} {...inputProps} />
     </div>
   );
 });
 
-export default function CustomTextField({ label='', placeholder='', width='100%', height='2rem', inputLabel='', ...rest }) {
+export default function CustomTextField({
+  label = '',
+  placeholder = '',
+  width = '100%',
+  height = '2rem',
+  inputLabel = '',
+  ...rest
+}) {
   return (
     <>
-    {
-      inputLabel &&
-      <InputLabel sx={{ fontWeight:'bold', fontSize:'13px', color:'#111111', pl:'2px', pb:'2px' }}>
-        {inputLabel}
-      </InputLabel>
-    }
-    <CustomInput 
-      aria-label={label}
-      id={label}
-      name={label}
-      placeholder={placeholder}
-      style={{ width, height } }
-      {...rest} // for other props
+      {inputLabel && (
+        <InputLabel
+          sx={{ fontWeight: 'bold', fontSize: '13px', color: '#111111', pl: '2px', pb: '2px' }}
+        >
+          {inputLabel}
+        </InputLabel>
+      )}
+      <CustomInput
+        aria-label={label}
+        id={label}
+        name={label}
+        placeholder={placeholder}
+        style={{ width, height }}
+        {...rest} // for other props
       />
     </>
-  )
+  );
 }
 
-const InputElement = styled('input')( () => `
+const InputElement = styled('input')(
+  () => `
   width: 100%;
   font-family: 'Amazon Ember', sans-serif;
   font-size: 80%;

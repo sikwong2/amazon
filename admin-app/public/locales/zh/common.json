@@ -12,7 +12,9 @@
     "and": "和",
     "privacy-notice": "隐私声明",
     "need-help": "需要帮忙?",
-    "create-account": "创建您的亚马逊帐户"
+    "create-account": "创建您的亚马逊帐户",
+    "buying-for-work": "买东西是为了工作？",
+    "vendor-account": "创建免费供应商帐户"
   },
   "signup": {
     "title": "创建购物者帐户",
@@ -39,5 +41,27 @@
     "Cart": "购物车",
     "Search": "搜索",
     "Hello": "你好"
+  },
+  "footer": {
+    "disclaimer": "Ucsc-amazon 是一个亚马逊克隆学生项目。所有展示的产品都是假货。",
+    "back-to-top": "回到顶部"
+  },
+  "adminportal": {
+    "pending-vendor": "等待供应商的批准",
+    "api-keys": "键",
+    "key": "钥匙",
+    "id": "身分证",
+    "name": "姓名",
+    "email": "电子邮件",
+    "owner-id": "所有者",
+    "status": "地位",
+    "action": "行动",
+    "approve": "批准",
+    "loading": "加载中...",
+    "activate": "启用",
+    "deactivate": "停用",
+    "no-vendors": "没有待处理的供应商",
+    "no-keys": "没有键",
+    "title": "管理门户"
   }
 }

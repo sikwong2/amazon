@@ -11,17 +11,13 @@ import { SearchProvider } from '@/context/SearchContext';
 
 const theme = createTheme({
   typography: {
-    fontFamily: [
-      'Amazon Ember',
-      'Helvetica',
-      'sans-serif'
-    ].join(','),
-  }
+    fontFamily: ['Amazon Ember', 'Helvetica', 'sans-serif'].join(','),
+  },
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider theme={theme} >
+    <ThemeProvider theme={theme}>
       <LoginProvider>
         <SearchProvider>
           <PageProvider>
@@ -32,7 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </SearchProvider>
       </LoginProvider>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default appWithTranslation(App)
+export default appWithTranslation(App);

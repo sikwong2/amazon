@@ -1,23 +1,21 @@
-
-import { Field, ObjectType, ArgsType } from "type-graphql"
-import { Length } from "class-validator";
+import { Field, ObjectType, ArgsType } from 'type-graphql';
+import { Length } from 'class-validator';
 
 @ArgsType()
 export class Credentials {
   @Field()
-  @Length(4, 16)
-    email!: string
+  email!: string;
   @Field()
-  @Length(8, 16)
-    password!: string
+  @Length(6, 64)
+  password!: string;
 }
 
 @ObjectType()
 export class Authenticated {
   @Field()
-    name!: string
+  name!: string;
   @Field()
-    accessToken!: string
+  accessToken!: string;
   @Field()
-    id!: string
+  id!: string;
 }
