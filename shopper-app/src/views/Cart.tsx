@@ -3,7 +3,6 @@ import { Box, Checkbox, Container, FormControlLabel, Grid, List, Typography, use
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useContext, useState, useEffect } from 'react'
 import { useTranslation } from 'next-i18next';
-import { Product } from '@/graphql/product/schema';
 import CustomCard from '@/components/Card'
 import CustomButton from '@/components/Button';
 import { CartItem } from '@/components/CartItem';
@@ -12,6 +11,13 @@ import { PageContext } from '@/context/Page';
 import CustomLink from '@/components/Link';
 import CustomDivider from '@/components/Divider';
 
+interface Product {
+  name: string,
+  price: number,
+  stock: number,
+  rating: number,
+  image: string[],
+}
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
@@ -40,6 +46,7 @@ export function Cart() {
   const { cart } = useContext(CartContext);
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
+  // const [productQuantities, setProductQuantities] = useState({});
   const { t } = useTranslation('common');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -51,15 +58,12 @@ export function Cart() {
       await Promise.all(
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
-          total += product.price;
+          total += (product.price * quantity);
           temp.push(
             <CartItem
               key={productId} 
               productId={productId}
-              name={product.name}
-              image={product.image ? product.image[0] : undefined}
-              price={product.price}
-              rating={product?.rating}
+              product={product}
               quantity={quantity}
             />
           )
@@ -82,44 +86,6 @@ export function Cart() {
         {`$${subtotal}`}
       </Typography>
     </Box>
-  )
-
-  const old = (
-    <Container maxWidth="md">
-        <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
-            <Typography variant='h4' component='h1' gutterBottom sx={{ marginLeft: '1em' }}>
-              {t("cart.shopping-cart")}
-            </Typography>
-            <List>
-              {cartItems}
-            </List>
-          </CustomCard>
-          <CustomCard>
-            <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}>
-              {t("cart.subtotal") +
-            `(${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): 
-            $ ${subtotal}`}
-              <CustomButton
-                type='submit'
-                label='checkout'
-                variant='contained'
-                color='primary'
-                sx={{ mt: 3, mb: 2 }}
-                onClick={() =>{
-                  setPage('checkout')
-                }}
-                >
-                {t("cart.proceed-to-checkout")}
-              </CustomButton>
-            </Box>
-          </CustomCard>
-        </Container>
-      </Container>
   )
 
   const total = (
@@ -168,26 +134,27 @@ export function Cart() {
   )
 
   const shoppingCart = (
-    <CustomCard type='pointy' sx={{ display: 'block', minHeight: '100%', p:1.75}}>
+    <CustomCard type='pointy' sx={{ display: 'block', minHeight: '100%', p:2.5 }}>
       <Typography component='h1' sx={{mb:2}}>
         {t("cart.shopping-cart")}
       </Typography>
-      <Typography>
+      <Typography align='right'>
         Price
       </Typography>
       <CustomDivider/>
       <List>
         {cartItems}
       </List>
-      <CustomDivider/>
-      {subtotalText}
+      <Box sx={{textAlign:'right'}}>
+        {subtotalText}
+      </Box>
     </CustomCard>
   )
 
   return (
     <div style={{backgroundColor: '#EAEDED', minHeight: '100vh' }}>
       <TopBar/>
-      <Box sx={{ p:2.2 }}>
+      <Box sx={{ p:2.2, maxWidth:'1500px', m:'auto' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={ true }  order={{ xs: 2, sm: 1}} sx={{ padding:'0px' }}>
             {shoppingCart}
