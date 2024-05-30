@@ -1,6 +1,6 @@
 # [UCSC Amazon](https://www.ucsc-amazon.com)
 
-This project is a clone of Amazon developed as a school project by CSE187 Group 2. The project is structured as with multiple services and applications, including account microservice, order microservice, product microservice, and separate front-end applications for admin, vendor, and shopper interfaces. The project leverages Docker for containerization. Each service has a docker-compose.yml that is only used during testing that occurs with npm run test-with-docker. The outer root directory docker-compose.yml and dockerfile contain the database that is used for production and dev. 
+This project is a clone of Amazon developed as a school project by CSE187 Group 2. The project is structured as with multiple services and applications, including account microservice, order microservice, product microservice, and separate front-end applications for admin, vendor, and shopper interfaces. The project leverages Docker for containerization. The outer root directory docker-compose.yml contains the database used by all services. 
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@ This project is a clone of Amazon developed as a school project by CSE187 Group 
 
 ## Getting Started
 
-To get started with the UCSC Amazon project, you need to have Docker and Node.js LTS installed on your system. 
+To get started with the UCSC Amazon project, you need to have Docker and Node.js/NPM LTS installed on your system. 
 
 1. Clone the repository:
    ```sh
@@ -29,7 +29,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 
 2. Install dependencies:
    ```sh
-   npm run installs
+   npm install
    ```
 
 ## Scripts
@@ -38,7 +38,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 
 - **Start Docker Root Directory Postgres Database**:
   ```sh
-  npm run docker
+  npm run docker-up
   ```
 
 - **Stop Docker Root Directory Containers**:
