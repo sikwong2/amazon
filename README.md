@@ -48,11 +48,6 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 
 ### Development
 
-- **First Run Docker and Start the Root Database for Dev**:
-  ```sh
-  npm run docker
-  ```
-
 - **Run all services and apps for development**:
   ```sh
   npm run dev
@@ -84,7 +79,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run vendor-api
   ```
 
-### CI/CD
+### package-lock.json Install
 
 - **Install dependencies for all services and apps**:
   ```sh
@@ -155,42 +150,6 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run test-shopper
   ```
 
-- **Test with Docker for account and product services**:
-  ```sh
-  npm run test-with-docker
-  ```
-
-- **Test with Docker for individual services**:
-  ```sh
-  npm run test-with-docker-accounts
-  npm run test-with-docker-orders
-  npm run test-with-docker-products
-  ```
-
-### Clean
-
-- **Clean all services and apps**:
-  ```sh
-  npm run clean
-  ```
-
-- **Clean individual services and apps**:
-  ```sh
-  npm run clean-accounts
-  npm run clean-orders
-  npm run clean-products
-  npm run clean-vendor
-  npm run clean-admin
-  npm run clean-shopper
-  npm run clean-vendor-api
-  ```
-
-- **Clean all Docker containers**:
-  ```sh
-  npm run clean-all
-  npm run clean-docker
-  ```
-
 ### Package
 
 - **Build Docker image and save as tar**:
@@ -198,21 +157,11 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run package
   ```
 
-### Containerized
+### Containerised
 
 - **Build and start all services and apps inside of Docker**:
   ```sh
-  npm run containerized
+  npm run containerised
   ```
-
-## DevDependencies
-
-- **concurrently**: Used to run multiple npm scripts concurrently. 
-
-```json
-"devDependencies": {
-  "concurrently": "*"
-}
-```
 
 This README provides an overview of the functionality of the `package.json` for the UCSC Amazon project. Reference `package.json` for exact details. 
