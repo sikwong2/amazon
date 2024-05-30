@@ -1,25 +1,15 @@
-import { Login } from './Login';
-import { LoginProvider } from '@/context/Login';
-import React, { useState } from 'react';
-import Head from 'next/head';
-import { Fragment } from 'react';
-import Link from 'next/link';
-import { GetServerSideProps } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import React from 'react';
 import { useTranslation } from 'next-i18next';
-import LanguageButton from '@/components/Language';
-import Logo from '@/components/Logo';
-import { Toolbar } from '@mui/material';
 import { Typography } from '@mui/material';
-import { AppBar } from '@mui/material';
 import { Box } from '@mui/material';
-import CustomButton from '@/components/Button';
 import ImageCarousel from '@/components/Carousel';
 import type { Image } from '@/components/Carousel';
 import CategoryCard from '@/components/CategoryCard';
 import { Grid } from '@mui/material';
 import CustomCard from '@/components/Card';
 import CustomLink from '@/components/Link';
+import TopBar from '@/components/TopBar';
+import Footer from '@/components/Footer';
 
 import { Product } from '@/graphql/product/schema';
 
@@ -149,7 +139,8 @@ export function Home() {
 
   return (
     <React.Fragment>
-      <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight="100%" margin={1} sx={{ mb: 0 }}>
+      <TopBar />
+      <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight="100%" sx={{ mb: 0 }}>
         <Box
           sx={{ maxWidth: { md: '80%', sm: '100%' } }}
           alignItems="center"
@@ -158,7 +149,6 @@ export function Home() {
         >
           <Box
             position="static"
-            margin={1}
             justifyContent="center"
             alignItems="center"
             bgcolor="#FFFFFF"
@@ -181,6 +171,7 @@ export function Home() {
           </Grid>
         </Box>
       </Box>
+      <Footer />
     </React.Fragment>
   );
 }

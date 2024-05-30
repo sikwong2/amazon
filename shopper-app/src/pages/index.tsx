@@ -13,7 +13,6 @@ import { Cart } from '@/views/Cart';
 import { Checkout } from '@/views/Checkout';
 import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
-import Footer from '@/components/Footer';
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -28,31 +27,12 @@ export default function Index() {
   const { t } = useTranslation('common');
   const pageContext = React.useContext(PageContext);
 
-  const home = (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <TopBar />
-      <div>
-        {t('go-to-login')} <Link href="/login"> {t('here')} </Link>
-      </div>
-      <div>
-        {t('go-to-signup')} <Link href="/signup"> {t('here')} </Link>
-      </div>
-      <Home />
-      <Footer />
-    </>
-  );
-
   return (
     <Fragment>
       {/* <p>
         {pageContext.page}
       </p> */}
-      {pageContext.page === 'home' && home}
+      {pageContext.page === 'home' && <Home />}
       {pageContext.page === 'cart' && <Cart />}
       {pageContext.page === 'checkout' && <Checkout />}
       {pageContext.page === 'orderHistory' && <OrderHistory />}
