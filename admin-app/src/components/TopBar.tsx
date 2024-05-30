@@ -94,7 +94,7 @@ export default function TopBar() {
       <StyledAppBar position="static">
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Logo width={60} transparent="true" />
+            <Logo width={60} />
             <Typography variant="h6" sx={{ ml: 2, color: 'rgba(242,242,242)' }}>
               {t('adminportal.title')}
             </Typography>

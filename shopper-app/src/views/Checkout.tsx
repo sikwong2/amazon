@@ -203,7 +203,6 @@ export function Checkout() {
             height: '62px',
             marginLeft: '80px',
           }}
-          transparent="true"
         />
         <div
           style={{

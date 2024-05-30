@@ -4,7 +4,7 @@ import { LoginContext } from '@/context/Login';
 import { useRouter } from 'next/router';
 import { PageContext } from '@/context/Page';
 
-export default function Logo({ width = 200, height = 'auto', transparent = 'false', ...rest }) {
+export default function Logo({ width = 200, height = 'auto', ...rest }) {
   const loginContext = React.useContext(LoginContext);
   const pageContext = React.useContext(PageContext);
   const router = useRouter();
@@ -18,11 +18,7 @@ export default function Logo({ width = 200, height = 'auto', transparent = 'fals
       }}
     >
       <img
-        src={
-          transparent === 'true'
-            ? 'https://i.ibb.co/h8nx4Yd/buffsammy-removebg-preview.png'
-            : 'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'
-        }
+        src={'https://i.ibb.co/nkyzw2s/sammytheslug.png'}
         alt="Amazon Logo"
         width={width}
         height={height}
