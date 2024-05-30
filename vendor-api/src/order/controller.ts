@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Put,
-  Path,
-  Response,
-  Body,
-  Route,
-} from 'tsoa';
+import { Controller, Put, Path, Response, Body, Route } from 'tsoa';
 
 import { OrderService } from './service';
 import { Order } from '../orders';
@@ -15,17 +8,18 @@ import { StatusUpdate } from '.';
 export class OrderController extends Controller {
   @Put('{orderId}')
   @Response('404', 'Order not found')
-  public async getOrders( 
+  public async getOrders(
     @Path() orderId: string,
-    @Body() statusUpdate: StatusUpdate
-  ):Promise<Order | undefined> {
-    return new OrderService().updateOrderStatus(orderId, statusUpdate)
-      .then( async (success: Order|undefined): Promise<Order|undefined> => {
-        if(!success) {
-          console.log("Vendor API: order controller: failed to update order status");
+    @Body() statusUpdate: StatusUpdate,
+  ): Promise<Order | undefined> {
+    return new OrderService()
+      .updateOrderStatus(orderId, statusUpdate)
+      .then(async (success: Order | undefined): Promise<Order | undefined> => {
+        if (!success) {
+          console.log('Vendor API: order controller: failed to update order status');
           this.setStatus(500);
         }
         return success;
-      })
+      });
   }
 }

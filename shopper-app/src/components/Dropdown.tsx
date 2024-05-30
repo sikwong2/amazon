@@ -8,18 +8,23 @@ import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
 import { InputBase, ThemeProvider, styled } from '@mui/material';
 import { dropdownTheme } from './Theme';
 
-// leave this here or mystery padding appears 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-}));
+// leave this here or mystery padding appears
+const BootstrapInput = styled(InputBase)(({ theme }) => ({}));
 
 interface CustomDropdownProps extends BoxProps {
-  label: string,
-  values: string[],
-  selectedValue: string,
-  setSelectedValue: any
+  label: string;
+  values: string[];
+  selectedValue: string;
+  setSelectedValue: any;
 }
 
-export default function CustomDropdown({ label, values, selectedValue, setSelectedValue, ...rest}: CustomDropdownProps) {
+export default function CustomDropdown({
+  label,
+  values,
+  selectedValue,
+  setSelectedValue,
+  ...rest
+}: CustomDropdownProps) {
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedValue(event.target.value as string);
   };
@@ -36,11 +41,13 @@ export default function CustomDropdown({ label, values, selectedValue, setSelect
             value={selectedValue}
             renderValue={() => `${label}: ${selectedValue}`}
             onChange={handleChange}
-            input={<BootstrapInput/>}
-            >
-            {values.map(value => (
-              <MenuItem key={value} value={value}>{value}</MenuItem>
-              ))}
+            input={<BootstrapInput />}
+          >
+            {values.map((value) => (
+              <MenuItem key={value} value={value}>
+                {value}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>

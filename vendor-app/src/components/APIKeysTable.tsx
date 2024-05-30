@@ -143,7 +143,9 @@ export default function APIKeysTable() {
               columns={columns}
               style={{ backgroundColor: '#f5f5f5' }}
               slots={{
-                noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('vendorportal.no-keys')} />,
+                noRowsOverlay: () => (
+                  <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('vendorportal.no-keys')} />
+                ),
                 loadingOverlay: LinearProgress,
               }}
               loading={loading}

@@ -1,4 +1,3 @@
-\c productdatabase;
 DELETE FROM product;
 
 -- empty product

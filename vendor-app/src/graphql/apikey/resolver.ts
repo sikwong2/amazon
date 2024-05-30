@@ -12,7 +12,6 @@ import { APIKey } from './schema';
 import { APIKeyService } from './service';
 
 export class APIKeyResolver {
-
   @Authorized('vendor')
   @Mutation(() => APIKey)
   async createAPIKey(@Arg('id') id: string): Promise<APIKey | undefined> {

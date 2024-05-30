@@ -4,7 +4,6 @@ import { APIKey } from '.';
 
 @Route('apikey')
 export class APIKeyController extends Controller {
-
   @Get('getallkeys')
   @Response('401', 'Unauthorized')
   @SuccessResponse('200', 'API Keys Retrieved')
@@ -36,17 +35,21 @@ export class APIKeyController extends Controller {
   @Response('401', 'Unauthorized')
   @SuccessResponse('200', 'API Key Activated')
   public async activateAPIKey(@Query() key: string): Promise<Boolean> {
-    return new APIKeyService().activateAPIKey(key).then(async (active: Boolean): Promise<Boolean> => {
-      return active;
-    });
+    return new APIKeyService()
+      .activateAPIKey(key)
+      .then(async (active: Boolean): Promise<Boolean> => {
+        return active;
+      });
   }
 
   @Get('deactivatekey')
   @Response('401', 'Unauthorized')
   @SuccessResponse('200', 'API Key Deactivated')
   public async deactivateAPIKey(@Query() key: string): Promise<Boolean> {
-    return new APIKeyService().deactivateAPIKey(key).then(async (active: Boolean): Promise<Boolean> => {
-      return active;
-    });
+    return new APIKeyService()
+      .deactivateAPIKey(key)
+      .then(async (active: Boolean): Promise<Boolean> => {
+        return active;
+      });
   }
 }

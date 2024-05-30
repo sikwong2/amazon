@@ -1,16 +1,16 @@
-import { Field, ObjectType } from "type-graphql"
-import { IsIn } from "class-validator";
+import { Field, ObjectType } from 'type-graphql';
+import { IsIn } from 'class-validator';
 
 @ObjectType()
 export class OrdersInfo {
   @Field(() => [String])
-    products!: string[]
+  products!: string[];
   @Field()
-    shopperId!: string
+  shopperId!: string;
   @Field()
-    vendorId!: string
+  vendorId!: string;
   @Field()
-    orderStatus!: string
+  orderStatus!: string;
   @Field()
-    orderId!: string
+  orderId!: string;
 }

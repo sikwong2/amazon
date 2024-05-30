@@ -36,11 +36,9 @@ export class MemberController extends Controller {
   @Get('vendorstatus')
   @Response('401', 'Unauthorized')
   public async vendorStatus(@Query() id: string): Promise<boolean> {
-    return new MemberService()
-      .vendorStatus(id)
-      .then(async (status: boolean): Promise<boolean> => {
-        return status;
-      });
+    return new MemberService().vendorStatus(id).then(async (status: boolean): Promise<boolean> => {
+      return status;
+    });
   }
 
   @Get('unapprovedvendors')
@@ -72,16 +70,14 @@ export class MemberController extends Controller {
   @Get('{memberId}')
   @Response('400', 'Bad')
   @SuccessResponse('200', 'Good')
-  public async getAccountInfo(
-    @Path('memberId') memberId: string
-  ): Promise <MemberInfo | undefined> {
+  public async getAccountInfo(@Path('memberId') memberId: string): Promise<MemberInfo | undefined> {
     return new MemberService()
       .getInfo(memberId)
-      .then(async (response: MemberInfo | undefined): Promise < MemberInfo | undefined> => {
+      .then(async (response: MemberInfo | undefined): Promise<MemberInfo | undefined> => {
         if (response === undefined) {
           this.setStatus(409);
         }
         return response;
-      })
+      });
   }
 }

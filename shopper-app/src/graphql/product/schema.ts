@@ -1,36 +1,36 @@
-import { ArgsType, Field, Int, ObjectType } from "type-graphql"
-import { IsIn, Min } from "class-validator";
+import { ArgsType, Field, Int, ObjectType } from 'type-graphql';
+import { IsIn, Min } from 'class-validator';
 
 @ObjectType()
 export class Product {
   @Field()
-    id!: string
+  id!: string;
   @Field()
-    name!: string
+  name!: string;
   @Field()
-    price!: number
+  price!: number;
   @Field()
-    stock!: number
+  stock!: number;
   @Field(() => [String])
-    image!: string[]
+  image!: string[];
   @Field()
-    rating?: number
+  rating?: number;
   @Field(() => [String])
-    category!: string[]
+  category!: string[];
   @Field(() => [String])
-    description?: string[]
+  description?: string[];
 }
 
 @ArgsType()
 export class ProductArgs {
   @Field(() => Int, { nullable: true })
   @Min(1)
-    size?: number
+  size?: number;
   @Field(() => Int, { nullable: true })
   @Min(1)
-    page?: number
+  page?: number;
   @Field({ nullable: true })
-    order?: string
+  order?: string;
   @Field({ nullable: true })
-    sort?: string
+  sort?: string;
 }

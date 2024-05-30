@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   app:
@@ -8,9 +8,9 @@ services:
     depends_on:
       - postgres
     ports:
-      - "3000:3000"
-      - "3001:3001"
-      - "3002:3002"
+      - '3000:3000'
+      - '3001:3001'
+      - '3002:3002'
 
   postgres:
     container_name: pginstance
@@ -19,8 +19,9 @@ services:
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - ./sql/databases.sql:/docker-entrypoint-initdb.d/1.databases.sql
       - ./AccountService/sql/schema.sql:/docker-entrypoint-initdb.d/2.schema.sql

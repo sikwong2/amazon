@@ -46,7 +46,6 @@ export class APIKeyService {
           return res.json();
         })
         .then((keys) => {
-          
           resolve(keys);
         })
         .catch((err) => {

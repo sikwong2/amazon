@@ -45,7 +45,7 @@ const LanguageButton = ({ ...rest }) => {
           aria-controls="radio-menu"
           label={'change-language'}
           onClick={handlePopoverOpen}
-          style={{ textTransform: 'uppercase'}}
+          style={{ textTransform: 'uppercase' }}
           {...rest}
         >
           {selectedLanguage}
@@ -65,8 +65,8 @@ const LanguageButton = ({ ...rest }) => {
             horizontal: 'left',
           }}
         >
-          <RadioGroup 
-            value={selectedLanguage} 
+          <RadioGroup
+            value={selectedLanguage}
             onChange={(e) => handleLanguageChange(e.target.value)}
             aria-label="language-options"
           >
