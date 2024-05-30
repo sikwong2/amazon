@@ -8,14 +8,13 @@ This project is a clone of Amazon developed as a school project by CSE187 Group 
 - [Scripts](#scripts)
   - [Docker](#docker)
   - [Development](#development)
-  - [CI/CD](#cicd)
+  - [Install](#install)
   - [Build](#build)
   - [Start](#start)
   - [Test](#test)
   - [Clean](#clean)
   - [Package](#package)
-  - [Containerized](#containerized)
-- [DevDependencies](#devdependencies)
+  - [Containerised](#containerised)
 
 ## Getting Started
 
@@ -41,7 +40,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run docker-up
   ```
 
-- **Stop Docker Root Directory Containers**:
+- **Stop Docker Root Directory Postgres Database**:
   ```sh
   npm run docker-down
   ```
@@ -79,14 +78,30 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run vendor-api
   ```
 
-### package-lock.json Install
+### Install
 
-- **Install dependencies for all services and apps**:
+- **Install package.json dependencies for all services and apps**:
+  ```sh
+  npm install # or npm i or npm run install
+  ```
+
+- **Install package.json dependencies for individual services and apps**:
+  ```sh
+  npm run install-vendor
+  npm run install-admin
+  npm run install-shopper
+  npm run install-accounts
+  npm run install-orders
+  npm run install-products
+  npm run install-vendor-api
+  ```
+
+- **Install package-lock.json dependencies for all services and apps**:
   ```sh
   npm run cis
   ```
 
-- **Install dependencies for individual services and apps**:
+- **Install package-lock.json dependencies for individual services and apps**:
   ```sh
   npm run ci-vendor
   npm run ci-admin
