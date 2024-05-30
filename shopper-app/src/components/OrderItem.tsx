@@ -1,4 +1,6 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Avatar, ListItem, ListItemAvatar, ListItemText, Grid, Typography, Box } from "@mui/material";
+import CustomLink from "./Link";
+import { useRouter } from "next/router";
 
 interface OrderItemProps {
   productId: string,
@@ -7,15 +9,30 @@ interface OrderItemProps {
 }
 
 export function OrderItem({productId, name, image, ...rest  }: OrderItemProps){
+  const router = useRouter();
+  const handleProductRedirect = (id: string) => {
+    router.push(`/product/${id}`)
+  }
+
   return (
-    <ListItem key={productId} sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-      <ListItemAvatar>
-      <Avatar variant='square' src={image} sx={{ width: '150px', height: '150px' }} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={name}
-        sx={{ maxWidth: 'calc(100% - 200px)', wordWrap: 'break-word', margin: '16px' }}
-      />
-    </ListItem>
+    <Grid container key={productId} sx={{ padding: "14px 18px 6px 18px", position: "relative", alignItems: 'flex-start' }} {...rest}>
+      <Grid item>
+        <Box
+          component="img"
+          src={image}
+          alt={name}
+          sx={{ width: '100px', maxHeight: '90px', height: 'auto', objectFit: 'fill', display: 'inline-block', position: 'relative', cursor: 'pointer' }}
+          onClick={() => handleProductRedirect(productId)}
+        />
+      </Grid>
+      <Grid item sx={{ ml: '16px', mr: '16px', flex: 1 }}>
+        <CustomLink href={`/product/${productId}`} label="productName" >
+          <Typography variant="body2" sx={{ wordWrap: 'break-word' }}>
+            {name}
+          </Typography>
+        </CustomLink>
+
+      </Grid>
+  </Grid>
   )
 }
