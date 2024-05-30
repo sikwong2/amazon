@@ -99,7 +99,7 @@ export default function TopBar() {
               {t('vendorportal.title')}
             </Typography>
           </Box>
-          <LanguageButton sx={{ ml: 2, color: "white" }} variant="text" />
+          <LanguageButton sx={{ ml: 2, color: 'white' }} variant="text" />
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {loginContext.accessToken.length == 0 && (
               <CustomButton

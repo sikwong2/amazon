@@ -111,7 +111,12 @@ export default function APIKeysTable() {
         </Box>
       ),
     },
-    { field: 'account_id', headerName: t('adminportal.owner-id') as string, flex: 1, sortable: false },
+    {
+      field: 'account_id',
+      headerName: t('adminportal.owner-id') as string,
+      flex: 1,
+      sortable: false,
+    },
     { field: 'active', headerName: t('adminportal.status') as string, flex: 1, sortable: false },
     {
       field: 'action',
@@ -170,7 +175,9 @@ export default function APIKeysTable() {
           columns={columns}
           style={{ backgroundColor: '#f5f5f5' }}
           slots={{
-            noRowsOverlay: () => <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('adminportal.no-keys')}/>,
+            noRowsOverlay: () => (
+              <CustomNoRowsOverlay sx={{ p: '14px' }} label={t('adminportal.no-keys')} />
+            ),
             loadingOverlay: LinearProgress,
           }}
           loading={loading}

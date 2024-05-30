@@ -1,7 +1,6 @@
-
-import { render, screen, waitFor, fireEvent } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { graphql, HttpResponse } from 'msw'
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { graphql, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 
 import { Home } from '@/views/Home';
@@ -9,7 +8,7 @@ import { Home } from '@/views/Home';
 let apiCalled = false;
 
 // https://www.npmjs.com/package/next-router-mock
-jest.mock('next/router', () => jest.requireActual('next-router-mock'))
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
@@ -28,7 +27,7 @@ const handlers = [
     if (apiCalled == false) {
       return HttpResponse.json({
         errors: [{ message: 'Some Error' }],
-      })
+      });
     } else {
       return HttpResponse.json({
         data: {
@@ -40,7 +39,7 @@ const handlers = [
               price: 1999,
               stock: 1,
               rating: 0,
-              category: ['Movies', 'DVDs']
+              category: ['Movies', 'DVDs'],
             },
             {
               id: '20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8',
@@ -49,7 +48,7 @@ const handlers = [
               price: 1999,
               stock: 1,
               rating: 0,
-              category: ['Movies', 'DVDs']
+              category: ['Movies', 'DVDs'],
             },
             {
               id: 'fb31be70-f4f3-4ccc-b483-14e831dc61d1',
@@ -58,7 +57,7 @@ const handlers = [
               price: 1999,
               stock: 1,
               rating: 0,
-              category: ['Movies', 'DVDs']
+              category: ['Movies', 'DVDs'],
             },
             {
               id: 'e64edcc9-3262-49b8-bda4-066c34089e05',
@@ -67,31 +66,27 @@ const handlers = [
               price: 1999,
               stock: 1,
               rating: 0,
-              category: ['Movies', 'DVDs']
-            }
+              category: ['Movies', 'DVDs'],
+            },
           ],
         },
-      })
+      });
     }
   }),
-]
+];
 
-const server = setupServer(...handlers)
+const server = setupServer(...handlers);
 
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 it('Renders', async () => {
-  apiCalled = true
-  render(
-    <Home/>
-  )
-})
+  apiCalled = true;
+  render(<Home />);
+});
 
 it('Renders with error', async () => {
-  apiCalled = false
-  render(
-    <Home/>
-  )
-})
+  apiCalled = false;
+  render(<Home />);
+});

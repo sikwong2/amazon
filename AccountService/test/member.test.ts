@@ -4,10 +4,7 @@ import * as http from 'http';
 import * as db from './db';
 import app from '../src/app';
 
-let server: http.Server<
-  typeof http.IncomingMessage,
-  typeof http.ServerResponse
->;
+let server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
 
 beforeAll(async () => {
   server = http.createServer(app);
@@ -28,25 +25,25 @@ export interface Member {
 export const sally = {
   email: 'sally@amazon.com',
   password: 'sallyshopper',
-  name: "Sally Shopper",
-  role: "shopper"
+  name: 'Sally Shopper',
+  role: 'shopper',
 };
 
 const vivi = {
   email: 'vivi@amazon.com',
   password: 'vivivendor',
-  name: "Vivi Vendor",
-  role: "vendor"
-}
+  name: 'Vivi Vendor',
+  role: 'vendor',
+};
 
 const vivilogin = {
-  email: "vivi@amazon.com",
-  password: "vivivendor"
-}
+  email: 'vivi@amazon.com',
+  password: 'vivivendor',
+};
 
 const sallylogin = {
-  email: "sally@amazon.com",
-  password: "sallyshopper"
+  email: 'sally@amazon.com',
+  password: 'sallyshopper',
 };
 
 async function loginAs(member: Member): Promise<string | undefined> {
@@ -62,22 +59,18 @@ async function loginAs(member: Member): Promise<string | undefined> {
 }
 
 test('Sally can make an account', async () => {
-
   await supertest(server)
     .post('/api/v0/account')
     .send(sally)
     .expect(201)
     .then((res) => {
       expect(res.body).toBeDefined();
-    })
+    });
   loginAs(sallylogin);
 });
 
 test('Sally cannot make another account with the same email', async () => {
-  await supertest(server)
-    .post('/api/v0/account')
-    .send(sally)
-    .expect(409)
+  await supertest(server).post('/api/v0/account').send(sally).expect(409);
 });
 
 test('Vivi can make an account', async () => {
@@ -87,7 +80,7 @@ test('Vivi can make an account', async () => {
     .expect(201)
     .then((res) => {
       expect(res.body).toBeDefined();
-    })
+    });
   loginAs(vivilogin);
 });
 
@@ -97,10 +90,10 @@ test('Invalid Email', async () => {
     .send({
       email: 'sally',
       password: 'sallyshopper',
-      name: "Sally Shopper",
-      role: "shopper"
+      name: 'Sally Shopper',
+      role: 'shopper',
     })
-    .expect(400)
+    .expect(400);
 });
 
 test('Invalid Role', async () => {
@@ -109,10 +102,8 @@ test('Invalid Role', async () => {
     .send({
       email: 'sally@amazon.com',
       password: 'sallyshopper',
-      name: "Sally Shopper",
-      role: "invalid"
+      name: 'Sally Shopper',
+      role: 'invalid',
     })
-    .expect(400)
+    .expect(400);
 });
-
-

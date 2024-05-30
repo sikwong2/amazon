@@ -5,8 +5,8 @@
   "shopper-account": "创建购物者帐户",
   "vendor-app": {
     "return-shopper-app": "返回购物者应用程序",
-    "vendors-only" : "该应用程序仅供供应商使用！",
-    "vendor-account-approval" : "供应商帐户批准状态",
+    "vendors-only": "该应用程序仅供供应商使用！",
+    "vendor-account-approval": "供应商帐户批准状态",
     "status-pending": "状态待定"
   },
   "login": {
@@ -56,7 +56,7 @@
   },
   "vendorportal": {
     "title": "供应商门户",
-    "key" : "钥匙",
+    "key": "钥匙",
     "status": "地位",
     "api-keys": "键",
     "generate": "生成新密钥",

@@ -1,6 +1,6 @@
 # [UCSC Amazon](https://www.ucsc-amazon.com)
 
-This project is a clone of Amazon developed as a school project by CSE187 Group 2. The project is structured as with multiple services and applications, including account microservice, order microservice, product microservice, and separate front-end applications for admin, vendor, and shopper interfaces. The project leverages Docker for containerization. The outer root directory docker-compose.yml contains the database used by all services. 
+This project is a clone of Amazon developed as a school project by CSE187 Group 2. The project is structured as with multiple services and applications, including account microservice, order microservice, product microservice, and separate front-end applications for admin, vendor, and shopper interfaces. The project leverages Docker for containerization. The outer root directory docker-compose.yml contains the database used by all services.
 
 ## Table of Contents
 
@@ -18,9 +18,10 @@ This project is a clone of Amazon developed as a school project by CSE187 Group 
 
 ## Getting Started
 
-To get started with the UCSC Amazon project, you need to have Docker and Node.js/NPM LTS installed on your system. 
+To get started with the UCSC Amazon project, you need to have Docker and Node.js/NPM LTS installed on your system.
 
 1. Clone the repository:
+
    ```sh
    git clone https://gitlab.com/cse1871/amazon.git
    cd ucsc-amazon
@@ -36,6 +37,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Docker
 
 - **Start Docker Root Directory Postgres Database**:
+
   ```sh
   npm run docker-up
   ```
@@ -48,21 +50,25 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Development
 
 - **Run all services and apps for development**:
+
   ```sh
   npm run dev
   ```
 
 - **Run account service and vendor app**:
+
   ```sh
   npm run vendor
   ```
 
 - **Run account service and admin app**:
+
   ```sh
   npm run admin
   ```
 
 - **Run account service and shopper app**:
+
   ```sh
   npm run shopper
   ```
@@ -81,11 +87,13 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Install
 
 - **Install package.json dependencies for all services and apps**:
+
   ```sh
   npm install # or npm i or npm run install
   ```
 
 - **Install package.json dependencies for individual services and apps**:
+
   ```sh
   npm run install-vendor
   npm run install-admin
@@ -97,6 +105,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   ```
 
 - **Install package-lock.json dependencies for all services and apps**:
+
   ```sh
   npm run cis
   ```
@@ -115,6 +124,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Build
 
 - **Build all services and apps**:
+
   ```sh
   npm run build
   ```
@@ -133,6 +143,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Start
 
 - **Start all services and apps**:
+
   ```sh
   npm run start
   ```
@@ -151,6 +162,7 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
 ### Test
 
 - **Test account and product services**:
+
   ```sh
   npm run test
   ```
@@ -179,4 +191,4 @@ To get started with the UCSC Amazon project, you need to have Docker and Node.js
   npm run containerised
   ```
 
-This README provides an overview of the functionality of the `package.json` for the UCSC Amazon project. Reference `package.json` for exact details. 
+This README provides an overview of the functionality of the `package.json` for the UCSC Amazon project. Reference `package.json` for exact details.

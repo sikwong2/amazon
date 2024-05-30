@@ -43,16 +43,17 @@ export function AdminPortal() {
           <CustomCard>
             <Box sx={{ p: '14px' }}>
               <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-                {t('adminportal.pending-vendor')} <PendingActionsIcon style={{ transform: 'translate(0px, 3px)' }}/>
+                {t('adminportal.pending-vendor')}{' '}
+                <PendingActionsIcon style={{ transform: 'translate(0px, 3px)' }} />
               </Typography>
               <CustomDivider />
               <PendingVendorApprovalsTable />
             </Box>
           </CustomCard>
-          <CustomCard  sx={{m: '28px'}}>
+          <CustomCard sx={{ m: '28px' }}>
             <Box sx={{ p: '14px' }}>
               <Typography gutterBottom component="h1" variant="h5" align="left" pl={'14px'}>
-                {t('adminportal.api-keys')} <KeyIcon style={{ transform: 'translate(0px, 3px)' }}/>
+                {t('adminportal.api-keys')} <KeyIcon style={{ transform: 'translate(0px, 3px)' }} />
               </Typography>
               <CustomDivider />
               <APIKeysTable />

@@ -1,5 +1,5 @@
-import { PropsWithChildren, useState, createContext } from "react";
- 
+import { PropsWithChildren, useState, createContext } from 'react';
+
 export const LoginContext = createContext({
   userName: '',
   setUserName: (userName: string) => {},
@@ -8,7 +8,7 @@ export const LoginContext = createContext({
   role: '',
   setRole: (role: string) => {},
   id: '',
-  setId: (id: string) => {}
+  setId: (id: string) => {},
 });
 
 export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
@@ -17,7 +17,9 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
   const [role, setRole] = useState('');
   const [id, setId] = useState('');
   return (
-    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
+    <LoginContext.Provider
+      value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}
+    >
       {children}
     </LoginContext.Provider>
   );
