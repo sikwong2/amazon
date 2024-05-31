@@ -49,6 +49,7 @@ const sallylogin = {
   password: "sallyshopper"
 };
 
+let memberId: string;
 async function loginAs(member: Member): Promise<string | undefined> {
   let accessToken;
   await supertest(server)
@@ -68,6 +69,7 @@ test('Sally can make an account', async () => {
     .send(sally)
     .expect(201)
     .then((res) => {
+      memberId = res.body.id;
       expect(res.body).toBeDefined();
     })
   loginAs(sallylogin);
@@ -115,4 +117,18 @@ test('Invalid Role', async () => {
     .expect(400)
 });
 
-
+test('GET memberId', async () => {
+  await supertest(server)
+    .get(`/api/v0/account/${memberId}`)
+    .then((res) => {
+      console.log(res.body);
+      expect(res.body.name).toBe('Sally Shopper');
+    })
+})
+test('GET invalid memberId', async () => {
+  await supertest(server)
+    .get(`/api/v0/account/b72e8531-cda8-4d69-91d7-4b933c0ee839`)
+    .then((res) => {
+      expect(res.body.name).toBe(undefined);
+    })
+})
