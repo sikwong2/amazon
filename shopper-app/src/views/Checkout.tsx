@@ -32,17 +32,7 @@ interface UserDetails {
   address: string;
 }
 
-<<<<<<< HEAD
-const fetchUserDetails = async (shopperId: string): Promise<UserDetails|undefined> => {
-=======
-interface StripeProduct {
-  name: string;
-  price: number;
-  quantity: number;
-}
-
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {
->>>>>>> main
   try {
     const query = {
       query: `query member{getMemberInfo(memberId: "${shopperId}") { name, address }}`,
@@ -54,21 +44,15 @@ const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefi
         'Content-Type': 'application/json',
       },
     });
-<<<<<<< HEAD
-=======
     console.log('this is res');
     console.log(res);
->>>>>>> main
     const json = await res.json();
     if (json.errors) {
       console.log(json.errors[0].message);
       return undefined;
     }
     const { name, address } = json.data.getMemberInfo;
-<<<<<<< HEAD
-=======
     console.log(name);
->>>>>>> main
     return { name, address };
   } catch (error) {
     console.error('Error fetching member info:', error);
@@ -142,47 +126,6 @@ export function Checkout() {
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
 
-<<<<<<< HEAD
-=======
-  const placeOrder = async (stripeProducts: StripeProduct[]) => {
-    try {
-      const res = await fetch(`http://localhost:3013/create-checkout-session`, {
-        method: 'POST',
-        body: JSON.stringify(stripeProducts),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const json = await res.json();
-      if (json.errors) {
-        console.log(json.errors[0].message);
-        throw new Error(json.errors[0].message);
-      }
-      window.location.href = json.url;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      let total = 0;
-      const temp: StripeProduct[] = [];
-      for (const productId of cart) {
-        const product = await fetchProduct(productId);
-        total += product.price;
-        temp.push({
-          name: product.name,
-          price: product.price * 100,
-          quantity: 1,
-        });
-      }
-      setStripeProducts(temp);
-      setSubtotal(Number(Number(total.toFixed(2))));
-    })();
-  }, [subtotal, cart]);
-
->>>>>>> main
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -202,12 +145,8 @@ export function Checkout() {
   useEffect(() => {
     (async () => {
       let total = 0;
-<<<<<<< HEAD
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
-=======
-      const temp: any = [];
->>>>>>> main
       for (const productId of cart) {
         const product = await fetchProduct(productId);
         total += product.price;
@@ -219,7 +158,6 @@ export function Checkout() {
             image={product.image ? product.image[0] : undefined}
             price={product.price}
             rating={product?.rating}
-<<<<<<< HEAD
           />
         )
 
@@ -228,10 +166,6 @@ export function Checkout() {
           price: product.price * 100,
           quantity: 1
         });
-=======
-          />,
-        );
->>>>>>> main
       }
       setCartItems(temp);
       setStripeProducts(tempStripe);
