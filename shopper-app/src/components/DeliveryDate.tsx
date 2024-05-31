@@ -14,3 +14,23 @@ export default function RandomDeliveryDate({offset}: any){
     </>
   )
 }
+
+export function FormatOrderDate({date}: any){
+  const orderDate = new Date(date);
+  return (
+    <>
+      {days[orderDate.getDay()]}, {months[orderDate.getMonth()]} {orderDate.getDate()}
+    </>
+  )
+}
+
+export function FormatDeliveryDate({date, offset}: any){
+  const orderDate = new Date(date);
+  const nextWeek = new Date();
+  nextWeek.setDate(orderDate.getDate() + offset);
+  return (
+    <>
+      {days[nextWeek.getDay()]}, {months[nextWeek.getMonth()]} {nextWeek.getDate()}
+    </>
+  )
+}

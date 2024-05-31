@@ -11,14 +11,19 @@ import { Product } from "@/graphql/product/schema";
 import { styled } from '@mui/material/styles';
 import CustomLink from "./Link";
 import RandomDeliveryDate from "./DeliveryDate";
+import { FormatOrderDate, FormatDeliveryDate } from "./DeliveryDate";
 import { LoginContext } from "@/context/Login";
 import { useRouter } from "next/router";
+import { CustomTooltip } from "./Tooltip";
+import { Fragment } from "react";
+import { TypographyHover } from "./TypographyHover";
 
 
 interface OrderCardProps extends CardProps {
   orderStatus: string,
   productIds: string[],
   orderNumber: string,
+  orderDate: string,
 }
 
 const SecondaryText = styled(Typography)({
@@ -32,6 +37,7 @@ const TertiaryText = styled(Typography)({
   fontSize: '14px',
   lineHeight: '20px'
 });
+
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
@@ -51,14 +57,38 @@ const fetchProduct = async (productId: any): Promise<Product> => {
     return json.data.getByProductId;
   } catch (e) {
     console.log(e);
-    throw new Error('');
+    throw new Error('fetchProduct Error');
   }
 }
 
-export default function OrderCard({children, orderStatus = 'delivered', productIds, orderNumber, ...rest}: OrderCardProps) {
+const fetchAddress = async (memberId: any): Promise<any> => {
+  try {
+    const query = { query: `query getAddress{getMemberInfo(memberId: "${memberId}") {address}}` };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    console.log(json.data);
+    return json.data.getMemberInfo;
+  } catch (e) {
+    console.log(e);
+    throw new Error('fetchAddress Error');
+  }
+}
+
+export default function OrderCard({children, orderStatus = 'delivered', productIds, orderNumber, orderDate, ...rest}: OrderCardProps) {
   const [products, setProducts] = useState<any[]>([]);
   const [totalPrice, setTotalPrice] = useState<string>('0');
-  const {userName} = useContext(LoginContext);
+  const {userName, id} = useContext(LoginContext);
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,8 +109,11 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
       }
       setProducts(temp);
       setTotalPrice(total.toString());
+      const addy = await fetchAddress(id);
+      const a = addy.address;
+      setAddress(a);
     };
-  
+
     fetchData();
   }, []);
 
@@ -92,7 +125,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
             ORDER PLACED
           </SecondaryText>
           <TertiaryText align='left' variant='subtitle2' width="100%">
-            <RandomDeliveryDate offset={7}/>
+            <FormatOrderDate date={orderDate}/>
           </TertiaryText>
         </Grid>
         <Grid item sx={{mr: '2%', width: '14.948%', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -103,33 +136,45 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
             {`$${totalPrice}`}
           </TertiaryText>
         </Grid>
-        <Grid item sx={{ width: '27.448%', float: 'left', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Grid item sx={{ width: '17.448%', float: 'left', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <SecondaryText align='left' variant="subtitle2" width="100%">
             SHIP TO
           </SecondaryText>
-          <TertiaryText align='left' variant='subtitle2' width="100%">
+          <CustomTooltip title={
+            <Fragment>
+              <Typography variant="subtitle2" fontWeight="bold" align="left">
+                {userName}
+              </Typography>
+              <Typography variant="subtitle2" align="left">
+                {address}
+              </Typography>
+            </Fragment>
+            }
+          >
+          <TypographyHover align='left' variant='subtitle2' width="100%">
             {userName}
-          </TertiaryText>
+          </TypographyHover>
+          </CustomTooltip>
         </Grid>
-        <Grid item sx={{ width: '30%', minHeight: '1px', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'right'}}>
+        <Grid item sx={{ width: '40%', minHeight: '1px', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'right'}}>
           <SecondaryText align='right' variant="subtitle2" width="100%">
             ORDER # {orderNumber}
           </SecondaryText>
         </Grid>
       </Grid>
-      {orderStatus == 'pending' &&
-      <SecondaryText>
-        Pending
-      </SecondaryText>
+      { (orderStatus == 'pending' || orderStatus == 'shipped' || orderStatus == 'confirmed') &&
+      <Typography color="#368477" width="100%" variant="h6" sx={{padding: '14px 18px', mb: '-18px'}}>
+        Arriving <FormatDeliveryDate date={orderDate} offset={14}/>
+      </Typography>
+      }
+      {orderStatus == 'delivered' &&
+      <Typography color="#368477" width="100%" variant="h6" sx={{padding: '14px 18px', mb: '-18px'}}>
+        Delivered on <FormatDeliveryDate date={orderDate} offset={7}/>
+      </Typography>
       }
       <List>
         {products}
       </List>
-      <Box sx={{outline: '1px #d5d9d9 solid', padding: '14px 18px'}}>
-        <Typography>
-          Archive Order
-        </Typography>
-      </Box>
     </CustomCard>
   )
 }

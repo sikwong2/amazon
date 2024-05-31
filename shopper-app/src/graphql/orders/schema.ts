@@ -14,4 +14,6 @@ export class OrdersInfo {
     orderStatus!: string
   @Field()
     orderId!: string
+  @Field()
+    orderDate!: string
 }

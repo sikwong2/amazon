@@ -4,6 +4,7 @@ export type OrdersInfo = {
   shopperId: string
   vendorId: string
   orderStatus: string
+  orderDate: Date
 }
 
 export type OrderResponse = {
