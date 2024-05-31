@@ -46,7 +46,7 @@ test('Update Order Status', async () => {
     .put(`/api/v0/order/${orderId}`)
     .send({ status: 'shipped' })
     .then((res) => {
-      expect(res.body.shopperId).toBe(order.shopperId);
+      expect(res.body.products[0]).toBe(order.products[0]);
     })
 })
 

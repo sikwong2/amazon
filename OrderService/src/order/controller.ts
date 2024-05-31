@@ -11,20 +11,17 @@ export class OrderController extends Controller {
   public async createOrder(@Body() OrderInfo: OrderInfo): Promise<OrderResponse | undefined> {
     return new OrderService()
       .create(OrderInfo)
-      .then(async (OrderReponse: OrderResponse | undefined): Promise<OrderResponse | undefined> => {
-        if (!OrderReponse) {
-          this.setStatus(401);
-        }
+      .then(async (OrderReponse: OrderResponse): Promise<OrderResponse> => {
         return OrderReponse;
       });
   }
 
   @Get('{orderId}')
   @Response('200', 'Successful')
-  public async getOrderById(@Path() orderId: string): Promise<OrderInfo | undefined> {
+  public async getOrderById(@Path() orderId: string): Promise<OrderInfo> {
     return new OrderService()
       .selectByOrderId(orderId)
-      .then(async (OrderInfo: OrderInfo | undefined): Promise<OrderInfo | undefined> => {
+      .then(async (OrderInfo: OrderInfo): Promise<OrderInfo> => {
         return OrderInfo;
       });
   }
@@ -35,13 +32,10 @@ export class OrderController extends Controller {
   public async updateOrderStatus(
     @Path() orderId: string,
     @Body() orderUpdate: OrderUpdate,
-  ): Promise<OrderInfo | undefined> {
+  ): Promise<OrderInfo> {
     return new OrderService()
       .updateOrderStatus(orderUpdate, orderId)
-      .then(async (OrderInfo: OrderInfo | undefined): Promise<OrderInfo | undefined> => {
-        if (!OrderInfo) {
-          this.setStatus(400);
-        }
+      .then(async (OrderInfo: OrderInfo): Promise<OrderInfo> => {
         return OrderInfo;
       });
   }
