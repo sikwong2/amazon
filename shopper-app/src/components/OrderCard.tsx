@@ -77,7 +77,6 @@ const fetchAddress = async (memberId: any): Promise<any> => {
       console.log(json.errors[0].message);
       throw new Error(json.errors[0].message);
     }
-    console.log(json.data);
     return json.data.getMemberInfo;
   } catch (e) {
     console.log(e);

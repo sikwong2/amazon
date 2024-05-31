@@ -34,7 +34,6 @@ const fetchOrders = async (shopperId: string): Promise<OrdersInfo[]> => {
     json.data.getOrders.forEach((order: any) => {
       orders.push(order);
     })
-    console.log(orders);
     return orders;
   } catch (e) {
     console.log(e);
