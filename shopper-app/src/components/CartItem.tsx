@@ -1,11 +1,7 @@
-import { ListItem, ListItemAvatar, ListItemText, Avatar, Box, Typography, useTheme, useMediaQuery, FormControlLabel, Checkbox, Divider } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery, FormControlLabel, Checkbox, Divider } from "@mui/material";
 import { Grid } from "@mui/material";
-import CustomButton from "./Button";
 import { useContext } from "react";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CartContext } from "@/context/Cart";
-import StarIcon from '@mui/icons-material/Star';
-import CustomCard from "./Card";
 import CustomDivider from "./Divider";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -35,9 +31,7 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
   const { t } = useTranslation('common');
 
   const handleDelete = (productId: string) => {
-    console.log("cart: ", cart);
     removeFromCart(productId);
-    console.log("afte: ", cart);
   }
 
   const handleProductClick = () => {
@@ -69,16 +63,16 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
     <>
       <Box {...rest} sx={{ display: 'flex', alignItems: 'center', width: '100%', pt:2.5, pb:1.5, pl:1.5 }}>
         <Grid container>
-          <Grid item xs={4} sm={ 'auto' } style={{ width: isMobile ? '145px' : '200px' }}>
+          <Grid item xs={12} sm={ 'auto' } style={{ width: '200px' }}>
             <img
               src={product.image[0]}
               alt={product.image[0]}
               onClick={handleProductClick}
               loading='lazy'
-              style={{ cursor: 'pointer', width:'100%', height:'fit-content', maxHeight:'200px' }}
+              style={{ cursor: 'pointer', width:'100%', height:'auto', maxWidth: !isMobile? '300px' : 'none', maxHeight: !isMobile ? 'none' : '200px' }}
             />
           </Grid>
-          <Grid item xs={8} sm={ true } sx={{ mx:1.5, minWidth: isMobile ? 'auto' : '200px' }}>
+          <Grid item xs={12} sm={ true } sx={{ mx:1.5 }}>
             <Box sx={{ display:'flex', width:'100%', alignItems:'flex-start' }}>
               <Box aria-label='product-info' sx={{ flex:1 }}>
                 <Typography 
@@ -144,7 +138,7 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
                   </Typography>
                 </Box>
               </Box>
-              <Box aria-label='product-price' sx={{ width:'100px', textAlign:'right' }}>
+              <Box aria-label='product-price' sx={{ width: isMobile? '30px' : '100px', textAlign:'right' }}>
                 <Typography fontWeight='bold' fontSize='1.1em'>
                   ${product.price.toFixed(2)}
                 </Typography>
