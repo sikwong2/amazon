@@ -1,10 +1,10 @@
 export type SessionUser = {
-  id: string
-}
+  id: string;
+};
 
 declare module 'next' {
   export interface NextApiRequest {
-    req: any
-    user: SessionUser
+    req: any;
+    user: SessionUser;
   }
 }

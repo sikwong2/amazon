@@ -3,9 +3,9 @@
 
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom/jest-globals'
+import '@testing-library/jest-dom/jest-globals';
 
-import { TextEncoder } from 'node:util'
-import "cross-fetch/polyfill";
+import { TextEncoder } from 'node:util';
+import 'cross-fetch/polyfill';
 
-global.TextEncoder = TextEncoder
+global.TextEncoder = TextEncoder;

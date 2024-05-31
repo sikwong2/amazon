@@ -1,15 +1,14 @@
-
 export type OrderInfo = {
-  products: string[]
-  shopperId: string
-  vendorId: string
-  orderStatus: string
-}
+  products: string[];
+  shopperId: string;
+  vendorId: string;
+  orderStatus: string;
+};
 
 export type OrderResponse = {
-  orderId: string
-}
+  orderId: string;
+};
 
 export type OrderUpdate = {
-  status: string
-}
+  status: string;
+};

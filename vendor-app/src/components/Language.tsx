@@ -31,7 +31,6 @@ const LanguageButton = ({ ...rest }) => {
   };
 
   const open = Boolean(anchorEl);
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   const options: Option[] = [
     { value: 'en', label: 'English - EN' },
@@ -42,14 +41,11 @@ const LanguageButton = ({ ...rest }) => {
     <ThemeProvider theme={buttonTheme}>
       <div>
         <CustomButton
-          ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
           label={'change-language'}
           onClick={handlePopoverOpen}
-          style={{ textTransform: 'uppercase', 
-          backgroundColor: 'rgba(35,47,62)', 
-          color: 'rgba(242,242,242)', }}
+          style={{ textTransform: 'uppercase' }}
           {...rest}
         >
           {selectedLanguage}
@@ -69,8 +65,8 @@ const LanguageButton = ({ ...rest }) => {
             horizontal: 'left',
           }}
         >
-          <RadioGroup 
-            value={selectedLanguage} 
+          <RadioGroup
+            value={selectedLanguage}
             onChange={(e) => handleLanguageChange(e.target.value)}
             aria-label="language-options"
           >
