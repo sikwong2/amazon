@@ -13,6 +13,7 @@ import {Box} from "@mui/material";
 import { CustomTab, CustomTabPanel, CustomTabs } from "@/components/TabList";
 
 import type { OrdersInfo } from "@/graphql/orders/schema";
+import { useRouter } from "next/router";
 
 const fetchOrders = async (shopperId: string): Promise<OrdersInfo[]> => {
   try {
@@ -48,12 +49,17 @@ export function OrderHistory() {
   const [status, setStatus] = useState('pending');
   const { t } = useTranslation('common');
   const [value, setValue] = useState(0);
+  const {userName} = useContext(LoginContext);
+  const router = useRouter();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   useEffect(() => {
+    if (!userName) {
+      router.push('/login')
+    }
     (async () => {
       const shippedOrders: OrdersInfo[] = await fetchOrders(id);
       setOrders(shippedOrders);
