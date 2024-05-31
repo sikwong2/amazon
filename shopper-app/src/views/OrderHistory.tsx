@@ -70,10 +70,10 @@ export function OrderHistory() {
         </Typography>
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: '16px' }}>
           <CustomTabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <CustomTab label="Your Orders" id={`tab-0`} />
-            <CustomTab label="Buy Again" id={`tab-1`} />
-            <CustomTab label="Not Yet Shipped" id={`tab-2`} />
-            <CustomTab label="Cancelled Orders" id={`tab-3`} />
+            <CustomTab label={t("history.your-orders")} id={`tab-0`} />
+            <CustomTab label={t("history.buy-again")} id={`tab-1`} />
+            <CustomTab label={t("history.not-yet-shipped")} id={`tab-2`} />
+            <CustomTab label={t("history.cancelled-orders")} id={`tab-3`} />
           </CustomTabs>
         </Box>
         <CustomTabPanel value={value} index={0}>

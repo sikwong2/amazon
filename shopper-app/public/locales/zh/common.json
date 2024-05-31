@@ -64,7 +64,10 @@
     "your-orders": "你的命令",
     "shipped": "已发货",
     "pending": "待办的",
-    "delivered": "发表"
+    "delivered": "发表",
+    "buy-again": "再次购",
+    "not-yet-shipped": "还没寄出",
+    "cancelled-orders": "取消订单"
   },
   "product": {
     "stock": {
@@ -85,5 +88,13 @@
   "footer": {
     "disclaimer": "Ucsc-amazon 是一个亚马逊克隆学生项目。所有展示的产品都是假货。",
     "back-to-top": "回到顶部"
+  },
+  "order": {
+    "order-placed": "订单已下",
+    "total": "总金额",
+    "ship-to": "运送到",
+    "order-number": "订单号",
+    "arriving": "到达",
+    "delivered": "送货到达"
   }
 }

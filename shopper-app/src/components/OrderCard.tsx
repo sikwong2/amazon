@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { CustomTooltip } from "./Tooltip";
 import { Fragment } from "react";
 import { TypographyHover } from "./TypographyHover";
+import { useTranslation } from "next-i18next";
 
 
 interface OrderCardProps extends CardProps {
@@ -89,6 +90,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
   const [totalPrice, setTotalPrice] = useState<string>('0');
   const {userName, id} = useContext(LoginContext);
   const [address, setAddress] = useState('');
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +124,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
       <Grid container bgcolor="#F0F2F2" sx={{padding: '14px 18px', fullWidth: 1, outline: '1px #d5d9d9 solid'}}>
         <Grid item sx={{mr: '2%', width: '23.448%', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column'}}>
           <SecondaryText align='left' variant="subtitle2" width="100%">
-            ORDER PLACED
+            {t("order.order-placed")}
           </SecondaryText>
           <TertiaryText align='left' variant='subtitle2' width="100%">
             <FormatOrderDate date={orderDate}/>
@@ -130,7 +132,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
         </Grid>
         <Grid item sx={{mr: '2%', width: '14.948%', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <SecondaryText align='left' variant="subtitle2" width="100%">
-            TOTAL
+          {t("order.total")}
           </SecondaryText>
           <TertiaryText align='left' variant='subtitle2' width="100%">
             {`$${totalPrice}`}
@@ -138,7 +140,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
         </Grid>
         <Grid item sx={{ width: '17.448%', float: 'left', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <SecondaryText align='left' variant="subtitle2" width="100%">
-            SHIP TO
+          {t("order.ship-to")}
           </SecondaryText>
           <CustomTooltip title={
             <Fragment>
@@ -158,18 +160,18 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
         </Grid>
         <Grid item sx={{ width: '40%', minHeight: '1px', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'right'}}>
           <SecondaryText align='right' variant="subtitle2" width="100%">
-            ORDER # {orderNumber}
+          {t("order.order-number")} {orderNumber}
           </SecondaryText>
         </Grid>
       </Grid>
       { (orderStatus == 'pending' || orderStatus == 'shipped' || orderStatus == 'confirmed') &&
       <Typography color="#368477" width="100%" variant="h6" sx={{padding: '14px 18px', mb: '-18px'}}>
-        Arriving <FormatDeliveryDate date={orderDate} offset={14}/>
+        {t("order.arriving")} <FormatDeliveryDate date={orderDate} offset={14}/>
       </Typography>
       }
       {orderStatus == 'delivered' &&
       <Typography color="#368477" width="100%" variant="h6" sx={{padding: '14px 18px', mb: '-18px'}}>
-        Delivered on <FormatDeliveryDate date={orderDate} offset={7}/>
+        {t("order.delivered")} <FormatDeliveryDate date={orderDate} offset={7}/>
       </Typography>
       }
       <List>
