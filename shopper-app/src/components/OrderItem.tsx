@@ -14,6 +14,8 @@ export function OrderItem({productId, name, image, ...rest  }: OrderItemProps){
     router.push(`/product/${id}`)
   }
 
+  // https://stackoverflow.com/questions/68567118/react-material-ui-typography-max-number-of-lines
+
   return (
     <Grid container key={productId} sx={{ padding: "14px 18px 6px 18px", position: "relative", alignItems: 'flex-start' }} {...rest}>
       <Grid item>
@@ -27,7 +29,16 @@ export function OrderItem({productId, name, image, ...rest  }: OrderItemProps){
       </Grid>
       <Grid item sx={{ ml: '16px', mr: '16px', flex: 1 }}>
         <CustomLink href={`/product/${productId}`} label="productName" >
-          <Typography variant="body2" sx={{ wordWrap: 'break-word' }}>
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              wordWrap: 'break-word',
+              display: '-webkit-box',
+              overflow: 'hidden',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 3,
+            }}
+          >
             {name}
           </Typography>
         </CustomLink>
