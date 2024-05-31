@@ -58,6 +58,7 @@ export function Cart() {
       await Promise.all(
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
+          console.log('product: ', productId)
           total += (product.price * quantity);
           temp.push(
             <CartItem
@@ -83,7 +84,7 @@ export function Cart() {
         {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): `}
       </Typography>
       <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
-        {`$${subtotal}`}
+        {`$${subtotal.toFixed(2)}`}
       </Typography>
     </Box>
   )

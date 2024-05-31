@@ -1,4 +1,4 @@
-import { ListItem, ListItemAvatar, ListItemText, Avatar, Box, Typography, useTheme, useMediaQuery, FormControlLabel, Checkbox } from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemText, Avatar, Box, Typography, useTheme, useMediaQuery, FormControlLabel, Checkbox, Divider } from "@mui/material";
 import { Grid } from "@mui/material";
 import CustomButton from "./Button";
 import { useContext } from "react";
@@ -35,7 +35,9 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
   const { t } = useTranslation('common');
 
   const handleDelete = (productId: string) => {
+    console.log("cart: ", cart);
     removeFromCart(productId);
+    console.log("afte: ", cart);
   }
 
   const handleProductClick = () => {
@@ -63,45 +65,9 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
     }
   }
 
-  const old = (
-    <ListItem key={productId} sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-      <ListItemAvatar>
-        <Avatar variant='square' src={product.image[0]} sx={{ width: '150px', height: '150px' }} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={product.name}
-        secondary={
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ marginRight: '16px' }}>
-              ${product.price}
-            </Typography>
-            <Typography>
-              {product.rating}
-            </Typography><StarIcon />
-            <Typography>
-              Qty: {quantity}
-            </Typography>
-          </Box>
-        }
-        sx={{ maxWidth: 'calc(100% - 200px)', wordWrap: 'break-word', margin: '16px' }}
-      />
-      <Grid>
-        <CustomButton
-          label={productId}
-          color="primary"
-          onClick={() => {
-            handleDelete(productId);
-          }}
-        >
-          <DeleteOutlineIcon />
-        </CustomButton>
-      </Grid>
-    </ListItem>
-  )
-
-  const newer = (
+  return (
     <>
-      <Box {...rest} sx={{ display: 'flex', alignItems: 'center', width: '100%', py:1.5, pl:1.5 }}>
+      <Box {...rest} sx={{ display: 'flex', alignItems: 'center', width: '100%', pt:2.5, pb:1.5, pl:1.5 }}>
         <Grid container>
           <Grid item xs={4} sm={ 'auto' } style={{ width: isMobile ? '145px' : '200px' }}>
             <img
@@ -153,16 +119,34 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
                     }
                   }}
                 />
-                <CustomDropdown 
-                  label='Qty'
-                  selectedValue={cart[productId].toString()}
-                  setSelectedValue={handleSetProductQuantity}
-                  values={Array.from({ length: Math.min(product.stock, 100)}, (_, i) => (i+1).toString())}
-                />
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <CustomDropdown 
+                    label='Qty'
+                    selectedValue={quantity.toString()}
+                    setSelectedValue={handleSetProductQuantity}
+                    values={Array.from({ length: Math.min(product.stock, 100)}, (_, i) => (i+1).toString())}
+                    width='90px'
+                    sx={{ 
+                      pr:0,
+                      overflow: 'visible',
+                      mr:2.5,
+                      '& .MuiSelect-select.MuiInputBase-input': {
+                        pr:0
+                      },
+                      '& .MuiFormControl-root': {
+                        pr:0
+                      }
+                    }}
+                  />
+                  <Divider orientation="vertical" flexItem sx={{ height:'20px', alignSelf: 'center', color:'#DDD'}} />
+                  <Typography onClick={() => {handleDelete(productId)}} component="span" sx={{ mx: 1, cursor: 'pointer', color:'#007185' }}>
+                    Delete
+                  </Typography>
+                </Box>
               </Box>
               <Box aria-label='product-price' sx={{ width:'100px', textAlign:'right' }}>
                 <Typography fontWeight='bold' fontSize='1.1em'>
-                  ${product.price}
+                  ${product.price.toFixed(2)}
                 </Typography>
               </Box>
             </Box>
@@ -170,12 +154,6 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
         </Grid>
       </Box>
       <CustomDivider/>
-    </>
-  )
-
-  return (
-    <>
-    {newer}
     </>
   )
 }
