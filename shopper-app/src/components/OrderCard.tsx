@@ -1,6 +1,6 @@
 import CustomCard from "./Card";
 import CustomButton from "./Button";
-import { List } from "@mui/material";
+import { List, useMediaQuery } from "@mui/material";
 import { CardProps } from "@mui/material";
 import {Typography} from "@mui/material";
 import {Box} from "@mui/material";

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TabsProps } from '@mui/material/Tabs';
 import { TabProps } from '@mui/material/Tab';
-import { styled } from '@mui/material';
+import { styled, useMediaQuery, useTheme } from '@mui/material';
 
 // from https://mui.com/material-ui/react-tabs/#introduction
 // How to use:
@@ -37,12 +37,24 @@ export function CustomTabPanel({ children, value, index, ...rest }: TabPanelProp
   );
 }
 
-export const CustomTabs = styled(Tabs)(({ theme }) => ({
+export const CustomTabsStyled = styled(Tabs)(({ theme }) => ({
   fontWeight: 'bold',
   '& .MuiTabs-indicator': {
     backgroundColor: '#D77B21',
   },
+  width: '100%',
 }));
+
+export const CustomTabs = (props: TabsProps) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  return (
+    <CustomTabsStyled
+      {...props}
+      variant={isSmallScreen ? 'fullWidth' : 'standard'}
+    />
+  );
+}
 
 export const CustomTab = styled((props: TabProps) => <Tab disableRipple disableFocusRipple {...props} />)(({ theme }) => ({
   color: '#017185',
