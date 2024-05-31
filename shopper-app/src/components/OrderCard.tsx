@@ -33,11 +33,15 @@ const SecondaryText = styled(Typography)({
   lineHeight: '16px'
 });
 
-const TertiaryText = styled(Typography)({
+const TertiaryText = styled(Typography)(({ theme }) => ({
   color: '#565959',
   fontSize: '14px',
-  lineHeight: '20px'
-});
+  lineHeight: '20px',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '12px',
+    lineHeight: '20px',
+  },
+}));
 
 
 const fetchProduct = async (productId: any): Promise<Product> => {
