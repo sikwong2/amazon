@@ -56,9 +56,19 @@
   "cart": {
     "proceed-to-checkout": "Proceed to Checkout",
     "shopping-cart": "Shopping Cart",
-    "items": "items",
+    "item-s": "items",
     "item": "item",
-    "subtotal": "Subtotal"
+    "subtotal": "Subtotal",
+    "qualify-for-free-shipping": "Part of your order qualifies for FREE Shipping.",
+    "available-at-checkout": "available at checkout",
+    "choose-option": "Choose this option at checkout.",
+    "see-details": "See details",
+    "contains-gift": "This order contains a gift",
+    "price": "Price",
+    "items": {
+      "climate": "Climate Pledge Friendly",
+      "delete": "Delete"
+    }
   },
   "history": {
     "your-orders": "Your Orders",

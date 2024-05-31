@@ -1,15 +1,15 @@
 import { CartContext } from '@/context/Cart'
-import { Box, Checkbox, Container, FormControlLabel, Grid, List, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Grid, List, Typography, useMediaQuery, useTheme } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useContext, useState, useEffect } from 'react'
 import { useTranslation } from 'next-i18next';
 import CustomCard from '@/components/Card'
 import CustomButton from '@/components/Button';
 import { CartItem } from '@/components/CartItem';
-import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
 import CustomLink from '@/components/Link';
 import CustomDivider from '@/components/Divider';
+import TopBar from '@/components/TopBar';
 
 interface Product {
   name: string,
@@ -46,7 +46,6 @@ export function Cart() {
   const { cart } = useContext(CartContext);
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
-  // const [productQuantities, setProductQuantities] = useState({});
   const { t } = useTranslation('common');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -58,7 +57,6 @@ export function Cart() {
       await Promise.all(
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
-          console.log('product: ', productId)
           total += (product.price * quantity);
           temp.push(
             <CartItem
@@ -81,7 +79,7 @@ export function Cart() {
         {t("cart.subtotal")}
       </Typography>
       <Typography display='inline' fontSize='1.1em'>
-        {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.items")}): `}
+        {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.item-s")}): `}
       </Typography>
       <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
         {`$${subtotal.toFixed(2)}`}
@@ -95,14 +93,14 @@ export function Cart() {
         <CheckCircleIcon color='success' fontSize='small'/>
         <Box>
           <Typography display='inline' fontSize='0.75em' color='#008500' sx={{lineHeight:'1em'}}>
-            Part of your order qualifies for FREE Shipping. 
+            {t('cart.qualify-for-free-shipping')}
           </Typography>
           <Typography display='inline' fontSize='0.75em' color='#565959' sx={{lineHeight:'1em'}}>
-             {' Choose this option at checkout.'}
+             {` ${t('cart.choose-option')}`}
           </Typography>
           <Box sx={{fontSize:'0.75em', lineHeight:'2em'}}>
             <CustomLink href={'/'} label='see-details'>
-              See details
+              {t('cart.see-details')}
             </CustomLink>
           </Box>
         </Box>
@@ -110,7 +108,7 @@ export function Cart() {
       {subtotalText}
       <FormControlLabel 
         control={<Checkbox color='default'/>} 
-        label="This order contains a gift" 
+        label={t("cart.contains-gift") as string}
         sx={{ 
           mt:-1,
           '& .MuiFormControlLabel-label': {
@@ -140,7 +138,7 @@ export function Cart() {
         {t("cart.shopping-cart")}
       </Typography>
       <Typography align='right'>
-        Price
+        {t("cart.price")}
       </Typography>
       <CustomDivider/>
       <List>
@@ -160,13 +158,11 @@ export function Cart() {
           <Grid item xs={12} sm={ true }  order={{ xs: 2, sm: 1}} sx={{ padding:'0px' }}>
             {shoppingCart}
           </Grid>
-          <Grid item xs={12} sm={ 'auto'} order={{ xs: 1, sm: 2 }} style={{width: isMobile ? '100%' : '316px'}}>
+          <Grid item xs={12} sm={ 'auto' } order={{ xs: 1, sm: 2 }} style={{ width: isMobile ? '100%' : '316px' }}>
             {total}
           </Grid>
         </Grid>
       </Box>
-
-      
     </div>
   )
 }

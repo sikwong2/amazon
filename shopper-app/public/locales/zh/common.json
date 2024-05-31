@@ -56,9 +56,19 @@
   "cart": {
     "proceed-to-checkout": "进行结算",
     "shopping-cart": "购物车",
-    "items": "项目",
+    "item-s": "项目",
     "item": "物品",
-    "subtotal": "小计"
+    "subtotal": "小计",
+    "qualify-for-free-shipping": "您的部分订单符合免费送货条件。",
+    "available-at-checkout": "结帐时可用",
+    "choose-option": "结帐时选择此选项。",
+    "see-details": "查看具体信息",
+    "contains-gift": "这个定单包括了一份礼物",
+    "price": "价格",
+    "items": {
+      "climate": "气候承诺友好",
+      "delete": "删除"
+    }
   },
   "history": {
     "your-orders": "你的命令",

@@ -24,7 +24,7 @@ interface Product {
 }
 
 export function CartItem({ productId, product, quantity, ...rest }: CartItemProps) {
-  const { cart, removeFromCart, updateProductQuantity } = useContext(CartContext);
+  const { removeFromCart, updateProductQuantity } = useContext(CartContext);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const router = useRouter();
@@ -42,7 +42,7 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
     updateProductQuantity(productId, parseInt(value));
   }
 
-    // Returns red text if low stock, green text if in stock
+  // Returns red text if low stock, green text if in stock
   function getStock() {
     if (product.stock < 10) {
       return (
@@ -90,22 +90,22 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
                 {getStock()}
                 <Box aria-label='delivery-date'>
                   <Typography display='inline' >
-                    {'FREE delivery '} 
+                    {`${t("product.free-delivery")} `} 
                   </Typography>
                   <Typography display='inline' sx={{ fontWeight:'bold' }}>
                     <RandomDeliveryDate offset={7}/>
                   </Typography>
                   <Typography display='inline' >
-                    {' available at checkout'} 
+                    {` t('cart.available-at-checkout')`} 
                   </Typography>
                 </Box>
                 <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>{t("product.free-returns")}</CustomLink>
                 <Typography sx={{ color:'#168342' }}>
-                  Climage Pledge Friendly
+                {t("cart.items.climate")}
                 </Typography>
                 <FormControlLabel 
                   control={<Checkbox color='default'/>} 
-                  label="This order contains a gift" 
+                  label={t("cart.contains-gift")} 
                   sx={{ 
                     mt:-1,
                     '& .MuiFormControlLabel-label': {
@@ -134,7 +134,7 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
                   />
                   <Divider orientation="vertical" flexItem sx={{ height:'20px', alignSelf: 'center', color:'#DDD'}} />
                   <Typography onClick={() => {handleDelete(productId)}} component="span" sx={{ mx: 1, cursor: 'pointer', color:'#007185' }}>
-                    Delete
+                  {t("cart.items.delete")}
                   </Typography>
                 </Box>
               </Box>
