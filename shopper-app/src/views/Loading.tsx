@@ -1,12 +1,13 @@
+import Typography from "@mui/material/Typography";
 
 export default function Loading() {
   const randomNumber = Math.random();
   
   const loading1 = (
     <>
-      <h1>
+      <Typography fontSize='30px'>
         Loading...
-      </h1>
+      </Typography>
       <img
         src={'https://i.ibb.co/WD8KjzY/loading2.png'}
         alt="Loading"
@@ -17,9 +18,9 @@ export default function Loading() {
   )
   const loading2 = (
     <>
-      <h1>
+      <Typography fontSize='30px'>
         Loading...
-      </h1>
+      </Typography>
       <img
         src={'https://i.ibb.co/L9XMvjG/loading1.png'}
         alt="Loading"
