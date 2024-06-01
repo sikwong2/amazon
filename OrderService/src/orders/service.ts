@@ -61,7 +61,7 @@ export class OrdersService {
         shopperId: rows[0].shopper_id,
         orderStatus: rows[0].order_status,
         orderDate: new Date(rows[0].data.orderDate)
-      })
+      }
     } catch (e) {
       console.log(e);
       throw new Error('OrdersService: deleteOrder');
