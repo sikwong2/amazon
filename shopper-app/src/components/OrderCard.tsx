@@ -120,7 +120,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
     };
 
     fetchData();
-  }, []);
+  }, [id, productIds]);
 
   return (
     <CustomCard type="rounded" sx={{border: "1px #d5d9d9 solid", mb: '14px'}}>

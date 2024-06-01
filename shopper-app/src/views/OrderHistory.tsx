@@ -63,7 +63,7 @@ export function OrderHistory() {
       const shippedOrders: OrdersInfo[] = await fetchOrders(id);
       setOrders(shippedOrders);
     })()
-  }, [])
+  }, [id, userName, router])
 
 
   return (
