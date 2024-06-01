@@ -1,10 +1,11 @@
-import { Controller, Get, Path, Response, Route } from 'tsoa';
+import { Controller, Get, Path, Response, Route, Security } from 'tsoa';
 
 import { OrdersService } from './service';
 import { Order } from './index';
 
 @Route('orders')
 export class OrdersController extends Controller {
+  @Security('jwt')
   @Get('{vendorId}')
   @Response('404', 'Vendor not found')
   public async getOrders(@Path() vendorId: string): Promise<Order[] | undefined> {

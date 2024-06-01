@@ -1,12 +1,22 @@
-import { Controller, Body, Route, Post } from 'tsoa';
+import * as express from 'express';
+import { Security, Controller, Body, Route, Post, Request, Response } from 'tsoa';
 
 import { ProductService } from './service';
 import { NewProduct, Product } from '.';
 
+
 @Route('product')
 export class ProductController extends Controller {
   @Post('')
-  public async getOrders(@Body() newProduct: NewProduct): Promise<Product | undefined> {
+  @Security('jwt')
+  @Response('401', 'Unauthorised')
+  public async getOrders(
+    @Request() request: express.Request,
+    @Body() newProduct: NewProduct,
+  ): Promise<Product | undefined> {
+
+    console.log('user.id = ', request.user?.id);
+
     return new ProductService()
       .createProduct(newProduct)
       .then(async (success: Product | undefined): Promise<Product | undefined> => {

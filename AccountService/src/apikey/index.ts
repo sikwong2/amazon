@@ -3,3 +3,7 @@ export interface APIKey {
   api_key: string;
   active: boolean;
 }
+
+export interface APIKeySessionUser {
+  id: string;
+}
