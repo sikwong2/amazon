@@ -66,7 +66,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
       <Box aria-label="search-results" bgcolor="#E4E6E6" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }, margin: 'auto', padding: 2 }}>
           <Typography variant="h4" gutterBottom>
-            {t('search.results-for')} "{query}"
+            {t('search.results-for')} {query}
           </Typography>
           <Grid container spacing={1} justifyContent="flex-start">
             {products.map((product) => (    
