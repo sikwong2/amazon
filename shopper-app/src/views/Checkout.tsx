@@ -14,6 +14,8 @@ import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env' });
+import DeliveryDate from '../components/DeliveryDate'
+import Radio from '@mui/material/Radio';
 
 interface UserDetails {
   name: string;
@@ -259,13 +261,53 @@ export function Checkout() {
             3    Review items and shipping
           </Typography>
           <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
-            <Typography variant='h4' component='h1' gutterBottom sx={{ marginLeft: '1em' }}>
-              {t("cart.shopping-cart")}
-            </Typography>
-            <List>
-              {cartItems}
-            </List>
+            <div 
+              style={{
+                border: '3px dashed #ADD8E6',
+                padding: '10px',
+                margin: '20px',
+                textAlign: 'left', 
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '16px', 
+                fontWeight: '700',
+              }}>
+              Select FREE Amazon Day Delivery to receive orders in fewer boxes on a single day.
+            </div>
+            <div
+            style = {{
+                margin: '20px',
+                color: '#007600',
+                fontWeight: '700'
+            }}
+            > 
+              Arriving,
+              <DeliveryDate offset='7'> </DeliveryDate>
+            </div>
+              <div> {cartItems.image} </div>
+              {/* <List>
+                {cartItems}
+              </List> */}
+              {/* <div>
+                choose your prime delivery option 
+              </div> */}
+            <div style={{display:'flex', height: '100px', width:'100%'}}>
+              <div style={{background: 'green', flex: '2'}}></div>
+              <div style={{background: 'red', flex: '3', display: 'flex', flexDirection:'column'}}>
+                <div style={{background: 'pink', flex: '1'}}> stuff 1 </div>
+                <div style={{background: 'pink', flex: '1'}}> stuff 2 </div>
+                <div style={{background: 'pink', flex: '1'}}> stuff 3 </div>
+              </div>
+              <div style={{background: 'blue', flex: '4', display: "flex", flexDirection: 'column'}}>
+                <div style={{flex:'1'}}> choose prime delivery option </div>
+                <div style={{display: 'flex', background: 'purple', flex: '1'}}> 
+                  <Radio></Radio>
+                  <DeliveryDate offset='7'></DeliveryDate>
+                </div>
+              </div>
+            </div>
+
           </CustomCard>
+          
           <CustomCard>
             <Box sx={{
               display: 'flex',
