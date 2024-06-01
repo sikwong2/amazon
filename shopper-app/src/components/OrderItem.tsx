@@ -3,9 +3,9 @@ import CustomLink from "./Link";
 import { useRouter } from "next/router";
 
 interface OrderItemProps {
-  productId: string,
-  name: string,
-  image: string,
+  productId: string;
+  name: string;
+  image: string;
 }
 
 export function OrderItem({productId, name, image, ...rest  }: OrderItemProps){

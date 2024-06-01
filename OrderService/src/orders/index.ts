@@ -8,9 +8,9 @@ export type OrdersInfo = {
 }
 
 export type OrderResponse = {
-  orderId: string
-}
+  orderId: string;
+};
 
 export type OrderUpdate = {
-  statusCode: number
-}
+  statusCode: number;
+};

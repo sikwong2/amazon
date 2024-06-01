@@ -1,8 +1,8 @@
-import nextJest from 'next/jest'
+import nextJest from 'next/jest';
 
 const createJestConfig = nextJest({
   dir: './',
-})
+});
 
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
@@ -17,16 +17,11 @@ const customJestConfig = {
     'src/**/*.{[jt]s,[jt]sx}',
     '!**/node_modules/**',
     '!src/graphql/*/resolver.ts',
-    '!src/graphql/auth/checker.ts'
+    '!src/graphql/auth/checker.ts',
   ],
   collectCoverage: true,
-  coveragePathIgnorePatterns: [
-    "src/pages/_app.tsx",
-    "src/pages/_document.tsx",
-  ],
-  testMatch: [
-    "**/?(*.)+(spec|test).[jt]s?(x)"
-  ]
-}
+  coveragePathIgnorePatterns: ['src/pages/_app.tsx', 'src/pages/_document.tsx'],
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+};
 
-export default createJestConfig(customJestConfig)
+export default createJestConfig(customJestConfig);

@@ -22,8 +22,8 @@ const fetchOrders = async (shopperId: string): Promise<OrdersInfo[]> => {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     const json = await res.json();
     if (json.errors) {
@@ -39,7 +39,7 @@ const fetchOrders = async (shopperId: string): Promise<OrdersInfo[]> => {
     console.log(e);
     return [];
   }
-}
+};
 
 
 export function OrderHistory() {
@@ -112,6 +112,6 @@ export function OrderHistory() {
         </CustomTabPanel>
       </Container>
     </>
-  )
+  );
 }
 

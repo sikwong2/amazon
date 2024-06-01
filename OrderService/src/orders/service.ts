@@ -1,17 +1,16 @@
-
-import {OrdersInfo } from '.';
+import { OrdersInfo } from '.';
 import { pool } from '../db';
 
 export class OrdersService {
-  public async selectByVendorId (id: string): Promise<OrdersInfo[] | undefined> {
+  public async selectByVendorId(id: string): Promise<OrdersInfo[] | undefined> {
     let select = `SELECT * FROM orders WHERE vendor_id = $1`;
     const query = {
       text: select,
-      values: [id]
+      values: [id],
     };
     try {
-      const { rows } = await pool.query(query); 
-      const orders = rows.map(row => ({
+      const { rows } = await pool.query(query);
+      const orders = rows.map((row) => ({
         orderId: row.id,
         products: row.data.products,
         shopperId: row.shopper_id,
@@ -24,17 +23,17 @@ export class OrdersService {
       console.error('Error getting Id', error);
       return undefined;
     }
-  } 
+  }
 
   public async selectByShopperId(id: string): Promise<OrdersInfo[] | undefined> {
     let select = `SELECT * FROM orders WHERE shopper_id = $1`;
     const query = {
       text: select,
-      values: [id]
+      values: [id],
     };
     try {
       const { rows } = await pool.query(query);
-      const orders = rows.map(row => ({
+      const orders = rows.map((row) => ({
         orderId: row.id,
         products: row.data.products,
         shopperId: row.shopper_id,
@@ -52,10 +51,10 @@ export class OrdersService {
     try {
       const query = {
         text: 'DELETE FROM orders WHERE id = $1 RETURNING *;',
-        values: [orderId]
-      }
-      const {rows} = await pool.query(query);
-      return ({
+        values: [orderId],
+      };
+      const { rows } = await pool.query(query);
+      return {
         orderId: rows[0].id,
         products: rows[0].data['products'],
         vendorId: rows[0].vendor_id,
@@ -73,8 +72,8 @@ export class OrdersService {
     const query = {
       text: 'SELECT * FROM orders WHERE shopper_id=$1 AND order_status=$2;',
       values: [shopperId, status],
-    }
-    const {rows} = await pool.query(query);
+    };
+    const { rows } = await pool.query(query);
     const orders = [];
     for (const row of rows) {
       orders.push({

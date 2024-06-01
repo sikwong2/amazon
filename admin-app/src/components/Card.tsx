@@ -6,7 +6,8 @@ import { CardProps } from '@mui/material/Card';
 import { ThemeProvider } from '@emotion/react';
 import { cardTheme } from './Theme';
 
-const CustomCard = ({ children, type = 'rounded', ...rest }: CardProps & { type?: string }) => { // Accepting title as a prop
+const CustomCard = ({ children, type = 'rounded', ...rest }: CardProps & { type?: string }) => {
+  // Accepting title as a prop
   return (
     <ThemeProvider theme={cardTheme}>
       <Box sx={{ minWidth: 275 }}>
@@ -14,12 +15,11 @@ const CustomCard = ({ children, type = 'rounded', ...rest }: CardProps & { type?
           style={{
             borderRadius: type === 'pointy' ? '1px' : '8px',
           }}
-          variant='outlined'
-          {...rest}>
+          variant="outlined"
+          {...rest}
+        >
           <React.Fragment>
-            <CardContent>
-              {children}
-            </CardContent>
+            <CardContent>{children}</CardContent>
           </React.Fragment>
         </Card>
       </Box>

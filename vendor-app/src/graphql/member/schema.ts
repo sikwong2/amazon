@@ -1,35 +1,39 @@
-import { Field, ObjectType, InputType, ID } from "type-graphql"
-import { Length, Matches } from "class-validator";
-import { IsNotEmpty } from "class-validator";
+import { ArgsType, Field, ObjectType, InputType, ID } from 'type-graphql';
+import { Length, Matches } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 @ObjectType()
-@InputType("NewAccount")
+@InputType('NewAccount')
 export class MemberRequest {
   @Field()
   @IsNotEmpty()
-    name!: string
+  name!: string;
   @Field()
-  @Matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-    email!: string
+  @Matches(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  )
+  email!: string;
   @Field()
   @IsNotEmpty()
   @Length(8, 16)
-    password!: string
+  password!: string;
   @Field()
-    role!: string
+  role!: string;
 }
 
-@ObjectType("Account")
+@ObjectType('Account')
 export class Member {
   @Field(() => ID)
   @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
-    id!: string
+  id!: string;
   @Field()
   @IsNotEmpty()
-    name!: string
+  name!: string;
   @Field()
-  @Matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-    email!: string
+  @Matches(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  )
+  email!: string;
   @Field()
-    role!: string
+  role!: string;
 }

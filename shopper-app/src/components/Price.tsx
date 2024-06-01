@@ -17,21 +17,26 @@ const Cents = styled('span')(({ theme }) => ({
   verticalAlign: 'top',
 }));
 
-interface CustomPriceProps extends BoxProps{
-  value: number,
-  fontSize?: string | number,
-  smallFontSize?: string | number,
+interface CustomPriceProps extends BoxProps {
+  value: number;
+  fontSize?: string | number;
+  smallFontSize?: string | number;
 }
 
-export default function CustomPrice ({ value, fontSize='2em', smallFontSize='1em', ...rest }: CustomPriceProps) {
+export default function CustomPrice({
+  value,
+  fontSize = '2em',
+  smallFontSize = '1em',
+  ...rest
+}: CustomPriceProps) {
   const dollars = Math.floor(value);
   const cents = (value % 1).toFixed(2).substring(2);
 
   return (
-    <Box display='flex' alignItems='flex-start' {...rest}>
-      <DollarSign sx={{ fontSize:{smallFontSize} }}>$</DollarSign>
-      <Dollars sx={{ fontSize:{fontSize} }}>{dollars}</Dollars>
-      <Cents sx={{ fontSize:{smallFontSize} }}>{cents}</Cents>
+    <Box display="flex" alignItems="flex-start" {...rest}>
+      <DollarSign sx={{ fontSize: { smallFontSize } }}>$</DollarSign>
+      <Dollars sx={{ fontSize: { fontSize } }}>{dollars}</Dollars>
+      <Cents sx={{ fontSize: { smallFontSize } }}>{cents}</Cents>
     </Box>
   );
-};
+}
