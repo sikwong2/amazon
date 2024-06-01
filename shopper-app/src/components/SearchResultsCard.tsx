@@ -28,7 +28,7 @@ export interface SearchResultCardProps {
 export default function SearchResultCard({ images, title }: SearchResultCardProps) {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const cartContext = useContext(CartContext);
+  const {cart, setCart, addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1)
   const pageContext = useContext(PageContext);
   const productId = images[0].id;
@@ -38,14 +38,10 @@ export default function SearchResultCard({ images, title }: SearchResultCardProp
   }
 
   const handleAddToCartClick = () => {
-    const cart = [...cartContext.cart]; 
-    for (let i = 0; i < quantity; i++) {
-      cart.push(productId as string)
-    }
-    cartContext.setCart(cart);
+    addToCart(productId as string, quantity)
     pageContext.setPage('cart');
     router.push('/');
-  }
+  };
 
   // Returns hours and mins until midnight
     function getTimeTillMidnight() {

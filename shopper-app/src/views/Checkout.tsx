@@ -147,17 +147,22 @@ export function Checkout() {
       let total = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
-      for (const productId of cart) {
+      Object.entries(cart).map(async ([productId, quantity]) => {
         const product = await fetchProduct(productId);
         total += product.price;
+
+        const cartProduct: Product = {
+          ...product,
+          rating: product.rating !== undefined ? product.rating : 0,
+          image: product.image ? product.image : ['default-image-url'],
+        };
+
         temp.push(
           <CartItem
             key={productId}
             productId={productId}
-            name={product.name}
-            image={product.image ? product.image[0] : undefined}
-            price={product.price}
-            rating={product?.rating}
+            product={cartProduct}
+            quantity={quantity}
           />
         )
 
@@ -166,7 +171,7 @@ export function Checkout() {
           price: product.price * 100,
           quantity: 1
         });
-      }
+      });
       setCartItems(temp);
       setStripeProducts(tempStripe);
       setSubtotal(Number(Number(total).toFixed(2)));
