@@ -38,11 +38,11 @@ export default function SearchResultCard({ images, title }: SearchResultCardProp
   }
 
   const handleAddToCartClick = () => {
-    const cart = cartContext.cart;
+    const cart = [...cartContext.cart]; 
     for (let i = 0; i < quantity; i++) {
       cart.push(productId as string)
-      cartContext.setCart(cart);
     }
+    cartContext.setCart(cart);
     pageContext.setPage('cart');
     router.push('/');
   }
