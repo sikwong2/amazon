@@ -1,4 +1,5 @@
-import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction } from 'react';
+import Loading from '@/views/Loading';
+import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction, useEffect } from 'react';
 
 interface ICart {
   [productId: string]: number
@@ -20,7 +21,23 @@ export const CartContext = createContext<ICartContext>({
 })
 
 export const CartProvider = ({ children }: PropsWithChildren<{}>) => {
+  const isBrowser = typeof window !== 'undefined';
   const [cart, setCart] = useState<ICart>({});
+  const [isRendered, setIsRendered] = useState(false);
+
+  useEffect(() => { // runs only client side during initial render
+    if (isBrowser) {
+      const sessionCart = sessionStorage.getItem('cart');
+      setCart(sessionCart ? JSON.parse(sessionCart) : {});
+      setIsRendered(true);
+    }
+  }, []);
+
+  useEffect(() => { // runs after initial render
+    if (isRendered) {
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+    }
+  }, [cart, isRendered]);
   
   // works if adding a new product or adding a duplicate
   const addToCart = (productId: string, quantity: number = 1) => {
@@ -50,6 +67,14 @@ export const CartProvider = ({ children }: PropsWithChildren<{}>) => {
         return newCart;
       });
     }
+  }
+
+  if (!isRendered) {
+    return (
+      <>
+        <Loading/>
+      </>
+    )
   }
 
   return (
