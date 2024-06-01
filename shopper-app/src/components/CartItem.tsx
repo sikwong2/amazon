@@ -96,7 +96,7 @@ export function CartItem({ productId, product, quantity, ...rest }: CartItemProp
                     <RandomDeliveryDate offset={7}/>
                   </Typography>
                   <Typography display='inline' >
-                    {` t('cart.available-at-checkout')`} 
+                    {` ${t('cart.available-at-checkout')}`} 
                   </Typography>
                 </Box>
                 <CustomLink href='https://www.amazon.com/b?node=18726306011' label='free-returns'>{t("product.free-returns")}</CustomLink>
