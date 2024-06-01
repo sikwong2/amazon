@@ -9,10 +9,10 @@
     "docker-up": "docker-compose up -d postgres",
     "docker-down": "docker-compose down postgres",
     "docker-with-logs": "docker-compose up postgres",
-    "dev": "npm run accounts & npm run orders & npm run products & npm run admin-app & npm run vendor-app & npm run shopper-app & npm run vendor-api",
-    "vendor": "npm run accounts & npm run vendor-app",
-    "admin": "npm run accounts & npm run admin-app",
-    "shopper": "npm run accounts & npm run shopper-app",
+    "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"  \"npm run vendor-api\"",
+    "vendor": "concurrently --kill-others \"npm run accounts\" \"npm run vendor-app\"",
+    "admin": "concurrently --kill-others \"npm run accounts\" \"npm run admin-app\"",
+    "shopper": "concurrently --kill-others \"npm run accounts\" \"npm run shopper-app\"",
     "accounts": "cd AccountService && npm run dev",
     "orders": "cd OrderService && npm run dev",
     "products": "cd ProductService && npm run dev",
@@ -28,7 +28,7 @@
     "ci-orders": "cd OrderService && npm ci",
     "ci-products": "cd ProductService && npm ci",
     "ci-vendor-api": "cd vendor-api && npm ci",
-    "install": "npm run install-vendor && npm run install-admin && npm run install-shopper && npm run install-accounts && npm run install-orders && npm run install-products && npm run install-vendor-api",
+    "install": "npm install concurrently && npm run install-vendor && npm run install-admin && npm run install-shopper && npm run install-accounts && npm run install-orders && npm run install-products && npm run install-vendor-api",
     "install-vendor": "cd vendor-app && npm install",
     "install-admin": "cd admin-app && npm install",
     "install-shopper": "cd shopper-app && npm install",
@@ -44,7 +44,7 @@
     "build-orders": "cd OrderService && npm run build",
     "build-products": "cd ProductService && npm run build",
     "build-vendor-api": "cd vendor-api && npm run build",
-    "start": "npm run start-vendor & npm run start-vendor-api & npm run start-admin & npm run start-shopper & npm run start-accounts & npm run start-orders & npm run start-products",
+    "start": "concurrently --kill-others \"npm run start-vendor\" \"npm run start-vendor-api\" \"npm run start-admin\" \"npm run start-shopper\" \"npm run start-accounts\" \"npm run start-orders\" \"npm run start-products\"",
     "start-vendor": "cd vendor-app && npm start",
     "start-admin": "cd admin-app && npm start",
     "start-shopper": "cd shopper-app && npm start",
@@ -61,5 +61,8 @@
     "test-shopper": "cd shopper-app && npm run build && npm test",
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
     "containerised": "npm run build && docker-compose up --build"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
   }
 }
