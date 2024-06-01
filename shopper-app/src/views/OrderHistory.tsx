@@ -58,11 +58,12 @@ export function OrderHistory() {
   useEffect(() => {
     if (!userName) {
       router.push('/login')
+    } else {
+      async () => {
+        const shippedOrders: OrdersInfo[] = await fetchOrders(id);
+        setOrders(shippedOrders);
+      }
     }
-    (async () => {
-      const shippedOrders: OrdersInfo[] = await fetchOrders(id);
-      setOrders(shippedOrders);
-    })()
   }, [id, userName, router])
 
 
