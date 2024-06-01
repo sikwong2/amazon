@@ -90,6 +90,12 @@ export default function TopBar() {
     router.push('/login');
   };
 
+  const handleSignOut = () => {
+    loginContext.setUserName('');
+    loginContext.setAccessToken('');
+    loginContext.setId('');
+  }
+
   const handleOrders = () => {
     // set page context to order history
     pageContext.setPage('orderHistory');
@@ -143,6 +149,7 @@ export default function TopBar() {
                 variant="text"
                 sx={{ ml: 2 }}
                 caps={false}
+                onClick={handleSignOut}
               >
                 {t('topbar.Hello') + ' ' + loginContext.userName}
               </CustomButton>
