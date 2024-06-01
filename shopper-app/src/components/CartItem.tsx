@@ -12,14 +12,14 @@ import CustomDropdown from "./Dropdown";
 interface CartItemProps {
   productId: string,
   product: Product,
-  quantity: number,
+  quantity: number
 }
 
 interface Product {
   name: string,
   price: number,
   stock: number,
-  rating?: number,
+  rating: number,
   image: string[],
 }
 
