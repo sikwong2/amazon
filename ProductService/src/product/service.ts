@@ -1,21 +1,21 @@
-import { pool } from '../db'
-import { NewProduct, Product, Order, Sort } from '.'
+import { pool } from '../db';
+import { NewProduct, Product, Order, Sort } from '.';
 
 export class ProductService {
   public async getAll(): Promise<Product[]> {
     const query = {
       text: 'SELECT id, data FROM product;',
       values: [],
-    }
+    };
     const { rows } = await pool.query(query);
     const products: Product[] = [];
     for (const row of rows) {
       products.push({
         id: row.id,
         data: {
-          ...row.data
-        }
-      })
+          ...row.data,
+        },
+      });
     }
     return products;
   }
@@ -26,32 +26,38 @@ export class ProductService {
       select = `SELECT id, data FROM product 
       AS subquery 
       ORDER BY (subquery.data->>'${order}')::numeric ${sort} 
-      LIMIT $1 OFFSET $2`
+      LIMIT $1 OFFSET $2`;
     } else {
       select = `SELECT id, data FROM product 
       AS subquery 
       ORDER BY (subquery.data->>'${order}') ${sort} 
-      LIMIT $1 OFFSET $2`
+      LIMIT $1 OFFSET $2`;
     }
     const query = {
       text: select,
-      values: [size, `${page * 30}`]
-    }
-    const {rows} = await pool.query(query);
+      values: [size, `${page * 30}`],
+    };
+    const { rows } = await pool.query(query);
     const products: Product[] = [];
     for (const row of rows) {
       products.push({
         id: row.id,
         data: {
-          ...row.data
-        }
-      })
+          ...row.data,
+        },
+      });
     }
     return products;
   }
 
   // https://stackoverflow.com/questions/45918260/restful-api-multiple-query-strings-over-multiple-resources-for-filtering
-  public async getByCategory(category: string, page: number, size: number, order: Order, sort: Sort): Promise<Product[]> {
+  public async getByCategory(
+    category: string,
+    page: number,
+    size: number,
+    order: Order,
+    sort: Sort,
+  ): Promise<Product[]> {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
       select = `SELECT id, data FROM product 
@@ -67,23 +73,23 @@ export class ProductService {
 
     const query = {
       text: select,
-      values: [category, size, `${page * 30}`]
-    }
-    const {rows} = await pool.query(query);
+      values: [category, size, `${page * 30}`],
+    };
+    const { rows } = await pool.query(query);
     const products: Product[] = [];
     for (const row of rows) {
       products.push({
         id: row.id,
         data: {
-          ...row.data
-        }
-      })
+          ...row.data,
+        },
+      });
     }
 
     return products;
   }
 
-  public async makeProduct(product: NewProduct): Promise<Product|undefined> {
+  public async makeProduct(product: NewProduct): Promise<Product | undefined> {
     try {
       const query = {
         text: `INSERT INTO product(data) VALUES(
@@ -97,12 +103,20 @@ export class ProductService {
           'category', $7::jsonb
           )
         ) RETURNING *;`,
-        values: [product.name, product.price, product.stock, JSON.stringify(product.image), product.rating, JSON.stringify(product.description), JSON.stringify(product.category)],
-      }
+        values: [
+          product.name,
+          product.price,
+          product.stock,
+          JSON.stringify(product.image),
+          product.rating,
+          JSON.stringify(product.description),
+          JSON.stringify(product.category),
+        ],
+      };
       const { rows } = await pool.query(query);
-      return {...rows[0].data, id: rows[0].id};
+      return { ...rows[0].data, id: rows[0].id };
     } catch (e) {
-      console.error("Error making product: ", e)
+      console.error('Error making product: ', e);
       return undefined;
     }
   }
@@ -114,18 +128,18 @@ export class ProductService {
     const query = {
       text: `DELETE FROM product WHERE id = $1 RETURNING id, data;`,
       values: [productId],
-    }
+    };
 
     const { rows } = await pool.query(query);
-    return {...rows[0].data, id: rows[0].id};
+    return { ...rows[0].data, id: rows[0].id };
   }
 
   public async getId(productId: string): Promise<Product | undefined> {
     const query = {
       text: `SELECT id, data FROM product WHERE id = $1;`,
-      values: [productId]
-    }
+      values: [productId],
+    };
     const { rows } = await pool.query(query);
-    return {...rows[0].data, id: rows[0].id};
+    return { ...rows[0].data, id: rows[0].id };
   }
 }

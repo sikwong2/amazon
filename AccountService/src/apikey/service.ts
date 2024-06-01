@@ -28,13 +28,9 @@ export class APIKeyService {
   }
 
   public async createAPIKey(id: string): Promise<APIKey> {
-    const key = jwt.sign(
-      { uuid: uuidv4(), account_id: id },
-      `${process.env.MASTER_SECRET}`,
-      {
-        algorithm: 'HS256',
-      },
-    );
+    const key = jwt.sign({ uuid: uuidv4(), account_id: id }, `${process.env.MASTER_SECRET}`, {
+      algorithm: 'HS256',
+    });
 
     let insert =
       ` INSERT INTO apikeytable (account_id, api_key, active)` +

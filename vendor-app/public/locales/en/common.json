@@ -5,9 +5,9 @@
   "shopper-account": "Create a shopper account",
   "vendor-app": {
     "return-shopper-app": "Return to Shopper App",
-    "vendors-only" : "This app is for vendors only!",
-    "vendor-account-approval" : "Vendor Account Approval",
-    "status-pending" : "Status pending"
+    "vendors-only": "This app is for vendors only!",
+    "vendor-account-approval": "Vendor Account Approval",
+    "status-pending": "Status pending"
   },
   "login": {
     "title": "UCSC-Amazon Vendor Login",
@@ -52,7 +52,7 @@
   },
   "vendorportal": {
     "title": "Vendor Portal",
-    "key" : "Key",
+    "key": "Key",
     "status": "Status",
     "api-keys": "API Keys",
     "generate": "Generate New Key",

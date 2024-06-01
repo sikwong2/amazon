@@ -21,13 +21,15 @@ interface Product {
 
 const fetchProduct = async (productId: any): Promise<Product> => {
   try {
-    const query = { query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock, rating}}` };
+    const query = {
+      query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock, rating}}`,
+    };
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     const json = await res.json();
     if (json.errors) {
@@ -44,6 +46,7 @@ const fetchProduct = async (productId: any): Promise<Product> => {
 export function Cart() {
   const { setPage } = useContext(PageContext);
   const { cart } = useContext(CartContext);
+
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
   const { t } = useTranslation('common');

@@ -146,12 +146,18 @@ export function Login() {
               {t('login.buying-for-work')}
             </Typography>
             <Box
-              sx={{ fontSize: '13px', display: 'flex', flexDirection: 'row',  alignItems: 'center', justifyContent: 'space-between'}}
+              sx={{
+                fontSize: '13px',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
             >
               <CustomLink label="vendor-account" href="/vendor" variant="blue2">
                 {t('login.vendor-account')}
               </CustomLink>
-              <LanguageButton variant="text"/>
+              <LanguageButton variant="text" />
             </Box>
           </Box>
         </CustomCard>

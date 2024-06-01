@@ -1,28 +1,28 @@
-import React from "react";
-import { Button } from "@mui/material";
-import { LoginContext } from "@/context/Login";
+import React from 'react';
+import { Button } from '@mui/material';
+import { LoginContext } from '@/context/Login';
 import { useRouter } from 'next/router';
 
-export default function Logo({width=200, height='auto', transparent= 'false', ...rest}) {
-  const loginContext = React.useContext(LoginContext)
+export default function Logo({ width = 200, height = 'auto', ...rest }) {
+  const loginContext = React.useContext(LoginContext);
   const router = useRouter();
   return (
     <Button
-      sx={{ p:'unset' }}
+      sx={{ p: 'unset' }}
       disabled={loginContext.accessToken.length > 0 ? false : true}
       onClick={() => {
         router.push('/');
       }}
-      >
+    >
       <img
-        src={transparent === 'true' ? 'https://i.ibb.co/h8nx4Yd/buffsammy-removebg-preview.png' : 'https://i.ibb.co/Z8Yq2Pp/buffsammy.png'}
-        alt='Amazon Logo'
+        src={'https://i.ibb.co/nkyzw2s/sammytheslug.png'}
+        alt="Amazon Logo"
         width={width}
         height={height}
         {...rest}
       />
     </Button>
-  )
+  );
 }
 
 export const defaultLogoWidth = 120;

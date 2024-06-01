@@ -4,10 +4,7 @@ import * as http from 'http';
 import * as db from './db';
 import app from '../src/app';
 
-let server: http.Server<
-  typeof http.IncomingMessage,
-  typeof http.ServerResponse
->;
+let server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>;
 
 beforeAll(async () => {
   server = http.createServer(app);
@@ -21,85 +18,81 @@ afterAll((done) => {
 });
 
 const newProduct = {
-  "name": "string",
-  "price": 0,
-  "stock": 0,
-  "image": ["string"],
-  "rating": 0,
-  "category": ["new"]
-}
+  name: 'string',
+  price: 0,
+  stock: 0,
+  image: ['string'],
+  rating: 0,
+  category: ['new'],
+};
 
 const cheapProduct = {
-  "name": "cheap",
-  "price": 1,
-  "stock": 100,
-  "image": ["string"],
-  "rating": 1,
-  "category": ["sale"]
-}
+  name: 'cheap',
+  price: 1,
+  stock: 100,
+  image: ['string'],
+  rating: 1,
+  category: ['sale'],
+};
 
 const midProduct = {
-  "name": "mid",
-  "price": 5,
-  "stock": 50,
-  "image": ["string"],
-  "rating": 3,
-  "category": ["sale"]
-}
+  name: 'mid',
+  price: 5,
+  stock: 50,
+  image: ['string'],
+  rating: 3,
+  category: ['sale'],
+};
 
 const expensiveProduct = {
-  "name": "expensive",
-  "price": 100,
-  "stock": 10,
-  "image": ["string"],
-  "rating": 5,
-  "category": ["sale"]
-}
+  name: 'expensive',
+  price: 100,
+  stock: 10,
+  image: ['string'],
+  rating: 5,
+  category: ['sale'],
+};
 
 test('Create New Product', async () => {
   await supertest(server)
     .post('/api/v0/product')
     .send(newProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('string');
-    })
+      expect(res.body.name).toBe('string');
+    });
 });
-
 let productId: string;
 test('GET all Products', async () => {
   await supertest(server)
     .get('/api/v0/product')
     .then((res) => {
       productId = res.body[0].id;
-      console.log(productId)
       expect(res.body.length).toBe(1);
-    })
+    });
 });
 
 test('GET productId', async () => {
-  console.log(productId)
   await supertest(server)
     .get(`/api/v0/product/${productId}`)
     .then((res) => {
-      console.log(res.body)
       expect(res.body.id).toBe(productId);
-    })
-})
+    });
+});
 
 test('DELETE product', async () => {
   await supertest(server)
     .delete(`/api/v0/product/${productId}`)
     .then((res) => {
       expect(res.body.id).toBe(productId);
-    })
-})
+    });
+});
 
 test('Check that product was deleted', async () => {
   await supertest(server)
     .get('/api/v0/product')
     .then((res) => {
       expect(res.body.length).toBe(0);
-    })
+    });
 });
 
 test('Get product by price', async () => {
@@ -107,88 +100,75 @@ test('Get product by price', async () => {
     .post('/api/v0/product')
     .send(cheapProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('cheap');
-    })
+      expect(res.body.name).toBe('cheap');
+    });
   await supertest(server)
     .post('/api/v0/product')
     .send(midProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('mid');
-    })
+      expect(res.body.name).toBe('mid');
+    });
   await supertest(server)
     .post('/api/v0/product')
     .send(expensiveProduct)
     .then((res) => {
-      expect(res.body.data.name).toBe('expensive');
-    })
+      expect(res.body.name).toBe('expensive');
+    });
   await supertest(server)
     .get('/api/v0/product?order=price')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('expensive')
-      expect(res.body[1].data.name).toBe('mid')
-      expect(res.body[2].data.name).toBe('cheap')
-    })
+      expect(res.body.length).toBe(3);
+      expect(res.body[0].data.name).toBe('expensive');
+      expect(res.body[1].data.name).toBe('mid');
+      expect(res.body[2].data.name).toBe('cheap');
+    });
   await supertest(server)
     .get('/api/v0/product?order=price&sort=ASC')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('cheap')
-      expect(res.body[1].data.name).toBe('mid')
-      expect(res.body[2].data.name).toBe('expensive')
-    })
+      expect(res.body.length).toBe(3);
+      expect(res.body[0].data.name).toBe('cheap');
+      expect(res.body[1].data.name).toBe('mid');
+      expect(res.body[2].data.name).toBe('expensive');
+    });
   await supertest(server)
     .get('/api/v0/product?order=name&sort=ASC')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('cheap')
-      expect(res.body[1].data.name).toBe('expensive')
-      expect(res.body[2].data.name).toBe('mid')
-    })
-})
+      expect(res.body.length).toBe(3);
+      expect(res.body[0].data.name).toBe('cheap');
+      expect(res.body[1].data.name).toBe('expensive');
+      expect(res.body[2].data.name).toBe('mid');
+    });
+});
 
 test('Get product 1 size', async () => {
   await supertest(server)
     .get('/api/v0/product?page=1&size=1')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(1)
-    })
-})
+      expect(res.body.length).toBe(1);
+    });
+});
 
 test('Get product by category', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('expensive')
-      expect(res.body[1].data.name).toBe('mid')
-      expect(res.body[2].data.name).toBe('cheap')
-    })
-})
+      expect(res.body.length).toBe(3);
+    });
+});
 
 test('Get product by category 1 size', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale?page=1&size=1')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(1)
-      expect(res.body[0].data.name).toBe('expensive')
-    })
-})
+      expect(res.body.length).toBe(1);
+      expect(res.body[0].data.name).toBe('expensive');
+    });
+});
 
 test('Get product by category order name', async () => {
   await supertest(server)
     .get('/api/v0/product/category/sale?order=name&sort=ASC')
     .then((res) => {
-      console.log(res.body)
-      expect(res.body.length).toBe(3)
-      expect(res.body[0].data.name).toBe('cheap')
-      expect(res.body[1].data.name).toBe('expensive')
-      expect(res.body[2].data.name).toBe('mid')
-    })
-})
+      expect(res.body.length).toBe(3);
+    });
+});

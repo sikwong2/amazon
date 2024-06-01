@@ -17,36 +17,35 @@ export default function ProductDisplay({ images }: ProductDisplayProps) {
   };
 
   return (
-    <Box aria-label='other-images' sx={{ display: 'flex', alignItems: 'center', mr:1.5 }}>
-      <Box sx={{ width:'15%', mr:2 }}>
-      <ImageList sx={{ width:'100%', maxWidth:'50', overflow: 'hidden' }} cols={1} gap={10}>
-        {images.map((image) => (
-          <ImageListItem key={image} sx={{
-            borderRadius: '8px',
-            border: image === selectedImage ? '4px solid #007185' : 'none',
-            cursor: 'pointer',
-          }}>
-            <img
-              src={image}
-              alt={image}
-              onClick={() => handleImageClick(image)}
-              onMouseEnter={() => handleImageClick(image)}
-              loading="lazy"
-              style={{ cursor: 'pointer' }}
+    <Box aria-label="other-images" sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
+      <Box sx={{ width: '15%', mr: 2 }}>
+        <ImageList sx={{ width: '100%', maxWidth: '50', overflow: 'hidden' }} cols={1} gap={10}>
+          {images.map((image) => (
+            <ImageListItem
+              key={image}
+              sx={{
+                borderRadius: '8px',
+                border: image === selectedImage ? '4px solid #007185' : 'none',
+                cursor: 'pointer',
+              }}
+            >
+              <img
+                src={image}
+                alt={image}
+                onClick={() => handleImageClick(image)}
+                onMouseEnter={() => handleImageClick(image)}
+                loading="lazy"
+                style={{ cursor: 'pointer' }}
               />
-          </ImageListItem>
-        ))}
-      </ImageList>
+            </ImageListItem>
+          ))}
+        </ImageList>
       </Box>
-      <Box aria-label='selected-image' sx={{ flexGrow: 1, height:500, display: 'flex' }}>
+      <Box aria-label="selected-image" sx={{ flexGrow: 1, height: 500, display: 'flex' }}>
         <Card sx={{ maxWidth: 500, margin: 'auto' }}>
-          <CardMedia
-            component="img"
-            image={selectedImage}
-            alt="Selected Image"
-          />
+          <CardMedia component="img" image={selectedImage} alt="Selected Image" />
         </Card>
       </Box>
     </Box>
   );
-};
+}

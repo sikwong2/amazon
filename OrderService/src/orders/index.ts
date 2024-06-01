@@ -4,12 +4,13 @@ export type OrdersInfo = {
   shopperId: string
   vendorId: string
   orderStatus: string
+  orderDate: Date
 }
 
 export type OrderResponse = {
-  orderId: string
-}
+  orderId: string;
+};
 
 export type OrderUpdate = {
-  statusCode: number
-}
+  statusCode: number;
+};

@@ -3,14 +3,14 @@
 # The workflow sets up a PostgreSQL service and runs tests against the latest LTS version of Node.js.
 # Environment variables for the PostgreSQL service and the application are set at the workflow level.
 # The PostgreSQL service is configured with its own set of environment variables.
-# The workflow checks out the code, sets up Node.js, installs dependencies, and runs tests.
+# The workflow sets up Node.js, installs dependencies, does a build and runs tests.
 name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 env:
   POSTGRES_HOST: localhost
@@ -18,12 +18,10 @@ env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
   POSTGRES_DB: test
-  POSTGRES_ACCOUNT_DATABASE: test
-  POSTGRES_PRODUCT_DATABASE: test
-  POSTGRES_ORDER_DATABASE: test
   ACCOUNT_SERVICE_PORT: 3011
   PRODUCT_SERVICE_PORT: 3012
   ORDER_SERVICE_PORT: 3013
+  STRIPE_SECRET_KEY: sk_test_51PGqc3RpLokp1Wg0BjKovDZ7ibsdL5ndbuNfrYfKa0Qw24lYIRSLmGqajIkxZnOY12wuzxUValo8NM4c960QJ9m900CIiNYC2m
 
 jobs:
   build:
@@ -33,11 +31,11 @@ jobs:
       postgres:
         image: postgres:13
         env:
-            POSTGRES_HOST: localhost
-            POSTGRES_PORT: 5432
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: test
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -51,11 +49,12 @@ jobs:
         node-version: ['lts/*']
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm run installs
-    - run: npm run test
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      - run: npm run test

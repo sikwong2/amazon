@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction } from "react";
+import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction } from 'react';
 
 interface ICart {
   [productId: string]: number

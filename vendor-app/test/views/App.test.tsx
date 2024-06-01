@@ -1,10 +1,9 @@
-
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 
 import { App } from '../../src/views/App';
 
 // https://www.npmjs.com/package/next-router-mock
-jest.mock('next/router', () => jest.requireActual('next-router-mock'))
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
@@ -18,8 +17,6 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-
 it('Renders', async () => {
-  render(<App />)
+  render(<App />);
 });
-
