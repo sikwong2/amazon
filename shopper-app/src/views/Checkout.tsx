@@ -146,36 +146,71 @@ export function Checkout() {
     fetchUserData();
   }, [id]);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     let total = 0;
+  //     const temp: any = []
+  //     const tempStripe: StripeProduct[] = [];
+  //     for (const productId of cart) {
+  //       const product = await fetchProduct(productId);
+  //       total += product.price;
+  //       temp.push(
+  //         <CartItem
+  //           key={productId}
+  //           productId={productId}
+  //           name={product.name}
+  //           image={product.image ? product.image[0] : undefined}
+  //           price={product.price}
+  //           rating={product?.rating}
+  //         />
+  //       )
+
+  //       tempStripe.push({
+  //         name: product.name,
+  //         price: product.price * 100,
+  //         quantity: 1
+  //       });
+  //     }
+  //     setCartItems(temp);
+  //     setStripeProducts(tempStripe);
+  //     setSubtotal(Number(Number(total).toFixed(2)));
+  //   })();
+  // }, [subtotal, cart]);
+
   useEffect(() => {
     (async () => {
       let total = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
-      for (const productId of cart) {
-        const product = await fetchProduct(productId);
-        total += product.price;
-        temp.push(
-          <CartItem
-            key={productId}
-            productId={productId}
-            name={product.name}
-            image={product.image ? product.image[0] : undefined}
-            price={product.price}
-            rating={product?.rating}
-          />
-        )
+      await Promise.all(
+        Object.entries(cart).map(async ([productId, quantity]) => {
+          const product = await fetchProduct(productId);
+          total += (product.price * quantity);
+          temp.push(
+            <CartItem
+              key={productId}
+              productId={productId}
+              product={product}
+              quantity={quantity}
+            />
+          )
+        })
+      )
 
+      Object.entries(cart).map(([productId, quantity]) => {
+        const price = temp.find(p => p.key === productId).props.product.price;
         tempStripe.push({
-          name: product.name,
-          price: product.price * 100,
-          quantity: 1
+          name: productId,
+          price: price * 100,
+          quantity: quantity
         });
-      }
-      setCartItems(temp);
+      });
+
       setStripeProducts(tempStripe);
+      setCartItems(temp);
       setSubtotal(Number(Number(total).toFixed(2)));
-    })();
-  }, [subtotal, cart]);
+    })()
+  }, [cart])
 
   return (
     <Container maxWidth="xl" style={{ paddingLeft: '13px', paddingRight: '13px' }}>
@@ -303,9 +338,9 @@ export function Checkout() {
               <DeliveryDate offset='7'> </DeliveryDate>
             </div>
               <div> {cartItems.image} </div>
-              {/* <List>
+              <List>
                 {cartItems}
-              </List> */}
+              </List>
               {/* <div>
                 choose your prime delivery option 
               </div> */}
