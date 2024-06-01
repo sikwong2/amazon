@@ -122,23 +122,49 @@ export default function TopBar() {
                   </Box>
                   <LanguageButton sx={{ ml: 2 }} variant='text' />
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      {loginContext.accessToken.length === 0 && (
-                          <CustomButton style={customButtonStyles} label='sign-in' variant='text' sx={{ ml: 2 }} onClick={handleSignIn} caps={false}>
-                              {t("topbar.Sign-in")}
-                          </CustomButton>
-                      )}
-                      {loginContext.accessToken.length > 0 && (
-                          <CustomButton style={customButtonStyles} label='user' variant='text' sx={{ ml: 2 }} caps={false}>
-                              {t("topbar.Hello") + " " + loginContext.userName}
-                          </CustomButton>
-                      )}
-                      <CustomButton style={customButtonStyles} label='orders' variant='text' sx={{ ml: 2 }} onClick={handleOrders} caps={false}>
-                          {t("topbar.Orders")}
-                      </CustomButton>
-                      <CustomButton style={customButtonStyles} label='cart' variant='text' sx={{ ml: 2 }} onClick={handleCart}>
-                          <ShoppingCartIcon />
-                          {t("topbar.Cart")}
-                      </CustomButton>
+                        {loginContext.accessToken.length === 0 && (
+                            <CustomButton 
+                            style={customButtonStyles} 
+                            label='sign-in' 
+                            variant='text' 
+                            sx={{ ml: 2 }} 
+                            onClick={handleSignIn} 
+                            caps={false}>
+                                {t("topbar.Sign-in")}
+                            </CustomButton>
+                        )}
+                        {loginContext.accessToken.length > 0 && (
+                            <CustomButton 
+                            style={customButtonStyles} 
+                            label='user' 
+                            variant='text' 
+                            sx={{ ml: 2 }} 
+                            onClick={handleSignOut}
+                            caps={false}
+                            >
+                                {t("topbar.Hello") + " " + loginContext.userName}
+                            </CustomButton>
+                        )}
+                        <CustomButton 
+                        style={customButtonStyles} 
+                        label='orders' 
+                        variant='text' 
+                        sx={{ ml: 2 }} 
+                        onClick={handleOrders} 
+                        caps={false}
+                        >
+                            {t("topbar.Orders")}
+                        </CustomButton>
+                        <CustomButton 
+                        style={customButtonStyles} 
+                        label='cart' 
+                        variant='text' 
+                        sx={{ ml: 2 }} 
+                        onClick={handleCart}
+                        >
+                            <ShoppingCartIcon />
+                            {t("topbar.Cart")}
+                        </CustomButton>
                   </Box>
               </Toolbar>
           </StyledAppBar>
