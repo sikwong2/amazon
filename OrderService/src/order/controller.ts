@@ -11,23 +11,17 @@ export class OrderController extends Controller {
   public async createOrder(@Body() OrderInfo: OrderInfo): Promise<OrderResponse | undefined> {
     return new OrderService()
       .create(OrderInfo)
-      .then(async (orderResponse: OrderResponse | undefined): Promise<OrderResponse> => {
-        if (!orderResponse) {
-          throw new Error('OrderResponse is undefined');
-        }
+      .then(async (orderResponse: OrderResponse | undefined): Promise<OrderResponse | undefined> => {
         return orderResponse;
       });
   }
 
   @Get('{orderId}')
   @Response('200', 'Successful')
-  public async getOrderById(@Path() orderId: string): Promise<OrderInfo> {
+  public async getOrderById(@Path() orderId: string): Promise<OrderInfo | undefined> {
     return new OrderService()
       .selectByOrderId(orderId)
-      .then(async (orderInfo: OrderInfo | undefined): Promise<OrderInfo> => {
-        if (!orderInfo) {
-          throw new Error('OrderInfo is undefined');
-        }
+      .then(async (orderInfo: OrderInfo | undefined): Promise<OrderInfo | undefined> => {
         return orderInfo;
       });
   }

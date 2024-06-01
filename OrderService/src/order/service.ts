@@ -34,7 +34,6 @@ export class OrderService {
         orderStatus: rows[0].orderstatus,
         orderDate: rows[0].orderdate
       }
-      console.log(returnObj.products);
       return returnObj;
     } catch (error) {
       console.error('Error getting Id', error);
