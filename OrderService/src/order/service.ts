@@ -12,15 +12,11 @@ export class OrderService {
       values: [JSON.stringify(OrderInfo.products), OrderInfo.vendorId, OrderInfo.shopperId, today],
     };
     const { rows } = await pool.query(query);
-    if (rows.length != 0) {
-      const id = rows[0].id;
-      const orderResponse = {
-        orderId: id,
-      };
-      return orderResponse;
-    } else {
-      return undefined;
-    }
+    const id = rows[0].id;
+    const orderResponse = {
+      orderId: id,
+    };
+    return orderResponse;
   }
 
   public async selectByOrderId(id: string):Promise<OrderInfo|undefined> {
@@ -46,7 +42,7 @@ export class OrderService {
     }
   }
 
-  public async updateOrderStatus(status: OrderUpdate, id: string): Promise<OrderInfo | undefined> {
+  public async updateOrderStatus(status: OrderUpdate, id: string): Promise<OrderInfo> {
     const statuses = [
       'pending',
       'confirmed',
@@ -58,24 +54,20 @@ export class OrderService {
       'refunded',
       'returned',
     ];
-    if (!statuses.includes(status.status)) {
-      return undefined;
-    }
-    let update = `UPDATE orders SET order_status = $1 WHERE id = $2`;
+
+    let update = `UPDATE orders SET order_status = $1 WHERE id = $2 RETURNING *;`;
     const query = {
       text: update,
       values: [status.status, id],
     };
-    try {
-      await pool.query(query);
-      const returnObj = this.selectByOrderId(id);
-      if (!returnObj) {
-        return undefined;
-      }
-      return returnObj;
-    } catch (error) {
-      console.error('Error updating order status', error);
-      return undefined;
+    const { rows } = await pool.query(query);
+    const ret: OrderInfo = {
+      products: rows[0].data.products,
+      shopperId: rows[0].shopperid,
+      vendorId: rows[0].vendorid,
+      orderStatus: rows[0].orderstatus,
     }
+    return ret;
+
   }
 }

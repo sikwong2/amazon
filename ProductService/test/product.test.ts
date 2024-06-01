@@ -61,7 +61,6 @@ test('Create New Product', async () => {
       expect(res.body.name).toBe('string');
     });
 });
-
 let productId: string;
 test('GET all Products', async () => {
   await supertest(server)
@@ -73,7 +72,6 @@ test('GET all Products', async () => {
 });
 
 test('GET productId', async () => {
-  console.log(productId);
   await supertest(server)
     .get(`/api/v0/product/${productId}`)
     .then((res) => {
@@ -119,7 +117,6 @@ test('Get product by price', async () => {
   await supertest(server)
     .get('/api/v0/product?order=price')
     .then((res) => {
-      console.log(res.body);
       expect(res.body.length).toBe(3);
       expect(res.body[0].data.name).toBe('expensive');
       expect(res.body[1].data.name).toBe('mid');
@@ -128,7 +125,6 @@ test('Get product by price', async () => {
   await supertest(server)
     .get('/api/v0/product?order=price&sort=ASC')
     .then((res) => {
-      console.log(res.body);
       expect(res.body.length).toBe(3);
       expect(res.body[0].data.name).toBe('cheap');
       expect(res.body[1].data.name).toBe('mid');
@@ -137,7 +133,6 @@ test('Get product by price', async () => {
   await supertest(server)
     .get('/api/v0/product?order=name&sort=ASC')
     .then((res) => {
-      console.log(res.body);
       expect(res.body.length).toBe(3);
       expect(res.body[0].data.name).toBe('cheap');
       expect(res.body[1].data.name).toBe('expensive');
