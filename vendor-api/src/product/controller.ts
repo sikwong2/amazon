@@ -7,8 +7,9 @@ import { NewProduct, Product } from '.';
 
 @Route('product')
 export class ProductController extends Controller {
-  @Post('')
+  
   @Security('jwt')
+  @Post('')
   @Response('401', 'Unauthorised')
   public async getOrders(
     @Request() request: express.Request,
