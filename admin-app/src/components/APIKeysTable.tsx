@@ -125,31 +125,34 @@ export default function APIKeysTable() {
       sortable: false,
       renderCell: (params) => (
         <Box display="flex">
-          <CustomButton
-            label={`activate-${params.row.api_key}`}
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => {
-              activateKey(params.row.api_key);
-            }}
-            disabled={loading}
-          >
-            {loading ? t('adminportal.loading') : t('adminportal.activate')}
-          </CustomButton>
-          <CustomButton
-            label={`deactivate-${params.row.api_key}`}
-            variant="contained"
-            color="secondary"
-            size="small"
-            onClick={() => {
-              deactivateKey(params.row.api_key);
-            }}
-            disabled={loading}
-            sx={{ ml: 1 }}
-          >
-            {loading ? t('adminportal.loading') : t('adminportal.deactivate')}
-          </CustomButton>
+          {!params.row.active && 
+            <CustomButton
+              label={`activate-${params.row.api_key}`}
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => {
+                activateKey(params.row.api_key);
+              }}
+              disabled={loading}
+            >
+              {loading ? t('adminportal.loading') : t('adminportal.activate')}
+            </CustomButton>
+          }
+          {params.row.active && 
+            <CustomButton
+              label={`deactivate-${params.row.api_key}`}
+              variant="contained"
+              color="secondary"
+              size="small"
+              onClick={() => {
+                deactivateKey(params.row.api_key);
+              }}
+              disabled={loading}
+            >
+              {loading ? t('adminportal.loading') : t('adminportal.deactivate')}
+            </CustomButton>
+          }
         </Box>
       ),
     },
