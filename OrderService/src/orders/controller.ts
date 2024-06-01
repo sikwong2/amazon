@@ -11,9 +11,6 @@ export class OrdersController extends Controller {
     return new OrdersService()
       .selectByVendorId(Id)
       .then(async (OrderInfo: OrdersInfo[] | undefined): Promise<OrdersInfo[] | undefined> => {
-        if (!OrderInfo) {
-          this.setStatus(400);
-        }
         return OrderInfo;
       });
   }
@@ -24,9 +21,6 @@ export class OrdersController extends Controller {
     return new OrdersService()
       .selectByShopperId(Id)
       .then(async (OrderInfo: OrdersInfo[] | undefined): Promise<OrdersInfo[] | undefined> => {
-        if (!OrderInfo) {
-          this.setStatus(400);
-        }
         return OrderInfo;
       });
   }
