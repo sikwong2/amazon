@@ -280,7 +280,6 @@ export function Checkout() {
             3 Review items and shipping
           </Typography>
           <CustomCard sx={{ display: 'block', minHeight: '100%' }}>
-<<<<<<< HEAD
             <div 
               style={{
                 border: '3px dashed #ADD8E6',
@@ -326,12 +325,6 @@ export function Checkout() {
               </div>
             </div>
 
-=======
-            <Typography variant="h4" component="h1" gutterBottom sx={{ marginLeft: '1em' }}>
-              {t('cart.shopping-cart')}
-            </Typography>
-            <List>{cartItems}</List>
->>>>>>> main
           </CustomCard>
           
           <CustomCard>
