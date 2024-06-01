@@ -6,7 +6,7 @@ interface ICartContext {
 }
 export const CartContext = createContext<ICartContext>({
   cart: [],
-  setCart: (cart) => {},
+  setCart: () => {},
 });
 
 export const CartProvider = ({ children }: PropsWithChildren<{}>) => {
