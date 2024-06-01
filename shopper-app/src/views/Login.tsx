@@ -12,13 +12,9 @@ import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
-import { PageContext } from '@/context/Page';
-import { CartContext } from '@/context/Cart';
 import { defaultLogoWidth } from '../components/Logo';
 
 export function Login() {
-  const { setPage } = React.useContext(PageContext);
-  const { setCart } = React.useContext(CartContext);
   const loginContext = React.useContext(LoginContext);
   const [user, setUser] = React.useState({ email: '', password: '' });
   const { t } = useTranslation('common');
@@ -38,7 +34,7 @@ export function Login() {
     u.password = data.get('Password')!.toString();
     setUser(u);
     const query = {
-      query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken }}`,
+      query: `query login{login(email: "${user.email}" password: "${user.password}") { id, name, accessToken, role }}`,
     };
     fetch('/api/graphql', {
       method: 'POST',
@@ -54,6 +50,7 @@ export function Login() {
         if (json.errors) {
           alert(`${json.errors[0].message}`);
         } else {
+          loginContext.setRole(json.data.login.role);
           loginContext.setAccessToken(json.data.login.accessToken);
           loginContext.setUserName(json.data.login.name);
           loginContext.setId(json.data.login.id);
