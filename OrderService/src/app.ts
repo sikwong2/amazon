@@ -29,7 +29,7 @@ RegisterRoutes(router);
 app.use('/api/v0', router);
 app.post('/create-checkout-session', async (req, res) => {
   try {
-    const products = req.body;
+    const {products} = req.body;
     const line_items = products.map((product: any) => ({
       price_data: {
         currency: 'usd',

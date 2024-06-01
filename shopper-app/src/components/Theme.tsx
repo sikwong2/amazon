@@ -311,3 +311,14 @@ export const dropdownTheme = createTheme(globalTheme, {
     },
   },
 });
+
+const tabTheme = createTheme(globalTheme, {
+  components: {
+    MuiTab: {
+      styleOverrides: {
+        disableFocusRipple: true,
+        disableRipple: true
+      },
+    }
+  }
+})
