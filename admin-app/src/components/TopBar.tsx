@@ -71,23 +71,14 @@ export default function TopBar() {
   const [searchValue, setSearchValue] = React.useState('');
   const router = useRouter();
 
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
-
-  const handleSearch = () => {
-    alert('Search Value: ' + searchValue);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
   const handleSignIn = () => {
     router.push('/login');
   };
+
+  const handleSignOut = () => {
+    loginContext.setUserName('');
+    loginContext.setAccessToken('');
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -119,6 +110,7 @@ export default function TopBar() {
                 label="user"
                 variant="text"
                 sx={{ ml: 2 }}
+                onClick={handleSignOut}
                 caps={false}
               >
                 {t('topbar.Hello') + ' ' + loginContext.userName}

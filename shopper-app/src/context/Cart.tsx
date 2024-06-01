@@ -1,4 +1,7 @@
-import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction } from 'react';
+import Loading from '@/views/Loading';
+import { PropsWithChildren, useState, createContext, Dispatch, SetStateAction, useEffect } from 'react';
+import { LoginContext } from './Login';
+import React from 'react';
 
 interface ICart {
   [productId: string]: number
@@ -11,6 +14,7 @@ interface ICartContext {
   removeFromCart: (productId: string) => void;
   updateProductQuantity: (productId: string, quantity: number) => void;
 }
+
 export const CartContext = createContext<ICartContext>({
   cart: {},
   setCart: () => {},
@@ -20,7 +24,26 @@ export const CartContext = createContext<ICartContext>({
 })
 
 export const CartProvider = ({ children }: PropsWithChildren<{}>) => {
+  const isBrowser = typeof window !== 'undefined';
+  const { id: userId } = React.useContext(LoginContext);
+  // save different cart per user
+  const cartKey = userId ? `cart_${userId}` : 'cart_guest';
   const [cart, setCart] = useState<ICart>({});
+  const [isRendered, setIsRendered] = useState(false);
+
+  useEffect(() => { // runs only client side during initial render
+    if (isBrowser) {
+      const sessionCart = sessionStorage.getItem(cartKey);
+      setCart(sessionCart ? JSON.parse(sessionCart) : {});
+      setIsRendered(true);
+    }
+  }, [cartKey]);
+
+  useEffect(() => { // runs after initial render
+    if (isRendered) {
+      sessionStorage.setItem(cartKey, JSON.stringify(cart));
+    }
+  }, [cart, cartKey, isRendered]);
   
   // works if adding a new product or adding a duplicate
   const addToCart = (productId: string, quantity: number = 1) => {
@@ -50,6 +73,12 @@ export const CartProvider = ({ children }: PropsWithChildren<{}>) => {
         return newCart;
       });
     }
+  }
+
+  if (!isRendered) {
+    return (
+      <Loading/>
+    )
   }
 
   return (
