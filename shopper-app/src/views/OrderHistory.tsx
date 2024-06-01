@@ -59,10 +59,10 @@ export function OrderHistory() {
     if (!userName) {
       router.push('/login')
     } else {
-      async () => {
+      (async () => {
         const shippedOrders: OrdersInfo[] = await fetchOrders(id);
         setOrders(shippedOrders);
-      }
+      })()
     }
   }, [id, userName, router])
 
