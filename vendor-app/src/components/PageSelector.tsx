@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { Button, Box } from "@mui/material";
+import React from 'react';
+import { useState } from 'react';
+import { Button, Box } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material';
 
-export default function PageSelector({lastPage=true, ...rest}) {
+export default function PageSelector({ lastPage = true, ...rest }) {
   const [pageNum, setPageNum] = useState(1);
   return (
     <Box
@@ -23,11 +23,7 @@ export default function PageSelector({lastPage=true, ...rest}) {
       >
         <ArrowBackIosNewIcon />
       </Button>
-      <Typography
-        aria-label="pageNum"
-      >
-        {pageNum}
-      </Typography>
+      <Typography aria-label="pageNum">{pageNum}</Typography>
       <Button
         disabled={lastPage}
         onClick={() => {
@@ -37,5 +33,5 @@ export default function PageSelector({lastPage=true, ...rest}) {
         <ArrowForwardIosIcon />
       </Button>
     </Box>
-  )
+  );
 }

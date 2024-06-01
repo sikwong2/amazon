@@ -23,14 +23,19 @@ const StyledContainer = styled(Box)(({ theme }) => ({
     borderStyle: 'solid',
     borderWidth: '0 20px 28px 10px',
     borderColor: '#232F3E transparent transparent #232F3E',
-  }
+  },
 }));
 
-export default function AmazonChoice({...rest}) {
+export default function AmazonChoice({ ...rest }) {
   return (
     <StyledContainer {...rest}>
-      <Typography variant="body2" display='inline'> Amazon&apos;s</Typography>
-      <Typography variant="body2" display='inline' sx={{color:'#FFA41C', ml:0.5}}>Choice</Typography>
+      <Typography variant="body2" display="inline">
+        {' '}
+        Amazon&apos;s
+      </Typography>
+      <Typography variant="body2" display="inline" sx={{ color: '#FFA41C', ml: 0.5 }}>
+        Choice
+      </Typography>
     </StyledContainer>
   );
-};
+}
