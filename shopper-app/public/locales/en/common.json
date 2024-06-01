@@ -64,7 +64,10 @@
     "your-orders": "Your Orders",
     "shipped": "Shipped",
     "pending": "Pending",
-    "delivered": "Delivered"
+    "delivered": "Delivered",
+    "buy-again": "Buy Again",
+    "not-yet-shipped": "Not Yet Shipped",
+    "cancelled-orders": "Cancelled Orders"
   },
   "product": {
     "stock": {
@@ -85,5 +88,13 @@
   "footer": {
     "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
     "back-to-top": "Back to top"
+  },
+  "order": {
+    "order-placed": "ORDER PLACED",
+    "total": "TOTAL",
+    "ship-to": "SHIP TO",
+    "order-number": "ORDER #",
+    "arriving": "Arriving",
+    "delivered": "Delivered on"
   }
 }

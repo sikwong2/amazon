@@ -33,6 +33,20 @@ test('Create order', async () => {
     })
 });
 
+
+const badorder = {
+  products: ['b521def1-13a6-4242-8b79-710e3cf00b28'],
+  shopperId: 'c34e',
+}
+test('Create order', async () => {
+  await supertest(server)
+    .post('/api/v0/order')
+    .send(badorder)
+    .then((res) => {
+      expect(res.status).toBe(400)
+    })
+});
+
 test('Get Order By Id', async () => {
   await supertest(server)
     .get(`/api/v0/order/${orderId}`)
@@ -81,3 +95,4 @@ test('Delete order', async () => {
       expect(res.body.orderId).toBe(orderId);
     })
 })
+

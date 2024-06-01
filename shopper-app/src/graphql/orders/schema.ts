@@ -12,5 +12,7 @@ export class OrdersInfo {
   @Field()
   orderStatus!: string;
   @Field()
-  orderId!: string;
+    orderId!: string
+  @Field()
+    orderDate!: string
 }
