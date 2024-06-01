@@ -106,5 +106,9 @@
     "order-number": "订单号",
     "arriving": "到达",
     "delivered": "送货到达"
+  },
+  "shopper-app": {
+    "shoppers-only": "此应用程序仅供购物者使用!",
+    "return-vendor-app": "返回供应商应用程序"
   }
 }
