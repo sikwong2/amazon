@@ -3,13 +3,13 @@ DELETE FROM product;
 -- IDs are hardcoded for testing
 -- single quote: ’
 -- empty product
--- INSERT INTO product(data) VALUES (jsonb_build_object(
---   'name', '', 
---   'price', 0, 'stock', 0, 'rating', 0.0, 
---   'image', ARRAY[''], 
---   'description', ARRAY[''], 
---   'category', ARRAY['']
--- ));
+  -- INSERT INTO product(data) VALUES (jsonb_build_object(
+  --   'name', '', 
+  --   'price', 0, 'stock', 0, 'rating', 0.0, 
+  --   'image', ARRAY[''], 
+  --   'description', ARRAY[''], 
+  --   'category', ARRAY['']
+  -- ));
 
 -- Shrek DVDs
 INSERT INTO product(id, data) VALUES ('6a2212e5-af0b-4472-a724-537bdc6c571c', jsonb_build_object(
@@ -74,10 +74,10 @@ INSERT INTO product(data) VALUES (jsonb_build_object(
 ));
 INSERT INTO product(data) VALUES (jsonb_build_object(
   'name', 'Apple AirPods Max Wireless Over-Ear Headphones, Active Noise Cancelling, Transparency Mode, Personalized Audio, Dolby Atmos, Bluetooth Headphones for iPhone Gray', 
-'price', 524.00, 'stock', 5, 'rating', 4.6, 
-'image', ARRAY['https://f.media-amazon.com/images/I/81jqUPkIVRL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81S533RgkwL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71aAV-Vhg8L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/712Jl7+DA4L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91lPKrrfwYS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71urS8imiUL._AC_SL1500_.jpg'], 
-'description', ARRAY['BREATHTAKING AUDIO QUALITY — Apple-designed dynamic driver provides high-fidelity audio. Computational audio combines custom acoustic design with the Apple H1 chip and software for breakthrough listening experiences.', 'FOCUS ON WHAT’S PLAYING — Active Noise Cancellation blocks outside noise so you can immerse yourself in music.', 'HEAR THE WORLD AROUND YOU — Transparency mode lets you hear and interact with the world around you.', 'PERSONALIZED SPATIAL AUDIO — With sound that suits your unique ear shape along with dynamic head tracking, AirPods Max deliver an immersive listening experience that places sound all around you. You can also listen to select songs, shows, and movies in Dolby Atmos.', 'ACOUSTIC-FIRST DESIGN — Designed with a knit-mesh canopy and memory foam ear cushions for an exceptional over-ear fit that perfectly seals in sound.', 'MAGICAL EXPERIENCE — Pair AirPods Max by simply placing them near your device and tapping Connect on your screen. AirPods Max pause audio when you take them off. And Automatic Switching makes listening between your iPhone, iPad, and Mac completely effortless.', 'LONG BATTERY LIFE — Up to 20 hours of listening, movie watching, or talk time with Active Noise Cancellation and Personalized Spatial Audio enabled.', 'PRECISION CONTROL — Use the Digital Crown to play and pause music, to answer, end, and mute yourself on calls, and to control volume and skip between tracks.', 'A SMARTER CASE — Store in an ultra low-power state with the slim Smart Case.', 'LEGAL DISCLAIMERS — This is a summary of the main product features. See “Additional information” to learn more.'], 
-'category', ARRAY['Headphones by Apple', 'electronics', 'headphone', 'apple', 'airpods']
+  'price', 524.00, 'stock', 5, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/81jqUPkIVRL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81S533RgkwL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71aAV-Vhg8L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/712Jl7+DA4L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91lPKrrfwYS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71urS8imiUL._AC_SL1500_.jpg'], 
+  'description', ARRAY['BREATHTAKING AUDIO QUALITY — Apple-designed dynamic driver provides high-fidelity audio. Computational audio combines custom acoustic design with the Apple H1 chip and software for breakthrough listening experiences.', 'FOCUS ON WHAT’S PLAYING — Active Noise Cancellation blocks outside noise so you can immerse yourself in music.', 'HEAR THE WORLD AROUND YOU — Transparency mode lets you hear and interact with the world around you.', 'PERSONALIZED SPATIAL AUDIO — With sound that suits your unique ear shape along with dynamic head tracking, AirPods Max deliver an immersive listening experience that places sound all around you. You can also listen to select songs, shows, and movies in Dolby Atmos.', 'ACOUSTIC-FIRST DESIGN — Designed with a knit-mesh canopy and memory foam ear cushions for an exceptional over-ear fit that perfectly seals in sound.', 'MAGICAL EXPERIENCE — Pair AirPods Max by simply placing them near your device and tapping Connect on your screen. AirPods Max pause audio when you take them off. And Automatic Switching makes listening between your iPhone, iPad, and Mac completely effortless.', 'LONG BATTERY LIFE — Up to 20 hours of listening, movie watching, or talk time with Active Noise Cancellation and Personalized Spatial Audio enabled.', 'PRECISION CONTROL — Use the Digital Crown to play and pause music, to answer, end, and mute yourself on calls, and to control volume and skip between tracks.', 'A SMARTER CASE — Store in an ultra low-power state with the slim Smart Case.', 'LEGAL DISCLAIMERS — This is a summary of the main product features. See “Additional information” to learn more.'], 
+  'category', ARRAY['Headphones by Apple', 'electronics', 'headphone', 'apple', 'airpods']
 ));
 
 -- Basketballs
