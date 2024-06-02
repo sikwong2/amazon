@@ -246,7 +246,6 @@ export function Checkout() {
                   fontSize: '18px',
                   fontWeight: '700',
                   whiteSpace: 'pre',
-                  fontFamily: 'Arial'
                 }}
               >
                 1 {'    '} {t("checkout.shipping-address")}
@@ -271,7 +270,6 @@ export function Checkout() {
                   fontWeight: 'bold',
                   whiteSpace: 'pre',
                   color: '#0f1111',
-                  fontFamily: 'Arial'
                 }}
               >
                 2 {'    '} {t("checkout.payment-method")}
@@ -296,7 +294,6 @@ export function Checkout() {
               whiteSpace: 'pre',
               marginBottom: 1.5,
               color: '#0f1111',
-              fontFamily: 'Arial'
             }}
           >
             3 {'    '} {t("checkout.review-items-and-shipping")}
@@ -308,7 +305,6 @@ export function Checkout() {
                 padding: '10px',
                 margin: '20px',
                 textAlign: 'left', 
-                fontFamily: 'Arial',
                 fontSize: '16px', 
                 fontWeight: '700',
               }}>
@@ -320,7 +316,6 @@ export function Checkout() {
                 marginBottom: '0.1px',
                 color: '#007600',
                 fontWeight: '700',
-                fontFamily: 'Arial'
             }}
             > 
                {t("checkout.arriving")} {' '}
@@ -345,7 +340,6 @@ export function Checkout() {
                       fontWeight: '700',
                       fontSize: '14px',
                       overflowWrap: 'break-word',
-                      fontFamily: 'Arial'
                     }}>
                     {t("checkout.choose-delivery-option")}
                   </Typography>
