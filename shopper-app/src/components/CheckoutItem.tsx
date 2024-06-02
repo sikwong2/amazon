@@ -35,10 +35,6 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
     setSelectedValue(event.target.value);
   };
 
-  const handleDelete = (productId: string) => {
-    removeFromCart(productId);
-  }
-
   const handleProductClick = () => {
     router.push(`/product/${productId}`)
   }
@@ -47,24 +43,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
     updateProductQuantity(productId, parseInt(value));
   }
 
-  // Returns red text if low stock, green text if in stock
-  function getStock() {
-    if (product.stock < 10) {
-      return (
-        <Typography sx={{ fontSize: '0.9rem', color: '#b12704', pt: 0.5 }}>
-          {t("product.stock.only")} {product.stock} {t("product.stock.order-soon")}
-        </Typography>
-      )
-    } else {
-      return (
-        <Typography sx={{ fontSize: '0.9rem', color: '#007600', pt: 0.5 }}>
-          {t("product.stock.in-stock")}
-        </Typography>
-      )
-    }
-  }
-
-  return (
+   return (
     <>
       <Box {...rest} sx={{ display: 'flex', alignItems: 'center', width: '100%', pt: 2.5, pb: 1.5, pl: 1.5 }}>
         <Grid container>

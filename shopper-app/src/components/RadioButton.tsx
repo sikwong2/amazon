@@ -25,7 +25,6 @@ const RadioButton = ({ label, value, checked, onChange, offset, ...rest }: { lab
         sx={{ alignItems: 'center', marginRight: '0.1px'}}
       />
         <div style={{ display: "flex", marginTop: '10px', fontSize: '14px', fontWeight: '700', color: '#007600', fontFamily: 'Arial'}}>
-          <div></div>
           <DeliveryDate offset={offset}></DeliveryDate>
       </div>
       </div>
