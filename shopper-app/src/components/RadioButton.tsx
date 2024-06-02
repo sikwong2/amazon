@@ -26,7 +26,7 @@ const RadioButton = ({ label, value, checked, onChange, offset, ...rest }: { lab
           <DeliveryDate offset={offset}></DeliveryDate>
       </div>
       </div>
-      <Typography variant="body2">
+      <Typography sx={{marginLeft: "27px"}}variant="body2">
         <span style={{ fontWeight: 'bold' }}>FREE</span> {offset <= 2 ? "2 day delivery" : "amazon day delivery"}
       </Typography>
     </ThemeProvider >
