@@ -21,6 +21,7 @@ import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
 import { useRouter } from 'next/router';
 import { CartItem } from '@/components/CartItem';
+import { CheckoutItem } from '@/components/CheckoutItem';
 import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
@@ -146,37 +147,6 @@ export function Checkout() {
     fetchUserData();
   }, [id]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let total = 0;
-  //     const temp: any = []
-  //     const tempStripe: StripeProduct[] = [];
-  //     for (const productId of cart) {
-  //       const product = await fetchProduct(productId);
-  //       total += product.price;
-  //       temp.push(
-  //         <CartItem
-  //           key={productId}
-  //           productId={productId}
-  //           name={product.name}
-  //           image={product.image ? product.image[0] : undefined}
-  //           price={product.price}
-  //           rating={product?.rating}
-  //         />
-  //       )
-
-  //       tempStripe.push({
-  //         name: product.name,
-  //         price: product.price * 100,
-  //         quantity: 1
-  //       });
-  //     }
-  //     setCartItems(temp);
-  //     setStripeProducts(tempStripe);
-  //     setSubtotal(Number(Number(total).toFixed(2)));
-  //   })();
-  // }, [subtotal, cart]);
-
   useEffect(() => {
     (async () => {
       let total = 0;
@@ -187,7 +157,7 @@ export function Checkout() {
           const product = await fetchProduct(productId);
           total += (product.price * quantity);
           temp.push(
-            <CartItem
+            <CheckoutItem
               key={productId}
               productId={productId}
               product={product}
@@ -210,7 +180,7 @@ export function Checkout() {
       setCartItems(temp);
       setSubtotal(Number(Number(total).toFixed(2)));
     })()
-  }, [cart])
+  }, [subtotal, cart])
 
   return (
     <Container maxWidth="xl" style={{ paddingLeft: '13px', paddingRight: '13px' }}>
@@ -337,29 +307,9 @@ export function Checkout() {
               Arriving,
               <DeliveryDate offset='7'> </DeliveryDate>
             </div>
-              <div> {cartItems.image} </div>
-              <List>
-                {cartItems}
-              </List>
-              {/* <div>
-                choose your prime delivery option 
-              </div> */}
-            <div style={{display:'flex', height: '100px', width:'100%'}}>
-              <div style={{background: 'green', flex: '2'}}></div>
-              <div style={{background: 'red', flex: '3', display: 'flex', flexDirection:'column'}}>
-                <div style={{background: 'pink', flex: '1'}}> stuff 1 </div>
-                <div style={{background: 'pink', flex: '1'}}> stuff 2 </div>
-                <div style={{background: 'pink', flex: '1'}}> stuff 3 </div>
-              </div>
-              <div style={{background: 'blue', flex: '4', display: "flex", flexDirection: 'column'}}>
-                <div style={{flex:'1'}}> choose prime delivery option </div>
-                <div style={{display: 'flex', background: 'purple', flex: '1'}}> 
-                  <Radio></Radio>
-                  <DeliveryDate offset='7'></DeliveryDate>
-                </div>
-              </div>
-            </div>
-
+            <List>
+              {cartItems}
+            </List>
           </CustomCard>
           
           <CustomCard>
