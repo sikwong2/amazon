@@ -58,6 +58,27 @@ INSERT INTO product(id, data) VALUES ('88db3140-54d2-4f1f-a552-7454bf55dcaf', js
   'category', ARRAY['apple', 'sale', 'electronics']
 ));
 
+-- Apple
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Apple AirTag 4 Pack', 'price', 78.99, 'stock', 1000, 'rating', 4.8, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71gY9E+cTaS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71JJueCRWJS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91bsFWILPGS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81Lq1AfCYpS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZMyXWM9CS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YziLCAJSS._AC_SL1500_.jpg'], 
+  'description', ARRAY['Keep track of and find your items alongside friends and devices in the Find My app', 'Simple one-tap setup instantly connects AirTag with your iPhone or iPad', 'Play a sound on the built-in speaker to help find your things, or just ask Siri for help', 'Precision Finding with Ultra Wideband technology leads you right to your nearby AirTag on select iPhone models', 'Find items further away with the help of hundreds of millions of Apple devices in the Find My network', 'Put AirTag into Lost Mode to be automatically notified when it’s detected in the Find My network', 'All communication with the Find My network is anonymous and encrypted for privacy, Location data and history are never stored on AirTag', 'Replaceable battery lasts over a year', 'AirTag is IP67 water and dust resistant', 'Make AirTag yours with a range of colorful accessories, sold separately'], 
+  'category', ARRAY['AirTags', 'apple', 'sale', 'electronics']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Apple AirPods (2nd Generation) Wireless Ear Buds, Bluetooth Headphones with Lightning Charging Case Included, Over 24 Hours of Battery Life, Effortless Setup for iPhone', 
+  'price', 89.00, 'stock', 1000, 'rating', 4.7, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/7120GgUKj3L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71NLN1HgFkL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71NTi82uBEL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71QT9PrfxyL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/41aaZ7P-48L._AC_SL1000_.jpg', 'https://f.media-amazon.com/images/I/71djnhmfy-L._AC_SL1500_.jpg'], 
+  'description', ARRAY['HIGH-QUALITY SOUND — Powered by the Apple H1 headphone chip, AirPods (2nd generation) deliver rich, vivid sound.', 'EFFORTLESS SETUP — After a simple one-tap setup, AirPods are automatically on and always connected. They sense when they’re in your ears and pause when you take them out. And sound seamlessly switches between your iPhone, Apple Watch, Mac, iPad, and Apple TV.', 'VOICE CONTROL WITH SIRI — Just say “Hey Siri” for assistance without having to reach for your iPhone.', '24-HOUR BATTERY LIFE — More than 24 hours total listening time with the Charging Case.', 'AUDIO SHARING — Easily share audio between two sets of AirPods on your iPhone, iPad, iPod touch, or Apple TV.', 'LEGAL DISCLAIMERS — This is a summary of the main product features. See “Additional information” to learn more.'], 
+  'category', ARRAY['Airpods by Apple', 'apple', 'sale', 'electronics', 'airpods']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Apple AirPods Max Wireless Over-Ear Headphones, Active Noise Cancelling, Transparency Mode, Personalized Audio, Dolby Atmos, Bluetooth Headphones for iPhone Gray', 
+'price', 524.00, 'stock', 5, 'rating', 4.6, 
+'image', ARRAY['https://f.media-amazon.com/images/I/81jqUPkIVRL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81S533RgkwL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71aAV-Vhg8L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/712Jl7+DA4L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91lPKrrfwYS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71urS8imiUL._AC_SL1500_.jpg'], 
+'description', ARRAY['BREATHTAKING AUDIO QUALITY — Apple-designed dynamic driver provides high-fidelity audio. Computational audio combines custom acoustic design with the Apple H1 chip and software for breakthrough listening experiences.', 'FOCUS ON WHAT’S PLAYING — Active Noise Cancellation blocks outside noise so you can immerse yourself in music.', 'HEAR THE WORLD AROUND YOU — Transparency mode lets you hear and interact with the world around you.', 'PERSONALIZED SPATIAL AUDIO — With sound that suits your unique ear shape along with dynamic head tracking, AirPods Max deliver an immersive listening experience that places sound all around you. You can also listen to select songs, shows, and movies in Dolby Atmos.', 'ACOUSTIC-FIRST DESIGN — Designed with a knit-mesh canopy and memory foam ear cushions for an exceptional over-ear fit that perfectly seals in sound.', 'MAGICAL EXPERIENCE — Pair AirPods Max by simply placing them near your device and tapping Connect on your screen. AirPods Max pause audio when you take them off. And Automatic Switching makes listening between your iPhone, iPad, and Mac completely effortless.', 'LONG BATTERY LIFE — Up to 20 hours of listening, movie watching, or talk time with Active Noise Cancellation and Personalized Spatial Audio enabled.', 'PRECISION CONTROL — Use the Digital Crown to play and pause music, to answer, end, and mute yourself on calls, and to control volume and skip between tracks.', 'A SMARTER CASE — Store in an ultra low-power state with the slim Smart Case.', 'LEGAL DISCLAIMERS — This is a summary of the main product features. See “Additional information” to learn more.'], 
+'category', ARRAY['Headphones by Apple', 'electronics', 'headphone', 'apple', 'airpods']
+));
 
 -- Basketballs
 INSERT INTO product(id, data) VALUES ('86b0b448-fa22-4235-a88f-211e7619d44b', jsonb_build_object(
@@ -105,6 +126,36 @@ INSERT INTO product(id, data) VALUES ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', js
   'category', ARRAY['home', 'sale', 'furniture', 'lamp']
 ));
 
+-- Furniture 
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Der Rose 4 Packs Fake Plants Mini Artificial Greenery Potted Plants for Home Decor Indoor Office Table Room Farmhouse', 
+  'price', 9.99, 'stock', 1000, 'rating', 4.5, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/814NZrz8EfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YUh1Ig0cL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81UllOVS0SL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81NMIJaQQrL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/714BuQE5sNL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71J8lLcvgkL._AC_SL1500_.jpg'], 
+  'description', ARRAY['【Package Contains】 4 kinds of faux plants indoor, these artificial potted plants are made of friendly plastic', '【Perfect Size】The fake house plants are 7" tall and 2.5" wide, and the pot is 2.5" tall and 2.9" wide The size is just right for room decor', '【Long Life Span】The fake potted plants is designed with unique craftsmanship and looks like real. It doesn’t require special care, and it can maintain its fresh appearance', '【Fake Plants Decor】The small plants can be used in any scene. You can put these plants on windowsill, office,kitchen,desk, bathroom or put them in office to decorate your place well', '【Warm Tips】The leaves of these fake green plants can be adjusted freely. The leaves may be squeezed due to transportation. When you receive them, please comb the leaves to make them look plump and lush'], 
+  'category', ARRAY['Fake Plants', 'sale', 'plants', 'furniture']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Small Table Lamp for Bedroom - Bedside Lamps for Nightstand, Minimalist Night Stand Light Lamp with Square Fabric Shade, Desk Reading Lamp for Kids Room Living Room Office Dorm', 
+  'price', 9.48, 'stock', 10, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/61xxhaeUKIL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OK2yiVw5L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OQHbKCvJL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71D3pJ5j7mL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/7104yZrIByL._AC_SL1500_.jpg'], 
+  'description', ARRAY['✪CHOICE FOR BETTER LIFE-The Cord, Socket and Plug of Aooshine bedside table lamp are UL listed. By giving products the listed, you don’t have to worry about the material problem. This Nightstand lamp comes with ON/OFF switch control, easy to install and use. Please note not included bulb. Please use the LED bulb only.', '✪MINIMALIST DESIGN-The elegant sleek look of this table lamp elevates the aesthetic of your home, an open-top cloth shade of beige linen hovers over a petite black base. The size and the design make this accent lamp a splendid accoutrement for guest cottages and professional offices alike.', '✪Comfortable Glow-Our small desk Lamp creates a nice and comforting feeling in the house when spending time with your family as the linen fabric shade softens the light. Lamps for nightstand is Not Dimmable.', '✪VERSATILE-With E26 universal standard base(Bulb not included), this minimalist rectangle table lamp is best for bedroom, living room, baby room, office, coffee table, college dorm, cafe, bookcase in your library or den. This night stand lights is also a great gift for your family and friend.(Please use the LED bulb, max watt of the LED bulb is 20W)', '✪BUY WITH CONFIDENCE-Having adhered the most demanding quality control procedures. Any problems, please tell us directly, and we will provide best service as we can.'], 
+  'category', ARRAY['Bedside Table Lamps', 'furniture', 'home', 'lamp']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'SUNMORY Floor Lamp with Shelves, Modern Square Standing Lamp with 3 Color Temperature Bulb, Corner Display Bookshelf Lamp for Living Room and Bedroom(Black)', 
+  'price', 45.99, 'stock', 100, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71YNhyHG-IL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/713ckbMCzAL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ltoje4a+L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/41rwaPMyeGL._AC_SL1230_.jpg', 'https://f.media-amazon.com/images/I/715faTljdeS._AC_SL1500_.jpg'], 
+  'description', ARRAY['【3-Color Temperatures LED Bulb Included】SUNMORY shelf lamp includes a 9 Watt, 800 lumen power saving LED bulb ,so you don’t need to buy extra bulb.The LED lamp bulb is 3 color temp : 3000K/5000K/4000K.You can switch different color temperatures according to different scenes.Also can work with smart outlets that are Alexa, Google Home Assistant, or Apple HomeKit enabled(requires smart outlet sold separately).', '【Non-glaring Cloth Lampshade】This shelf floor lamp is equipped with a high-quality off-white cloth lampshade and opens upwards. With the built-in three-color temperature bulb, it can be used for both functional lighting and ambient lighting.', '【Storage & Display】This tall lamp has 3 layers of high density fiberboard, each with a maximum weight of more than 50 pounds. On the shelf, you can put decorations such as vases and photo frames, as well as daily necessities such as books and mobile phones. So it can be used as a corner lamp to decorate your living room or as a skinny nightstand with lamp to bring you life convenience.It is very suitable as a gift for Mothers Day, Thanksgiving Day, or Christmas.', '【Minimalist Design & Versatile Style】The contemporary stand up lamp matches asian, mid century modern, rustic, country and farmhouse decor thanks to its diverse lighting effects and simple lines.', '【Easy to Assemble】SUNMORY shelf floor lamp has been improved in craftsmanship and simplified the installation steps. Compared with other similar products, it will save you 30% percent of installation time.The accompanying package comes with the tools needed for assembly and an instruction manual containing text and video installation steps. Simple repetitive operations are very easy for most people. Warm Tip: Please tighten each post to keep the whole lamp stable.'], 
+  'category', ARRAY['Floor Lamps by SUNMORY', 'lamp', 'home', 'furniture']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'LED Floor Lamp for Living Room, Dimmable Standing Lamps with Foot Switch,Remote Custom Color Temperature Black Pole Lamp with Lampshade,12W Led Bulb Tall Lamps for Bedroom Office Kid Room', 
+  'price', 35.99, 'stock', 100, 'rating', 4.8, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71sGZjaa6kL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZofmHnMfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71tNSdGeSUL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71o8KbxGhvL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/612IRIotvSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71pl6QBEJeL._AC_SL1500_.jpg'], 
+  'description', ARRAY['Multi-Function Dimmable Lamp: Vertical lamp includes an 12W dimmable LED bulbs that can be set to different color temperatures (3000K-6500K). 5%-100% dimmable brightness can be used to create different atmospheres and customize your favorite bedroom floor lamp.', 'Types Control: 50ft distance remote control precisely control the LED floor lamps even if there are obstacles. The magnetic remote attracts iron firmly and won’t drop. Sensitive Foot Switch.Handy to be used.', 'Stable Base&Linen LampShade: The newly upgraded tall lamps for living room has a metal base that is heavy enough to keep it firmly placed. The lampshade is made of linen material, which effectively blocks some of the light emitted from the bulb, making the light comfortable and soft.', 'Timer&Night Mode: After setting timer, the light will be turned off automatically to save energy. Night light mode creates a soft the comfort atmosphere to help you and your family sleep in peace.', 'The Perfect Gift:Luckystyle standing lamp is a good choice as the gift for wedding, moving, new baby or any festival. The floor lamp features a modern minimalist design that fits any decor.Decorations for bedrooms, living rooms, nurseries, offices and studies.'], 
+  'category', ARRAY['LED Floor Lamps', 'lamp', 'home', 'furniture']
+));
+
 -- Adidas
 INSERT INTO product(id, data) VALUES ('2f804cfb-c81a-43e2-9e78-9160332e46bd', jsonb_build_object(
   'name', 'adidas Women’s Grand Court 2.0 Tennis Shoe', 'price', 59.99, 'stock', 40, 'rating', 4.6, 
@@ -135,6 +186,26 @@ INSERT INTO product(id, data) VALUES ('91341777-8bfc-4dcf-97a8-29c6542c744e', js
   'image', ARRAY['https://m.media-amazon.com/images/I/41QXpdDWq-L._AC_SL1000_.jpg', 'https://m.media-amazon.com/images/I/41TBMZ+z8oL._AC_.jpg', 'https://m.media-amazon.com/images/I/31uCcQwUeeL._AC_.jpg', 'https://m.media-amazon.com/images/I/31zTdnN1KJL._AC_.jpg', 'https://m.media-amazon.com/images/I/31-3HRbtQpL._AC_.jpg', 'https://m.media-amazon.com/images/I/41IodvHk7PL._AC_.jpg', 'https://m.media-amazon.com/images/I/51-WjUCSFjL._AC_.jpg', 'https://m.media-amazon.com/images/I/61p4C1dZ4UL._AC_.jpg'], 
   'description', ARRAY['Adjustable fit; Hook-and-loop closure', 'Single-bandage EVA upper for lightweight comfort', 'EVA massage nubs on footbed', 'Cloudfoam midsole and memory foam sockliner for step-in comfort and superior cushioning'], 
   'category', ARRAY['Sandals', 'adidas', 'sports', 'clothing', 'shoes', 'unisex']
+));
+
+-- Nike
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Nike Air Force 1 Low Women’s', 'price', 82.43, 'stock', 1000, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/61VTTRwFUdL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61mkgKBrwPL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71qFlQucWlL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71eRiDk-W0L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71kFpb7CTGL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61CKnwS9B3L._AC_SL1500_.jpg'], 
+  'description', ARRAY['Closure.type : Lace-Up', 'Heel.type : Flat', 'Height map : Low Top', 'Material : Nike Materials', 'Outer.material : Nike Materials'], 
+  'category', ARRAY['women’s shoes', 'nike', 'sports', 'shoes', 'clothing']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Nike Men’s Sneaker,Running Shoes', 'price', 104.95, 'stock', 10000, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71GMZVTMcsL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71kU7lrqw3L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71SMFDbzZeL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/718fsIS2PuL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61vNVHhyLuL._AC_SL1500_.jpg'], 
+  'description', ARRAY['Rubber sole'], 
+  'category', ARRAY['men’s shoes', 'sports', 'nike', 'shoes', 'clothing']
+));
+INSERT INTO product(data) VALUES (jsonb_build_object(
+  'name', 'Nike mens Blazer Mid 77 Vintage', 'price', 94.98, 'stock', 10, 'rating', 4.6, 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71aw2Z+2WML._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61RgxlQ24BL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71h5bWbBaSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61wla26S4lL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61wla26S4lL._AC_SL1500_.jpg'], 
+  'description', ARRAY['Vintage leather and synthetic upper provides classic Blazer Mid 77 style with added comfort', 'Autoclave construction fuses midsole and outsole for streamlined retro look', 'Non-marking rubber outsole offers excellent traction and durability', 'Foam tongue and exposed foam collar provide throwback details', 'Lace-up closure allows a snug, adjustable fit'], 
+  'category', ARRAY['Shoes by Nike', 'sports', 'nike', 'clothing']
 ));
   
 -- Smartphones
