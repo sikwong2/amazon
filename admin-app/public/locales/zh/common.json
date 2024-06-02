@@ -63,5 +63,10 @@
     "no-vendors": "没有待处理的供应商",
     "no-keys": "没有键",
     "title": "管理门户"
+  },
+  "admin-app": {
+    "admins-only": "此应用程序仅供管理员使用!",
+    "return-vendor-app": "返回供应商应用程序",
+    "return-shopper-app": "返回购物者应用程序"
   }
 }

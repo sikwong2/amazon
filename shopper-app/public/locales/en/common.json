@@ -109,5 +109,10 @@
     "order-number": "ORDER #",
     "arriving": "Arriving",
     "delivered": "Delivered on"
+  },
+  "shopper-app": {
+    "shoppers-only": "This app is for shoppers only!",
+    "return-vendor-app": "Return to Vendor App",
+    "return-admin-app": "Return to Admin App"
   }
 }

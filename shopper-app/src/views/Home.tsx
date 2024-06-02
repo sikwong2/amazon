@@ -13,6 +13,8 @@ import Footer from '@/components/Footer';
 import MultiImageCarousel from '@/components/MultiCarousel';
 
 import { Product } from '@/graphql/product/schema';
+import { RedirectNonShopper } from './RedirectNonShopper';
+import { LoginContext } from '@/context/Login';
 
 const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
@@ -55,6 +57,7 @@ export function Home() {
   const [category2, setCategory2] = React.useState<Image[]>([]);
   const [category3, setCategory3] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
+  const loginContext = React.useContext(LoginContext);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -140,6 +143,10 @@ export function Home() {
       </Box>
     </CustomCard>
   );
+
+  if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
+    return <RedirectNonShopper />;
+  }
 
   return (
     <React.Fragment>
