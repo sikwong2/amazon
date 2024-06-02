@@ -140,6 +140,9 @@
     "2-day-delivery": "2 day delivery",
     "amazon-day-delivery": "amazon day delivery",
     "choose-delivery-option": "Choose your delivery option:",
-    "sold-by" : "Sold By: Amazon.com's Services, Inc"
+    "sold-by" : "Sold By: Amazon.com's Services, Inc",
+    "are-you-sure": "Are you sure you want to return to your Shopping Cart?",
+    "stay-in-checkout": "Stay in checkout",
+    "return-to-cart": "Return to Cart"
   }
 }

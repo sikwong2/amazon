@@ -307,7 +307,7 @@ export function Checkout() {
             bottom: '77%',
             transform: 'translateX(-50%)',  
           }}>
-            <Typography sx={{fontSize: '14px'}}> Are you sure you want to return to your Shopping Cart? </Typography>
+            <Typography sx={{fontSize: '14px'}}> {t("checkout.are-you-sure")} </Typography>
             <div style={{display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px'}}>
               <CustomButton label="stay in checkout" 
               pill
@@ -316,7 +316,7 @@ export function Checkout() {
                 setShowPopover(false);
               }}
               sx={{marginRight: '20px', flex: '1', border: '4px', fontSize: '12px'}}> 
-              Stay in checkout 
+              {t("checkout.stay-in-checkout")}
               </CustomButton>
               <CustomButton label="return to cart" 
               pill
@@ -325,7 +325,7 @@ export function Checkout() {
                 router.push('/');
               }}
               sx={{flex: '1', fontSize: '12px'}}> 
-              Return to Cart
+              {t("checkout.return-to-cart")}
               </CustomButton>
              </div>
           </CustomCard>

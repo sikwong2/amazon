@@ -140,6 +140,9 @@
     "2-day-delivery": "2 天送达",
     "amazon-day-delivery": "亚马逊当日送达", 
     "choose-delivery-option": "选择您的送货方式",
-    "sold-by": "销售者：亚马逊服务公司"
+    "sold-by": "销售者：亚马逊服务公司",
+    "are-you-sure": "您确定要返回购物车吗？",
+    "stay-in-checkout":"留在结账处",
+    "return-to-cart": "返回购物车"
   }
 }
