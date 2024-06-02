@@ -6,12 +6,10 @@ import {
   List,
   ListItem,
   Typography,
-  autocompleteClasses,
   Table,
   TableBody,
   TableRow,
   TableCell,
-  TableContainer,
 } from '@mui/material';
 import { useContext, useState } from 'react';
 import CustomCard from '../components/Card';
@@ -19,8 +17,6 @@ import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { Product } from '@/graphql/product/schema';
-import { useRouter } from 'next/router';
-import { CartItem } from '@/components/CartItem';
 import { CheckoutItem } from '@/components/CheckoutItem';
 import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
@@ -29,9 +25,7 @@ import { LoginContext } from '@/context/Login';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env' });
 import DeliveryDate from '../components/DeliveryDate'
-import Radio from '@mui/material/Radio';
 import { StripeProduct } from '@/graphql/stripe/schema';
-import Divider from '@mui/material/Divider'
 import LockButton from '../components/LockButton'
 
 interface UserDetails {
@@ -129,7 +123,6 @@ export function Checkout() {
   const [memberName, setMemberName] = useState('');
   const [address, setAddress] = useState('');
   const [subtotal, setSubtotal] = useState(0);
-  const router = useRouter();
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
 
@@ -217,7 +210,7 @@ export function Checkout() {
             marginBottom: 10,
           }}
         >
-          Checkout
+          {t("checkout.title")}
         </div>
         <div
         style={{
@@ -244,7 +237,7 @@ export function Checkout() {
                   fontFamily: 'Amazon Ember',
                 }}
               >
-                1 {'    '} Shipping address
+                1 {'    '} {t("checkout.shipping-address")}
               </Typography>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -268,13 +261,13 @@ export function Checkout() {
                   color: '#0f1111',
                 }}
               >
-                2 {'    '} Payment method
+                2 {'    '} {t("checkout.payment-method")}
               </Typography>
             </Grid>
             <Grid item xs={12} lg={6}>
               <List sx={{ padding: 0, marginTop: 0.3 }}>
                 <ListItem sx={{ padding: 0, margin: 0, fontWeight: 'bold' }}>
-                  Paying with ****
+                  {t("checkout.credit-card")}
                 </ListItem>
               </List>
             </Grid>
@@ -292,7 +285,7 @@ export function Checkout() {
               color: '#0f1111',
             }}
           >
-            3 {'    '} Review items and shipping
+            3 {'    '} {t("checkout.review-items-and-shipping")}
           </Typography>
           <CustomCard sx={{ display: 'block', minHeight: '100%', width: '95%', marginLeft: '35px' }}>
             <div 
@@ -305,7 +298,7 @@ export function Checkout() {
                 fontSize: '16px', 
                 fontWeight: '700',
               }}>
-              Select FREE Amazon Day Delivery to receive orders in fewer boxes on a single day.
+               {t("checkout.ad")}
             </div>
             <div
             style = {{
@@ -314,7 +307,7 @@ export function Checkout() {
                 fontWeight: '700'
             }}
             > 
-              Arriving, {' '}
+               {t("checkout.arriving")} {' '}
               <DeliveryDate offset='7'> </DeliveryDate>
             </div>
             <List>
@@ -343,31 +336,31 @@ export function Checkout() {
                     placeOrder(stripeProducts);
                   }}
                 >
-                  Place your Order
+                 {t("checkout.place-order")} 
                 </CustomButton>
               </div>
               <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
                 <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
-                {`Order total: $${subtotal}`} 
+                {t("checkout.order-total")} {`${subtotal}`} 
                 </div> 
                 <div style={{flex: '1'}}>
-                  <Typography sx={{fontSize: '11px'}}> By placing your order, you agree to cse187Project's {' '} 
+                  <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
                     <CustomLink
                       label="privacy-notice"
                       variant="blue2"
                       href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496"
                     >
-                      privacy notice
+                      {t("checkout.privacy-notice")}
                     </CustomLink>
-                    {' '} and {' '}
+                    {' '} {t("checkout.and")} {' '}
                     <CustomLink
                       label="privacy-notice"
                       variant="blue2"
                       href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GLSBYFE9MGKKQXXM"
                     >
-                      conditions of use
+                      {t('signup.conditions')}
                     </CustomLink> 
-                    .
+                    {t("checkout.period")}
                   </Typography>
                 </div>
               </div>
@@ -376,25 +369,25 @@ export function Checkout() {
           <CustomDivider sx={{ marginTop: 1.5 }}></CustomDivider>
           <CustomDivider></CustomDivider>
           <Typography sx={{marginTop: '20px', fontSize: '12px', color: 'text.secondary'}}>
-            Need help? Check our {' '}
+            {t("checkout.footer-part-2")} {' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_helpfooter_pri?nodeId=GWZRWJGNW45SAWPY&ie=UTF8&ref_=chk_help_helpfooter_pri"
             >
-              Help pages {' '}
+              {t("checkout.help-pages")} {' '}
             </CustomLink> 
-            or {' '}
+            {t("checkout.and")}{' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/hz/contact-us/foresight/hubgateway"
             >
-              contact us
+              {t("checkout.contact-us")} 
             </CustomLink> 
           </Typography>
           <Typography sx={{ marginTop: '5px', fontSize: '12px', color: 'text.secondary' }}>
-            For an item sold by Amazon.com: When you click the "Place your order" button, we'll send you an email message acknowledging receipt of your order. Your contract to purchase an item will not be complete until we send you an email notifying you that the item has been shipped.
+            {t("checkout.footer-part-3")}
           </Typography>
           <Typography sx={{ marginTop: '10px', fontSize: '12px', color: 'text.secondary' }}>
             <CustomLink
@@ -402,28 +395,28 @@ export function Checkout() {
               variant="blue2"
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_statetaxfooter_pri?ie=UTF8&nodeId=202029100"
             >
-              important information about sales tax you may owe in your state
+              {t("checkout.important-info")}
             </CustomLink>  
           </Typography>
           <Typography sx={{ marginTop: '5px', fontSize: '12px', color: 'text.secondary' }}>
-            You may return new, unopened merchandise in original within 30 days of delivery. Exceptions and restrictions apply. See
-            cse187Project's {' '}
+            {t("checkout.footer-part-4")}
+            {' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_returnsfooter_pri?nodeId=GNW5VKFXMF72FFMR&ie=UTF8&ref_=chk_help_returnsfooter_pri"
             >
-              Returns Policy.
+              {t("checkout.return-policy")}
             </CustomLink>  
           </Typography>
           <Typography sx={{ marginTop: '10px', marginBottom: '40px', fontSize: '12px', color: 'text.secondary' }}>
-            Need to add more items to your order? Continue shopping on the {' '}
+             {t("checkout.footer-part-5")}{' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/?tag=amazusnavi-20&hvadid=675149237887&hvpos=&hvnetw=g&hvrand=2498626952770057035&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031944&hvtargid=kwd-10573980&ref=pd_sl_7j18redljs_e&hydadcr=28883_14649097&gad_source=1"
             >
-              ucsc-amazon.com homepage
+              {t("checkout.ucsc-amazon-homepage")} 
             </CustomLink>
           </Typography>
         </Container>
@@ -447,14 +440,14 @@ export function Checkout() {
                   placeOrder(stripeProducts);
                 }}
               >
-                Place your Order
+                {t("checkout.place-order")}
               </CustomButton>
             </Typography>
             <Typography
               variant="body1"
               sx={{ mt: 1, mb: 1, fontSize: '12px', textAlign: 'center', ml: '20px', mr: '20px' }}
             >
-              By placing your order, you agree to cse187Project's {' '} 
+              {t("checkout.footer-part-1")} {' '} 
               <CustomLink
                 label="privacy-notice"
                 variant="blue2"
@@ -462,7 +455,7 @@ export function Checkout() {
               >
                 {t('signup.privacy-notice')}
               </CustomLink>
-              &nbsp; and &nbsp;
+              &nbsp; {t("checkout.and")} &nbsp;
               <CustomLink
                 label="conditions-of-use"
                 variant="blue2"
@@ -483,14 +476,14 @@ export function Checkout() {
                 mb: '13px',
               }}
             >
-              Order Summary
+              {t("checkout.order-summary")}
             </Typography>
 
             <Table sx={{ border: 'none' }}>
               <TableBody>
                 <TableRow sx={{ mb: '1px' }}>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    Items:
+                   {t("checkout.items")} 
                   </TableCell>
                   <TableCell
                     align="right"
@@ -501,7 +494,7 @@ export function Checkout() {
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    Shipping & handling:
+                   {t("checkout.shipping-handling")} 
                   </TableCell>
                   <TableCell align="right" sx={{ paddingBottom: '1px', paddingTop: '1px' }}>
                     $0.00
@@ -509,7 +502,7 @@ export function Checkout() {
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    Total before tax:
+                    {t("checkout.before-tax")}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -520,7 +513,7 @@ export function Checkout() {
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    Estimated tax to be collected:
+                   {t("checkout.estimated-tax-collected")} 
                   </TableCell>
                   <TableCell
                     align="right"
@@ -547,7 +540,7 @@ export function Checkout() {
                       fontWeight: '700',
                     }}
                   >
-                    Order Total:
+                   {t("checkout.order-total-2")} 
                   </TableCell>
                   <TableCell
                     align="right"

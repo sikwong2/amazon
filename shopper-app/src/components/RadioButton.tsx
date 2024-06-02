@@ -5,8 +5,11 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import DeliveryDate from '../components/DeliveryDate';
 import { Typography } from '@mui/material';
+import { useTranslation } from 'next-i18next';
+
 
 const RadioButton = ({ label, value, checked, onChange, offset, ...rest }: { label?: string, value?: string, checked?: boolean, onChange: React.ChangeEventHandler<HTMLInputElement>, offset: any }) => {
+  const { t } = useTranslation('common');
   return (
     <ThemeProvider theme={radioButtonTheme}>
       <div style={{display: "flex"}}>
@@ -27,7 +30,7 @@ const RadioButton = ({ label, value, checked, onChange, offset, ...rest }: { lab
       </div>
       </div>
       <Typography sx={{marginLeft: "27px"}}variant="body2">
-        <span style={{ fontWeight: 'bold' }}>FREE</span> {offset <= 2 ? "2 day delivery" : "amazon day delivery"}
+        <span style={{ fontWeight: 'bold' }}>{t("checkout.FREE")}</span> {offset <= 2 ? t("checkout.2-day-delivery") : t("checkout.amazon-day-delivery")}
       </Typography>
     </ThemeProvider >
   );

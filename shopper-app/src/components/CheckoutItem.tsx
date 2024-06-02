@@ -2,11 +2,8 @@ import { Box, Typography, useTheme, useMediaQuery, Radio, FormControlLabel, Radi
 import { Grid } from "@mui/material";
 import { useContext, useState } from "react";
 import { CartContext } from "@/context/Cart";
-import CustomDivider from "./Divider";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import RandomDeliveryDate from "./DeliveryDate";
-import CustomLink from "./Link";
 import CustomDropdown from "./Dropdown";
 import RadioButton from "./RadioButton"
 
@@ -124,7 +121,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                   />
                 </Box>
                 <Typography sx={{fontSize:'11px'}} color="textSecondary">
-                  Sold By: cse187Project.com Services, Inc
+                  {t("checkout.sold-by")} 
                 </Typography>
               </Box> 
               <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex:'1' }}>
@@ -141,7 +138,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                       fontSize: '14px',
                       overflowWrap: 'break-word',
                     }}>
-                    Choose your delivery option
+                    {t("checkout.choose-delivery-option")}
                   </Typography>
                   <RadioGroup
                     name="deliveryOptionGroup"
