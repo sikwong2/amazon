@@ -5,6 +5,7 @@
   "shopper-account": "Create a shopper account",
   "vendor-app": {
     "return-shopper-app": "Return to Shopper App",
+    "return-admin-app": "Return to Admin App",
     "vendors-only": "This app is for vendors only!",
     "vendor-account-approval": "Vendor Account Approval",
     "status-pending": "Status pending"

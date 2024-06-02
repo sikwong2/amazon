@@ -89,6 +89,37 @@ export class ProductService {
     return products;
   }
 
+  public async getByName(name: string, page: number, size: number, order: Order, sort: Sort): Promise<Product[]> {
+    let select;
+    if (order === 'price' || order === 'rating' || order === 'stock') {
+      select = `SELECT id, data FROM product 
+      WHERE (data->>'name' ILIKE '%' || $1 || '%' OR data->>'category' ILIKE '%' || $1 || '%')
+      ORDER BY (data->>'${order}')::numeric ${sort} 
+      LIMIT $2 OFFSET $3`;
+    } else {
+      select = `SELECT id, data FROM product 
+      WHERE (data->>'name' ILIKE '%' || $1 || '%' OR data->>'category' ILIKE '%' || $1 || '%')
+      ORDER BY (data->>'${order}') ${sort} 
+      LIMIT $2 OFFSET $3`;
+    }
+
+    const query = {
+      text: select,
+      values: [name, size, `${page * 30}`]
+    }
+    const {rows} = await pool.query(query);
+    const products: Product[] = [];
+    for (const row of rows) {
+      products.push({
+        id: row.id,
+        data: {
+          ...row.data
+        }
+      })
+    }
+    return products;
+  }
+  
   public async makeProduct(product: NewProduct): Promise<Product | undefined> {
     try {
       const query = {

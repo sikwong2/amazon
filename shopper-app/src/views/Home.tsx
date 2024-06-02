@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/material';
 import ImageCarousel from '@/components/Carousel';
 import type { Image } from '@/components/Carousel';
@@ -10,8 +10,11 @@ import CustomCard from '@/components/Card';
 import CustomLink from '@/components/Link';
 import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
+import MultiImageCarousel from '@/components/MultiCarousel';
 
 import { Product } from '@/graphql/product/schema';
+import { RedirectNonShopper } from './RedirectNonShopper';
+import { LoginContext } from '@/context/Login';
 
 const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
@@ -54,6 +57,10 @@ export function Home() {
   const [category2, setCategory2] = React.useState<Image[]>([]);
   const [category3, setCategory3] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
+  const loginContext = React.useContext(LoginContext);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +73,7 @@ export function Home() {
           title: 'sale',
         }));
         setAds(ad);
-        const category1products = await fetchProducts('movie');
+        const category1products = await fetchProducts('furniture');
         const cat1 = category1products.map((product) => ({
           image: product.image[0],
           id: product.id,
@@ -108,7 +115,7 @@ export function Home() {
         maxWidth: '300px',
         alignItems: 'start',
         justifyContent: 'center',
-        display: 'flex',
+        display: (isSmallScreen || isMedScreen) ? 'none' : 'flex',
         flexGrow: 1,
       }}
     >
@@ -137,6 +144,10 @@ export function Home() {
     </CustomCard>
   );
 
+  if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
+    return <RedirectNonShopper />;
+  }
+
   return (
     <React.Fragment>
       <TopBar />
@@ -153,22 +164,32 @@ export function Home() {
             alignItems="center"
             bgcolor="#FFFFFF"
           >
-            <ImageCarousel images={ads} height={400} />
+            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 400} />
           </Box>
-          <Grid container spacing={0} justifyContent="flex-start">
+          <Grid container spacing={0} justifyContent={isSmallScreen ? 'center' : 'flex-start'}>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={category1} title={t('home.pick-up')} />
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <CategoryCard images={category1} title={t('home.pick-up')} />
+              </Box>
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={category2} title={t('home.keep-shopping')} />
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <CategoryCard images={category2} title={t('home.keep-shopping')} />
+              </Box>
             </Grid>
             <Grid item xs={12} sm={4} md={3}>
-              <CategoryCard images={category3} title={t('home.top-deal')} />
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <CategoryCard images={category3} title={t('home.top-deal')} />
+              </Box>
             </Grid>
             <Grid item xs={0} sm={0} md={3}>
               {easyReturns}
             </Grid>
           </Grid>
+          <MultiImageCarousel images={ads} height={200} title='Top sellers in Travel'/>
+          <MultiImageCarousel images={category1} height={200} title='Top sellers in Furniture'/>
+          <MultiImageCarousel images={category3} height={200} title='Top sellers in Sports'/>
+
         </Box>
       </Box>
       <Footer />

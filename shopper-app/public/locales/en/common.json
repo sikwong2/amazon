@@ -56,15 +56,31 @@
   "cart": {
     "proceed-to-checkout": "Proceed to Checkout",
     "shopping-cart": "Shopping Cart",
-    "items": "items",
+    "item-s": "items",
     "item": "item",
-    "subtotal": "Subtotal"
+    "subtotal": "Subtotal",
+    "qualify-for-free-shipping": "Part of your order qualifies for FREE Shipping.",
+    "available-at-checkout": "available at checkout",
+    "choose-option": "Choose this option at checkout.",
+    "see-details": "See details",
+    "contains-gift": "This order contains a gift",
+    "price": "Price",
+    "items": {
+      "climate": "Climate Pledge Friendly",
+      "delete": "Delete"
+    }
+  },
+  "search": {
+    "results-for": "Results for"
   },
   "history": {
     "your-orders": "Your Orders",
     "shipped": "Shipped",
     "pending": "Pending",
-    "delivered": "Delivered"
+    "delivered": "Delivered",
+    "buy-again": "Buy Again",
+    "not-yet-shipped": "Not Yet Shipped",
+    "cancelled-orders": "Cancelled Orders"
   },
   "product": {
     "stock": {
@@ -85,5 +101,18 @@
   "footer": {
     "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
     "back-to-top": "Back to top"
+  },
+  "order": {
+    "order-placed": "ORDER PLACED",
+    "total": "TOTAL",
+    "ship-to": "SHIP TO",
+    "order-number": "ORDER #",
+    "arriving": "Arriving",
+    "delivered": "Delivered on"
+  },
+  "shopper-app": {
+    "shoppers-only": "This app is for shoppers only!",
+    "return-vendor-app": "Return to Vendor App",
+    "return-admin-app": "Return to Admin App"
   }
 }

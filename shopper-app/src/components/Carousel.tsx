@@ -7,6 +7,8 @@ import { Typography } from '@mui/material';
 import { BoxProps } from '@mui/material/Box';
 import { useRouter } from 'next/router';
 
+// https://www.npmjs.com/package/react-material-ui-carousel
+
 export type Image = {
   image: string;
   id: string;
@@ -46,6 +48,7 @@ function Item({ item, height, ...rest }: ItemProps) {
       justifyContent="center"
       alignItems="center"
       maxHeight={height}
+      height={height}
       sx={{ backgroundColor: 'E4E6E6', cursor: 'pointer' }}
       overflow="hidden"
       onClick={() => handleProductRedirect(item.id)}
@@ -55,9 +58,9 @@ function Item({ item, height, ...rest }: ItemProps) {
         style={{
           maxWidth: '100%',
           maxHeight: '100%',
-          width: 'auto',
-          height: 'auto',
-          objectFit: 'cover',
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain'
         }}
         alt={item.description}
         src={item.image}

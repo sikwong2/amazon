@@ -24,13 +24,9 @@ export function Login() {
     const u = user;
     u.email = data.get('Email Address')!.toString();
     u.password = data.get('Password')!.toString();
-
-    console.log('email: ' + u.email);
-    console.log('password: ' + u.password);
-
     setUser(u);
     const query = {
-      query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken }}`,
+      query: `query login{login(email: "${user.email}" password: "${user.password}") { name, accessToken, role, id }}`,
     };
 
     fetch('/admin/api/graphql', {
@@ -49,9 +45,10 @@ export function Login() {
           console.log(json.errors);
           alert(`${json.errors[0].message}`);
         } else {
-          console.log('LOGIN.TSX ACCESS TOKEN: ' + json.data.login.accessToken);
           loginContext.setAccessToken(json.data.login.accessToken);
           loginContext.setUserName(json.data.login.name);
+          loginContext.setRole(json.data.login.role);
+          loginContext.setId(json.data.login.id);
         }
       })
       .catch((e) => {
