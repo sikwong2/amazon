@@ -208,6 +208,8 @@ export function Checkout() {
             flex: '3',
             marginLeft: '360px',
             marginBottom: 10,
+            fontFamily: 'Arial', 
+            fontWeight: '500'
           }}
         >
           {t("checkout.title")}
@@ -234,14 +236,14 @@ export function Checkout() {
                   fontSize: '18px',
                   fontWeight: '700',
                   whiteSpace: 'pre',
-                  fontFamily: 'Amazon Ember',
+                  fontFamily: 'Arial'
                 }}
               >
                 1 {'    '} {t("checkout.shipping-address")}
               </Typography>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <List sx={{ padding: 0, marginTop: 0.3 }}>
+              <List sx={{ padding: 0, marginTop: 0.3, fontSize: "14px" }}>
                 <ListItem sx={{ padding: 0, margin: 0 }}>{memberName}</ListItem>
                 <ListItem sx={{ padding: 0, margin: 0 }}>{address}</ListItem>
               </List>
@@ -259,6 +261,7 @@ export function Checkout() {
                   fontWeight: 'bold',
                   whiteSpace: 'pre',
                   color: '#0f1111',
+                  fontFamily: 'Arial'
                 }}
               >
                 2 {'    '} {t("checkout.payment-method")}
@@ -266,7 +269,7 @@ export function Checkout() {
             </Grid>
             <Grid item xs={12} lg={6}>
               <List sx={{ padding: 0, marginTop: 0.3 }}>
-                <ListItem sx={{ padding: 0, margin: 0, fontWeight: 'bold' }}>
+                <ListItem sx={{ padding: 0, margin: 0, fontWeight: 'bold', fontSize: "14px" }}>
                   {t("checkout.credit-card")}
                 </ListItem>
               </List>
@@ -283,6 +286,7 @@ export function Checkout() {
               whiteSpace: 'pre',
               marginBottom: 1.5,
               color: '#0f1111',
+              fontFamily: 'Arial'
             }}
           >
             3 {'    '} {t("checkout.review-items-and-shipping")}
@@ -294,7 +298,7 @@ export function Checkout() {
                 padding: '10px',
                 margin: '20px',
                 textAlign: 'left', 
-                fontFamily: 'Arial, sans-serif',
+                fontFamily: 'Arial',
                 fontSize: '16px', 
                 fontWeight: '700',
               }}>
@@ -304,7 +308,8 @@ export function Checkout() {
             style = {{
                 margin: '20px',
                 color: '#007600',
-                fontWeight: '700'
+                fontWeight: '700',
+                fontFamily: 'Arial'
             }}
             > 
                {t("checkout.arriving")} {' '}
@@ -340,8 +345,8 @@ export function Checkout() {
                 </CustomButton>
               </div>
               <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
-                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
-                {t("checkout.order-total")} {`${subtotal}`} 
+                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700', fontFamily: 'Arial'}}>
+                {t("checkout.order-total")} ${`${subtotal}`} 
                 </div> 
                 <div style={{flex: '1'}}>
                   <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
@@ -471,6 +476,7 @@ export function Checkout() {
                 fontSize: '18px',
                 fontWeight: '700',
                 textAlign: 'left',
+                fontFamily: 'Arial',
                 ml: '19px',
                 mt: '12px',
                 mb: '13px',
@@ -538,6 +544,7 @@ export function Checkout() {
                       color: 'rgb(177, 39, 4)',
                       fontSize: '18px',
                       fontWeight: '700',
+                      fontFamily: 'Arial'
                     }}
                   >
                    {t("checkout.order-total-2")} 
@@ -551,6 +558,7 @@ export function Checkout() {
                       color: 'rgb(177, 39, 4)',
                       fontSize: '18px',
                       fontWeight: '700',
+                      fontFamily: 'Arial'
                     }}
                   >
                     ${subtotal}

@@ -91,11 +91,12 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                     fontSize: '14px',
                     fontWeight: '700',
                     overflowWrap: 'break-word', 
+                    fontFamily: 'Arial'
                   }}>
                   {product.name}
                 </Typography>
                 <Box aria-label='product-price' sx={{ width: isMobile ? '30px' : '100px', textAlign: 'left', fontSize: '14px', color: '#b12704' }}>
-                  <Typography fontWeight='bold' fontSize='1.1em'>
+                  <Typography fontWeight='bold' fontSize='1.1em' sx={{fontFamily: 'Arial'}}>
                     ${product.price.toFixed(2)}
                   </Typography>
                 </Box>
@@ -137,6 +138,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                       fontWeight: '700',
                       fontSize: '14px',
                       overflowWrap: 'break-word',
+                      fontFamily: 'Arial'
                     }}>
                     {t("checkout.choose-delivery-option")}
                   </Typography>

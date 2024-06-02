@@ -24,13 +24,13 @@ const RadioButton = ({ label, value, checked, onChange, offset, ...rest }: { lab
         label={label}
         sx={{ alignItems: 'center', marginRight: '0.1px'}}
       />
-        <div style={{ display: "flex", marginTop: '10px', fontSize: '14px', fontWeight: '700', color: '#007600'}}>
+        <div style={{ display: "flex", marginTop: '10px', fontSize: '14px', fontWeight: '700', color: '#007600', fontFamily: 'Arial'}}>
           <div></div>
           <DeliveryDate offset={offset}></DeliveryDate>
       </div>
       </div>
       <Typography sx={{marginLeft: "27px"}}variant="body2">
-        <span style={{ fontWeight: 'bold' }}>{t("checkout.FREE")}</span> {offset <= 2 ? t("checkout.2-day-delivery") : t("checkout.amazon-day-delivery")}
+        <span style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>{t("checkout.FREE")}</span> {offset <= 2 ? t("checkout.2-day-delivery") : t("checkout.amazon-day-delivery")}
       </Typography>
     </ThemeProvider >
   );
