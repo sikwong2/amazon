@@ -54,6 +54,7 @@
     "react-dom": "*",
     "react-i18next": "^12.2.0",
     "react-material-ui-carousel": "^3.4.2",
+    "react-multi-carousel": "^2.8.5",
     "reflect-metadata": "*",
     "type-graphql": "*"
   },
