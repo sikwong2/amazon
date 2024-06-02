@@ -8,13 +8,30 @@ import { useTranslation } from 'next-i18next';
 import Logo from '../components/Logo';
 import CustomCard from '@/components/Card';
 import CustomButton from '@/components/Button';
-import Link from '@/components/Link';
-import { display } from '@mui/system';
+import { useRouter } from 'next/router';
 
 export function RedirectNonVendor() {
   const loginContext = useContext(LoginContext);
   const { t } = useTranslation('common');
-
+  const router = useRouter();
+  const handleClick = () => {
+    loginContext.setUserName('');
+    loginContext.setAccessToken('');
+    loginContext.setId('');
+    switch (loginContext.role) {
+      case 'shopper':
+        loginContext.setRole('');
+        router.push('/');
+        break;
+      case 'admin':
+        loginContext.setRole('');
+        router.push('/admin');
+        break;
+      default:
+        loginContext.setRole('');
+        router.push('/');
+    }
+  }
   const RedirectNonVendorComponent = (
     <Container
       component="main"
@@ -47,8 +64,8 @@ export function RedirectNonVendor() {
             width={500}
             sx={{ p: 5, display: 'flex', justifyContent: 'center' }}
           >
-            <CustomButton label="shopper-app-button" href="/">
-              {t('vendor-app.return-shopper-app')}
+            <CustomButton label="shopper-app-button" onClick={handleClick}>
+              {loginContext.role === 'shopper' ? t('vendor-app.return-shopper-app') : t('vendor-app.return-admin-app')}
             </CustomButton>
           </Box>
         </CustomCard>
