@@ -12,6 +12,7 @@ import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import PendingVendorApprovalsTable from '@/components/PendingVendorApprovalsTable';
 import APIKeysTable from '@/components/APIKeysTable';
 import TopBar from '../components/TopBar';
+import { RedirectNonAdmin } from './RedirectNonAdmin';
 
 export function AdminPortal() {
   const loginContext = useContext(LoginContext);
@@ -63,7 +64,9 @@ export function AdminPortal() {
       </Container>
     </>
   );
-
+  if (loginContext.role !== 'admin' && loginContext.accessToken !== '') {
+    return <RedirectNonAdmin />;
+  }
   if (loginContext.accessToken !== '') {
     return AdminPortalComponent;
   } else {

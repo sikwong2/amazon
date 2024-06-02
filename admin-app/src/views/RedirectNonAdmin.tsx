@@ -10,7 +10,7 @@ import CustomButton from '@/components/Button';
 import { LoginContext } from '@/context/Login';
 import { useRouter } from 'next/router';
 
-export function RedirectNonShopper() {
+export function RedirectNonAdmin() {
   const loginContext = React.useContext(LoginContext);
   const { t } = useTranslation('common');
   // router to change pages
@@ -24,9 +24,9 @@ export function RedirectNonShopper() {
         loginContext.setRole('');
         router.push('/vendor');
         break;
-      case 'admin':
+      case 'shopper':
         loginContext.setRole('');
-        router.push('/admin');
+        router.push('/');
         break;
       default:
         loginContext.setRole('');
@@ -58,15 +58,15 @@ export function RedirectNonShopper() {
         </Container>
         <CustomCard>
           <Typography mt={2} component="h1" variant="h5" align="center">
-            {t('shopper-app.shoppers-only')}
+            {t('admin-app.admins-only')}
           </Typography>
           <Box
             aria-label="form"
             width={500}
             sx={{ p: 5, display: 'flex', justifyContent: 'center' }}
           >
-            <CustomButton label="vendor-app-button" onClick={handleClick}>
-              {loginContext.role === 'vendor' ? t('shopper-app.return-vendor-app') : t('shopper-app.return-admin-app')}
+            <CustomButton label="admin-app-button" onClick={handleClick}>
+              {loginContext.role === 'vendor' ? t('admin-app.return-vendor-app') : t('admin-app.return-shopper-app')}
             </CustomButton>
           </Box>
         </CustomCard>

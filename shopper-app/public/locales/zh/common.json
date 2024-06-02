@@ -112,6 +112,7 @@
   },
   "shopper-app": {
     "shoppers-only": "此应用程序仅供购物者使用!",
-    "return-vendor-app": "返回供应商应用程序"
+    "return-vendor-app": "返回供应商应用程序",
+    "return-admin-app": "返回管理应用程序"
   }
 }

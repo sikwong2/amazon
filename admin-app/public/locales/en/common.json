@@ -63,5 +63,10 @@
   "footer": {
     "disclaimer": "Ucsc-amazon is an amazon clone student project. All products displayed are fake.",
     "back-to-top": "Back to top"
+  },
+  "admin-app": {
+    "admins-only": "This app is for admins only!",
+    "return-vendor-app": "Return to Vendor App",
+    "return-shopper-app": "Return to Shopper App"
   }
 }

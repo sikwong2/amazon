@@ -25,6 +25,7 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
       setUserName(sessionStorage.getItem('userName') || '');
       setAccessToken(sessionStorage.getItem('accessToken') || '');
       setId(sessionStorage.getItem('userId') || '');
+      setRole(sessionStorage.getItem('role') || '');
       setIsRendered(true);
     }
   }, []);
