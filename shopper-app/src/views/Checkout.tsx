@@ -10,8 +10,9 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  useTheme,
 } from '@mui/material';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import CustomCard from '../components/Card';
 import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
@@ -29,7 +30,9 @@ import { StripeProduct } from '@/graphql/stripe/schema';
 import LockButton from '../components/LockButton';
 import { RadioGroup } from '@mui/material';
 import RadioButton from '../components/RadioButton'
-
+import { useMediaQuery } from '@mui/material';
+import { useRouter } from 'next/router';
+import { PageContext } from '@/context/Page';
 
 interface UserDetails {
   name: string;
@@ -122,6 +125,7 @@ const placeOrder = async (products: StripeProduct[]) => {
 export function Checkout() {
   const { cart } = useContext(CartContext);
   const { id } = useContext(LoginContext);
+  const pageContext = useContext(PageContext); 
   const { t } = useTranslation('common');
   const [memberName, setMemberName] = useState('');
   const [address, setAddress] = useState('');
@@ -129,13 +133,50 @@ export function Checkout() {
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
   const [selectedValue, setSelectedValue] = useState('standard');
-  const [renderOffset, setRenderOffset] = useState(2)
+  const [renderOffset, setRenderOffset] = useState(2);
+  const theme = useTheme();
+  const isXsBreakpoint = useMediaQuery(theme.breakpoints.down('xs'));
+  const [showPopover, setShowPopover] = useState(false);
+  const router = useRouter();
+  const popoverRef = useRef<HTMLDivElement>(null);
 
+  const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
+
+  useEffect(() => {
+    let totalItems = 0;
+    for (const quantity of Object.values(cart)) {
+      totalItems += quantity;
+    }
+    setNumberOfItems(totalItems);
+  }, [cart]);
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
     const offset = event.target.value === 'standard' ? 2 : 4;
     setRenderOffset(offset);
   };
+
+  const handleSpanClk = () => {
+    setShowPopover(true);
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+        setShowPopover(false);
+        console.log('clicked outside');
+      }
+    }; 
+    if (showPopover) {
+      const timer = setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 0);
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }
+  }, [showPopover]); 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -156,7 +197,6 @@ export function Checkout() {
   useEffect(() => {
     (async () => {
       let total = 0;
-      let items = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
       await Promise.all(
@@ -210,27 +250,86 @@ export function Checkout() {
       >
         <Logo
           style={{
-            width: '80px',
-            marginLeft: '185px',
-            flex: '1'
+            width: '80px', 
+            marginRight: isXsBreakpoint ? '200px' : '1150px',
+            position: 'absolute',
+            flex: '1',
+            marginLeft: '100px'
           }}
         />
         <div
           style={{
-            flex: '3',
-            marginLeft: '360px',
+            flex: '1',
+            position: 'absolute',
+            left: '45%',
             marginBottom: 10,
           }}
         >
-          {t("checkout.title")}
+          {t("checkout.title")} 
+          <span> (</span>
+          <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0'}}>{numberOfItems} {numberOfItems === 1? "item" : "items"}</span>
+          <span>) </span>
         </div>
         <div
         style={{
           flex: '1',
-          marginRight: '100px'
+          left: '80%',
+          position: 'absolute'
         }}>
           <LockButton></LockButton>
         </div>
+      </div>
+        {showPopover && (
+          <div style={{
+            position: 'absolute',
+            zIndex: 1001,
+            bottom: '89%',
+            left: '53%',
+            width: 0,
+            height: 0,
+            borderLeft: '20px solid transparent',
+            borderRight: '20px solid transparent',
+            borderBottom: '20px solid white' 
+          }}>
+          </div>
+        )}
+      <div ref={popoverRef}>
+        {showPopover && (
+          <CustomCard type='rounded' style={{
+            position: 'absolute', 
+            backgroundColor: '#fff',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            padding: '10px',
+            marginTop: '1px',
+            zIndex: 1000, 
+            width: 'auto',  
+            left: '53%', 
+            bottom: '77%',
+            transform: 'translateX(-50%)',  
+          }}>
+            <Typography sx={{fontSize: '14px'}}> Are you sure you want to return to your Shopping Cart? </Typography>
+            <div style={{display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px'}}>
+              <CustomButton label="stay in checkout" 
+              pill
+              color='info'
+              onClick={() => {
+                setShowPopover(false);
+              }}
+              sx={{marginRight: '20px', flex: '1', border: '4px', fontSize: '12px'}}> 
+              Stay in checkout 
+              </CustomButton>
+              <CustomButton label="return to cart" 
+              pill
+              onClick={() => {
+                pageContext.setPage('cart');
+                router.push('/');
+              }}
+              sx={{flex: '1', fontSize: '12px'}}> 
+              Return to Cart
+              </CustomButton>
+             </div>
+          </CustomCard>
+        )}
       </div>
       <Container sx={{ display: 'flex', flexDirection: 'row' }}>
         <Container
@@ -301,7 +400,7 @@ export function Checkout() {
           <CustomCard sx={{ display: 'block', minHeight: '100%', width: '95%', marginLeft: '35px' }}>
             <div 
               style={{
-                border: '3px dashed #ADD8E6',
+                border: '2px dashed #1196AB',
                 padding: '10px',
                 margin: '20px',
                 textAlign: 'left', 
