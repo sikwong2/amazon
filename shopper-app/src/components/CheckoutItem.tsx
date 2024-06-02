@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import CustomDropdown from "./Dropdown";
 import RadioButton from "./RadioButton"
+import React, { useEffect } from 'react';
 
 
 interface CartItemProps {
@@ -29,7 +30,6 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
   const router = useRouter();
   const { t } = useTranslation('common');
   const [selectedValue, setSelectedValue] = useState('true');
-
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
@@ -47,7 +47,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
     <>
       <Box {...rest} sx={{ display: 'flex', alignItems: 'center', width: '100%', pt: 2.5, pb: 1.5, pl: 1.5 }}>
         <Grid container>
-          <Grid item xs={12} sm={'auto'} style={{ width: '200px' }}>
+          <Grid item xs={12} sm={'auto'} style={{ width: '100px' }}>
             <img
               src={product.image[0]}
               alt={product.image[0]}
@@ -57,7 +57,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
             />
           </Grid>
           <Grid item xs={12} sm={true} sx={{ mx: 1.5 }}>
-            <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start' }}> 
+            <Box sx={{ display: 'flex', width: '95%', alignItems: 'flex-start' }}> 
               <Box aria-label='product-info' sx={{ flex: 1 }}>
                 <Typography
                   sx={{ 
@@ -103,34 +103,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                 <Typography sx={{fontSize:'11px'}} color="textSecondary">
                   {t("checkout.sold-by")} 
                 </Typography>
-              </Box> 
-              <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex:'1' }}>
-                <Box sx={{ flex: 1, flexDirection: 'column', display: 'flex' }}>
-                  <Typography
-                    sx={{
-                      lineHeight: '1.3em',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      fontWeight: '700',
-                      fontSize: '14px',
-                      overflowWrap: 'break-word',
-                      fontFamily: 'Arial'
-                    }}>
-                    {t("checkout.choose-delivery-option")}
-                  </Typography>
-                  <RadioGroup
-                    name="deliveryOptionGroup"
-                    value={selectedValue}
-                    onChange={handleChange}
-                  >
-                    <RadioButton  value="standard" checked={selectedValue === 'standard'} offset= {2} onChange={handleChange} />
-                    <RadioButton  value="express" checked={selectedValue === 'express'} offset={4} onChange={handleChange} />
-                  </RadioGroup>
-                </Box>
-              </Box>
+              </Box>  
             </Box>
           </Grid>
         </Grid>

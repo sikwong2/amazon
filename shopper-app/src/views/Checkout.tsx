@@ -26,7 +26,10 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../../.env' });
 import DeliveryDate from '../components/DeliveryDate'
 import { StripeProduct } from '@/graphql/stripe/schema';
-import LockButton from '../components/LockButton'
+import LockButton from '../components/LockButton';
+import { RadioGroup } from '@mui/material';
+import RadioButton from '../components/RadioButton'
+
 
 interface UserDetails {
   name: string;
@@ -125,6 +128,11 @@ export function Checkout() {
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
+  const [selectedValue, setSelectedValue] = useState('true');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -313,10 +321,42 @@ export function Checkout() {
                {t("checkout.arriving")} {' '}
               <DeliveryDate offset={2}> </DeliveryDate>
             </div>
-            <List>
-              {cartItems}
-            </List>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <div style={{width: '50%'}}>
+                <List>
+                  {cartItems}
+                </List>
+              </div>
+              <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex: '1', marginTop: '28px'}}>
+                <Box sx={{ flex: 1, flexDirection: 'column', display: 'flex' }}>
+                  <Typography
+                    sx={{
+                      lineHeight: '1.3em',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      fontWeight: '700',
+                      fontSize: '14px',
+                      overflowWrap: 'break-word',
+                      fontFamily: 'Arial'
+                    }}>
+                    {t("checkout.choose-delivery-option")}
+                  </Typography>
+                  <RadioGroup
+                    name="deliveryOptionGroup"
+                    value={selectedValue}
+                    onChange={handleChange}
+                  >
+                    <RadioButton value="standard" checked={selectedValue === 'standard'} offset={2} onChange={handleChange} />
+                    <RadioButton value="express" checked={selectedValue === 'express'} offset={4} onChange={handleChange} />
+                  </RadioGroup>
+                </Box>
+              </Box>
+            </div>
           </CustomCard>
+          
           <CustomCard sx={{marginTop: '20px', width: '95%', marginLeft: '35px'}}>
             <Box
               sx={{
