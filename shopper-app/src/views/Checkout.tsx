@@ -174,7 +174,7 @@ export function Checkout() {
 
       setStripeProducts(tempStripe);
       setCartItems(temp);
-      setSubtotal(Number(Number(total).toFixed(2)));
+      setSubtotal(Number(total));
     })()
   }, [subtotal, cart])
 
@@ -208,8 +208,6 @@ export function Checkout() {
             flex: '3',
             marginLeft: '360px',
             marginBottom: 10,
-            fontFamily: 'Arial', 
-            fontWeight: '500'
           }}
         >
           {t("checkout.title")}
@@ -345,8 +343,8 @@ export function Checkout() {
                 </CustomButton>
               </div>
               <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
-                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700', fontFamily: 'Arial'}}>
-                {t("checkout.order-total")} ${`${subtotal}`} 
+                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
+                {t("checkout.order-total")} {`${subtotal.toFixed(2)}`} 
                 </div> 
                 <div style={{flex: '1'}}>
                   <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
@@ -476,7 +474,6 @@ export function Checkout() {
                 fontSize: '18px',
                 fontWeight: '700',
                 textAlign: 'left',
-                fontFamily: 'Arial',
                 ml: '19px',
                 mt: '12px',
                 mb: '13px',
@@ -495,7 +492,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal}
+                    {subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
@@ -514,7 +511,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal}
+                    {subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -544,7 +541,6 @@ export function Checkout() {
                       color: 'rgb(177, 39, 4)',
                       fontSize: '18px',
                       fontWeight: '700',
-                      fontFamily: 'Arial'
                     }}
                   >
                    {t("checkout.order-total-2")} 
@@ -558,10 +554,9 @@ export function Checkout() {
                       color: 'rgb(177, 39, 4)',
                       fontSize: '18px',
                       fontWeight: '700',
-                      fontFamily: 'Arial'
                     }}
                   >
-                    ${subtotal}
+                    ${subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
               </TableBody>
