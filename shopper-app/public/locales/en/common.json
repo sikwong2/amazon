@@ -51,7 +51,10 @@
     "top-deal": "Top Deal",
     "easy-returns": "Easy returns",
     "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
-    "learn-more": "Learn More"
+    "learn-more": "Learn More",
+    "top-sellers-sports": "Top Sellers in Sports",
+    "top-sellers-electronics": "Top Sellers in Electronics",
+    "top-sellers-furniture": "Top Sellers in Furniture"
   },
   "cart": {
     "proceed-to-checkout": "Proceed to Checkout",
