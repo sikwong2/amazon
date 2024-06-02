@@ -20,7 +20,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
     const query = {
       query: `query getByCategory{
-      getByCategory(category: "${category}", page: 1, size: 5, order: "price", sort: "DESC") {
+      getByCategory(category: "${category}", page: 1, size: 20, order: "name", sort: "DESC") {
         id
         price
         name
@@ -186,9 +186,9 @@ export function Home() {
               {easyReturns}
             </Grid>
           </Grid>
-          <MultiImageCarousel images={ads} height={200} title='Top sellers in Travel'/>
-          <MultiImageCarousel images={category1} height={200} title='Top sellers in Furniture'/>
-          <MultiImageCarousel images={category3} height={200} title='Top sellers in Sports'/>
+          <MultiImageCarousel images={category2} height={200} title={t('home.top-sellers-electronics')}/>
+          <MultiImageCarousel images={category1} height={200} title={t('home.top-sellers-furniture')}/>
+          <MultiImageCarousel images={category3} height={200} title={t('home.top-sellers-sports')}/>
 
         </Box>
       </Box>

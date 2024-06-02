@@ -59,7 +59,7 @@ export default function MultiImageCarousel({ images, height, title, ...rest }: M
               max: 3000,
               min: 1024
             },
-            items: 5,
+            items: 8,
             partialVisibilityGutter: 40
           },
           mobile: {
@@ -67,7 +67,7 @@ export default function MultiImageCarousel({ images, height, title, ...rest }: M
               max: 464,
               min: 0
             },
-            items: 1,
+            items: 2,
             partialVisibilityGutter: 30
           },
           tablet: {
