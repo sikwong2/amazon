@@ -311,8 +311,7 @@ export function Checkout() {
               {cartItems}
             </List>
           </CustomCard>
-          
-          <CustomCard>
+          <CustomCard sx={{marginTop: '20px'}}>
             <Box
               sx={{
                 display: 'flex',

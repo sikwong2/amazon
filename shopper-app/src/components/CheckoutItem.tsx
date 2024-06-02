@@ -102,7 +102,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                     ${product.price.toFixed(2)}
                   </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '1px', marginTop: '4px'  }}>
                   <CustomDropdown
                     label='Qty'
                     selectedValue={quantity.toString()}
@@ -114,7 +114,8 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                       overflow: 'visible',
                       mr: 2.5,
                       '& .MuiSelect-select.MuiInputBase-input': {
-                        pr: 0
+                        pr: 0,
+                        fontSize: '13px'
                       },
                       '& .MuiFormControl-root': {
                         pr: 0
@@ -122,6 +123,9 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                     }}
                   />
                 </Box>
+                <Typography sx={{fontSize:'11px'}} color="textSecondary">
+                  Sold By: cse187Project.com Services, Inc
+                </Typography>
               </Box> 
               <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex:'1' }}>
                 <Box sx={{ flex: 1, flexDirection: 'column', display: 'flex' }}>
@@ -153,7 +157,6 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
           </Grid>
         </Grid>
       </Box>
-      <CustomDivider />
     </>
   )
 }
