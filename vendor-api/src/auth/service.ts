@@ -27,10 +27,7 @@ export class AuthService {
 
               return res.json();
             })
-            .then((sessionUser) => {
-
-              console.log('sessionUser = ', sessionUser);
-              
+            .then((sessionUser) => {              
               resolve({ id: sessionUser.id });
             })
             .catch((err) => {
