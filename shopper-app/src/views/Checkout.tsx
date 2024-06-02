@@ -205,15 +205,15 @@ export function Checkout() {
       >
         <Logo
           style={{
-            width: '300px',
-            height: '62px',
-            marginLeft: '80px',
+            width: '80px',
+            marginLeft: '185px',
+            flex: '1'
           }}
         />
         <div
           style={{
-            marginLeft: '242px',
-            marginRight: 'auto',
+            flex: '3',
+            marginLeft: '360px',
             marginBottom: 10,
           }}
         >
@@ -221,17 +221,18 @@ export function Checkout() {
         </div>
         <div
         style={{
-          marginRight: '250px'
+          flex: '1',
+          marginRight: '100px'
         }}>
           <LockButton></LockButton>
         </div>
       </div>
       <Container sx={{ display: 'flex', flexDirection: 'row' }}>
         <Container
-          sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
+          sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}
         >
           <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={12} lg={4}>
               <Typography
                 variant="h3"
                 component="h3"
@@ -246,7 +247,7 @@ export function Checkout() {
                 1 {'    '} Shipping address
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} lg={6}>
               <List sx={{ padding: 0, marginTop: 0.3 }}>
                 <ListItem sx={{ padding: 0, margin: 0 }}>{memberName}</ListItem>
                 <ListItem sx={{ padding: 0, margin: 0 }}>{address}</ListItem>
@@ -255,7 +256,7 @@ export function Checkout() {
           </Grid>
           <CustomDivider sx={{ marginTop: 1.5, marginBottom: 1.5 }}></CustomDivider>
           <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={12} lg={4}>
               <Typography
                 variant="h3"
                 component="h3"
@@ -270,7 +271,7 @@ export function Checkout() {
                 2 {'    '} Payment method
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} lg={6}>
               <List sx={{ padding: 0, marginTop: 0.3 }}>
                 <ListItem sx={{ padding: 0, margin: 0, fontWeight: 'bold' }}>
                   Paying with ****
