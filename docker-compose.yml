@@ -11,6 +11,7 @@ services:
       - '3000:3000'
       - '3001:3001'
       - '3002:3002'
+      - '3014:3014'
 
   postgres:
     container_name: pginstance
