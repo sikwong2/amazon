@@ -5,6 +5,7 @@ import { MemberRequest } from './schema';
 import { MemberInfo } from './schema';
 import { MemberService } from './service';
 
+
 @Resolver()
 export class MemberResolver {
   //  eslint-disable-next-line @typescript-eslint/no-unused-vars

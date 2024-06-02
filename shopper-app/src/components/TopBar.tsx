@@ -91,6 +91,7 @@ export default function TopBar() {
     loginContext.setUserName('');
     loginContext.setAccessToken('');
     loginContext.setId('');
+    loginContext.setRole('');
   }
 
   const handleOrders = () => {

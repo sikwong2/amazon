@@ -1,5 +1,5 @@
 import CustomCard from './Card';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -18,6 +18,8 @@ export interface CategoryCardProps {
 
 export default function CategoryCard({ images, title }: CategoryCardProps) {
   const router = useRouter();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleProductRedirect = (id: string) => {
     router.push(`/product/${id}`);
@@ -27,12 +29,12 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
     <CustomCard
       elevation={0}
       sx={{
-        width: 'auto',
+        width: isSmallScreen ? '100%' : 'auto',
         height: 'auto',
         margin: 1,
         alignItems: 'center',
         maxHeight: '100%',
-        maxWidth: '300px',
+        maxWidth: isSmallScreen ? '100%' : '300px',
         justifyContent: 'center',
         display: 'flex',
         flexGrow: 1,
@@ -58,7 +60,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
             key={key + image.id}
             display="flex"
             flexDirection="column"
-            alignItems="start"
+            alignItems= {isSmallScreen ? "center" : "start"}
             sx={{ height: 'auto', width: 'auto', maxHeight: '100%', maxWidth: '100%' }}
           >
             <Box
@@ -74,10 +76,18 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
               src={image.image}
               onClick={() => handleProductRedirect(image.id)}
             />
-            <Typography align="left" variant="caption">
-              {image.description.length > 13
-                ? `${image.description.slice(0, 12)}...`
-                : image.description}
+            <Typography
+              align="left"
+              variant="caption" 
+              sx={{
+                wordWrap: 'break-word',
+                display: '-webkit-box',
+                overflow: 'hidden',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 1,
+              }}
+            >
+              {image.description}
             </Typography>
           </Box>
         ))}

@@ -51,7 +51,10 @@
     "top-deal": "优惠",
     "easy-returns": "轻松退货",
     "easy-returns-body": "亚马逊对订单和礼品提供灵活的退货运费",
-    "learn-more": "了解更多"
+    "learn-more": "了解更多",
+    "top-sellers-sports": "体育类热销商品",
+    "top-sellers-electronics": "电子产品畅销品",
+    "top-sellers-furniture": "家具畅销品"
   },
   "cart": {
     "proceed-to-checkout": "进行结算",
@@ -109,5 +112,10 @@
     "order-number": "订单号",
     "arriving": "到达",
     "delivered": "送货到达"
+  },
+  "shopper-app": {
+    "shoppers-only": "此应用程序仅供购物者使用!",
+    "return-vendor-app": "返回供应商应用程序",
+    "return-admin-app": "返回管理应用程序"
   }
 }
