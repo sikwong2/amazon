@@ -29,12 +29,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const router = useRouter();
   const { t } = useTranslation('common');
-  const [selectedValue, setSelectedValue] = useState('true');
-  
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
-  };
-
+   
   const handleProductClick = () => {
     router.push(`/product/${productId}`)
   }

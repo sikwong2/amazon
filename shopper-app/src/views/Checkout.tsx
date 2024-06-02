@@ -128,10 +128,13 @@ export function Checkout() {
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
   const [stripeProducts, setStripeProducts]: any = useState([]);
-  const [selectedValue, setSelectedValue] = useState('true');
+  const [selectedValue, setSelectedValue] = useState('standard');
+  const [renderOffset, setRenderOffset] = useState(2)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
+    const offset = event.target.value === 'standard' ? 2 : 4;
+    setRenderOffset(offset);
   };
 
   useEffect(() => {
@@ -171,10 +174,11 @@ export function Checkout() {
         })
       )
 
-      Object.entries(cart).map(([productId, quantity]) => {
+      Object.entries(cart).map(async([productId, quantity]) => {
+        const product = await fetchProduct(productId);
         const price = temp.find(p => p.key === productId).props.product.price;
         tempStripe.push({
-          name: productId,
+          name: product.name,
           price: price * 100,
           quantity: quantity
         });
@@ -313,13 +317,14 @@ export function Checkout() {
             <div
             style = {{
                 margin: '20px',
+                marginBottom: '0.1px',
                 color: '#007600',
                 fontWeight: '700',
                 fontFamily: 'Arial'
             }}
             > 
                {t("checkout.arriving")} {' '}
-              <DeliveryDate offset={2}> </DeliveryDate>
+              <DeliveryDate offset={renderOffset}> </DeliveryDate>
             </div>
             <div style={{display: 'flex', flexDirection: 'row'}}>
               <div style={{width: '50%'}}>
