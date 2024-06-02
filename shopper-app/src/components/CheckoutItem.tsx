@@ -147,8 +147,8 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                     value={selectedValue}
                     onChange={handleChange}
                   >
-                    <RadioButton  value="standard" checked={selectedValue === 'standard'} offset='2' onChange={handleChange} />
-                    <RadioButton  value="express" checked={selectedValue === 'express'} offset='4' onChange={handleChange} />
+                    <RadioButton  value="standard" checked={selectedValue === 'standard'} offset= {2} onChange={handleChange} />
+                    <RadioButton  value="express" checked={selectedValue === 'express'} offset={4} onChange={handleChange} />
                   </RadioGroup>
                 </Box>
               </Box>

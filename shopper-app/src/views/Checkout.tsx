@@ -311,7 +311,7 @@ export function Checkout() {
             }}
             > 
                {t("checkout.arriving")} {' '}
-              <DeliveryDate offset='7'> </DeliveryDate>
+              <DeliveryDate offset={2}> </DeliveryDate>
             </div>
             <List>
               {cartItems}
