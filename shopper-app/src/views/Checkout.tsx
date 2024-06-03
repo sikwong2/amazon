@@ -46,6 +46,12 @@ interface OrderInfo {
   orderStatus: string;
 }
 
+interface StripeProduct {
+  name: string,
+  quantity: number,
+  price: number
+}
+
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {
   try {
     const query = {
