@@ -12,5 +12,5 @@ if (!VENDOR_API_PORT) {
 
 app.listen(Number(VENDOR_API_PORT), () => {
   console.log(`Vendor API Server Running on port ${VENDOR_API_PORT}`);
-  console.log(`API Testing UI: http://localhost:${VENDOR_API_PORT}/api/v0/docs/`);
+  console.log(`API Testing UI: http://localhost:${VENDOR_API_PORT}/vendorapi/v0/docs/`);
 });
