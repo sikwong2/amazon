@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import { LoginContext } from '../context/Login';
 import { useSearch } from '../context/SearchContext';
 import { PageContext } from '@/context/Page';
+import { CartContext } from '@/context/Cart';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
     backgroundColor: 'rgba(35,47,62)',
@@ -70,6 +71,7 @@ export default function TopBar() {
     const { t } = useTranslation('common');
     const loginContext = React.useContext(LoginContext);
     const pageContext = React.useContext(PageContext);
+    const cartContext = React.useContext(CartContext);
     const { searchValue, setSearchValue, handleSearch } = useSearch();
     const router = useRouter();
 
@@ -163,8 +165,24 @@ export default function TopBar() {
               sx={{ ml: 2 }} 
               onClick={handleCart}
             >
-              <ShoppingCartIcon />
-              {t("topbar.Cart")}
+            <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <ShoppingCartIcon style={{ fontSize: 30 }} />
+              <div style={{
+                position: "absolute",
+                top: "36%",
+                left: "22%",
+                transform: "translate(-50%, -50%)",
+                color: '#FFA41C',
+                fontWeight: "bold",
+                fontSize: 11,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+                {Object.keys(cartContext.cart).length}
+              </div>
+              <span style={{ marginLeft: 8 }}>{t("topbar.Cart")}</span>
+            </div>
             </CustomButton>
           </Box>
         </Toolbar>
