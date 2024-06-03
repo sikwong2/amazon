@@ -17,16 +17,12 @@ import CustomCard from '../components/Card';
 import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
-import { Product } from '@/graphql/product/schema';
 import { CheckoutItem } from '@/components/CheckoutItem';
 import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
-import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
 import DeliveryDate from '../components/DeliveryDate'
-import { StripeProduct } from '@/graphql/stripe/schema';
 import LockButton from '../components/LockButton';
 import { RadioGroup } from '@mui/material';
 import RadioButton from '../components/RadioButton'
@@ -50,6 +46,17 @@ interface StripeProduct {
   name: string,
   quantity: number,
   price: number
+}
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  stock: number;
+  image: string[];
+  rating: number;
+  category: string[];
+  description: string[];
 }
 
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {

@@ -1,6 +1,6 @@
 import { Field, InputType } from "type-graphql"
 
-@InputType()
+@InputType('StripeProduct')
 export class StripeProduct {
   @Field()
   name!: string;
