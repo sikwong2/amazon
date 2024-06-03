@@ -9,11 +9,7 @@ import os
 from dotenv import load_dotenv
 import json
 from fake_useragent import UserAgent
-
-load_dotenv()
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-nltk.download("words")
+import argparse
 
 
 # Function to extract Product Title
@@ -30,14 +26,8 @@ def get_title(soup):
         title_string = title_value.strip()
         
         title_string = re.sub(r"[^a-zA-Z0-9 .,!?]", "", title_string)
-        
-        # # Printing types of values for efficient understanding
-        # print(type(title))
-        # print(type(title_value))
-        # print(type(title_string))
-        # print()
 
-    except AttributeError:
+    except AttributeError as e:
         title_string = ""
 
     return title_string
@@ -181,14 +171,30 @@ def generate_curl_command(
 
 
 if __name__ == "__main__":
+    
+    # Create the parser
+    parser = argparse.ArgumentParser(description="Generate curl commands")
+
+    # Add the arguments
+    parser.add_argument('url', type=str, help='The URL to send the requests to')
+    parser.add_argument('access_token', type=str, help='The access token for authentication')
+    parser.add_argument('number', type=int, help='The number of curl commands to generate')
+    
+    # Parse the arguments
+    args = parser.parse_args()
 
     ua = UserAgent()
 
     if os.path.exists("curl_commands.sh"):
         os.remove("curl_commands.sh")
+        
+    load_dotenv()
 
-    for _ in range(
-        100
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    nltk.download("words")
+
+    for i in range(
+        args.number
     ):  # Replace 10 with the number of curl commands you want to generate
 
         HEADERS = {
@@ -197,6 +203,7 @@ if __name__ == "__main__":
         }
         random_word = generate_random_word()
         print()
+        print(f"Iteration: {i}")
         print(f"Random Search Term: {random_word}")
 
         SEARCH_URL = "https://www.amazon.com/s?k=" + random_word
@@ -231,21 +238,33 @@ if __name__ == "__main__":
 
         # Function calls to display all necessary product information
         name = get_title(soup)
+        
+        if name == "":
+            name = random_word
+        
         price = get_price(soup)
         stock = get_stock()
         rating = get_rating(soup)
         image = get_image_links(soup)
         category = f'["Generated"]'
         description = get_description(name)
+    
 
         # Skip this iteration if any variable is missing
         if not all([name, price, stock, rating, image, category, description]):
+            print("name=", name)
+            print("price=", price)
+            print("stock=", stock)
+            print("rating=", rating)
+            print("image=", image)
+            print("category=", category)
+            print("description=", description)
             print("Missing data")
             continue
 
         curl_command = generate_curl_command(
-            "http://localhost:3014/api/v0/product",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTM1MTc2YTktOGEyOC00ZDFmLWI0ZmMtOGY3NTFmNDFiMjdiIiwiYWNjb3VudF9pZCI6ImY0ZGY4YjI2LTM0NzQtNDJkMC05YjM3LTlhODcwMDM5ZmJmOCIsImlhdCI6MTcxNzM2NjUzOH0.-3PFb0jXzjUTTfu5uVwhG3VPAoOXFSpuEa1o71mqXGo",
+            args.url,
+            args.access_token,
             name,
             price,
             stock,
