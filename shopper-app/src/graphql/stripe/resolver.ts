@@ -8,7 +8,6 @@ export class StripeResolver {
   async getCheckoutURL(
     @Arg('products', () => [StripeProduct]) products: StripeProduct[],
   ): Promise<string> {
-    console.log('StripeResolver', products);
     return await new StripeService().getCheckoutURL(products);
   }
 }

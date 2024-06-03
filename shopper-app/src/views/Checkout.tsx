@@ -39,6 +39,13 @@ interface UserDetails {
   address: string;
 }
 
+interface OrderInfo {
+  products: string[];
+  shopperId: string;
+  vendorId: string;
+  orderStatus: string;
+}
+
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {
   try {
     const query = {
@@ -88,8 +95,36 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 };
 
+const createOrder = async (order: OrderInfo) => {
+  try {
+    const query = `
+      mutation createOrder($order: NewOrder!) {
+        createOrder(order: $order)
+      }
+    `;
+
+    const variables = {
+      order: order
+    }
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({query, variables}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.createOrder;
+  } catch(e) {
+    console.log(e);
+  }
+}
 const placeOrder = async (products: StripeProduct[]) => {
-  console.log('placeOrder', products);
   try {
     const query = `
       query checkoutURL($products: [StripeProduct!]!) {
@@ -136,6 +171,13 @@ export function Checkout() {
   const [showPopover, setShowPopover] = useState(false);
   const router = useRouter();
   const popoverRef = useRef<HTMLDivElement>(null);
+  const loginContext = useContext(LoginContext);
+  const [order, setOrder] = useState<OrderInfo>({
+    "products": [],
+    "shopperId": loginContext.id,
+    "orderStatus": 'pending',
+    "vendorId": '33d646df-1f4a-4130-8590-720f45ba4179'
+  });
 
   const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
 
@@ -196,6 +238,12 @@ export function Checkout() {
       let total = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
+      const tempOrder: OrderInfo = {
+        "products": [],
+        "vendorId": "33d646df-1f4a-4130-8590-720f45ba4179",
+        "shopperId": loginContext.id,
+        "orderStatus": "pending"
+      }
       await Promise.all(
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
@@ -213,9 +261,10 @@ export function Checkout() {
             price: Number((product.price * 100).toFixed(0)),
             quantity: quantity
           });
+          tempOrder.products.push(productId);
         })
       )
-
+      setOrder(tempOrder);
       setStripeProducts(tempStripe);
       setCartItems(temp);
       setSubtotal(Number(Number(total).toFixed(2)));
@@ -466,6 +515,7 @@ export function Checkout() {
                   color="primary"
                   sx={{ mt: 3, mb: 2, mr: 0.1, ml: 3, flex: '1', fontSize: '13px' }}
                   onClick={() => {
+                    createOrder(order);
                     placeOrder(stripeProducts);
                   }}
                 >
@@ -570,6 +620,7 @@ export function Checkout() {
                   margin: 'auto',
                 }}
                 onClick={() => {
+                  createOrder(order);
                   placeOrder(stripeProducts);
                 }}
               >
@@ -641,7 +692,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal.toFixed(2)}
+                    {'$'+subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow>
