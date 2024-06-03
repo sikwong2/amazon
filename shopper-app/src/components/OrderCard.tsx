@@ -114,9 +114,11 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
       }
       setProducts(temp);
       setTotalPrice(total.toString());
-      const addy = await fetchAddress(id);
-      const a = addy.address;
-      setAddress(a);
+      if (id) {
+        const addy = await fetchAddress(id);
+        const a = addy.address;
+        setAddress(a);
+      }
     };
 
     fetchData();

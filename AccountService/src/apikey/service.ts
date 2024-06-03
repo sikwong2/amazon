@@ -68,4 +68,38 @@ export class APIKeyService {
     const { rows } = await pool.query(query);
     return rows[0].active;
   }
+
+  public async checkAPIKey(key: string): Promise<Boolean> {
+    let select = ` SELECT active FROM apikeytable WHERE api_key = $1`;
+
+    const query = {
+      text: select,
+      values: [`${key}`],
+    };
+
+    const { rows } = await pool.query(query);
+
+    if (rows.length === 0) {
+      return false;
+    }
+
+    return rows[0].active;
+  }
+
+  public async getVendorIDFromAPIKey(key: string): Promise<string> {
+    let select = ` SELECT account_id FROM apikeytable WHERE api_key = $1`;
+
+    const query = {
+      text: select,
+      values: [`${key}`],
+    };
+
+    const { rows } = await pool.query(query);
+
+    if (rows.length === 0) {
+      return '';
+    }
+
+    return rows[0].account_id;
+  }
 }

@@ -51,7 +51,10 @@
     "top-deal": "Top Deal",
     "easy-returns": "Easy returns",
     "easy-returns-body": "Amazon has flexible return shipping on orders & gifts",
-    "learn-more": "Learn More"
+    "learn-more": "Learn More",
+    "top-sellers-sports": "Top Sellers in Sports",
+    "top-sellers-electronics": "Top Sellers in Electronics",
+    "top-sellers-furniture": "Top Sellers in Furniture"
   },
   "cart": {
     "proceed-to-checkout": "Proceed to Checkout",
@@ -69,6 +72,9 @@
       "climate": "Climate Pledge Friendly",
       "delete": "Delete"
     }
+  },
+  "search": {
+    "results-for": "Results for"
   },
   "history": {
     "your-orders": "Your Orders",
@@ -144,5 +150,10 @@
     "are-you-sure": "Are you sure you want to return to your Shopping Cart?",
     "stay-in-checkout": "Stay in checkout",
     "return-to-cart": "Return to Cart"
+  },
+  "shopper-app": {
+    "shoppers-only": "This app is for shoppers only!",
+    "return-vendor-app": "Return to Vendor App",
+    "return-admin-app": "Return to Admin App"
   }
 }

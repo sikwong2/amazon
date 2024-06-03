@@ -1,6 +1,6 @@
 import { APIKeyService } from './service';
 import { Controller, Query, Get, Response, SuccessResponse, Route } from 'tsoa';
-import { APIKey } from '.';
+import { APIKey, APIKeySessionUser } from '.';
 
 @Route('apikey')
 export class APIKeyController extends Controller {
@@ -50,6 +50,25 @@ export class APIKeyController extends Controller {
       .deactivateAPIKey(key)
       .then(async (active: Boolean): Promise<Boolean> => {
         return active;
+      });
+  }
+
+  @Get('checkkey')
+  @Response('401', 'Unauthorized')
+  @SuccessResponse('200', 'API Key Validated')
+  public async checkAPIKey(@Query() key: string): Promise<APIKeySessionUser> {
+    return new APIKeyService()
+      .checkAPIKey(key)
+      .then(async (valid: Boolean): Promise<APIKeySessionUser> => {
+        if (!valid) {
+          this.setStatus(401);
+        }
+
+        const id = await new APIKeyService().getVendorIDFromAPIKey(key);
+
+        const sessionUser = { id: id };
+
+        return sessionUser;
       });
   }
 }

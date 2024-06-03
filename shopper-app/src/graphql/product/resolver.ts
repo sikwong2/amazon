@@ -23,4 +23,13 @@ export class ProductResolver {
   ): Promise<Product[]> {
     return new ProductService().getByCategory(category, page, size, order, sort);
   }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @Query(returns => [Product])
+    async getByName(
+      @Arg('name') name: string,
+      @Args() {page, size, order, sort}: ProductArgs
+    ): Promise <Product[]> {
+      return new ProductService().getByName(name, page, size, order, sort)
+    }
 }

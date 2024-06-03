@@ -5,6 +5,7 @@
   "shopper-account": "创建购物者帐户",
   "vendor-app": {
     "return-shopper-app": "返回购物者应用程序",
+    "return-admin-app": "返回管理应用程序",
     "vendors-only": "该应用程序仅供供应商使用！",
     "vendor-account-approval": "供应商帐户批准状态",
     "status-pending": "状态待定"
