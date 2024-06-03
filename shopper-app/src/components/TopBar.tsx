@@ -154,7 +154,6 @@ export default function TopBar() {
   const fetchUserAddress = async () => {
     try {
       const response = await fetchUserInfo(loginContext.id);
-      console.log(response)
       if (response) {
         if (response.address.length > 15) {
           setDeliveryAddress(response.address.substring(0, 15) + '...')

@@ -88,33 +88,34 @@ export function Cart() {
       setSubtotal(Number(Number(total).toFixed(2)));
       setNumberOfItems(totalItems);
     })()
-  }, [cart])
+  }, [cart]);
     
   useEffect(() => {
-  if (!userName) {
-    router.push('/login')
-  } else {
-    (async () => {
-      let total = 0;
-      const temp: any = []
-      await Promise.all(
-        Object.entries(cart).map(async ([productId, quantity]) => {
-          const product = await fetchProduct(productId);
-          total += (product.price * quantity);
-          temp.push(
-            <CartItem
-              key={productId} 
-              productId={productId}
-              product={product}
-              quantity={quantity}
-            />
-          )
-        })
-      )
-      setCartItems(temp);
-      setSubtotal(Number(Number(total).toFixed(2)));
-    })()
-  }
+    if (!userName) {
+      router.push('/login')
+    } else {
+      (async () => {
+        let total = 0;
+        const temp: any = []
+        await Promise.all(
+          Object.entries(cart).map(async ([productId, quantity]) => {
+            const product = await fetchProduct(productId);
+            total += (product.price * quantity);
+            temp.push(
+              <CartItem
+                key={productId} 
+                productId={productId}
+                product={product}
+                quantity={quantity}
+              />
+            )
+          })
+        )
+        setCartItems(temp);
+        setSubtotal(Number(Number(total).toFixed(2)));
+      })()
+    }
+  })
 
   const subtotalText = (
     <Box aria-label='cart-subtotal'>
