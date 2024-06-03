@@ -51,15 +51,12 @@ const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefi
         'Content-Type': 'application/json',
       },
     });
-    console.log('this is res');
-    console.log(res);
     const json = await res.json();
     if (json.errors) {
       console.log(json.errors[0].message);
       return undefined;
     }
     const { name, address } = json.data.getMemberInfo;
-    console.log(name);
     return { name, address };
   } catch (error) {
     console.error('Error fetching member info:', error);
@@ -211,22 +208,17 @@ export function Checkout() {
               quantity={quantity}
             />
           )
+          tempStripe.push({
+            name: product.name,
+            price: Number((product.price * 100).toFixed(0)),
+            quantity: quantity
+          });
         })
       )
 
-      Object.entries(cart).map(async([productId, quantity]) => {
-        const product = await fetchProduct(productId);
-        const price = temp.find(p => p.key === productId).props.product.price;
-        tempStripe.push({
-          name: product.name,
-          price: price * 100,
-          quantity: quantity
-        });
-      });
-
       setStripeProducts(tempStripe);
       setCartItems(temp);
-      setSubtotal(Number(total));
+      setSubtotal(Number(Number(total).toFixed(2)));
     })()
   }, [subtotal, cart])
 
