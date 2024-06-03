@@ -22,11 +22,11 @@ export function RedirectNonAdmin() {
     switch (loginContext.role) {
       case 'vendor':
         loginContext.setRole('');
-        router.push('/vendor');
+        router.push('https://www.ucsc-amazon.com/vendor');
         break;
       case 'shopper':
         loginContext.setRole('');
-        router.push('/');
+        router.push('https://www.ucsc-amazon.com/');
         break;
       default:
         loginContext.setRole('');
