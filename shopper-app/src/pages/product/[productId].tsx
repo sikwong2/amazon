@@ -21,6 +21,7 @@ import { CartContext } from '@/context/Cart';
 import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
 import RandomDeliveryDate from '@/components/DeliveryDate';
+import { LoginContext } from '@/context/Login';
 
 interface Product {
   name: string;
@@ -99,9 +100,10 @@ export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
   const [quantity, setQuantity] = useState(1)
   const {cart, setCart, addToCart } = useContext(CartContext);
-  const pageContext = useContext(PageContext);
+  const pageContext = useContext(PageContext); 
   const router = useRouter();
   const { productId } = router.query;
+  const { accessToken } = useContext(LoginContext);
 
   const handleSetValue = (value: string) => {
     setQuantity(parseInt(value));
@@ -116,8 +118,13 @@ export default function Product({ product }: ProductProp) {
   const handleBuyNowClick = () => {
     setCart({});
     addToCart(productId as string, quantity);
-    pageContext.setPage('checkout');
-    router.push('/');
+    if (accessToken){
+      pageContext.setPage("checkout");
+      router.push('/');
+    }
+    else {
+      router.push('/login');
+    }
   };
 
   // Returns red text if low stock, green text if in stock
@@ -191,7 +198,7 @@ export default function Product({ product }: ProductProp) {
           display="inline"
           sx={{ fontSize: '1rem', lineHeight: '1.3', fontWeight: 'bold' }}
         >
-          <RandomDeliveryDate offset={7} />.{' '}
+          <RandomDeliveryDate offset={4} />.{' '}
         </Typography>
         <Typography display="inline" sx={{ fontSize: '1rem', lineHeight: '1.3' }}>
           {t('product.order-within')}{' '}

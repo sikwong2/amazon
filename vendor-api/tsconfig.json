@@ -19,6 +19,8 @@
 
     "baseUrl": "./",
     "resolveJsonModule": true,
-    "removeComments": true
+    "removeComments": true,
+
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   }
 }

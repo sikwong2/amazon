@@ -16,6 +16,51 @@ import { Product } from '@/graphql/product/schema';
 import { RedirectNonShopper } from './RedirectNonShopper';
 import { LoginContext } from '@/context/Login';
 
+const advertisements: Image[] = [
+  {
+    image: 'https://www.adsoftheworld.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM0VPQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5f561cccbacc4de85a9899b83b437ace43713b41/thumbnail_219710',
+    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
+    description: 'Adidas ad',
+    title: 'Adidas shoes'
+  },
+  {
+    image: 'https://fcdn.me/a59/10a/adidas-run-for-the-oceans-5-33863c5db68f48f9e180fc12aa.jpg?d=1',
+    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
+    description: 'Adidas Sea ad',
+    title: 'Adidas women shoes'
+  },
+  {
+    image: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e456a8103211209.5f47dea744a23.jpg',
+    id: 'd0eeec78-99ef-4736-8256-c04043110873',
+    description: 'Nike ad',
+    title: 'Nike shoes'
+  },
+  {
+    image: 'https://i.ytimg.com/vi/8ly_IRib75Q/maxresdefault.jpg',
+    id: 'd9b42b3d-aa46-4791-8470-c9417d1db025',
+    description: 'Samsung Galaxy ad',
+    title: 'Samsung'
+  },
+  {
+    image: 'https://i.ytimg.com/vi/YIjLnWmLhmk/maxresdefault.jpg',
+    id: 'c85ddd6d-c3ef-4ba2-8951-a6f377c4fe94',
+    description: 'Spalding basketball ad',
+    title: 'Spalding'
+  },
+  {
+    image: 'https://media.idownloadblog.com/wp-content/uploads/2016/10/macbook-air.png',
+    id: 'fcdfc6a7-3e50-4909-818c-379f75b4320a',
+    description: 'Apple ad',
+    title: 'Macbooks'
+  },
+  {
+    image: 'https://image.adsoftheworld.com/d50xigu5cjitc14142pboshuox6f',
+    id: 'fcab207a-fd48-4e81-a15d-a754f49fcd15',
+    description: 'Lamp ad',
+    title: 'Lamps'
+  },
+]
+
 const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
     const query = {
@@ -52,7 +97,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
 // carosoul component
 // card of category component
 export function Home() {
-  const [ads, setAds] = React.useState<Image[]>([]);
+  const [ads, setAds] = React.useState<Image[]>(advertisements);
   const [category1, setCategory1] = React.useState<Image[]>([]);
   const [category2, setCategory2] = React.useState<Image[]>([]);
   const [category3, setCategory3] = React.useState<Image[]>([]);
@@ -65,14 +110,6 @@ export function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const adproducts = await fetchProducts('sale');
-        const ad = adproducts.map((product) => ({
-          image: product.image[0],
-          id: product.id,
-          description: product.name,
-          title: 'sale',
-        }));
-        setAds(ad);
         const category1products = await fetchProducts('furniture');
         const cat1 = category1products.map((product) => ({
           image: product.image[0],

@@ -10,8 +10,8 @@ import { PageContext } from '@/context/Page';
 import CustomLink from '@/components/Link';
 import CustomDivider from '@/components/Divider';
 import TopBar from '@/components/TopBar';
-import { useRouter } from "next/router";
-import { LoginContext } from "@/context/Login"
+import { LoginContext } from '@/context/Login';
+import { useRouter } from 'next/router';
 
 interface Product {
   name: string,
@@ -46,9 +46,10 @@ const fetchProduct = async (productId: any): Promise<Product> => {
 }
 
 export function Cart() {
+  const router = useRouter();
   const { setPage } = useContext(PageContext);
   const { cart } = useContext(CartContext);
-
+  const { accessToken } = useContext(LoginContext);
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
   const { t } = useTranslation('common');
@@ -56,34 +57,64 @@ export function Cart() {
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const { id } = useContext(LoginContext);
   const {userName} = useContext(LoginContext);
-  const router = useRouter();
+  const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
 
   useEffect(() => {
-    if (!userName) {
-      router.push('/login')
-    } else {
-      (async () => {
-        let total = 0;
-        const temp: any = []
-        await Promise.all(
-          Object.entries(cart).map(async ([productId, quantity]) => {
-            const product = await fetchProduct(productId);
-            total += (product.price * quantity);
-            temp.push(
-              <CartItem
-                key={productId} 
-                productId={productId}
-                product={product}
-                quantity={quantity}
-              />
-            )
-          })
-        )
-        setCartItems(temp);
-        setSubtotal(Number(Number(total).toFixed(2)));
-      })()
-    }
+
+  }, [cart]);
+  
+  useEffect(() => {
+    let totalItems = 0;
+  
+    (async () => {
+      let total = 0;
+      const temp: any = []
+      await Promise.all(
+        Object.entries(cart).map(async ([productId, quantity]) => {
+          const product = await fetchProduct(productId);
+          total += (product.price * quantity);
+          totalItems += quantity;
+          temp.push(
+            <CartItem
+              key={productId} 
+              productId={productId}
+              product={product}
+              quantity={quantity}
+            />
+          )
+        })
+      )
+      setCartItems(temp);
+      setSubtotal(Number(Number(total).toFixed(2)));
+      setNumberOfItems(totalItems);
+    })()
   }, [cart])
+    
+  useEffect(() => {
+  if (!userName) {
+    router.push('/login')
+  } else {
+    (async () => {
+      let total = 0;
+      const temp: any = []
+      await Promise.all(
+        Object.entries(cart).map(async ([productId, quantity]) => {
+          const product = await fetchProduct(productId);
+          total += (product.price * quantity);
+          temp.push(
+            <CartItem
+              key={productId} 
+              productId={productId}
+              product={product}
+              quantity={quantity}
+            />
+          )
+        })
+      )
+      setCartItems(temp);
+      setSubtotal(Number(Number(total).toFixed(2)));
+    })()
+  }
 
   const subtotalText = (
     <Box aria-label='cart-subtotal'>
@@ -91,7 +122,7 @@ export function Cart() {
         {t("cart.subtotal")}
       </Typography>
       <Typography display='inline' fontSize='1.1em'>
-        {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.item-s")}): `}
+        {` (${numberOfItems} ${numberOfItems == 1 ? t("cart.item") : t("cart.item-s")}): `}
       </Typography>
       <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
         {`$${subtotal.toFixed(2)}`}
@@ -136,7 +167,11 @@ export function Cart() {
         pill
         fullWidth
         onClick={() =>{
-          setPage('checkout')
+          if (accessToken) {
+            setPage('checkout');
+          } else {
+            router.push('/login');
+          }
         }}
         >
         {t("cart.proceed-to-checkout")}
