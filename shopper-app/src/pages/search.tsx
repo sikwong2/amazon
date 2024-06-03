@@ -24,7 +24,16 @@ const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Produ
         }
       }`,
     };
-    const res = await fetch('/api/graphql', {
+    const isServer = typeof window === 'undefined';
+    const baseUrl = isServer
+      ? `https://${req?.headers.host}`
+      : '';
+
+    const apiUrl = `${baseUrl}/api/graphql`;
+
+    console.log('API URL:', apiUrl);
+
+    const res = await fetch(apiUrl, {
       method: 'POST',
       body: JSON.stringify(query),
       headers: {
