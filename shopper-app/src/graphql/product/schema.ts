@@ -1,7 +1,7 @@
 import { ArgsType, Field, Int, ObjectType } from 'type-graphql';
 import { IsIn, Min } from 'class-validator';
 
-@ObjectType()
+@ObjectType('Product')
 export class Product {
   @Field()
   id!: string;
@@ -23,14 +23,14 @@ export class Product {
 
 @ArgsType()
 export class ProductArgs {
-  @Field(() => Int, { nullable: true })
+  @Field(() => Int)
   @Min(1)
   size?: number;
-  @Field(() => Int, { nullable: true })
+  @Field(() => Int)
   @Min(1)
   page?: number;
-  @Field({ nullable: true })
+  @Field()
   order?: string;
-  @Field({ nullable: true })
+  @Field()
   sort?: string;
 }
