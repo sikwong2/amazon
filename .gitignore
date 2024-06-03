@@ -38,3 +38,6 @@ next-env.d.ts
 
 # tar files for docker
 *.tar
+
+# python env
+env/
