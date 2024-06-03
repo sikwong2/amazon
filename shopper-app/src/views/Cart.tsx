@@ -10,6 +10,8 @@ import { PageContext } from '@/context/Page';
 import CustomLink from '@/components/Link';
 import CustomDivider from '@/components/Divider';
 import TopBar from '@/components/TopBar';
+import { LoginContext } from '@/context/Login';
+import { useRouter } from 'next/router';
 
 interface Product {
   name: string,
@@ -44,9 +46,10 @@ const fetchProduct = async (productId: any): Promise<Product> => {
 }
 
 export function Cart() {
+  const router = useRouter();
   const { setPage } = useContext(PageContext);
   const { cart } = useContext(CartContext);
-
+  const { accessToken } = useContext(LoginContext);
   const [subtotal, setSubtotal] = useState(0);
   const [cartItems, setCartItems]: any = useState([]);
   const { t } = useTranslation('common');
@@ -127,7 +130,11 @@ export function Cart() {
         pill
         fullWidth
         onClick={() =>{
-          setPage('checkout')
+          if (accessToken) {
+            setPage('checkout');
+          } else {
+            router.push('/login');
+          }
         }}
         >
         {t("cart.proceed-to-checkout")}

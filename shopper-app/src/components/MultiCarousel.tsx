@@ -75,7 +75,7 @@ export default function MultiImageCarousel({ images, height, title, ...rest }: M
               max: 1024,
               min: 464
             },
-            items: 2,
+            items: 4,
             partialVisibilityGutter: 30
           }
         }}
