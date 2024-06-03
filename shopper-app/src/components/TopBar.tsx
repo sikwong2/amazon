@@ -125,32 +125,42 @@ export default function TopBar() {
 
   const fetchUserInfo = async (memberId: string): Promise<MemberInfo | undefined> => {
     try {
-      const query = { query: `query getInfo{getInfo(memberId: "${memberId}") { name, address }}` };
-      const res = await fetch('/api/graphql', {
-        method: 'POST',
-        body: JSON.stringify(query),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-      });
-      const json = await res.json();
-      if (json.errors) {
-        console.log(json.errors[0].message);
-        throw new Error('Error fetching user info');
-      }
-      console.log(json.data);
-      return json.data.getInfo;
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-        throw error;
-      }
+      const query = { query: `query getMemberInfo {
+        getMemberInfo(memberId: "${memberId}") {
+          name
+          address
+        }
+      }`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+          'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log('GraphQL Errors:', json.errors);
+      throw new Error('Error fetching user info');
+    }
+    return json.data.getMemberInfo;
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+      throw error;
+    }
   };
 
   const fetchUserAddress = async () => {
     try {
       const response = await fetchUserInfo(loginContext.id);
+      console.log(response)
       if (response) {
-        setDeliveryAddress(response.address);
+        if (response.address.length > 15) {
+          setDeliveryAddress(response.address.substring(0, 15) + '...')
+        } else {
+          setDeliveryAddress(response.address);
+        }
       } else {
         console.error('User info not found');
       }
@@ -162,8 +172,6 @@ export default function TopBar() {
   React.useEffect(() => {
     if (loginContext.accessToken.length > 0) {
       fetchUserAddress();
-    } else {
-      setDeliveryAddress('');
     }
   }, [loginContext.accessToken]);
 
@@ -269,7 +277,7 @@ export default function TopBar() {
                   </CustomButton>
                 </Grid>
                 <Grid item justifyContent='center' sx={{ display: { xs: 'block', sm: 'block', md: 'block', xl: 'none' } }}> 
-                  <MenuIcon onClick={handleMenuOpen} aria-label='menu'/> 
+                  <MenuIcon onClick={handleMenuOpen} aria-label='menu' style={{ marginTop: '5px' }}/> 
                   <Menu
                     anchorEl={null}
                     open={menuOpen}
