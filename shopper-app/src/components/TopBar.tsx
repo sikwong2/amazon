@@ -18,7 +18,7 @@ import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
 import { Grid } from '@mui/material';
 import { log } from 'console';
-import MenuIcon from '@mui/icons-material/Menu'; // Import MenuIcon
+import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 
 
@@ -185,7 +185,7 @@ export default function TopBar() {
                     caps={false}
                     disabled={loginContext.accessToken.length > 0}
                   >
-                    {loginContext.accessToken.length === 0 ? t("Deliver to Santa Cruz, CA 95060") : `${t("Deliver to")} ${deliveryAddress}`}
+                    {loginContext.accessToken.length === 0 ? t("topbar.Deliver-to") + t(" Santa Cruz, CA 95060") : `${t("topbar.Deliver-to")} ${deliveryAddress}`}
                   </CustomButton>
                 </Grid>
               <Grid item xs={9} container justifyContent="flex-end" spacing={2}>
@@ -331,7 +331,7 @@ export default function TopBar() {
                         disabled={loginContext.accessToken.length > 0}
                         fullWidth
                       >
-                        {loginContext.accessToken.length === 0 ? t("Deliver to Santa Cruz, CA 95060") : `${t("Deliver to")} ${deliveryAddress}`}
+                        {loginContext.accessToken.length === 0 ? t("topbar.Deliver-to") + t(" Santa Cruz, CA 95060") : `${t("topbar.Deliver-to")} ${deliveryAddress}`}
                       </CustomButton>
                     </MenuItem>
                     <MenuItem>
