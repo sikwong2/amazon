@@ -25,8 +25,8 @@ INSERT INTO product(id, data) VALUES ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', js
   'category', ARRAY['dvd', 'movie', 'shrek']
 ));
 INSERT INTO product(id, data) VALUES ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', jsonb_build_object(
-  'name', 'Shrek 3 DVD', '
-  price', 19.99, 'stock', 1, 'rating', 4.7, 
+  'name', 'Shrek 3 DVD',
+  'price', 19.99, 'stock', 1, 'rating', 4.7, 
   'image', ARRAY['https://m.media-amazon.com/images/I/81uE-9vcOEL._AC_UF1000,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/81g1PEZNi6L._SY445_.jpg'], 
   'description', ARRAY['Get ready for Thirds - the greatest fairytale never told continues with a while new hilarious comedy of royal proportions. When his frog-in-law suddenly croaks, Shrek embarks on another whirlwind adventure with Donkey and Puss In Boots to find the rightful heir to the throne.'], 
   'category', ARRAY['shrek', 'dvd', 'movie']
@@ -40,39 +40,42 @@ INSERT INTO product(id, data) VALUES ('e64edcc9-3262-49b8-bda4-066c34089e05', js
 
 -- Macbooks
 INSERT INTO product(id, data) VALUES ('fcdfc6a7-3e50-4909-818c-379f75b4320a', jsonb_build_object(
-  'name', 'Apple 2022 MacBook Air Laptop with M2 chip: 13.6-inch Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera. Works with iPhone and iPad; Midnight', 'price', 849, 'stock', 200, 'rating', 4.8, 
+  'name', 'Apple 2022 MacBook Air Laptop with M2 chip: 13.6-inch Liquid Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera. Works with iPhone and iPad; Midnight', 
+  'price', 849, 'stock', 200, 'rating', 4.8, 
   'image', ARRAY['https://m.media-amazon.com/images/I/719C6bJv8jL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61XufEFo1dL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61HS4BY-4rL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81jcKZq-EOL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61GAbMHjeYL._AC_SL1500_.jpg'], 
   'description', ARRAY['STRIKINGLY THIN DESIGN — The redesigned MacBook Air is more portable than ever and weighs just 2.7 pounds. It’s the incredibly capable laptop that lets you work, play or create just about anything — anywhere.', 'SUPERCHARGED BY M2 — Get more done faster with a next-generation 8-core CPU, up to 10-core GPU and up to 24GB of unified memory.', 'UP TO 18 HOURS OF BATTERY LIFE — Go all day and into the night, thanks to the power-efficient performance of the Apple M2 chip.', 'BIG, BEAUTIFUL DISPLAY — The 13.6-inch Liquid Retina display features over 500 nits of brightness, P3 wide color and support for 1 billion colors for vibrant images and incredible detail.', 'ADVANCED CAMERA AND AUDIO — Look sharp and sound great with a 1080p FaceTime HD camera, three-mic array and four-speaker sound system with Spatial Audio.', 'VERSATILE CONNECTIVITY — MacBook Air features a MagSafe charging port, two Thunderbolt ports and a headphone jack.', 'EASY TO USE — Your Mac feels familiar from the moment you turn it on, and works seamlessly with all your Apple devices.'], 
   'category', ARRAY['electronics', 'sale', 'apple']
 ));
 INSERT INTO product(id, data) VALUES ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', jsonb_build_object(
-  'name', 'Apple 2023 MacBook Pro Laptop M3 Max chip with 16-core CPU, 40-core GPU: 16.2-inch Liquid Retina XDR Display, 48GB Unified Memory, 1TB SSD Storage. Works with iPhone/iPad; Space Black', 'price', 3699, 'stock', 4, 'rating', 4.6, 
+  'name', 'Apple 2023 MacBook Pro Laptop M3 Max chip with 16-core CPU, 40-core GPU: 16.2-inch Liquid Retina XDR Display, 48GB Unified Memory, 1TB SSD Storage. Works with iPhone/iPad; Space Black', 
+  'price', 3699, 'stock', 4, 'rating', 4.6, 
   'image', ARRAY['https://m.media-amazon.com/images/I/618d5bS2lUL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71qArNmCH8L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71Dr4KUCjgL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71b7B8OVHvL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/718n279cEAL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61tt5IdGE3L._AC_SL1500_.jpg'], 
   'description', ARRAY['SUPERCHARGED BY M3 PRO OR M3 MAX — The Apple M3 Pro chip, with a 12-core CPU and 18-core GPU, delivers amazing performance for demanding workflows like manipulating gigapixel panoramas or compiling millions of lines of code. M3 Max, with an up to 16-core CPU and up to 40-core GPU, drives extreme performance for the most advanced workflows like rendering intricate 3D content or developing transformer models with billions of parameters.', 'UP TO 22 HOURS OF BATTERY LIFE — Go all day thanks to the power-efficient design of Apple silicon. The MacBook Pro laptop delivers the same exceptional performance whether it’s running on battery or plugged in. (Battery life varies by use and configuration. See apple.com/batteries for more information.)', 'BRILLIANT PRO DISPLAY — The 16.2-inch Liquid Retina XDR display features Extreme Dynamic Range, over 1000 nits of brightness for stunning HDR content, up to 600 nits of brightness for SDR content, and pro reference modes for doing your best work on the go. (The display has rounded corners at the top. When measured diagonally, the screen is 16.2 inches. Actual viewable area is less.)', 'FULLY COMPATIBLE — All your pro apps run lightning fast — including Adobe Creative Cloud, Apple Xcode, Microsoft 365, SideFX Houdini, MathWorks MATLAB, Medivis SurgicalAR, and many of your favorite iPhone and iPad apps. And with macOS, work and play on your Mac are even more powerful. Elevate your presence on video calls. Access information in all-new ways. And discover even more ways to personalize your Mac. (Apps are available on the App Store.)', 'ADVANCED CAMERA AND AUDIO — Look sharp and sound great with a 1080p FaceTime HD camera, a studio-quality three-mic array, and a six-speaker sound system with Spatial Audio.', 'CONNECT IT ALL — This MacBook Pro features a MagSafe charging port, three Thunderbolt 4 ports, an SDXC card slot, an HDMI port, and a headphone jack. Enjoy fast wireless connectivity with Wi-Fi 6E and Bluetooth 5.3. And you can connect up to two external displays with M3 Pro, or up to four with M3 Max. (Wi‑Fi 6E available in countries and regions where supported.)', 'MAGIC KEYBOARD WITH TOUCH ID — The backlit Magic Keyboard has a full-height function key row and Touch ID, which gives you a fast, easy, secure way to unlock your laptop and sign in to apps and sites.'], 
   'category', ARRAY['apple', 'sale', 'electronics']
 ));
 INSERT INTO product(id, data) VALUES ('88db3140-54d2-4f1f-a552-7454bf55dcaf', jsonb_build_object(
-  'name', 'Apple 2024 MacBook Air 13-inch Laptop with M3 chip: 13.6-inch Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera, Touch ID; Space Gray', 'price', 999, 'stock', 100, 'rating', 4.5, 
+  'name', 'Apple 2024 MacBook Air 13-inch Laptop with M3 chip: 13.6-inch Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera, Touch ID; Space Gray',
+  'price', 999, 'stock', 100, 'rating', 4.5, 
   'image', ARRAY['https://m.media-amazon.com/images/I/71ItMeqpN3L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/617cNLYnypL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61S2t5yhVSL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71njQte16FL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/612Tf3UgLbL._AC_SL1500_.jpg'], 
   'description', ARRAY['LEAN. MEAN. M3 MACHINE — The blazing-fast MacBook Air with the M3 chip is a superportable laptop that sails through work and play.', 'PORTABLE DESIGN — Lightweight and under half an inch thin, so you can take MacBook Air anywhere you go.', 'GET MORE DONE FASTER — The powerful 8-core CPU and up to 10-core GPU of the Apple M3 chip keep things running smoothly.', 'UP TO 18 HOURS OF BATTERY LIFE — Amazing, all-day battery life so you can leave the power adapter at home.', 'A BRILLIANT DISPLAY — The 13.6-inch Liquid Retina display supports 1 billion colors.', 'LOOK SHARP, SOUND GREAT — Everything looks and sounds amazing with a 1080p FaceTime HD camera, three mics, and four speakers with Spatial Audio.', 'APPS FLY WITH APPLE SILICON — All your favorites, from Microsoft 365 to Adobe Creative Cloud, run lightning fast in macOS.'], 
   'category', ARRAY['apple', 'sale', 'electronics']
 ));
 
 -- Apple
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', jsonb_build_object(
   'name', 'Apple AirTag 4 Pack', 'price', 78.99, 'stock', 1000, 'rating', 4.8, 
   'image', ARRAY['https://f.media-amazon.com/images/I/71gY9E+cTaS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71JJueCRWJS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91bsFWILPGS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81Lq1AfCYpS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZMyXWM9CS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YziLCAJSS._AC_SL1500_.jpg'], 
   'description', ARRAY['Keep track of and find your items alongside friends and devices in the Find My app', 'Simple one-tap setup instantly connects AirTag with your iPhone or iPad', 'Play a sound on the built-in speaker to help find your things, or just ask Siri for help', 'Precision Finding with Ultra Wideband technology leads you right to your nearby AirTag on select iPhone models', 'Find items further away with the help of hundreds of millions of Apple devices in the Find My network', 'Put AirTag into Lost Mode to be automatically notified when it’s detected in the Find My network', 'All communication with the Find My network is anonymous and encrypted for privacy, Location data and history are never stored on AirTag', 'Replaceable battery lasts over a year', 'AirTag is IP67 water and dust resistant', 'Make AirTag yours with a range of colorful accessories, sold separately'], 
   'category', ARRAY['AirTags', 'apple', 'sale', 'electronics']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('caeb49c7-69bc-4ed9-ab3e-8cef39ed6c1d', jsonb_build_object(
   'name', 'Apple AirPods (2nd Generation) Wireless Ear Buds, Bluetooth Headphones with Lightning Charging Case Included, Over 24 Hours of Battery Life, Effortless Setup for iPhone', 
   'price', 89.00, 'stock', 1000, 'rating', 4.7, 
   'image', ARRAY['https://f.media-amazon.com/images/I/7120GgUKj3L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71NLN1HgFkL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71NTi82uBEL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71QT9PrfxyL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/41aaZ7P-48L._AC_SL1000_.jpg', 'https://f.media-amazon.com/images/I/71djnhmfy-L._AC_SL1500_.jpg'], 
   'description', ARRAY['HIGH-QUALITY SOUND — Powered by the Apple H1 headphone chip, AirPods (2nd generation) deliver rich, vivid sound.', 'EFFORTLESS SETUP — After a simple one-tap setup, AirPods are automatically on and always connected. They sense when they’re in your ears and pause when you take them out. And sound seamlessly switches between your iPhone, Apple Watch, Mac, iPad, and Apple TV.', 'VOICE CONTROL WITH SIRI — Just say “Hey Siri” for assistance without having to reach for your iPhone.', '24-HOUR BATTERY LIFE — More than 24 hours total listening time with the Charging Case.', 'AUDIO SHARING — Easily share audio between two sets of AirPods on your iPhone, iPad, iPod touch, or Apple TV.', 'LEGAL DISCLAIMERS — This is a summary of the main product features. See “Additional information” to learn more.'], 
   'category', ARRAY['Airpods by Apple', 'apple', 'sale', 'electronics', 'airpods']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('c49680cd-f184-4cee-a584-d9be7ddaf039', jsonb_build_object(
   'name', 'Apple AirPods Max Wireless Over-Ear Headphones, Active Noise Cancelling, Transparency Mode, Personalized Audio, Dolby Atmos, Bluetooth Headphones for iPhone Gray', 
   'price', 524.00, 'stock', 5, 'rating', 4.6, 
   'image', ARRAY['https://f.media-amazon.com/images/I/81jqUPkIVRL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81S533RgkwL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71aAV-Vhg8L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/712Jl7+DA4L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91lPKrrfwYS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71urS8imiUL._AC_SL1500_.jpg'], 
@@ -127,28 +130,28 @@ INSERT INTO product(id, data) VALUES ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', js
 ));
 
 -- Furniture 
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('131d1d6a-d21b-4918-8fd9-4c24367618b4', jsonb_build_object(
   'name', 'Der Rose 4 Packs Fake Plants Mini Artificial Greenery Potted Plants for Home Decor Indoor Office Table Room Farmhouse', 
   'price', 9.99, 'stock', 1000, 'rating', 4.5, 
   'image', ARRAY['https://f.media-amazon.com/images/I/814NZrz8EfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YUh1Ig0cL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81UllOVS0SL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81NMIJaQQrL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/714BuQE5sNL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71J8lLcvgkL._AC_SL1500_.jpg'], 
   'description', ARRAY['【Package Contains】 4 kinds of faux plants indoor, these artificial potted plants are made of friendly plastic', '【Perfect Size】The fake house plants are 7" tall and 2.5" wide, and the pot is 2.5" tall and 2.9" wide The size is just right for room decor', '【Long Life Span】The fake potted plants is designed with unique craftsmanship and looks like real. It doesn’t require special care, and it can maintain its fresh appearance', '【Fake Plants Decor】The small plants can be used in any scene. You can put these plants on windowsill, office,kitchen,desk, bathroom or put them in office to decorate your place well', '【Warm Tips】The leaves of these fake green plants can be adjusted freely. The leaves may be squeezed due to transportation. When you receive them, please comb the leaves to make them look plump and lush'], 
   'category', ARRAY['Fake Plants', 'sale', 'plants', 'furniture']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('09cc271a-0f26-45d1-a774-4443fc732a45', jsonb_build_object(
   'name', 'Small Table Lamp for Bedroom - Bedside Lamps for Nightstand, Minimalist Night Stand Light Lamp with Square Fabric Shade, Desk Reading Lamp for Kids Room Living Room Office Dorm', 
   'price', 9.48, 'stock', 10, 'rating', 4.6, 
   'image', ARRAY['https://f.media-amazon.com/images/I/61xxhaeUKIL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OK2yiVw5L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OQHbKCvJL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71D3pJ5j7mL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/7104yZrIByL._AC_SL1500_.jpg'], 
   'description', ARRAY['✪CHOICE FOR BETTER LIFE-The Cord, Socket and Plug of Aooshine bedside table lamp are UL listed. By giving products the listed, you don’t have to worry about the material problem. This Nightstand lamp comes with ON/OFF switch control, easy to install and use. Please note not included bulb. Please use the LED bulb only.', '✪MINIMALIST DESIGN-The elegant sleek look of this table lamp elevates the aesthetic of your home, an open-top cloth shade of beige linen hovers over a petite black base. The size and the design make this accent lamp a splendid accoutrement for guest cottages and professional offices alike.', '✪Comfortable Glow-Our small desk Lamp creates a nice and comforting feeling in the house when spending time with your family as the linen fabric shade softens the light. Lamps for nightstand is Not Dimmable.', '✪VERSATILE-With E26 universal standard base(Bulb not included), this minimalist rectangle table lamp is best for bedroom, living room, baby room, office, coffee table, college dorm, cafe, bookcase in your library or den. This night stand lights is also a great gift for your family and friend.(Please use the LED bulb, max watt of the LED bulb is 20W)', '✪BUY WITH CONFIDENCE-Having adhered the most demanding quality control procedures. Any problems, please tell us directly, and we will provide best service as we can.'], 
   'category', ARRAY['Bedside Table Lamps', 'furniture', 'home', 'lamp']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('e6c295cf-8037-40f7-b402-38db13bcef37', jsonb_build_object(
   'name', 'SUNMORY Floor Lamp with Shelves, Modern Square Standing Lamp with 3 Color Temperature Bulb, Corner Display Bookshelf Lamp for Living Room and Bedroom(Black)', 
   'price', 45.99, 'stock', 100, 'rating', 4.6, 
   'image', ARRAY['https://f.media-amazon.com/images/I/71YNhyHG-IL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/713ckbMCzAL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ltoje4a+L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/41rwaPMyeGL._AC_SL1230_.jpg', 'https://f.media-amazon.com/images/I/715faTljdeS._AC_SL1500_.jpg'], 
   'description', ARRAY['【3-Color Temperatures LED Bulb Included】SUNMORY shelf lamp includes a 9 Watt, 800 lumen power saving LED bulb ,so you don’t need to buy extra bulb.The LED lamp bulb is 3 color temp : 3000K/5000K/4000K.You can switch different color temperatures according to different scenes.Also can work with smart outlets that are Alexa, Google Home Assistant, or Apple HomeKit enabled(requires smart outlet sold separately).', '【Non-glaring Cloth Lampshade】This shelf floor lamp is equipped with a high-quality off-white cloth lampshade and opens upwards. With the built-in three-color temperature bulb, it can be used for both functional lighting and ambient lighting.', '【Storage & Display】This tall lamp has 3 layers of high density fiberboard, each with a maximum weight of more than 50 pounds. On the shelf, you can put decorations such as vases and photo frames, as well as daily necessities such as books and mobile phones. So it can be used as a corner lamp to decorate your living room or as a skinny nightstand with lamp to bring you life convenience.It is very suitable as a gift for Mothers Day, Thanksgiving Day, or Christmas.', '【Minimalist Design & Versatile Style】The contemporary stand up lamp matches asian, mid century modern, rustic, country and farmhouse decor thanks to its diverse lighting effects and simple lines.', '【Easy to Assemble】SUNMORY shelf floor lamp has been improved in craftsmanship and simplified the installation steps. Compared with other similar products, it will save you 30% percent of installation time.The accompanying package comes with the tools needed for assembly and an instruction manual containing text and video installation steps. Simple repetitive operations are very easy for most people. Warm Tip: Please tighten each post to keep the whole lamp stable.'], 
   'category', ARRAY['Floor Lamps by SUNMORY', 'lamp', 'home', 'furniture']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('da627ad0-e44c-42e3-8990-a94aa2303ee5', jsonb_build_object(
   'name', 'LED Floor Lamp for Living Room, Dimmable Standing Lamps with Foot Switch,Remote Custom Color Temperature Black Pole Lamp with Lampshade,12W Led Bulb Tall Lamps for Bedroom Office Kid Room', 
   'price', 35.99, 'stock', 100, 'rating', 4.8, 
   'image', ARRAY['https://f.media-amazon.com/images/I/71sGZjaa6kL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZofmHnMfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71tNSdGeSUL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71o8KbxGhvL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/612IRIotvSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71pl6QBEJeL._AC_SL1500_.jpg'], 
@@ -189,21 +192,21 @@ INSERT INTO product(id, data) VALUES ('91341777-8bfc-4dcf-97a8-29c6542c744e', js
 ));
 
 -- Nike
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('d0eeec78-99ef-4736-8256-c04043110873', jsonb_build_object(
   'name', 'Nike Air Force 1 Low Women’s', 'price', 82.43, 'stock', 1000, 'rating', 4.6, 
   'image', ARRAY['https://f.media-amazon.com/images/I/61VTTRwFUdL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61mkgKBrwPL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71qFlQucWlL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71eRiDk-W0L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71kFpb7CTGL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61CKnwS9B3L._AC_SL1500_.jpg'], 
   'description', ARRAY['Closure.type : Lace-Up', 'Heel.type : Flat', 'Height map : Low Top', 'Material : Nike Materials', 'Outer.material : Nike Materials'], 
   'category', ARRAY['women’s shoes', 'nike', 'sports', 'shoes', 'clothing']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('c3816390-dbbc-4fdb-8de6-4287dbf15999', jsonb_build_object(
   'name', 'Nike Men’s Sneaker,Running Shoes', 'price', 104.95, 'stock', 10000, 'rating', 4.6, 
   'image', ARRAY['https://f.media-amazon.com/images/I/71GMZVTMcsL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71kU7lrqw3L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71SMFDbzZeL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/718fsIS2PuL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61vNVHhyLuL._AC_SL1500_.jpg'], 
   'description', ARRAY['Rubber sole'], 
   'category', ARRAY['men’s shoes', 'sports', 'nike', 'shoes', 'clothing']
 ));
-INSERT INTO product(data) VALUES (jsonb_build_object(
+INSERT INTO product(id, data) VALUES ('213e5426-5be1-4e3e-9d79-fde79636cd12', jsonb_build_object(
   'name', 'Nike mens Blazer Mid 77 Vintage', 'price', 94.98, 'stock', 10, 'rating', 4.6, 
-  'image', ARRAY['https://f.media-amazon.com/images/I/71aw2Z+2WML._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61RgxlQ24BL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71h5bWbBaSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61wla26S4lL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61wla26S4lL._AC_SL1500_.jpg'], 
+  'image', ARRAY['https://f.media-amazon.com/images/I/71aw2Z+2WML._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61RgxlQ24BL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71h5bWbBaSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61wla26S4lL._AC_SL1500_.jpg'], 
   'description', ARRAY['Vintage leather and synthetic upper provides classic Blazer Mid 77 style with added comfort', 'Autoclave construction fuses midsole and outsole for streamlined retro look', 'Non-marking rubber outsole offers excellent traction and durability', 'Foam tongue and exposed foam collar provide throwback details', 'Lace-up closure allows a snug, adjustable fit'], 
   'category', ARRAY['Shoes by Nike', 'sports', 'nike', 'clothing']
 ));
