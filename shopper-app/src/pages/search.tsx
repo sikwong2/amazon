@@ -14,7 +14,7 @@ const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Produ
   try {
     const query = {
       query: `query getByName {
-        getByName(name: "${name}", page: 1, size: 12, order: "price", sort: "DESC") {
+        getByName(name: "${name}", page: 1, size: 100, order: "price", sort: "DESC") {
           id
           price
           name

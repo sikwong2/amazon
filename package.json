@@ -20,7 +20,7 @@
     "vendor-app": "cd vendor-app && npm run dev",
     "shopper-app": "cd shopper-app && npm run dev",
     "vendor-api": "cd vendor-api && npm run dev",
-    "cis": "npm ci && npm run ci-vendor && npm run ci-admin && npm run ci-shopper && npm run ci-accounts && npm run ci-orders && npm run ci-products",
+    "cis": "npm ci && npm run ci-vendor && npm run ci-admin && npm run ci-shopper && npm run ci-accounts && npm run ci-orders && npm run ci-products && npm run ci-vendor-api",
     "ci-vendor": "cd vendor-app && npm ci",
     "ci-admin": "cd admin-app && npm ci",
     "ci-shopper": "cd shopper-app && npm ci",
