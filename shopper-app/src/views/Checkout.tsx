@@ -524,7 +524,7 @@ export function Checkout() {
               </div>
               <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
                 <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
-                {t("checkout.order-total")} {`${subtotal.toFixed(2)}`} 
+                {t("checkout.order-total")} ${`${subtotal.toFixed(2)}`} 
                 </div> 
                 <div style={{flex: '1'}}>
                   <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
@@ -673,7 +673,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal.toFixed(2)}
+                    ${subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
@@ -692,7 +692,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {'$'+subtotal.toFixed(2)}
+                    ${subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow>
