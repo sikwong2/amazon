@@ -1,7 +1,7 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 import { IsIn } from 'class-validator';
 
-@ObjectType()
+@ObjectType('OrdersInfo')
 export class OrdersInfo {
   @Field(() => [String])
   products!: string[];
@@ -12,9 +12,9 @@ export class OrdersInfo {
   @Field()
   orderStatus!: string;
   @Field()
-    orderId!: string
+  orderId!: string
   @Field()
-    orderDate!: string
+  orderDate!: string
 }
 
 @InputType()

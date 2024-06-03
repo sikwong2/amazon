@@ -198,7 +198,7 @@ export default function Product({ product }: ProductProp) {
           display="inline"
           sx={{ fontSize: '1rem', lineHeight: '1.3', fontWeight: 'bold' }}
         >
-          <RandomDeliveryDate offset={7} />.{' '}
+          <RandomDeliveryDate offset={4} />.{' '}
         </Typography>
         <Typography display="inline" sx={{ fontSize: '1rem', lineHeight: '1.3' }}>
           {t('product.order-within')}{' '}

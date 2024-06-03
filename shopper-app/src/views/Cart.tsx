@@ -55,8 +55,15 @@ export function Cart() {
   const { t } = useTranslation('common');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
+
+  useEffect(() => {
+
+  }, [cart]);
   
   useEffect(() => {
+    let totalItems = 0;
+  
     (async () => {
       let total = 0;
       const temp: any = []
@@ -64,6 +71,7 @@ export function Cart() {
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
           total += (product.price * quantity);
+          totalItems += quantity;
           temp.push(
             <CartItem
               key={productId} 
@@ -76,6 +84,7 @@ export function Cart() {
       )
       setCartItems(temp);
       setSubtotal(Number(Number(total).toFixed(2)));
+      setNumberOfItems(totalItems);
     })()
   }, [cart])
 
@@ -85,7 +94,7 @@ export function Cart() {
         {t("cart.subtotal")}
       </Typography>
       <Typography display='inline' fontSize='1.1em'>
-        {` (${Object.keys(cart).length} ${Object.keys(cart).length == 1 ? t("cart.item") : t("cart.item-s")}): `}
+        {` (${numberOfItems} ${numberOfItems == 1 ? t("cart.item") : t("cart.item-s")}): `}
       </Typography>
       <Typography display='inline' fontWeight='bold' fontSize='1.1em'>
         {`$${subtotal.toFixed(2)}`}

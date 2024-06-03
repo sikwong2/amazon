@@ -10,7 +10,7 @@ export class Credentials {
   password!: string;
 }
 
-@ObjectType()
+@ObjectType('Authenticated')
 export class Authenticated {
   @Field()
   name!: string;
