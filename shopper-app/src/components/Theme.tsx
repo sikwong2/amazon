@@ -134,11 +134,7 @@ export const cardTheme = createTheme(
             style: {
               borderWidth: '1px',
               borderColor: 'rgba(0, 0, 0, 0.12)',
-              boxShadow: 'none',
-              '&:hover': {
-                boxShadow:
-                  '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-              },
+              boxShadow: 'none', 
             },
           },
         ],
@@ -319,6 +315,27 @@ const tabTheme = createTheme(globalTheme, {
         disableFocusRipple: true,
         disableRipple: true
       },
+    }
+  }
+})
+
+export const radioButtonTheme = createTheme(globalTheme, {
+  components: {
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          // Outer circle color when unchecked
+          color: '#gray', // Change this to any specific gray color code you prefer
+          '&.Mui-checked': {
+            // Inner circle color when checked
+            color: '#007bff', // Change to the blue color you want
+            'svg': {
+              // Target the SVG inner circle specifically for color filling
+              color: '#007bff' // Ensure this matches the outer 'color' property if needed
+            }
+          }
+        }
+      }
     }
   }
 })
