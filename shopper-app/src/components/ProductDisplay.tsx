@@ -35,15 +35,15 @@ export default function ProductDisplay({ images }: ProductDisplayProps) {
                 onClick={() => handleImageClick(image)}
                 onMouseEnter={() => handleImageClick(image)}
                 loading="lazy"
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', maxHeight: '50px' }}
               />
             </ImageListItem>
           ))}
         </ImageList>
       </Box>
-      <Box aria-label="selected-image" sx={{ flexGrow: 1, height: 500, display: 'flex' }}>
+      <Box aria-label="selected-image" sx={{ flexGrow: 1, height: 500, maxHeight: 500, display: 'flex' }}>
         <Card sx={{ maxWidth: 500, margin: 'auto' }}>
-          <CardMedia component="img" image={selectedImage} alt="Selected Image" />
+          <CardMedia component="img" image={selectedImage} alt="Selected Image" sx={{ maxHeight: 500 }} />
         </Card>
       </Box>
     </Box>
