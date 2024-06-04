@@ -122,7 +122,7 @@ const createOrder = async (order: OrderInfo) => {
     const res = await fetch(
       `/api/graphql`, {
       method: 'POST',
-      body: JSON.stringify({query, variables}),
+      body: JSON.stringify({ query, variables }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -133,7 +133,7 @@ const createOrder = async (order: OrderInfo) => {
       throw new Error(json.errors[0].message);
     }
     return json.data.createOrder;
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
 }
@@ -144,14 +144,14 @@ const placeOrder = async (products: StripeProduct[]) => {
         getCheckoutURL(products: $products)
       }
     `;
-    
+
     const variables = {
       products: products
     };
     const res = await fetch(
       `/api/graphql`, {
       method: 'POST',
-      body: JSON.stringify({query, variables}),
+      body: JSON.stringify({ query, variables }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -161,16 +161,17 @@ const placeOrder = async (products: StripeProduct[]) => {
       console.log(json.errors[0].message);
       throw new Error(json.errors[0].message);
     }
-    window.location.href = json.data.getCheckoutURL;
+    window.open(json.data.getCheckoutURL, '_blank');
+    // window.location.href = json.data.getCheckoutURL;
   } catch (e) {
     console.log(e);
   }
 }
 
 export function Checkout() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const { id } = useContext(LoginContext);
-  const pageContext = useContext(PageContext); 
+  const pageContext = useContext(PageContext);
   const { t } = useTranslation('common');
   const [memberName, setMemberName] = useState('');
   const [address, setAddress] = useState('');
@@ -201,7 +202,7 @@ export function Checkout() {
     }
     setNumberOfItems(totalItems);
   }, [cart]);
-  
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
     const offset = event.target.value === 'standard' ? 2 : 4;
@@ -218,7 +219,7 @@ export function Checkout() {
         setShowPopover(false);
         console.log('clicked outside');
       }
-    }; 
+    };
     if (showPopover) {
       const timer = setTimeout(() => {
         document.addEventListener('click', handleClickOutside);
@@ -228,7 +229,7 @@ export function Checkout() {
         document.removeEventListener('click', handleClickOutside);
       };
     }
-  }, [showPopover]); 
+  }, [showPopover]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -304,7 +305,7 @@ export function Checkout() {
       >
         <Logo
           style={{
-            width: '80px', 
+            width: '80px',
             marginRight: isXsBreakpoint ? '200px' : '1150px',
             position: 'absolute',
             flex: '1',
@@ -319,75 +320,75 @@ export function Checkout() {
             marginBottom: 10,
           }}
         >
-          {t("checkout.title")} 
+          {t("checkout.title")}
           <span> (</span>
-          <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0'}}>{numberOfItems} {numberOfItems === 1? "item" : "items"}</span>
+          <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0' }}>{numberOfItems} {numberOfItems === 1 ? "item" : "items"}</span>
           <span>) </span>
         </div>
         <div
-        style={{
-          flex: '1',
-          left: '80%',
-          position: 'absolute'
-        }}>
+          style={{
+            flex: '1',
+            left: '80%',
+            position: 'absolute'
+          }}>
           <LockButton></LockButton>
         </div>
       </div>
-        {showPopover && (
-          <div style={{
-            position: 'absolute',
-            zIndex: 1001,
-            bottom: '89%',
-            left: '53%',
-            width: 0,
-            height: 0,
-            borderLeft: '20px solid transparent',
-            borderRight: '20px solid transparent',
-            borderBottom: '20px solid white' 
-          }}>
-          </div>
-        )}
+      {showPopover && (
+        <div style={{
+          position: 'absolute',
+          zIndex: 1001,
+          bottom: '89%',
+          left: '53%',
+          width: 0,
+          height: 0,
+          borderLeft: '20px solid transparent',
+          borderRight: '20px solid transparent',
+          borderBottom: '20px solid white'
+        }}>
+        </div>
+      )}
       <div ref={popoverRef}>
         {showPopover && (
           <CustomCard type='rounded' style={{
-            position: 'absolute', 
+            position: 'absolute',
             backgroundColor: '#fff',
             boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
             padding: '10px',
             marginTop: '1px',
-            zIndex: 1000, 
-            width: 'auto',  
-            left: '53%', 
+            zIndex: 1000,
+            width: 'auto',
+            left: '53%',
             bottom: '77%',
-            transform: 'translateX(-50%)',  
+            transform: 'translateX(-50%)',
           }}>
-            <Typography sx={{fontSize: '14px'}}> {t("checkout.are-you-sure")} </Typography>
-            <div style={{display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px'}}>
-              <CustomButton label="stay in checkout" 
-              pill
-              color='info'
-              onClick={() => {
-                setShowPopover(false);
-              }}
-              sx={{marginRight: '20px', flex: '1', border: '4px', fontSize: '12px'}}> 
-              {t("checkout.stay-in-checkout")}
+            <Typography sx={{ fontSize: '14px' }}> {t("checkout.are-you-sure")} </Typography>
+            <div style={{ display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px' }}>
+              <CustomButton label="stay in checkout"
+                pill
+                color='info'
+                onClick={() => {
+                  setShowPopover(false);
+                }}
+                sx={{ marginRight: '20px', flex: '1', border: '4px', fontSize: '12px' }}>
+                {t("checkout.stay-in-checkout")}
               </CustomButton>
-              <CustomButton label="return to cart" 
-              pill
-              onClick={() => {
-                pageContext.setPage('cart');
-                router.push('/');
-              }}
-              sx={{flex: '1', fontSize: '12px'}}> 
-              {t("checkout.return-to-cart")}
+              <CustomButton label="return to cart"
+                pill
+                onClick={() => {
+                  pageContext.setPage('cart');
+                  router.push('/');
+                }}
+                sx={{ flex: '1', fontSize: '12px' }}>
+                {t("checkout.return-to-cart")}
               </CustomButton>
-             </div>
+            </div>
           </CustomCard>
         )}
       </div>
       <Container sx={{ display: 'flex', flexDirection: 'row' }}>
         <Container
-          sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}
+          sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
         >
           <Grid container spacing={2}>
             <Grid item xs={12} lg={4}>
@@ -452,35 +453,35 @@ export function Checkout() {
             3 {'    '} {t("checkout.review-items-and-shipping")}
           </Typography>
           <CustomCard sx={{ display: 'block', minHeight: '100%', width: '95%', marginLeft: '35px' }}>
-            <div 
+            <div
               style={{
                 border: '2px dashed #1196AB',
                 padding: '10px',
                 margin: '20px',
-                textAlign: 'left', 
-                fontSize: '16px', 
+                textAlign: 'left',
+                fontSize: '16px',
                 fontWeight: '700',
               }}>
-               {t("checkout.ad")}
+              {t("checkout.ad")}
             </div>
             <div
-            style = {{
+              style={{
                 margin: '20px',
                 marginBottom: '0.1px',
                 color: '#007600',
                 fontWeight: '700',
-            }}
-            > 
-               {t("checkout.arriving")} {' '}
+              }}
+            >
+              {t("checkout.arriving")} {' '}
               <DeliveryDate offset={renderOffset}> </DeliveryDate>
             </div>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-              <div style={{width: '50%'}}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ width: '50%' }}>
                 <List>
                   {cartItems}
                 </List>
               </div>
-              <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex: '1', marginTop: '28px'}}>
+              <Box sx={{ display: 'flex', width: '100%', alignItems: 'flex-start', flex: '1', marginTop: '28px' }}>
                 <Box sx={{ flex: 1, flexDirection: 'column', display: 'flex' }}>
                   <Typography
                     sx={{
@@ -508,8 +509,8 @@ export function Checkout() {
               </Box>
             </div>
           </CustomCard>
-          
-          <CustomCard sx={{marginTop: '20px', width: '95%', marginLeft: '35px'}}>
+
+          <CustomCard sx={{ marginTop: '20px', width: '95%', marginLeft: '35px' }}>
             <Box
               sx={{
                 display: 'flex',
@@ -530,17 +531,21 @@ export function Checkout() {
                   onClick={() => {
                     createOrder(order);
                     placeOrder(stripeProducts);
+                    setCart({});
+                    pageContext.setPage('home');
+                    router.push('/');
+
                   }}
                 >
-                 {t("checkout.place-order")} 
+                  {t("checkout.place-order")}
                 </CustomButton>
               </div>
-              <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
-                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
-                {t("checkout.order-total")} ${`${subtotal.toFixed(2)}`} 
-                </div> 
-                <div style={{flex: '1'}}>
-                  <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
+              <div style={{ display: 'flex', flexDirection: 'column', flex: '3' }}>
+                <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700' }}>
+                  {t("checkout.order-total")} ${`${subtotal.toFixed(2)}`}
+                </div>
+                <div style={{ flex: '1' }}>
+                  <Typography sx={{ fontSize: '11px' }}> {t("checkout.footer-part-1")} {' '}
                     <CustomLink
                       label="privacy-notice"
                       variant="blue2"
@@ -555,7 +560,7 @@ export function Checkout() {
                       href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GLSBYFE9MGKKQXXM"
                     >
                       {t('signup.conditions')}
-                    </CustomLink> 
+                    </CustomLink>
                     {t("checkout.period")}
                   </Typography>
                 </div>
@@ -564,7 +569,7 @@ export function Checkout() {
           </CustomCard>
           <CustomDivider sx={{ marginTop: 1.5 }}></CustomDivider>
           <CustomDivider></CustomDivider>
-          <Typography sx={{marginTop: '20px', fontSize: '12px', color: 'text.secondary'}}>
+          <Typography sx={{ marginTop: '20px', fontSize: '12px', color: 'text.secondary' }}>
             {t("checkout.footer-part-2")} {' '}
             <CustomLink
               label="privacy-notice"
@@ -572,15 +577,15 @@ export function Checkout() {
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_helpfooter_pri?nodeId=GWZRWJGNW45SAWPY&ie=UTF8&ref_=chk_help_helpfooter_pri"
             >
               {t("checkout.help-pages")} {' '}
-            </CustomLink> 
+            </CustomLink>
             {t("checkout.and")}{' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/hz/contact-us/foresight/hubgateway"
             >
-              {t("checkout.contact-us")} 
-            </CustomLink> 
+              {t("checkout.contact-us")}
+            </CustomLink>
           </Typography>
           <Typography sx={{ marginTop: '5px', fontSize: '12px', color: 'text.secondary' }}>
             {t("checkout.footer-part-3")}
@@ -592,7 +597,7 @@ export function Checkout() {
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_statetaxfooter_pri?ie=UTF8&nodeId=202029100"
             >
               {t("checkout.important-info")}
-            </CustomLink>  
+            </CustomLink>
           </Typography>
           <Typography sx={{ marginTop: '5px', fontSize: '12px', color: 'text.secondary' }}>
             {t("checkout.footer-part-4")}
@@ -603,16 +608,16 @@ export function Checkout() {
               href="https://www.amazon.com/gp/help/customer/display.html/ref=chk_help_returnsfooter_pri?nodeId=GNW5VKFXMF72FFMR&ie=UTF8&ref_=chk_help_returnsfooter_pri"
             >
               {t("checkout.return-policy")}
-            </CustomLink>  
+            </CustomLink>
           </Typography>
           <Typography sx={{ marginTop: '10px', marginBottom: '40px', fontSize: '12px', color: 'text.secondary' }}>
-             {t("checkout.footer-part-5")}{' '}
+            {t("checkout.footer-part-5")}{' '}
             <CustomLink
               label="privacy-notice"
               variant="blue2"
               href="https://www.amazon.com/?tag=amazusnavi-20&hvadid=675149237887&hvpos=&hvnetw=g&hvrand=2498626952770057035&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031944&hvtargid=kwd-10573980&ref=pd_sl_7j18redljs_e&hydadcr=28883_14649097&gad_source=1"
             >
-              {t("checkout.ucsc-amazon-homepage")} 
+              {t("checkout.ucsc-amazon-homepage")}
             </CustomLink>
           </Typography>
         </Container>
@@ -635,6 +640,9 @@ export function Checkout() {
                 onClick={() => {
                   createOrder(order);
                   placeOrder(stripeProducts);
+                  setCart({});
+                  pageContext.setPage('home');
+                  router.push('/');
                 }}
               >
                 {t("checkout.place-order")}
@@ -644,7 +652,7 @@ export function Checkout() {
               variant="body1"
               sx={{ mt: 1, mb: 1, fontSize: '12px', textAlign: 'center', ml: '20px', mr: '20px' }}
             >
-              {t("checkout.footer-part-1")} {' '} 
+              {t("checkout.footer-part-1")} {' '}
               <CustomLink
                 label="privacy-notice"
                 variant="blue2"
@@ -680,7 +688,7 @@ export function Checkout() {
               <TableBody>
                 <TableRow sx={{ mb: '1px' }}>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                   {t("checkout.items")} 
+                    {t("checkout.items")}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -691,7 +699,7 @@ export function Checkout() {
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                   {t("checkout.shipping-handling")} 
+                    {t("checkout.shipping-handling")}
                   </TableCell>
                   <TableCell align="right" sx={{ paddingBottom: '1px', paddingTop: '1px' }}>
                     $0.00
@@ -710,7 +718,7 @@ export function Checkout() {
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                   {t("checkout.estimated-tax-collected")} 
+                    {t("checkout.estimated-tax-collected")}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -737,7 +745,7 @@ export function Checkout() {
                       fontWeight: '700',
                     }}
                   >
-                   {t("checkout.order-total-2")} 
+                    {t("checkout.order-total-2")}
                   </TableCell>
                   <TableCell
                     align="right"
