@@ -82,6 +82,7 @@ export default function TopBar() {
 	const { searchValue, setSearchValue, handleSearch } = useSearch();
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
 
 	const router = useRouter();
 
@@ -174,6 +175,16 @@ export default function TopBar() {
 	};
 
 	React.useEffect(() => {
+		let totalItems = 0;
+		const cart = cartContext.cart;
+		const productIds = Object.keys(cartContext.cart);
+		for (let i = 0; i < productIds.length; i++) {
+			totalItems += cart[productIds[i]];
+		}
+		setNumberOfItems(totalItems);
+	}, [cartContext.cart]);
+
+	React.useEffect(() => {
 		if (loginContext.accessToken.length > 0) {
 			fetchUserAddress();
 		}
@@ -257,7 +268,7 @@ export default function TopBar() {
 					alignItems: "center",
 					justifyContent: "center",
 				}}>
-					{Object.keys(cartContext.cart).length}
+					{numberOfItems}
 				</div>
 				<span style={{ marginLeft: 8 }}>{t("topbar.Cart")}</span>
 			</div>
