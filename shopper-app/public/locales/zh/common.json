@@ -43,7 +43,8 @@
     "Orders": "订单",
     "Cart": "购物车",
     "Search": "搜索",
-    "Hello": "你好"
+    "Hello": "你好",
+    "Deliver-to": "送到"
   },
   "home": {
     "pick-up": "继续逛",
