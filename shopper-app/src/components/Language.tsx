@@ -40,7 +40,6 @@ const LanguageButton = ({ ...rest }) => {
 
   return (
     <ThemeProvider theme={buttonTheme}>
-      <div>
         <CustomButton
           ref={buttonRef}
           aria-haspopup="true"
@@ -88,7 +87,6 @@ const LanguageButton = ({ ...rest }) => {
             ))}
           </RadioGroup>
         </Popover>
-      </div>
     </ThemeProvider>
   );
 };
