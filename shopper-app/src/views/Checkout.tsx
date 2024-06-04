@@ -190,7 +190,7 @@ export function Checkout() {
     "products": [],
     "shopperId": loginContext.id,
     "orderStatus": 'pending',
-    "vendorId": '33d646df-1f4a-4130-8590-720f45ba4179'
+    "vendorId": 'fb31ce70-f4f3-4bcc-b493-14e8311c61d1'
   });
 
   const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
@@ -252,9 +252,10 @@ export function Checkout() {
       let total = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
+      // hardcoded vendor id to nike vendor
       const tempOrder: OrderInfo = {
         "products": [],
-        "vendorId": "33d646df-1f4a-4130-8590-720f45ba4179",
+        "vendorId": "fb31ce70-f4f3-4bcc-b493-14e8311c61d1",
         "shopperId": loginContext.id,
         "orderStatus": "pending"
       }
