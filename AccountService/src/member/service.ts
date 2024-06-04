@@ -33,10 +33,11 @@ export class MemberService {
           'email', $1::varchar,
           'name', $2::varchar,
           'pwhash', crypt($3::varchar,'87'),
-          'role', $4::varchar
+          'role', $4::varchar,
+          'address', '1156 High St, Santa Cruz, CA 95064'
         )::jsonb
       )
-      RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role`;
+      RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role, data->>'address' as address`;
 
     if (memberinput.role == 'vendor') {
       insert = `INSERT INTO account(data) VALUES (
