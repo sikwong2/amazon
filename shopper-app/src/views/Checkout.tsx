@@ -12,7 +12,7 @@ import {
   TableCell,
   useTheme,
 } from '@mui/material';
-import { useContext, useRef, useState } from 'react';
+import { Fragment, useContext, useRef, useState } from 'react';
 import CustomCard from '../components/Card';
 import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
@@ -286,108 +286,255 @@ export function Checkout() {
     })()
   }, [subtotal, cart])
 
-  return (
-    <Container maxWidth="xl" style={{ paddingLeft: '13px', paddingRight: '13px' }}>
+  const header = (
+    <Fragment>
       <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 15,
-          marginLeft: 0,
-          fontSize: 28,
-          borderBottom: '1px solid rgba(0, 0, 0, 0.15)',
-          marginBottom: 16,
-          fontWeight: 400,
-          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 1))',
-          height: '60px',
-          width: '100%',
-        }}
-      >
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15,
+        marginLeft: 0,
+        fontSize: 28,
+        borderBottom: '1px solid rgba(0, 0, 0, 0.15)',
+        marginBottom: 16,
+        fontWeight: 400,
+        background: 'linear-gradient(to top, rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 1))',
+        height: '60px',
+        width: '100%',
+      }}
+    >
+      <div style={{flex: 1, marginLeft: '100px'}}>
         <Logo
           style={{
             width: '80px',
-            marginRight: isXsBreakpoint ? '200px' : '1150px',
-            position: 'absolute',
-            flex: '1',
-            marginLeft: '100px'
           }}
         />
-        <div
-          style={{
-            flex: '1',
-            position: 'absolute',
-            left: '45%',
-            marginBottom: 10,
+      </div>
+      <div
+        style={{
+          flex: 2,
+          marginBottom: 10,
+          marginRight: '10%', 
+          marginLeft: '15%'
+        }}
+      >
+        {t("checkout.title")}
+        <span> (</span>
+        <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0' }}>{numberOfItems} {numberOfItems === 1 ? "item" : "items"}</span>
+        <span>) </span>
+      </div>
+      <div
+        style={{
+          flex: 1
+        }}>
+        <LockButton></LockButton>
+      </div>
+    </div>
+    {showPopover && (
+      <div style={{
+        position: 'absolute',
+        zIndex: 1001,
+        bottom: '89%',
+        left: '53%',
+        width: 0,
+        height: 0,
+        borderLeft: '20px solid transparent',
+        borderRight: '20px solid transparent',
+        borderBottom: '20px solid white'
+      }}>
+      </div>
+    )}
+    <div ref={popoverRef}>
+      {showPopover && (
+        <CustomCard type='rounded' style={{
+          position: 'absolute',
+          backgroundColor: '#fff',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+          padding: '10px',
+          marginTop: '1px',
+          zIndex: 1000,
+          width: 'auto',
+          left: '53%',
+          bottom: '77%',
+          transform: 'translateX(-50%)',
+        }}>
+          <Typography sx={{ fontSize: '14px' }}> {t("checkout.are-you-sure")} </Typography>
+          <div style={{ display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px' }}>
+            <CustomButton label="stay in checkout"
+              pill
+              color='info'
+              onClick={() => {
+                setShowPopover(false);
+              }}
+              sx={{ marginRight: '20px', flex: '1', border: '4px', fontSize: '12px' }}>
+              {t("checkout.stay-in-checkout")}
+            </CustomButton>
+            <CustomButton label="return to cart"
+              pill
+              onClick={() => {
+                pageContext.setPage('cart');
+                router.push('/');
+              }}
+              sx={{ flex: '1', fontSize: '12px' }}>
+              {t("checkout.return-to-cart")}
+            </CustomButton>
+          </div>
+        </CustomCard>
+      )}
+    </div>
+    </Fragment>
+  );
+
+  const rightbox = (
+    <Container maxWidth="sm" sx={{ flex: 1, justifyContent: 'center' }}>
+    <CustomCard type="rounded" sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Typography
+        variant="body1"
+        sx={{ mt: 2, mb: 1, fontSize: '12px', textAlign: 'center' }}
+      >
+        <CustomButton
+          label="Place Order"
+          variant="contained"
+          pill
+          sx={{
+            width: '240px',
+            height: '33px',
+            fontSize: '13px',
+            margin: 'auto',
+          }}
+          onClick={() => {
+            createOrder(order);
+            placeOrder(stripeProducts);
+            setCart({});
+            pageContext.setPage('home');
+            router.push('/');
           }}
         >
-          {t("checkout.title")}
-          <span> (</span>
-          <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0' }}>{numberOfItems} {numberOfItems === 1 ? "item" : "items"}</span>
-          <span>) </span>
-        </div>
-        <div
-          style={{
-            flex: '1',
-            left: '80%',
-            position: 'absolute'
-          }}>
-          <LockButton></LockButton>
-        </div>
-      </div>
-      {showPopover && (
-        <div style={{
-          position: 'absolute',
-          zIndex: 1001,
-          bottom: '89%',
-          left: '53%',
-          width: 0,
-          height: 0,
-          borderLeft: '20px solid transparent',
-          borderRight: '20px solid transparent',
-          borderBottom: '20px solid white'
-        }}>
-        </div>
-      )}
-      <div ref={popoverRef}>
-        {showPopover && (
-          <CustomCard type='rounded' style={{
-            position: 'absolute',
-            backgroundColor: '#fff',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-            padding: '10px',
-            marginTop: '1px',
-            zIndex: 1000,
-            width: 'auto',
-            left: '53%',
-            bottom: '77%',
-            transform: 'translateX(-50%)',
-          }}>
-            <Typography sx={{ fontSize: '14px' }}> {t("checkout.are-you-sure")} </Typography>
-            <div style={{ display: 'flex', marginTop: '15px', marginBottom: '10px', marginLeft: '20px', marginRight: '20px' }}>
-              <CustomButton label="stay in checkout"
-                pill
-                color='info'
-                onClick={() => {
-                  setShowPopover(false);
-                }}
-                sx={{ marginRight: '20px', flex: '1', border: '4px', fontSize: '12px' }}>
-                {t("checkout.stay-in-checkout")}
-              </CustomButton>
-              <CustomButton label="return to cart"
-                pill
-                onClick={() => {
-                  pageContext.setPage('cart');
-                  router.push('/');
-                }}
-                sx={{ flex: '1', fontSize: '12px' }}>
-                {t("checkout.return-to-cart")}
-              </CustomButton>
-            </div>
-          </CustomCard>
-        )}
-      </div>
-      <Container sx={{ display: 'flex', flexDirection: 'row' }}>
+          {t("checkout.place-order")}
+        </CustomButton>
+      </Typography>
+      <Typography
+        variant="body1"
+        sx={{ mt: 1, mb: 1, fontSize: '12px', textAlign: 'center', ml: '20px', mr: '20px' }}
+      >
+        {t("checkout.footer-part-1")} {' '}
+        <CustomLink
+          label="privacy-notice"
+          variant="blue2"
+          href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496"
+        >
+          {t('signup.privacy-notice')}
+        </CustomLink>
+        &nbsp; {t("checkout.and")} &nbsp;
+        <CustomLink
+          label="conditions-of-use"
+          variant="blue2"
+          href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use"
+        >
+          {t('signup.conditions')}
+        </CustomLink>
+      </Typography>
+      <CustomDivider sx={{ margin: 'auto', width: '235px' }}></CustomDivider>
+      <Typography
+        variant="h3"
+        sx={{
+          fontSize: '18px',
+          fontWeight: '700',
+          textAlign: 'left',
+          ml: '19px',
+          mt: '12px',
+          mb: '13px',
+        }}
+      >
+        {t("checkout.order-summary")}
+      </Typography>
+
+      <Table sx={{ border: 'none' }}>
+        <TableBody>
+          <TableRow sx={{ mb: '1px' }}>
+            <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
+              {t("checkout.items")}
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
+            >
+              ${subtotal.toFixed(2)}
+            </TableCell>
+          </TableRow>
+          <TableRow sx={{ mb: '5px' }}>
+            <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
+              {t("checkout.shipping-handling")}
+            </TableCell>
+            <TableCell align="right" sx={{ paddingBottom: '1px', paddingTop: '1px' }}>
+              $0.00
+            </TableCell>
+          </TableRow>
+          <TableRow sx={{ mb: '5px' }}>
+            <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
+              {t("checkout.before-tax")}
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
+            >
+              ${subtotal.toFixed(2)}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
+              {t("checkout.estimated-tax-collected")}
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
+            >
+              $0.00
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <CustomDivider
+        sx={{ margin: 'auto', width: '235px', marginBottom: '8px' }}
+      ></CustomDivider>
+      <Table sx={{ border: 'none', marginBottom: '12px' }}>
+        <TableBody>
+          <TableRow>
+            <TableCell
+              sx={{
+                border: 'none',
+                paddingBottom: '1px',
+                paddingTop: '1px',
+                color: 'rgb(177, 39, 4)',
+                fontSize: '18px',
+                fontWeight: '700',
+              }}
+            >
+              {t("checkout.order-total-2")}
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                border: 'none',
+                paddingBottom: '1px',
+                paddingTop: '1px',
+                color: 'rgb(177, 39, 4)',
+                fontSize: '18px',
+                fontWeight: '700',
+              }}
+            >
+              ${subtotal.toFixed(2)}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </CustomCard>
+  </Container>
+  )
+
+  const leftbox = (
+    <Container sx={{ display: 'flex', flexDirection: 'row' }}>
         <Container
           sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
         >
@@ -622,151 +769,22 @@ export function Checkout() {
             </CustomLink>
           </Typography>
         </Container>
-        <Container maxWidth="sm" sx={{ flex: 1, justifyContent: 'center' }}>
-          <CustomCard type="rounded" sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography
-              variant="body1"
-              sx={{ mt: 2, mb: 1, fontSize: '12px', textAlign: 'center' }}
-            >
-              <CustomButton
-                label="Place Order"
-                variant="contained"
-                pill
-                sx={{
-                  width: '240px',
-                  height: '33px',
-                  fontSize: '13px',
-                  margin: 'auto',
-                }}
-                onClick={() => {
-                  createOrder(order);
-                  placeOrder(stripeProducts);
-                  setCart({});
-                  pageContext.setPage('home');
-                  router.push('/');
-                }}
-              >
-                {t("checkout.place-order")}
-              </CustomButton>
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ mt: 1, mb: 1, fontSize: '12px', textAlign: 'center', ml: '20px', mr: '20px' }}
-            >
-              {t("checkout.footer-part-1")} {' '}
-              <CustomLink
-                label="privacy-notice"
-                variant="blue2"
-                href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496"
-              >
-                {t('signup.privacy-notice')}
-              </CustomLink>
-              &nbsp; {t("checkout.and")} &nbsp;
-              <CustomLink
-                label="conditions-of-use"
-                variant="blue2"
-                href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?nodeId=GLSBYFE9MGKKQXXM&ie=UTF8&ref_=ap_signin_notification_condition_of_use"
-              >
-                {t('signup.conditions')}
-              </CustomLink>
-            </Typography>
-            <CustomDivider sx={{ margin: 'auto', width: '235px' }}></CustomDivider>
-            <Typography
-              variant="h3"
-              sx={{
-                fontSize: '18px',
-                fontWeight: '700',
-                textAlign: 'left',
-                ml: '19px',
-                mt: '12px',
-                mb: '13px',
-              }}
-            >
-              {t("checkout.order-summary")}
-            </Typography>
-
-            <Table sx={{ border: 'none' }}>
-              <TableBody>
-                <TableRow sx={{ mb: '1px' }}>
-                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    {t("checkout.items")}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
-                  >
-                    ${subtotal.toFixed(2)}
-                  </TableCell>
-                </TableRow>
-                <TableRow sx={{ mb: '5px' }}>
-                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    {t("checkout.shipping-handling")}
-                  </TableCell>
-                  <TableCell align="right" sx={{ paddingBottom: '1px', paddingTop: '1px' }}>
-                    $0.00
-                  </TableCell>
-                </TableRow>
-                <TableRow sx={{ mb: '5px' }}>
-                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    {t("checkout.before-tax")}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
-                  >
-                    ${subtotal.toFixed(2)}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}>
-                    {t("checkout.estimated-tax-collected")}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
-                  >
-                    $0.00
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-            <CustomDivider
-              sx={{ margin: 'auto', width: '235px', marginBottom: '8px' }}
-            ></CustomDivider>
-            <Table sx={{ border: 'none', marginBottom: '12px' }}>
-              <TableBody>
-                <TableRow>
-                  <TableCell
-                    sx={{
-                      border: 'none',
-                      paddingBottom: '1px',
-                      paddingTop: '1px',
-                      color: 'rgb(177, 39, 4)',
-                      fontSize: '18px',
-                      fontWeight: '700',
-                    }}
-                  >
-                    {t("checkout.order-total-2")}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    sx={{
-                      border: 'none',
-                      paddingBottom: '1px',
-                      paddingTop: '1px',
-                      color: 'rgb(177, 39, 4)',
-                      fontSize: '18px',
-                      fontWeight: '700',
-                    }}
-                  >
-                    ${subtotal.toFixed(2)}
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </CustomCard>
-        </Container>
       </Container>
+  )
+
+  return (
+    <Container maxWidth="xl" style={{ paddingLeft: '13px', paddingRight: '13px' }}>
+      <Grid container>
+        <Grid item xs={12}>
+        {header}
+        </Grid>
+        <Grid marginLeft = '70px' item xs={12} md={7.5}>
+          {leftbox}
+        </Grid>
+        <Grid item xs={12} md={2}>
+          {rightbox}
+        </Grid>
+      </Grid>
     </Container>
   );
 }
