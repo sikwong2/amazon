@@ -304,18 +304,19 @@ export function Checkout() {
         width: '100%',
       }}
     >
-      <Logo
-        style={{
-          width: '80px',
-          flex: '1',
-          marginLeft: '100px'
-        }}
-      />
+      <div style={{flex: 1, marginLeft: '100px'}}>
+        <Logo
+          style={{
+            width: '80px',
+          }}
+        />
+      </div>
       <div
         style={{
-          flex: '1',
-          left: '45%',
+          flex: 2,
           marginBottom: 10,
+          marginRight: '10%', 
+          marginLeft: '15%'
         }}
       >
         {t("checkout.title")}
@@ -325,9 +326,7 @@ export function Checkout() {
       </div>
       <div
         style={{
-          flex: '1',
-          left: '80%',
-          marginRight: '10%'
+          flex: 1
         }}>
         <LockButton></LockButton>
       </div>
@@ -779,10 +778,10 @@ export function Checkout() {
         <Grid item xs={12}>
         {header}
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid marginLeft = '70px' item xs={12} md={7.5}>
           {leftbox}
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={2}>
           {rightbox}
         </Grid>
       </Grid>
