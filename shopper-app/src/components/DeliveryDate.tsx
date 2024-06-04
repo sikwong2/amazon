@@ -37,7 +37,7 @@ export function FormatOrderDate({date}: any){
 
 export function FormatDeliveryDate({date, offset}: any){
   const orderDate = new Date(date);
-  const nextWeek = new Date();
+  const nextWeek = new Date(date);
   nextWeek.setDate(orderDate.getDate() + offset);
   return (
     <>
