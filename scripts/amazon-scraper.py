@@ -166,7 +166,7 @@ def generate_curl_command(
 ):
     image_with_quotes = "[" + ", ".join([json.dumps(img) for img in image]) + "]"
 
-    curl_command = f"""curl -X 'POST' \\\n  '{url}' \\\n  -H 'accept: application/json' \\\n  -H 'Authorization: Bearer {bearer_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{{\n  "name": "{name}",\n  "price": {price},\n  "stock": {stock},\n  "rating": {rating},\n  "image": {image_with_quotes},\n  "category": {category},\n  "description": ["{description}"]\n}}'\n"""
+    curl_command = f"""curl -k -X 'POST' \\\n  '{url}' \\\n  -H 'accept: application/json' \\\n  -H 'Authorization: Bearer {bearer_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{{\n  "name": "{name}",\n  "price": {price},\n  "stock": {stock},\n  "rating": {rating},\n  "image": {image_with_quotes},\n  "category": {category},\n  "description": ["{description}"]\n}}'\n"""
     return curl_command
 
 

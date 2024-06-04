@@ -1,4 +1,4 @@
-import { OrdersInfo } from './schema';
+import { OrdersInfo, NewOrder } from './schema';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
 
@@ -75,6 +75,26 @@ export class OrdersService {
     } catch (e) {
       console.log(e);
       throw new Error('Error in OrdersService: getOrder');
+    }
+  }
+
+  public async createOrder(order: NewOrder): Promise<string> {
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.ORDER_SERVICE_PORT}/api/v0/order`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(order),
+        }
+      );
+      const json = await res.json();
+      return json.orderId;
+    } catch(e) {
+      console.log(e);
+      throw new Error('Error in OrdersService: createOrder');
     }
   }
 }

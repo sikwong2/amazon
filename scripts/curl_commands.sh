@@ -1,1425 +1,1035 @@
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "PetAlive Aggression Formula Granules",
-  "price": 31.84,
-  "stock": 52,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51H2JMZl4hS._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51H2JMZl4hS._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51H2JMZl4hS._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51H2JMZl4hS._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51H2JMZl4hS._AC_SX569_.jpg"],
-  "category": ["Generated"],
-  "description": ["PetAlive Aggression Formula Granules is a natural remedy designed to help reduce aggressive behavior in cats and dogs. Formulated with a blend of herbal ingredients known for their calming properties, these granules can help promote a sense of relaxation and reduce tension in pets prone to aggression. Easy to administer and safe for longterm use, PetAlive Aggression Formula Granules are a gentle and effective way to help your furry friend find peace and balance."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "MHP Secretagogue Clinical StrengthGold, Orange, 30 Count",
-  "price": 58.47,
-  "stock": 15,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/41cuxFgx1ML._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/417m1oc594L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41Hs9KR2D6L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/31lp+Z+MnwL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/31lp+Z+MnwL._AC_SR320,320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Boost your energy and vitality with MHP Secretagogue Clinical StrengthGold. This advanced formula contains a unique blend of amino acids, herbs, and nutrients to support healthy hormone production. Experience increased muscle tone, improved stamina, and a heightened sense of wellbeing with daily use of these easytotake capsules. Elevate your performance and achieve your health goals with MHP Secretagogue Clinical StrengthGold."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Clothes Deluxe Fashion Pack for 11.5 inch  12 inch Fashion Doll Four Seasons Antheia Set",
-  "price": 39.0,
-  "stock": 83,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51w3nZc3OuL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51D9ldZEtCL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/61gganGydKL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/61+07CUNePL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51D9ldZEtCL._AC_SR320,320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Upgrade your fashion dolls wardrobe with the Clothes Deluxe Fashion Pack for 11.5 inch to 12 inch Fashion Doll. This Antheia Set includes stylish outfits perfect for all four seasons, ensuring your doll is always dressed to impress. The highquality materials and attention to detail make these clothes a musthave addition to your doll collection."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Panaracer GravelKing X1 R Tire  700 x 35, Tubeless, Folding, BlackAmber",
-  "price": 62.58,
-  "stock": 48,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/41klSFZCJnL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/31EYuZ-x1UL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31ozLGhaGaL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/2119IzVUIqL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41kZOaXqf-L._AC_SR160,160_.jpg"],
-  "category": ["Generated"],
-  "description": ["The Panaracer GravelKing X1 R Tire is designed to conquer a variety of terrains with its durable construction and versatile tread pattern. This tubeless tire in 700 x 35 size offers a smooth and efficient ride for gravel riders. The folding bead design makes it easy to transport and install, while the black and amber color adds a stylish touch to your bike. Tackle rough roads and unpredictable conditions with confidence using the Panaracer GravelKing X1 R Tire."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Building Isomorphic JavaScript Apps From Concept to Implementation to RealWorld Solutions",
-  "price": 9.99,
+  "name": "Perfect Craft Casters Measuring  Mixing Bucket for Perfect Cast, Plaster and Mold Making Materials",
+  "price": 13.29,
   "stock": 99,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/91r3SEGhl1L._SY342_.jpg", "https://m.media-amazon.com/images/I/511vHGMXL3L._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41Z1HU5WpdL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41ILPKqFqES._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/4156gU85M3L._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/41SDWQaAeeL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51kGrfCrzlL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41M-BO0JJvL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41-UsGt42eL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41FRZ-QPrkL._AC_SR160,160_.jpg"],
   "category": ["Generated"],
-  "description": ["Building Isomorphic JavaScript Apps From Concept to Implementation to RealWorld Solutions offers a comprehensive guide on creating JavaScript applications that can run both on the client and the server. This book covers a variety of concepts, implementation techniques, and realworld solutions to help you create efficient and scalable isomorphic applications. Whether youre a beginner or an experienced developer, this book is a valuable resource for mastering isomorphic JavaScript development."]
+  "description": ["The Perfect Craft Casters Measuring Mixing Bucket is designed to make your casting and mold making projects a breeze. This durable bucket features convenient measuring marks, making it easy to mix the perfect ratio of materials every time. Whether youre working with perfect cast, plaster, or other mold making materials, this bucket is the perfect tool to ensure accurate and consistent results. Upgrade your crafting supplies with the Perfect Craft Casters Measuring Mixing Bucket today."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Psilocybin Mushroom Handbook Easy Indoor and Outdoor Cultivation",
-  "price": 20.28,
-  "stock": 55,
+  "name": "Hygloss Products Acetate Sheets for Crafts, Clear Overhead Projector Film, For Arts And Craft Projects and Classrooms, Not for Printers, 8.5 x 11, 10 Pack",
+  "price": 8.34,
+  "stock": 90,
   "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/51ADsNLJ4jL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71VVFAe88cL._SY385_.jpg", "https://m.media-amazon.com/images/I/41gNW5HtkuL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71VVFAe88cL._SY466_.jpg", "https://m.media-amazon.com/images/I/71VVFAe88cL._SY342_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/314aJUUZMyL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31MrkbJ3LJS._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/4114mawQNwL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51OZWuZCHLL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41O3DtZWaGL._AC_SR480,480_.jpg"],
   "category": ["Generated"],
-  "description": ["Discover the secrets to growing psilocybin mushrooms in the comfort of your own home or garden with the Psilocybin Mushroom Handbook. This comprehensive guide provides easytofollow instructions for both indoor and outdoor cultivation, allowing you to produce highquality mushrooms for personal use. Whether youre a beginner or an experienced grower, this handbook is a musthave for anyone interested in exploring the world of psilocybin mushrooms."]
+  "description": [" Includes 10 clear acetate sheets perfect for arts and craft projects and classroom activities Each sheet measures 8.5 x 11 inches Ideal for creating overlays, stencils, window decorations, and more Not intended for use with printers suitable for handwriting, drawing, and cutting Durable and versatile material for various crafting needs"]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Clarks Mens Tilden Cap Oxford",
-  "price": 69.99,
-  "stock": 31,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51sEz7wKNVL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/316tm--b+RL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/81zqrHuWkZL._AC_SY695_.jpg", "https://m.media-amazon.com/images/I/31QeM2mLfdL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41pyu0Rp-OL._AC_SR160,160_.jpg"],
+  "name": "Untamed",
+  "price": 11.99,
+  "stock": 83,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/516RWX31mJL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41IvjAH4-aL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51HYd8QYl+L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41hTFrwVELL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51RaCfl-pfL._AC_SF480,480_.jpg"],
   "category": ["Generated"],
-  "description": ["Elevate your formal look with the Clarks Mens Tilden Cap Oxford shoes. Crafted from highquality leather, these oxfords feature a classic cap toe design and a cushioned Ortholite footbed for allday comfort. Perfect for the office or special occasions, these shoes are a timeless addition to any mans wardrobe."]
+  "description": ["Discover a new level of intensity with Untamed, a captivating and bold fragrance for the modern individual. This unique scent brings together spicy notes with hints of wood and leather, creating a powerful and seductive aroma. Whether worn during the day or evening, Untamed will leave a lasting impression wherever you go. Upgrade your fragrance collection with Untamed and unleash your wild side."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "1968, Teil 1b CephalineHarnalyse German Edition",
-  "price": 149.99,
-  "stock": 88,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/417MZnt1SFL._SY522_.jpg", "https://m.media-amazon.com/images/I/417MZnt1SFL._SY466_.jpg", "https://m.media-amazon.com/images/I/417MZnt1SFL._SY385_.jpg", "https://m.media-amazon.com/images/I/417MZnt1SFL._SY342_.jpg", "https://m.media-amazon.com/images/I/417MZnt1SFL._SY425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Discover the comprehensive guide to CephalineHarnalyse in this German Edition of 1968, Teil 1b. Dive deep into the intricacies of this topic with detailed explanations and insights. This book is a valuable resource for students, professionals, and anyone interested in expanding their knowledge in the field."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Apple iPhone SE 2nd Generation, US Version, 128GB, Black  Unlocked Renewed",
-  "price": 124.0,
-  "stock": 74,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/61JNofhHZZL._AC_SY445_.jpg", "https://m.media-amazon.com/images/I/61JNofhHZZL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/61JNofhHZZL._AC_SY679_.jpg", "https://m.media-amazon.com/images/I/61JNofhHZZL._AC_SY550_.jpg", "https://m.media-amazon.com/images/I/61JNofhHZZL._AC_SY606_.jpg"],
-  "category": ["Generated"],
-  "description": ["This Apple iPhone SE 2nd Generation is a renewed US version with 128GB of storage in sleek black color. Unlocked and ready for use with any carrier, this device is in excellent condition and fully inspected to work like new. Enjoy all the features of the iPhone SE at a fraction of the price with this renewed model."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Underprivileged Overachiever A Crenshaw Story",
-  "price": 20.16,
-  "stock": 100,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/71tbOEml+ZL._SY466_.jpg", "https://m.media-amazon.com/images/I/71tbOEml+ZL._SY385_.jpg", "https://m.media-amazon.com/images/I/71tbOEml+ZL._SY522_.jpg", "https://m.media-amazon.com/images/I/71tbOEml+ZL._SY342_.jpg", "https://m.media-amazon.com/images/I/71tbOEml+ZL._SY425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Underprivileged Overachiever A Crenshaw Story is a compelling memoir that follows the inspiring journey of a young individual navigating the challenges of growing up in underprivileged circumstances while striving for success. Through perseverance, determination, and resilience, the protagonist overcomes adversity to achieve their goals and make a positive impact on their community. This powerful and heartfelt narrative is a testament to the strength of the human spirit and the potential for triumph against all odds."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "50 Count Metal Mini Paper Clips 35 Inch Nickelage Finishes Steel Paper Clip",
-  "price": 6.89,
-  "stock": 78,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/511-PKNlvHL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/511-PKNlvHL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/511-PKNlvHL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/511-PKNlvHL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/511-PKNlvHL._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Add a touch of organization and style to your paperwork with this set of 50 Count Metal Mini Paper Clips. These durable steel paper clips feature a sleek nickel finish and measure 0.35 inches in size. Perfect for keeping your documents, files, and papers secure and tidy."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Wooden Dynamite Wobbling Tower by Small Foot  Fun Game with Wood Blocks, Dice  Timer  Fun for The Whole Family  Teaches Colors, Balance, HandEye Coordination  Ages 3 Years",
-  "price": 34.99,
-  "stock": 87,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/51pYi1C36cL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/61z4SmBmIcL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51q6OP7ChNL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51YJd2QVW0L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51pYi1C36cL._AC_SR320,320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introduce your family to an explosive game night with the Wooden Dynamite Wobbling Tower by Small Foot! This fun and dynamic game includes wood blocks, dice, and a timer, providing hours of entertainment for all ages. Test your balancing skills, handeye coordination, and color recognition while strategically pulling out blocks before the tower tumbles. Perfect for kids ages 3 and up, this game is a fantastic way to strengthen family bonds and create lasting memories."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Mary Engelbreits Childrens Companion The Mary Engelbreit Look and How to Get It Mary Engelbreits Companion",
-  "price": 24.78,
-  "stock": 48,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51XSxyrU0wL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61shfYhBjHL._SY385_.jpg", "https://m.media-amazon.com/images/I/61shfYhBjHL._SY342_.jpg", "https://m.media-amazon.com/images/I/41Wj1i3wEGL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51w+S-lYlkL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enhance your childs creativity and joy with Mary Engelbreits Childrens Companion. This charming book provides a glimpse into the whimsical world of renowned artist Mary Engelbreit, offering tips on how to achieve her signature style. Packed with vibrant illustrations and engaging activities, this companion is the perfect resource for young artists and fans of Mary Engelbreit alike."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "ejection",
-  "price": 2.99,
-  "stock": 34,
+  "name": "Douglas Bushy Red Fox Plush Stuffed Animal",
+  "price": 15.95,
+  "stock": 26,
   "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41GherWVg6L._SY177_.jpg", "https://m.media-amazon.com/images/I/41GherWVg6L.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/51GTgQQv97L._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/41tHMtNnhDL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/412+LoR5FZL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41TDZQ0evJL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/412+LoR5FZL._AC_SR320,320_.jpg"],
   "category": ["Generated"],
-  "description": ["Introducing Ejection, the ultimate safety tool for emergencies. This sleek and compact device is designed to quickly and efficiently break car windows and cut through seatbelts in case of an accident. Ejection is a musthave for every vehicle, providing peace of mind and easy access to escape routes during critical moments. Stay prepared and stay safe with Ejection."]
+  "description": ["This adorable Douglas Bushy Red Fox plush stuffed animal is perfect for snuggling and playtime. With its soft and huggable design, this fox is sure to become a beloved companion for children of all ages. Made with highquality materials, this plush toy is durable and built to last. Bring the magic of the forest into your home with this charming red fox stuffed animal."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "doTERRA Anchor Oil Steadying Blend  5mL",
-  "price": 29.33,
-  "stock": 45,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/419+XFmQUjL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/419+XFmQUjL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/419+XFmQUjL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/419+XFmQUjL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/419+XFmQUjL._AC_SX679_.jpg"],
+  "name": "Adams Quitclaim Deed, Forms and Instructions LF298 , White",
+  "price": 8.99,
+  "stock": 55,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/31nkNnPQ35L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51HViiCL2AL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/5140S0NFjGL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/515lCvZStML._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51esSITC9dL._AC_SR320,320_.jpg"],
   "category": ["Generated"],
-  "description": ["Experience a sense of grounding and stability with the doTERRA Anchor Oil Steadying Blend. Formulated with Lavender, Cedarwood, Frankincense, Cinnamon, Sandalwood, Black Pepper, and patchouli essential oils, this blend helps to promote feelings of relaxation and tranquility. Simply diffuse or apply topically to enjoy the calming benefits of this unique essential oil blend."]
+  "description": ["This Adams Quitclaim Deed kit includes stepbystep instructions and easytouse forms for transferring property ownership. It is perfect for individuals looking to easily and legally transfer property rights without the need for extensive legal assistance. The forms are crisp white for a professional appearance and come with detailed guidance to ensure a smooth and hasslefree process."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Coloring Books for Adults  100 Unique Amazing Patterns Adult Coloring Featuring Easy and Simple Pattern Design, Mandala Colouring and Wonderful Swirls Coloring for Stress Relieve and Relaxation",
+  "price": 11.94,
+  "stock": 84,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/61+0Xt50-YL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/818zkOQ3egL._SY466_.jpg", "https://m.media-amazon.com/images/I/61ztvX16INL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51QzllqJojL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/818zkOQ3egL._SY425_.jpg"],
+  "category": ["Generated"],
+  "description": ["Indulge in the therapeutic art of coloring with this exquisite adult coloring book. Featuring 100 unique and amazing patterns, including easy and simple designs, intricate mandalas, and whimsical swirls, this book is perfect for stress relief and relaxation. Unleash your creativity and immerse yourself in the world of colors with Coloring Books for Adults."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Hyperbiotics Pro Pets Probiotics  Probiotics for Dogs  Cats  Small Micro Sized Chewable Pearl Shaped Tablets  Time Released Delivery  60 Count",
+  "price": 26.99,
+  "stock": 18,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/618ivLowD0L._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/618ivLowD0L._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/618ivLowD0L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/618ivLowD0L._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/618ivLowD0L._AC_SY355_.jpg"],
+  "category": ["Generated"],
+  "description": ["Support your furry friends digestive health with Hyperbiotics Pro Pets Probiotics. These small, microsized chewable pearlshaped tablets are specially designed for dogs and cats. With timereleased delivery, each 60count bottle ensures your pets receive the benefits of probiotics throughout the day. Help maintain a healthy gut flora in your beloved pets with Hyperbiotics Pro Pets Probiotics."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Milbank 12126SC3R NEMA 3R Polyester Powder Coated Galvanized Over Phosphatized Steel Unflanged Screw Cover Junction Box 12 Inch x 12 Inch x 6 Inch ANSI 61 Gray",
+  "price": 58.91,
+  "stock": 2,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/31xScBJLM+L.jpg"],
+  "category": ["Generated"],
+  "description": ["The Milbank 12126SC3R Junction Box is made of durable galvanized steel with a polyester powder coating for added protection in outdoor environments. This NEMA 3R rated box features an unflanged screw cover for secure closure and measures 12 inches by 12 inches by 6 inches. The ANSI 61 gray color blends well with different industrial settings."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Jurassic World Toys Roar Attack Ouranosaurus Camp Cretaceous Dinosaur Figure with Movable Joints, Realistic Sculpting, Strike Feature  Sounds, Herbivore, Kids Gift 4 Years  Up",
+  "price": 22.69,
+  "stock": 91,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/81hhQxjbNML._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/41n4i3fLUUL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41BPBIzF70L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51qgOF2+paL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51G73dXajwL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": ["Bring home the excitement of Jurassic World with this Ouranosaurus Camp Cretaceous Dinosaur Figure! This detailed figure features movable joints, realistic sculpting, and a strike feature for added fun. Hear the roar and other sounds as you play and imagine adventures in the world of dinosaurs. A perfect gift for kids 4 years and up who love dinosaurs and the Jurassic World franchise."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Capitalism and Freedom",
+  "price": 15.23,
+  "stock": 12,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/515Kewq3NlL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/515Kewq3NlL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41v3nyEYNmL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41HutcSBZXL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41t4ESYu7+L._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg"],
+  "category": ["Generated"],
+  "description": ["Capitalism and Freedom by Milton Friedman explores the relationship between economic and political freedom. This influential book discusses the role of government in a free society and the importance of individual liberty in generating prosperity. With insightful analysis and clear arguments, Friedman invites readers to consider the benefits of free markets and limited government intervention. A mustread for anyone interested in economics and public policy."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "hydrobromate  11oz Ceramic White Coffee Mug, White",
+  "price": 25.75,
+  "stock": 82,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51VCcDoFMCL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51VCcDoFMCL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/51VCcDoFMCL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51VCcDoFMCL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51VCcDoFMCL._AC_SX522_.jpg"],
+  "category": ["Generated"],
+  "description": ["Enjoy your favorite hot beverages in style with this sleek 11oz Ceramic White Coffee Mug. Made of highquality ceramic material, this mug is both durable and stylish. The simple white design adds a touch of elegance to your coffee or tea time. Perfect for everyday use or as a thoughtful gift for a loved one."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Waken Mouthwash for Fresh Breath 100 Natural Flavours Alcohol Free with Added Fluoride No Artificial Colours or Flavourings Vegan Eco Friendly Sustainable, Lemon  Mint, 500 ml",
+  "price": 11.25,
+  "stock": 14,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/715WeSg9KVL._SY355_.jpg", "https://m.media-amazon.com/images/I/41I7X97zPuL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51pP6pGy6qL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/411uayvIMSL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/411uayvIMSL._AC_SR480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Introducing Waken Mouthwash for Fresh Breath in Lemon Mint flavor! Made with 100 natural flavors, this alcoholfree mouthwash contains added fluoride for extra protection against cavities. It is free from artificial colors or flavorings, making it a perfect choice for those seeking a vegan and ecofriendly oral care option. With a refreshing blend of lemon and mint, this 500 ml bottle of mouthwash will leave your mouth feeling clean and invigorated. Prioritize your oral health with Waken Mouthwash for Fresh Breath."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "The Heckelphone A Window into the History of Music",
+  "price": 44.9,
+  "stock": 84,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/619bPpbPmTL._SY342_.jpg", "https://m.media-amazon.com/images/I/619bPpbPmTL._SY466_.jpg", "https://m.media-amazon.com/images/I/619bPpbPmTL._SY425_.jpg", "https://m.media-amazon.com/images/I/619bPpbPmTL._SY385_.jpg", "https://m.media-amazon.com/images/I/619bPpbPmTL._SY522_.jpg"],
+  "category": ["Generated"],
+  "description": ["Delve into the rich history of music with The Heckelphone. This beautifully crafted instrument offers a unique window into the world of musical heritage. Whether youre a seasoned musician or a history enthusiast, the Heckelphone is sure to captivate and inspire."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Natural Hog Casings for Sausage",
+  "price": 10.45,
+  "stock": 30,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/41mEpgnyYSL._SY445_.jpg", "https://m.media-amazon.com/images/I/41mEpgnyYSL.jpg"],
+  "category": ["Generated"],
+  "description": ["Enhance the flavor and authenticity of your homemade sausages with our Natural Hog Casings. These casings are carefully cleaned, prepped, and dried to ensure quality and ease of use. With a perfect blend of tenderness and strength, these casings are ideal for creating traditional sausages that will impress your family and friends. Each pack comes with more than enough casings for multiple batches, making it a great value for any sausagemaking enthusiast."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "lactoscope  11oz Ceramic White Coffee Mug, White",
+  "price": 25.75,
+  "stock": 13,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/51beq5wcRkL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51beq5wcRkL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51beq5wcRkL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51beq5wcRkL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51beq5wcRkL._AC_SX425_.jpg"],
+  "category": ["Generated"],
+  "description": ["Add a touch of elegance to your morning routine with the Lactoscope 11oz Ceramic White Coffee Mug. Made from highquality ceramic, this classic white mug is perfect for enjoying your favorite hot beverages. The 11oz capacity is ideal for a generous pour of coffee, tea, or any drink of your choice. Whether youre starting your day or taking a relaxing break, this mug is the perfect companion."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "LAurole Drame Lyrique en 3 Actes Et 6 Tableaux Classic Reprint",
+  "price": 34.97,
+  "stock": 60,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/61cdO5-+RnL._SY425_.jpg", "https://m.media-amazon.com/images/I/61cdO5-+RnL._SY522_.jpg", "https://m.media-amazon.com/images/I/61cdO5-+RnL._SY385_.jpg", "https://m.media-amazon.com/images/I/61cdO5-+RnL._SY466_.jpg", "https://m.media-amazon.com/images/I/61cdO5-+RnL._SY342_.jpg"],
+  "category": ["Generated"],
+  "description": ["This classic reprint features the lyrical drama LAurole Drame Lyrique en 3 Actes Et 6 Tableaux in all its original grandeur. Immerse yourself in this timeless tale with vivid imagery and captivating storytelling that will transport you to a different era. Perfect for lovers of classic literature and fine arts enthusiasts."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Lahome Modern Rainbow Kitchen Runner Rug, 2x8 Easy Jute Rug Runners for Hallways Laundry Farmhouse Indoor Outdoor Runner Rug, Contemporary Washable Non Slip Rug Runner for Entry Porch",
+  "price": 65.99,
+  "stock": 58,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51Dnafj1UlL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/411RLfRys3L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51Ldi9OypFL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51i+rchnCVL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/813aHdmFTpL._AC_SX425_.jpg"],
+  "category": ["Generated"],
+  "description": ["Add a dash of color and style to your kitchen or hallway with the Lahome Modern Rainbow Kitchen Runner Rug. This 2x8 easy jute rug is perfect for adding a contemporary touch to your farmhouse decor. Its vibrant rainbow design will brighten up any space, while its nonslip backing ensures safety. This versatile rug is also suitable for both indoor and outdoor use, making it a great addition to your entryway or porch. Easy to clean and maintain, this washable runner rug is the perfect blend of functionality and style."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "The Hyperinvisible Fat Woman Weight and Gender Discourse in Contemporary Society",
+  "price": 13.99,
+  "stock": 43,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/61EmoM8zLEL._SY466_.jpg", "https://m.media-amazon.com/images/I/61EmoM8zLEL._SY385_.jpg", "https://m.media-amazon.com/images/I/61EmoM8zLEL._SY425_.jpg", "https://m.media-amazon.com/images/I/61EmoM8zLEL._SY522_.jpg", "https://m.media-amazon.com/images/I/61EmoM8zLEL._SY342_.jpg"],
+  "category": ["Generated"],
+  "description": ["The Hyperinvisible Fat Woman Weight and Gender Discourse in Contemporary Society is a thoughtprovoking book that delves into the intersection of weight, gender, and society. This comprehensive analysis explores how societal norms and expectations impact the experiences of fat women, shedding light on the concept of hyperinvisibility and the challenges faced by individuals navigating through weightrelated issues. With insightful perspectives and researchbacked insights, this book offers a profound exploration of an often overlooked aspect of identity and discrimination."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "The Specialist Keepcase",
+  "price": 9.99,
+  "stock": 97,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/41vEhcnC3QL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51dk+77uEXL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/61YchB1UI9L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51KzeKn1yaL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51dk+77uEXL._AC_SR320,320_.jpg"],
+  "category": ["Generated"],
+  "description": ["Introducing The Specialist Keepcase  the perfect solution for organizing and storing your DVD and CD collection. This sleek and durable keepcase is designed to protect your discs from scratches, dust, and other damage, so you can enjoy your favorite movies and music for years to come. With its compact size and clear cover, its easy to see and access your discs. Keep your media collection organized and safe with The Specialist Keepcase."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Beistle 57137 1Pack Football University Bad Call Brick for Parties, 712 by 3 by 2Inch",
+  "price": 6.68,
+  "stock": 54,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/21eCFlpvsaL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/415vuzb0CdL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/71pw2QSRU5L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/41VDchnIOXL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41mstMTuiYL._AC_SR480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Add an unexpected twist to your game day party with the Beistle Football University Bad Call Brick. This realisticlooking prop measures 7 by 3 by 2 inches and is sure to be a hit with your fellow football fans. Whether youre celebrating a touchdown or lamenting a bad call, this novelty item is a fun addition to any sportsthemed event."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Basilica The Splendor and the Scandal Building St. Peters",
+  "price": 8.17,
+  "stock": 87,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/71wUySrYu7L._SY466_.jpg", "https://m.media-amazon.com/images/I/41ruwewmALL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51JQYOHY7zL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51lmQG9UlfL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/31KBxXWn0uL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Discover the captivating history behind one of the most iconic buildings in the world with Basilica The Splendor and the Scandal Building St. Peters. This fascinating book dives into the secrets and controversies surrounding the construction of St. Peters Basilica, offering a detailed account of its grandeur and the scandals that shaped its creation. Perfect for history buffs and architecture enthusiasts alike, this book provides a rich exploration of a timeless masterpiece."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Worlds Okayest Reconsignment Clerk  8oz Hip Drinking Alcohol Flask",
+  "price": 27.59,
+  "stock": 82,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/513TPpNdO0L._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/513TPpNdO0L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/513TPpNdO0L._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/513TPpNdO0L._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/513TPpNdO0L._AC_SX569_.jpg"],
+  "category": ["Generated"],
+  "description": ["Show off your sense of humor with this funny 8oz hip flask! Made from highquality stainless steel, it is the perfect accessory to bring along to parties, weddings, or any other special occasion. The sleek design and secure screwon cap make it easy to carry and enjoy your favorite beverage on the go. Cheers to being the Worlds Okayest Reconsignment Clerk!"]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Historic Framed Print, Reviving wounded Gers. with Pulmotor, 1778 x 2178",
+  "price": 298.0,
+  "stock": 67,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/4165qIBFIcL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/4165qIBFIcL._AC_SX450_.jpg", "https://m.media-amazon.com/images/I/4165qIBFIcL._AC_SX355_.jpg", "https://m.media-amazon.com/images/I/4165qIBFIcL._AC_.jpg"],
+  "category": ["Generated"],
+  "description": ["Bring a touch of historical charm to your space with this framed print featuring a depiction of medical care from the past. The scene captures the use of a Pulmotor on a wounded soldier, showcasing the innovation and dedication to saving lives during challenging times. This highquality print is beautifully framed and ready to enhance your home decor with a unique piece of history."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "TotalBoat ThickSet Deep Pour Epoxy Resin Kit 1.3 Quart  Crystal Clear Thick Pour Resin for Art, Casting, Epoxy River Tables, Live Edge Slabs, Molds, Wood",
+  "price": 71.99,
+  "stock": 19,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/51erfeC8oxL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/61OqB67tfjL._SX385_.jpg", "https://m.media-amazon.com/images/I/61OqB67tfjL._SX522_.jpg", "https://m.media-amazon.com/images/I/51kGrfCrzlL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51rZizUFrZL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": ["Bring your creative projects to life with TotalBoat ThickSet Deep Pour Epoxy Resin Kit. This crystal clear, highquality resin is perfect for art, casting, epoxy river tables, live edge slabs, molds, and wood projects. With a 1.3 quart capacity, this kit provides the perfect amount for your larger pours. Achieve stunning results with ease using TotalBoat ThickSet Deep Pour Epoxy Resin Kit."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Glassman",
+  "price": 14.99,
+  "stock": 30,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/71btv0ZOr9L._SY466_.jpg", "https://m.media-amazon.com/images/I/41tas6O8rhL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71btv0ZOr9L._SY522_.jpg", "https://m.media-amazon.com/images/I/71btv0ZOr9L._SY385_.jpg", "https://m.media-amazon.com/images/I/41nYYD-TDxL._AC_SF480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Introducing Glassman  the sleek and modern smart glass cleaner designed to keep your windows sparkling clean with minimal effort. Equipped with advanced technology, Glassman effortlessly tackles dirt, grime, and streaks, leaving your windows spotless. Say goodbye to tedious hand washing and hello to a crystalclear view with Glassman."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "ILM Goatskin Leather Motorcycle Motorbike Powersports Racing Gloves Touchscreen for Men and Women Model DN01S, Black Unperforated",
+  "price": 39.99,
+  "stock": 20,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/51v+0GRHhdS._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41kSJbrfMOL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51uoQo1TGGL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41Pz+oIaOzL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41Pz+oIaOzL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": [" Premium quality Goatskin leather motorcycle gloves designed for both men and women Features touchscreen compatibility for easy use of electronic devices Ideal for various outdoor activities such as motorbike riding, powersports, and racing Sleek black unperforated design for a classic and stylish look Offers excellent grip, protection, and comfort for a safe and enjoyable riding experience"]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Origin 6 of civilizations academic Sensho 36 series archeology of Rei system and Chinese civilization agriculture 2008 ISBN 4876988366 Japanese Import",
+  "price": 26.16,
+  "stock": 24,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/61ZbS5GGmRL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51pLXtqaLfL._SY385_.jpg", "https://m.media-amazon.com/images/I/51pLXtqaLfL._SY342_.jpg", "https://m.media-amazon.com/images/I/51pLXtqaLfL._SY466_.jpg", "https://m.media-amazon.com/images/I/51pLXtqaLfL.jpg"],
+  "category": ["Generated"],
+  "description": ["Explore the rich history of the origin and development of civilizations with this comprehensive academic book from the Sensho 36 series. Delve into the archeology of the Rei system and the profound impact of Chinese civilization on agriculture. This Japanese import is a valuable resource for students and enthusiasts eager to deepen their understanding of ancient societies."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "The Improbability of Sainthood",
+  "price": 2.99,
+  "stock": 36,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/4156gU85M3L._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/511vHGMXL3L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41TXNhAUXYL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51M-i-0PxgL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/81Y4LKsWvGL._SY466_.jpg"],
+  "category": ["Generated"],
+  "description": ["Dive into the captivating world of The Improbability of Sainthood, a thoughtprovoking novel that explores the complexities of faith, belief, and the human condition. Follow the protagonist on a transformative journey filled with unexpected twists and poignant revelations that challenge conventional notions of what it means to be truly virtuous. With lyrical prose and profound insights, this book is a mustread for anyone seeking a deeper understanding of the power of redemption and the enigmatic nature of spirituality."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Healthy Origins EpiCor Immune Protection, 500 mg  PlantBased Immune Support Capsules  GlutenFree  NonGMO Supplement  60 Veggie Caps",
+  "price": 22.99,
+  "stock": 78,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51hQkKEc3qL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/417HSSmdLdL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41vyTESO1DL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/61uI43-6X+L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/41vyTESO1DL._AC_SR320,320_.jpg"],
+  "category": ["Generated"],
+  "description": ["Support your immune system with Healthy Origins EpiCor Immune Protection. These plantbased capsules are formulated with 500mg of EpiCor, a unique ingredient that helps promote overall immune health. This glutenfree and nonGMO supplement contains 60 veggie capsules, providing you with a convenient way to boost your immune system. Make Healthy Origins EpiCor Immune Protection a part of your daily routine for enhanced immune support."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Ohm Omeprazole Tablets, DelayedRelease Tablets, 20mg Acid Reducer, 42 Tablets",
+  "price": 11.99,
+  "stock": 31,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/41yU8gCtZBL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41yIp2hFArL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41oqN8qhGNL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41oqN8qhGNL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51Iwou78nYL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": ["Manage your acid reflux effectively with Ohm Omeprazole Tablets. These delayedrelease tablets contain 20mg of omeprazole to provide longlasting relief from heartburn and other symptoms. Each pack contains 42 tablets, giving you a reliable supply to support your digestive health. Trust Ohm Omeprazole Tablets to help you get back to feeling your best."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Capsid A Love Song",
+  "price": 11.99,
+  "stock": 65,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/61eL3bkXTiL._SY342_.jpg", "https://m.media-amazon.com/images/I/61eL3bkXTiL._SY466_.jpg", "https://m.media-amazon.com/images/I/61eL3bkXTiL._SY522_.jpg", "https://m.media-amazon.com/images/I/61eL3bkXTiL._SY425_.jpg", "https://m.media-amazon.com/images/I/61eL3bkXTiL._SY385_.jpg"],
+  "category": ["Generated"],
+  "description": ["Add a touch of whimsy and intrigue to your wardrobe with the Capsid A Love Song necklace. Handcrafted with delicate detailing and vibrant colors, this unique piece is sure to make a statement. Whether dressing up a casual outfit or adding a pop of color to your favorite dress, this necklace is a musthave accessory for any fashionforward individual."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "An Hobbit, pe, Eno ha Distro The Hobbit in Breton Breton Edition",
+  "price": 36.94,
+  "stock": 77,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/81dNnhccQ0L._SY385_.jpg", "https://m.media-amazon.com/images/I/81dNnhccQ0L._SY425_.jpg", "https://m.media-amazon.com/images/I/81dNnhccQ0L._SY466_.jpg", "https://m.media-amazon.com/images/I/81dNnhccQ0L._SY342_.jpg", "https://m.media-amazon.com/images/I/81dNnhccQ0L._SY522_.jpg"],
+  "category": ["Generated"],
+  "description": ["This beautifully crafted Breton Edition of the classic tale The Hobbit is a musthave for fans of J.R.R. Tolkiens work. Immerse yourself in the adventure of Bilbo Baggins in the charming Breton language with this special edition book. Perfect for collectors and enthusiasts alike."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Crispine and Crispianus, or the delightful and princely history of the gentlecraft containing many matters of great delight, ... shewing what famous men have been shoemakers in old times",
+  "price": 23.95,
+  "stock": 16,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/51hUmo+cv0L._SY425_.jpg", "https://m.media-amazon.com/images/I/51hUmo+cv0L.jpg", "https://m.media-amazon.com/images/I/51hUmo+cv0L._SY342_.jpg", "https://m.media-amazon.com/images/I/51hUmo+cv0L._SY466_.jpg", "https://m.media-amazon.com/images/I/51hUmo+cv0L._SY385_.jpg"],
+  "category": ["Generated"],
+  "description": ["Step back in time with this captivating tale, Crispine and Crispianus, a delightful and princely history of the gentlecraft. Filled with intriguing stories of famous men who were once shoemakers, this book promises to enchant readers with matters of great delight. Travel through history and discover the legacy of the shoemaking trade in this engaging read."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Sensual Faith The Art of Coming Home to Your Body",
+  "price": 12.97,
+  "stock": 95,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/914cw3z88tL._SY425_.jpg", "https://m.media-amazon.com/images/I/41UarvtJk5L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41vBPQpM0eL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41FNnRNnGGL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41EYgW7SQYL._AC_SF480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Explore the profound and transformative journey of reconnecting with your body through Sensual Faith The Art of Coming Home to Your Body. This enlightening book provides powerful insights and practices to help you embrace your sensual self and cultivate a deeper sense of connection and empowerment. Whether you are seeking healing, selfdiscovery, or simply looking to enhance your relationship with your body, this guide offers a holistic approach to wellness and selflove. Embark on a path of selfacceptance and discovery with Sensual Faith."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Barcaloo Bocce Ball Set with 8 Premium Resin Multicolor Bocce Balls, Pallino, Carry Bag  Rope",
+  "price": 46.99,
+  "stock": 69,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/41FLqEWqawL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41rD2+jMAJL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41DDb5P8OPL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/81fP2FTlEFL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/41pF2i9JwBL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": ["The Barcaloo Bocce Ball Set comes with 8 premium resin multicolor bocce balls, a pallino, a sturdy carry bag, and a convenient rope for easy transportation. Perfect for backyard gatherings, beach outings, or parties, this set is designed for hours of fun with family and friends. The colorful bocce balls are durable and easy to spot on any playing surface, while the included carry bag makes it simple to bring the game wherever you go. Enjoy a classic game of bocce with this highquality set from Barcaloo."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Myprotein Impact Whey Protein Powder, 2.2 Lbs 31 Servings Salted Caramel, 22g Protein  5g BCAA Per Serving, Protein Shake for Superior Performance, Muscle Strength  Recovery, Gluten Free",
+  "price": 30.4,
+  "stock": 49,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/71kRjzNVEPL._AC_SY606_.jpg", "https://m.media-amazon.com/images/I/71kRjzNVEPL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71kRjzNVEPL._AC_SY550_.jpg", "https://m.media-amazon.com/images/I/71kRjzNVEPL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/71kRjzNVEPL._AC_SY679_.jpg"],
+  "category": ["Generated"],
+  "description": ["Fuel your muscles and enhance your performance with Myprotein Impact Whey Protein Powder in the delicious Salted Caramel flavor. Packed with 22g of protein and 5g of BCAAs per serving, this protein shake is designed to promote muscle strength and aid in postworkout recovery. Glutenfree and easy to mix, this protein powder is a convenient and tasty way to support your fitness goals."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Zacaton as a papermaking material",
+  "price": 9.99,
+  "stock": 38,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/718mY-bDbDL._SY385_.jpg", "https://m.media-amazon.com/images/I/718mY-bDbDL._SY425_.jpg", "https://m.media-amazon.com/images/I/718mY-bDbDL._SY466_.jpg", "https://m.media-amazon.com/images/I/718mY-bDbDL._SY522_.jpg", "https://m.media-amazon.com/images/I/718mY-bDbDL._SY342_.jpg"],
+  "category": ["Generated"],
+  "description": ["Introducing Zacaton, a versatile and sustainable papermaking material that is sure to elevate your crafting projects. This highquality material is known for its durability and smooth texture, making it ideal for various papermaking techniques. With Zacaton, you can create beautiful handmade papers that are perfect for cardmaking, scrapbooking, and other creative projects. Add a touch of elegance and uniqueness to your crafts with Zacaton as your goto papermaking material."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "exauguration  11oz Ceramic White Coffee Mug, White",
+  "price": 25.75,
+  "stock": 46,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51dFE8s5k5L._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51dFE8s5k5L._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51dFE8s5k5L._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/51dFE8s5k5L._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/51dFE8s5k5L._AC_SX522_.jpg"],
+  "category": ["Generated"],
+  "description": ["Add a touch of elegance to your daily coffee routine with the Exauguration 11oz Ceramic White Coffee Mug. This sleek and modern white mug is designed to hold your favorite hot beverages with style. Made from durable ceramic material, it is perfect for both casual use at home or for serving guests at special gatherings. Treat yourself or a loved one to this timeless and versatile coffee mug that will surely elevate any drinking experience."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Shamal",
+  "price": 26.67,
+  "stock": 41,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/712veEKnytL._SY355_.jpg", "https://m.media-amazon.com/images/I/712veEKnytL._SX522_.jpg", "https://m.media-amazon.com/images/I/712veEKnytL._SX425_.jpg", "https://m.media-amazon.com/images/I/712veEKnytL._SX466_.jpg", "https://m.media-amazon.com/images/I/712veEKnytL._SY450_.jpg"],
+  "category": ["Generated"],
+  "description": ["Experience the ultimate comfort with the Shamal pillow set. Made from highquality, hypoallergenic materials, these pillows provide exceptional support for a restful nights sleep. The plush design cradles your head and neck, while the breathable fabric ensures optimal airflow. Upgrade your bedding with the Shamal pillow set for a luxurious and rejuvenating sleep experience."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Thyroid Support Supplement with Liquid Ionic Iodine 16oz Metabolism, Energy and Focus  Vegan  NonGMO. Liquid Fast Results. Zero Sugar. Zero Calories. by Eniva Health..",
+  "price": 37.95,
+  "stock": 3,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/61PQjQbT6iL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/61PQjQbT6iL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/61PQjQbT6iL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61PQjQbT6iL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/61PQjQbT6iL._AC_SX466_.jpg"],
+  "category": ["Generated"],
+  "description": ["Support your thyroid health with Eniva Healths Thyroid Support Supplement featuring Liquid Ionic Iodine. This vegan and nonGMO formula is designed to enhance metabolism, energy, and focus. With fastacting liquid delivery and zero sugar or calories, this supplement is a convenient and effective way to maintain your thyroid health."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Skyfoot Orthopedic Heel Lift Inserts, Shock Absorption and Cushioning Height Increase Insoles for Achilles Tendonitis Relief, Heel Spurs, Heel Pain and Plantar Fasciitis S,0.8 Height Harder Version",
+  "price": 13.99,
+  "stock": 42,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51qk+Xtj3dL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41Z8PacLK-L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41mDI-M46ZL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41FetLBq+4L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41PLeGTlfEL._AC_SR480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Experience relief from heel pain, Achilles tendonitis, and plantar fasciitis with Skyfoot Orthopedic Heel Lift Inserts. These shockabsorbing and cushioning height increase insoles are designed to provide comfort and support, while the harder version offers a 0.8inch height lift. Say goodbye to discomfort and hello to allday relief with these orthopedic inserts."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Glucosamine Chondroitin Turmeric Msm Boswellia  Joint Support Supplement for Relief 180 Tablets for Bones, Back, Knees, Hands  Arazo Nutrition",
+  "price": 25.95,
+  "stock": 7,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/41my5paMR7L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/411o0KKidIL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51ZnOG0kinL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41EWKTkkYoL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/71ZTkDSIClL._AC_SX679_.jpg"],
+  "category": ["Generated"],
+  "description": ["Support joint health and mobility with Arazo Nutritions Glucosamine Chondroitin Turmeric MSM Boswellia Supplement. These 180 tablets are specifically formulated to aid in relief for bones, back, knees, and hands. With a powerful blend of ingredients including glucosamine, chondroitin, turmeric, MSM, and boswellia, this supplement is designed to help reduce inflammation and support overall joint health."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "mistrustfulness",
+  "price": 9.99,
+  "stock": 18,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/41wNsACpx6L.jpg", "https://m.media-amazon.com/images/I/41wNsACpx6L._SY177_.jpg"],
+  "category": ["Generated"],
+  "description": ["Unleash your inner detective with this gripping psychological thriller that will keep you on the edge of your seat until the very last page. Full of twists, turns, and shocking reveals, Mistrustfulness is a mustread for fans of suspenseful mysteries."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "SPORLAN EXPANSION VALVE ERSE 2 C",
+  "price": 60.0,
+  "stock": 31,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/710RyLIbQsL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/710RyLIbQsL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/710RyLIbQsL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/710RyLIbQsL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/710RyLIbQsL._AC_SY450_.jpg"],
+  "category": ["Generated"],
+  "description": ["The Sporlan Expansion Valve ERSE 2 C is a highquality and reliable component for controlling refrigerant flow in HVAC systems. Designed for efficiency and precision, this valve helps maintain optimal performance and temperature regulation. It is versatile and compatible with various refrigerants, making it a great choice for commercial and industrial applications. Trust Sporlan for your HVAC needs."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Natural Meditation Crystal Natural FlowerShaped Aerosiderolite Energy Stone Points Crystal Stone Color  Aerosiderolite, Size  500520g",
+  "price": 127.77,
+  "stock": 59,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/61eWoNStsFL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/61eWoNStsFL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61eWoNStsFL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/61eWoNStsFL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/61eWoNStsFL._AC_SY355_.jpg"],
+  "category": ["Generated"],
+  "description": ["Enhance your meditation practice with this beautiful Natural Meditation Crystal Energy Stone. This unique flowershaped Aerosiderolite stone is perfect for promoting relaxation, focus, and positive energy. Each stone ranges in size from 500520g, making it a substantial piece to add to your collection. Bring a touch of nature into your meditation space with this stunning crystal stone."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Festival Merino Wool Fiber. Colorful Combed top roving for Hand Spinning, Needle Felting, Wet Felting, soap Making and Dryer Balls. Bahama Mama",
+  "price": 22.99,
+  "stock": 32,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/31D+ogjtdCL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/A1T8OKznLjL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/41VChqcZ3iL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41+zrfGQyrL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/419oimUEbqL._AC_SR480,480_.jpg"],
+  "category": ["Generated"],
+  "description": ["Experience the luxurious softness of this Festival Merino Wool Fiber in the vibrant Bahama Mama colorway. Perfect for hand spinning, needle felting, wet felting, soap making, and creating your own unique dryer balls. This colorful combed top roving will add a pop of color and texture to all your crafting projects. Made from highquality Merino wool, this fiber is a joy to work with and will elevate your creations to the next level."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "metabisulphite",
+  "price": 8.21,
+  "stock": 90,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/71ehVZ5PcFL._AC_UL280_SR280,280_.jpg", "https://m.media-amazon.com/images/I/41j4yzUq8hL._AC_UL420_SR420,420_.jpg", "https://m.media-amazon.com/images/I/71THZrKK5mL._AC_UL140_SR140,140_.jpg", "https://m.media-amazon.com/images/I/41j4yzUq8hL._AC_UL280_SR280,280_.jpg", "https://m.media-amazon.com/images/I/71ehVZ5PcFL._AC_UL140_SR140,140_.jpg"],
+  "category": ["Generated"],
+  "description": ["Metabisulphite is a versatile food grade chemical compound commonly used as a preservative and antioxidant in a variety of food and beverage products. This highquality metabisulphite is perfect for home brewers, winemakers, and food manufacturers looking to extend the shelf life of their goods while maintaining freshness and flavor. Enjoy the convenience and reliability of this essential ingredient in your culinary creations."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Laches and Charmides Hackett Classics",
+  "price": 10.0,
+  "stock": 89,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/61-9uKNBktL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51JiWOl4dFL._SY522_.jpg", "https://m.media-amazon.com/images/I/51JiWOl4dFL._SY466_.jpg", "https://m.media-amazon.com/images/I/51JiWOl4dFL._SY425_.jpg", "https://m.media-amazon.com/images/I/51JiWOl4dFL._SY385_.jpg"],
+  "category": ["Generated"],
+  "description": ["Discover the timeless philosophical works of Laches and Charmides with this Hackett Classics edition. Dive into the profound ideas and wisdom of Socrates as he explores themes of courage, temperance, and virtue. This collection is perfect for anyone seeking to engage with the fundamental questions of ethics and morality."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "The Ministry of Ungentlemanly Warfare Movie Review The True Story Of Behind The Movie Review Collection Book 11",
+  "price": 14.95,
+  "stock": 86,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/41ah7rCxTkL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51wB-Vq+r1L._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41NsK0zqzOL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41PxjVRPCIL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41fBcuZsVpL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg"],
+  "category": ["Generated"],
+  "description": ["Discover the fascinating and inspiring true story behind the making of The Ministry of Ungentlemanly Warfare in this comprehensive collection of movie reviews. Delve into the background of this remarkable film and learn about the incredible individuals whose heroic deeds are immortalized on the silver screen. A musthave for history buffs and movie enthusiasts alike."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "RD ALCHEMY  Desincrustation SolutionScaling Fluid to help soften and open pores, remove blackheads and to make extractions easier. Perfect for Estheticians or home use",
+  "price": 48.0,
+  "stock": 29,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51jWb-Nl-mL._SX466_.jpg", "https://m.media-amazon.com/images/I/51jWb-Nl-mL._SY450_.jpg", "https://m.media-amazon.com/images/I/51jWb-Nl-mL._SY355_.jpg", "https://m.media-amazon.com/images/I/51jWb-Nl-mL._SX425_.jpg", "https://m.media-amazon.com/images/I/51jWb-Nl-mL._SX522_.jpg"],
+  "category": ["Generated"],
+  "description": ["The RD ALCHEMY Desincrustation Solution is specially formulated to help soften and open pores, making it easier to remove blackheads and perform extractions. Whether youre a professional esthetician or using it at home, this scaling fluid is perfect for achieving smoother, clearer skin."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "2in1 USB Type C Presentation Clicker, Rechargeable Wireless Presenter Remote, Clicker for PowerPoint Presentations, Pointer for Presentations Slide Advancer with Volume Control for Mac,Computer, PPT",
+  "price": 17.98,
+  "stock": 10,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/71bZkt3jB9L._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/71bZkt3jB9L._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/71bZkt3jB9L._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/71bZkt3jB9L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/71bZkt3jB9L._AC_SX466_.jpg"],
+  "category": ["Generated"],
+  "description": ["Introducing the 2in1 USB Type C Presentation Clicker  your ultimate tool for seamless presentations. This rechargeable wireless presenter remote is designed for PowerPoint presentations, offering a precise pointer for slide advancement. With builtin volume control and compatibility with Mac, computers, and PPT presentations, this clicker is a musthave for professionals who value efficiency and convenience. Elevate your presentation game with the 2in1 USB Type C Presentation Clicker."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
   "name": "Brer Rabbit Unsulphured Molasses, Full Flavor, 12 Ounce",
   "price": 3.92,
-  "stock": 63,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/510HaJ-UTYL._SX466_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX679_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX342_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX385_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX569_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enjoy the rich and full flavor of Brer Rabbit Unsulphured Molasses. This 12ounce bottle is perfect for adding depth and sweetness to your favorite recipes, from baking to marinades. Made without sulphur, this molasses retains its wholesome and natural taste, making it a versatile pantry staple for all your cooking needs."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Advances in Nonlinear Speech Processing 6th International Conference, NOLISP 2013, Mons, Belgium, June 1921, 2013, Proceedings Lecture Notes in Artificial Intelligence",
-  "price": 66.59,
-  "stock": 34,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51uBRo77HeL._SY425_.jpg", "https://m.media-amazon.com/images/I/51uBRo77HeL._SY385_.jpg", "https://m.media-amazon.com/images/I/51uBRo77HeL._SY342_.jpg", "https://m.media-amazon.com/images/I/51uBRo77HeL._SY466_.jpg", "https://m.media-amazon.com/images/I/51uBRo77HeL._SY522_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the latest developments in nonlinear speech processing with this comprehensive volume. Featuring the proceedings of the 6th International Conference, NOLISP 2013, this book covers advances in artificial intelligence that are revolutionizing the field. Learn from renowned experts in the industry and stay at the forefront of cuttingedge research."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "inheritress  11oz Ceramic White Coffee Mug, White",
-  "price": 25.75,
-  "stock": 88,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51wW45uLUhL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51wW45uLUhL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/51wW45uLUhL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51wW45uLUhL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51wW45uLUhL._AC_SY450_.jpg"],
-  "category": ["Generated"],
-  "description": ["Add a touch of elegance to your morning routine with the Inheritress 11oz Ceramic White Coffee Mug. This classic white mug is perfect for savoring your favorite hot beverages and features a stylish design that will impress your guests. Made from highquality ceramic, this mug is durable and dishwasher safe for easy cleaning. Start your day off right with the Inheritress White Coffee Mug."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Vicks Personal Sinus Steam Inhaler, Fast, Targeted Relief for Allergies, Sinus, Cough and Congestion. Use with Vicks VapoPads for Extra Soothing Comfort",
-  "price": 42.96,
-  "stock": 36,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/716AORSV8kL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/716AORSV8kL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/716AORSV8kL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/716AORSV8kL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/716AORSV8kL._AC_SX679_.jpg"],
-  "category": ["Generated"],
-  "description": ["Experience fast relief from allergies, sinus issues, cough, and congestion with the Vicks Personal Sinus Steam Inhaler. This targeted approach helps to alleviate discomfort quickly and effectively. For extra soothing comfort, simply use with Vicks VapoPads. Breathe easier and feel better with this innovative steam inhaler."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "CRZ YOGA Womens Push Up Bikini Top Underwire Padded Bathing Suit Criss Cross Halter Retro Ruched Swimsuit Tops",
-  "price": 24.99,
-  "stock": 73,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/41fZZsfllBL._AC_SR320,400_.jpg", "https://m.media-amazon.com/images/I/81400ZuRgML._AC_SY879_.jpg", "https://m.media-amazon.com/images/I/41rLf32OlFL._AC_SR320,400_.jpg", "https://m.media-amazon.com/images/I/41DSyyZvRhL._AC_SR320,400_.jpg", "https://m.media-amazon.com/images/I/214KX8rulbL._AC_SR480,600_.jpg"],
-  "category": ["Generated"],
-  "description": ["Feel confident and stylish on the beach with the CRZ YOGA Womens Push Up Bikini Top. This underwire padded bathing suit features a flattering crisscross halter design with retro ruching detail. The pushup padded cups provide extra lift and support, while the adjustable halter ties ensure a perfect fit. Whether youre lounging by the pool or splashing in the waves, this swimsuit top is sure to turn heads."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "BEETRO Heavy Duty Hand Riveter, Rivet Gun, 33218532316, 4 Nosepieces Set Includes 100pcs Rivets, Durable and Suitable for Metal, Plastic and Leather",
-  "price": 13.99,
-  "stock": 15,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/616sFhfOyJL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/616sFhfOyJL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/616sFhfOyJL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/616sFhfOyJL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/616sFhfOyJL._AC_SY450_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introducing the BEETRO Heavy Duty Hand Riveter, a highquality tool designed for effortless riveting. This rivet gun comes with a set of 4 interchangeable nosepieces to accommodate various rivet sizes. Ideal for use with metal, plastic, and leather materials, this durable tool is perfect for a wide range of projects. The package includes 100 pieces of rivets to get you started right away. Upgrade your toolkit with the BEETRO Heavy Duty Hand Riveter for precise and reliable riveting every time."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Diptera",
-  "price": 88.6,
-  "stock": 42,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/71KD0MzP-sL._AC_UX115_UY115_SR115,115_.jpg", "https://m.media-amazon.com/images/I/81z2byDKiAL._AC_UX230_UY230_SR230,230_.jpg", "https://m.media-amazon.com/images/I/51IHGr0GKHL._AC_UX230_UY230_SR230,230_.jpg", "https://m.media-amazon.com/images/I/51gm0qFJCoL._AC_UX345_UY345_SR345,345_.jpg", "https://m.media-amazon.com/images/I/513TdCdGayL._AC_UX230_UY230_SR230,230_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introducing Diptera  a sleek and stylish minimalist mens watch designed for the modern gentleman. This timepiece features a durable stainless steel case, a genuine leather band, and a precise quartz movement for accurate timekeeping. The classic black dial with minimalistic markers exudes sophistication and elegance. Whether for everyday wear or special occasions, the Diptera watch is the perfect accessory to elevate any outfit."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "WiFi Extender WiFi Booster Repeater  2022 release Covers up to 8500 sq.ft.50 Devices 1200Mbps Dual Band Internet Booster 5G 2.4G WiFi Extenders Signal Booster for Home, Internet Extender WiFi Booster",
-  "price": 69.99,
-  "stock": 7,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51gFhLtMcDL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51gFhLtMcDL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51gFhLtMcDL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51gFhLtMcDL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51gFhLtMcDL._AC_SX522_.jpg"],
-  "category": ["Generated"],
-  "description": ["Extend your WiFi coverage with the 2022 release WiFi Extender WiFi Booster Repeater. This powerful device covers up to 8500 sq.ft and supports connection for up to 50 devices. With a speed of 1200Mbps and dualband technology, enjoy seamless internet browsing and streaming. The 5G and 2.4G WiFi extenders boost your signal for improved connectivity throughout your home. Say goodbye to dead zones and enjoy a strong, reliable connection with this Internet Extender WiFi Booster."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "SinoTrack Digital GPS Speedometer Universal Heads Up Display for Car 5.5 inch Large LCD Display HUD with MPH Speed Fatigued Driving Alert Overspeed Alarm Trip Meter for All Vehicle",
-  "price": 32.98,
-  "stock": 47,
+  "stock": 46,
   "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/61u7aD0OR4L._SX342_.jpg", "https://m.media-amazon.com/images/I/61u7aD0OR4L._SX466_.jpg", "https://m.media-amazon.com/images/I/61u7aD0OR4L._SX425_.jpg", "https://m.media-amazon.com/images/I/61u7aD0OR4L._SX522_.jpg", "https://m.media-amazon.com/images/I/61u7aD0OR4L._SX385_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/51A22p2oXdL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41wg4Ufo-5L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX385_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX522_.jpg", "https://m.media-amazon.com/images/I/510HaJ-UTYL._SX466_.jpg"],
   "category": ["Generated"],
-  "description": ["Stay safe on the road with the SinoTrack Digital GPS Speedometer Universal Heads Up Display. Featuring a 5.5inch large LCD display, this HUD provides realtime MPH speed readings, trip meter data, and alerts for fatigued driving and overspeed. Suitable for all vehicles, this device enhances driving efficiency and helps prevent accidents on the road."]
+  "description": ["Experience the rich, full flavor of Brer Rabbit Unsulphured Molasses. Made from the finest sugarcane, this 12ounce bottle is perfect for adding a deep, caramelized sweetness to your favorite recipes. Whether used in baking or cooking, this molasses will elevate the taste of your dishes."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Womens Off Shoulder Short Sleeve Blue Stripe Knit T Shirt 2024 Dressy White Slim Fit Business Casual Tops for Women",
-  "price": 27.99,
+  "name": "delicate",
+  "price": 4.99,
+  "stock": 93,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/51s2tA1WPqL._SY177_.jpg", "https://m.media-amazon.com/images/I/51s2tA1WPqL.jpg"],
+  "category": ["Generated"],
+  "description": ["Delicate is a beautifully crafted sterling silver necklace featuring a delicate chain with a dainty pendant. This elegant piece is perfect for adding a touch of sophistication to any outfit, whether its for a special occasion or everyday wear. The timeless design makes it a versatile accessory that can be layered with other necklaces or worn alone for a minimalist look. Add a touch of understated glamour to your jewelry collection with Delicate."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Dreamsmith 3 Inch 7Zone Twin Memory Foam Mattress Topper, Cooling Gel Infused Foam Mattress Topper Twin for Back Pain, CertiPURUS Certified Purple",
+  "price": 69.99,
+  "stock": 95,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/71iZ7ZivIgL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/71iZ7ZivIgL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/71iZ7ZivIgL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/71iZ7ZivIgL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/71iZ7ZivIgL._AC_SY450_.jpg"],
+  "category": ["Generated"],
+  "description": ["Transform your sleep experience with the Dreamsmith 3 Inch 7Zone Twin Memory Foam Mattress Topper. This cooling gelinfused foam topper is designed to provide relief for back pain and promote better spinal alignment. The CertiPURUS Certified memory foam ensures a safe and comfortable nights rest. Upgrade your mattress with this Purple mattress topper and enjoy a rejuvenating nights sleep every time."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "CareSens Sterile Single Use Ultra Thin 30G Universal Designed Lancets 100 Counts for Minimizing Skin Discomfort and Pain",
+  "price": 4.99,
+  "stock": 82,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/61hJFK+DKmL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/61hJFK+DKmL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61hJFK+DKmL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/61hJFK+DKmL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/61hJFK+DKmL._AC_SX522_.jpg"],
+  "category": ["Generated"],
+  "description": ["CareSens Sterile Single Use Ultra Thin 30G Universal Designed Lancets are designed to minimize skin discomfort and pain while providing a reliable and effective blood sampling experience. Each pack contains 100 lancets, making it convenient for regular testing. These lancets are suitable for universal use and feature an ultrathin 30G design that ensures a gentle and precise prick. Trust CareSens for your blood sampling needs."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Cetaphil Face  Body Moisturizer, Hydrating Moisturizing Cream for Dry to Very Dry, Sensitive Skin, NEW 20 oz, Fragrance Free, NonComedogenic, NonGreasy Packaging May Vary",
+  "price": 15.97,
+  "stock": 70,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/71uBjsXY58L._SX425_.jpg", "https://m.media-amazon.com/images/I/71uBjsXY58L._SX466_.jpg", "https://m.media-amazon.com/images/I/71uBjsXY58L._SX522_.jpg", "https://m.media-amazon.com/images/I/71uBjsXY58L._SY450_.jpg", "https://m.media-amazon.com/images/I/71uBjsXY58L._SX569_.jpg"],
+  "category": ["Generated"],
+  "description": ["Pamper your skin with the Cetaphil Face and Body Moisturizer. This hydrating cream is specially formulated for dry to very dry, sensitive skin. The fragrancefree formula is noncomedogenic and nongreasy, providing longlasting moisture without clogging pores. With a generous 20 oz size, this moisturizer is a musthave for anyone looking to nurture their skin. Please note that the packaging may vary."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Respect the Beard Funny Manly Humor Masculine Beard Lover TShirt",
+  "price": 19.98,
+  "stock": 29,
+  "rating": 5,
+  "image": ["https://m.media-amazon.com/images/I/51ebcv-LwOL._AC_SR480,600_.jpg", "https://m.media-amazon.com/images/I/41D9YPS37xL._AC_SR480,600_.jpg", "https://m.media-amazon.com/images/I/41EWGQ8uZfL._AC_SR320,400_.jpg", "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7CA1sluYb%2B-gL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX522_.png", "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7CA1sluYb%2B-gL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"],
+  "category": ["Generated"],
+  "description": ["Show off your love for beards with this witty and cool tshirt. Perfect for any man who takes pride in his facial hair, this shirt is sure to be a conversation starter wherever you go. Made with soft and comfortable fabric, this tee is a great addition to any casual outfit. Suit up and show everyone that you respect the beard!"]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "BERGEON 7808V mat Bench top, Soft  AntiSkid for Watchmakers, Green, Modern",
+  "price": 37.49,
+  "stock": 18,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/31FANK6Z26L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31IvtjuOruL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51WkLjqFMwL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/31ZLP532HnL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51WkLjqFMwL._AC_SX679_.jpg"],
+  "category": ["Generated"],
+  "description": ["Keep your workbench tidy and organized with the Bergeon 7808V Mat Bench Top. This soft, antiskid mat is specially designed for watchmakers, providing a modern and functional work surface. The green color adds a pop of style to your workspace while ensuring that your tools and watch components stay in place. A musthave for watchmakers looking to enhance their workspace efficiency."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Autosuggestive Krankheitsbekampfung Allgemeinverstandliche Darstellung Der Suggestion Als Waffe Im Lebenskampf German Edition",
+  "price": 38.65,
+  "stock": 29,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/5182vZZXB6L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51y-9v0BgeL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51y-9v0BgeL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/315DS-ApJRL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/31ES6Fd2P8L._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg"],
+  "category": ["Generated"],
+  "description": ["Discover the power of suggestion in combating illnesses with this insightful guide. In this book, the author provides a clear and comprehensive explanation of how suggestion can be used as a weapon in the battle of life. Perfect for those looking to understand the concept of autosuggestion and how it can aid in fighting various ailments. Available in German edition."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Slavonic Dances, Op.72 Orchestra version, B.147 Nos.14  original edition Full Score A1422",
+  "price": 78.99,
+  "stock": 4,
+  "rating": 3,
+  "image": ["https://m.media-amazon.com/images/I/51N5KCKLQQL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51mh1rc4AdL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/5191zhRM68L._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51wryflLe8L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51WyK8EcvyL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg"],
+  "category": ["Generated"],
+  "description": ["This full score edition features the brilliant Slavonic Dances, Op.72 by renowned composer Antonn Dvok. Perfect for orchestras and music enthusiasts, this original edition allows you to delve into the intricate and captivating melodies of these timeless pieces. A musthave for any classical music collection."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "MELE Cleansing Gel For Fresh, Clear Skin Gentle Hydrating Cleanser With Glycerin, Antimicrobial, 5 Oz",
+  "price": 9.99,
+  "stock": 1,
+  "rating": 2,
+  "image": ["https://m.media-amazon.com/images/I/41JW-67HxfL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/21dGpnkHDsL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/31Q0jeZFXFL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31Q0jeZFXFL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/21dGpnkHDsL._AC_SR160,160_.jpg"],
+  "category": ["Generated"],
+  "description": ["MELE Cleansing Gel is a gentle yet effective hydrating cleanser that leaves your skin feeling fresh and clear. Formulated with glycerin and antimicrobial properties, this cleansing gel helps to remove dirt, oil, and impurities while keeping your skin hydrated. Ideal for daily use, MELE Cleansing Gel is suitable for all skin types and is sure to become a staple in your skincare routine."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "TOBA 1 Gallon Water Bottle 128 oz Motivational, BPA Free Water Jug Large Sports, Leakproof Drinking Bottle WomenMen for Fitness Gym Outdoor Activity",
+  "price": 16.99,
+  "stock": 23,
+  "rating": 1,
+  "image": ["https://m.media-amazon.com/images/I/71H-HSwHHxL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/71H-HSwHHxL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71H-HSwHHxL._AC_SY679_.jpg", "https://m.media-amazon.com/images/I/71H-HSwHHxL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/71H-HSwHHxL._AC_SY879_.jpg"],
+  "category": ["Generated"],
+  "description": ["Stay hydrated in style with the TOBA 1 Gallon Water Bottle. This large 128 oz bottle is perfect for staying motivated and reaching your hydration goals throughout the day. Made from BPAfree materials, this water jug is ideal for both men and women for use in the gym, during sports, or any outdoor activities. Its leakproof design ensures no spills, making it a convenient and reliable choice for your hydration needs."]
+}'
+
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Plagiarism and originality",
+  "price": 72.86,
   "stock": 86,
   "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/61LM0hJN62L._AC_SY606_.jpg", "https://m.media-amazon.com/images/I/61LM0hJN62L._AC_SY445_.jpg", "https://m.media-amazon.com/images/I/61LM0hJN62L._AC_SY679_.jpg", "https://m.media-amazon.com/images/I/61LM0hJN62L._AC_SY550_.jpg", "https://m.media-amazon.com/images/I/61LM0hJN62L._AC_SY500_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/71F2tdk64qL._SY466_.jpg", "https://m.media-amazon.com/images/I/51ScFfb8L5L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71F2tdk64qL._SY425_.jpg", "https://m.media-amazon.com/images/I/51gfM6dPTgL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51ScFfb8L5L._AC_SF480,480_.jpg"],
   "category": ["Generated"],
-  "description": ["Introducing our Womens Off Shoulder Short Sleeve Blue Stripe Knit T Shirt. This chic and trendy top features an offshoulder design with stylish blue stripes, adding a touch of sophistication to your outfit. Made from highquality knit fabric, this dressy white slimfit top is perfect for both business and casual occasions. Stay ontrend and make a fashion statement with this versatile and comfortable top."]
+  "description": ["Plagiarism and Originality Understanding, Prevention, and Detection  This comprehensive guide explores the concepts of plagiarism and originality, providing clear explanations and practical strategies for students, writers, and researchers. Learn how to identify and avoid plagiarism, attribute sources correctly, and maintain academic integrity. With helpful tips and examples, this book is an essential resource for anyone striving to create authentic and original work."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "MNGARISTA Zip ID Case with Lanyard, Fashion Lanyard Wallet, ID Case Wallet with Lanyard, Merope",
-  "price": 12.97,
-  "stock": 58,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/51Ww3hiJczL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51L6YIzAbtL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41iXwiPmCEL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41zr7UmePNL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41HRnm1Xl7L._AC_SR160,160_.jpg"],
-  "category": ["Generated"],
-  "description": ["Stay organized and stylish with the MNGARISTA Zip ID Case with Lanyard. This fashionable lanyard wallet is perfect for keeping your essentials close at hand. The ID case wallet is designed with a zippered compartment to securely hold your cards, cash, and more. The Merope design adds a touch of elegance to this versatile accessory, making it a musthave for onthego individuals."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The New Contextual Therapy Guiding the Power of Give and Take",
-  "price": 54.2,
-  "stock": 8,
+  "name": "George and Maggie and the Red Light Saloon Depravation, Debauchery, Violence, and Sundry Cussedness in a Kansas Cowtown",
+  "price": 9.99,
+  "stock": 16,
   "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/51AoV0GPuVL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51FR7f3xTsL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51NUDjC15NL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/513baKp2OiL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51NUDjC15NL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/41q80n8ekSL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71yUw2gdmmL._SY466_.jpg", "https://m.media-amazon.com/images/I/71yUw2gdmmL._SY385_.jpg", "https://m.media-amazon.com/images/I/41h4vtWh-OL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71yUw2gdmmL._SY425_.jpg"],
   "category": ["Generated"],
-  "description": ["Discover the transformative approach to therapy with The New Contextual Therapy Guiding the Power of Give and Take. This groundbreaking book offers insights and practices for creating meaningful connections and resolving conflicts through the power of mutual exchange. Gain practical tools and strategies to strengthen relationships and foster emotional growth. Ideal for therapists, counselors, or anyone seeking to enhance their interpersonal skills."]
+  "description": ["Step back in time and immerse yourself in the gritty world of a Kansas cowtown with George and Maggie and the Red Light Saloon. Filled with depravation, debauchery, violence, and sundry cussedness, this tale will transport you to a wild and lawless era where every shadow holds a secret and every step could be your last. Join George and Maggie as they navigate the treacherous waters of a saloon teeming with danger and intrigue in this thrilling Western adventure."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Intracontinental Fold Belts Case Studies in the Variscan Belt of Europe and the Damara Belt in Namibia",
-  "price": 9.58,
-  "stock": 63,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/71PbWW8+SSL._SY522_.jpg", "https://m.media-amazon.com/images/I/71PbWW8+SSL._SY466_.jpg", "https://m.media-amazon.com/images/I/71PbWW8+SSL._SY342_.jpg", "https://m.media-amazon.com/images/I/71PbWW8+SSL._SY385_.jpg", "https://m.media-amazon.com/images/I/71PbWW8+SSL._SY425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the fascinating world of intracontinental fold belts with this comprehensive case study book. Delve into the geological complexities of the Variscan Belt in Europe and the Damara Belt in Namibia, gaining valuable insights into the tectonic processes that shaped these regions. A musthave for geologists, students, and anyone with an interest in Earths dynamic history."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "2 Pack  Dentitox  Dentitox Pro Drops for Teeth and Gums 2 Bottle for 60 Days, Dentitox Pro Healthy Gums Teeth, Dentitox Drops, Dentitoxpro for Gums and Teeth, Dentitox Gum Drops.",
-  "price": 27.95,
-  "stock": 53,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41cgqUfmrFL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51fu5hrDl6L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51Ut57mfQrL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51-LSW1gKfL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41zC9AE9FXL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introducing Dentitox Pro Drops, a powerful formula designed to promote healthy teeth and gums. This 2pack includes enough drops to last for 60 days, providing you with an effective solution for oral health. Dentitox Pro is specially formulated to support gum health and maintain strong, healthy teeth. Say goodbye to discomfort and hello to a brighter, healthier smile with Dentitox Pro Drops."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Oregon Precision Blade Balancer, Balances Blades After Sharpening, Universal Metal Zinc Die Cast Design Improves Longevity of Mowers, For All Lawnmower Blades, Fits Stihl, Troy  More",
-  "price": 7.99,
-  "stock": 32,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/81EM-BayvDL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/81EM-BayvDL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/81EM-BayvDL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/81EM-BayvDL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/81EM-BayvDL._AC_SY355_.jpg"],
-  "category": ["Generated"],
-  "description": ["Oregon Precision Blade Balancer is a musthave tool for ensuring perfectly balanced mower blades after sharpening. The universal metal zinc diecast design enhances the longevity of mowers by preventing uneven wear and reducing vibration. Compatible with all lawnmower blades, this balancer fits Stihl, Troy, and more, making it a versatile and essential addition to your lawn care arsenal."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Stereotactic Radiosurgery and Stereotactic Body Radiation Therapy SBRT",
-  "price": 183.45,
-  "stock": 100,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/61i9qrZ2EaL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/81Mm+D6lTUL._SY342_.jpg", "https://m.media-amazon.com/images/I/41+4m6QPjXL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/81Mm+D6lTUL._SY425_.jpg", "https://m.media-amazon.com/images/I/51TnWqQIw8L._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Experience precision and effectiveness with Stereotactic Radiosurgery and Stereotactic Body Radiation Therapy SBRT. This comprehensive guide provides indepth information on these advanced medical procedures, offering insight into the latest technology and techniques used to target tumors with unparalleled accuracy. Ideal for medical professionals and patients alike, this book is a valuable resource for understanding and navigating the world of radiosurgery and SBRT."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Better Hearing, better Sight with Braids Hypnosis NEURYPNOLOGY OR THE RATIONALE OF NERVOUS SLEEP",
-  "price": 7.95,
-  "stock": 89,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51TA9vex6sL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41vG99Y8zML._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51o9AEHqI7L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41acGzwyXOL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/71dM41zWrVL._SY425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Unlock the power of your mind with Better Hearing, Better Sight with Braids Hypnosis Neurypnology or The Rationale of Nervous Sleep. This comprehensive guide delves into the fascinating world of hypnosis, offering insights into how it can improve your hearing and sight through the Braids method. Discover the secrets of neurypnology and harness the potential of nervous sleep to enhance your sensory perceptions. Perfect for those looking to explore the profound effects of hypnosis on the mind and body."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Purina Friskies Pate Wet Cat Food, Liver  Chicken Dinner  Pack of 24 5.5 oz. Cans",
-  "price": 17.44,
-  "stock": 25,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/81ElqzcoUrL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/81ElqzcoUrL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/81ElqzcoUrL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/81ElqzcoUrL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/81ElqzcoUrL._AC_SX569_.jpg"],
-  "category": ["Generated"],
-  "description": ["Indulge your feline companion with Purina Friskies Pate Wet Cat Food in Liver  Chicken Dinner flavor. This pack contains 24 cans, each 5.5 ounces. Made with real liver and chicken, this savory pate is sure to please even the pickiest of cats. Provide your furry friend with the wholesome nutrition they need to thrive and enjoy mealtime with this delicious wet cat food."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Khuon gio cha gio thu Vietnamese cooking utensils, Vietnamese cookware khuon gio cha 1kg, gio cha mold gio thu mold assist the pantryman to meat compression and shape.",
-  "price": 49.9,
-  "stock": 30,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/81uOUs3sV4L._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/81uOUs3sV4L._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/81uOUs3sV4L._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/81uOUs3sV4L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/81uOUs3sV4L._AC_SY355_.jpg"],
-  "category": ["Generated"],
-  "description": ["Achieve authentic Vietnamese flavors with this Khuon gio cha gio thu Vietnamese cooking utensil. Crafted from highquality materials, this gio cha mold assists in perfectly compressing and shaping meat for gio cha dishes. Ideal for Vietnamese cookware enthusiasts, this mold weighs 1kg and is a musthave tool to elevate your culinary skills."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The Passable Cook",
-  "price": 14.5,
-  "stock": 40,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51-mPVgoSsL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51m1XBdYm4L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71u-vzSq5+L._SY466_.jpg", "https://m.media-amazon.com/images/I/71u-vzSq5+L._SY425_.jpg", "https://m.media-amazon.com/images/I/71u-vzSq5+L._SY342_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introducing The Passable Cook, a musthave cookbook for beginners looking to build their confidence in the kitchen. This comprehensive guide offers simple and delicious recipes that anyone can master. From easy weeknight dinners to impressive desserts, The Passable Cook has you covered. With clear instructions and helpful tips, youll be cooking like a pro in no time. Add The Passable Cook to your collection and watch your culinary skills soar!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Isaiah An Introduction and Study Guide A Paradigmatic Prophet and His Interpreters TT Clarks Study Guides to the Old Testament",
-  "price": 14.31,
-  "stock": 99,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/41IMcIbtYJL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/81tEqk1eLPL._SY522_.jpg", "https://m.media-amazon.com/images/I/41IMcIbtYJL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41UKhQIRIpL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41V526wi8rL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Discover the intricate world of the prophet Isaiah with this comprehensive study guide. Dive into the profound wisdom and unique insights of one of the Old Testaments most paradigmatic figures. This guide offers a thorough examination of Isaiahs interpretations and provides valuable context to enhance your understanding of his timeless messages. Perfect for students, scholars, and anyone looking to deepen their knowledge of the Old Testament."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Finish Your First Novel A NoBull Guide to Actually Completing Your First Draft",
-  "price": 14.59,
-  "stock": 10,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41-MUsI49gL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/71RLfV0Hh7L._SY342_.jpg", "https://m.media-amazon.com/images/I/41uZJe6dwAL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/71RLfV0Hh7L._SY425_.jpg", "https://m.media-amazon.com/images/I/41uZJe6dwAL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg"],
-  "category": ["Generated"],
-  "description": ["This guide is tailored for aspiring novel writers looking to complete their first draft. Filled with practical tips, motivation, and expert advice, Finish Your First Novel will help you navigate the writing process with clarity and determination. Say goodbye to writers block and hello to a finished manuscript with this nononsense guide by your side."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Deflective Whiteness CoOpting Black and Latinx Identity Politics Race and Mediated Cultures",
-  "price": 3.79,
-  "stock": 30,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/81IP-pZ8-LL._SY425_.jpg", "https://m.media-amazon.com/images/I/81IP-pZ8-LL._SY342_.jpg", "https://m.media-amazon.com/images/I/41h4vtWh-OL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41JYKLAaOvL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41q80n8ekSL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Deflective Whiteness CoOpting Black and Latinx Identity Politics Race and Mediated Cultures is a thoughtprovoking book that delves into the complexities of identity politics, race, and media culture. With insightful analysis and compelling arguments, this book offers a unique perspective on how whiteness intersects with Black and Latinx identities in todays society. A mustread for anyone interested in the dynamics of power, race, and representation in the media and beyond."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Poetry Train Africa Ethiopia 3 Botswana Poetfeldt and Regions Beyond the Cave of Prolificity",
-  "price": 5.99,
-  "stock": 100,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/71JKRm0HvJL._SY385_.jpg", "https://m.media-amazon.com/images/I/71JKRm0HvJL._SY425_.jpg", "https://m.media-amazon.com/images/I/71JKRm0HvJL._SY522_.jpg", "https://m.media-amazon.com/images/I/71JKRm0HvJL._SY342_.jpg", "https://m.media-amazon.com/images/I/71JKRm0HvJL._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Immerse yourself in the rich and captivating world of African poetry with this collection featuring works from Ethiopia, Botswana, Poetfeldt, and other regions beyond. Explore the depths of creativity and profound wisdom from talented poets in this enchanting literary journey."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Factfulness Ten Reasons Were Wrong About the Worldand Why Things Are Better Than You Think",
-  "price": 11.99,
-  "stock": 91,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/818qWkHcICL._SY466_.jpg", "https://m.media-amazon.com/images/I/41a2pryVMJL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51LVqjx6mnL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41aygWeaAbL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51LVqjx6mnL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Factfulness Ten Reasons Were Wrong About the World  and Why Things Are Better Than You Think by Hans Rosling, Ola Rosling, and Anna Rosling Rnnlund is an eyeopening book that challenges common misconceptions about global trends. Through insightful analysis and datadriven anecdotes, the authors offer a refreshing perspective on the state of the world, highlighting progress and advancements often overlooked in mainstream narratives. This book is a mustread for anyone interested in understanding the true state of our world and gaining a more accurate view of reality."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Mixed Gladiolus Flower Bulbs  50 Bulbs Assorted Colors",
-  "price": 24.79,
-  "stock": 46,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/61Abo53SYfL._AC_.jpg", "https://m.media-amazon.com/images/I/61Abo53SYfL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/61Abo53SYfL._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Brighten up your garden with this stunning mix of Gladiolus Flower Bulbs! This set includes 50 bulbs in assorted colors, adding a vibrant touch to your outdoor space. Easy to plant and care for, these gladiolus bulbs will bloom beautifully and provide a colorful display throughout the season. Perfect for adding a pop of color to your garden or as a thoughtful gift for any gardening enthusiast."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Boiron Oscillococcinum For Relief From FluLike Symptoms Of Body Aches, Headache, Fever, Chills, And Fatigue  30 Count",
-  "price": 23.52,
-  "stock": 62,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51TdlCEZGUL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51TdlCEZGUL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51Fduj2UUWL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/31bYuosl6lL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41l6FnXF9jL._AC_SR160,160_.jpg"],
-  "category": ["Generated"],
-  "description": ["Fight flulike symptoms with Boiron Oscillococcinum. This homeopathic remedy helps relieve body aches, headache, fever, chills, and fatigue. Each box contains 30 doses to help you feel better faster. Trust Boiron for natural relief from flu symptoms."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Elements of Biblical Exegesis A Basic Guide for Students and Ministers",
-  "price": 16.99,
-  "stock": 79,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/71u-iVY2ZZL._SY522_.jpg", "https://m.media-amazon.com/images/I/51apRrIbgUL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51btFzYSZ9L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71u-iVY2ZZL._SY342_.jpg", "https://m.media-amazon.com/images/I/71u-iVY2ZZL._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Elements of Biblical Exegesis A Basic Guide for Students and Ministers offers a comprehensive look at the fundamental principles of interpreting and understanding the Bible. Whether you are a student seeking to delve deeper into biblical texts or a minister looking to enhance your understanding of scripture, this book provides a valuable resource to help you navigate the complexities of biblical exegesis. With clear explanations and practical insights, this guide is a musthave for anyone looking to deepen their knowledge of the Bible."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "aeolotropy  11oz Ceramic White Coffee Mug, White",
-  "price": 25.75,
-  "stock": 50,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51YoOhw58+L._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51YoOhw58+L._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51YoOhw58+L._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51YoOhw58+L._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51YoOhw58+L._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Add a touch of elegance to your morning routine with the Aeolotropy 11oz Ceramic White Coffee Mug. Made from highquality ceramic, this classic white mug is perfect for enjoying your favorite hot beverages in style. Its sleek design and comfortable handle make it a practical and stylish addition to any kitchen. Treat yourself or a loved one to this sophisticated coffee mug for a delightful drinking experience every day."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Handbook of Anthropometry Physical Measures of Human Form in Health and Disease",
-  "price": 949.99,
-  "stock": 67,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51khHFPbH+L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51wzWC91mrL._SY466_.jpg", "https://m.media-amazon.com/images/I/51HQMX0QHpL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51wzWC91mrL._SY342_.jpg", "https://m.media-amazon.com/images/I/41Oo5EquD8L._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the intricate measurements and dimensions of the human body with the Handbook of Anthropometry Physical Measures of Human Form in Health and Disease. This comprehensive guide delves into the various parameters used in anthropometric studies, providing valuable insights into human morphology. Ideal for researchers, health professionals, and anyone interested in the science of human body measurement."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "WALI Monitor Risers for 2 Monitors, Computer Monitor Stand for 2 Monitors, Dual Monitor Riser, Laptop Riser for Desk, Adjustable Underneath Storage for Office, Home, SchoolSTT0032, 2 Pack,Black",
-  "price": 23.99,
-  "stock": 73,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/31kzamqZ8ZL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51kTOg+LyJL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51kTOg+LyJL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41+8iVK-SjL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41ReUvz0l5L._AC_SR160,160_.jpg"],
-  "category": ["Generated"],
-  "description": ["Elevate your workspace with the WALI Monitor Risers for 2 Monitors. This dual monitor stand is designed to support two monitors or a combination of a monitor and laptop, providing a comfortable viewing experience. The adjustable underneath storage allows you to keep your desk organized and clutterfree. Perfect for the office, home, or school, these monitor risers come in a convenient 2pack in a sleek black finish."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Imagined Communities Reflections on the Origin and Spread of Nationalism",
-  "price": 13.59,
-  "stock": 14,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/61DThfFjhZL._SY342_.jpg", "https://m.media-amazon.com/images/I/41ffJAQsCkL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41xj5ttSq6L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51CA6XJ4v7L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61DThfFjhZL._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Imagined Communities Reflections on the Origin and Spread of Nationalism is a gripping exploration of the concept of nationalism and its impact on societies around the world. With insightful analysis and engaging prose, this book delves into how ideas of nationhood have shaped history and continues to influence contemporary geopolitics. Whether youre a student of political science, history buff, or simply curious about global affairs, this insightful read is sure to broaden your perspective on the complex forces driving our interconnected world."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Hounding the Moon Tess Noncoire Adventures",
-  "price": 18.99,
-  "stock": 23,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/51bP2LpUdoL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41vik97rATL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41gJ0+epX7L._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51n+YeISTgL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/4161cD5yWnL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Immerse yourself in the captivating world of urban fantasy with Hounding the Moon, the first book in the Tess Noncoire Adventures series. Follow protagonist Tess Noncoire as she navigates a world filled with magic, mystery, and danger. With thrilling plot twists and intriguing characters, this book is sure to keep you on the edge of your seat from beginning to end. Experience the thrill of the unknown and join Tess on her supernatural journey."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Phrasal Verb Organiser with MiniDictionary",
-  "price": 548.92,
-  "stock": 90,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/71HzEZsL8yL._SY466_.jpg", "https://m.media-amazon.com/images/I/71HzEZsL8yL._SY385_.jpg", "https://m.media-amazon.com/images/I/71HzEZsL8yL._SY522_.jpg", "https://m.media-amazon.com/images/I/71HzEZsL8yL._SY342_.jpg", "https://m.media-amazon.com/images/I/71HzEZsL8yL._SY425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Stay organized and expand your vocabulary with the Phrasal Verb Organiser with Mini Dictionary. This handy tool allows you to easily look up and understand common phrasal verbs, helping you to improve your English proficiency. Perfect for students, language learners, and avid readers alike, this organiser will become an essential part of your study routine. Get yours today and take your language skills to the next level!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "12x12 Tarps Heavy Duty Waterproof, Pool Pad for Above Ground Pool, Multipurpose Tarpaulin with Metal Grommets, Outdoor Coverings Weatherproof Tarp Covers for Camping, Farming, Vehicles 12 FT",
-  "price": 36.99,
-  "stock": 68,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/513drRXEVOL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/413cvkV7fgL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/21CijY9Wu-L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/319ium5fhlL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/21Ez+5tjDnL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Protect your belongings from the elements with this versatile 12x12 Heavy Duty Waterproof Tarp. Whether you need a pool pad for your aboveground pool, outdoor covering for camping, farming, or vehicle protection, this multipurpose tarpaulin has got you covered. Featuring metal grommets for secure tying, this weatherproof tarp is durable and reliable for all your outdoor needs."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Pink Peppercorns For Grinder  Pink Pepper  Peppercorn  Peruvian Peppertree  Schinus Molle Pink Peppercorn Grinder Peruvian Pink Pepper Dried Peruvian Peppercorn Dried Pink Peppercorns",
-  "price": 14.97,
-  "stock": 27,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/4178lnvoe5L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41BiDfAnC8L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/91aVQ+XzESL._SX466_.jpg", "https://m.media-amazon.com/images/I/41Co54G4BLL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/91aVQ+XzESL._SX342_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enhance your culinary creations with our premium Pink Peppercorns for grinder. Sourced from the Peruvian Peppertree, these vibrant and fragrant peppercorns deliver a unique and mild spicy flavor profile. Add a pop of color and taste to your dishes with our highquality dried Pink Peppercorns. Perfect for grinding fresh over salads, meats, and more."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "got cephalotomy?  11oz Ceramic White Coffee Mug, White",
-  "price": 25.75,
-  "stock": 97,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/512oDqHeAEL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/512oDqHeAEL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/512oDqHeAEL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/512oDqHeAEL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/512oDqHeAEL._AC_SX522_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enjoy your morning coffee with this whimsical and unique 11oz ceramic white coffee mug. Perfect for anyone with a sense of humor and a love for medical jargon, this mug is sure to bring a smile to your face throughout the day."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Christmas Ornament Worlds Hottest Heliologist Red White Blue Xmas",
-  "price": 13.99,
-  "stock": 83,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/81tJNYZBHmL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/81tJNYZBHmL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/81tJNYZBHmL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/81tJNYZBHmL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/81tJNYZBHmL._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Decorate your Christmas tree with this unique ornament featuring a festive design for a heliologist. Show off your passion for all things solar and celestial with this red, white, and blue ornament that is sure to stand out amongst your holiday decor. Bring a touch of scientific flair to your Christmas celebrations with this special ornament."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Allergy Research Group Cellulose Powder  Microcrystalline Cellulose Powder, 2000mg Insoluble Fiber Supplement, Powdered Cellulose, NonFermentable, Hypoallergenic  8.8 Oz",
-  "price": 18.99,
-  "stock": 50,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/41WQ9ESWaJL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41J2YbBJIFL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51i3MZL3VBL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41J2YbBJIFL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51tHffSI9PL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": [" Highquality microcrystalline cellulose powder supplement Provides 2000mg of insoluble fiber per serving Made from powdered cellulose that is nonfermentable Hypoallergenic formula suitable for individuals with sensitivities Each container contains 8.8 oz of cellulose powder"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The SingleMinded Prince Gray Malkins Tale Book 1",
-  "price": 4.99,
-  "stock": 100,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41JTrqgV-TL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51Ocy-ZTaKL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51Vv5iXN54L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41ZZ8qKD7gL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61aarmeJIeL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Dive into a world of fantasy and adventure with The SingleMinded Prince Gray Malkins Tale Book 1. Follow the captivating journey of Prince Gray Malkin as he navigates through challenges and uncovers secrets that will change his life forever. This gripping tale is sure to keep you on the edge of your seat from beginning to end. Perfect for fans of fantasy fiction!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Unbecoming Letting Go of What No Longer Serves You",
-  "price": 19.99,
-  "stock": 11,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51cGrIaRgaL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51zOSYVWvCL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61G3QzxwioL._SY425_.jpg", "https://m.media-amazon.com/images/I/31F1lOPdO3L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41Dj50jRsaL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Unbecoming Letting Go of What No Longer Serves You is a thoughtprovoking selfhelp book that guides readers on a journey to release the things that hold them back. Through insightful guidance and empowering exercises, this book helps individuals shed limiting beliefs and embrace their true potential. Perfect for anyone seeking personal growth and transformation."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Nonchalance Sweatshirt Pullover  White Text",
-  "price": 29.98,
-  "stock": 82,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/A1EHx4FHFjL._CLa%7C2140%2C2000%7CA1hukHGNwsL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png", "https://m.media-amazon.com/images/I/A1EHx4FHFjL._CLa%7C2140%2C2000%7CA1hukHGNwsL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX425_.png", "https://m.media-amazon.com/images/I/A1EHx4FHFjL._CLa%7C2140%2C2000%7CA1hukHGNwsL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX569_.png", "https://m.media-amazon.com/images/I/A1EHx4FHFjL._CLa%7C2140%2C2000%7CA1hukHGNwsL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX466_.png", "https://m.media-amazon.com/images/I/A1EHx4FHFjL._CLa%7C2140%2C2000%7CA1hukHGNwsL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX385_.png"],
-  "category": ["Generated"],
-  "description": ["Stay cozy and stylish with our Nonchalance Sweatshirt Pullover featuring a unique white text design. Made from highquality materials, this sweatshirt offers both comfort and fashion, making it the perfect addition to your casual wardrobe. Whether youre lounging at home or heading out with friends, this sweatshirt will keep you looking effortlessly cool."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "intersidereal message",
-  "price": 16.01,
-  "stock": 45,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/61b0y+RJ+-L._SY450_.jpg", "https://m.media-amazon.com/images/I/61b0y+RJ+-L._SY355_.jpg", "https://m.media-amazon.com/images/I/61b0y+RJ+-L._SX425_.jpg", "https://m.media-amazon.com/images/I/61b0y+RJ+-L._SX522_.jpg", "https://m.media-amazon.com/images/I/61b0y+RJ+-L._SX466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Unlock the mysteries of the universe with the Intersidereal Message  a beautifully crafted piece of art that depicts cosmic wonders like no other. This mesmerizing artwork is perfect for space enthusiasts and those seeking a touch of celestial beauty in their homes. Add a touch of the stars to your living space with the Intersidereal Message."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Introductive Readings of the Western Marxism Chinese Edition",
-  "price": 13.99,
-  "stock": 17,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/71zWiTzP0wL._SY342_.jpg", "https://m.media-amazon.com/images/I/71zWiTzP0wL._SY466_.jpg", "https://m.media-amazon.com/images/I/71zWiTzP0wL._SY385_.jpg", "https://m.media-amazon.com/images/I/71zWiTzP0wL._SY425_.jpg", "https://m.media-amazon.com/images/I/71zWiTzP0wL._SY522_.jpg"],
-  "category": ["Generated"],
-  "description": ["This Chinese edition features an insightful collection of western Marxist texts that offer a unique perspective on philosophy, politics, and society. Perfect for students, scholars, and enthusiasts looking to delve into the intellectual tradition of Western Marxism."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Adoration of the Ram Five Hymns to AmunRe from Hibis Temple YALE EGYPTOLOGICAL STUDIES",
-  "price": 24.25,
-  "stock": 33,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/61SshKsmszL._SY342_.jpg", "https://m.media-amazon.com/images/I/61SshKsmszL._SY385_.jpg", "https://m.media-amazon.com/images/I/61SshKsmszL._SY425_.jpg", "https://m.media-amazon.com/images/I/61SshKsmszL._SY466_.jpg", "https://m.media-amazon.com/images/I/61SshKsmszL._SY522_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the intricate hymns dedicated to AmunRe with Adoration of the Ram Five Hymns to AmunRe from Hibis Temple. This fascinating book from Yale Egyptological Studies delves into the religious significance and cultural context of these ancient Egyptian texts, offering valuable insight into the worship of one of the most important deities in the Egyptian pantheon. Perfect for scholars, history enthusiasts, and anyone interested in the religious practices of ancient Egypt."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Nootropic Brain Booster Supplement with Noopept, Alpha GPC, ltheanine, ltyrosine, and PhosphatidylSerine  Improve Focus, Memory, and Mental Clarity for Daily Use. 60 Capsules",
-  "price": 54.99,
+  "name": "New and Full Moon Rituals for Entrepreneurs  Changemakers 2022 Cocreate with lunar cycles to easefully amplify your impact",
+  "price": 24.99,
   "stock": 20,
   "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/71h2p-o53TL._AC_SX425_PIbundle-60,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/71h2p-o53TL._AC_SX466_PIbundle-60,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/71h2p-o53TL._AC_SX522_PIbundle-60,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/71h2p-o53TL._AC_SX569_PIbundle-60,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/71h2p-o53TL._AC_SY355_PIbundle-60,TopRight,0,0_SH20_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/51l+nNYhY2L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61AJYSuhYUL._SY425_.jpg", "https://m.media-amazon.com/images/I/61AJYSuhYUL._SY466_.jpg", "https://m.media-amazon.com/images/I/51RbmIWmHPL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41u-1H-hqcL._AC_SF480,480_.jpg"],
   "category": ["Generated"],
-  "description": ["Enhance your cognitive performance with our Nootropic Brain Booster Supplement. Formulated with powerful ingredients such as Noopept, Alpha GPC, LTheanine, LTyrosine, and Phosphatidylserine, this supplement is designed to improve focus, memory, and mental clarity for daily use. Each bottle contains 60 capsules, providing you with a convenient and effective way to support your brain health. Unlock your full potential with our Nootropic Brain Booster Supplement today!"]
+  "description": ["Tap into the power of lunar cycles with this guide to New and Full Moon rituals designed specifically for entrepreneurs and changemakers in 2022. Learn how to harness the energy of each phase to amplify your impact and cocreate with the universe. Perfect for those looking to bring intention and ease into their personal and professional lives."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "JSP TETRASODIUM EDTA 8oz",
-  "price": 14.0,
-  "stock": 12,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/51a4MYUuMFL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/51a4MYUuMFL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/51a4MYUuMFL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51a4MYUuMFL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51a4MYUuMFL._AC_SX466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Keep your skincare products fresh and effective with this 8oz bottle of JSP Tetrasodium EDTA. This versatile ingredient acts as a chelating agent to help improve the stability and efficacy of various formulations. Perfect for DIY beauty enthusiasts or skincare product manufacturers looking to enhance the performance of their creations."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Saguna  Silicol Gel  Packsize 200ml",
-  "price": 19.97,
-  "stock": 62,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/51CqMF7GXxL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31+WGIKPDxL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41I399SnLwL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/81kzJQGDvKL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/41nNs5DqRqL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Saguna Silicol Gel is a unique formulation designed to support digestive health. This 200ml pack contains a soothing gel that forms a protective layer in the stomach and intestines, promoting a healthy gut environment. Whether youre dealing with occasional indigestion or looking to maintain optimal digestive function, Saguna Silicol Gel is a gentle and effective solution."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Scoff A History of Food and Class in Britain",
-  "price": 33.89,
-  "stock": 39,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/51XyL3XuHqL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/91K5EzuUHmL._SY466_.jpg", "https://m.media-amazon.com/images/I/51NeE4SMvUL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41JSZNzdkIL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51ywBqDjvKL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Scoff A History of Food and Class in Britain offers a captivating exploration of how social class and food intersect throughout British history. This indepth examination delves into the evolution of British cuisine, from humble beginnings to sophisticated creations, shedding light on the cultural and economic influences that have shaped the nations culinary identity. Delivered with engaging storytelling and meticulous research, this book is a mustread for food enthusiasts and history buffs alike."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Sceptile 10168  Celestial Storm  Rare  Pokemon Evolution 4 Card Lot  Grovyle 9168  Treecko 7168  8168",
-  "price": 8.32,
-  "stock": 12,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51u69r527vL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/5185Ni6VzxL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51S5Oy5yoEL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51s80y-LkmL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51S5Oy5yoEL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Expand your Pokmon collection with the Sceptile 10168 Celestial Storm Rare Pokemon Evolution 4 Card Lot. This lot includes Grovyle 9168, Treecko 7168, and 8168 for hours of exciting battles and adventures. Perfect for fans and collectors alike!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Ferretts Tablets 60 106 mg 2 Pack",
-  "price": 40.0,
-  "stock": 96,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/5180cs0e1bL._AC_SY679_PIbundle-2,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/41BkgYsxl5L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41Zn3xuQlPL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/5180cs0e1bL._AC_SY606_PIbundle-2,TopRight,0,0_SH20_.jpg", "https://m.media-amazon.com/images/I/41Zn3xuQlPL._AC_SR320,320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Ferretts Tablets provide a convenient way to supplement your iron intake with 106 mg of iron per tablet. This 2 pack includes 60 tablets in each pack, offering a total of 120 tablets for your iron needs. These tablets are easy to swallow and can be taken daily to help support healthy iron levels in the body."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Jesus and Me Talking with My Greatest Friend",
-  "price": 20.31,
-  "stock": 4,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/41kOqXRyINL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41m1EU1bQBL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51AQ94sjqsL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41G36ZM6lZL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/512t4xu6CyL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["This inspiring book, Jesus and Me Talking with My Greatest Friend, is a heartfelt exploration of developing a strong relationship with Jesus. Filled with personal anecdotes, reflections, and thoughtprovoking questions, this guide is perfect for anyone seeking a deeper connection with their faith. Join the author on a spiritual journey towards understanding, companionship, and unwavering trust in the comforting presence of Jesus as your greatest friend."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Michigan waterfowl management,",
-  "price": 25.86,
-  "stock": 5,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/81Pvs9OONEL._SY342_.jpg", "https://m.media-amazon.com/images/I/81Pvs9OONEL._SY425_.jpg", "https://m.media-amazon.com/images/I/81Pvs9OONEL._SY522_.jpg", "https://m.media-amazon.com/images/I/81Pvs9OONEL._SY385_.jpg", "https://m.media-amazon.com/images/I/81Pvs9OONEL._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the great outdoors with the Michigan Waterfowl Management guide. This comprehensive resource is perfect for anyone interested in waterfowl hunting in Michigan. Learn about the different species of waterfowl found in the area, hunting regulations, and useful tips for a successful hunting season. Whether youre a seasoned hunter or just starting out, this guide is a valuable tool to enhance your waterfowl hunting experience in Michigan."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "OPTUM Learning Understanding Modifiers",
-  "price": 249.52,
-  "stock": 65,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/51byTSNVvES._SY466_.jpg", "https://m.media-amazon.com/images/I/51o1PwB5JZL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/41h6WCCBqTL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51byTSNVvES._SY385_.jpg", "https://m.media-amazon.com/images/I/41+G25OJVrL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Learn how to properly use and understand modifiers with this comprehensive guide from OPTUM Learning. This easytofollow book explains the purpose of modifiers, how to apply them accurately, and includes practical examples to reinforce your understanding. Perfect for medical coders, billers, and healthcare professionals looking to enhance their modifier knowledge."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Sceptile 10168  Celestial Storm  Rare  Pokemon Evolution 4 Card Lot  Grovyle 9168  Treecko 7168  8168",
-  "price": 8.32,
-  "stock": 56,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41spO2yL3oL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51s80y-LkmL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51s80y-LkmL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/5185Ni6VzxL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51s80y-LkmL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Upgrade your Pokemon deck with this rare Celestial Storm Sceptile 4card lot! This set includes Grovyle 9168, Treecko 7168, and other powerful evolution cards to dominate your opponents in battle. Collect them all to unleash the full potential of Sceptile in your battles!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Dog Tail Cactus Aporocactus Flagelliformis 2X Fresh Succulent Live Cuttings",
-  "price": 12.0,
-  "stock": 56,
+  "name": "Celtic Sea Salt, Fine Ground, 8 Ounce, 0.5 Pound Pack of 1",
+  "price": 11.9,
+  "stock": 27,
   "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/41zoS6MwE2L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/31CI8IyqNTL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51VNWU6Bg2L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/8118ZnlOp4L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/413RCgw3hBL._AC_SR480,480_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/41k1yrK-eGL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/411-0i7REaL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/81DYVDkeNxL._SX385_.jpg", "https://m.media-amazon.com/images/I/411-0i7REaL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/51a3or7SfTL._AC_SR480,480_.jpg"],
   "category": ["Generated"],
-  "description": [" Two healthy and fresh succulent live cuttings of the unique Dog Tail Cactus Aporocactus Flagelliformis Perfect for planting or gifting to succulent enthusiasts Easy to care for and maintain, adding a touch of greenery to your living space Each cutting is approximately X inches long, ready to thrive in your garden or indoor plant collection"]
+  "description": [" Fine ground Celtic Sea Salt 8 ounce 0.5 pound pack of 1 Unrefined, allnatural salt handharvested from the pristine waters of the Atlantic Ocean Rich in essential minerals and trace elements Enhances the flavor of any dish NonGMO and certified kosher"]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "inconformably",
-  "price": 2.99,
-  "stock": 39,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/41IDPAzh8KL.jpg", "https://m.media-amazon.com/images/I/41IDPAzh8KL._SY177_.jpg"],
+  "name": "Budgetary Politics in American Governments",
+  "price": 66.39,
+  "stock": 24,
+  "rating": 4,
+  "image": ["https://m.media-amazon.com/images/I/41pA4viIzTL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61AAVDWYZeL._SY466_.jpg", "https://m.media-amazon.com/images/I/41XY1GPvfWL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41NeqZrrDdL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/61AAVDWYZeL._SY342_.jpg"],
   "category": ["Generated"],
-  "description": ["Introducing Inconformably  a revolutionary and versatile electronic device that combines the functionality of a tablet, laptop, and smartphone all in one sleek design. With a powerful processor, crystalclear display, and longlasting battery life, Inconformably is perfect for work, entertainment, and everything in between. Stay connected, stay organized, and stay ahead of the curve with Inconformably."]
+  "description": ["Explore the intricacies of budgetary politics in American governments with this insightful book. Delving into the complexities of fiscal policymaking, this comprehensive guide provides a thorough examination of how budget decisions are influenced and crafted within the American political system. A mustread for students, scholars, and anyone interested in understanding the challenges and dynamics of budget processes at various levels of government."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "Sanitarium Health Food Company Weetbix 1.2 Kilogram",
-  "price": 23.49,
-  "stock": 81,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/51sBs41PDuL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41FuJKe34xL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51sBs41PDuL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/41mIxaqLjBL._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/61fGOYD++1L._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Start your day the healthy way with Sanitarium Health Food Company Weetbix! This 1.2 Kilogram pack is perfect for stocking up your pantry with wholesome and delicious breakfast options. Made from whole grains and high in fiber, Weetbix is a nutritious choice to fuel your day. Enjoy it with milk, yogurt, or your favorite toppings for a satisfying breakfast that will keep you energized."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "A Wild Day at the Zoo  Une Folle Journe Au Zoo  Bilingual English and French Edition Childrens Picture Book Little Polyglot Adventures",
-  "price": 14.53,
-  "stock": 69,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/51XLKNGSlCL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/512axJKPseL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/51R6aggv-3L._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41GOsG2r7zL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41+7eEjVFjL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg"],
-  "category": ["Generated"],
-  "description": ["Embark on a wild adventure at the zoo with this engaging bilingual English and French edition childrens picture book. Perfect for young language learners or families looking to introduce their little ones to new languages, A Wild Day at the Zoo combines whimsical illustrations with a fun story to captivate young readers on a journey of discovery and language exploration. Join the little polyglot on an exciting day filled with animals and new words in two languages!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Everyone Has a Secret Andy and the Ten",
-  "price": 18.0,
-  "stock": 12,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/61kFEksduOL._SY385_.jpg", "https://m.media-amazon.com/images/I/61kFEksduOL._SY522_.jpg", "https://m.media-amazon.com/images/I/61kFEksduOL._SY425_.jpg", "https://m.media-amazon.com/images/I/61kFEksduOL._SY342_.jpg", "https://m.media-amazon.com/images/I/61kFEksduOL._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Delve into the thrilling world of secrets and intrigue with Everyone Has a Secret Andy and the Ten. Follow Andy as he navigates a web of mysteries surrounding the enigmatic group known as The Ten. Full of twists and turns, this gripping novel will keep you on the edge of your seat until the very last page."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "ogreish",
-  "price": 5.99,
-  "stock": 29,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/61JOwf1fUBL._AC_UL140_SR140,140_.jpg", "https://m.media-amazon.com/images/I/61gFO-eBVaL._AC_UL140_SR140,140_.jpg", "https://m.media-amazon.com/images/I/81ekiPBHbWL._AC_UL140_SR140,140_.jpg", "https://m.media-amazon.com/images/I/61gFO-eBVaL._AC_UL420_SR420,420_.jpg", "https://m.media-amazon.com/images/I/61JOwf1fUBL._AC_UL280_SR280,280_.jpg"],
-  "category": ["Generated"],
-  "description": ["Unfortunately, I cannot create a product description without knowing what the product is."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The Voice Imitator",
-  "price": 12.0,
+  "name": "Transformation Enzyme  Gastro, Supplement with Herbs Formulated to Alleviate Gastrointestinal Discomfort and Promote Digestive Function, Support for Relief of Heartbur 60",
+  "price": 36.61,
   "stock": 32,
   "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/51v6y8ysuaL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41fqwFApY6L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41pXHhO5wrL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41LHKI5LqFL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71E41L1th0L._SY425_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/61rKE6YAYZL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61rKE6YAYZL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/61rKE6YAYZL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/61rKE6YAYZL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/61rKE6YAYZL._AC_SY450_.jpg"],
   "category": ["Generated"],
-  "description": ["Introducing The Voice Imitator, a versatile and innovative tool for practicing and perfecting vocal impressions. This portable device allows users to record their voice and play it back with adjustable pitch and speed settings, making it easy to mimic various accents, tones, and styles. Whether youre a beginner looking to hone your impersonation skills or a seasoned pro seeking new voices to add to your repertoire, The Voice Imitator is the perfect companion for endless hours of creative fun."]
+  "description": ["Transformation Enzyme Gastro is a powerful supplement designed to alleviate gastrointestinal discomfort and promote optimal digestive function. Crafted with a blend of potent herbs, this formula offers muchneeded support for the relief of heartburn and other digestive issues. Each bottle contains 60 capsules, providing you with a convenient and easy way to support your digestive health."]
 }'
 
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
+curl -k -X 'POST' \
+  'https://ucsc-amazon.com/vendorapi/v0/product' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMWYxZGFhNGMtNzNjMi00ZTMyLTg0NjMtMjEwMjFiODVmZWRjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzQ1NzM2N30.ZhZkf65slydCj4n51PU7ml-l65fa-GhC5EMNN0HiAqQ' \
   -H 'Content-Type: application/json' \
   -d '{
-  "name": "SUPERHEROIC THE BRONZE AGE OF COMICS Volume 2",
-  "price": 9.99,
-  "stock": 28,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/517PweISQJL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/819hJnEZ+lL._SY342_.jpg", "https://m.media-amazon.com/images/I/61qZQctWuCL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/819hJnEZ+lL._SY425_.jpg", "https://m.media-amazon.com/images/I/51kQZNk+L3L._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enter the captivating world of vintage comics with SUPERHEROIC THE BRONZE AGE OF COMICS Volume 2. This comprehensive collection showcases the iconic superheroes and thrilling adventures that defined an era in comic book history. Dive into the dynamic storytelling and vibrant artwork that continues to inspire fans of all ages. A musthave for comic book enthusiasts and collectors alike."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Undelivered The NeverHeard Speeches That Would Have Rewritten History",
-  "price": 11.02,
-  "stock": 48,
+  "name": "3B Scientific A73 Thoracic Spinal Column  3B Smart Anatomy",
+  "price": 75.97,
+  "stock": 77,
   "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/61E2VwJyyKL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41EUNTTWQtS._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41HhRYRP86L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41nNg0Ib6pL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41lsLdGXw-L._AC_SF480,480_.jpg"],
+  "image": ["https://m.media-amazon.com/images/I/513bMNgslcL._SX385_.jpg", "https://m.media-amazon.com/images/I/513bMNgslcL._SX466_.jpg", "https://m.media-amazon.com/images/I/513bMNgslcL._SX425_.jpg", "https://m.media-amazon.com/images/I/513bMNgslcL._SX522_.jpg", "https://m.media-amazon.com/images/I/513bMNgslcL._SX342_.jpg"],
   "category": ["Generated"],
-  "description": ["Explore a collection of lost speeches that could have altered the course of history in Undelivered The NeverHeard Speeches That Would Have Rewritten History. Delve into the captivating words and ideas that were never shared with the world, offering a unique perspective on key moments in time. This thoughtprovoking book sheds light on the power of communication and the potential impact of untold stories."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Melissa  Doug Suspend Family Game 31 pcs  Wire Balance Game, Family Game Night Activities, For Kids Ages 8",
-  "price": 15.19,
-  "stock": 93,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/81BMzf0b2IL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/81BMzf0b2IL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/81BMzf0b2IL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/81BMzf0b2IL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/81BMzf0b2IL._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Have a blast with Melissa  Dougs Suspend Family Game! This exciting wire balance game includes 31 pieces for a fun and challenging family game night activity. Perfect for kids ages 8 and up, test your skills and see who can make the longest chain without toppling the structure. Great for enhancing handeye coordination and strategic thinking skills."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "This is My I Hope Your Parotidectomy Surgery Went Well Mug  Funny Tea Hot Cocoa Coffee Cup  Get Well Soon Gifts  Novelty Well Wisher Gag Gifts Idea 11oz",
-  "price": 17.95,
-  "stock": 28,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/616Qp6lv-BL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/616Qp6lv-BL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/616Qp6lv-BL._AC_SX425_.jpg", "https://m.media-amazon.com/images/I/616Qp6lv-BL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/616Qp6lv-BL._AC_SX466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Stay positive and spread some cheer with this whimsical mug, perfect for anyone recovering from parotidectomy surgery. Whether sipping on tea, hot cocoa, or coffee, this mug is sure to bring a smile to their face. A great gift idea to show your support and well wishes during a challenging time. Cheers to a speedy recovery!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "A Little High Rainey Paxton Series",
-  "price": 20.99,
-  "stock": 35,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41ADNGkMbTL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51Fbb-9pM9L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51TcQW7Gf9L._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51MwWsboFgL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/41bOOyKu0sL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Immerse yourself in the thrilling world of detective Rainey Paxton with the first installment in the Rainey Paxton series, A Little High. Follow along as Rainey navigates a web of twists and turns in this gripping mystery novel that will keep you on the edge of your seat until the very end. Join Rainey on her quest for justice and order your copy of A Little High today."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The Imperators Companion The Hunter Imperium Book 13",
-  "price": 2.99,
-  "stock": 44,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/51828H9iCZL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/51fM+jJ-KHL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/81vCBSQ0AYL._SY466_.jpg", "https://m.media-amazon.com/images/I/81vCBSQ0AYL._SY425_.jpg", "https://m.media-amazon.com/images/I/81vCBSQ0AYL._SY385_.jpg"],
-  "category": ["Generated"],
-  "description": ["Delve into the thrilling world of The Hunter Imperium with the mesmerizing 13th book in the series, The Imperators Companion. Join the Imperators on a daring adventure filled with gripping plots, intricate schemes, and heartpounding action. This latest installment is a musthave for fans of epic fantasy and intricate worldbuilding. Buckle up and get ready to be transported to a realm where alliances are tested, enemies lurk in the shadows, and only the strongest survive."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Fitness Labs ArthFree Powder 1.12 Lb, Advanced Joint Support Complex",
-  "price": 49.99,
-  "stock": 46,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/815TuRYl9fL._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/815TuRYl9fL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/815TuRYl9fL._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/815TuRYl9fL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/815TuRYl9fL._AC_SX522_.jpg"],
-  "category": ["Generated"],
-  "description": [" Supports joint health and flexibility Contains a blend of glucosamine, chondroitin, MSM, and collagen Promotes cartilage and connective tissue strength Easytomix powder form for convenient consumption Great for individuals looking to maintain healthy joints and active lifestyles"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The Ultimate Ambidextrous Print Practice Workbook Over 200 Pages of Left and Right Handed Print Penmanship and Handwriting Practice for Teens, Kids and Adults",
-  "price": 8.81,
-  "stock": 86,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/51DBAE7sQxL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/41No3iq4QOL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51Q281lKD9L._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/51hZfNz2hPL._BG0,0,0,0_FMpng_AC_SY160_SX160_.jpg", "https://m.media-amazon.com/images/I/41XLGrnT3PL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg"],
-  "category": ["Generated"],
-  "description": ["Improve your printing skills with this comprehensive workbook designed for both lefthanded and righthanded individuals. With over 200 pages of engaging penmanship and handwriting practice, this workbook is suitable for teens, kids, and adults looking to enhance their printing abilities. Perfect for students, professionals, or anyone striving to refine their handwriting skills."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "frequentage  11oz Ceramic White Coffee Mug, White",
-  "price": 25.75,
-  "stock": 3,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/51HW7VDZXML._AC_SY450_.jpg", "https://m.media-amazon.com/images/I/51HW7VDZXML._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/51HW7VDZXML._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/51HW7VDZXML._AC_SY355_.jpg", "https://m.media-amazon.com/images/I/51HW7VDZXML._AC_SX425_.jpg"],
-  "category": ["Generated"],
-  "description": ["Enjoy your morning coffee or tea with this sleek and classic 11oz Ceramic White Coffee Mug. Made from durable ceramic, this mug is perfect for everyday use at home or in the office. The clean white design adds a touch of elegance to your morning routine. Dishwasher and microwave safe for easy cleaning and heating. Add this timeless mug to your collection today!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Cavaliers and Roundheads The English Civil War, 16421649",
-  "price": 10.99,
-  "stock": 52,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/81w+yzN7LiS._SY342_.jpg", "https://m.media-amazon.com/images/I/514rG-SkwgL._BG0,0,0,0_FMpng_AC_SY320_SX320_.jpg", "https://m.media-amazon.com/images/I/51PJ9n6E2HL._BG0,0,0,0_FMpng_AC_SY480_SX480_.jpg", "https://m.media-amazon.com/images/I/81w+yzN7LiS._SY425_.jpg", "https://m.media-amazon.com/images/I/81w+yzN7LiS._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Get immersed in the tumultuous era of the English Civil War with Cavaliers and Roundheads The English Civil War, 16421649. This comprehensive historical book delves into the political turmoil, military campaigns, and key figures that shaped one of the most significant periods in British history. From the clash of ideologies between Royalists and Parliamentarians to the dramatic battles that redefined the balance of power, this gripping account illuminates the complexities of a nation torn apart by civil strife. Perfect for history buffs and enthusiasts seeking a deeper understanding of this pivotal moment in time."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "The Communication of Catholics with Schismatics 1947 CUA Studies in Canon Law",
-  "price": 47.64,
-  "stock": 67,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/91ee7rRAyNL._SY342_.jpg", "https://m.media-amazon.com/images/I/91ee7rRAyNL._SY466_.jpg", "https://m.media-amazon.com/images/I/91ee7rRAyNL._SY385_.jpg", "https://m.media-amazon.com/images/I/91ee7rRAyNL._SY425_.jpg", "https://m.media-amazon.com/images/I/91ee7rRAyNL._SY522_.jpg"],
-  "category": ["Generated"],
-  "description": ["Discover the intricate and fascinating exploration of Catholic communication with schismatics in this comprehensive book from CUA Studies in Canon Law. This detailed study from 1947 provides valuable insights into the historical and theological nuances of this important topic. A mustread for scholars, theologians, and anyone interested in the complexities of Catholic doctrine."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Iterate Ten Lessons in Design and Failure",
-  "price": 29.95,
-  "stock": 40,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/51qxhqRxnDL._AC_SF480,480_.jpg", "https://m.media-amazon.com/images/I/71Tiq3ZnXCL._SY385_.jpg", "https://m.media-amazon.com/images/I/71Tiq3ZnXCL._SY342_.jpg", "https://m.media-amazon.com/images/I/71Tiq3ZnXCL._SY522_.jpg", "https://m.media-amazon.com/images/I/51awabdhhbL._AC_SF480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Learn valuable design principles while embracing failure with Iterate Ten Lessons in Design and Failure. This insightful book delves into the world of design and provides practical lessons that can help you grow as a designer. Filled with valuable insights and tips, this book is a musthave for anyone looking to enhance their design skills and overcome obstacles. Whether youre a seasoned designer or just starting out, Iterate offers valuable lessons that can help you succeed in the world of design."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Coravin Timeless Three Plus Wine Preservation System  BytheGlass Wine Saver  With 2 Pure Argon Gas Capsules  Wine Aerator  Black",
-  "price": 52.95,
-  "stock": 36,
-  "rating": 1,
-  "image": ["https://m.media-amazon.com/images/I/31yzdiz-HPL._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/5115JYBVKVL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41KQCdPV-+L._AC_SR480,480_.jpg", "https://m.media-amazon.com/images/I/41KQCdPV-+L._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/71D6+77D4HL._AC_SS345_.jpg"],
-  "category": ["Generated"],
-  "description": ["Experience the ultimate in wine preservation with the Coravin Timeless Three Plus Wine Preservation System. This innovative device allows you to pour your favorite wines by the glass without pulling the cork, keeping your wine fresh for weeks, months, or even years. The set includes 2 Pure Argon Gas Capsules for extended use, a wine aerator for enhanced flavors, all presented in a sleek black design. Perfect for wine lovers who appreciate quality and convenience."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Functional Morphology and Classification of Teleostean Fishes",
-  "price": 13.41,
-  "stock": 60,
-  "rating": 5,
-  "image": ["https://m.media-amazon.com/images/I/A1K9D31ak-L._SY385_.jpg", "https://m.media-amazon.com/images/I/A1K9D31ak-L._SY425_.jpg", "https://m.media-amazon.com/images/I/A1K9D31ak-L._SY522_.jpg", "https://m.media-amazon.com/images/I/A1K9D31ak-L._SY342_.jpg", "https://m.media-amazon.com/images/I/A1K9D31ak-L._SY466_.jpg"],
-  "category": ["Generated"],
-  "description": ["Explore the fascinating world of teleostean fishes with this comprehensive guide. This book delves into the functional morphology and classification of these aquatic creatures, providing insightful information and vivid illustrations to deepen your understanding. Perfect for students, researchers, and enthusiasts looking to expand their knowledge of teleostean fishes."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "ZUKULIFE Womens Essentials Deep U MultiWay Push Up Convertible Low Cut Plunge Bra",
-  "price": 35.99,
-  "stock": 31,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/4101qgatC8L._AC_SR480,600_.jpg", "https://m.media-amazon.com/images/I/41W4NsLLsrL._AC_SR160,200_.jpg", "https://m.media-amazon.com/images/I/61FIuJsjeaL._AC_SX342_.jpg", "https://m.media-amazon.com/images/I/61FIuJsjeaL._AC_SX385_.jpg", "https://m.media-amazon.com/images/I/41Er3cXVsfL._AC_SR480,600_.jpg"],
-  "category": ["Generated"],
-  "description": [" Versatile deep U multiway pushup bra for women Convertible straps for multiple styling options Lowcut design perfect for plunging necklines Provides lift and support for a flattering silhouette Ideal for various outfits and occasions Comfortable and smooth fabric for allday wear"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "disfigure",
-  "price": 9.99,
-  "stock": 39,
-  "rating": 2,
-  "image": ["https://m.media-amazon.com/images/I/41vlkOU54EL.jpg", "https://m.media-amazon.com/images/I/41vlkOU54EL._SY177_.jpg"],
-  "category": ["Generated"],
-  "description": ["Introducing Disfigure, a hauntingly beautiful vinyl record by renowned artist. Dive into a world of mesmerizing melodies and ethereal vocals that will transport you to another realm. Perfect for both casual listening and deep introspection, Disfigure is a musthave addition to any music lovers collection. Immerse yourself in the atmospheric soundscape and let the music take you on a journey like no other."]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "X1S  Outpoint Treble Hook Qty 10",
-  "price": 24.99,
-  "stock": 4,
-  "rating": 4,
-  "image": ["https://m.media-amazon.com/images/I/41g97ipYPhL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/41PMZfUJBbL._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/51Ap3d6uE9L._AC_SR320,320_.jpg", "https://m.media-amazon.com/images/I/51RHt0Zd3ML._AC_SR160,160_.jpg", "https://m.media-amazon.com/images/I/41gtk3UEvpL._AC_SR480,480_.jpg"],
-  "category": ["Generated"],
-  "description": ["Upgrade your fishing gear with the X1S Outpoint Treble Hook. This pack includes 10 highquality treble hooks designed to provide superior performance and durability. Perfect for a variety of fishing techniques, these hooks feature sharp points and a corrosionresistant finish to help you reel in more catches. Add the X1S Outpoint Treble Hook to your tackle box and get ready to hook some big ones!"]
-}'
-
-curl -X 'POST' \
-  'http://localhost:3014/api/v0/product' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYzczOWQwYmQtZDUyYS00NGRiLWJlODItZmM3MWE2NWVjOWE4IiwiYWNjb3VudF9pZCI6IjMxOWVmZjcyLThlMmEtNGZiMC1hODkxLWE0NjJiZDYwNGM2MSIsImlhdCI6MTcxNzM3NjU4Mn0.vByUSkekE3UqqCGqyx5ODyfE0qMYNqeLBzFZpBehFK0' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Bug Repellent Feathersoft Leggings with Insect Shield Repellent Technology in Lightweight Recycled Fabric",
-  "price": 38.95,
-  "stock": 55,
-  "rating": 3,
-  "image": ["https://m.media-amazon.com/images/I/41h6j8agEwL._AC_SX385_.jpg", "https://m.media-amazon.com/images/I/41h6j8agEwL._AC_SX569_.jpg", "https://m.media-amazon.com/images/I/41h6j8agEwL._AC_SX522_.jpg", "https://m.media-amazon.com/images/I/41h6j8agEwL._AC_SX466_.jpg", "https://m.media-amazon.com/images/I/41h6j8agEwL._AC_SX342_.jpg"],
-  "category": ["Generated"],
-  "description": ["Stay protected from bugs while staying stylish in these Bug Repellent Feathersoft Leggings. Featuring Insect Shield Repellent Technology, these leggings will keep insects at bay so you can enjoy the outdoors without worry. Made from lightweight recycled fabric, these leggings are not only comfortable but also environmentally friendly. Perfect for hiking, camping, or any outdoor activity where bugs are a nuisance."]
+  "description": [" Anatomically accurate thoracic spinal column model by 3B Scientific Features details of the thoracic vertebrae, spinal cord, nerve endings, and more Made from highquality material for durability and longevity Compatible with 3B Smart Anatomy app for an interactive learning experience Ideal for medical students, chiropractors, and other healthcare professionals for studying and teaching purposes"]
 }'
 

@@ -1,4 +1,4 @@
-import { OrdersInfo } from './schema';
+import { OrdersInfo, NewOrder } from './schema';
 import { OrdersService } from './service';
 import { Query, Resolver, Arg, Mutation } from 'type-graphql';
 
@@ -25,5 +25,12 @@ export class OrdersResolver {
   @Mutation(() => OrdersInfo)
   async deleteOrder(@Arg('orderId') orderId: string): Promise<OrdersInfo> {
     return await new OrdersService().deleteOrder(orderId);
+  }
+
+  @Mutation(() => String)
+  async createOrder(
+    @Arg('order') order: NewOrder,
+  ): Promise<string> {
+    return await new OrdersService().createOrder(order);
   }
 }

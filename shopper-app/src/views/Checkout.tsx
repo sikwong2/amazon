@@ -17,16 +17,12 @@ import CustomCard from '../components/Card';
 import CustomButton from '@/components/Button';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
-import { Product } from '@/graphql/product/schema';
 import { CheckoutItem } from '@/components/CheckoutItem';
 import CustomDivider from '@/components/Divider';
 import Logo from '@/components/Logo';
 import CustomLink from '@/components/Link';
 import { LoginContext } from '@/context/Login';
-import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
 import DeliveryDate from '../components/DeliveryDate'
-import { StripeProduct } from '@/graphql/stripe/schema';
 import LockButton from '../components/LockButton';
 import { RadioGroup } from '@mui/material';
 import RadioButton from '../components/RadioButton'
@@ -37,6 +33,30 @@ import { PageContext } from '@/context/Page';
 interface UserDetails {
   name: string;
   address: string;
+}
+
+interface OrderInfo {
+  products: string[];
+  shopperId: string;
+  vendorId: string;
+  orderStatus: string;
+}
+
+interface StripeProduct {
+  name: string,
+  quantity: number,
+  price: number
+}
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  stock: number;
+  image: string[];
+  rating: number;
+  category: string[];
+  description: string[];
 }
 
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {
@@ -88,8 +108,36 @@ const fetchProduct = async (productId: any): Promise<Product> => {
   }
 };
 
+const createOrder = async (order: OrderInfo) => {
+  try {
+    const query = `
+      mutation createOrder($order: NewOrder!) {
+        createOrder(order: $order)
+      }
+    `;
+
+    const variables = {
+      order: order
+    }
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({query, variables}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.createOrder;
+  } catch(e) {
+    console.log(e);
+  }
+}
 const placeOrder = async (products: StripeProduct[]) => {
-  console.log('placeOrder', products);
   try {
     const query = `
       query checkoutURL($products: [StripeProduct!]!) {
@@ -136,6 +184,13 @@ export function Checkout() {
   const [showPopover, setShowPopover] = useState(false);
   const router = useRouter();
   const popoverRef = useRef<HTMLDivElement>(null);
+  const loginContext = useContext(LoginContext);
+  const [order, setOrder] = useState<OrderInfo>({
+    "products": [],
+    "shopperId": loginContext.id,
+    "orderStatus": 'pending',
+    "vendorId": '33d646df-1f4a-4130-8590-720f45ba4179'
+  });
 
   const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
 
@@ -196,6 +251,12 @@ export function Checkout() {
       let total = 0;
       const temp: any = []
       const tempStripe: StripeProduct[] = [];
+      const tempOrder: OrderInfo = {
+        "products": [],
+        "vendorId": "33d646df-1f4a-4130-8590-720f45ba4179",
+        "shopperId": loginContext.id,
+        "orderStatus": "pending"
+      }
       await Promise.all(
         Object.entries(cart).map(async ([productId, quantity]) => {
           const product = await fetchProduct(productId);
@@ -213,9 +274,10 @@ export function Checkout() {
             price: Number((product.price * 100).toFixed(0)),
             quantity: quantity
           });
+          tempOrder.products.push(productId);
         })
       )
-
+      setOrder(tempOrder);
       setStripeProducts(tempStripe);
       setCartItems(temp);
       setSubtotal(Number(Number(total).toFixed(2)));
@@ -466,6 +528,7 @@ export function Checkout() {
                   color="primary"
                   sx={{ mt: 3, mb: 2, mr: 0.1, ml: 3, flex: '1', fontSize: '13px' }}
                   onClick={() => {
+                    createOrder(order);
                     placeOrder(stripeProducts);
                   }}
                 >
@@ -474,7 +537,7 @@ export function Checkout() {
               </div>
               <div style={{display: 'flex', flexDirection: 'column', flex: '3'}}>
                 <div style={{ flex: '1', textAlign: 'left', color: '#b12704', fontWeight: '700'}}>
-                {t("checkout.order-total")} {`${subtotal.toFixed(2)}`} 
+                {t("checkout.order-total")} ${`${subtotal.toFixed(2)}`} 
                 </div> 
                 <div style={{flex: '1'}}>
                   <Typography sx={{fontSize: '11px'}}> {t("checkout.footer-part-1")} {' '} 
@@ -570,6 +633,7 @@ export function Checkout() {
                   margin: 'auto',
                 }}
                 onClick={() => {
+                  createOrder(order);
                   placeOrder(stripeProducts);
                 }}
               >
@@ -622,7 +686,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal.toFixed(2)}
+                    ${subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow sx={{ mb: '5px' }}>
@@ -641,7 +705,7 @@ export function Checkout() {
                     align="right"
                     sx={{ border: 'none', paddingBottom: '1px', paddingTop: '1px' }}
                   >
-                    {subtotal.toFixed(2)}
+                    ${subtotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow>

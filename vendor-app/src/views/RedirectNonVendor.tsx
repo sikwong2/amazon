@@ -21,11 +21,11 @@ export function RedirectNonVendor() {
     switch (loginContext.role) {
       case 'shopper':
         loginContext.setRole('');
-        router.push('/');
+        router.push('https://www.ucsc-amazon.com/');
         break;
       case 'admin':
         loginContext.setRole('');
-        router.push('/admin');
+        router.push('https://www.ucsc-amazon.com/admin');
         break;
       default:
         loginContext.setRole('');

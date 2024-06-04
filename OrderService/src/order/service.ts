@@ -5,11 +5,11 @@ export class OrderService {
   public async create(OrderInfo: OrderInfo): Promise<OrderResponse|undefined> {
     let today = new Date();
     let insert = 
-      `INSERT INTO orders (data, vendor_id, shopper_id) VALUES 
-     (jsonb_build_object('products', $1::jsonb, 'orderDate', $4::timestamptz), $2::uuid, $3::uuid) RETURNING id`;
+      `INSERT INTO orders (data, vendor_id, shopper_id, order_status) VALUES 
+     (jsonb_build_object('products', $1::jsonb, 'orderDate', $4::timestamptz), $2::uuid, $3::uuid, $5) RETURNING id`;
     const query = {
       text: insert,
-      values: [JSON.stringify(OrderInfo.products), OrderInfo.vendorId, OrderInfo.shopperId, today],
+      values: [JSON.stringify(OrderInfo.products), OrderInfo.vendorId, OrderInfo.shopperId, today, OrderInfo.orderStatus],
     };
     const { rows } = await pool.query(query);
     const id = rows[0].id;
