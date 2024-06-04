@@ -17,7 +17,7 @@ export class OrdersInfo {
   orderDate!: string
 }
 
-@InputType()
+@InputType('NewOrder')
 export class NewOrder {
   @Field(() => [String])
   products!: string[];
