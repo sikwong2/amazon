@@ -16,8 +16,6 @@ import { useSearch } from '../context/SearchContext';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
-import { Grid } from '@mui/material';
-import { log } from 'console';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 
@@ -72,7 +70,8 @@ const customButtonStyles: React.CSSProperties = {
 	backgroundColor: 'rgba(35,47,62)',
 	color: 'rgba(242,242,242)',
 	textTransform: 'none',
-  width:'100%'
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
 };
 
 export default function TopBar() {
@@ -185,7 +184,7 @@ export default function TopBar() {
 			style={customButtonStyles}
 			label='sign-in'
 			variant='text'
-			sx={{ ml: 2 }}
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
 			onClick={handleSignIn}
 			caps={false}>
 			{t("topbar.Sign-in")}
@@ -197,7 +196,7 @@ export default function TopBar() {
 			style={customButtonStyles}
 			label='user'
 			variant='text'
-			sx={{ ml: 2 }}
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
 			onClick={handleSignOut}
 			caps={false}
 		>
@@ -228,7 +227,7 @@ export default function TopBar() {
 			style={customButtonStyles}
 			label='orders'
 			variant='text'
-			sx={{ ml: 2 }}
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
 			onClick={handleOrders}
 			caps={false}
 		>
@@ -241,7 +240,7 @@ export default function TopBar() {
 			style={customButtonStyles} 
 			label='cart' 
 			variant='text' 
-			sx={{ ml: 2 }} 
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }} 
 			onClick={handleCart}
 		>
 			<div style={{ position: "relative", display: "flex", alignItems: "center" }}>
