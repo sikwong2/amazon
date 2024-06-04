@@ -140,7 +140,7 @@ export default function OrderCard({children, orderStatus = 'delivered', productI
           {t("order.total")}
           </SecondaryText>
           <TertiaryText align='left' variant='subtitle2' width="100%">
-            {`$${totalPrice}`}
+            ${Number(totalPrice).toFixed(2)}
           </TertiaryText>
         </Grid>
         <Grid item sx={{ width: '17.448%', float: 'left', minHeight: '1px', overflow: 'visible', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
