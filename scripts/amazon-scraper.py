@@ -183,8 +183,6 @@ if __name__ == "__main__":
     # Parse the arguments
     args = parser.parse_args()
 
-    ua = UserAgent()
-
     if os.path.exists("curl_commands.sh"):
         os.remove("curl_commands.sh")
         
@@ -196,6 +194,8 @@ if __name__ == "__main__":
     for i in range(
         args.number
     ):  # Replace 10 with the number of curl commands you want to generate
+
+        ua = UserAgent()
 
         HEADERS = {
             "User-Agent": ua.random,
