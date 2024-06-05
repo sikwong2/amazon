@@ -7,7 +7,7 @@ WORKDIR /home/app
 
 COPY package.json /home/app/
 COPY package-lock.json /home/app/
-COPY .env /home/app/
+COPY scripts/.env /home/app/
 
 COPY AccountService/build/ /home/app/AccountService/build/
 COPY AccountService/package.json /home/app/AccountService/
@@ -49,6 +49,8 @@ COPY vendor-app/package-lock.json /home/app/vendor-app/
 COPY vendor-app/next-i18next.config.js/ /home/app/vendor-app/
 COPY vendor-app/next.config.js/ /home/app/vendor-app/
 COPY vendor-app/public/ /home/app/vendor-app/public/
+
+RUN ls -la
 
 RUN npm run cis
 
