@@ -7,7 +7,7 @@ WORKDIR /home/app
 
 COPY package.json /home/app/
 COPY package-lock.json /home/app/
-COPY .env /home/app/
+COPY scripts/.env /home/app/
 
 COPY AccountService/build/ /home/app/AccountService/build/
 COPY AccountService/package.json /home/app/AccountService/

@@ -4,6 +4,9 @@ import { graphql, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 
 import { Home } from '@/views/Home';
+import { LoginProvider } from '@/context/Login';
+import { SearchProvider } from '@/context/SearchContext';
+import { LoginContext } from '@/context/Login';
 
 let apiCalled = false;
 
@@ -21,6 +24,51 @@ jest.mock('react-i18next', () => ({
     };
   },
 }));
+
+// used for mocking useMediaQuery breakpoints (xs: 0, sm: 600, md: 900, lg: 1200)
+// https://mui.com/material-ui/react-use-media-query/#testing
+import mediaQuery from 'css-mediaquery';
+
+function createMatchMedia(width: number) {
+  return (query: string): MediaQueryList => {
+    const listeners: Array<(e: MediaQueryListEvent) => void> = [];
+
+    const instance: MediaQueryList = {
+      matches: mediaQuery.match(query, { width }),
+      media: query,
+      addListener: (listener: (e: MediaQueryListEvent) => void) => {
+        listeners.push(listener);
+      },
+      removeListener: (listener: (e: MediaQueryListEvent) => void) => {
+        const index = listeners.indexOf(listener);
+        if (index !== -1) {
+          listeners.splice(index, 1);
+        }
+      },
+      addEventListener: (type: string, listener: EventListenerOrEventListenerObject) => {
+        if (type === 'change') {
+          listeners.push(listener as (e: MediaQueryListEvent) => void);
+        }
+      },
+      removeEventListener: (type: string, listener: EventListenerOrEventListenerObject) => {
+        if (type === 'change') {
+          const index = listeners.indexOf(listener as (e: MediaQueryListEvent) => void);
+          if (index !== -1) {
+            listeners.splice(index, 1);
+          }
+        }
+      },
+      dispatchEvent: (event: Event) => true,
+      onchange: null
+    };
+
+    return instance;
+  };
+}
+
+const setScreenWidth = (width: number) => {
+  window.matchMedia = createMatchMedia(width);
+};
 
 const handlers = [
   graphql.query('getByCategory', ({ query, variables }) => {
@@ -83,10 +131,72 @@ afterAll(() => server.close());
 
 it('Renders', async () => {
   apiCalled = true;
-  render(<Home />);
+  render(
+    <LoginProvider>
+      <SearchProvider>
+        <Home />
+      </SearchProvider>
+    </LoginProvider>
+  );
+  expect(screen.getByLabelText('homeproducts')).toBeDefined();
 });
+
+it('Renders with sm', async () => {
+  apiCalled = true;
+  setScreenWidth(200);
+  render(
+    <LoginProvider>
+      <SearchProvider>
+        <Home />
+      </SearchProvider>
+    </LoginProvider>
+  );
+  expect(screen.getByLabelText('homeproducts')).toBeDefined();
+});
+
+it('Renders with md', async () => {
+  apiCalled = true;
+  setScreenWidth(900);
+  render(
+    <LoginProvider>
+      <SearchProvider>
+        <Home />
+      </SearchProvider>
+    </LoginProvider>
+  );
+  expect(screen.getByLabelText('homeproducts')).toBeDefined();
+});
+
 
 it('Renders with error', async () => {
   apiCalled = false;
-  render(<Home />);
+  render(
+    <LoginProvider>
+      <SearchProvider>
+        <Home />
+      </SearchProvider>
+    </LoginProvider>
+  );
+  expect(screen.getByLabelText('homeproducts')).toBeDefined();
 });
+
+it('Redirects with vendor account', async() => {
+  let accessToken = '12345';
+  const setAccessToken = () => {};
+  const userName = '';
+  const setUserName = () => {};
+  const role = 'vendor';
+  const setRole = () => {};
+  const id = '';
+  const setId = () => {};
+  render(
+    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
+      <SearchProvider>
+        <Home />
+      </SearchProvider>
+    </LoginContext.Provider>
+  );
+  await waitFor(() => {
+    expect(screen.getByText('shopper-app.shoppers-only')).toBeDefined();
+  });
+})
