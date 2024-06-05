@@ -50,8 +50,6 @@ COPY vendor-app/next-i18next.config.js/ /home/app/vendor-app/
 COPY vendor-app/next.config.js/ /home/app/vendor-app/
 COPY vendor-app/public/ /home/app/vendor-app/public/
 
-RUN ls -la
-
 RUN npm run cis
 
 CMD npm run start
