@@ -52,7 +52,7 @@
     "start-orders": "cd OrderService && npm start",
     "start-products": "cd ProductService && npm start",
     "start-vendor-api": "cd vendor-api && npm start",
-    "test": "npm run test-accounts && npm run test-products && npm run test-orders",
+    "test": "npm run test-accounts && npm run test-products && npm run test-orders && test-shopper",
     "test-accounts": "cd AccountService && npm run build && npm test",
     "test-orders": "cd OrderService && npm run build && npm test",
     "test-products": "cd ProductService && npm run build && npm test",
