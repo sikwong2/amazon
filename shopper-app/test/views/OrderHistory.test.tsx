@@ -1,10 +1,11 @@
 import { OrderHistory } from '@/views/OrderHistory';
 import { graphql, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { LoginContext, LoginProvider } from '@/context/Login';
 import { SearchProvider } from '@/context/SearchContext';
 import { PageContext } from '@/context/Page';
+
 // https://www.npmjs.com/package/next-router-mock
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
@@ -70,7 +71,7 @@ const handlers = [
   graphql.query('product', ({ query, variables }) => {
     return HttpResponse.json({
       data: {
-        getByProducts: {
+        getByProductId: {
           name: 'string',
           price: 100,
           image: ['string'],
@@ -118,7 +119,10 @@ it('Renders', async () => {
     </SearchProvider>
   );
 
+  // Ensure the component renders correctly
   await waitFor(() => {
-    expect(screen.queryAllByText('history.your-orders')).toBeDefined();
+    const deliveryAddressButton = screen.getByLabelText('delivery-address');
+    expect(deliveryAddressButton).toBeDefined();
+    expect(screen.getAllByLabelText('delivery-address')).toBeDefined();
   });
 })
