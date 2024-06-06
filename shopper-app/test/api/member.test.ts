@@ -43,10 +43,12 @@ const invalidEmail = {
   role: 'shopper',
 };
 
+let getMember = true;
+
 const handlers = [
   rest.post('http://localhost:3011/api/v0/account', async ({ request }) => {
     const member = (await request.json()) as MemberRequest;
-    if (member.email == newShopper.email) {
+    if (member.email == newShopper.email && createdShopper == false) {
       createdShopper = true;
       return HttpResponse.json(
         {
@@ -57,7 +59,7 @@ const handlers = [
         },
         { status: 200 },
       );
-    } else if (member.email == newVendor.email) {
+    } else if (member.email == newVendor.email && createdVendor == false) {
       createdVendor = true;
       return HttpResponse.json(
         {
@@ -70,6 +72,20 @@ const handlers = [
       );
     } else {
       return HttpResponse.json({}, { status: 401 });
+    }
+  }),
+  rest.get('http://localhost:3011/api/v0/account/:memberId', async ({request}) => {
+
+    if (getMember) {
+      return HttpResponse.json(
+        {
+          name: 'Molly Member',
+          address: '123 Santa Cruz St'
+        },
+        { status: 200 },
+      )
+    } else {
+      return HttpResponse.json({}, {status: 401})
     }
   }),
 ];
@@ -118,6 +134,26 @@ test('Creates Shopper', async () => {
       expect(res.body.data.createaccount.name).toBe(newShopper.name);
       expect(res.body.data.createaccount.role).toBe('shopper');
       expect(res.body.data.createaccount.email).toBe(newShopper.email);
+    });
+  expect(createdShopper).toBe(true);
+  await supertest(server)
+    .post('/api/graphql')
+    .send({
+      query: `mutation createaccount {
+      createaccount(
+        input: {
+          name: "${newShopper.name}"
+          email: "${newShopper.email}"
+          password: "${newShopper.password}"
+          role: "${newShopper.role}" 
+        }
+      ) { id, name, email, role } }`,
+    })
+    .expect(200)
+    .then((res: any) => {
+      // console.log(res.body)
+      expect(res.body.errors.length).toEqual(1);
+      expect(res.body.errors[0].message).toEqual('Unexpected error.');
     });
 });
 
@@ -191,4 +227,39 @@ test('Invalid Email', async () => {
       expect(res.body.errors.length).toEqual(1);
       expect(res.body.errors[0].message).toEqual('Argument Validation Error');
     });
+});
+
+test('Get Member Info', async () => {
+  await supertest(server)
+    .post('/api/graphql')
+    .send({
+      query: `query getMemberInfo {
+        getMemberInfo(memberId: "994f5d51-e62b-4b3a-8e8f-735fd876babe") {
+          name, address
+        }
+      }`
+    })
+    .expect(200)
+    .then((res) => {
+      expect(res.body.data.getMemberInfo.name).toBe('Molly Member')
+      expect(res.body.data.getMemberInfo.address).toBe('123 Santa Cruz St')
+    })
+})
+
+test('Error in Get Member Info', async() => {
+  getMember = false;
+  await supertest(server)
+    .post('/api/graphql')
+    .send({
+      query: `query getMemberInfo {
+        getMemberInfo(memberId: "99") {
+          name, address
+        }
+      }`
+    })
+    .expect(200)
+    .then((res) => {
+      expect(res.body.errors.length).toEqual(1);
+      expect(res.body.errors[0].message).toEqual('Unexpected error.');
+    })
 });

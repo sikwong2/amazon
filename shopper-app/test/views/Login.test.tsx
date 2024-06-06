@@ -69,8 +69,14 @@ it('Signs Molly In', async () => {
   };
   const userName = '';
   const setUserName = () => {};
+  const role = '';
+  const setRole = (newrole: string) => {}
+  let id = '';
+  const setId = (newid: string) => {
+    id = newid;
+  };
   render(
-    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken }}>
+    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
       <Login />
     </LoginContext.Provider>,
   );
@@ -124,8 +130,14 @@ it('Does Not Render with accessToken (already logged in)', async () => {
   const setAccessToken = () => {};
   const userName = '';
   const setUserName = () => {};
+  const role = '';
+  const setRole = (newrole: string) => {}
+  let id = '';
+  const setId = (newid: string) => {
+    id = newid;
+  };
   render(
-    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken }}>
+    <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
       <Login />
     </LoginContext.Provider>,
   );
