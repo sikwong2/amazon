@@ -39,7 +39,7 @@ test('Create checkout url', async () => {
     .then((res) => {
       expect(res.body.url);
     })
-}, 1000)
+}, 5000)
 
 test('GET API Docs', async () => {
   await supertest(server).get('/api/v0/docs/')
