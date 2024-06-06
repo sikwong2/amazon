@@ -12,7 +12,7 @@ if (!POSTGRES_HOST) {
 }
 
 if (!POSTGRES_PORT) {
-  console.error('Error: POSTGRES_ACCOUNT_PORT is not defined in db.ts AccountService/test.');
+  console.error('Error: POSTGRES_PORT is not defined in db.ts AccountService/test.');
   process.exit(1);
 }
 
