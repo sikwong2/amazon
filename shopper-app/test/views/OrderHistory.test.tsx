@@ -26,33 +26,40 @@ const handlers = [
     return HttpResponse.json({
       data: {
         getOrders: [{
-          products: ['string'],
+          products: ['string1'],
           shopperId: 'string',
           vendorId: 'string',
           orderStatus: 'pending',
-          orderId: 'string',
+          orderId: 'string1',
           orderDate: 'string'
         },{
-          products: ['string'],
+          products: ['string2'],
           shopperId: 'string',
           vendorId: 'string',
           orderStatus: 'shipped',
-          orderId: 'string',
+          orderId: 'string2',
           orderDate: 'string'
         },{
-          products: ['string'],
+          products: ['string3'],
           shopperId: 'string',
           vendorId: 'string',
           orderStatus: 'cancelled',
-          orderId: 'string',
+          orderId: 'string3',
           orderDate: 'string'
         },
         {
-          products: ['string'],
+          products: ['string4'],
           shopperId: 'string',
           vendorId: 'string',
           orderStatus: 'delivered',
-          orderId: 'string',
+          orderId: 'string4',
+          orderDate: 'string'
+        },{
+          products: ['string5'],
+          shopperId: 'string',
+          vendorId: 'string',
+          orderStatus: 'confirmed',
+          orderId: 'string5',
           orderDate: 'string'
         },
         ]

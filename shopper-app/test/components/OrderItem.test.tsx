@@ -61,9 +61,10 @@ it('OrderItem Render', async () => {
 
   render(
     <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
-      <OrderItem productId='stinrg' image='stinrg' name='string' aria-label='test'/>
+      <OrderItem productId='string' image='stinrg' name='string' aria-label='test'/>
     </LoginContext.Provider>
   )
 
   fireEvent.click(screen.getByLabelText('test'))
+  fireEvent.click(screen.getByLabelText('stringimage'))
 })
