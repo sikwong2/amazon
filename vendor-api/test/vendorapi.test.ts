@@ -80,6 +80,10 @@ afterAll((done) => {
   server.close(done);
 });
 
+test('GET /vendorapi/', async () => {
+  await supertest(server).get('/vendorapi/').expect(200);
+});
+
 test('GET Invalid URL', async () => {
   await supertest(server).get('/api/v0/vendorapi').expect(404);
 });
@@ -109,9 +113,9 @@ test('GET Bad Vendor Service /vendorapi/v0/orders', async () => {
     .expect(404);
 });
 
-test('GET Bad Vendor ID /vendorapi/v0/orders', async () => {
+test('GET /vendorapi/v0/order/{orderId}', async () => {
   await supertest(server)
-    .get('/vendorapi/v0/orders')
+    .get('/vendorapi/v0/order/1')
     .set('Authorization', `Bearer ${API_KEY}`)
-    .expect(500);
-}
+    .expect(200);
+});
