@@ -1,7 +1,7 @@
-import { OrderHistory } from '@/views/OrderHistory';
 import { graphql, HttpResponse } from 'msw'
-import { setupServer } from 'msw/node';
 import { render, screen, waitFor } from '@testing-library/react';
+import { setupServer } from 'msw/node';
+import { OrderHistory } from '@/views/OrderHistory';
 import { LoginContext, LoginProvider } from '@/context/Login';
 import { SearchProvider } from '@/context/SearchContext';
 import { PageContext } from '@/context/Page';
