@@ -13,12 +13,7 @@ export class OrdersService {
         },
       );
       const json = await res.json();
-      // there's no way currently implemented to check if vendor id exists, so just return a 404
-      if (!json || json.length === 0) {
-        return undefined;
-      } else {
-        return json;
-      }
+      return json;
     } catch (e) {
       console.error(e);
       throw new Error('Vendor API: failed to retrieve vendor orders');
