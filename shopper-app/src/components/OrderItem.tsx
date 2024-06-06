@@ -23,6 +23,7 @@ export function OrderItem({productId, name, image, ...rest  }: OrderItemProps){
           component="img"
           src={image}
           alt={name}
+          aria-label={productId+'image'}
           sx={{ width: '100px', maxHeight: '90px', height: 'auto', objectFit: 'fill', display: 'inline-block', position: 'relative', cursor: 'pointer' }}
           onClick={() => handleProductRedirect(productId)}
         />
