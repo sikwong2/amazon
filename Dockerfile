@@ -50,6 +50,10 @@ COPY vendor-app/next-i18next.config.js/ /home/app/vendor-app/
 COPY vendor-app/next.config.js/ /home/app/vendor-app/
 COPY vendor-app/public/ /home/app/vendor-app/public/
 
+COPY e2e/test/e2e.test.js /home/app/e2e/test/
+COPY e2e/package.json /home/app/e2e/
+COPY e2e/package-lock.json /home/app/e2e/
+
 RUN npm run cis
 
 CMD npm run start

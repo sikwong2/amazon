@@ -7,7 +7,7 @@
   "repository": "none",
   "scripts": {
     "docker-up": "docker-compose up -d postgres",
-    "docker-down": "docker-compose down postgres",
+    "docker-down": "docker-compose down",
     "docker-with-logs": "docker-compose up postgres",
     "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"  \"npm run vendor-api\"",
     "vendor": "concurrently --kill-others \"npm run accounts\" \"npm run vendor-app\"",
@@ -28,7 +28,7 @@
     "ci-orders": "cd OrderService && npm ci",
     "ci-products": "cd ProductService && npm ci",
     "ci-vendor-api": "cd vendor-api && npm ci",
-    "install": "npm install concurrently && npm run install-vendor && npm run install-admin && npm run install-shopper && npm run install-accounts && npm run install-orders && npm run install-products && npm run install-vendor-api",
+    "install": "npm install concurrently && npm run install-vendor && npm run install-admin && npm run install-shopper && npm run install-accounts && npm run install-orders && npm run install-products && npm run install-vendor-api && npm run install-e2e",
     "install-vendor": "cd vendor-app && npm install",
     "install-admin": "cd admin-app && npm install",
     "install-shopper": "cd shopper-app && npm install",
@@ -36,6 +36,7 @@
     "install-orders": "cd OrderService && npm install",
     "install-products": "cd ProductService && npm install",
     "install-vendor-api": "cd vendor-api && npm install",
+    "install-e2e": "cd e2e && npm install",
     "build": "npm run build-vendor && npm run build-admin && npm run build-shopper && npm run build-accounts && npm run build-orders && npm run build-products && npm run build-vendor-api",
     "build-vendor": "cd vendor-app && npm run build",
     "build-admin": "cd admin-app && npm run build",
@@ -61,7 +62,9 @@
     "test-shopper": "cd shopper-app && npm test",
     "test-vendor-api": "cd vendor-api && npm test",
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
-    "containerised": "npm run build && docker-compose up --build"
+    "containerised": "npm run build && docker-compose up --build -d",
+    "e2e": "cd e2e && npm run test",
+    "zip": "zip -r submission.zip . -x \\*node_modules\\*"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
