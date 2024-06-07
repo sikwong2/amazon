@@ -10,7 +10,8 @@
     "dev": "next dev -p 3000",
     "lint": "next lint --fix",
     "build": "next build",
-    "test": "jest --runInBand --detectOpenHandles --forceExit"
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
+    "test-silent": "jest --runInBand --coverage --no-cache --forceExit --silent"
   },
   "devDependencies": {
     "@jest/globals": "*",

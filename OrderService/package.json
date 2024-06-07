@@ -44,6 +44,7 @@
     "swagger": "tsoa spec-and-routes",
     "pretest": "npm run swagger",
     "test": "jest --runInBand --coverage --verbose --no-cache --forceExit",
+    "test-silent": "jest --runInBand --coverage --no-cache --forceExit --silent",
     "lint": "eslint ./src/**/*.[jt]s --fix"
   },
   "nodemonConfig": {
