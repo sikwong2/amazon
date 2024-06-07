@@ -11,3 +11,6 @@ INSERT INTO account(id, data) VALUES ('7312ca31-1f18-4ab5-a1ef-18ce0bd22f32', js
 
 -- Admin
 INSERT INTO account(id, data) VALUES ('da981030-0de5-4152-aeaa-5379b0abfbf2', jsonb_build_object('email','anna@books.com','name','Anna Admin','pwhash',crypt('annaadmin','87'),'role','admin', 'address','123 Main Street, Santa Cruz, CA 95060'));
+
+-- API Keys
+INSERT INTO apikeytable(account_id, api_key) VALUES ('33d646df-1f4a-4130-8590-720f45ba4179', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZjI4ZmFhNGMtYWM0YS00MjhmLWI1MTEtYWNjNmNhOTFmM2ZjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzcwOTE4OX0.ZaWmIhXK6EJTt1-Kt-0aJa4BiPsuRPMcjA1aQ9AjCdY');

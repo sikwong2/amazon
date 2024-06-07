@@ -16,10 +16,6 @@ export class OrderController extends Controller {
     return new OrderService()
       .updateOrderStatus(orderId, statusUpdate)
       .then(async (success: Order | undefined): Promise<Order | undefined> => {
-        if (!success) {
-          console.log('Vendor API: order controller: failed to update order status');
-          this.setStatus(500);
-        }
         return success;
       });
   }

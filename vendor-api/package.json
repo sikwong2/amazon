@@ -27,6 +27,7 @@
     "cors": "*",
     "dotenv": "*",
     "express": "*",
+    "msw": "^2.3.1",
     "swagger-ui-express": "*",
     "tsoa": "*"
   },
