@@ -26,7 +26,7 @@ interface Product {
 export function CheckoutItem({ productId, product, quantity, ...rest }: CartItemProps) {
   const { removeFromCart, updateProductQuantity } = useContext(CartContext);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const router = useRouter();
   const { t } = useTranslation('common');
    
@@ -44,6 +44,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
         <Grid container>
           <Grid item xs={12} sm={'auto'} style={{ width: '100px' }}>
             <img
+              aria-label="checkoutitem-image"
               src={product.image[0]}
               alt={product.image[0]}
               onClick={handleProductClick}
@@ -75,6 +76,7 @@ export function CheckoutItem({ productId, product, quantity, ...rest }: CartItem
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '1px', marginTop: '4px'  }}>
                   <CustomDropdown
+                    aria-label="checkoutitem-dropdown"
                     label='Qty'
                     selectedValue={quantity.toString()}
                     setSelectedValue={handleSetProductQuantity}
