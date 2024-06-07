@@ -4,15 +4,11 @@ import Product from '@/pages/product/[productId]';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { render, screen } from '@testing-library/react';
-import Index from '@/pages';
 
-import { useRouter } from 'next/router';
 import { fireEvent } from '@testing-library/react';
-import mockRouter from 'next-router-mock';
 import { SearchProvider } from '@/context/SearchContext';
-import { PageProvider, PageContext } from '@/context/Page';
-import { LoginContext, LoginProvider } from '../../src/context/Login';
-import { CartContext } from '@/context/Cart';
+import { PageProvider } from '@/context/Page';
+import { LoginContext } from '../../src/context/Login';
 
 
 // https://www.npmjs.com/package/next-router-mock
@@ -63,7 +59,7 @@ const pegasusInStock: Product = {
 // Mock the fetch function
 global.fetch = jest.fn();
 
-describe('getServerSideProps', () => {
+describe('getServerSideProps(en)', () => {
   const mockContext = {
     query: { productId: '123' },
     locale: 'en',
@@ -198,4 +194,34 @@ describe('getServerSideProps', () => {
       },
     });
   });
+});
+
+
+describe('getServerSideProps(zh)', () => {
+  const mockContext = {
+    query: { productId: '123' },
+  } as unknown as GetServerSidePropsContext;
+
+  beforeEach(() => {
+    (fetch as jest.Mock).mockClear();
+  });
+
+  it('Fetch product data', async () => {
+
+    (fetch as jest.Mock).mockResolvedValueOnce({
+      json: jest.fn().mockResolvedValueOnce({
+        data: { getByProductId: pegasus },
+      }),
+    });
+
+    const result = await getServerSideProps(mockContext);
+
+    expect(result).toEqual({
+      props: {
+        product: pegasus,
+        ...(await serverSideTranslations('en', ['common'])),
+      },
+    });
+  });
+
 });
