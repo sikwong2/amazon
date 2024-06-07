@@ -65,10 +65,10 @@ export class ProductController extends Controller {
     return await new ProductService()
       .makeProduct(product)
       .then(async (success: Product | undefined): Promise<Product | undefined> => {
-        if (!success) {
-          console.error('Product Service: failed to create new product');
-          this.setStatus(500);
-        }
+        // if (!success) {
+        //   console.error('Product Service: failed to create new product');
+        //   this.setStatus(500);
+        // }
         return success;
       });
   }
