@@ -55,6 +55,13 @@ test('Get Order By Id', async () => {
     })
 });
 
+test('Get Order By Bad Id', async () => {
+  await supertest(server)
+    .get(`/api/v0/order/${orderId + '123'}`)
+    .expect(204)
+});
+
+
 test('Update Order Status', async () => {
   await supertest(server)
     .put(`/api/v0/order/${orderId}`)
@@ -72,12 +79,24 @@ test('GET by Vendor ID', async () => {
     })
 })
 
+test('GET by Bad Vendor ID', async () => {
+  await supertest(server)
+    .get(`/api/v0/orders/vendor/${order.vendorId + '123'}`)
+    .expect(204)
+})
+
 test('GET by Shopper ID', async () => {
   await supertest(server)
     .get(`/api/v0/orders/shopper/${order.shopperId}`)
     .then((res) => {
       expect(res.body.length).toBe(1);
     })
+});
+
+test('GET by Bad Shopper ID', async () => {
+  await supertest(server)
+    .get(`/api/v0/orders/shopper/${order.shopperId + '123'}`)
+    .expect(204)
 });
 
 test('GET orders by status', async () => {
@@ -94,5 +113,11 @@ test('Delete order', async () => {
     .then((res) => {
       expect(res.body.orderId).toBe(orderId);
     })
+})
+
+test('Delete Bad order', async () => {
+  await supertest(server)
+    .delete(`/api/v0/orders/${orderId + '123'}`)
+    .expect(500)
 })
 
