@@ -21,10 +21,6 @@ export class ProductController extends Controller {
     return new ProductService()
       .createProduct(newProduct)
       .then(async (success: Product | undefined): Promise<Product | undefined> => {
-        if (!success) {
-          console.log('Vendor API: product controller: failed to create new product');
-          this.setStatus(500);
-        }
         return success;
       });
   }
