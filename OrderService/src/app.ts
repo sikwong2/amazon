@@ -28,7 +28,7 @@ const router = Router();
 RegisterRoutes(router);
 app.use('/api/v0', router);
 app.post('/create-checkout-session', async (req, res) => {
-  try {
+  // try {
     const {products} = req.body;
     const line_items = products.map((product: any) => ({
       price_data: {
@@ -49,8 +49,8 @@ app.post('/create-checkout-session', async (req, res) => {
       cancel_url: 'https://www.ucsc-amazon.com/',
     });
     res.json({ url: session.url });
-  } catch (e) {
-    console.log(e);
-  }
+  // } catch (e) {
+  //   console.log(e);
+  // }
 });
 export default app;
