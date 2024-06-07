@@ -1,5 +1,5 @@
 import { graphql, HttpResponse } from 'msw'
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { OrderHistory } from '@/views/OrderHistory';
 import { LoginContext, LoginProvider } from '@/context/Login';
@@ -132,4 +132,7 @@ it('Renders', async () => {
     expect(deliveryAddressButton).toBeDefined();
     expect(screen.getAllByLabelText('delivery-address')).toBeDefined();
   });
+  const tab = screen.getByRole('tab', { name: /history\.buy-again/i });
+  fireEvent.click(tab);
 })
+
