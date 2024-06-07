@@ -10,6 +10,7 @@ import { GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import mockRouter from 'next-router-mock';
+import TopBar from '@/components/TopBar';
 
 // https://www.npmjs.com/package/next-router-mock
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));
@@ -25,14 +26,6 @@ jest.mock('react-i18next', () => ({
     };
   },
 }));
-
-const context = {
-  query: { query: 'sale' },
-  locale: 'en',
-  resolvedUrl: '/search?query=sale',
-  req: {},
-  res: {}
-}
 
 const product = {
   id: '20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8',
@@ -56,91 +49,9 @@ const productLongName =   {
   category: ['dvd', 'movie', 'shrek']
 }
 
-it('Renders', async () => {
-  render(<SearchPage products={[product]} />);
-  expect(screen.findByText('search.results-for')).toBeDefined();
-});
-
-it('Search Bar Usage', async () => {
-  render(<SearchPage products={[product]} />);
-  const searchBar = await screen.findByLabelText('search');
-  userEvent.type(searchBar, 'Apple');
-  fireEvent.click(searchBar);
-  expect(screen.findByText('Apple')).toBeDefined();
-});
-
-it('Add to Cart', async () => {
-  render(<SearchPage products={[product]} />);
-  const addCart = await screen.findByLabelText('add-to-cart');
-  fireEvent.click(addCart);
-  render(
-    <SearchProvider>
-      <Cart />
-    </SearchProvider>
-  );
-  expect(screen.findByText('Shopping Cart')).toBeDefined();
-});
-
-it('Product Redirect', async () => {
-  render(<SearchPage products={[productLongName]} />);
-  const selectProduct = await screen.findByLabelText('delivery-date');
-  fireEvent.click(selectProduct);
-});
-
-it('Add to Cart', async () => {
-  render(
-    <SearchProvider>
-      <Cart />
-    </SearchProvider>
-  );
-  expect(screen.findByText('Shopping Cart')).toBeDefined();
-});
-
 jest.mock('next-i18next/serverSideTranslations', () => ({
   serverSideTranslations: jest.fn(),
 }));
-
-// describe('getServerSideProps(en)', () => {
-//   it('Return en locale', async () => {
-//     const locale = 'en';
-//     const expectedProps = {
-//       _nextI18Next: {
-//         initialLocale: locale,
-//         namespacesRequired: ['common'],
-//       },
-//     };
-
-//     (serverSideTranslations as jest.Mock).mockResolvedValue(expectedProps);
-
-//     const context = {
-//       locale,
-//     } as GetServerSidePropsContext;
-
-//     const result = await getServerSideProps(context);
-
-//     expect(serverSideTranslations).toHaveBeenCalledWith(locale, ['common']);
-//     expect(result).toEqual({
-//       props: expectedProps,
-//     });
-//   });
-//   it('Renders', async () => {
-//     render(<SearchPage products={[productLongName]} />);
-//     const selectProduct = await screen.findByLabelText('delivery-date');
-//   });
-// });
-
-// it('Searching', async () => {
-//   render(
-//     <SearchProvider>
-//       <Home />
-//     </SearchProvider>
-//   );
-//   const searchBar = await screen.findByLabelText('search');
-//   userEvent.type(searchBar, 'sale');
-//   const searchIcon = await screen.findByLabelText('search-icon');
-//   fireEvent.click(searchIcon);
-//   getServerSideProps(context);
-// });
 
 interface Product {
   name: string;
@@ -166,7 +77,7 @@ global.fetch = jest.fn();
 
 describe('getServerSideProps(en)', () => {
   const mockContext = {
-    query: { query: 'sale' },
+    query: { query: 'sale ' },
     locale: 'en',
   } as unknown as GetServerSidePropsContext;
 
@@ -175,10 +86,46 @@ describe('getServerSideProps(en)', () => {
     locale: '',
   } as unknown as GetServerSidePropsContext;
 
+  const mockContext3 = {
+    query: { query: '' },
+    locale: 'en',
+  } as unknown as GetServerSidePropsContext;
+
   beforeEach(() => {
+    mockRouter.setCurrentUrl('/');
     (fetch as jest.Mock).mockClear();
   });
   
+  it('Renders', async () => {
+    render(<SearchPage products={[product]} />);
+    expect(screen.findByText('search.results-for')).toBeDefined();
+  });
+  
+  it('Search Bar Usage', async () => {
+    render(<SearchPage products={[product]} />);
+    const searchBar = await screen.findByLabelText('search');
+    userEvent.type(searchBar, 'Apple ');
+    const searchIcon = await screen.findByLabelText('search-icon')
+    fireEvent.click(searchIcon);
+  });
+  
+  it('Add to Cart', async () => {
+    render(<SearchPage products={[product]} />);
+    const addCart = await screen.findByLabelText('add-to-cart');
+    fireEvent.click(addCart);
+    render(
+      <SearchProvider>
+        <Cart />
+      </SearchProvider>
+    );
+    expect(screen.findByText('Shopping Cart')).toBeDefined();
+  });
+  
+  it('Product Redirect', async () => {
+    render(<SearchPage products={[productLongName]} />);
+    const selectProduct = await screen.findByLabelText('delivery-date');
+    fireEvent.click(selectProduct);
+  });
 
   it('Fetch product data', async () => {
 
@@ -215,48 +162,26 @@ describe('getServerSideProps(en)', () => {
     });
   });
 
-  // it('Empty product data', async () => {
-  //   (fetch as jest.Mock).mockResolvedValueOnce({
-  //     json: jest.fn().mockResolvedValueOnce({
-  //       data: { getByProductId: null },
-  //     }),
-  //   });
+  it('Empty product data', async () => {
+    (fetch as jest.Mock).mockResolvedValueOnce({
+      json: jest.fn().mockResolvedValueOnce({
+        data: { getByName: pegasus },
+      }),
+    });
 
-  //   const result = await getServerSideProps(mockContext);
+    const result = await getServerSideProps(mockContext3);
 
-  //   expect(result).toEqual({
-  //     props: {
-  //       product: {},
-  //       ...(await serverSideTranslations('en', ['common'])),
-  //     },
-  //   });
-  // });
+    expect(result).toEqual({
+      props: {
+        products: [],
+        ...(await serverSideTranslations('en', ['common'])),
+      },
+    });
+  });
+
+  it('throws error when TopBar is not wrapped in SearchProvider', () => {
+    const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+    expect(() => render(<TopBar />)).toThrow('useSearch must be used within a SearchProvider');
+    consoleError.mockRestore();
 });
-
-
-// describe('getServerSideProps(zh)', () => {
-//   const mockContext = {
-//     query: { productId: '123' },
-//   } as unknown as GetServerSidePropsContext;
-
-//   beforeEach(() => {
-//     (fetch as jest.Mock).mockClear();
-//   });
-
-//   it('Fetch product data', async () => {
-
-//     (fetch as jest.Mock).mockResolvedValueOnce({
-//       json: jest.fn().mockResolvedValueOnce({
-//         data: { getByProductId: pegasus },
-//       }),
-//     });
-
-//     const result = await getServerSideProps(mockContext);
-
-//     expect(result).toEqual({
-//       props: {
-//         product: pegasus,
-//         ...(await serverSideTranslations('en', ['common'])),
-//       },
-//     });
-//   });
+});

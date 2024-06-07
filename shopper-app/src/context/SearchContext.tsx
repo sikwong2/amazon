@@ -14,9 +14,8 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const router = useRouter();
 
     const handleSearch = () => {
-        if (searchValue.trim()) {
-            router.push(`/search?query=${encodeURIComponent(searchValue)}`);
-        }
+        setSearchValue(searchValue.trim());
+        router.push(`/search?query=${encodeURIComponent(searchValue.trim())}`);  
     };
 
     return (
