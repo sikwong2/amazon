@@ -72,7 +72,7 @@
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
     "containerised": "npm run build && docker-compose up --build -d",
     "e2e": "cd e2e && npm run test",
-    "zip": "zip -r submission.zip . -x \\*node_modules\\*"
+    "zip": "zip -r submission.zip . -x \\*node_modules\\* \\*.next\\* \\*.swc\\* \\*.DS_Store\\* \\*venv\\* \\*app.tar\\* \\*.git\\*"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

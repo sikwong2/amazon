@@ -35,7 +35,7 @@ next-env.d.ts
 *.tar
 
 # python env
-env/
+venv/
 
 # submission
 submission.zip
