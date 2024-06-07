@@ -80,14 +80,10 @@ export class MemberService {
 
     const { rows } = await pool.query(query);
 
-    if (rows.length !== 1) {
+    if (rows.length !== 1 || rows[0].status === 'false') {
       return false;
-    }
-
-    if (rows[0].status === 'true') {
-      return true;
     } else {
-      return false;
+      return true;
     }
   }
 

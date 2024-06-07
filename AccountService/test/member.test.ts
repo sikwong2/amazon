@@ -124,3 +124,48 @@ test('GET invalid memberId', async () => {
       expect(res.body.name).toBe(undefined);
     })
 })
+
+test('GET vendor status', async () => {
+  await supertest(server)
+    .get(`/api/v0/account/vendorstatus?id=33d646df-1f4a-4130-8590-720f45ba4179`)
+    .expect(200)
+    .then((res) => {
+      expect(res.body).toBe(false)
+    })
+})
+
+test('GET unapproved vendors', async () => {
+  await supertest(server)
+    .get(`/api/v0/account/unapprovedvendors`)
+    .expect(200)
+    .then((res) => {
+      expect(res.body.length).toBe(3);
+    })
+})
+
+test('Approve vendor', async () => {
+  await supertest(server)
+    .post(`/api/v0/account/approvevendor?id=33d646df-1f4a-4130-8590-720f45ba4179`)
+    .expect(200)
+  await supertest(server)
+    .get(`/api/v0/account/vendorstatus?id=33d646df-1f4a-4130-8590-720f45ba4179`)
+    .expect(200)
+    .then((res) => {
+      expect(res.body).toBe(true)
+    })
+})
+
+test('Approve bad vendor', async () => {
+  await supertest(server)
+    .post(`/api/v0/account/approvevendor?id=33d646df-1f4a-4130-8590-720f45ba41`)
+    .expect(500)
+})
+
+test('Get Member Info', async () => {
+  await supertest(server)
+    .get(`/api/v0/account/33d646df-1f4a-4130-8590-720f45ba4179`)
+    .expect(200)
+    .then((res) => {
+      console.log(res)
+    })
+})

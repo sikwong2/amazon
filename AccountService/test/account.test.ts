@@ -63,6 +63,14 @@ test('Anna can log in', async () => {
   await supertest(server).get(`/api/v0/authenticate?accessToken=${accessToken}`).expect(200);
 });
 
+test('Anna cant login', async() => {
+  let accessToken;
+  await supertest(server)
+    .post('/api/v0/authenticate')
+    .send({ email: 123, password: 123 })
+    .expect(400)
+})
+
 test('Anna invalid accesstoken', async () => {
   const accessToken = await loginAs(anna);
   expect(accessToken).toBeDefined();
@@ -92,6 +100,15 @@ test('Good Access Token Authenticated', async () => {
       expect(res.body.id).toBeDefined();
       expect(res.body.role).toBeDefined();
       expect(res.body.role).toEqual('admin');
+    });
+  await supertest(server).get('/api/v0/authenticate?accessToken=' + accessToken)
+    .expect(200)
+    .then((res) => {
+      expect(res).toBeDefined()
+      expect(res.body).toBeDefined()
+      expect(res.body.id).toBeDefined()
+      expect(res.body.role).toBeDefined()
+      expect(res.body.role).toEqual('admin')
     });
 });
 
