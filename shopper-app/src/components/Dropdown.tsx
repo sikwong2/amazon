@@ -44,7 +44,7 @@ export default function CustomDropdown({
             input={<BootstrapInput />}
           >
             {values.map((value) => (
-              <MenuItem key={value} value={value}>
+              <MenuItem key={value} value={value} aria-label='option'>
                 {value}
               </MenuItem>
             ))}

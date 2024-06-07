@@ -29,6 +29,7 @@ import RadioButton from '../components/RadioButton'
 import { useMediaQuery } from '@mui/material';
 import { useRouter } from 'next/router';
 import { PageContext } from '@/context/Page';
+import React from 'react';
 
 interface UserDetails {
   name: string;
@@ -78,9 +79,9 @@ const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefi
     }
     const { name, address } = json.data.getMemberInfo;
     return { name, address };
-  } catch (error) {
-    console.error('Error fetching member info:', error);
-    return { name: 'name error', address: 'address error' };
+  } catch (e) {
+    console.log(e);
+    return undefined;
   }
 };
 
@@ -103,7 +104,7 @@ const fetchProduct = async (productId: any): Promise<Product> => {
     }
     return json.data.getByProductId;
   } catch (e) {
-    console.log(e);
+    console.log(e)
     throw new Error('');
   }
 };
@@ -134,11 +135,12 @@ const createOrder = async (order: OrderInfo) => {
     }
     return json.data.createOrder;
   } catch (e) {
-    console.log(e);
+    console.log(e)
+    throw new Error('')
   }
 }
 const placeOrder = async (products: StripeProduct[]) => {
-  try {
+  // try {
     const query = `
       query checkoutURL($products: [StripeProduct!]!) {
         getCheckoutURL(products: $products)
@@ -163,9 +165,9 @@ const placeOrder = async (products: StripeProduct[]) => {
     }
     window.open(json.data.getCheckoutURL, '_blank');
     // window.location.href = json.data.getCheckoutURL;
-  } catch (e) {
-    console.log(e);
-  }
+  // } catch (e) {
+  //   console.log(e);
+  // }
 }
 
 export function Checkout() {
@@ -186,7 +188,7 @@ export function Checkout() {
   const router = useRouter();
   const popoverRef = useRef<HTMLDivElement>(null);
   const loginContext = useContext(LoginContext);
-  const [order, setOrder] = useState<OrderInfo>({
+  const [order, setOrder] = React.useState<OrderInfo>({
     "products": [],
     "shopperId": loginContext.id,
     "orderStatus": 'pending',
@@ -233,16 +235,16 @@ export function Checkout() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      try {
+      // try {
         const userDetails = await fetchUserDetails(id);
         if (userDetails) {
           const { name, address } = userDetails;
           setMemberName(name);
           setAddress(address);
         }
-      } catch (error) {
-        console.error('Error fetching user details:', error);
-      }
+      // } catch (error) {
+      //   console.error('Error fetching user details:', error);
+      // }
     };
     fetchUserData();
   }, [id]);
@@ -303,6 +305,7 @@ export function Checkout() {
         height: '60px',
         width: '100%',
       }}
+      aria-label='header'
     >
       <div style={{flex: 1, marginLeft: '100px'}}>
         <Logo
@@ -321,7 +324,7 @@ export function Checkout() {
       >
         {t("checkout.title")}
         <span> (</span>
-        <span onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0' }}>{numberOfItems} {numberOfItems === 1 ? "item" : "items"}</span>
+        <span aria-label='checkout-title' onClick={handleSpanClk} style={{ cursor: 'pointer', color: '#0066c0' }}>{numberOfItems} {numberOfItems === 1 ? "item" : "items"}</span>
         <span>) </span>
       </div>
       <div
@@ -342,7 +345,9 @@ export function Checkout() {
         borderLeft: '20px solid transparent',
         borderRight: '20px solid transparent',
         borderBottom: '20px solid white'
-      }}>
+      }}
+      aria-label='show-popover'
+      >
       </div>
     )}
     <div ref={popoverRef}>
@@ -387,7 +392,7 @@ export function Checkout() {
   );
 
   const rightbox = (
-    <Container maxWidth="sm" sx={{ flex: 1, justifyContent: 'center' }}>
+    <Container maxWidth="sm" sx={{ flex: 1, justifyContent: 'center' }} aria-label='right-box'>
     <CustomCard type="rounded" sx={{ display: 'flex', justifyContent: 'center' }}>
       <Typography
         variant="body1"
@@ -534,7 +539,7 @@ export function Checkout() {
   )
 
   const leftbox = (
-    <Container sx={{ display: 'flex', flexDirection: 'row' }}>
+    <Container sx={{ display: 'flex', flexDirection: 'row' }} aria-label='left-box'>
         <Container
           sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}
         >
@@ -650,8 +655,8 @@ export function Checkout() {
                     value={selectedValue}
                     onChange={handleChange}
                   >
-                    <RadioButton value="standard" checked={selectedValue === 'standard'} offset={2} onChange={handleChange} />
-                    <RadioButton value="express" checked={selectedValue === 'express'} offset={4} onChange={handleChange} />
+                    <RadioButton aria-label="radio-1" value="standard" checked={selectedValue === 'standard'} offset={2} onChange={handleChange} />
+                    <RadioButton aria-label="radio-2" value="express" checked={selectedValue === 'express'} offset={4} onChange={handleChange} />
                   </RadioGroup>
                 </Box>
               </Box>
