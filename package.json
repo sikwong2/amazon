@@ -7,7 +7,7 @@
   "repository": "none",
   "scripts": {
     "docker-up": "docker-compose up -d postgres",
-    "docker-down": "docker-compose down postgres",
+    "docker-down": "docker-compose down",
     "docker-with-logs": "docker-compose up postgres",
     "dev": "concurrently --kill-others \"npm run accounts\" \"npm run orders\" \"npm run products\" \"npm run admin-app\" \"npm run vendor-app\" \"npm run shopper-app\"  \"npm run vendor-api\"",
     "vendor": "concurrently --kill-others \"npm run accounts\" \"npm run vendor-app\"",
@@ -63,8 +63,8 @@
     "test-vendor-api": "cd vendor-api && npm test",
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
     "containerised": "npm run build && docker-compose up --build -d",
-    "containerised-down": "docker-compose down",
-    "e2e": "cd e2e && npm run test"
+    "e2e": "cd e2e && npm run test",
+    "zip": "zip -r submission.zip . -x \\*node_modules\\*"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
