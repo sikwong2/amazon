@@ -61,27 +61,32 @@ interface Product {
 }
 
 const fetchUserDetails = async (shopperId: string): Promise<UserDetails | undefined> => {
-  const query = {
-    query: `query member{getMemberInfo(memberId: "${shopperId}") { name, address }}`,
-  };
-  const res = await fetch('/api/graphql', {
-    method: 'POST',
-    body: JSON.stringify(query),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const json = await res.json();
-  if (json.errors) {
-    console.log(json.errors[0].message);
+  try {
+    const query = {
+      query: `query member{getMemberInfo(memberId: "${shopperId}") { name, address }}`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      return undefined;
+    }
+    const { name, address } = json.data.getMemberInfo;
+    return { name, address };
+  } catch (e) {
+    console.log(e);
     return undefined;
   }
-  const { name, address } = json.data.getMemberInfo;
-  return { name, address };
 };
 
 const fetchProduct = async (productId: any): Promise<Product> => {
-  // try {
+  try {
     const query = {
       query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock, rating}}`,
     };
@@ -98,14 +103,14 @@ const fetchProduct = async (productId: any): Promise<Product> => {
       throw new Error(json.errors[0].message);
     }
     return json.data.getByProductId;
-  // } catch (e) {
-  //   console.log(e)
-  //   throw new Error('');
-  // }
+  } catch (e) {
+    console.log(e)
+    throw new Error('');
+  }
 };
 
 const createOrder = async (order: OrderInfo) => {
-  // try {
+  try {
     const query = `
       mutation createOrder($order: NewOrder!) {
         createOrder(order: $order)
@@ -129,10 +134,10 @@ const createOrder = async (order: OrderInfo) => {
       throw new Error(json.errors[0].message);
     }
     return json.data.createOrder;
-  // } catch (e) {
-  //   console.log(e)
-  //   throw new Error('')
-  // }
+  } catch (e) {
+    console.log(e)
+    throw new Error('')
+  }
 }
 const placeOrder = async (products: StripeProduct[]) => {
   // try {
