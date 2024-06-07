@@ -61,7 +61,9 @@
     "test-shopper": "cd shopper-app && npm test",
     "test-vendor-api": "cd vendor-api && npm test",
     "package": "docker build . -t cbe-linux-amd64 --platform linux/amd64 && docker save -o cbe-linux-amd64.tar cbe-linux-amd64",
-    "containerised": "npm run build && docker-compose up --build"
+    "containerised": "npm run build && docker-compose up --build -d",
+    "containerised-down": "docker-compose down",
+    "e2e": "cd e2e && npm run test"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

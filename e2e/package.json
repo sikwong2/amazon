@@ -1,0 +1,14 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "e2e",
+  "main": "e2e.js",
+  "scripts": {
+    "test": "node e2e.js"
+  },
+  "author": "Kevin Schultz",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^22.10.0"
+  }
+}
