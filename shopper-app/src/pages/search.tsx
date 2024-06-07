@@ -8,41 +8,39 @@ import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
 import { SearchProvider } from '../context/SearchContext';
 import TopBar from '@/components/TopBar';
-import { IncomingMessage } from 'http';
+// import { IncomingMessage } from 'http';
 
-const fetchProducts = async (name: string, req?: IncomingMessage): Promise<Product[]> => {
-  try {
-    const query = {
-      query: `query getByName {
-        getByName(name: "${name}", page: 1, size: 100, order: "price", sort: "DESC") {
-          id
-          price
-          name
-          rating
-          image
-          category
-        }
-      }`,
-    };
+const fetchProducts = async (name: string): Promise<Product[]> => {
+  const query = {
+    query: `query getByName {
+      getByName(name: "${name}", page: 1, size: 100, order: "price", sort: "DESC") {
+        id
+        price
+        name
+        rating
+        image
+        category
+      }
+    }`,
+  };
 
-    const res = await fetch("http://localhost:3000/api/graphql", {
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  const res = await fetch("http://localhost:3000/api/graphql", {
+    method: 'POST',
+    body: JSON.stringify(query),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    const json = await res.json();
-    if (json.errors) {
-      console.error('GraphQL Errors:', json.errors);
-      throw new Error(json.errors[0].message);
-    }
-    return json.data.getByName;
-  } catch (e) {
-    console.error('Fetch Products Error:', e);
-    throw new Error('Unable to fetch products');
+  const json = await res.json();
+  let products = [];
+  if (json.errors) {
+    console.error('GraphQL Errors:', json.errors);
+    // throw new Error(json.errors[0].message);
+  } else {
+    products = json.data.getByName;
   }
+  return products
 };
 
 interface SearchPageProps {
@@ -86,7 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
 
   if (searchQuery) {
-    products = await fetchProducts(searchQuery, context.req);
+    products = await fetchProducts(searchQuery);
   }
 
   return {
