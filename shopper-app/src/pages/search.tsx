@@ -8,7 +8,6 @@ import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
 import { SearchProvider } from '../context/SearchContext';
 import TopBar from '@/components/TopBar';
-// import { IncomingMessage } from 'http';
 
 const fetchProducts = async (name: string): Promise<Product[]> => {
   const query = {
