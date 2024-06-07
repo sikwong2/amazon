@@ -88,7 +88,7 @@ const handlers = [
       ]
     )
   }),
-  rest.post('http://localhost:3012/api/v0/order', async ({ request }) => {
+  rest.post('http://localhost:3013/api/v0/order', async ({ request }) => {
     return HttpResponse.json(
       {
         orderId: 'string'
@@ -153,8 +153,6 @@ test('Deletes an order', async () => {
       }`
       })
       .then((res) => {
-        console.log(JSON.stringify(res.body));
-        console.log(res.body)
         expect(res.body.data.getOrdersByStatus[0]).toBeDefined();
       })
     })
@@ -194,7 +192,6 @@ test('Deletes an order', async () => {
         query, variables
       })
       .then((res) => {
-        console.log(JSON.stringify(res.body))
         expect(res.body.data.createOrder).toBeDefined()
       })
     })
