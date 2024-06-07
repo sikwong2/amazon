@@ -1,5 +1,5 @@
 import { graphql, HttpResponse } from 'msw'
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { LoginContext } from '@/context/Login';
 import { SearchProvider } from '@/context/SearchContext';
@@ -79,6 +79,38 @@ it('renders', async () => {
         </LoginContext.Provider>
       </SearchProvider>
     </CartContext.Provider>
-      
   );
+  fireEvent.click(screen.getByLabelText('go-to-checkout'));
+})
+
+it('Goto checkout when not logged in', async () => {
+  const setPage = () => { };
+  const page: string = 'cart';
+
+  let accessToken = '';
+  const setAccessToken = () => { };
+  const userName = '';
+  const setUserName = () => { };
+  const role = '';
+  const setRole = () => { };
+  const id = '';
+  const setId = () => { };
+
+  const cart = {"string": 1};
+  const setCart = () => {};
+  const addToCart = () => {};
+  const removeFromCart = () => {};
+  const updateProductQuantity = () => {};
+  render(
+    <CartContext.Provider value={{ cart, setCart, addToCart, removeFromCart, updateProductQuantity }}>
+      <SearchProvider>
+        <LoginContext.Provider value={{ userName, setUserName, accessToken, setAccessToken, role, setRole, id, setId }}>
+          <PageContext.Provider value={{ page, setPage }}>
+            <Cart />
+          </PageContext.Provider>
+        </LoginContext.Provider>
+      </SearchProvider>
+    </CartContext.Provider>
+  );
+  fireEvent.click(screen.getByLabelText('go-to-checkout'));
 })
