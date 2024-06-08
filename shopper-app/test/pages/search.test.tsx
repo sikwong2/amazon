@@ -104,9 +104,16 @@ describe('getServerSideProps(en)', () => {
   it('Search Bar Usage', async () => {
     render(<SearchPage products={[product]} />);
     const searchBar = await screen.findByLabelText('search');
-    userEvent.type(searchBar, 'Apple ');
+    await userEvent.type(searchBar, 'Apple ');
     const searchIcon = await screen.findByLabelText('search-icon')
     fireEvent.click(searchIcon);
+  });
+
+  it('Search Bar Usage', async () => {
+    render(<SearchPage products={[product]} />);
+    const searchBar = await screen.findByLabelText('search');
+    await userEvent.type(searchBar, 'Apple ');
+    fireEvent.keyDown(searchBar, {key: 'Enter', code: 'Enter', charCode: 13});
   });
   
   it('Add to Cart', async () => {

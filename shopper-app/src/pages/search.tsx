@@ -35,7 +35,6 @@ const fetchProducts = async (name: string): Promise<Product[]> => {
   let products = [];
   if (json.errors) {
     console.error('GraphQL Errors:', json.errors);
-    // throw new Error(json.errors[0].message);
   } else {
     products = json.data.getByName;
   }

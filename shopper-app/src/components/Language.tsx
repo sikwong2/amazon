@@ -44,7 +44,7 @@ const LanguageButton = ({ ...rest }) => {
           ref={buttonRef}
           aria-haspopup="true"
           aria-controls="radio-menu"
-          label={'change-language'}
+          label='change-language'
           onClick={handlePopoverOpen}
           style={{
             textTransform: 'uppercase',
