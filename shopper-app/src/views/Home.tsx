@@ -187,6 +187,8 @@ export function Home() {
 
   return (
     <React.Fragment>
+      <Box bgcolor="#00FFFF" width="100%" height="400px">
+      </Box>
       <TopBar />
       <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight="100%" sx={{ mb: 0 }}>
         <Box
