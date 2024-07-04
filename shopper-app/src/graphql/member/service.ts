@@ -28,16 +28,21 @@ export class MemberService {
   }
 
   async getMemberInfo(memberId: string): Promise<MemberInfo | undefined> {
-    const res = await fetch(
-      `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/${memberId}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/${memberId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      },
-    );
-    const json = await res.json();
-    return json;
+      );
+      const json = await res.json();
+      return json;
+    } catch (e) {
+      console.log(e);
+      throw new Error('Error in AccountSerivce: getInfo');
+    }
   }
 }
