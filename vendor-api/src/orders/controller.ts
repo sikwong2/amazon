@@ -21,6 +21,10 @@ export class OrdersController extends Controller {
     return new OrdersService()
       .getVendorOrders(vendorId)
       .then(async (success: Order[] | undefined): Promise<Order[] | undefined> => {
+        if (!success) {
+          console.log('Vendor API: order controller: no vendor orders to return');
+          this.setStatus(404);
+        }
         return success;
       });
   }

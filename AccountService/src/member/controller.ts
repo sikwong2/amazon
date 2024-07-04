@@ -47,9 +47,9 @@ export class MemberController extends Controller {
     return new MemberService()
       .unapprovedVendors()
       .then(async (response: Member[] | undefined): Promise<Member[] | undefined> => {
-        // if (response === undefined) {
-        //   this.setStatus(401);
-        // }
+        if (response === undefined) {
+          this.setStatus(401);
+        }
         return response;
       });
   }
@@ -60,9 +60,9 @@ export class MemberController extends Controller {
     return new MemberService()
       .approveVendor(id)
       .then(async (response: Member | undefined): Promise<Member | undefined> => {
-        // if (response === undefined) {
-        //   this.setStatus(401);
-        // }
+        if (response === undefined) {
+          this.setStatus(401);
+        }
         return response;
       });
   }
@@ -74,6 +74,9 @@ export class MemberController extends Controller {
     return new MemberService()
       .getInfo(memberId)
       .then(async (response: MemberInfo | undefined): Promise<MemberInfo | undefined> => {
+        if (response === undefined) {
+          this.setStatus(409);
+        }
         return response;
       });
   }

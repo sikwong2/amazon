@@ -16,6 +16,10 @@ export class AccountController extends Controller {
         }
         return account;
       })
+      .catch((err) => {
+        console.log(err);
+        return undefined;
+      });
   }
 
   @Get()
