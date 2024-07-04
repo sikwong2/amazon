@@ -74,6 +74,9 @@ export class MemberController extends Controller {
     return new MemberService()
       .getInfo(memberId)
       .then(async (response: MemberInfo | undefined): Promise<MemberInfo | undefined> => {
+        if (response === undefined) {
+          this.setStatus(409);
+        }
         return response;
       });
   }
