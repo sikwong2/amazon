@@ -140,7 +140,7 @@ const createOrder = async (order: OrderInfo) => {
   }
 }
 const placeOrder = async (products: StripeProduct[]) => {
-  // try {
+  try {
     const query = `
       query checkoutURL($products: [StripeProduct!]!) {
         getCheckoutURL(products: $products)
@@ -165,9 +165,9 @@ const placeOrder = async (products: StripeProduct[]) => {
     }
     window.open(json.data.getCheckoutURL, '_blank');
     // window.location.href = json.data.getCheckoutURL;
-  // } catch (e) {
-  //   console.log(e);
-  // }
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export function Checkout() {
@@ -235,16 +235,16 @@ export function Checkout() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      // try {
+      try {
         const userDetails = await fetchUserDetails(id);
         if (userDetails) {
           const { name, address } = userDetails;
           setMemberName(name);
           setAddress(address);
         }
-      // } catch (error) {
-      //   console.error('Error fetching user details:', error);
-      // }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
     };
     fetchUserData();
   }, [id]);
