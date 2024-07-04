@@ -121,7 +121,7 @@ export class ProductService {
   }
   
   public async makeProduct(product: NewProduct): Promise<Product | undefined> {
-    // try {
+    try {
       const query = {
         text: `INSERT INTO product(data) VALUES(
           jsonb_build_object(
@@ -146,10 +146,10 @@ export class ProductService {
       };
       const { rows } = await pool.query(query);
       return { ...rows[0].data, id: rows[0].id };
-    // } catch (e) {
-    //   console.error('Error making product: ', e);
-    //   return undefined;
-    // }
+    } catch (e) {
+      console.error('Error making product: ', e);
+      return undefined;
+    }
   }
 
   /**
