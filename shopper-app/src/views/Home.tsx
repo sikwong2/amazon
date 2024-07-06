@@ -126,12 +126,14 @@ export function Home() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
+  // used to determine how many categories there are
+  const numberOfCategories = 8;
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedData: { [key: string]: Image[] } = {};
-        for (let i = 0; i <= 6; i++) {
+        for (let i = 0; i <= numberOfCategories; i++) {
           const category = getRandomCategory();
           const products = await fetchProducts(category);
           fetchedData[category] = products.map((product) => ({
@@ -191,8 +193,8 @@ export function Home() {
   );
 
 
-  const loginGrid = (
-    <Grid container spacing={0} justifyContent={isSmallScreen ? 'center' : 'flex-start'}>
+  const logoutGrid = (
+    <Grid container spacing={0} justifyContent='center'>
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
         <Grid item xs={12} sm={4} md={3} key={category}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -227,30 +229,38 @@ export function Home() {
             alignItems="center"
             bgcolor="#FFFFFF"
           >
-            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} />
+            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
           </Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '250px',
-              width: '100%',
-              zIndex: '100000'
-            }}
-          >
-            {loginGrid}
-          </Box>
-          <Box
-            sx={{
-              background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
-              position: 'absolute',
-              top: '400px',
-              zIndex:'500'
-            }}
-            width="100%"
-            height={200}
-            />
-          <Box bgcolor='#E4E6E6' width="100%" height={50}/>
-          {Object.entries(categoriesData).slice(3,6).map(([category, images]) => (
+          {
+            !isSmallScreen &&
+            <React.Fragment>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '250px',
+                  width: '100%',
+                  zIndex: '100000'
+                }}
+                justifyItems='center'
+              >
+                {logoutGrid}
+              </Box>
+              <Box
+                sx={{
+                  background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+                  position: 'absolute',
+                  top: '400px',
+                  zIndex:'500'
+                }}
+                width="100%"
+                height={200}
+                />
+              <Box bgcolor='#E4E6E6' width="100%" height={50}/>
+            </React.Fragment>
+          }
+
+
+          {Object.entries(categoriesData).slice(3,numberOfCategories).map(([category, images]) => (
             <MultiImageCarousel
               key={category}
               images={images}

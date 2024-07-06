@@ -21,13 +21,15 @@ export type Image = {
 interface ImageCarouselProps extends BoxProps {
   images: Image[];
   height: number;
+  mobile: boolean;
 }
 
 interface ItemProps extends BoxProps {
   item: Image;
+  mobile: boolean;
 }
 
-export default function ImageCarousel({ images, height, ...rest }: ImageCarouselProps) {
+export default function ImageCarousel({ images, height, mobile, ...rest }: ImageCarouselProps) {
   return (
     <Carousel
       NextIcon={<ArrowForwardIosIcon fontSize='large'/>}
@@ -38,25 +40,25 @@ export default function ImageCarousel({ images, height, ...rest }: ImageCarousel
             borderRadius: 0
         }
       }}
-      navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
+      navButtonsWrapperProps={mobile ? {} : {   // Move the buttons to the bottom. Unsetting top here to override default style.
         style: {
             bottom: 'unset',
             top: '15%'
         }
       }} 
-      fullHeightHover={false}
+      fullHeightHover={mobile ? true : false}
       animation="slide"
       indicators={false}
       height={height}
       navButtonsAlwaysVisible={true}>
       {images.map((item, i) => (
-        <Item key={i} item={item} {...rest} />
+        <Item key={i} item={item} mobile={mobile} {...rest} />
       ))}
     </Carousel>
   );
 }
 
-function Item({ item, ...rest }: ItemProps) {
+function Item({ item, mobile, ...rest }: ItemProps) {
   const router = useRouter();
   const handleProductRedirect = (id: string) => {
     router.push(`/product/${id}`);
@@ -72,11 +74,17 @@ function Item({ item, ...rest }: ItemProps) {
       {...rest}
     >
       <img
-        style={{
+        style={mobile ? {
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain'
+        } : 
+        {
           width: '100%',
           height: '100%',
           objectFit: 'cover'
-        }}
+        } 
+      }
         alt={item.description}
         src={item.image}
       />
