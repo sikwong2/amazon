@@ -18,48 +18,70 @@ import { LoginContext } from '@/context/Login';
 
 const advertisements: Image[] = [
   {
-    image: 'https://www.adsoftheworld.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBM0VPQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5f561cccbacc4de85a9899b83b437ace43713b41/thumbnail_219710',
+    image: 'https://m.media-amazon.com/images/I/61JRTDaOgTL._SX3000_.jpg',
     id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
     description: 'Adidas ad',
     title: 'Adidas shoes'
   },
   {
-    image: 'https://fcdn.me/a59/10a/adidas-run-for-the-oceans-5-33863c5db68f48f9e180fc12aa.jpg?d=1',
+    image: 'https://m.media-amazon.com/images/I/717a5OeZ6iL._SX3000_.jpg',
     id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
     description: 'Adidas Sea ad',
     title: 'Adidas women shoes'
   },
   {
-    image: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e456a8103211209.5f47dea744a23.jpg',
+    image: 'https://m.media-amazon.com/images/I/517HzrpIwAL._SX3000_.jpg',
     id: 'd0eeec78-99ef-4736-8256-c04043110873',
     description: 'Nike ad',
     title: 'Nike shoes'
   },
   {
-    image: 'https://i.ytimg.com/vi/8ly_IRib75Q/maxresdefault.jpg',
+    image: 'https://m.media-amazon.com/images/I/71UY8rxRxUL._SX3000_.jpg',
     id: 'd9b42b3d-aa46-4791-8470-c9417d1db025',
     description: 'Samsung Galaxy ad',
     title: 'Samsung'
   },
   {
-    image: 'https://i.ytimg.com/vi/YIjLnWmLhmk/maxresdefault.jpg',
+    image: 'https://m.media-amazon.com/images/I/71cpVVPylML._SX3000_.jpg',
     id: 'c85ddd6d-c3ef-4ba2-8951-a6f377c4fe94',
     description: 'Spalding basketball ad',
     title: 'Spalding'
   },
   {
-    image: 'https://media.idownloadblog.com/wp-content/uploads/2016/10/macbook-air.png',
+    image: 'https://m.media-amazon.com/images/I/71BewpxvEZL._SX3000_.jpg',
     id: 'fcdfc6a7-3e50-4909-818c-379f75b4320a',
     description: 'Apple ad',
     title: 'Macbooks'
   },
   {
-    image: 'https://image.adsoftheworld.com/d50xigu5cjitc14142pboshuox6f',
+    image: 'https://m.media-amazon.com/images/I/61AHFjQsfDL._SX3000_.jpg',
     id: 'fcab207a-fd48-4e81-a15d-a754f49fcd15',
     description: 'Lamp ad',
     title: 'Lamps'
   },
 ]
+
+const categories: string[] = [
+  'furniture',
+  'electronics',
+  'sports',
+  'apple',
+  'shrek',
+  'home',
+  'shoes',
+  'clothing',
+  'adidas',
+  'nike',
+  'gaming',
+  'couch',
+  'storage', 
+  'kitchen',
+]
+
+const getRandomCategory = () => {
+  const randomElement = categories[Math.floor(Math.random() * categories.length)];
+  return randomElement;
+}
 
 const fetchProducts = async (category: string): Promise<Product[]> => {
   try {
@@ -98,9 +120,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
 // card of category component
 export function Home() {
   const [ads, setAds] = React.useState<Image[]>(advertisements);
-  const [category1, setCategory1] = React.useState<Image[]>([]);
-  const [category2, setCategory2] = React.useState<Image[]>([]);
-  const [category3, setCategory3] = React.useState<Image[]>([]);
+  const [categoriesData, setCategoriesData] = React.useState<{ [key: string]: Image[] }>({});
   const { t } = useTranslation('common');
   const loginContext = React.useContext(LoginContext);
   const theme = useTheme();
@@ -110,40 +130,29 @@ export function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const category1products = await fetchProducts('furniture');
-        const cat1 = category1products.map((product) => ({
-          image: product.image[0],
-          id: product.id,
-          description: product.name,
-          title: 'sale',
-        }));
-        setCategory1(cat1);
-        const category2products = await fetchProducts('electronics');
-        const cat2 = category2products.map((product) => ({
-          image: product.image[0],
-          id: product.id,
-          description: product.name,
-          title: 'sale',
-        }));
-        setCategory2(cat2);
-        const products = await fetchProducts('sports');
-        const cat3 = products.map((product) => ({
-          image: product.image[0],
-          id: product.id,
-          description: product.name,
-          title: 'sale',
-        }));
-        setCategory3(cat3);
+        const fetchedData: { [key: string]: Image[] } = {};
+        for (let i = 0; i <= 6; i++) {
+          const category = getRandomCategory();
+          const products = await fetchProducts(category);
+          fetchedData[category] = products.map((product) => ({
+            image: product.image[0],
+            id: product.id,
+            description: product.name,
+            title: 'sale',
+          }));
+        }
+        setCategoriesData(fetchedData);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
-
+  
     fetchData();
   }, []);
 
   const easyReturns = (
     <CustomCard
+      type='pointy'
       elevation={0}
       sx={{
         width: 'auto',
@@ -181,18 +190,33 @@ export function Home() {
     </CustomCard>
   );
 
+
+  const loginGrid = (
+    <Grid container spacing={0} justifyContent={isSmallScreen ? 'center' : 'flex-start'}>
+      {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
+        <Grid item xs={12} sm={4} md={3} key={category}>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <CategoryCard images={images} title={t(`home.${category}`)} />
+          </Box>
+        </Grid>
+      ))}
+      <Grid item xs={0} sm={0} md={3}>
+        {easyReturns}
+      </Grid>
+    </Grid>
+  );
+
   if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
     return <RedirectNonShopper />;
   }
 
   return (
     <React.Fragment>
-      <Box bgcolor="#00FFFF" width="100%" height="400px">
-      </Box>
       <TopBar />
+      
       <Box aria-label="homeproducts" bgcolor="#E4E6E6" maxHeight="100%" sx={{ mb: 0 }}>
         <Box
-          sx={{ maxWidth: { md: '80%', sm: '100%' } }}
+          sx={{ maxWidth: { md: '100%', sm: '100%' }, position: 'relative' }}
           alignItems="center"
           justifyContent="center"
           margin="auto"
@@ -203,32 +227,37 @@ export function Home() {
             alignItems="center"
             bgcolor="#FFFFFF"
           >
-            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 400} />
+            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} />
           </Box>
-          <Grid container spacing={0} justifyContent={isSmallScreen ? 'center' : 'flex-start'}>
-            <Grid item xs={12} sm={4} md={3}>
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <CategoryCard images={category1} title={t('home.pick-up')} />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <CategoryCard images={category2} title={t('home.keep-shopping')} />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4} md={3}>
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <CategoryCard images={category3} title={t('home.top-deal')} />
-              </Box>
-            </Grid>
-            <Grid item xs={0} sm={0} md={3}>
-              {easyReturns}
-            </Grid>
-          </Grid>
-          <MultiImageCarousel images={category2} height={200} title={t('home.top-sellers-electronics')}/>
-          <MultiImageCarousel images={category1} height={200} title={t('home.top-sellers-furniture')}/>
-          <MultiImageCarousel images={category3} height={200} title={t('home.top-sellers-sports')}/>
-
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '250px',
+              width: '100%',
+              zIndex: '100000'
+            }}
+          >
+            {loginGrid}
+          </Box>
+          <Box
+            sx={{
+              background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+              position: 'absolute',
+              top: '400px',
+              zIndex:'500'
+            }}
+            width="100%"
+            height={200}
+            />
+          <Box bgcolor='#E4E6E6' width="100%" height={50}/>
+          {Object.entries(categoriesData).slice(3,6).map(([category, images]) => (
+            <MultiImageCarousel
+              key={category}
+              images={images}
+              height={200}
+              title={t(`home.top-sellers-${category}`)}
+            />
+          ))}
         </Box>
       </Box>
       <Footer />
