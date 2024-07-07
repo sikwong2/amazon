@@ -25,22 +25,13 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 export default function Index() {
   const pageContext = React.useContext(PageContext);
 
-  // return (
-  //   <Fragment>
-  //     {pageContext.page === 'home' && <Home />}
-  //     {pageContext.page === 'cart' && <Cart />}
-  //     {pageContext.page === 'checkout' && <Checkout />}
-  //     {pageContext.page === 'orderHistory' && <OrderHistory />}
-  //   </Fragment>
-  // );
-  const clientId = `686497790460-mu8q577liqkiuel897825q2lh24tsdre.apps.googleusercontent.com`
-  const container = document.getElementById('root');
-  const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-  root.render(
-    <GoogleOAuthProvider clientId={clientId}>
-      <React.StrictMode>
-        <Login />
-      </React.StrictMode>
-    </GoogleOAuthProvider>
+  return (
+    <Fragment>
+      {pageContext.page === 'home' && <Home />}
+      {pageContext.page === 'cart' && <Cart />}
+      {pageContext.page === 'checkout' && <Checkout />}
+      {pageContext.page === 'orderHistory' && <OrderHistory />}
+    </Fragment>
   );
+  
 }

@@ -14,10 +14,6 @@ import CustomDivider from '@/components/Divider';
 import CustomLink from '@/components/Link';
 import { defaultLogoWidth } from '../components/Logo';
 import GoogleLoginComponent from '@/components/GoogleOAuth';
-import { gapi } from 'gapi-script';
-import { useEffect } from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
 
 export function Login() {
   const loginContext = React.useContext(LoginContext);
@@ -123,17 +119,7 @@ export function Login() {
             >
               {t('login.signin')}
             </CustomButton>
-          </Box>
-          <Box>
-              <GoogleLogin
-                onSuccess={credentialResponse => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              />
-          </Box>
+          </Box> 
           <Box aria-label="link-to-agreement">
             <Typography variant="body1" sx={{ mt: 2, fontSize: '12px' }}>
               {t('login.agreement')}

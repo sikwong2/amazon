@@ -8,7 +8,6 @@ import { LoginProvider } from "@/context/Login";
 import { CartProvider } from "@/context/Cart";
 import { PageProvider } from "@/context/Page";
 import { SearchProvider } from '@/context/SearchContext';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const theme = createTheme({
   typography: {
