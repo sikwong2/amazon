@@ -8,6 +8,7 @@ import { LoginProvider } from "@/context/Login";
 import { CartProvider } from "@/context/Cart";
 import { PageProvider } from "@/context/Page";
 import { SearchProvider } from '@/context/SearchContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const theme = createTheme({
   typography: {
@@ -15,20 +16,22 @@ const theme = createTheme({
   },
 });
 
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <LoginProvider>
-        <SearchProvider>
-          <PageProvider>
-            <CartProvider>
-              <Component {...pageProps} />
-            </CartProvider>
-          </PageProvider>
-        </SearchProvider>
-      </LoginProvider>
+        <LoginProvider>
+          <SearchProvider>
+            <PageProvider>
+              <CartProvider>
+                <Component {...pageProps} />
+              </CartProvider>
+            </PageProvider>
+          </SearchProvider>
+        </LoginProvider>
     </ThemeProvider>
   );
 };
+
 
 export default appWithTranslation(App);

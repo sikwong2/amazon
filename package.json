@@ -75,6 +75,11 @@
     "zip": "zip -r submission.zip . -x \\*node_modules\\* \\*.next\\* \\*.swc\\* \\*.DS_Store\\* \\*venv\\* \\*app.tar\\* \\*.git\\*"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "@react-oauth/google": "^0.12.1",
+    "concurrently": "^8.2.2",
+    "gapi-script": "^1.2.0",
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
