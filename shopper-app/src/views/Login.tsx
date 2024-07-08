@@ -119,6 +119,9 @@ export function Login() {
             >
               {t('login.signin')}
             </CustomButton>
+          </Box>
+          <Box>
+            <GoogleLoginComponent></GoogleLoginComponent>
           </Box> 
           <Box aria-label="link-to-agreement">
             <Typography variant="body1" sx={{ mt: 2, fontSize: '12px' }}>

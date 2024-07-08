@@ -13,7 +13,7 @@ async function getUserData(access_token){
 router.get('/', async function(req, res, next){
   const code = req.query.code;
   try{
-    const redirectUrl = 'http://localhost:3000/oauth';
+    const redirectUrl = 'http://localhost:3015/oauth';
     const oAuth2Client = new OAuth2Client(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,
@@ -29,3 +29,5 @@ router.get('/', async function(req, res, next){
     console.log('Error with signing in with Google')
   }
 });
+
+module.exports = router;

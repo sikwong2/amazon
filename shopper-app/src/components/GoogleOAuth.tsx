@@ -1,16 +1,23 @@
-import React from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import React from "react";
+
+function navigate(url: string){
+  window.location.href = url
+}
+
+async function auth(){
+  const response = await fetch ('http://localhost:3015/request',
+  {method:'POST'});
+  const data = await response.json()
+  navigate(data.url);
+}
 
 const GoogleLoginComponent = () => {
   return (
-    <GoogleLogin
-      onSuccess={credentialResponse => {
-        console.log(credentialResponse);
-      }}
-      onError={() => {
-        console.log('Login Failed');
-      }}
-    />
+    <>
+   <button type="button" onClick={()=> auth()}>
+    GOOGLE OAUTH BUTTON
+   </button>
+    </>
   );
 };
 
