@@ -31,7 +31,7 @@ interface ItemProps extends BoxProps {
 
 export default function MultiImageCarousel({ images, height, title, ...rest }: MultiImageCarouselProps) {
   return (
-    <CustomCard sx={{bgcolor: '#FFFFFF', padding: '10px 20px', mb: 1}}>
+    <CustomCard type="pointy" sx={{bgcolor: '#FFFFFF', padding: '10px 20px', mb: 1}}>
       <Typography sx={{mt: '10px', mb: '5px'}} variant='h6'>
         {title}
       </Typography>

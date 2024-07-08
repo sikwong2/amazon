@@ -6,6 +6,8 @@ import CustomCard from './Card';
 import { Typography } from '@mui/material';
 import { BoxProps } from '@mui/material/Box';
 import { useRouter } from 'next/router';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 // https://www.npmjs.com/package/react-material-ui-carousel
 
@@ -19,24 +21,44 @@ export type Image = {
 interface ImageCarouselProps extends BoxProps {
   images: Image[];
   height: number;
+  mobile: boolean;
 }
 
 interface ItemProps extends BoxProps {
   item: Image;
-  height: number;
+  mobile: boolean;
 }
 
-export default function ImageCarousel({ images, height, ...rest }: ImageCarouselProps) {
+export default function ImageCarousel({ images, height, mobile, ...rest }: ImageCarouselProps) {
   return (
-    <Carousel animation="slide" height={height} indicators={false} navButtonsAlwaysVisible={true}>
+    <Carousel
+      NextIcon={<ArrowForwardIosIcon fontSize='large'/>}
+      PrevIcon={<ArrowBackIosIcon fontSize='large'/>}
+      navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+        style: {
+            backgroundColor: 'transparent',
+            borderRadius: 0
+        }
+      }}
+      navButtonsWrapperProps={mobile ? {} : {   // Move the buttons to the bottom. Unsetting top here to override default style.
+        style: {
+            bottom: 'unset',
+            top: '15%'
+        }
+      }} 
+      fullHeightHover={mobile ? true : false}
+      animation="slide"
+      indicators={false}
+      height={height}
+      navButtonsAlwaysVisible={true}>
       {images.map((item, i) => (
-        <Item key={i} item={item} height={height} {...rest} />
+        <Item key={i} item={item} mobile={mobile} {...rest} />
       ))}
     </Carousel>
   );
 }
 
-function Item({ item, height, ...rest }: ItemProps) {
+function Item({ item, mobile, ...rest }: ItemProps) {
   const router = useRouter();
   const handleProductRedirect = (id: string) => {
     router.push(`/product/${id}`);
@@ -44,24 +66,25 @@ function Item({ item, height, ...rest }: ItemProps) {
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      maxHeight={height}
-      height={height}
+      position='relative'
+      height="100%"
+      width="100%"
       sx={{ backgroundColor: 'E4E6E6', cursor: 'pointer' }}
-      overflow="hidden"
       onClick={() => handleProductRedirect(item.id)}
       {...rest}
     >
       <img
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
+        style={mobile ? {
           width: '100%',
           height: '100%',
           objectFit: 'contain'
-        }}
+        } : 
+        {
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        } 
+      }
         alt={item.description}
         src={item.image}
       />
