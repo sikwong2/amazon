@@ -9,7 +9,7 @@ router.post('/', async function (req, res) {
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.header('Access-Control-Allow-Methods', 'GET, POST');
-  const redirectUrl = 'http://localhost:3000';
+  const redirectUrl = 'http://localhost:3015/oauth';
   const oAuthClient = new OAuth2Client(
     process.env.GOOGLE_OAUTH_CLIENT_ID,
     process.env.GOOGLE_OAUTH_CLIENT_SECRET,
