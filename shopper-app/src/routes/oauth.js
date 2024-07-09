@@ -13,10 +13,10 @@ async function getUserData(access_token){
 router.get('/', async function(req, res, next){
   const code = req.query.code;
   try{
-    const redirectUrl = 'http://localhost:3015/oauth';
+    const redirectUrl = 'http://localhost:3000';
     const oAuth2Client = new OAuth2Client(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
+      process.env.GOOGLE_OAUTH_CLIENT_ID,
+      process.env.GOOGLE_OAUTH_CLIENT_SECRET,
       redirectUrl
     );
     const res = await oAuth2Client.getToken(code);

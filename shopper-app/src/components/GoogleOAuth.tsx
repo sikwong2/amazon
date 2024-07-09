@@ -7,6 +7,7 @@ function navigate(url: string){
 async function auth(){
   const response = await fetch ('http://localhost:3015/request',
   {method:'POST'});
+  
   const data = await response.json()
   navigate(data.url);
 }

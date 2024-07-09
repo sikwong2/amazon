@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
-
+console.log('Client ID:', process.env.GOOGLE_OAUTH_CLIENT_ID);
 const requestRoutes = require('./routes/request');
 const oauthRoutes = require('./routes/oauth');
 
@@ -21,7 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: true }));
+app.use(session({ secret: `${process.env.GOOGLE_OAUTH_CLIENT_SECRET}`, resave: false, saveUninitialized: true }));
 
 app.use('/request', requestRoutes);
 app.use('/oauth', oauthRoutes);
