@@ -57,7 +57,7 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
       sessionStorage.setItem('userName', oauthName);
       sessionStorage.setItem('accessToken', oauthToken!);
       sessionStorage.setItem('role', `shopper`);
-      sessionStorage.setItem('userId', sub);
+      sessionStorage.setItem('userId', sub!);
     } 
     else {
       console.log('came in else for rendered')
