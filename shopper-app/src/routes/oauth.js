@@ -29,7 +29,45 @@ router.get('/', async function (req, res, next) {
     const user = oAuth2Client.credentials;
     console.log('credentials', user);
     const userData = await getUserData(user.access_token);
-    const redirectTo = `${state.redirectTo || 'http://localhost:3000'}?name=${encodeURIComponent(userData.name)}&access_token=${encodeURIComponent(user.access_token)}&sub=${encodeURIComponent(userData.sub)}`;
+
+    // Call GraphQL mutation to create Google account
+    const googleInput = {
+      name: userData.name,
+      id: userData.sub,
+      email: userData.email, 
+      role: 'shopper',
+    };
+
+    const createGoogleAccount = await fetch('http://localhost:3000/api/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          mutation CreateGoogleAccount($input: NewGoogleAccount!) {
+            createGoogleAccount(input: $input) {
+              name
+              id 
+              email
+              role
+            }
+          }
+        `,
+        variables: {
+          input: googleInput
+        }
+      })
+    });
+
+    const createGoogleAccountResponse = await createGoogleAccount.json();
+
+    if (createGoogleAccountResponse.errors) {
+      throw new Error(createGoogleAccountResponse.errors[0].message);
+    }
+
+
+    const redirectTo = `${state.redirectTo || 'http://localhost:3000'}?name=${encodeURIComponent(userData.name)}&access_token=${encodeURIComponent(user.access_token)}&sub=${encodeURIComponent(userData.sub)}&email=${encodeURIComponent(userData.email)}`;
     res.redirect(redirectTo);
   } catch (err) {
     console.log(err);

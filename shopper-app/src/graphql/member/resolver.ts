@@ -4,6 +4,7 @@ import { Member } from './schema';
 import { MemberRequest } from './schema';
 import { MemberInfo } from './schema';
 import { MemberService } from './service';
+import { GoogleMemberRequest } from './schema';
 
 
 @Resolver()
@@ -16,6 +17,18 @@ export class MemberResolver {
       .then(async (response: Member | undefined): Promise<Member> => {
         if (response == undefined) {
           throw new Error('Account already exists');
+        }
+        return response;
+      });
+  }
+
+  @Mutation(() => Member)
+  async createGoogleAccount(@Arg('input') input: GoogleMemberRequest): Promise<Member> {
+    return new MemberService()
+      .createGoogleAccount(input)
+      .then(async (response: Member | undefined): Promise<Member> => {
+        if (response == undefined) {
+          throw new Error('Google Account already exists (resolver.ts)');
         }
         return response;
       });

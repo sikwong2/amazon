@@ -22,18 +22,6 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
   
   useEffect(() => { // runs only client side during initial render
     if (isBrowser) {
-      // const params = new URLSearchParams(window.location.search);
-      // const oauthName = params.get('name');
-      // console.log(`this is oauthName: ${oauthName}`)
-      // const oauthToken = params.get('access_token');
-      // if (oauthName) {
-      //   console.log('came in if');
-      //   sessionStorage.setItem('userName', 'test name');
-      //   sessionStorage.setItem('accessToken', 'this is access token');
-      //   sessionStorage.setItem('role', `member`);
-      //   sessionStorage.setItem('userId', `92846fcb-9c73-4fc6-b652-3443874118b8`);
-      //   setIsRendered(true);
-      // } else {
         if(isBrowser){
           setUserName(sessionStorage.getItem('userName') || '');
           setAccessToken(sessionStorage.getItem('accessToken') || '');
@@ -41,8 +29,6 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
           setRole(sessionStorage.getItem('role') || '');
           setIsRendered(true); 
         }
-      // }
-      
     }
   }, []);
 
@@ -52,6 +38,9 @@ export const LoginProvider = ({ children }: PropsWithChildren<{}>) => {
     console.log(`this is oauthName: ${oauthName}`)
     const oauthToken = params.get('access_token');
     const sub = params.get('sub');
+    const email = params.get('email');
+    console.log(`this is the EMAILALLALALALALL ${email}`);
+
     if (oauthName) {
       console.log('came in if for rendered');
       sessionStorage.setItem('userName', oauthName);

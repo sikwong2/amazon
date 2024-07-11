@@ -18,6 +18,22 @@ export class MemberRequest {
   role!: string;
 }
 
+@ObjectType()
+@InputType('NewGoogleAccount')
+export class GoogleMemberRequest {
+  @Field()
+  id!: string;
+  @Field()
+  name!: string;
+  @Field()
+  @Matches(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  )
+  email!: string; 
+  @Field()
+  role!: string;
+}
+
 @ObjectType('Account')
 export class Member {
   @Field(() => ID)
