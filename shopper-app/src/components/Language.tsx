@@ -112,14 +112,14 @@ export default function LanguageButton() {
                 aria-label={'Chinese'}
               />
               <Box sx={{ pl: '31px' }}>
-                <CustomLink href={'/'} label={'learn-more'}>Learn More</CustomLink>
+                <CustomLink href={'/'} label={'learn-more'}>{t("language-button.learn-more")}</CustomLink>
               </Box>
               <CustomDivider sx={{mt: '11px', mb: '11px'}}/>
               <Typography>
-                <US style={{ marginRight: 3, height: '0.8em' }} title="United States" /> You are shopping on Amazon.com
+                <US style={{ marginRight: 3, height: '0.8em' }} title="United States" /> {t("language-button.shopping-on-amazon")}
               </Typography>
               <Typography sx={{ m: '10px 0px 0px 25px', pb: '7px' }}>
-                <CustomLink href='/' label='change-country'> Change country/region. </CustomLink>
+                <CustomLink href='/' label='change-country'> {t("language-button.change-country")} </CustomLink>
               </Typography>
             </ThemeProvider>
           </RadioGroup>

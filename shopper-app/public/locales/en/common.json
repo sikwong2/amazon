@@ -156,5 +156,10 @@
     "shoppers-only": "This app is for shoppers only!",
     "return-vendor-app": "Return to Vendor App",
     "return-admin-app": "Return to Admin App"
+  },
+  "language-button": {
+    "learn-more": "Learn More",
+    "shopping-on-Amazon": "You are shopping on Amazon.com",
+    "change-country": "Change country/region."
   }
 }

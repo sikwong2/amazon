@@ -156,5 +156,10 @@
     "shoppers-only": "此应用程序仅供购物者使用!",
     "return-vendor-app": "返回供应商应用程序",
     "return-admin-app": "返回管理应用程序"
+  },
+  "language-button": {
+    "learn-more": "了解更多",
+    "shopping-on-Amazon": "您正在 Amazon.com 上购物",
+    "change-country": "更改国家/地区"
   }
 }
