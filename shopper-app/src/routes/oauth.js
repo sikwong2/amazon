@@ -9,6 +9,7 @@ async function getUserData(access_token) {
   const data = await response.json();
   console.log('came here');
   console.log('data', data);
+  return data;
 }
 
 router.get('/', async function (req, res, next) {
@@ -27,8 +28,8 @@ router.get('/', async function (req, res, next) {
     console.log('Tokens acquired');
     const user = oAuth2Client.credentials;
     console.log('credentials', user);
-    await getUserData(user.access_token);
-    const redirectTo = state.redirectTo || 'http://localhost:3000';
+    const userData = await getUserData(user.access_token);
+    const redirectTo = `${state.redirectTo || 'http://localhost:3000'}?name=${encodeURIComponent(userData.name)}&access_token=${encodeURIComponent(user.access_token)}&sub=${encodeURIComponent(userData.sub)}`;
     res.redirect(redirectTo);
   } catch (err) {
     console.log(err);
