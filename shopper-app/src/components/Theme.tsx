@@ -325,13 +325,13 @@ export const radioButtonTheme = createTheme(globalTheme, {
       styleOverrides: {
         root: {
           // Outer circle color when unchecked
-          color: '#gray', // Change this to any specific gray color code you prefer
+          color: 'gray', // Change this to any specific gray color code you prefer
           '&.Mui-checked': {
             // Inner circle color when checked
-            color: '#007bff', // Change to the blue color you want
+            color: 'gray', // Change to the blue color you want
             'svg': {
               // Target the SVG inner circle specifically for color filling
-              color: '#007bff' // Ensure this matches the outer 'color' property if needed
+              color: '#F08804' // Ensure this matches the outer 'color' property if needed
             }
           }
         }
