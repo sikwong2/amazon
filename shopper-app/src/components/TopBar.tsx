@@ -18,10 +18,15 @@ import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	backgroundColor: 'rgba(35,47,62)',
+	height: '60px',
+	backgroundColor: '#131921',
+	'& .MuiToolbar-root': {
+		padding: 0,
+	}
 }));
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,7 +61,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	backgroundColor: '#FFA41C',
+	backgroundColor: '#f3a847',
 	cursor: 'pointer',
 	borderTopRightRadius: theme.shape.borderRadius,
 	borderBottomRightRadius: theme.shape.borderRadius,
@@ -67,8 +72,8 @@ const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
 }));
 
 const customButtonStyles: React.CSSProperties = {
-	backgroundColor: 'rgba(35,47,62)',
-	color: 'rgba(242,242,242)',
+	backgroundColor: 'inherit',
+	color: 'inherit',
 	textTransform: 'none',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
@@ -223,13 +228,27 @@ export default function TopBar() {
 			onClick={loginContext.accessToken.length === 0 ? handleSignIn : undefined}
 			caps={false}
 			disabled={loginContext.accessToken.length > 0}
-      sx={{
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        maxWidth: '100%',
-      }}
+			sx={{
+				width: '150px', 
+				height: '60px',
+				whiteSpace: 'normal',
+				textOverflow: 'ellipsis',
+				border: 'none',
+				alignItems: 'stretch',
+				p: 0,
+			}}
 		>
-			{loginContext.accessToken.length === 0 ? t("topbar.Deliver-to") + t(" Santa Cruz, CA 95060") : `${t("topbar.Deliver-to")} ${deliveryAddress}`}
+			<Box sx={{ justifyContent: 'center', width: '20px' }}>
+				<FmdGoodOutlinedIcon sx={{mt:'20px'}} fontSize='small'/>
+			</Box>
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%' }}>
+				<Box sx={{ display: 'flex', height: '30px', width: 'auto', color: '#CCCCCC', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em' }}>
+					{t("topbar.Deliver-to")}
+				</Box>
+				<Box sx={{ display: 'flex', height: '30px', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+					<b>{loginContext.accessToken.length === 0 ?  t(" Santa Cruz, CA 95060") : deliveryAddress}</b>
+				</Box>
+			</Box>
 		</CustomButton>
 	)
 
@@ -293,11 +312,6 @@ export default function TopBar() {
 			MenuListProps={{
 				sx: customButtonStyles
 			}}
-			PaperProps={{
-				style: {
-					marginTop: '40px',
-				},
-			}}
 		>
 			<MenuItem>
 				{loginContext.accessToken.length === 0 && signInButton}
@@ -315,7 +329,7 @@ export default function TopBar() {
 			<MenuItem>
 				{cartButton}
 			</MenuItem>
-			</Menu>
+		</Menu>
 		</>
 	)
 
@@ -324,8 +338,8 @@ export default function TopBar() {
 			<StyledAppBar position="static">
 				<Toolbar>
 					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-						<Logo width={60} />
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'} }}>
+						<Logo width={60} style={{ padding: '5px' }}/>
+            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1 }}>
 						  {addressButton}
             </Box>
 						<Search>
@@ -339,7 +353,7 @@ export default function TopBar() {
 						</Search>
 					</Box>
 					<Box sx={{ display: { xs: 'none', sm: 'flex'} }}>
-					  <LanguageButton sx={{ ml: 2 }} variant='text' />
+					  <LanguageButton />
 						{loginContext.accessToken.length === 0 && signInButton}
 						{loginContext.accessToken.length > 0 && helloUsernameButton}
 						{orderHistoryButton}
