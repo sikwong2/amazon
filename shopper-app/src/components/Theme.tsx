@@ -294,7 +294,7 @@ export const dropdownTheme = createTheme(globalTheme, {
           backgroundColor: '#f0f2f2',
           border: '1px solid #ced4da',
           fontSize: 14,
-          padding: '0px 10px 0px 12px',
+          padding: '0px 8px 0px 8px',
           lineHeight: '2',
           '&:active': {
             outline: '3px solid #007185',
@@ -302,6 +302,10 @@ export const dropdownTheme = createTheme(globalTheme, {
             borderColor: '#d5d9d9',
             boxShadow: 'none',
           },
+          '& .MuiSvgIcon-root': {
+            position: 'static',
+            fontSize: '1rem'
+          }
         },
       },
     },
