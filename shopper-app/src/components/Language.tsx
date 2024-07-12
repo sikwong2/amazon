@@ -12,7 +12,7 @@ import CustomDivider from './Divider';
 import { radioButtonTheme } from './Theme';
 import CustomLink from './Link';
 
-export default function LanguageButton() {
+export default function LanguageButton({...rest}) {
   const router = useRouter();
   const { t } = useTranslation('common');
   const [selectedLanguage, setSelectedLanguage] = React.useState(router.locale === 'en' ? 'en' : 'zh');
@@ -32,8 +32,57 @@ export default function LanguageButton() {
     setAnchorEl(null);
   };
 
+  const handleClick = () => {
+    // TODO: link to change language page
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
+  const selectedLanguageButton = (
+    <>
+      {selectedLanguage === 'en' ? 
+        <US style={{ margin:'4px', height: '1.5em' }} title="United States" /> :
+        <CN style={{ margin:'4px', height: '1.5em' }} title="China" />
+      }
+      {selectedLanguage}
+      <ArrowDropDownIcon sx={{ height: '20px', width: '18px'}} />
+    </>
+  )
+
+  const languageSelector = (
+    <RadioGroup
+      value={selectedLanguage}
+      onChange={(e) => handleLanguageChange(e.target.value)}
+      aria-label="language-options"
+    >
+      <ThemeProvider theme={radioButtonTheme}>
+        <FormControlLabel 
+          value={'en'}
+          control={<Radio />}
+          label={'English - EN'}
+          aria-label={'English'}
+        />
+        <CustomDivider />
+        <FormControlLabel 
+          value={'zh'}
+          control={<Radio />}
+          label={'中文 - ZH'}
+          aria-label={'Chinese'}
+        />
+        <Box sx={{ pl: '31px' }}>
+          <CustomLink href={'/'} label={'learn-more'}>{t("language-button.learn-more")}</CustomLink>
+        </Box>
+        <CustomDivider sx={{mt: '11px', mb: '11px'}}/>
+        <Typography>
+          <US style={{ marginRight: 3, height: '0.8em' }} title="United States" /> {t("language-button.shopping-on-Amazon")}
+        </Typography>
+        <Typography sx={{ m: '10px 0px 0px 25px', pb: '7px' }}>
+          <CustomLink href='/' label='change-country'> {t("language-button.change-country")} </CustomLink>
+        </Typography>
+      </ThemeProvider>
+    </RadioGroup>
+  )
 
   return (
     <Box 
@@ -49,8 +98,8 @@ export default function LanguageButton() {
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup="true"
         aria-controls="radio-menu"
-        // onMouseEnter={handleOpen}
-        onClick={handleOpen}
+        onMouseEnter={handleOpen}
+        onClick={handleClick}
         fullWidth
         sx={{
           backgroundColor: '#131921',
@@ -61,13 +110,9 @@ export default function LanguageButton() {
             border: '1px solid white',
           }
         }}
+        {...rest}
       >
-        {selectedLanguage === 'en' ? 
-          <US style={{ margin:'4px', height: '1.5em' }} title="United States" /> :
-          <CN style={{ margin:'4px', height: '1.5em' }} title="China" />
-        }
-        {selectedLanguage}
-        <ArrowDropDownIcon sx={{ height: '20px', width: '18px'}} />
+        {selectedLanguageButton}
       </Button>
       <Popover
         id="language-selection-menu"
@@ -75,14 +120,15 @@ export default function LanguageButton() {
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
-        // onMouseLeave={handleClose}
-        // disableRestoreFocus
-        sx={{
-          // pointerEvents: 'none',
-        }}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
+        }}
+        slotProps={{  // PaperProps is deprecated
+          paper: {
+            onMouseEnter: () => setAnchorEl(anchorEl),
+            onMouseLeave: handleClose,
+          }
         }}
       >
         <Box 
@@ -94,37 +140,7 @@ export default function LanguageButton() {
               fontSize: '13px'
             }
           }}>
-        <RadioGroup
-            value={selectedLanguage}
-            onChange={(e) => handleLanguageChange(e.target.value)}
-            aria-label="language-options"
-          >
-            <ThemeProvider theme={radioButtonTheme}>
-              <FormControlLabel 
-                value={'en'}
-                control={<Radio />}
-                label={'English - EN'}
-                aria-label={'English'}
-              />
-              <CustomDivider />
-              <FormControlLabel 
-                value={'zh'}
-                control={<Radio />}
-                label={'中文 - ZH'}
-                aria-label={'Chinese'}
-              />
-              <Box sx={{ pl: '31px' }}>
-                <CustomLink href={'/'} label={'learn-more'}>{t("language-button.learn-more")}</CustomLink>
-              </Box>
-              <CustomDivider sx={{mt: '11px', mb: '11px'}}/>
-              <Typography>
-                <US style={{ marginRight: 3, height: '0.8em' }} title="United States" /> {t("language-button.shopping-on-amazon")}
-              </Typography>
-              <Typography sx={{ m: '10px 0px 0px 25px', pb: '7px' }}>
-                <CustomLink href='/' label='change-country'> {t("language-button.change-country")} </CustomLink>
-              </Typography>
-            </ThemeProvider>
-          </RadioGroup>
+          {languageSelector}
         </Box>
       </Popover>
     </Box>
