@@ -19,6 +19,7 @@ import { MemberInfo } from '@/graphql/member/schema';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+import CustomDropdown from './Dropdown';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -37,7 +38,7 @@ const Search = styled('div')(({ theme }) => ({
 	backgroundColor: 'white',
 	overflow: 'hidden',
 	marginRight: theme.spacing(2),
-	marginLeft: theme.spacing(2),
+	// marginLeft: theme.spacing(2),
 	flexGrow: 2,
 }));
 
@@ -61,7 +62,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	backgroundColor: '#f3a847',
+	backgroundColor: '#febd68',
 	cursor: 'pointer',
 	borderTopRightRadius: theme.shape.borderRadius,
 	borderBottomRightRadius: theme.shape.borderRadius,
@@ -195,31 +196,6 @@ export default function TopBar() {
 		}
 	}, [loginContext.accessToken]);
 
-	const signInButton = (
-		<CustomButton
-			style={customButtonStyles}
-			label='sign-in'
-			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
-			onClick={handleSignIn}
-			caps={false}>
-			{t("topbar.Sign-in")}
-		</CustomButton>
-	)
-
-	const helloUsernameButton = (
-		<CustomButton
-			style={customButtonStyles}
-			label='user'
-			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
-			onClick={handleSignOut}
-			caps={false}
-		>
-			{t("topbar.Hello") + " " + loginContext.userName}
-		</CustomButton>
-	)
-
 	const addressButton = (
 		<CustomButton
 			style={customButtonStyles}
@@ -249,6 +225,57 @@ export default function TopBar() {
 					<b>{loginContext.accessToken.length === 0 ?  t(" Santa Cruz, CA 95060") : deliveryAddress}</b>
 				</Box>
 			</Box>
+		</CustomButton>
+	)
+
+	const searchBar = (
+		<Box sx={{ display: 'flex', alignItems: 'center', position: 'relative', flexGrow: 2, }}>
+			<CustomDropdown 
+				label={'abc'} 
+				values={[]} 
+				selectedValue={'abc'} 
+				setSelectedValue={undefined} 
+				sx={{
+					height: '100%',
+					width: '64px',
+					left: 0,
+					display: 'flex',
+				}}
+			/>
+			<Search>
+				<SearchInput
+					placeholder={t("topbar.Search") as string}
+					inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+				/>
+				<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
+					<StyledSearchIcon fontSize='medium'/>
+				</SearchIconWrapper>
+			</Search>
+		</Box>
+	)
+
+	const signInButton = (
+		<CustomButton
+			style={customButtonStyles}
+			label='sign-in'
+			variant='text'
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			onClick={handleSignIn}
+			caps={false}>
+			{t("topbar.Sign-in")}
+		</CustomButton>
+	)
+
+	const helloUsernameButton = (
+		<CustomButton
+			style={customButtonStyles}
+			label='user'
+			variant='text'
+			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			onClick={handleSignOut}
+			caps={false}
+		>
+			{t("topbar.Hello") + " " + loginContext.userName}
 		</CustomButton>
 	)
 
@@ -342,15 +369,7 @@ export default function TopBar() {
             <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1 }}>
 						  {addressButton}
             </Box>
-						<Search>
-							<SearchInput
-								placeholder={t("topbar.Search") as string}
-								inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
-							/>
-							<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
-								<StyledSearchIcon />
-							</SearchIconWrapper>
-						</Search>
+						{searchBar}
 					</Box>
 					<Box sx={{ display: { xs: 'none', sm: 'flex'} }}>
 					  <LanguageButton />
