@@ -35,7 +35,7 @@ export default function CustomDropdown({
   return (
     <ThemeProvider theme={dropdownTheme}>
       <Box {...rest}>
-      <FormControl sx={{ minWidth: 'auto', width: 'auto', flexGrow: 1 }}>
+      <FormControl>
           <Select
             labelId={label}
             id={label}
@@ -45,7 +45,6 @@ export default function CustomDropdown({
             renderValue={() => variant==='label' ? `${label}: ${selectedValue}` : selectedValue}
             onChange={handleChange}
             input={<BootstrapInput />}
-            sx={{ minWidth: 'auto', width: 'auto', flexGrow: 1 }}
           >
             {values.map((value) => (
               <MenuItem key={value} value={value} aria-label='option'>
