@@ -42,6 +42,9 @@ const Search = styled('div')(({ theme }) => ({
 	flexShrink: 1,
 	marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(1),
+	'&:focus-within': {
+		outline: 'solid 3px #f90',
+	}
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
@@ -51,9 +54,6 @@ const SearchInput = styled(InputBase)(({ theme }) => ({
 		padding: theme.spacing(1),
 		transition: theme.transitions.create('width'),
 	},
-	// '&:active': {
-	// 	outline: '2px'
-	// }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -68,6 +68,12 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	cursor: 'pointer',
 	borderTopRightRadius: theme.shape.borderRadius,
 	borderBottomRightRadius: theme.shape.borderRadius,
+	'&:active': {
+		outline: 'solid 3px #f90',
+	},
+	'&:hover': {
+		backgroundColor: '#f3a847',
+	},
 }));
 
 const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
@@ -261,6 +267,9 @@ export default function TopBar() {
 							justifyContent: 'center',
 							alignItems: 'center',
 							flexGrow: 0,
+							'&:active': {
+								outline: 'solid 3px #f90',
+							},
 						},
 						'& .MuiInputBase-root': {
 							color: '#555',
