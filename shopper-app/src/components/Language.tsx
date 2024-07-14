@@ -45,8 +45,8 @@ export default function LanguageButton({...rest}) {
         <US style={{ margin:'4px', height: '1.5em' }} title="United States" /> :
         <CN style={{ margin:'4px', height: '1.5em' }} title="China" />
       }
-      {selectedLanguage}
-      <ArrowDropDownIcon sx={{ height: '20px', width: '18px'}} />
+      <b>{selectedLanguage}</b>
+      <ArrowDropDownIcon sx={{ height: '20px', width: '18px', color: '#a7acb2' }} />
     </>
   )
 
