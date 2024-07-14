@@ -16,6 +16,7 @@ interface CustomDropdownProps extends BoxProps {
   values: string[];
   selectedValue: string;
   setSelectedValue: any;
+  variant?: 'label' | 'noLabel';
 }
 
 export default function CustomDropdown({
@@ -23,8 +24,10 @@ export default function CustomDropdown({
   values,
   selectedValue,
   setSelectedValue,
+  variant='label',
   ...rest
 }: CustomDropdownProps) {
+  
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedValue(event.target.value as string);
   };
@@ -32,16 +35,17 @@ export default function CustomDropdown({
   return (
     <ThemeProvider theme={dropdownTheme}>
       <Box {...rest}>
-        <FormControl>
+      <FormControl sx={{ minWidth: 'auto', width: 'auto', flexGrow: 1 }}>
           <Select
             labelId={label}
             id={label}
             aria-label={label}
             defaultValue={values[0]}
             value={selectedValue}
-            renderValue={() => `${label}: ${selectedValue}`}
+            renderValue={() => variant==='label' ? `${label}: ${selectedValue}` : selectedValue}
             onChange={handleChange}
             input={<BootstrapInput />}
+            sx={{ minWidth: 'auto', width: 'auto', flexGrow: 1 }}
           >
             {values.map((value) => (
               <MenuItem key={value} value={value} aria-label='option'>
