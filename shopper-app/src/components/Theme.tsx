@@ -288,6 +288,7 @@ export const dropdownTheme = createTheme(globalTheme, {
       styleOverrides: {
         root: {
           width: '100%',
+          height: '100%',
           marginBottom: 8,
           borderRadius: 8,
           position: 'relative',
