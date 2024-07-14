@@ -1,3 +1,5 @@
+// source: https://mui.com/material-ui/react-app-bar/#app-bar-with-search-field
+
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
@@ -32,25 +34,23 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 const Search = styled('div')(({ theme }) => ({
 	display: 'flex',
-	alignItems: 'center',
 	position: 'relative',
 	borderRadius: theme.shape.borderRadius,
 	backgroundColor: 'white',
 	overflow: 'hidden',
-	marginRight: theme.spacing(2),
-	// marginLeft: theme.spacing(2),
 	flexGrow: 2,
+	flexShrink: 1,
+	marginLeft: theme.spacing(1),
+	marginRight: theme.spacing(1),
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
 	color: 'black',
 	width: '100%',
+	flexGrow: 1,
 	'& .MuiInputBase-input': {
 		padding: theme.spacing(1),
-		paddingLeft: theme.spacing(2),
-		paddingRight: `calc(0.5em + ${theme.spacing(2)})`,
 		transition: theme.transitions.create('width'),
-		width: '100%',
 	},
 }));
 
@@ -70,6 +70,15 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
 	color: 'black',
+}));
+
+const CategoryDropdownWrapper = styled('div')(({ theme }) => ({
+	height: '38px',
+	left: 0,
+	display: 'flex',
+	backgroundColor: '#febd68',
+	cursor: 'pointer',
+	flexGrow: 0,
 }));
 
 const customButtonStyles: React.CSSProperties = {
@@ -230,24 +239,46 @@ export default function TopBar() {
 
 	const searchBar = (
 		<Box sx={{ display: 'flex', alignItems: 'center', position: 'relative', flexGrow: 2, }}>
-			<CustomDropdown 
-				label={'abc'} 
-				values={[]} 
-				selectedValue={'abc'} 
-				setSelectedValue={undefined} 
-				sx={{
-					height: '100%',
-					width: '64px',
-					left: 0,
-					display: 'flex',
-				}}
-			/>
 			<Search>
+				<CategoryDropdownWrapper>
+					<CustomDropdown 
+						label={'category'} 
+						variant='noLabel'
+						values={[]} 
+						selectedValue={'All'} 
+						setSelectedValue={undefined}
+						sx={{
+							display: 'flex',
+							flexGrow: 0,
+							'& .MuiFormControl-root': {
+								borderTopRightRadius: 0,
+								borderBottomRightRadius: 0,
+								borderTopLeftRadius: 'inherit',
+								borderBottomLeftRadius: 'inherit',
+								padding: '0px 4px 0px 4px',
+								justifyContent: 'center',
+								alignItems: 'center',
+								flexGrow: 0,
+							},
+							'& .MuiInputBase-root': {
+								color: '#555',
+								flexGrow: 0,
+								maxWidth: '300px',
+								overflow: 'hidden',
+								textOverflow: 'clip',
+							},
+							'& .MuiSelect-select.MuiInputBase-input': {
+								px: '4px',
+							},
+						}}
+					/>
+				</CategoryDropdownWrapper>
 				<SearchInput
 					placeholder={t("topbar.Search") as string}
 					inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+					sx={{ flexGrow: 1 }}
 				/>
-				<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
+				<SearchIconWrapper aria-label='search-icon'>
 					<StyledSearchIcon fontSize='medium'/>
 				</SearchIconWrapper>
 			</Search>
