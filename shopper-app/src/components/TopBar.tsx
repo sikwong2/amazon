@@ -40,18 +40,20 @@ const Search = styled('div')(({ theme }) => ({
 	overflow: 'hidden',
 	flexGrow: 2,
 	flexShrink: 1,
-	marginLeft: theme.spacing(1),
+	marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(1),
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
-	color: 'black',
 	width: '100%',
 	flexGrow: 1,
 	'& .MuiInputBase-input': {
 		padding: theme.spacing(1),
 		transition: theme.transitions.create('width'),
 	},
+	// '&:active': {
+	// 	outline: '2px'
+	// }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -98,6 +100,7 @@ export default function TopBar() {
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
+	const [category, setCategory] = useState('All');	// TODO: make this a context??
 
 	const router = useRouter();
 
@@ -238,51 +241,49 @@ export default function TopBar() {
 	)
 
 	const searchBar = (
-		<Box sx={{ display: 'flex', alignItems: 'center', position: 'relative', flexGrow: 2, }}>
-			<Search>
-				<CategoryDropdownWrapper>
-					<CustomDropdown 
-						label={'category'} 
-						variant='noLabel'
-						values={[]} 
-						selectedValue={'All'} 
-						setSelectedValue={undefined}
-						sx={{
-							display: 'flex',
+		<Search>
+			<CategoryDropdownWrapper>
+				<CustomDropdown 
+					label={'category'} 
+					variant='noLabel'
+					values={[]}  // TODO: get all categories from DB 
+					selectedValue={category} 
+					setSelectedValue={setCategory}
+					sx={{
+						display: 'flex',
+						flexGrow: 0,
+						'& .MuiFormControl-root': {
+							borderTopRightRadius: 0,
+							borderBottomRightRadius: 0,
+							borderTopLeftRadius: 'inherit',
+							borderBottomLeftRadius: 'inherit',
+							padding: '0px 4px 0px 4px',
+							justifyContent: 'center',
+							alignItems: 'center',
 							flexGrow: 0,
-							'& .MuiFormControl-root': {
-								borderTopRightRadius: 0,
-								borderBottomRightRadius: 0,
-								borderTopLeftRadius: 'inherit',
-								borderBottomLeftRadius: 'inherit',
-								padding: '0px 4px 0px 4px',
-								justifyContent: 'center',
-								alignItems: 'center',
-								flexGrow: 0,
-							},
-							'& .MuiInputBase-root': {
-								color: '#555',
-								flexGrow: 0,
-								maxWidth: '300px',
-								overflow: 'hidden',
-								textOverflow: 'clip',
-							},
-							'& .MuiSelect-select.MuiInputBase-input': {
-								px: '4px',
-							},
-						}}
-					/>
-				</CategoryDropdownWrapper>
-				<SearchInput
-					placeholder={t("topbar.Search") as string}
-					inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
-					sx={{ flexGrow: 1 }}
+						},
+						'& .MuiInputBase-root': {
+							color: '#555',
+							flexGrow: 0,
+							maxWidth: '300px',
+							overflow: 'hidden',
+							textOverflow: 'clip',
+						},
+						'&& .MuiSelect-select.MuiSelect-select': {
+							px:'4px'
+						},
+					}}
 				/>
-				<SearchIconWrapper aria-label='search-icon'>
-					<StyledSearchIcon fontSize='medium'/>
-				</SearchIconWrapper>
-			</Search>
-		</Box>
+			</CategoryDropdownWrapper>
+			<SearchInput
+				placeholder={t("topbar.Search") as string}
+				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+				sx={{ flexGrow: 1 }}
+			/>
+			<SearchIconWrapper aria-label='search-icon'>
+				<StyledSearchIcon fontSize='medium'/>
+			</SearchIconWrapper>
+		</Search>
 	)
 
 	const signInButton = (
