@@ -229,8 +229,9 @@ export default function TopBar() {
 				p: 0,
 				'&:hover': {
 					backgroundColor: '#131921',
-					border: '1px solid white',
+					outline: '1px solid white',
 					borderRadius: '2px',
+					border: 'none'
 				},
 			}}
 		>
@@ -311,8 +312,9 @@ export default function TopBar() {
 				border: 'none',
 				'&:hover': {
 					backgroundColor: '#131921',
-					border: '1px solid white',
+					outline: '1px solid white',
 					borderRadius: '2px',
+					border: 'none'
 				},
 			}}
 			onClick={handleSignIn}
@@ -344,8 +346,9 @@ export default function TopBar() {
 				border: 'none',
 				'&:hover': {
 					backgroundColor: '#131921',
-					border: '1px solid white',
+					outline: '1px solid white',
 					borderRadius: '2px',
+					border: 'none'
 				},
 			}}
 			onClick={handleSignOut}
@@ -379,8 +382,9 @@ export default function TopBar() {
 				p: '0px 9px 10px 9px',
 				'&:hover': {
 					backgroundColor: '#131921',
-					border: '1px solid white',
+					outline: '1px solid white',
 					borderRadius: '2px',
+					border: 'none'
 				},
 			}}
 			onClick={handleOrders}
@@ -403,6 +407,7 @@ export default function TopBar() {
 	)
 
 	const cartButton = (
+		<>
 		<CustomButton 
 			style={customButtonStyles} 
 			label='cart' 
@@ -429,6 +434,7 @@ export default function TopBar() {
 				<span style={{ marginLeft: 8 }}>{t("topbar.Cart")}</span>
 			</div>
 		</CustomButton>
+		</>	
 	)
 
 	const menuButton = (
