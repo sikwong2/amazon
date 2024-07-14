@@ -303,6 +303,9 @@ export const dropdownTheme = createTheme(globalTheme, {
             borderColor: '#d5d9d9',
             boxShadow: 'none',
           },
+          '&:hover': {
+            backgroundColor: '#cdcdcd',
+          },
           '& .MuiSvgIcon-root': {
             position: 'static',
             fontSize: '1rem'
