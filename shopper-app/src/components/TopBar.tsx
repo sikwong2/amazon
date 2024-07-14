@@ -1,31 +1,32 @@
 // source: https://mui.com/material-ui/react-app-bar/#app-bar-with-search-field
 
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import AppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Logo from './Logo';
-import LanguageButton from './Language';
-import CustomButton from './Button';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { useTranslation } from 'next-i18next';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useRouter } from 'next/router';
-import { LoginContext } from '../context/Login';
-import { useSearch } from '../context/SearchContext';
+import { Menu, MenuItem, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { LoginContext } from '@/context/Login';
+import { useSearch } from '@/context/SearchContext';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Menu, MenuItem } from '@mui/material';
-import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import CustomDropdown from './Dropdown';
+import Logo from './Logo';
+import LanguageButton from './Language';
+import CustomButton from './Button';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	height: '60px',
+	// height: '60px',
 	backgroundColor: '#131921',
 	'& .MuiToolbar-root': {
 		padding: 0,
@@ -223,24 +224,30 @@ export default function TopBar() {
 			caps={false}
 			disabled={loginContext.accessToken.length > 0}
 			sx={{
-				width: '150px', 
+				width: {xs: '100%', sm: 'auto'}, 
 				height: '60px',
-				whiteSpace: 'normal',
+				whiteSpace: 'nowrap',
 				textOverflow: 'ellipsis',
 				border: 'none',
 				alignItems: 'stretch',
 				p: 0,
+				'&:hover': {
+					backgroundColor: '#131921',
+					border: '1px solid white',
+				}
 			}}
 		>
 			<Box sx={{ justifyContent: 'center', width: '20px' }}>
 				<FmdGoodOutlinedIcon sx={{mt:'20px'}} fontSize='small'/>
 			</Box>
 			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%' }}>
-				<Box sx={{ display: 'flex', height: '30px', width: 'auto', color: '#CCCCCC', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', color: '#CCCCCC', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em' }}>
 					{t("topbar.Deliver-to")}
 				</Box>
-				<Box sx={{ display: 'flex', height: '30px', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
-					<b>{loginContext.accessToken.length === 0 ?  t(" Santa Cruz, CA 95060") : deliveryAddress}</b>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1'>
+						{loginContext.accessToken.length === 0 ?  'Santa Cruz, CA 95060' : deliveryAddress}
+					</Typography>
 				</Box>
 			</Box>
 		</CustomButton>
@@ -274,7 +281,7 @@ export default function TopBar() {
 						'& .MuiInputBase-root': {
 							color: '#555',
 							flexGrow: 0,
-							maxWidth: '300px',
+							maxWidth: '20vh',
 							overflow: 'hidden',
 							textOverflow: 'clip',
 						},
@@ -289,7 +296,7 @@ export default function TopBar() {
 				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
 				sx={{ flexGrow: 1 }}
 			/>
-			<SearchIconWrapper aria-label='search-icon'>
+			<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
 				<StyledSearchIcon fontSize='medium'/>
 			</SearchIconWrapper>
 		</Search>
@@ -300,23 +307,66 @@ export default function TopBar() {
 			style={customButtonStyles}
 			label='sign-in'
 			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				height: '60px',
+				border: 'none',
+				p: '0px 9px 0px 9px',
+				'&:hover': {
+					backgroundColor: '#131921',
+					border: '1px solid white',
+					borderRadius: '2px',
+				},
+			}}
 			onClick={handleSignIn}
-			caps={false}>
-			{t("topbar.Sign-in")}
+			caps={false}
+		>
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em', }}>
+					{t("topbar.Hello") + ", " + t("topbar.Sign-in")}
+				</Box>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.03em'>
+						{t("topbar.Account")}
+					</Typography>
+					<ArrowDropDownIcon sx={{ height: '20px', width: '18px', color: '#a7acb2' }} />
+				</Box>
+			</Box>
 		</CustomButton>
 	)
 
 	const helloUsernameButton = (
 		<CustomButton
 			style={customButtonStyles}
-			label='user'
+			label='sign-out'
 			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				height: '60px',
+				border: 'none',
+				p: '0px 9px 0px 9px',
+				'&:hover': {
+					backgroundColor: '#131921',
+					border: '1px solid white',
+					borderRadius: '2px',
+				},
+			}}
 			onClick={handleSignOut}
 			caps={false}
 		>
-			{t("topbar.Hello") + " " + loginContext.userName}
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', mb: 0.5, }}>
+					<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
+						{t("topbar.Hello") + ", " + loginContext.userName}
+					</Typography>
+				</Box>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
+						{t("topbar.Account")}
+					</Typography>
+					<ArrowDropDownIcon sx={{ height: '20px', width: '18px', color: '#a7acb2' }} />
+				</Box>
+			</Box>
 		</CustomButton>
 	)
 
@@ -407,12 +457,12 @@ export default function TopBar() {
 				<Toolbar>
 					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
 						<Logo width={60} style={{ padding: '5px' }}/>
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1 }}>
+            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '25vh' }}>
 						  {addressButton}
             </Box>
 						{searchBar}
 					</Box>
-					<Box sx={{ display: { xs: 'none', sm: 'flex'} }}>
+					<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
 					  <LanguageButton />
 						{loginContext.accessToken.length === 0 && signInButton}
 						{loginContext.accessToken.length > 0 && helloUsernameButton}
