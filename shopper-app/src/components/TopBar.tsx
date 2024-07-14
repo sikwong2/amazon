@@ -184,9 +184,7 @@ export default function TopBar() {
 		try {
 			const response = await fetchUserInfo(loginContext.id);
 			if (response) {
-				if (response.address.length > 15) {
-					setDeliveryAddress(response.address.substring(0, 15) + '...')
-				} else if (response.address.length === 0) {
+				if (response.address.length === 0) {
 					setDeliveryAddress('Santa Cruz, CA 95060');
 				} else {
 					setDeliveryAddress(response.address);
@@ -225,16 +223,15 @@ export default function TopBar() {
 			disabled={loginContext.accessToken.length > 0}
 			sx={{
 				width: {xs: '100%', sm: 'auto'}, 
-				height: '60px',
-				whiteSpace: 'nowrap',
-				textOverflow: 'ellipsis',
-				border: 'none',
 				alignItems: 'stretch',
+				height: '60px',
+				border: 'none',
 				p: 0,
 				'&:hover': {
 					backgroundColor: '#131921',
 					border: '1px solid white',
-				}
+					borderRadius: '2px',
+				},
 			}}
 		>
 			<Box sx={{ justifyContent: 'center', width: '20px' }}>
@@ -309,9 +306,9 @@ export default function TopBar() {
 			variant='text'
 			sx={{ 
 				width: {xs: '100%', sm: 'auto'}, 
+				p: '0px 9px 10px 9px',
 				height: '60px',
 				border: 'none',
-				p: '0px 9px 0px 9px',
 				'&:hover': {
 					backgroundColor: '#131921',
 					border: '1px solid white',
@@ -329,7 +326,7 @@ export default function TopBar() {
 					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.03em'>
 						{t("topbar.Account")}
 					</Typography>
-					<ArrowDropDownIcon sx={{ height: '20px', width: '18px', color: '#a7acb2' }} />
+					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
 				</Box>
 			</Box>
 		</CustomButton>
@@ -342,9 +339,9 @@ export default function TopBar() {
 			variant='text'
 			sx={{ 
 				width: {xs: '100%', sm: 'auto'}, 
+				p: '0px 9px 10px 9px',
 				height: '60px',
 				border: 'none',
-				p: '0px 9px 0px 9px',
 				'&:hover': {
 					backgroundColor: '#131921',
 					border: '1px solid white',
@@ -355,32 +352,54 @@ export default function TopBar() {
 			caps={false}
 		>
 			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', mb: 0.5, }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', }}>
 					<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
 						{t("topbar.Hello") + ", " + loginContext.userName}
 					</Typography>
 				</Box>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
 					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
 						{t("topbar.Account")}
 					</Typography>
-					<ArrowDropDownIcon sx={{ height: '20px', width: '18px', color: '#a7acb2' }} />
+					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
 				</Box>
 			</Box>
 		</CustomButton>
 	)
 
-	const orderHistoryButton = (
+	const orderHistoryButton = (		
 		<CustomButton
 			style={customButtonStyles}
 			label='orders'
 			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				height: '60px',
+				border: 'none',
+				p: '0px 9px 10px 9px',
+				'&:hover': {
+					backgroundColor: '#131921',
+					border: '1px solid white',
+					borderRadius: '2px',
+				},
+			}}
 			onClick={handleOrders}
 			caps={false}
 		>
-			{t("topbar.Orders")}
-		</CustomButton>
+		<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '10vh', pt: '10px' }}>
+			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
+				<Typography variant='body2' noWrap lineHeight='1' letterSpacing='0.03em' fontSize='0.85em'>
+					{/* {t("topbar.Returns")} */}
+					Returns
+				</Typography>
+			</Box>
+			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+				<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.03em'>
+					{'& ' + t("topbar.Orders")}
+				</Typography>
+			</Box>
+		</Box>
+	</CustomButton>
 	)
 
 	const cartButton = (
@@ -457,7 +476,7 @@ export default function TopBar() {
 				<Toolbar>
 					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
 						<Logo width={60} style={{ padding: '5px' }}/>
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '25vh' }}>
+            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
 						  {addressButton}
             </Box>
 						{searchBar}
