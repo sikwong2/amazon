@@ -318,11 +318,13 @@ export default function TopBar() {
 			caps={false}
 		>
 			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em', }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
+				<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
 					{t("topbar.Hello") + ", " + t("topbar.Sign-in")}
+				</Typography>
 				</Box>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
-					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.03em'>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
 						{t("topbar.Account")}
 					</Typography>
 					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
