@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
@@ -26,7 +25,6 @@ import CustomButton from './Button';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	// height: '60px',
 	backgroundColor: '#131921',
 	'& .MuiToolbar-root': {
 		padding: 0,
@@ -133,7 +131,6 @@ export default function TopBar() {
 	}
 
 	const handleOrders = () => {
-		// set page context to order history
 		pageContext.setPage('orderHistory');
 		router.push('/');
 	};
@@ -493,7 +490,18 @@ export default function TopBar() {
 			<StyledAppBar position="static">
 				<Toolbar>
 					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-						<Logo width={60} style={{ padding: '5px' }}/>
+						<Logo 
+							width={60} 
+							sx={{ 
+								padding: '5px',
+								'&:hover': {
+									backgroundColor: '#131921',
+									outline: '1px solid white',
+									borderRadius: '2px',
+									border: 'none'
+								},
+							}}
+						/>
             <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
 						  {addressButton}
             </Box>
