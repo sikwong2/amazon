@@ -393,8 +393,7 @@ export default function TopBar() {
 		<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '10vh', pt: '10px' }}>
 			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
 				<Typography variant='body2' noWrap lineHeight='1' letterSpacing='0.03em' fontSize='0.85em'>
-					{/* {t("topbar.Returns")} */}
-					Returns
+					{t("topbar.Returns")}
 				</Typography>
 			</Box>
 			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
@@ -408,32 +407,45 @@ export default function TopBar() {
 
 	const cartButton = (
 		<>
-		<CustomButton 
-			style={customButtonStyles} 
-			label='cart' 
-			variant='text' 
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }} 
-			onClick={handleCart}
-		>
-			<div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-				<ShoppingCartIcon style={{ fontSize: 30 }} />
-				<div style={{
-					position: "absolute",
-					top: "36%",
-					left: "22%",
-					transform: "translate(-50%, -50%)",
-					color: '#FFA41C',
-					fontWeight: "bold",
-					fontSize: 11,
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}>
-					{numberOfItems}
-				</div>
-				<span style={{ marginLeft: 8 }}>{t("topbar.Cart")}</span>
-			</div>
-		</CustomButton>
+			<CustomButton
+				style={customButtonStyles}
+				label='cart'
+				variant='text'
+				sx={{ 
+					width: {xs: '100%', sm: 'auto'}, 
+					height: '60px',
+					border: 'none',
+					p: '0px 9px 0px 9px',
+					'&:hover': {
+						backgroundColor: '#131921',
+						outline: '1px solid white',
+						borderRadius: '2px',
+						border: 'none'
+					},
+				}}
+				onClick={handleCart}
+				caps={false}
+			>
+				<Box sx={{ position: "static", display: "flex", alignItems: "center" }}>
+					<img src='https://i.ibb.co/jkRff7g/cart.png' alt='cart' height='26px' width='32px'/>
+					<Box sx={{
+						position: "absolute",
+						transform: "translate(9px, -4px)",
+						color: '#F08804',
+						fontWeight: "bold",
+						fontSize: '10px',
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						width: '20px',
+					}}>
+						{numberOfItems >= 100 ? '99+' : numberOfItems}
+					</Box>
+					<Typography component='span' fontSize='1em' fontWeight='bold' sx={{ pt: '15px' }} >
+						{t("topbar.Cart")}
+					</Typography>
+				</Box>
+			</CustomButton>
 		</>	
 	)
 
