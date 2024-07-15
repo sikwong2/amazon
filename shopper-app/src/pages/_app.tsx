@@ -8,6 +8,7 @@ import { LoginProvider } from "@/context/Login";
 import { CartProvider } from "@/context/Cart";
 import { PageProvider } from "@/context/Page";
 import { SearchProvider } from '@/context/SearchContext';
+import { BrowserHistoryProvider } from "@/context/BrowserHistory";
 
 const theme = createTheme({
   typography: {
@@ -22,7 +23,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <SearchProvider>
           <PageProvider>
             <CartProvider>
-              <Component {...pageProps} />
+              <BrowserHistoryProvider>
+                <Component {...pageProps} />
+              </BrowserHistoryProvider>
             </CartProvider>
           </PageProvider>
         </SearchProvider>

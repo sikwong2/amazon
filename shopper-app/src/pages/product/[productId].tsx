@@ -22,6 +22,7 @@ import TopBar from '@/components/TopBar';
 import { PageContext } from '@/context/Page';
 import RandomDeliveryDate from '@/components/DeliveryDate';
 import { LoginContext } from '@/context/Login';
+import { BrowserHistoryContext } from '@/context/BrowserHistory';
 
 interface Product {
   name: string;
@@ -104,6 +105,14 @@ export default function Product({ product }: ProductProp) {
   const router = useRouter();
   const { productId } = router.query;
   const { accessToken } = useContext(LoginContext);
+  const { productHistory, addProductToHistory} = useContext(BrowserHistoryContext);
+
+  React.useEffect(() => {
+    if (productId) {
+      addProductToHistory(productId as string);
+      console.log(productHistory);
+    }
+  }, [productId]);
 
   const handleSetValue = (value: string) => {
     setQuantity(parseInt(value));
