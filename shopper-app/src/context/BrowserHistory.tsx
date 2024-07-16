@@ -20,14 +20,12 @@ export const BrowserHistoryProvider = ({children}:  PropsWithChildren<{}>) => {
       const storedHistory = sessionStorage.getItem('productHistory');
       setProductHistory(storedHistory ? JSON.parse(storedHistory) : []);
     }
-  }, [isBrowser]);
+  }, []);
 
   const addProductToHistory = (product: string) => {
     const updatedHistory = [...productHistory, product];
     setProductHistory(updatedHistory);
-    if (isBrowser) {
-      sessionStorage.setItem('productHistory', JSON.stringify(updatedHistory));
-    }
+    sessionStorage.setItem('productHistory', JSON.stringify(updatedHistory));
   }
 
   return (
