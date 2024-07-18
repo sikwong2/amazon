@@ -16,6 +16,7 @@ export interface Member {
   name: string;
   role: Role;
   status: boolean;
+  
 }
 
 // getting member info for pages like checkout
@@ -26,3 +27,10 @@ export interface MemberInfo {
 
 // can only be shopper or vendor
 export type Role = 'shopper' | 'vendor';
+
+export interface BrowserHistoryEntry {
+  id: UUID,
+  accountId: UUID,
+  productId: UUID,
+  timestamp: Date
+}
