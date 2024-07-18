@@ -47,7 +47,7 @@ export class MemberService {
           resolve(member);
         })
         .catch((err) => {
-          reject(new Error('Google Account already exists (service.ts)'));
+          reject(new Error('Google Account already exists (service.ts from graphql)'));
         });
     });
   }

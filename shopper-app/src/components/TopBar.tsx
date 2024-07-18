@@ -127,6 +127,7 @@ export default function TopBar() {
 	};
 
 	const fetchUserInfo = async (memberId: string): Promise<MemberInfo | undefined> => {
+		console.log(`this is the memberID ${memberId}`);
 		try {
 			const query = {
 				query: `query getMemberInfo {

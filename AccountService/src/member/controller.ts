@@ -16,6 +16,7 @@ import { MemberService } from './service';
 import { query } from 'express';
 import { access } from 'fs';
 import { MemberInfo } from '.';
+import { MemberInputGoogleOauth } from '.';
 
 @Route('account')
 export class MemberController extends Controller {
@@ -27,6 +28,20 @@ export class MemberController extends Controller {
       .create(memberinput)
       .then(async (response: Member | undefined): Promise<Member | undefined> => {
         if (response === undefined) {
+          this.setStatus(409);
+        }
+        return response;
+      });
+  }
+
+  @Post('createGoogleAccount')
+  @Response('409', 'Account Exists')
+  @SuccessResponse('201', 'Google Oauth Account Created')
+  public async createGoogleOauthAccount(@Body() memberInputGoogleOauth: MemberInputGoogleOauth): Promise<Member | undefined> {
+    return new MemberService()
+      .createWithId(memberInputGoogleOauth)
+      .then(async (response: Member | undefined): Promise<Member | undefined> => {
+        if (response === undefined){
           this.setStatus(409);
         }
         return response;

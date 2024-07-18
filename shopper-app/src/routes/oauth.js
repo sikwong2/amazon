@@ -33,7 +33,7 @@ router.get('/', async function (req, res, next) {
     // Call GraphQL mutation to create Google account
     const googleInput = {
       name: userData.name,
-      id: userData.sub,
+      googleId: userData.sub,
       email: userData.email, 
       role: 'shopper',
     };
@@ -48,7 +48,7 @@ router.get('/', async function (req, res, next) {
           mutation CreateGoogleAccount($input: NewGoogleAccount!) {
             createGoogleAccount(input: $input) {
               name
-              id 
+              googleId 
               email
               role
             }

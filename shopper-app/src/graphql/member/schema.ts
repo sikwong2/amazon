@@ -22,7 +22,7 @@ export class MemberRequest {
 @InputType('NewGoogleAccount')
 export class GoogleMemberRequest {
   @Field()
-  id!: string;
+  googleId!: string;
   @Field()
   name!: string;
   @Field()

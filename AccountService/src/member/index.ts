@@ -9,6 +9,13 @@ export interface MemberInput {
   role: Role;
 }
 
+export interface MemberInputGoogleOauth {
+  googleId: string;
+  name: string;
+  email: Email;
+  role: Role;
+}
+
 // returned from member service
 export interface Member {
   id: UUID;

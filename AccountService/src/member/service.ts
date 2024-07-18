@@ -4,10 +4,13 @@ import { pool } from '../db';
 import { AccountService } from '../auth/service';
 import { Role } from '.';
 import { MemberInfo } from '.';
+import { MemberInputGoogleOauth } from '.';
+
+type MemberInputUnion = MemberInput | MemberInputGoogleOauth;
 
 export class MemberService {
   // checks if member existing from email before creating account
-  private async find(memberinput: MemberInput): Promise<boolean> {
+  private async find(memberinput: MemberInputUnion): Promise<boolean> {
     let select =
       ` SELECT jsonb_build_object('id', id, 'name', data->>'name', 'role', data->>'role')` +
       ` AS account FROM account` +
@@ -136,5 +139,32 @@ export class MemberService {
     returnObj.name = rows[0].accountinfo.name;
     returnObj.address = rows[0].accountinfo.address;
     return returnObj;
+  }
+
+  public async createWithId(memberInputGoogleOauth: MemberInputGoogleOauth): Promise<Member | undefined> {
+    try {
+      let insert = `INSERT INTO account(data) VALUES (
+      jsonb_build_object(
+        'googleId', $1::varchar,
+        'email', $2::varchar,
+        'name', $3::varchar,
+        'role', $4::varchar,
+        'address', 'no google address'
+      )::jsonb
+    )
+    RETURNING id, data->>'name' as name, data->>'email' as email, data->>'role' as role, data->>'address' as address`;
+
+      const query = {
+        text: insert,
+        values: [memberInputGoogleOauth.googleId, memberInputGoogleOauth.email, memberInputGoogleOauth.name, memberInputGoogleOauth.role],
+      };
+
+      console.log(`ID TO INSERT INTO POSTGRES: ${memberInputGoogleOauth.googleId}`);
+      const { rows } = await pool.query(query);
+      return rows[0];
+    } catch (error) {
+      console.error('Error inserting into Postgres:', error);
+      throw error; 
+    }
   }
 }
