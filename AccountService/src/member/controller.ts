@@ -86,9 +86,15 @@ export class MemberController extends Controller {
   @Get('{memberId}/browser-history')
   @Response('400', 'Bad Request')
   @SuccessResponse('200', 'Good')
-  public async getBrowserHistory(@Path('memberId') memberId: UUID): Promise<BrowserHistoryEntry[] | undefined> {
+  public async getBrowserHistory(
+    @Path('memberId') memberId: UUID,
+    @Query('size') size?: number,
+    @Query('page') page?: number
+  ): Promise<BrowserHistoryEntry[] | undefined> {
+    const p: number = page ? (page - 1) : 0;
+    const s: number = size ? size : 4;
     return new MemberService()
-      .getBrowserHistory(memberId)
+      .getBrowserHistory(memberId, s, p)
       .then(async (response: BrowserHistoryEntry[] | undefined): Promise<BrowserHistoryEntry[] | undefined> => {
         if (response == undefined) {
           this.setStatus(404);
@@ -119,12 +125,11 @@ export class MemberController extends Controller {
   @SuccessResponse('200', 'Deleted')
   public async deleteBrowserHistory(
     @Path('memberId') memberId: UUID,
-    @Query() date: Date
-  ): Promise <boolean> {
+    @Query() date?: Date
+  ): Promise <BrowserHistoryEntry[]> {
+    const t = new Date();
+    const timestamp = date ? date : t;
     return new MemberService()
-      .deleteBrowserHistory(memberId, date)
-      .then(async (response: boolean): Promise <boolean> => {
-        return response;
-      })
+      .deleteBrowserHistory(memberId, timestamp);
   }
 }

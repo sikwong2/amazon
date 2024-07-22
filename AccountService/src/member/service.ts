@@ -141,11 +141,11 @@ export class MemberService {
 
 
   // gets the 4 most recent products viewed by user
-  public async getBrowserHistory(memberId: UUID): Promise<BrowserHistoryEntry[] | undefined> {
-    let select = `SELECT * FROM history WHERE account_id = $1 ORDER BY timestamp DESC LIMIT 4`;
+  public async getBrowserHistory(memberId: UUID, size: number, page: number): Promise<BrowserHistoryEntry[] | undefined> {
+    let select = `SELECT * FROM history WHERE account_id = $1 ORDER BY timestamp DESC LIMIT $2 OFFSET $3`;
     const query = {
       text: select,
-      values: [memberId]
+      values: [memberId, size, `${page * size}`]
     };
     const {rows} = await pool.query(query);
     return rows;
@@ -163,13 +163,13 @@ export class MemberService {
   }
 
   // deletes browser history based on timestamp
-  public async deleteBrowserHistory(memberId: UUID, date: Date): Promise<boolean> {
-    const select = `DELETE FROM history WHERE account_id = $1 AND timestamp < $2 RETURNING *`;
+  public async deleteBrowserHistory(memberId: UUID, date: Date): Promise<BrowserHistoryEntry[]> {
+    const select = `DELETE FROM history WHERE account_id = $1 AND timestamp <= $2 RETURNING *`;
     const query = {
       text: select,
       values: [memberId, date.toISOString()]
     }
     const {rows} = await pool.query(query);
-    return rows.length > 0;
+    return rows;
   }
 }

@@ -28,8 +28,8 @@ export interface MemberInfo {
 // can only be shopper or vendor
 export type Role = 'shopper' | 'vendor';
 
+// returned from browser history get 
 export interface BrowserHistoryEntry {
-  id: UUID,
   accountId: UUID,
   productId: UUID,
   timestamp: Date
