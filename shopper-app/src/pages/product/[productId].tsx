@@ -150,11 +150,8 @@ export default function Product({ product }: ProductProp) {
     const fetchBrowserHistory = async () => {
       try {
         if (accessToken === '') {
-          console.log('not logged in adding to browser context');
           addProductToHistory(productId as string);
-          console.log('Product history:', productHistory);
         } else if (accessToken !== '') {
-          console.log('logged in adding to database');
           await addBrowserHistory(id, productId as string);
         }
       } catch(e) {

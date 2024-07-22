@@ -143,7 +143,6 @@ const fetchProduct = async (productId: string): Promise<Product> => {
 
 const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEntry]> => {
   try {
-    console.log(memberId);
     const query = {
       query: `
         query getBrowserHistory {
@@ -163,7 +162,6 @@ const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEnt
       },
     });
     const json = await res.json();
-    console.log(json);
     if (json.errors) {
       console.error(json.errors[0].message);
       throw new Error(json.errors[0].message);
@@ -220,7 +218,6 @@ export function Home() {
           );
           setBrowserHistoryImages(historyImages);
         } else if (loginContext.id != '') {
-          console.log(loginContext.id);
           const historyEntries = await fetchBrowserHistory(loginContext.id);
           const historyImages = await Promise.all(
             historyEntries.map(async (entry) => {
