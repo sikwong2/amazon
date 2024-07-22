@@ -16,6 +16,7 @@ import { Product } from '@/graphql/product/schema';
 import { RedirectNonShopper } from './RedirectNonShopper';
 import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
+import { BrowserHistoryEntry } from '@/graphql/member/schema';
 
 const advertisements: Image[] = [
   {
@@ -140,6 +141,40 @@ const fetchProduct = async (productId: string): Promise<Product> => {
   }
 }
 
+const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEntry]> => {
+  try {
+    console.log(memberId);
+    const query = {
+      query: `
+        query getBrowserHistory {
+          getBrowserHistory(
+            memberId: "${memberId}"
+          ) {
+            product_id
+          }
+        }
+      `
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    console.log(json);
+    if (json.errors) {
+      console.error(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.getBrowserHistory;
+  } catch (e) {
+    console.log(e);
+    throw new Error('');
+  }
+}
+
 // outer container of ads / cards once signed in
 // carosoul component
 // card of category component
@@ -171,13 +206,28 @@ export function Home() {
           }));
         }
         
-        if (productHistory.length  >= 1) {
+        if (productHistory.length  >= 1 && loginContext.id == '') {
           const historyImages = await Promise.all(
-            productHistory.slice(0, 4).map(async (productId) => {
+            productHistory.slice(-4).map(async (productId) => {
               const product = await fetchProduct(productId);
               return {
                 image: product.image[0],
                 id: productId,
+                description: product.name,
+                title: product.name,
+              };
+            })
+          );
+          setBrowserHistoryImages(historyImages);
+        } else if (loginContext.id != '') {
+          console.log(loginContext.id);
+          const historyEntries = await fetchBrowserHistory(loginContext.id);
+          const historyImages = await Promise.all(
+            historyEntries.map(async (entry) => {
+              const product = await fetchProduct(entry.product_id);
+              return {
+                image: product.image[0],
+                id: entry.product_id,
                 description: product.name,
                 title: product.name,
               };

@@ -44,12 +44,6 @@ export class MemberInfo {
 
 @ObjectType('BrowserHistoryEntry')
 export class BrowserHistoryEntry {
-  // @Field(() => ID)
-  // @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
-  // accountId!: string
-  // @Field(() => ID)
-  // @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
-  // productId!: string
   @Field()
   account_id!: string
   @Field()

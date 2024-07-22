@@ -23,6 +23,7 @@ import { PageContext } from '@/context/Page';
 import RandomDeliveryDate from '@/components/DeliveryDate';
 import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
+import { BrowserHistoryEntry } from '@/graphql/member/schema';
 
 interface Product {
   name: string;
@@ -60,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } else {
     return_product = data.getByProductId;
   }
-
+  
   return {
     props: {
       ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
@@ -97,6 +98,40 @@ function productDescription(description: string[]) {
   );
 }
 
+// adds product id to browser history backend
+const addBrowserHistory = async (memberId: string, productId: string): Promise<BrowserHistoryEntry> => {
+  try {
+    const query = `
+      mutation addBrowserHistory {
+        addBrowserHistory(
+          memberId: "${memberId}"
+          productId: "${productId}"
+        ) {
+          product_id
+          timestamp
+        } 
+      }
+    `;
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({ query }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.addBrowserHistory;
+  } catch (e) {
+    console.log(e)
+    throw new Error('Error in fetching addBrowserHistory')
+  }
+}
+
 export default function Product({ product }: ProductProp) {
   const { t } = useTranslation('common');
   const [quantity, setQuantity] = useState(1)
@@ -104,15 +139,33 @@ export default function Product({ product }: ProductProp) {
   const pageContext = useContext(PageContext); 
   const router = useRouter();
   const { productId } = router.query;
-  const { accessToken } = useContext(LoginContext);
+  const { accessToken, id } = useContext(LoginContext);
   const { productHistory, addProductToHistory} = useContext(BrowserHistoryContext);
+  
+  // strict mode renders the useEffect component twice... T______T
+  // https://taig.medium.com/prevent-react-from-triggering-useeffect-twice-307a475714d7
+  const initialized = React.useRef(false);
 
   React.useEffect(() => {
-    if (productId) {
-      addProductToHistory(productId as string);
-      console.log(productHistory);
+    const fetchBrowserHistory = async () => {
+      try {
+        if (accessToken === '') {
+          console.log('not logged in adding to browser context');
+          addProductToHistory(productId as string);
+          console.log('Product history:', productHistory);
+        } else if (accessToken !== '') {
+          console.log('logged in adding to database');
+          await addBrowserHistory(id, productId as string);
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    };
+    if (!initialized.current) {
+      initialized.current = true
+      fetchBrowserHistory();
     }
-  }, [productId]);
+  }, []);
 
   const handleSetValue = (value: string) => {
     setQuantity(parseInt(value));
