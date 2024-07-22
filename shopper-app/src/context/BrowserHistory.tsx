@@ -1,19 +1,24 @@
 import { PropsWithChildren, useState, createContext, useEffect } from 'react';
 
 
+interface BrowserHistoryProduct {
+  productId: string;
+  date: Date;
+}
+
 interface BrowserHistoryContextProps {
-  productHistory: string[];
-  addProductToHistory: (product: string) => void;
+  productHistory: BrowserHistoryProduct[];
+  addProductToHistory: (product: BrowserHistoryProduct) => void;
 }
 
 export const BrowserHistoryContext = createContext<BrowserHistoryContextProps>({
   productHistory: [],
-  addProductToHistory: (product: string) => {}
+  addProductToHistory: (product: BrowserHistoryProduct) => {}
 });
 
 export const BrowserHistoryProvider = ({children}:  PropsWithChildren<{}>) => {
   const isBrowser = typeof window !== 'undefined';
-  const [productHistory, setProductHistory] = useState<string[]>([]);
+  const [productHistory, setProductHistory] = useState<BrowserHistoryProduct[]>([]);
 
   useEffect(() => {
     if (isBrowser) {
@@ -22,8 +27,8 @@ export const BrowserHistoryProvider = ({children}:  PropsWithChildren<{}>) => {
     }
   }, []);
 
-  const addProductToHistory = (product: string) => {
-    const updatedHistory = [...productHistory, product];
+  const addProductToHistory = (product: BrowserHistoryProduct) => {
+    const updatedHistory: BrowserHistoryProduct[] = [...productHistory, product];
     setProductHistory(updatedHistory);
     sessionStorage.setItem('productHistory', JSON.stringify(updatedHistory));
   }

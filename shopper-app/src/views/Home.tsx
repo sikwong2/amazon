@@ -206,11 +206,11 @@ export function Home() {
         
         if (productHistory.length  >= 1 && loginContext.id == '') {
           const historyImages = await Promise.all(
-            productHistory.slice(-4).map(async (productId) => {
-              const product = await fetchProduct(productId);
+            productHistory.slice(-4).map(async (browserhistory) => {
+              const product = await fetchProduct(browserhistory.productId);
               return {
                 image: product.image[0],
-                id: productId,
+                id: browserhistory.productId,
                 description: product.name,
                 title: product.name,
               };

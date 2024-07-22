@@ -150,7 +150,8 @@ export default function Product({ product }: ProductProp) {
     const fetchBrowserHistory = async () => {
       try {
         if (accessToken === '') {
-          addProductToHistory(productId as string);
+          const t = new Date();
+          addProductToHistory({productId: productId as string, date: t});
         } else if (accessToken !== '') {
           await addBrowserHistory(id, productId as string);
         }
