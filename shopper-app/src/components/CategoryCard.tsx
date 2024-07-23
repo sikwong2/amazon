@@ -27,6 +27,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
 
   return (
     <CustomCard
+      type='pointy'
       elevation={0}
       sx={{
         width: isSmallScreen ? '100%' : 'auto',
@@ -34,7 +35,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
         margin: 1,
         alignItems: 'center',
         maxHeight: '100%',
-        maxWidth: isSmallScreen ? '100%' : '300px',
+        maxWidth: isSmallScreen ? '100%' : '400px',
         justifyContent: 'center',
         display: 'flex',
         flexGrow: 1,
@@ -47,12 +48,12 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
           rowGap: 0.5,
           gridTemplateColumns: 'repeat(2, 1fr)',
           flexGrow: 1,
-          m: 2,
+          m: '20px',
         }}
         alignItems="start"
         justifyContent="center"
       >
-        <Typography sx={{ gridColumn: 'span 2', mb: 0.1 }} align="left" variant="subtitle1">
+        <Typography sx={{ gridColumn: 'span 2', mb: 0.1, fontWeight: 'bold', fontSize: '21px', marginBottom: '10px' }} align="left" >
           {title}
         </Typography>
         {images.slice(0, 4).map((image, key) => (
@@ -60,8 +61,8 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
             key={key + image.id}
             display="flex"
             flexDirection="column"
-            alignItems= {isSmallScreen ? "center" : "start"}
-            sx={{ height: 'auto', width: 'auto', maxHeight: '100%', maxWidth: '100%' }}
+            alignItems="center"
+            sx={{ height: 'auto', width: 'auto', maxHeight: '100%', maxWidth: '100%', marginBottom: '20px' }}
           >
             <Box
               sx={{
