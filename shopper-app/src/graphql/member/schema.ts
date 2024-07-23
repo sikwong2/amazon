@@ -41,3 +41,13 @@ export class MemberInfo {
   @Field()
   address!: string;
 }
+
+@ObjectType('BrowserHistoryEntry')
+export class BrowserHistoryEntry {
+  @Field()
+  account_id!: string
+  @Field()
+  product_id!: string
+  @Field(() => Date)
+  timestamp!: string
+}

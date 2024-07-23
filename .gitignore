@@ -43,3 +43,5 @@ venv/
 
 # submission
 submission.zip
+
+.env

@@ -9,13 +9,15 @@ import {
   Response,
   Security,
   Route,
+  Delete,
 } from 'tsoa';
 
-import { MemberInput, Member, Role } from '.';
+import { MemberInput, Member, Role, BrowserHistoryEntry } from '.';
 import { MemberService } from './service';
 import { query } from 'express';
 import { access } from 'fs';
 import { MemberInfo } from '.';
+import { UUID } from '../types/express';
 
 @Route('account')
 export class MemberController extends Controller {
@@ -79,5 +81,55 @@ export class MemberController extends Controller {
         }
         return response;
       });
+  }
+
+  @Get('{memberId}/browser-history')
+  @Response('400', 'Bad Request')
+  @SuccessResponse('200', 'Good')
+  public async getBrowserHistory(
+    @Path('memberId') memberId: UUID,
+    @Query('size') size?: number,
+    @Query('page') page?: number
+  ): Promise<BrowserHistoryEntry[] | undefined> {
+    const p: number = page ? (page - 1) : 0;
+    const s: number = size ? size : 4;
+    return new MemberService()
+      .getBrowserHistory(memberId, s, p)
+      .then(async (response: BrowserHistoryEntry[] | undefined): Promise<BrowserHistoryEntry[] | undefined> => {
+        if (response == undefined) {
+          this.setStatus(404);
+        }
+        return response;
+      });
+  }
+
+  @Post('{memberId}/browser-history/{productId}')
+  @Response('400', 'Bad Request')
+  @SuccessResponse('201', 'Created')
+  public async addBrowserHistory(
+    @Path('memberId') memberId: UUID,
+    @Path('productId') productId: UUID
+  ): Promise<BrowserHistoryEntry | undefined> {
+    return new MemberService()
+      .addBrowserHistory(memberId, productId)
+      .then(async (response: BrowserHistoryEntry | undefined): Promise<BrowserHistoryEntry | undefined> => {
+        if (response == undefined) {
+          this.setStatus(400);
+        }
+        return response;
+      })
+  }
+
+  @Delete('{memberId}/browser-history')
+  @Response('400', 'Bad Request')
+  @SuccessResponse('200', 'Deleted')
+  public async deleteBrowserHistory(
+    @Path('memberId') memberId: UUID,
+    @Query() date?: Date
+  ): Promise <BrowserHistoryEntry[]> {
+    const t = new Date();
+    const timestamp = date ? date : t;
+    return new MemberService()
+      .deleteBrowserHistory(memberId, timestamp);
   }
 }

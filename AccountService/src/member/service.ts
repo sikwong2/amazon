@@ -1,9 +1,10 @@
-import { Member } from '.';
+import { BrowserHistoryEntry, Member } from '.';
 import { MemberInput } from '.';
 import { pool } from '../db';
 import { AccountService } from '../auth/service';
 import { Role } from '.';
 import { MemberInfo } from '.';
+import { UUID } from '../types/express';
 
 export class MemberService {
   // checks if member existing from email before creating account
@@ -136,5 +137,39 @@ export class MemberService {
     returnObj.name = rows[0].accountinfo.name;
     returnObj.address = rows[0].accountinfo.address;
     return returnObj;
+  }
+
+
+  // gets the 4 most recent products viewed by user
+  public async getBrowserHistory(memberId: UUID, size: number, page: number): Promise<BrowserHistoryEntry[] | undefined> {
+    let select = `SELECT * FROM history WHERE account_id = $1 ORDER BY timestamp DESC LIMIT $2 OFFSET $3`;
+    const query = {
+      text: select,
+      values: [memberId, size, `${page * size}`]
+    };
+    const {rows} = await pool.query(query);
+    return rows;
+  }
+
+  // adds product id to browsing history
+  public async addBrowserHistory(memberId: UUID, productId: UUID): Promise<BrowserHistoryEntry | undefined> {
+    let insert = `INSERT INTO history (account_id, product_id) VALUES ($1, $2) RETURNING *`;
+    const query = {
+      text: insert,
+      values: [memberId, productId]
+    };
+    const {rows} = await pool.query(query);
+    return rows[0];
+  }
+
+  // deletes browser history based on timestamp
+  public async deleteBrowserHistory(memberId: UUID, date: Date): Promise<BrowserHistoryEntry[]> {
+    const select = `DELETE FROM history WHERE account_id = $1 AND timestamp <= $2 RETURNING *`;
+    const query = {
+      text: select,
+      values: [memberId, date.toISOString()]
+    }
+    const {rows} = await pool.query(query);
+    return rows;
   }
 }

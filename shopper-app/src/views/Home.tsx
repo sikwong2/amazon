@@ -15,6 +15,8 @@ import MultiImageCarousel from '@/components/MultiCarousel';
 import { Product } from '@/graphql/product/schema';
 import { RedirectNonShopper } from './RedirectNonShopper';
 import { LoginContext } from '@/context/Login';
+import { BrowserHistoryContext } from '@/context/BrowserHistory';
+import { BrowserHistoryEntry } from '@/graphql/member/schema';
 
 const advertisements: Image[] = [
   {
@@ -115,12 +117,103 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
   }
 };
 
+const fetchProduct = async (productId: string): Promise<Product> => {
+  try {
+    const query = {
+      query: `query product{getByProductId(productId: "${productId}") {name, price, image, stock, rating}}`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.error(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.getByProductId;
+  } catch (e) {
+    console.log(e);
+    throw new Error('');
+  }
+}
+
+const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEntry]> => {
+  try {
+    const query = {
+      query: `
+        query getBrowserHistory {
+          getBrowserHistory(
+            memberId: "${memberId}"
+          ) {
+            product_id
+          }
+        }
+      `
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.error(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.getBrowserHistory;
+  } catch (e) {
+    console.log(e);
+    throw new Error('');
+  }
+}
+
+// adds product id to browser history backend
+const addBrowserHistory = async (memberId: string, productId: string): Promise<BrowserHistoryEntry> => {
+  try {
+    const query = `
+      mutation addBrowserHistory {
+        addBrowserHistory(
+          memberId: "${memberId}"
+          productId: "${productId}"
+        ) {
+          product_id
+          timestamp
+        } 
+      }
+    `;
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({ query }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.addBrowserHistory;
+  } catch (e) {
+    console.log(e)
+    throw new Error('Error in fetching addBrowserHistory')
+  }
+}
+
 // outer container of ads / cards once signed in
 // carosoul component
 // card of category component
 export function Home() {
   const [ads, setAds] = React.useState<Image[]>(advertisements);
   const [categoriesData, setCategoriesData] = React.useState<{ [key: string]: Image[] }>({});
+  const [browserHistoryImages, setBrowserHistoryImages] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
   const loginContext = React.useContext(LoginContext);
   const theme = useTheme();
@@ -128,6 +221,7 @@ export function Home() {
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
   // used to determine how many categories there are
   const numberOfCategories = 8;
+  const {productHistory} = React.useContext(BrowserHistoryContext);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -142,6 +236,47 @@ export function Home() {
             description: product.name,
             title: 'sale',
           }));
+        }
+        
+        if (productHistory.length  >= 1 && loginContext.id == '') {
+          const historyImages = await Promise.all(
+            productHistory.slice(-4).map(async (browserhistory) => {
+              const product = await fetchProduct(browserhistory.productId);
+              return {
+                image: product.image[0],
+                id: browserhistory.productId,
+                description: product.name,
+                title: product.name,
+              };
+            })
+          );
+          setBrowserHistoryImages(historyImages);
+        } else if (loginContext.id != '') {
+          // sets logged out user's browser history to logged in user's
+          if (productHistory.length > 0) {
+            await Promise.all(
+              productHistory.map(async (browserhistory) => {
+                await addBrowserHistory(loginContext.id, browserhistory.productId);
+              })
+            );
+          }
+          // clears local storage
+          sessionStorage.setItem('productHistory', JSON.stringify([]));
+
+          // fetchs user's browserhistory 
+          const historyEntries = await fetchBrowserHistory(loginContext.id);
+          const historyImages = await Promise.all(
+            historyEntries.map(async (entry) => {
+              const product = await fetchProduct(entry.product_id);
+              return {
+                image: product.image[0],
+                id: entry.product_id,
+                description: product.name,
+                title: product.name,
+              };
+            })
+          );
+          setBrowserHistoryImages(historyImages);
         }
         setCategoriesData(fetchedData);
       } catch (error) {
@@ -195,6 +330,11 @@ export function Home() {
 
   const logoutGrid = (
     <Grid container spacing={0} justifyContent='center'>
+      {(browserHistoryImages.length >= 1) && <Grid item xs={12} sm={4} md={3} key={'browserhistory'}>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CategoryCard images={browserHistoryImages} title={t('home.browsing-history')}/>
+        </Box>
+      </Grid>}
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
         <Grid item xs={12} sm={4} md={3} key={category}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -203,10 +343,11 @@ export function Home() {
         </Grid>
       ))}
       <Grid item xs={0} sm={0} md={3}>
-        {easyReturns}
+        {browserHistoryImages.length < 1 && easyReturns}
       </Grid>
     </Grid>
   );
+
 
   if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
     return <RedirectNonShopper />;
