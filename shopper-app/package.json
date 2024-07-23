@@ -45,6 +45,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "class-validator": "*",
+    "country-flag-icons": "^1.5.13",
     "css-mediaquery": "^0.1.2",
     "dotenv": "^16.4.5",
     "graphql": "*",

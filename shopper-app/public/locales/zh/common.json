@@ -42,9 +42,11 @@
     "Sign-in": "登录",
     "Orders": "订单",
     "Cart": "购物车",
-    "Search": "搜索",
+    "Search": "搜索 Amazon",
     "Hello": "你好",
-    "Deliver-to": "送到"
+    "Deliver-to": "送到",
+    "Account": "帐户和列表",
+    "Returns": "退货"
   },
   "home": {
     "pick-up": "继续逛",
@@ -156,5 +158,10 @@
     "shoppers-only": "此应用程序仅供购物者使用!",
     "return-vendor-app": "返回供应商应用程序",
     "return-admin-app": "返回管理应用程序"
+  },
+  "language-button": {
+    "learn-more": "了解更多",
+    "shopping-on-Amazon": "您正在 Amazon.com 上购物",
+    "change-country": "更改国家/地区"
   }
 }

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { PageContext } from '@/context/Page';
 
 export default function Logo({ width = 200, height = 'auto', ...rest }) {
-  const loginContext = React.useContext(LoginContext);
   const pageContext = React.useContext(PageContext);
   const router = useRouter();
 
@@ -16,13 +15,13 @@ export default function Logo({ width = 200, height = 'auto', ...rest }) {
         pageContext.setPage('home');
         router.push('/');
       }}
+      {...rest}
     >
       <img
         src={'https://i.ibb.co/nkyzw2s/sammytheslug.png'}
         alt="Amazon Logo"
         width={width}
         height={height}
-        {...rest}
       />
     </Button>
   );

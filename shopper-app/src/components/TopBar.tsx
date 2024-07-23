@@ -1,50 +1,57 @@
+// source: https://mui.com/material-ui/react-app-bar/#app-bar-with-search-field
+
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import AppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Logo from './Logo';
-import LanguageButton from './Language';
-import CustomButton from './Button';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { useTranslation } from 'next-i18next';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useRouter } from 'next/router';
-import { LoginContext } from '../context/Login';
-import { useSearch } from '../context/SearchContext';
+import { Menu, MenuItem, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { LoginContext } from '@/context/Login';
+import { useSearch } from '@/context/SearchContext';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Menu, MenuItem } from '@mui/material';
+import CustomDropdown from './Dropdown';
+import Logo from './Logo';
+import LanguageButton from './Language';
+import CustomButton from './Button';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-	backgroundColor: 'rgba(35,47,62)',
+	backgroundColor: '#131921',
+	'& .MuiToolbar-root': {
+		padding: 0,
+	}
 }));
 
 const Search = styled('div')(({ theme }) => ({
 	display: 'flex',
-	alignItems: 'center',
 	position: 'relative',
 	borderRadius: theme.shape.borderRadius,
 	backgroundColor: 'white',
 	overflow: 'hidden',
-	marginRight: theme.spacing(2),
-	marginLeft: theme.spacing(2),
 	flexGrow: 2,
+	flexShrink: 1,
+	marginLeft: theme.spacing(2),
+	marginRight: theme.spacing(1),
+	'&:focus-within': {
+		outline: 'solid 3px #f90',
+	}
 }));
 
 const SearchInput = styled(InputBase)(({ theme }) => ({
-	color: 'black',
 	width: '100%',
+	flexGrow: 1,
 	'& .MuiInputBase-input': {
 		padding: theme.spacing(1),
-		paddingLeft: theme.spacing(2),
-		paddingRight: `calc(0.5em + ${theme.spacing(2)})`,
 		transition: theme.transitions.create('width'),
-		width: '100%',
 	},
 }));
 
@@ -56,19 +63,34 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	backgroundColor: '#FFA41C',
+	backgroundColor: '#febd68',
 	cursor: 'pointer',
 	borderTopRightRadius: theme.shape.borderRadius,
 	borderBottomRightRadius: theme.shape.borderRadius,
+	'&:active': {
+		outline: 'solid 3px #f90',
+	},
+	'&:hover': {
+		backgroundColor: '#f3a847',
+	},
 }));
 
 const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
 	color: 'black',
 }));
 
+const CategoryDropdownWrapper = styled('div')(({ theme }) => ({
+	height: '38px',
+	left: 0,
+	display: 'flex',
+	backgroundColor: '#febd68',
+	cursor: 'pointer',
+	flexGrow: 0,
+}));
+
 const customButtonStyles: React.CSSProperties = {
-	backgroundColor: 'rgba(35,47,62)',
-	color: 'rgba(242,242,242)',
+	backgroundColor: 'inherit',
+	color: 'inherit',
 	textTransform: 'none',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
@@ -83,6 +105,7 @@ export default function TopBar() {
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
+	const [category, setCategory] = useState('All');	// TODO: make this a context??
 
 	const router = useRouter();
 
@@ -108,7 +131,6 @@ export default function TopBar() {
 	}
 
 	const handleOrders = () => {
-		// set page context to order history
 		pageContext.setPage('orderHistory');
 		router.push('/');
 	};
@@ -159,9 +181,7 @@ export default function TopBar() {
 		try {
 			const response = await fetchUserInfo(loginContext.id);
 			if (response) {
-				if (response.address.length > 15) {
-					setDeliveryAddress(response.address.substring(0, 15) + '...')
-				} else if (response.address.length === 0) {
+				if (response.address.length === 0) {
 					setDeliveryAddress('Santa Cruz, CA 95060');
 				} else {
 					setDeliveryAddress(response.address);
@@ -190,31 +210,6 @@ export default function TopBar() {
 		}
 	}, [loginContext.accessToken]);
 
-	const signInButton = (
-		<CustomButton
-			style={customButtonStyles}
-			label='sign-in'
-			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
-			onClick={handleSignIn}
-			caps={false}>
-			{t("topbar.Sign-in")}
-		</CustomButton>
-	)
-
-	const helloUsernameButton = (
-		<CustomButton
-			style={customButtonStyles}
-			label='user'
-			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
-			onClick={handleSignOut}
-			caps={false}
-		>
-			{t("topbar.Hello") + " " + loginContext.userName}
-		</CustomButton>
-	)
-
 	const addressButton = (
 		<CustomButton
 			style={customButtonStyles}
@@ -223,56 +218,234 @@ export default function TopBar() {
 			onClick={loginContext.accessToken.length === 0 ? handleSignIn : undefined}
 			caps={false}
 			disabled={loginContext.accessToken.length > 0}
-      sx={{
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        maxWidth: '100%',
-      }}
+			sx={{
+				width: {xs: '100%', sm: 'auto'}, 
+				alignItems: 'stretch',
+				height: '60px',
+				border: 'none',
+				p: 0,
+				'&:hover': {
+					backgroundColor: '#131921',
+					outline: '1px solid white',
+					borderRadius: '2px',
+					border: 'none'
+				},
+			}}
 		>
-			{loginContext.accessToken.length === 0 ? t("topbar.Deliver-to") + t(" Santa Cruz, CA 95060") : `${t("topbar.Deliver-to")} ${deliveryAddress}`}
+			<Box sx={{ justifyContent: 'center', width: '20px' }}>
+				<FmdGoodOutlinedIcon sx={{mt:'20px'}} fontSize='small'/>
+			</Box>
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', color: '#CCCCCC', alignItems: 'flex-end', mb: 0.5, fontSize: '0.85em' }}>
+					{t("topbar.Deliver-to")}
+				</Box>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', mb: 1,  fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1'>
+						{loginContext.accessToken.length === 0 ?  'Santa Cruz, CA 95060' : deliveryAddress}
+					</Typography>
+				</Box>
+			</Box>
 		</CustomButton>
 	)
 
-	const orderHistoryButton = (
+	const searchBar = (
+		<Search>
+			<CategoryDropdownWrapper>
+				<CustomDropdown 
+					label={'category'} 
+					variant='noLabel'
+					values={[]}  // TODO: get all categories from DB 
+					selectedValue={category} 
+					setSelectedValue={setCategory}
+					sx={{
+						display: 'flex',
+						flexGrow: 0,
+						'& .MuiFormControl-root': {
+							borderTopRightRadius: 0,
+							borderBottomRightRadius: 0,
+							borderTopLeftRadius: 'inherit',
+							borderBottomLeftRadius: 'inherit',
+							padding: '0px 4px 0px 4px',
+							justifyContent: 'center',
+							alignItems: 'center',
+							flexGrow: 0,
+							'&:active': {
+								outline: 'solid 3px #f90',
+							},
+						},
+						'& .MuiInputBase-root': {
+							color: '#555',
+							flexGrow: 0,
+							maxWidth: '20vh',
+							overflow: 'hidden',
+							textOverflow: 'clip',
+						},
+						'&& .MuiSelect-select.MuiSelect-select': {
+							px:'4px'
+						},
+					}}
+				/>
+			</CategoryDropdownWrapper>
+			<SearchInput
+				placeholder={t("topbar.Search") as string}
+				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+				sx={{ flexGrow: 1 }}
+			/>
+			<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
+				<StyledSearchIcon fontSize='medium'/>
+			</SearchIconWrapper>
+		</Search>
+	)
+
+	const signInButton = (
+		<CustomButton
+			style={customButtonStyles}
+			label='sign-in'
+			variant='text'
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				p: '0px 9px 10px 9px',
+				height: '60px',
+				border: 'none',
+				'&:hover': {
+					backgroundColor: '#131921',
+					outline: '1px solid white',
+					borderRadius: '2px',
+					border: 'none'
+				},
+			}}
+			onClick={handleSignIn}
+			caps={false}
+		>
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
+				<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
+					{t("topbar.Hello") + ", " + t("topbar.Sign-in")}
+				</Typography>
+				</Box>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
+						{t("topbar.Account")}
+					</Typography>
+					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
+				</Box>
+			</Box>
+		</CustomButton>
+	)
+
+	const helloUsernameButton = (
+		<CustomButton
+			style={customButtonStyles}
+			label='sign-out'
+			variant='text'
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				p: '0px 9px 10px 9px',
+				height: '60px',
+				border: 'none',
+				'&:hover': {
+					backgroundColor: '#131921',
+					outline: '1px solid white',
+					borderRadius: '2px',
+					border: 'none'
+				},
+			}}
+			onClick={handleSignOut}
+			caps={false}
+		>
+			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end', }}>
+					<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
+						{t("topbar.Hello") + ", " + loginContext.userName}
+					</Typography>
+				</Box>
+				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
+						{t("topbar.Account")}
+					</Typography>
+					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
+				</Box>
+			</Box>
+		</CustomButton>
+	)
+
+	const orderHistoryButton = (		
 		<CustomButton
 			style={customButtonStyles}
 			label='orders'
 			variant='text'
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }}
+			sx={{ 
+				width: {xs: '100%', sm: 'auto'}, 
+				height: '60px',
+				border: 'none',
+				p: '0px 9px 10px 9px',
+				'&:hover': {
+					backgroundColor: '#131921',
+					outline: '1px solid white',
+					borderRadius: '2px',
+					border: 'none'
+				},
+			}}
 			onClick={handleOrders}
 			caps={false}
 		>
-			{t("topbar.Orders")}
-		</CustomButton>
+		<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '10vh', pt: '10px' }}>
+			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
+				<Typography variant='body2' noWrap lineHeight='1' letterSpacing='0.03em' fontSize='0.85em'>
+					{t("topbar.Returns")}
+				</Typography>
+			</Box>
+			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+				<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.03em'>
+					{'& ' + t("topbar.Orders")}
+				</Typography>
+			</Box>
+		</Box>
+	</CustomButton>
 	)
 
 	const cartButton = (
-		<CustomButton 
-			style={customButtonStyles} 
-			label='cart' 
-			variant='text' 
-			sx={{ ml: 2, width: {xs: '100%', sm: 'auto'} }} 
-			onClick={handleCart}
-		>
-			<div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-				<ShoppingCartIcon style={{ fontSize: 30 }} />
-				<div style={{
-					position: "absolute",
-					top: "36%",
-					left: "22%",
-					transform: "translate(-50%, -50%)",
-					color: '#FFA41C',
-					fontWeight: "bold",
-					fontSize: 11,
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}>
-					{numberOfItems}
-				</div>
-				<span style={{ marginLeft: 8 }}>{t("topbar.Cart")}</span>
-			</div>
-		</CustomButton>
+		<>
+			<CustomButton
+				style={customButtonStyles}
+				label='cart'
+				variant='text'
+				sx={{ 
+					width: {xs: '100%', sm: 'auto'}, 
+					height: '60px',
+					border: 'none',
+					p: '0px 9px 0px 9px',
+					'&:hover': {
+						backgroundColor: '#131921',
+						outline: '1px solid white',
+						borderRadius: '2px',
+						border: 'none'
+					},
+				}}
+				onClick={handleCart}
+				caps={false}
+			>
+				<Box sx={{ position: "static", display: "flex", alignItems: "center" }}>
+					<img src='https://i.ibb.co/jkRff7g/cart.png' alt='cart' height='26px' width='32px'/>
+					<Box sx={{
+						position: "absolute",
+						transform: "translate(9px, -4px)",
+						color: '#F08804',
+						fontWeight: "bold",
+						fontSize: '10px',
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						width: '20px',
+					}}>
+						{numberOfItems >= 100 ? '99+' : numberOfItems}
+					</Box>
+					<Typography component='span' fontSize='1em' fontWeight='bold' sx={{ pt: '15px' }} >
+						{t("topbar.Cart")}
+					</Typography>
+				</Box>
+			</CustomButton>
+		</>	
 	)
 
 	const menuButton = (
@@ -293,11 +466,6 @@ export default function TopBar() {
 			MenuListProps={{
 				sx: customButtonStyles
 			}}
-			PaperProps={{
-				style: {
-					marginTop: '40px',
-				},
-			}}
 		>
 			<MenuItem>
 				{loginContext.accessToken.length === 0 && signInButton}
@@ -315,7 +483,7 @@ export default function TopBar() {
 			<MenuItem>
 				{cartButton}
 			</MenuItem>
-			</Menu>
+		</Menu>
 		</>
 	)
 
@@ -324,22 +492,25 @@ export default function TopBar() {
 			<StyledAppBar position="static">
 				<Toolbar>
 					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-						<Logo width={60} />
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'} }}>
+						<Logo 
+							width={60} 
+							sx={{ 
+								padding: '5px',
+								'&:hover': {
+									backgroundColor: '#131921',
+									outline: '1px solid white',
+									borderRadius: '2px',
+									border: 'none'
+								},
+							}}
+						/>
+            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
 						  {addressButton}
             </Box>
-						<Search>
-							<SearchInput
-								placeholder={t("topbar.Search") as string}
-								inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
-							/>
-							<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
-								<StyledSearchIcon />
-							</SearchIconWrapper>
-						</Search>
+						{searchBar}
 					</Box>
-					<Box sx={{ display: { xs: 'none', sm: 'flex'} }}>
-					  <LanguageButton sx={{ ml: 2 }} variant='text' />
+					<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+					  <LanguageButton />
 						{loginContext.accessToken.length === 0 && signInButton}
 						{loginContext.accessToken.length > 0 && helloUsernameButton}
 						{orderHistoryButton}

@@ -288,13 +288,14 @@ export const dropdownTheme = createTheme(globalTheme, {
       styleOverrides: {
         root: {
           width: '100%',
+          height: '100%',
           marginBottom: 8,
           borderRadius: 8,
           position: 'relative',
           backgroundColor: '#f0f2f2',
           border: '1px solid #ced4da',
           fontSize: 14,
-          padding: '0px 10px 0px 12px',
+          padding: '0px 8px 0px 8px',
           lineHeight: '2',
           '&:active': {
             outline: '3px solid #007185',
@@ -302,6 +303,13 @@ export const dropdownTheme = createTheme(globalTheme, {
             borderColor: '#d5d9d9',
             boxShadow: 'none',
           },
+          '&:hover': {
+            backgroundColor: '#cdcdcd',
+          },
+          '& .MuiSvgIcon-root': {
+            position: 'static',
+            fontSize: '1rem'
+          }
         },
       },
     },
@@ -325,13 +333,13 @@ export const radioButtonTheme = createTheme(globalTheme, {
       styleOverrides: {
         root: {
           // Outer circle color when unchecked
-          color: '#gray', // Change this to any specific gray color code you prefer
+          color: 'gray', // Change this to any specific gray color code you prefer
           '&.Mui-checked': {
             // Inner circle color when checked
-            color: '#007bff', // Change to the blue color you want
+            color: 'gray', // Change to the blue color you want
             'svg': {
               // Target the SVG inner circle specifically for color filling
-              color: '#007bff' // Ensure this matches the outer 'color' property if needed
+              color: '#F08804' // Ensure this matches the outer 'color' property if needed
             }
           }
         }

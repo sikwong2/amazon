@@ -37,7 +37,9 @@ next-env.d.ts
 # python env
 venv/
 
+# local env files
 /*/.env
+.env
 
 # submission
 submission.zip
