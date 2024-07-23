@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 DROP TABLE IF EXISTS apikeytable;
-DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS account CASCADE;
 DROP TABLE IF EXISTS history;
 
 CREATE TABLE account(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(), data jsonb);
