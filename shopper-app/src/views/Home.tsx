@@ -173,6 +173,40 @@ const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEnt
   }
 }
 
+// adds product id to browser history backend
+const addBrowserHistory = async (memberId: string, productId: string): Promise<BrowserHistoryEntry> => {
+  try {
+    const query = `
+      mutation addBrowserHistory {
+        addBrowserHistory(
+          memberId: "${memberId}"
+          productId: "${productId}"
+        ) {
+          product_id
+          timestamp
+        } 
+      }
+    `;
+    const res = await fetch(
+      `/api/graphql`, {
+      method: 'POST',
+      body: JSON.stringify({ query }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.log(json.errors[0].message);
+      throw new Error(json.errors[0].message);
+    }
+    return json.data.addBrowserHistory;
+  } catch (e) {
+    console.log(e)
+    throw new Error('Error in fetching addBrowserHistory')
+  }
+}
+
 // outer container of ads / cards once signed in
 // carosoul component
 // card of category component
@@ -218,6 +252,18 @@ export function Home() {
           );
           setBrowserHistoryImages(historyImages);
         } else if (loginContext.id != '') {
+          // sets logged out user's browser history to logged in user's
+          if (productHistory.length > 0) {
+            await Promise.all(
+              productHistory.map(async (browserhistory) => {
+                await addBrowserHistory(loginContext.id, browserhistory.productId);
+              })
+            );
+          }
+          // clears local storage
+          sessionStorage.setItem('productHistory', JSON.stringify([]));
+
+          // fetchs user's browserhistory 
           const historyEntries = await fetchBrowserHistory(loginContext.id);
           const historyImages = await Promise.all(
             historyEntries.map(async (entry) => {

@@ -58,7 +58,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
         </Typography>
         {images.slice(0, 4).map((image, key) => (
           <Box
-            key={key + image.id}
+            key={title + key + image.id}
             display="flex"
             flexDirection="column"
             alignItems="center"
