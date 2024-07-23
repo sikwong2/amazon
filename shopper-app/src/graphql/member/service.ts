@@ -77,7 +77,6 @@ export class MemberService {
         },
       );
       const json = await res.json();
-      console.log(json);
       return json;
     } catch(e) {
       console.log(e);
