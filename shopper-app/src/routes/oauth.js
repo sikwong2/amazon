@@ -34,7 +34,7 @@ router.get('/', async function (req, res, next) {
     const googleInput = {
       name: userData.name,
       googleId: userData.sub,
-      email: userData.email, 
+      email: userData.email,
       role: 'shopper',
     };
 
@@ -45,15 +45,15 @@ router.get('/', async function (req, res, next) {
       },
       body: JSON.stringify({
         query: `
-          mutation CreateGoogleAccount($input: NewGoogleAccount!) {
-            createGoogleAccount(input: $input) {
-              name
-              googleId 
-              email
-              role
-            }
-          }
-        `,
+      mutation CreateGoogleAccount($input: NewGoogleAccount!) {
+        createGoogleAccount(input: $input) {
+          id
+          name
+          email
+          role
+        }
+      }
+    `,
         variables: {
           input: googleInput
         }
@@ -65,6 +65,9 @@ router.get('/', async function (req, res, next) {
     if (createGoogleAccountResponse.errors) {
       throw new Error(createGoogleAccountResponse.errors[0].message);
     }
+
+    const accountData = createGoogleAccountResponse.data.createGoogleAccount;
+    console.log(accountData);
 
 
     const redirectTo = `${state.redirectTo || 'http://localhost:3000'}?name=${encodeURIComponent(userData.name)}&access_token=${encodeURIComponent(user.access_token)}&sub=${encodeURIComponent(userData.sub)}&email=${encodeURIComponent(userData.email)}`;
