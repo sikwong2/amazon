@@ -30,11 +30,22 @@ export class CategoryController extends Controller {
       });
   }
 
-  @Delete('{category}')
+  @Delete('{categoryName}')
   @Response('404', 'Category Not Found')
   @SuccessResponse('204', 'Deleted Category')
-  public async deleteCategory(@Path() category: string): Promise<void> {
-    const categoryDeleted = await new CategoryService().delete(category);
+  public async deleteCategory(@Path() categoryName: string): Promise<void> {
+    console.log("here!!")
+    const categoryDeleted = await new CategoryService().delete(categoryName);
+    if (!categoryDeleted) {
+      this.setStatus(404);
+    }
+  }
+
+  @Delete('/id/{categoryId}')
+  @Response('404', 'Category Not Found')
+  @SuccessResponse('204', 'Deleted Category')
+  public async deleteCategoryById(@Path() categoryId: string): Promise<void> {
+    const categoryDeleted = await new CategoryService().delete(categoryId, true);
     if (!categoryDeleted) {
       this.setStatus(404);
     }

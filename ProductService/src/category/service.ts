@@ -25,13 +25,19 @@ export class CategoryService {
       values: [category]
     }
     const { rows } = await pool.query(query);
-    console.log('create category: ', category, ': ', rows);
     return rows[0];
   }
 
-  public async delete(category: string): Promise<boolean> {
+  public async delete(category: string, byId=false): Promise<boolean> {
+    // check if category exists and get its name/id
+    let deleteText;
+    if(byId) {
+      deleteText = 'SELECT id, name FROM category WHERE id = $1';
+    } else {
+      deleteText = 'SELECT id, name FROM category WHERE name = $1';
+    }
     let query = {
-      text: 'SELECT id FROM category WHERE name = $1',
+      text: deleteText,
       values: [category]
     }
     const categoryExists = await pool.query(query);
@@ -39,22 +45,25 @@ export class CategoryService {
       return false;
     }
     const categoryId = categoryExists.rows[0].id;
+    const categoryName = categoryExists.rows[0].name;
 
+    // delete from junction table
     query = {
       text: 'DELETE FROM product_category WHERE category_id = $1',
       values: [categoryId]
     }
     await pool.query(query);
 
+    // get all products that have this category
     query = {
       text: "SELECT id, data FROM product WHERE (data->'category') ? $1",
-      values: [category]
+      values: [categoryName]
     }
     const products = await pool.query(query);
-    console.log("products in category: ", category, " about to be deleted: ", products);
 
+    // remove category from products that had this category
     for (const product of products.rows) {
-      const newCategories = product.data.category.filter((cat: string) => category !== cat);
+      const newCategories = product.data.category.filter((cat: string) => categoryName !== cat);
       query = {
         text: 'UPDATE product SET data = jsonb_set(data, \'{category}\', $1) WHERE id = $2',
         values: [JSON.stringify(newCategories), product.id]
@@ -62,13 +71,13 @@ export class CategoryService {
       await pool.query(query);
     }
 
+    // delete from category table
     query = {
       text: 'DELETE FROM category WHERE name = $1',
-      values: [category]
+      values: [categoryName]
     }
     await pool.query(query);
 
     return true;
   }
-
 }
