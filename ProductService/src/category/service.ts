@@ -28,6 +28,25 @@ export class CategoryService {
     return rows[0];
   }
 
+  public async getCategoryData(category: string, byId=false): Promise<string|undefined> {
+    let select;
+    if(byId) {
+      select = `SELECT * FROM category WHERE id = $1`;
+    } else {
+      select = `SELECT * FROM category WHERE name = $1`;
+    }
+    const query = {
+      text: select,
+      values: [category]
+    }
+    const { rows } = await pool.query(query);
+    if(byId) {
+      return rows[0]?.name;
+    } else {
+      return rows[0]?.id;
+    }
+  }
+
   public async delete(category: string, byId=false): Promise<boolean> {
     // check if category exists and get its name/id
     let deleteText;

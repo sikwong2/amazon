@@ -16,6 +16,30 @@ export class CategoryController extends Controller {
     return await new CategoryService().getCategoriesOfProducts(productId);
   }
 
+  @Get('/name/{categoryId}')
+  @Response('404', 'Category Not Found')
+  public async getCategoryById(
+    @Path() categoryId: string
+  ): Promise<string|undefined> {
+    const categoryExists = await new CategoryService().getCategoryData(categoryId, true);
+    if(!categoryExists) {
+      this.setStatus(404);
+    }
+    return categoryExists;  
+  }
+
+  @Get('/id/{categoryName}')
+  @Response('404', 'Category Not Found')
+  public async getCategoryByName(
+    @Path() categoryName: string
+  ): Promise<string|undefined> {
+    const categoryExists = await new CategoryService().getCategoryData(categoryName);
+    if(!categoryExists) {
+      this.setStatus(404);
+    }
+    return categoryExists;
+  }
+
   @Post()
   @Response('409', 'Category Exists')
   @SuccessResponse('201', 'Category Created')
@@ -34,7 +58,6 @@ export class CategoryController extends Controller {
   @Response('404', 'Category Not Found')
   @SuccessResponse('204', 'Deleted Category')
   public async deleteCategory(@Path() categoryName: string): Promise<void> {
-    console.log("here!!")
     const categoryDeleted = await new CategoryService().delete(categoryName);
     if (!categoryDeleted) {
       this.setStatus(404);
