@@ -149,6 +149,29 @@ export class ProductService {
         ],
       };
       const { rows } = await pool.query(query);
+      
+      // insert into category table
+      const insert_values: string[] = [];
+      if (product.category) {
+        for (let i = 1; i <= product.category.length; i++){
+          insert_values.push(`($${i})`);
+        }
+      }
+      const insert_category = {
+        text: `INSERT INTO category (name) VALUES ${insert_values.toString()} ON CONFLICT (name) DO NOTHING RETURNING *`,
+        values: product.category
+      }
+      await pool.query(insert_category);
+
+      // insert into junction table
+      await product.category?.forEach(async(category) => {
+        const insert_junction = {
+          text: 'INSERT INTO product_category (product_id, category_id) VALUES ($1, (SELECT id FROM category WHERE name=$2))',
+          values: [rows[0].id, category]
+        }
+        await pool.query(insert_junction);
+      })
+
       return { ...rows[0].data, id: rows[0].id };
     } catch (e) {
       console.error('Error making product: ', e);
