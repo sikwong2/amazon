@@ -1,4 +1,4 @@
-import { pool } from "src/db";
+import { pool } from "../db";
 import { Category } from ".";
 
 export class CategoryService {
@@ -7,17 +7,15 @@ export class CategoryService {
       text: 'SELECT * FROM category;'
     }
     const { rows } = await pool.query(query);
-    console.log("get all categories: ", rows);
     return rows;
   }
 
   public async getCategoriesOfProducts(productId: string): Promise<Category[]> {
     const query = {
-      text: 'SELECT * FROM category c JOIN product_category pc ON c.id = pc.category_id WHERE pc.product_id = $1',
+      text: 'SELECT category_id as id, name FROM category c JOIN product_category pc ON c.id = pc.category_id WHERE pc.product_id = $1',
       values: [productId]
     }
     const { rows } = await pool.query(query);
-    console.log("get category of products: ", rows);
     return rows;
   }
 
@@ -43,12 +41,32 @@ export class CategoryService {
     const categoryId = categoryExists.rows[0].id;
 
     query = {
-      text: 'DELETE FROM product_category WHERE category_id = $1 RETURNING product_id',
+      text: 'DELETE FROM product_category WHERE category_id = $1',
       values: [categoryId]
     }
-    const products = await pool.query(query);
-    console.log("deleting product_categories: ", products);
+    await pool.query(query);
 
+    query = {
+      text: "SELECT id, data FROM product WHERE (data->'category') ? $1",
+      values: [category]
+    }
+    const products = await pool.query(query);
+    console.log("products in category: ", category, " about to be deleted: ", products);
+
+    for (const product of products.rows) {
+      const newCategories = product.data.category.filter((cat: string) => category !== cat);
+      query = {
+        text: 'UPDATE product SET data = jsonb_set(data, \'{category}\', $1) WHERE id = $2',
+        values: [JSON.stringify(newCategories), product.id]
+      } 
+      await pool.query(query);
+    }
+
+    query = {
+      text: 'DELETE FROM category WHERE name = $1',
+      values: [category]
+    }
+    await pool.query(query);
 
     return true;
   }

@@ -1,5 +1,5 @@
 import { Controller, Get, Path, Post, Route, SuccessResponse, Response, Body, Delete, Put } from "tsoa";
-import { Category } from ".";
+import { Category, NewCategory } from ".";
 import { CategoryService } from './service'
 
 @Route('category')
@@ -9,7 +9,7 @@ export class CategoryController extends Controller {
     return await new CategoryService().getAll();
   }
 
-  @Get('{productId')
+  @Get('{productId}')
   public async getCategoriesOfProducts(
     @Path() productId: string
   ): Promise<Category[]> {
@@ -19,9 +19,9 @@ export class CategoryController extends Controller {
   @Post()
   @Response('409', 'Category Exists')
   @SuccessResponse('201', 'Category Created')
-  public async createCategory(@Body() category: string): Promise<Category | undefined> {
+  public async createCategory(@Body() category: NewCategory): Promise<Category | undefined> {
     return await new CategoryService()
-      .create(category)
+      .create(category.name)
       .then(async (response: Category | undefined): Promise<Category | undefined> => {
         if (response === undefined) {
           this.setStatus(409);
@@ -36,10 +36,7 @@ export class CategoryController extends Controller {
   public async deleteCategory(@Path() category: string): Promise<void> {
     const categoryDeleted = await new CategoryService().delete(category);
     if (!categoryDeleted) {
-      this.setStatus(400);
+      this.setStatus(404);
     }
   }
-
-
-
 }

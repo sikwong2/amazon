@@ -3,4 +3,6 @@ export interface Category {
   name: string
 }
 
-export type NewCategory = string; 
+export interface NewCategory {
+  name: string
+} 
