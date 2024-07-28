@@ -60,13 +60,17 @@ export class ProductService {
   ): Promise<Product[]> {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
-      select = `SELECT id, data FROM product 
-      WHERE (data->'category') ? $1
+      select = `SELECT p.id, data FROM product p
+      JOIN product_category pc ON p.id = pc.product_id
+      JOIN category c ON pc.category_id = c.id
+      WHERE c.name = $1
       ORDER BY (data->>'${order}')::numeric ${sort} 
       LIMIT $2 OFFSET $3`;
     } else {
-      select = `SELECT id, data FROM product 
-      WHERE (data->'category') ? $1
+      select = `SELECT p.id, data FROM product p
+      JOIN product_category pc ON p.id = pc.product_id
+      JOIN category c ON pc.category_id = c.id
+      WHERE c.name = $1
       ORDER BY (data->>'${order}') ${sort} 
       LIMIT $2 OFFSET $3`;
     }
