@@ -1,4 +1,4 @@
-import { Body, Query, Path, Controller, Post, Get, Response, Route, Put } from 'tsoa';
+import { Body, Query, Path, Controller, Post, Get, Response, Route, Put, SuccessResponse } from 'tsoa';
 
 import { OrderInfo, OrderResponse, OrderUpdate } from '.';
 import { OrderService } from './service';
@@ -6,7 +6,7 @@ import { OrderService } from './service';
 @Route('order')
 export class OrderController extends Controller {
   @Post()
-  @Response('201', 'Created')
+  @SuccessResponse('201', 'Created')
   @Response('401', 'Unauthorized')
   public async createOrder(@Body() OrderInfo: OrderInfo): Promise<OrderResponse | undefined> {
     return new OrderService()

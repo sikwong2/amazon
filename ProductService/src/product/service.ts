@@ -60,13 +60,17 @@ export class ProductService {
   ): Promise<Product[]> {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
-      select = `SELECT id, data FROM product 
-      WHERE (data->'category') ? $1
+      select = `SELECT p.id, data FROM product p
+      JOIN product_category pc ON p.id = pc.product_id
+      JOIN category c ON pc.category_id = c.id
+      WHERE c.name = $1
       ORDER BY (data->>'${order}')::numeric ${sort} 
       LIMIT $2 OFFSET $3`;
     } else {
-      select = `SELECT id, data FROM product 
-      WHERE (data->'category') ? $1
+      select = `SELECT p.id, data FROM product p
+      JOIN product_category pc ON p.id = pc.product_id
+      JOIN category c ON pc.category_id = c.id
+      WHERE c.name = $1
       ORDER BY (data->>'${order}') ${sort} 
       LIMIT $2 OFFSET $3`;
     }
@@ -145,6 +149,29 @@ export class ProductService {
         ],
       };
       const { rows } = await pool.query(query);
+      
+      // insert into category table
+      const insert_values: string[] = [];
+      if (product.category) {
+        for (let i = 1; i <= product.category.length; i++){
+          insert_values.push(`($${i})`);
+        }
+      }
+      const insert_category = {
+        text: `INSERT INTO category (name) VALUES ${insert_values.toString()} ON CONFLICT (name) DO NOTHING RETURNING *`,
+        values: product.category
+      }
+      await pool.query(insert_category);
+
+      // insert into junction table
+      await product.category?.forEach(async(category) => {
+        const insert_junction = {
+          text: 'INSERT INTO product_category (product_id, category_id) VALUES ($1, (SELECT id FROM category WHERE name=$2))',
+          values: [rows[0].id, category]
+        }
+        await pool.query(insert_junction);
+      })
+
       return { ...rows[0].data, id: rows[0].id };
     } catch (e) {
       console.error('Error making product: ', e);
@@ -156,12 +183,18 @@ export class ProductService {
    * Returns the product deleted or undefined if the product doesn't exist
    */
   public async removeProduct(productId: string): Promise<Product | undefined> {
-    const query = {
+    const delete_junction = {
+      text: `DELETE FROM product_category WHERE product_id = $1`,
+      values: [productId]
+    }
+    await pool.query(delete_junction);
+
+    const delete_product = {
       text: `DELETE FROM product WHERE id = $1 RETURNING id, data;`,
       values: [productId],
     };
+    const { rows } = await pool.query(delete_product);
 
-    const { rows } = await pool.query(query);
     return { ...rows[0].data, id: rows[0].id };
   }
 
