@@ -183,12 +183,18 @@ export class ProductService {
    * Returns the product deleted or undefined if the product doesn't exist
    */
   public async removeProduct(productId: string): Promise<Product | undefined> {
-    const query = {
+    const delete_junction = {
+      text: `DELETE FROM product_category WHERE product_id = $1`,
+      values: [productId]
+    }
+    await pool.query(delete_junction);
+
+    const delete_product = {
       text: `DELETE FROM product WHERE id = $1 RETURNING id, data;`,
       values: [productId],
     };
+    const { rows } = await pool.query(delete_product);
 
-    const { rows } = await pool.query(query);
     return { ...rows[0].data, id: rows[0].id };
   }
 
