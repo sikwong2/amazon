@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Query, Route, Body, Request, Path, Response } from 'tsoa';
+import { Controller, Get, Post, Delete, Query, Route, Body, Request, Path, Response, SuccessResponse } from 'tsoa';
 import { NewProduct, Product, Order, Sort } from '.';
 import { ProductService } from './service';
 
@@ -60,7 +60,7 @@ export class ProductController extends Controller {
   }
 
   @Post('')
-  @Response('201', 'Created')
+  @SuccessResponse('201', 'Created')
   public async makeProduct(@Body() product: NewProduct): Promise<Product | undefined> {
     return await new ProductService()
       .makeProduct(product)
