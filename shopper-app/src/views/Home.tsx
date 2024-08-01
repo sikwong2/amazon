@@ -380,7 +380,7 @@ export function Home() {
                   position: 'absolute',
                   top: '250px',
                   width: '100%',
-                  zIndex: '100000'
+                  zIndex: 2
                 }}
                 justifyItems='center'
               >
@@ -391,7 +391,7 @@ export function Home() {
                   background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
                   position: 'absolute',
                   top: '400px',
-                  zIndex:'500'
+                  zIndex: 1
                 }}
                 width="100%"
                 height={200}
