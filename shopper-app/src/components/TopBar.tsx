@@ -22,7 +22,7 @@ import CustomDropdown from './Dropdown';
 import Logo from './Logo';
 import LanguageButton from './Language';
 import CustomButton from './Button';
-
+import CategoryTopBar from './CategoryTopBar';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	backgroundColor: '#131921',
@@ -488,39 +488,42 @@ export default function TopBar() {
 	)
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
-			<StyledAppBar position="static">
-				<Toolbar>
-					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-						<Logo 
-							width={60} 
-							sx={{ 
-								padding: '5px',
-								'&:hover': {
-									backgroundColor: '#131921',
-									outline: '1px solid white',
-									borderRadius: '2px',
-									border: 'none'
-								},
-							}}
-						/>
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
-						  {addressButton}
-            </Box>
-						{searchBar}
-					</Box>
-					<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-					  <LanguageButton />
-						{loginContext.accessToken.length === 0 && signInButton}
-						{loginContext.accessToken.length > 0 && helloUsernameButton}
-						{orderHistoryButton}
-						{cartButton}
-					</Box>
-					<Box sx={{ display: {xs: 'block', sm: 'none' } }}>
-						{menuButton}
-					</Box>
-				</Toolbar>
-			</StyledAppBar>
-		</Box>
+		<>
+			<Box sx={{ flexGrow: 1 }}>
+				<StyledAppBar position="static">
+					<Toolbar>
+						<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+							<Logo 
+								width={60} 
+								sx={{ 
+									padding: '5px',
+									'&:hover': {
+										backgroundColor: '#131921',
+										outline: '1px solid white',
+										borderRadius: '2px',
+										border: 'none'
+									},
+								}}
+							/>
+							<Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
+								{addressButton}
+							</Box>
+							{searchBar}
+						</Box>
+						<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+							<LanguageButton />
+							{loginContext.accessToken.length === 0 && signInButton}
+							{loginContext.accessToken.length > 0 && helloUsernameButton}
+							{orderHistoryButton}
+							{cartButton}
+						</Box>
+						<Box sx={{ display: {xs: 'block', sm: 'none' } }}>
+							{menuButton}
+						</Box>
+					</Toolbar>
+				</StyledAppBar>
+			</Box>
+			<CategoryTopBar />
+		</>
 	);
 }
