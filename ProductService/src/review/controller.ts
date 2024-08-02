@@ -23,7 +23,7 @@ export class ReviewController extends Controller {
     return new ReviewService().getShopperReviews(shopperId, page, size);
   }
 
-  // Gets the total rating from all reviews, excluding ratings with 0 stars (no rating)
+  // Gets the average rating from all reviews, excluding ratings with 0 stars (no rating)
   @Get('/rating/{productId}')
   public async getAllRatingsUnderProduct(
     @Path() productId: string
@@ -47,13 +47,12 @@ export class ReviewController extends Controller {
       })
   }
 
-  @Delete('{shopperId}/{reviewId}')
+  @Delete('{reviewId}')
   public async deleteReview(
-    @Path() shopperId: string,
     @Path() reviewId: string
   ): Promise <Review | undefined> {
     return new ReviewService()
-      .deleteReview(shopperId, reviewId)
+      .deleteReview(reviewId)
       .then(async (result: Review | undefined): Promise <Review | undefined> => {
         if (!result) {
           this.setStatus(400);
@@ -62,14 +61,13 @@ export class ReviewController extends Controller {
       })
   }
 
-  @Put('edit/{shopperId}/{reviewId}')
+  @Put('edit/{reviewId}')
   public async updateReview(
-    @Path() shopperId: string,
     @Path() reviewId: string,
     @Body() NewReview: NewReview
   ): Promise <Review | undefined > {
     return new ReviewService()
-      .editReview(shopperId, reviewId, NewReview)
+      .editReview(reviewId, NewReview)
       .then(async (result: Review | undefined): Promise <Review | undefined> => {
         if (!result) {
           this.setStatus(400);

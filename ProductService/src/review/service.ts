@@ -112,11 +112,11 @@ export class ReviewService {
     return reviewTotal / length;
   }
 
-  public async deleteReview(shopperId: string ,reviewId: string): Promise <Review | undefined> {
-    const select = `DELETE FROM review WHERE shopper_id = $1 AND id = $2 RETURNING *`
+  public async deleteReview(reviewId: string): Promise <Review | undefined> {
+    const select = `DELETE FROM review WHERE id = $1 RETURNING *`
     const query = {
       text: select,
-      values: [shopperId, reviewId]
+      values: [reviewId]
     };
     const {rows} = await pool.query(query);
     return {
@@ -127,7 +127,7 @@ export class ReviewService {
     };
   }
 
-  public async editReview(shopperId: string, reviewId: string, NewReview: NewReview): Promise <Review | undefined> {
+  public async editReview(reviewId: string, NewReview: NewReview): Promise <Review | undefined> {
     try {
       const update = `UPDATE review SET data = 
         json_build_object(
@@ -138,7 +138,7 @@ export class ReviewService {
           'posted', $5::timestamptz,
           'name', $6::text
         )
-        WHERE shopper_id = $7 AND id = $8
+        WHERE id = $7
         RETURNING *
         `;
       const posted = new Date();
@@ -151,7 +151,6 @@ export class ReviewService {
           NewReview.title,
           posted,
           NewReview.name,
-          shopperId,
           reviewId
         ]
       };
