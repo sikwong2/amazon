@@ -1,9 +1,9 @@
 import { pool } from '../db';
-import { NewPost, Posted } from '.';
+import { NewReview, Review } from '.';
 
 export class ReviewService {
 
-  public async createReview(review: NewPost, shopper_id: string, product_id: string): Promise <Posted | undefined> {
+  public async createReview(review: NewReview, shopper_id: string, product_id: string): Promise <Review | undefined> {
     try {
       const posted = new Date();
       let create  = 
@@ -45,7 +45,7 @@ export class ReviewService {
     }
   }
 
-  public async getReviews(productId: string, page: number = 0, size: number = 10): Promise <Posted[]> {
+  public async getReviews(productId: string, page: number = 0, size: number = 10): Promise <Review[]> {
     const select = `SELECT * FROM review WHERE product_id = $1 
       ORDER BY data->>'posted' 
       DESC LIMIT $2 OFFSET $3`;
@@ -54,7 +54,7 @@ export class ReviewService {
       values: [productId, size, `${page * 10}` ]
     }
     const {rows} = await pool.query(query);
-    const reviews: Posted[] = [];
+    const reviews: Review[] = [];
     for (const row of rows) {
       reviews.push(
         {
@@ -68,7 +68,7 @@ export class ReviewService {
     return reviews;
   }
 
-  public async getShopperReviews(shopperId: string, page: number = 0, size: number = 10): Promise <Posted[]> {
+  public async getShopperReviews(shopperId: string, page: number = 0, size: number = 10): Promise <Review[]> {
     const select = `SELECT * FROM review WHERE shopper_id = $1 
       ORDER BY data->>'posted' 
       DESC LIMIT $2 OFFSET $3`;
@@ -77,7 +77,7 @@ export class ReviewService {
       values: [shopperId, size, `${page * 10}` ]
     }
     const {rows} = await pool.query(query);
-    const reviews: Posted[] = [];
+    const reviews: Review[] = [];
     for (const row of rows) {
       reviews.push(
         {
@@ -112,7 +112,7 @@ export class ReviewService {
     return reviewTotal / length;
   }
 
-  public async deleteReview(shopperId: string ,reviewId: string): Promise <Posted | undefined> {
+  public async deleteReview(shopperId: string ,reviewId: string): Promise <Review | undefined> {
     const select = `DELETE FROM review WHERE shopper_id = $1 AND id = $2 RETURNING *`
     const query = {
       text: select,
@@ -127,7 +127,7 @@ export class ReviewService {
     };
   }
 
-  public async editReview(shopperId: string, reviewId: string, newPost: NewPost): Promise <Posted | undefined> {
+  public async editReview(shopperId: string, reviewId: string, NewReview: NewReview): Promise <Review | undefined> {
     try {
       const update = `UPDATE review SET data = 
         json_build_object(
@@ -145,12 +145,12 @@ export class ReviewService {
       const query = {
         text: update,
         values: [
-          JSON.stringify(newPost.images),
-          newPost.content,
-          newPost.rating,
-          newPost.title,
+          JSON.stringify(NewReview.images),
+          NewReview.content,
+          NewReview.rating,
+          NewReview.title,
           posted,
-          newPost.name,
+          NewReview.name,
           shopperId,
           reviewId
         ]

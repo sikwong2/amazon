@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Delete, Query, Route, Body, Request, Path, Response, Put } from 'tsoa';
-import { NewPost, Posted } from '.';
+import { NewReview, Review } from '.';
 import { ReviewService } from './service';
 
 @Route('review')
@@ -10,7 +10,7 @@ export class ReviewController extends Controller {
     @Path() productId: string,
     @Query() page?: number,
     @Query() size?: number
-  ): Promise <Posted[]> {
+  ): Promise <Review[]> {
     return new ReviewService().getReviews(productId, page, size);
   }
 
@@ -19,7 +19,7 @@ export class ReviewController extends Controller {
     @Path() shopperId: string,
     @Query() page?: number,
     @Query() size?: number
-  ): Promise <Posted[]> {
+  ): Promise <Review[]> {
     return new ReviewService().getShopperReviews(shopperId, page, size);
   }
 
@@ -35,11 +35,11 @@ export class ReviewController extends Controller {
   public async createReview(
     @Path() shopperId: string,
     @Path() productId: string,
-    @Body() newpost: NewPost
-  ): Promise <Posted | undefined> {
+    @Body() NewReview: NewReview
+  ): Promise <Review | undefined> {
     return await new ReviewService()
-      .createReview(newpost, shopperId, productId)
-      .then(async (result: Posted | undefined): Promise <Posted | undefined> => {
+      .createReview(NewReview, shopperId, productId)
+      .then(async (result: Review | undefined): Promise <Review | undefined> => {
         if (!result) {
           this.setStatus(400);
         }
@@ -51,10 +51,10 @@ export class ReviewController extends Controller {
   public async deleteReview(
     @Path() shopperId: string,
     @Path() reviewId: string
-  ): Promise <Posted | undefined> {
+  ): Promise <Review | undefined> {
     return new ReviewService()
       .deleteReview(shopperId, reviewId)
-      .then(async (result: Posted | undefined): Promise <Posted | undefined> => {
+      .then(async (result: Review | undefined): Promise <Review | undefined> => {
         if (!result) {
           this.setStatus(400);
         }
@@ -66,11 +66,11 @@ export class ReviewController extends Controller {
   public async updateReview(
     @Path() shopperId: string,
     @Path() reviewId: string,
-    @Body() newPost: NewPost
-  ): Promise <Posted | undefined > {
+    @Body() NewReview: NewReview
+  ): Promise <Review | undefined > {
     return new ReviewService()
-      .editReview(shopperId, reviewId, newPost)
-      .then(async (result: Posted | undefined): Promise <Posted | undefined> => {
+      .editReview(shopperId, reviewId, NewReview)
+      .then(async (result: Review | undefined): Promise <Review | undefined> => {
         if (!result) {
           this.setStatus(400);
         }

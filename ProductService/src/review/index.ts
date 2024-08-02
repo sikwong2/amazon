@@ -1,4 +1,4 @@
-export interface NewPost {
+export interface NewReview {
   images?: Image[],
   content: string,
   rating: number,
@@ -6,7 +6,7 @@ export interface NewPost {
   name: string
 }
 
-export interface Posted {
+export interface Review {
   id: string,
   shopper_id: string,
   product_id: string,
