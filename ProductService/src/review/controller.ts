@@ -73,6 +73,7 @@ export class ReviewController extends Controller {
   }
 
   @Put('edit/{reviewId}')
+  @SuccessResponse('201', 'Edited')
   public async updateReview(
     @Path() reviewId: string,
     @Query() content?: string,
