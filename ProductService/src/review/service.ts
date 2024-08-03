@@ -173,11 +173,10 @@ export class ReviewService {
 
       // joins all changes into comma separated string
       let finalchanges = changes.join(", ");
-      console.log(finalchanges);
 
       // concatenates current data w/ new jsonb data 
       let update = `UPDATE review SET data = data || jsonb_build_object(${finalchanges}) WHERE id = $1 RETURNING *`;
-      console.log(update);
+
       const query = {
         text: update,
         values: values
