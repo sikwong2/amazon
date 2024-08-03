@@ -3,13 +3,27 @@ import { NewReview, Review } from '.';
 
 export class ReviewService {
 
+  public async findReview(shopper_id: string, product_id: string): Promise <boolean> {
+    const select = `SELECT * FROM review WHERE shopper_id = $1 AND product_id = $2`;
+    const query = {
+      text: select,
+      values: [shopper_id, product_id]
+    };
+    const {rows} = await pool.query(query);
+    if (rows.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public async createReview(review: NewReview, shopper_id: string, product_id: string): Promise <Review | undefined> {
     try {
       const posted = new Date();
       let create  = 
           `INSERT INTO review(product_id, shopper_id, data)
             VALUES ($1, $2, 
-              json_build_object(
+              jsonb_build_object(
                 'images', $3::jsonb,
                 'content', $4::text,
                 'rating', $5::numeric,
@@ -126,50 +140,65 @@ export class ReviewService {
       ...rows[0].data
     };
   }
-
-  public async editReview(reviewId: string, NewReview: NewReview): Promise <Review | undefined> {
+  
+  public async editReview(reviewId: string, content?: string, title?: string, rating?: number): Promise<Review | undefined> {
     try {
-      const update = `UPDATE review SET data = 
-        json_build_object(
-          'images', $1::jsonb,
-          'content', $2::text,
-          'rating', $3::numeric,
-          'title', $4::text,
-          'posted', $5::timestamptz,
-          'name', $6::text
-        )
-        WHERE id = $7
-        RETURNING *
-        `;
+      
+      // appends changes to array
+      let values: any[] = [reviewId];
+      let changes = [];
+      if (content) {
+        values.push(content);
+        changes.push(`'content', $${values.length}::text`);
+        
+      }
+      if (title) {
+        values.push(title);
+        changes.push(`'title', $${values.length}::text`);
+      }
+      if (rating) {
+        values.push(rating);
+        changes.push(`'rating', $${values.length}::numeric`);
+      }
+
+      // if no values changes throws error
+      if (values.length == 1) {
+        throw new Error('No values changed');
+      }
+
+      // updates date
       const posted = new Date();
+      values.push(posted);
+      changes.push(`'posted',  $${values.length}::timestamptz`);
+
+      // joins all changes into comma separated string
+      let finalchanges = changes.join(", ");
+      console.log(finalchanges);
+
+      // concatenates current data w/ new jsonb data 
+      let update = `UPDATE review SET data = data || jsonb_build_object(${finalchanges}) WHERE id = $1 RETURNING *`;
+      console.log(update);
       const query = {
         text: update,
-        values: [
-          JSON.stringify(NewReview.images),
-          NewReview.content,
-          NewReview.rating,
-          NewReview.title,
-          posted,
-          NewReview.name,
-          reviewId
-        ]
-      };
+        values: values
+      }
+  
+      const { rows } = await pool.query(query);
 
-      const {rows} = await pool.query(query);
-      if (rows.length == 0) {
+      if (rows.length === 0) {
         return undefined;
       }
+
       return {
-        id: rows[0].id, 
+        id: rows[0].id,
         shopper_id: rows[0].shopper_id,
-        product_id: rows[0].product_id,
-        ...rows[0].data
+        product_id: rows[0].product_id, 
+        ...rows[0].data 
       };
     } catch (e) {
       console.error("Problem Editing Review", e);
       return undefined;
     }
   }
-
 
 }
