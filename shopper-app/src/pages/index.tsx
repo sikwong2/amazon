@@ -28,7 +28,7 @@ export default function Index() {
       {pageContext.page === 'cart' && <Cart />}
       {pageContext.page === 'checkout' && <Checkout />}
       {pageContext.page === 'orderHistory' && <OrderHistory />}
-      {/* {pageContext.page === 'account' && <Account/>} */}
+      {pageContext.page === 'account' && <Account/>}
     </Fragment>
   );
 }

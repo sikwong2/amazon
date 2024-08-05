@@ -5,11 +5,15 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CustomButton from './Button';
 import { useRouter } from 'next/router';
 import CustomDivider from './Divider';
-
+import {Divider} from '@mui/material';
+import { PageContext } from '@/context/Page';
 
 export default function SignInButton() {
   const { t } = useTranslation('common');
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const pageContext = React.useContext(PageContext);
+  //pageContext.setPage() 
+
   const router = useRouter();
 
   const handleSignIn = () => {
@@ -27,6 +31,42 @@ export default function SignInButton() {
   const open = Boolean(anchorEl);
   const id = open ? 'sign-in-popover' : undefined;
 
+  const popoverContentBoxLeft = (
+    <div>
+    <h1> Your Lists </h1>
+    <div> <a href="www.google.com" className='link-no-underline'> Create a List </a> </div>
+    <div> <a href="www.google.com" className='link-no-underline'> Find a List or Registry  </a> </div>
+    </div> 
+  )
+
+  const popoverContentBoxRight = (
+    <div>
+    <h1> Your Account </h1>
+      <div className="link-container">
+        <a href="#/account" onClick={() => pageContext.setPage('account')}className='link-no-underline'> Account </a>
+      </div>
+    </div>
+  )
+
+  const popoverContentBox = (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        mt: 2,
+      }}
+    >
+      <Box sx={{ flex: 1, textAlign: 'center' }}>{popoverContentBoxLeft}</Box>
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{ mx: 2, height: '100px', borderWidth: '1px' }} // Adjust height and margin as needed
+      />
+      <Box sx={{ flex: 1, textAlign: 'center' }}>{popoverContentBoxRight}</Box>
+    </Box>
+  )
+
   const popoverContent = (
     <Box
       sx={{
@@ -43,7 +83,7 @@ export default function SignInButton() {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'center', // Center the button horizontally
+          justifyContent: 'center',
           marginBottom: '15px'
         }}
       >
@@ -60,6 +100,7 @@ export default function SignInButton() {
         </CustomButton>
       </Box>
       <CustomDivider/>
+      {popoverContentBox}
     </Box>
   );
 
