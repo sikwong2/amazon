@@ -60,7 +60,7 @@ export class ReviewController extends Controller {
 
   @Delete('{reviewId}')
   @SuccessResponse('200', 'Deleted')
-  @SuccessResponse('204', 'Review Not Found')
+  @Response('404', 'Review Not Found')
   public async deleteReview(
     @Path() reviewId: string
   ): Promise <Review | undefined> {
@@ -68,7 +68,7 @@ export class ReviewController extends Controller {
     .findReviewUsingId(reviewId)
     .then(async (exists: boolean): Promise <Review | undefined> => {
       if (!exists) {
-        this.setStatus(204)
+        this.setStatus(404)
       } else {
         return new ReviewService()
           .deleteReview(reviewId)
@@ -85,7 +85,7 @@ export class ReviewController extends Controller {
 
   @Put('edit/{reviewId}')
   @SuccessResponse('200', 'Edited')
-  @SuccessResponse('204', 'Review Not Found')
+  @Response('404', 'Review Not Found')
   public async updateReview(
     @Path() reviewId: string,
     @Query() content?: string,
@@ -93,13 +93,13 @@ export class ReviewController extends Controller {
     @Query() rating?: number
   ): Promise <Review | undefined > {
     if (!content && !title && !rating) {
-      this.setStatus(204);
+      this.setStatus(404);
     }
     return new ReviewService()
     .findReviewUsingId(reviewId)
     .then(async (exists: boolean): Promise <Review | undefined> => {
       if (!exists) {
-        this.setStatus(204);
+        this.setStatus(404);
       } else {
         return new ReviewService()
           .editReview(reviewId, content, title, rating)
