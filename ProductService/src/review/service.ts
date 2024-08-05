@@ -16,6 +16,20 @@ export class ReviewService {
       return false;
     }
   }
+  
+  public async findReviewUsingId(review_id: string): Promise <boolean> {
+    const select = `SELECT * FROM review WHERE id = $1`;
+    const query = {
+      text: select,
+      values: [review_id]
+    }
+    const {rows} = await pool.query(query);
+    if (rows.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   public async createReview(review: NewReview, shopper_id: string, product_id: string): Promise <Review | undefined> {
     try {
@@ -133,6 +147,9 @@ export class ReviewService {
       values: [reviewId]
     };
     const {rows} = await pool.query(query);
+    if (rows.length == 0) {
+      return undefined;
+    }
     return {
       id: rows[0].id, 
       shopper_id: rows[0].shopper_id,
@@ -159,11 +176,6 @@ export class ReviewService {
       if (rating) {
         values.push(rating);
         changes.push(`'rating', $${values.length}::numeric`);
-      }
-
-      // if no values changes throws error
-      if (values.length == 1) {
-        throw new Error('No values changed');
       }
 
       // updates date

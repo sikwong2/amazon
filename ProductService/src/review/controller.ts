@@ -59,35 +59,57 @@ export class ReviewController extends Controller {
   }
 
   @Delete('{reviewId}')
+  @SuccessResponse('200', 'Deleted')
   public async deleteReview(
     @Path() reviewId: string
   ): Promise <Review | undefined> {
     return new ReviewService()
-      .deleteReview(reviewId)
-      .then(async (result: Review | undefined): Promise <Review | undefined> => {
-        if (!result) {
-          this.setStatus(400);
-        }
-        return result;
-      })
+    .findReviewUsingId(reviewId)
+    .then(async (exists: boolean): Promise <Review | undefined> => {
+      if (!exists) {
+        this.setStatus(204)
+      } else {
+        return new ReviewService()
+          .deleteReview(reviewId)
+          .then(async (result: Review | undefined): Promise <Review | undefined> => {
+            if (!result) {
+              this.setStatus(400);
+            }
+            return result;
+          })
+      }
+    })
+      
   }
 
   @Put('edit/{reviewId}')
-  @SuccessResponse('201', 'Edited')
+  @SuccessResponse('200', 'Edited')
   public async updateReview(
     @Path() reviewId: string,
     @Query() content?: string,
     @Query() title?: string,
     @Query() rating?: number
   ): Promise <Review | undefined > {
+    if (!content && !title && !rating) {
+      this.setStatus(204);
+    }
     return new ReviewService()
-      .editReview(reviewId, content, title, rating)
-      .then(async (result: Review | undefined): Promise <Review | undefined> => {
-        if (!result) {
-          this.setStatus(400);
-        }
-        return result;
-      });
+    .findReviewUsingId(reviewId)
+    .then(async (exists: boolean): Promise <Review | undefined> => {
+      if (!exists) {
+        this.setStatus(204);
+      } else {
+        return new ReviewService()
+          .editReview(reviewId, content, title, rating)
+          .then(async (result: Review | undefined): Promise <Review | undefined> => {
+            if (!result) {
+              this.setStatus(400);
+            }
+            return result;
+          });
+      }
+    })
   }
+
   
 }
