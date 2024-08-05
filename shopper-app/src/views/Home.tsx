@@ -380,7 +380,7 @@ export function Home() {
                   position: 'absolute',
                   top: '250px',
                   width: '100%',
-                  zIndex: '100000'
+                  zIndex: '800'
                 }}
                 justifyItems='center'
               >

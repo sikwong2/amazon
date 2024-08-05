@@ -108,6 +108,10 @@ export default function SignInButton() {
           paper: {
             onMouseEnter: () => setAnchorEl(anchorEl),
             onMouseLeave: handleClose,
+            sx: {
+              position: 'absolute',
+              zIndex:'100001',
+            },
           }
         }}
       >
