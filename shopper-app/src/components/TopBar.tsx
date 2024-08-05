@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { Menu, MenuItem, Typography } from '@mui/material';
+import { Menu, MenuItem, Popover, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -22,6 +22,7 @@ import CustomDropdown from './Dropdown';
 import Logo from './Logo';
 import LanguageButton from './Language';
 import CustomButton from './Button';
+import SignInButton from './SignInButton';
 
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -297,41 +298,41 @@ export default function TopBar() {
 		</Search>
 	)
 
-	const signInButton = (
-		<CustomButton
-			style={customButtonStyles}
-			label='sign-in'
-			variant='text'
-			sx={{ 
-				width: {xs: '100%', sm: 'auto'}, 
-				p: '0px 9px 10px 9px',
-				height: '60px',
-				border: 'none',
-				'&:hover': {
-					backgroundColor: '#131921',
-					outline: '1px solid white',
-					borderRadius: '2px',
-					border: 'none'
-				},
-			}}
-			onClick={handleSignIn}
-			caps={false}
-		>
-			<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
-				<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
-					{t("topbar.Hello") + ", " + t("topbar.Sign-in")}
-				</Typography>
-				</Box>
-				<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
-					<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
-						{t("topbar.Account")}
-					</Typography>
-					<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
-				</Box>
-			</Box>
-		</CustomButton>
-	)
+	//const signInButton = (
+	//	<CustomButton
+	//		style={customButtonStyles}
+	//		label='sign-in'
+	//		variant='text'
+	//		sx={{ 
+	//			width: {xs: '100%', sm: 'auto'}, 
+	//			p: '0px 9px 10px 9px',
+	//			height: '60px',
+	//			border: 'none',
+	//			'&:hover': {
+	//				backgroundColor: '#131921',
+	//				outline: '1px solid white',
+	//				borderRadius: '2px',
+	//				border: 'none'
+	//			},
+	//		}}
+	//		onClick={handleSignIn}
+	//		caps={false}
+	//	>
+	//		<Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
+	//			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-end' }}>
+	//			<Typography variant='body2' noWrap fontSize='0.85em' lineHeight='1' letterSpacing='0.035em'>
+	//				{t("topbar.Hello") + ", " + t("topbar.Sign-in")}
+	//			</Typography>
+	//			</Box>
+	//			<Box sx={{ display: 'flex', height: '50%', width: 'auto', alignItems: 'flex-start', fontSize: '1em' }}>
+	//				<Typography variant='body2' noWrap fontWeight='bold' lineHeight='1' letterSpacing='0.035em'>
+	//					{t("topbar.Account")}
+	//				</Typography>
+	//				<ArrowDropDownIcon sx={{ height: '15px', width: '18px', color: '#a7acb2' }} />
+	//			</Box>
+	//		</Box>
+	//	</CustomButton>
+	//)
 
 	const helloUsernameButton = (
 		<CustomButton
@@ -468,7 +469,7 @@ export default function TopBar() {
 			}}
 		>
 			<MenuItem>
-				{loginContext.accessToken.length === 0 && signInButton}
+				{loginContext.accessToken.length === 0 && <SignInButton/>}
 				{loginContext.accessToken.length > 0 && helloUsernameButton}
 			</MenuItem>
 			<MenuItem>
@@ -511,7 +512,7 @@ export default function TopBar() {
 					</Box>
 					<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
 					  <LanguageButton />
-						{loginContext.accessToken.length === 0 && signInButton}
+						{loginContext.accessToken.length === 0 && <SignInButton/>}
 						{loginContext.accessToken.length > 0 && helloUsernameButton}
 						{orderHistoryButton}
 						{cartButton}

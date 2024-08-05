@@ -9,6 +9,7 @@ import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
 import { SearchProvider } from '../context/SearchContext';
 import Footer from '@/components/Footer';
+import { Account } from '@/views/Account';
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -27,6 +28,7 @@ export default function Index() {
       {pageContext.page === 'cart' && <Cart />}
       {pageContext.page === 'checkout' && <Checkout />}
       {pageContext.page === 'orderHistory' && <OrderHistory />}
+      {/* {pageContext.page === 'account' && <Account/>} */}
     </Fragment>
   );
 }
