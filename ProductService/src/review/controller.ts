@@ -60,6 +60,7 @@ export class ReviewController extends Controller {
 
   @Delete('{reviewId}')
   @SuccessResponse('200', 'Deleted')
+  @SuccessResponse('204', 'Review Not Found')
   public async deleteReview(
     @Path() reviewId: string
   ): Promise <Review | undefined> {
@@ -84,6 +85,7 @@ export class ReviewController extends Controller {
 
   @Put('edit/{reviewId}')
   @SuccessResponse('200', 'Edited')
+  @SuccessResponse('204', 'Review Not Found')
   public async updateReview(
     @Path() reviewId: string,
     @Query() content?: string,
