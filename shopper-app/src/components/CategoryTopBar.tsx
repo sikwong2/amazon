@@ -18,13 +18,59 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Category } from "@/graphql/category/schema";
+
+const fetchCategories = async (): Promise<string[]> => {
+  try {
+    const query = {
+      query: `query getAllCategories {
+      getAllCategories {
+        name
+      }
+    }`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.error('Error fetching categoriess: ', json.errors);
+      throw new Error('Error fetching categoriess: ', json.errors);
+    }
+    return json.data.getAllCategories.map((cat: { name: string }) => {return cat.name});
+  } catch (error) {
+    console.error('Error fetching categories: ', error);
+    throw error;
+  }
+};
 
 export default function ButtonAppBar() {
   const [open, setOpen] = React.useState(false);
+  const [categories, setCategories] = React.useState<string[]>([]);
+
 
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
   }
+  
+  React.useEffect(() =>  {
+    const getCategories = async () => {
+      try {
+        const categoriesFromDB = await fetchCategories();
+        if (categoriesFromDB) {
+          setCategories(categoriesFromDB);
+        }
+        console.log('categories: ', categories);
+      } catch (error) {
+        console.error('Error fetching categories', error);
+      }
+    };
+    getCategories();
+  }, []);
 
   const DrawerList = (
     <>
@@ -65,9 +111,10 @@ export default function ButtonAppBar() {
 
   const CategoryButtons = (
     <>
-      News
+      {categories.slice(0, 10)}
     </>
   );
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
