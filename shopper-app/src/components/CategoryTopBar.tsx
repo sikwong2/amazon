@@ -19,6 +19,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Category } from "@/graphql/category/schema";
+import CustomButton from "./Button";
+import { Button } from "@mui/material";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -56,6 +58,10 @@ export default function ButtonAppBar() {
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
   }
+
+  const goToCategoryPage = (e: any) => {
+    console.log("go to category page: ", e.target.innerText);
+  }
   
   React.useEffect(() =>  {
     const getCategories = async () => {
@@ -64,7 +70,6 @@ export default function ButtonAppBar() {
         if (categoriesFromDB) {
           setCategories(categoriesFromDB);
         }
-        console.log('categories: ', categories);
       } catch (error) {
         console.error('Error fetching categories', error);
       }
@@ -109,9 +114,31 @@ export default function ButtonAppBar() {
     </>
   );
 
+  // TODO: add box? around categories array to create horizontal scroll on mobile view
   const CategoryButtons = (
     <>
-      {categories.slice(0, 10)}
+      {categories.slice(0, 12).map((cat) => 
+        <Button variant='text' aria-label={`${cat}-button`} onClick={goToCategoryPage} sx={{
+          color: 'white',
+          border: 'none',
+          p: 1,
+          height: '100%', 
+          '&:hover': {
+            border: '1px solid white',
+            borderRadius: '2px',
+            color: 'white',
+            backgroundColor: 'inherit',
+            p:0.9,
+          },
+          '&:focus': {
+            color: '#ccc',
+          }
+        }}> 
+          <Typography textTransform='capitalize' fontSize='0.88rem' border='none'>
+            {cat}
+          </Typography>
+        </Button>
+      )}
     </>
   );
 
@@ -136,11 +163,9 @@ export default function ButtonAppBar() {
             aria-label="menu"
             onClick={() => toggleDrawer(true)}
             sx={{ 
-              mr: 1,
               '&:hover': {
                 border: '1px solid white',
                 borderRadius: '2px',
-                // border: 'none'
                 p: '7px',
               },
 
