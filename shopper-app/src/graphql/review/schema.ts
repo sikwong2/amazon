@@ -1,9 +1,9 @@
-import { ArgsType, Field, ID, Int, ObjectType } from 'type-graphql';
+import { ArgsType, Field, ID, InputType, Int, ObjectType } from 'type-graphql';
 import { IsIn, IsNotEmpty, Matches, Max, Min } from 'class-validator';
 
-@ObjectType()
+@InputType()
 export class NewReview {
-  @Field({ nullable: true })
+  @Field(() => [String], { nullable: true })
   @Matches(/https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/)
   images?: string[];
   @Field()
@@ -36,7 +36,7 @@ export class Review {
   @IsNotEmpty()
   @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
   product_id!: string;
-  @Field({ nullable: true })
+  @Field(() => [String], { nullable: true })
   @Matches(/https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/)
   images?: string[];
   @Field()

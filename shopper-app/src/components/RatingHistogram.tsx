@@ -4,6 +4,7 @@ import CustomRating from './Rating';
 import { RatingHistogram } from '@/graphql/review/schema';
 import { Typography } from '@mui/material';
 import CustomLinearProgress from './RatingHistogramBar';
+import {Grid} from '@mui/material';
 
 interface HistogramBarProps {
   star: number,
@@ -11,15 +12,23 @@ interface HistogramBarProps {
 }
 
 const HistogramBar = ({star, value}: HistogramBarProps) => (
-  <Box display="flex">
-    <Typography>
-      {star} star
-    </Typography>
-    <CustomLinearProgress value={value}/>
-    <Typography>
-      {value}%
-    </Typography>
-  </Box>
+  <Grid container rowSpacing='7px' columnSpacing='6px' alignItems='left'>
+    <Grid item xs={2} alignContent='center'>
+      <Typography>
+        {star} star
+      </Typography>
+    </Grid>
+    <Grid item xs={8} alignContent='center'>
+      <CustomLinearProgress value={value}/>
+    </Grid>
+    <Grid item xs={2} alignContent='center'>
+      <Typography textAlign='right'>
+        {value}%
+      </Typography>
+    </Grid>
+  </Grid>
+
+  
 )
 
 interface RatingHistogramProps {
@@ -44,22 +53,28 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
 
   return (
     <>
-      <Box>
-        <Typography variant='h2'>
-          Customer reviews
-        </Typography>
-        <CustomRating rating={ratingHistogram.average}/>
-        <Typography>
-          {ratingHistogram.average} out of 5
-        </Typography>
-        <Typography>
-          {ratingHistogram.total} global ratings
-        </Typography>
-        <HistogramBar star={5} value={fiveStarValue}/>
-        <HistogramBar star={4} value={fourStarValue}/>
-        <HistogramBar star={3} value={threeStarValue}/>
-        <HistogramBar star={2} value={twoStarValue}/>
-        <HistogramBar star={1} value={oneStarValue}/>
+      <Box width='350px'>
+        <Box display="flex" alignItems="left">
+          <Typography variant='h5'>
+            Customer reviews
+          </Typography>
+        </Box>
+        <Box marginBottom='8px'>
+          <CustomRating rating={ratingHistogram.average}/>
+        </Box>
+        <Box marginBottom='16px'>
+          <Typography variant='subtitle2'>
+            {ratingHistogram.total} global ratings
+          </Typography>
+        </Box>
+        <Box>
+          <HistogramBar star={5} value={fiveStarValue}/>
+          <HistogramBar star={4} value={fourStarValue}/>
+          <HistogramBar star={3} value={threeStarValue}/>
+          <HistogramBar star={2} value={twoStarValue}/>
+          <HistogramBar star={1} value={oneStarValue}/>
+        </Box>
+      
       </Box>
     </>
   )

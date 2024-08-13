@@ -20,6 +20,6 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 export default function CustomLinearProgress({value, ...rest}: LinearProgressProps) {
   return (
-    <BorderLinearProgress variant="determinate" value={value} />
+    <BorderLinearProgress variant="determinate" value={value} {...rest}/>
   );
 }
