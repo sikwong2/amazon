@@ -79,12 +79,21 @@ export default function ButtonAppBar() {
 
   const DrawerList = (
     <>
-    <AppBar position='static'>
-      <Toolbar>
-        text
+    <AppBar position='static' sx={{
+      backgroundColor: '#232f3e',
+      '& .MuiToolbar-root': {
+        minHeight: '50px', 
+        pr: 0, pl: 1.5,
+      }
+    }}>
+      <Toolbar sx={{ ml:2 }}>
+        <AccountCircleIcon fontSize='medium'/>
+        <Typography fontWeight='bold' fontSize='1rem' sx={{ pl:'8px' }}>
+          Hello, username
+        </Typography>
       </Toolbar>
     </AppBar>
-      <Box sx={{ width: 250 }} role="presentation" onClick={() => toggleDrawer(false)}>
+      <Box sx={{ width: '340px' }} role="presentation" onClick={() => toggleDrawer(false)}>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding>
@@ -141,7 +150,6 @@ export default function ButtonAppBar() {
       )}
     </>
   );
-
 
   return (
     <Box sx={{ flexGrow: 1 }}>
