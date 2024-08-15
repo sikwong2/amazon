@@ -10,17 +10,14 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Category } from "@/graphql/category/schema";
-import CustomButton from "./Button";
 import { Button } from "@mui/material";
+import CustomDivider from "./Divider";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -53,7 +50,23 @@ const fetchCategories = async (): Promise<string[]> => {
 export default function ButtonAppBar() {
   const [open, setOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<string[]>([]);
-
+  const drawerListContents= [
+    {'title': 'Trending', 
+      'content': ['Best Sellers', 'New Releases', 'Movers & Shakers']
+    },
+    {'title': 'Digital Content & Devices', 
+      'content': ['Prime Video', 'Amazon Music', 'Echo & Alexa', 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books', 'Audible Books & Originals', 'Amazon Photos', 'Amazon Appstore']
+    },
+    {'title': 'Shop by Department', 
+      'content': ['Clothing, Shoes, Jewelry & Watches', 'Amazon Fresh', 'Whole Foods Market', 'Books']
+    },
+    {'title': 'Programs & Features', 
+      'content': ['Medical Care & Pharmacy', 'Amazon Physical Stores', 'Amazon Business', 'Subscribe & Save']
+    },
+    {'title': 'Help & Settings',
+      'content': ['Your Account', 'English', 'United States', 'Sign Out']
+    },
+  ]
 
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
@@ -81,45 +94,57 @@ export default function ButtonAppBar() {
     <>
     <AppBar position='static' sx={{
       backgroundColor: '#232f3e',
+      boxShadow:'none',
       '& .MuiToolbar-root': {
         minHeight: '50px', 
         pr: 0, pl: 1.5,
       }
     }}>
-      <Toolbar sx={{ ml:2 }}>
-        <AccountCircleIcon fontSize='medium'/>
-        <Typography fontWeight='bold' fontSize='1rem' sx={{ pl:'8px' }}>
-          Hello, username
+      <Toolbar sx={{ ml:3 }}>
+        <AccountCircleIcon sx={{ fontSize:'1.8rem' }}/>
+        <Typography fontWeight='bold' fontSize='1.1rem' letterSpacing='1px' sx={{ pl:'8px' }}>
+          Hello, nochoy
         </Typography>
       </Toolbar>
     </AppBar>
-      <Box sx={{ width: '340px' }} role="presentation" onClick={() => toggleDrawer(false)}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+    <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
+      {drawerListContents.map((section, index) => (
+        <>
+          <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
+            {section.title}
+          </Typography>
+          <List disablePadding>
+            {section.content.map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton disableGutters sx={{ 
+                  p:'0.8rem 1.25rem 0.8rem 2.25rem',
+                  '&:hover': {
+                    backgroundColor: '#eaeded',
+                  }
+                }}>
+                  <ListItemText primary={text} sx={{ 
+                    m:0,
+                    '& .MuiTypography-root': {
+                      fontSize:'0.88rem',
+                      lineHeight:'normal',
+                      color:'#111',
+                    }
+                  }}/>
+                  {section.title !== 'Trending' && 
+                    <IconButton edge="end" aria-label="delete" sx={{ p:0, m:0 }}>
+                      <ArrowForwardIosIcon fontSize='small' sx={{ height:'1rem' }}/>
+                    </IconButton>
+                  }
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          {section.title !== 'Help & Settings' &&
+            <CustomDivider sx={{ my:0.8 }} />
+          }
+        </>
+      ))}
+    </Box>
     </>
   );
 
