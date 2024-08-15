@@ -15,8 +15,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LanguageIcon from '@mui/icons-material/Language';
+import { US } from 'country-flag-icons/react/3x2';
 import { Category } from "@/graphql/category/schema";
-import { Button } from "@mui/material";
+import { Button, ListItemIcon } from "@mui/material";
 import CustomDivider from "./Divider";
 
 const fetchCategories = async (): Promise<string[]> => {
@@ -51,19 +53,24 @@ export default function ButtonAppBar() {
   const [open, setOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<string[]>([]);
   const drawerListContents= [
-    {'title': 'Trending', 
+    {
+      'title': 'Trending', 
       'content': ['Best Sellers', 'New Releases', 'Movers & Shakers']
     },
-    {'title': 'Digital Content & Devices', 
+    {
+      'title': 'Digital Content & Devices', 
       'content': ['Prime Video', 'Amazon Music', 'Echo & Alexa', 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books', 'Audible Books & Originals', 'Amazon Photos', 'Amazon Appstore']
     },
-    {'title': 'Shop by Department', 
+    {
+      'title': 'Shop by Department', 
       'content': ['Clothing, Shoes, Jewelry & Watches', 'Amazon Fresh', 'Whole Foods Market', 'Books']
     },
-    {'title': 'Programs & Features', 
+    {
+      'title': 'Programs & Features', 
       'content': ['Medical Care & Pharmacy', 'Amazon Physical Stores', 'Amazon Business', 'Subscribe & Save']
     },
-    {'title': 'Help & Settings',
+    {
+      'title': 'Help & Settings',
       'content': ['Your Account', 'English', 'United States', 'Sign Out']
     },
   ]
@@ -110,18 +117,24 @@ export default function ButtonAppBar() {
     <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
       {drawerListContents.map((section, index) => (
         <>
-          <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
+          <Typography key={section.title} fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
             {section.title}
           </Typography>
           <List disablePadding>
             {section.content.map((text, index) => (
-              <ListItem key={text} disablePadding>
+              <ListItem key={index} disablePadding>
                 <ListItemButton disableGutters sx={{ 
                   p:'0.8rem 1.25rem 0.8rem 2.25rem',
                   '&:hover': {
                     backgroundColor: '#eaeded',
                   }
                 }}>
+                  {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
+                    <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
+                      {text === 'English' && <LanguageIcon fontSize='small' sx={{ ml:-0.5, height:'1rem', color:'#bfbdbd' }}/>}
+                      {text === 'United States' && <US style={{ height: '0.6rem' }} title="United States" />}
+                    </ListItemIcon>
+                  }
                   <ListItemText primary={text} sx={{ 
                     m:0,
                     '& .MuiTypography-root': {
@@ -130,7 +143,7 @@ export default function ButtonAppBar() {
                       color:'#111',
                     }
                   }}/>
-                  {section.title !== 'Trending' && 
+                  {section.title !== 'Trending' && section.title !== 'Help & Settings' && 
                     <IconButton edge="end" aria-label="delete" sx={{ p:0, m:0 }}>
                       <ArrowForwardIosIcon fontSize='small' sx={{ height:'1rem' }}/>
                     </IconButton>
