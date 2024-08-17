@@ -117,7 +117,7 @@ export default function ButtonAppBar() {
     <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
       {drawerListContents.map((section, index) => (
         <>
-          <Typography key={section.title} fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
+          <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
             {section.title}
           </Typography>
           <List disablePadding>
@@ -161,32 +161,39 @@ export default function ButtonAppBar() {
     </>
   );
 
-  // TODO: add box? around categories array to create horizontal scroll on mobile view
   const CategoryButtons = (
-    <>
+    <Box sx={{ 
+      overflowX:'auto', 
+      whiteSpace:'nowrap', 
+      scrollbarWidth: 'none',     // hide scrollbar for Firefox
+      msOverflowStyle: 'none',    // hide scrollbar for Internet Explorer + Edge
+      '&::-webkit-scrollbar': { display: 'none'}    // hide scrollbar for WebKit browsers
+    }}>
       {categories.slice(0, 12).map((cat) => 
-        <Button variant='text' aria-label={`${cat}-button`} onClick={goToCategoryPage} sx={{
-          color: 'white',
-          border: 'none',
-          p: 1,
-          height: '100%', 
-          '&:hover': {
-            border: '1px solid white',
-            borderRadius: '2px',
+        <Button variant='text' aria-label={`${cat}-button`} onClick={goToCategoryPage} 
+          sx={{
             color: 'white',
-            backgroundColor: 'inherit',
-            p:0.9,
-          },
-          '&:focus': {
-            color: '#ccc',
-          }
-        }}> 
+            border: 'none',
+            p: 1,
+            height: '100%', 
+            '&:hover': {
+              border: '1px solid white',
+              borderRadius: '2px',
+              color: 'white',
+              backgroundColor: 'inherit',
+              p:0.9,
+            },
+            '&:focus': {
+              color: '#ccc',
+            }
+          }}
+        > 
           <Typography textTransform='capitalize' fontSize='0.88rem' border='none'>
             {cat}
           </Typography>
         </Button>
       )}
-    </>
+    </Box>
   );
 
   return (
@@ -213,8 +220,7 @@ export default function ButtonAppBar() {
                 border: '1px solid white',
                 borderRadius: '2px',
                 p: '7px',
-              },
-
+              }
             }}
           >
             <MenuIcon /> 
