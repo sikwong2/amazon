@@ -1,9 +1,11 @@
 import * as React from 'react';
-import {useContext} from 'react';
-import {Avatar, Divider, Grid, ListItem, Typography} from '@mui/material';
-import {List, ListItemButton, ListItemText, ListItemAvatar}
-  from '@mui/material';
-import {Box} from '@mui/material';
+import Box, { BoxProps } from '@mui/material/Box'
+import CustomRating from './Rating';
+import { RatingHistogram } from '@/graphql/review/schema';
+import { Typography } from '@mui/material';
+import CustomLinearProgress from './RatingHistogramBar';
+import {Grid} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 import { Review } from '@/graphql/review/schema';
 
 export default function ReviewListItem({ review, index}: {review: Review, index: number}) {
@@ -30,7 +32,7 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
         </Typography>
       </Box>
       <Box>
-        {review.images?.map((image)=>(
+        {review.images?.map((image: string)=>(
           <Box
             sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
             component="img"
