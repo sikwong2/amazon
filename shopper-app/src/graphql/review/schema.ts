@@ -1,10 +1,10 @@
 import { ArgsType, Field, ID, InputType, Int, ObjectType } from 'type-graphql';
-import { IsIn, IsNotEmpty, Matches, Max, Min } from 'class-validator';
+import { ArrayNotEmpty, IsIn, IsNotEmpty, Matches, Max, Min, Validate, ValidateNested } from 'class-validator';
+
 
 @InputType()
 export class NewReview {
-  @Field(() => [String], { nullable: true })
-  @Matches(/https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/)
+  @Field(() => [String!], { nullable: true })
   images?: string[];
   @Field()
   @IsNotEmpty()
@@ -26,18 +26,14 @@ export class NewReview {
 export class Review {
   @Field(() => ID)
   @IsNotEmpty()
-  @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
   id!: string;
   @Field(() => ID)
   @IsNotEmpty()
-  @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
   shopper_id!: string;
   @Field(() => ID)
   @IsNotEmpty()
-  @Matches(/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/)
   product_id!: string;
-  @Field(() => [String], { nullable: true })
-  @Matches(/https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/)
+  @Field(() => [String!], { nullable: true })
   images?: string[];
   @Field()
   @IsNotEmpty()

@@ -12,7 +12,7 @@ interface HistogramBarProps {
 }
 
 const HistogramBar = ({star, value}: HistogramBarProps) => (
-  <Grid container rowSpacing='7px' columnSpacing='6px' alignItems='left'>
+  <Grid container rowSpacing='0.5rem' columnSpacing='0.5rem' alignItems='left' >
     <Grid item xs={2} alignContent='center'>
       <Typography>
         {star} star
@@ -53,14 +53,14 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
 
   return (
     <>
-      <Box width='350px'>
+      <Box width='100%'>
         <Box display="flex" alignItems="left">
           <Typography variant='h5'>
             Customer reviews
           </Typography>
         </Box>
         <Box marginBottom='8px'>
-          <CustomRating rating={ratingHistogram.average}/>
+          <CustomRating rating={ratingHistogram.average} key='ratinghistogram-ratings'/>
         </Box>
         <Box marginBottom='16px'>
           <Typography variant='subtitle2'>
@@ -68,11 +68,11 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
           </Typography>
         </Box>
         <Box>
-          <HistogramBar star={5} value={fiveStarValue}/>
-          <HistogramBar star={4} value={fourStarValue}/>
-          <HistogramBar star={3} value={threeStarValue}/>
-          <HistogramBar star={2} value={twoStarValue}/>
-          <HistogramBar star={1} value={oneStarValue}/>
+          <HistogramBar star={5} value={fiveStarValue} key='histogrambar-fiveStar'/>
+          <HistogramBar star={4} value={fourStarValue} key='histogrambar-fourStar'/>
+          <HistogramBar star={3} value={threeStarValue} key='histogrambar-threeStar'/>
+          <HistogramBar star={2} value={twoStarValue} key='histogrambar-twoStar'/>
+          <HistogramBar star={1} value={oneStarValue} key='histogrambar-oneStar'/>
         </Box>
       
       </Box>

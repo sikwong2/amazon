@@ -33,6 +33,7 @@ export class ReviewService {
 
   public async createReview(review: NewReview, shopper_id: string, product_id: string): Promise <Review | undefined> {
     try {
+      console.log('creating review');
       const posted = new Date();
       let create  = 
           `INSERT INTO review(product_id, shopper_id, data)

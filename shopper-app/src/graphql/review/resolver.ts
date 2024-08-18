@@ -1,10 +1,10 @@
-import { Query, Resolver, Arg, Args, Int } from 'type-graphql';
+import { Query, Resolver, Arg, Args, Int, Mutation } from 'type-graphql';
 import { ReviewService } from './service';
 import {NewReview, Review, RatingHistogram} from './schema'
 
 @Resolver()
 export class ReviewResolver {
-  @Query(() => Review)
+  @Mutation(() => Review)
   async postReview(
     @Arg('newReview') newReview: NewReview,
     @Arg('memberId') memberId: string,
