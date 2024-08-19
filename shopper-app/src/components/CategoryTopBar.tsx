@@ -19,7 +19,9 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { US } from 'country-flag-icons/react/3x2';
 import { Category } from "@/graphql/category/schema";
 import { Button, ListItemIcon } from "@mui/material";
+import router from "next/router";
 import CustomDivider from "./Divider";
+import { LoginContext } from "@/context/Login";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -52,36 +54,67 @@ const fetchCategories = async (): Promise<string[]> => {
 export default function ButtonAppBar() {
   const [open, setOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<string[]>([]);
-  const drawerListContents= [
-    {
-      'title': 'Trending', 
-      'content': ['Best Sellers', 'New Releases', 'Movers & Shakers']
-    },
-    {
-      'title': 'Digital Content & Devices', 
-      'content': ['Prime Video', 'Amazon Music', 'Echo & Alexa', 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books', 'Audible Books & Originals', 'Amazon Photos', 'Amazon Appstore']
-    },
-    {
-      'title': 'Shop by Department', 
-      'content': ['Clothing, Shoes, Jewelry & Watches', 'Amazon Fresh', 'Whole Foods Market', 'Books']
-    },
-    {
-      'title': 'Programs & Features', 
-      'content': ['Medical Care & Pharmacy', 'Amazon Physical Stores', 'Amazon Business', 'Subscribe & Save']
-    },
-    {
-      'title': 'Help & Settings',
-      'content': ['Your Account', 'English', 'United States', 'Sign Out']
-    },
-  ]
+  const loginContext = React.useContext(LoginContext);
 
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
   }
 
-  const goToCategoryPage = (e: any) => {
+  // TODO 
+  const handleCategoryClick = (e: any) => {
     console.log("go to category page: ", e.target.innerText);
   }
+
+  // TODO: link to language selector page
+  const handleLanguageClick = () => {
+    console.log("go to change language page");
+  }
+
+  // TODO: link to your account page
+  const handleYourAccountClick = () => {
+    console.log("go to your account page");
+  }
+
+  const handleSignIn = () => {
+    router.push('/login');
+  }
+
+  const handleSignOut = () => {
+		loginContext.setUserName('');
+		loginContext.setAccessToken('');
+		loginContext.setId('');
+		loginContext.setRole('');
+  }
+
+  const signInText = (loginContext.accessToken.length > 0 ? 'Sign Out' : 'Sign In');
+  const signInHandler = (loginContext.accessToken.length > 0 ? handleSignOut : handleSignIn);
+  const drawerListContents= [
+    {
+      'title': 'Trending', 
+      'content': ['Best Sellers', 'New Releases', 'Movers & Shakers'],
+      'clickHandler': [handleCategoryClick]
+    },
+    {
+      'title': 'Digital Content & Devices', 
+      'content': ['Prime Video', 'Amazon Music', 'Echo & Alexa', 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books', 'Audible Books & Originals', 'Amazon Photos', 'Amazon Appstore'],
+      'clickHandler': [handleCategoryClick]
+    },
+    {
+      'title': 'Shop by Department', 
+      'content': categories.slice(0, 15),
+      'clickHandler': [handleCategoryClick]
+    },
+    {
+      'title': 'Programs & Features', 
+      'content': ['Medical Care & Pharmacy', 'Amazon Physical Stores', 'Amazon Business', 'Subscribe & Save'],
+      'clickHandler': [handleCategoryClick]
+    },
+    {
+      'title': 'Help & Settings',
+      'content': ['Your Account', 'English', 'United States', signInText],
+      'clickHandler': [handleYourAccountClick, handleLanguageClick, handleLanguageClick, signInHandler]
+    },
+  ]
   
   React.useEffect(() =>  {
     const getCategories = async () => {
@@ -99,65 +132,67 @@ export default function ButtonAppBar() {
 
   const DrawerList = (
     <>
-    <AppBar position='static' sx={{
-      backgroundColor: '#232f3e',
-      boxShadow:'none',
-      '& .MuiToolbar-root': {
-        minHeight: '50px', 
-        pr: 0, pl: 1.5,
-      }
-    }}>
-      <Toolbar sx={{ ml:3 }}>
-        <AccountCircleIcon sx={{ fontSize:'1.8rem' }}/>
-        <Typography fontWeight='bold' fontSize='1.1rem' letterSpacing='1px' sx={{ pl:'8px' }}>
-          Hello, nochoy
-        </Typography>
-      </Toolbar>
-    </AppBar>
-    <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
-      {drawerListContents.map((section, index) => (
-        <>
-          <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
-            {section.title}
+      <AppBar position='static' sx={{
+        backgroundColor: '#232f3e',
+        boxShadow:'none',
+        '& .MuiToolbar-root': {
+          minHeight: '50px', 
+          pr: 0, pl: 1.5,
+        }
+      }}>
+        <Toolbar sx={{ ml:3 }}>
+          <AccountCircleIcon sx={{ fontSize:'1.8rem' }}/>
+          <Typography fontWeight='bold' fontSize='1.1rem' letterSpacing='1px' sx={{ pl:'8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '250px' }}>
+            Hello, {loginContext.accessToken.length > 0 ? loginContext.userName : 'sign in'}
           </Typography>
-          <List disablePadding>
-            {section.content.map((text, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton disableGutters sx={{ 
-                  p:'0.8rem 1.25rem 0.8rem 2.25rem',
-                  '&:hover': {
-                    backgroundColor: '#eaeded',
-                  }
-                }}>
-                  {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
-                    <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
-                      {text === 'English' && <LanguageIcon fontSize='small' sx={{ ml:-0.5, height:'1rem', color:'#bfbdbd' }}/>}
-                      {text === 'United States' && <US style={{ height: '0.6rem' }} title="United States" />}
-                    </ListItemIcon>
-                  }
-                  <ListItemText primary={text} sx={{ 
-                    m:0,
-                    '& .MuiTypography-root': {
-                      fontSize:'0.88rem',
-                      lineHeight:'normal',
-                      color:'#111',
+        </Toolbar>
+      </AppBar>
+      <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
+        {drawerListContents.map((section, index) => (
+          <>
+            <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
+              {section.title}
+            </Typography>
+            <List disablePadding>
+              {section.content.map((text, index) => (
+                <ListItem key={index} disablePadding>
+                  <ListItemButton disableGutters sx={{ 
+                      p:'0.8rem 1.25rem 0.8rem 2.25rem',
+                      '&:hover': {
+                        backgroundColor: '#eaeded',
+                      }
+                    }}
+                    onClick={section.clickHandler[section.clickHandler.length > 1 ? index : 0]}
+                  >
+                    {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
+                      <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
+                        {text === 'English' && <LanguageIcon fontSize='small' sx={{ ml:-0.5, height:'1rem', color:'#bfbdbd' }}/>}
+                        {text === 'United States' && <US style={{ height: '0.6rem' }} title="United States" />}
+                      </ListItemIcon>
                     }
-                  }}/>
-                  {section.title !== 'Trending' && section.title !== 'Help & Settings' && 
-                    <IconButton edge="end" aria-label="delete" sx={{ p:0, m:0 }}>
-                      <ArrowForwardIosIcon fontSize='small' sx={{ height:'1rem' }}/>
-                    </IconButton>
-                  }
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          {section.title !== 'Help & Settings' &&
-            <CustomDivider sx={{ my:0.8 }} />
-          }
-        </>
-      ))}
-    </Box>
+                    <ListItemText primary={text} sx={{ 
+                      m:0,
+                      '& .MuiTypography-root': {
+                        fontSize:'0.88rem',
+                        lineHeight:'normal',
+                        color:'#111',
+                      }
+                    }}/>
+                    {section.title !== 'Trending' && section.title !== 'Help & Settings' && 
+                      <IconButton edge="end" aria-label="delete" sx={{ p:0, m:0 }}>
+                        <ArrowForwardIosIcon fontSize='small' sx={{ height:'1rem' }}/>
+                      </IconButton>
+                    }
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+            {section.title !== 'Help & Settings' &&
+              <CustomDivider sx={{ my:0.8 }} />
+            }
+          </>
+        ))}
+      </Box>
     </>
   );
 
@@ -169,8 +204,8 @@ export default function ButtonAppBar() {
       msOverflowStyle: 'none',    // hide scrollbar for Internet Explorer + Edge
       '&::-webkit-scrollbar': { display: 'none'}    // hide scrollbar for WebKit browsers
     }}>
-      {categories.slice(0, 12).map((cat) => 
-        <Button variant='text' aria-label={`${cat}-button`} onClick={goToCategoryPage} 
+      {categories.slice(0, 10).map((cat) => 
+        <Button variant='text' aria-label={`${cat}-button`} onClick={handleCategoryClick} 
           sx={{
             color: 'white',
             border: 'none',
