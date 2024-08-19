@@ -291,7 +291,7 @@ export default function TopBar() {
 				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
 				sx={{ flexGrow: 1 }}
 			/>
-			<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
+			<SearchIconWrapper aria-label='search-icon' onClick={() => handleSearch()}>
 				<StyledSearchIcon fontSize='medium'/>
 			</SearchIconWrapper>
 		</Search>

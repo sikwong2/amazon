@@ -17,11 +17,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LanguageIcon from '@mui/icons-material/Language';
 import { US } from 'country-flag-icons/react/3x2';
-import { Category } from "@/graphql/category/schema";
 import { Button, ListItemIcon } from "@mui/material";
 import router from "next/router";
 import CustomDivider from "./Divider";
 import { LoginContext } from "@/context/Login";
+import { SearchContext } from "@/context/Search";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -55,14 +55,16 @@ export default function ButtonAppBar() {
   const [open, setOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<string[]>([]);
   const loginContext = React.useContext(LoginContext);
+  const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
 
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
   }
 
   // TODO 
-  const handleCategoryClick = (e: any) => {
-    console.log("go to category page: ", e.target.innerText);
+  const handleCategoryClick = (category: string) => {
+    setSearchValue(category);
+    handleSearch(category);
   }
 
   // TODO: link to language selector page
@@ -162,7 +164,7 @@ export default function ButtonAppBar() {
                         backgroundColor: '#eaeded',
                       }
                     }}
-                    onClick={section.clickHandler[section.clickHandler.length > 1 ? index : 0]}
+                    // onClick={section.clickHandler[section.clickHandler.length > 1 ? index : 0]}
                   >
                     {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
                       <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
@@ -205,7 +207,7 @@ export default function ButtonAppBar() {
       '&::-webkit-scrollbar': { display: 'none'}    // hide scrollbar for WebKit browsers
     }}>
       {categories.slice(0, 10).map((cat) => 
-        <Button variant='text' aria-label={`${cat}-button`} onClick={handleCategoryClick} 
+        <Button variant='text' aria-label={`${cat}-button`} onClick={() => handleCategoryClick(cat)} 
           sx={{
             color: 'white',
             border: 'none',

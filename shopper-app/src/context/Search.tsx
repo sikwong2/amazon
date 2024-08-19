@@ -4,16 +4,17 @@ import { useRouter } from 'next/router';
 export const SearchContext = createContext({
     searchValue: '',
     setSearchValue: (searchValue: string) => {},
-    handleSearch: () => {}
+    handleSearch: (newSearchValue?: string) => {}
 });
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [searchValue, setSearchValue] = useState('');
     const router = useRouter();
 
-    const handleSearch = () => {
-        setSearchValue(searchValue.trim());
-        router.push(`/search?query=${encodeURIComponent(searchValue.trim())}`);  
+    const handleSearch = (newSearchValue?: string) => {
+        const newValue = newSearchValue || searchValue;
+        setSearchValue(newValue.trim());
+        router.push(`/search?query=${encodeURIComponent(newValue.trim())}`);  
     };
 
     return (
