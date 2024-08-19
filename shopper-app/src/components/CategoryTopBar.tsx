@@ -61,7 +61,6 @@ export default function ButtonAppBar() {
     setOpen(newState);
   }
 
-  // TODO 
   const handleCategoryClick = (category: string) => {
     setSearchValue(category);
     handleSearch(category);
@@ -164,7 +163,7 @@ export default function ButtonAppBar() {
                         backgroundColor: '#eaeded',
                       }
                     }}
-                    // onClick={section.clickHandler[section.clickHandler.length > 1 ? index : 0]}
+                    onClick={() => section.clickHandler[section.clickHandler.length > 1 ? index : 0](text)}
                   >
                     {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
                       <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
