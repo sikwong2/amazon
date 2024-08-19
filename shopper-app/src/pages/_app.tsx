@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import { LoginProvider } from "@/context/Login";
 import { CartProvider } from "@/context/Cart";
 import { PageProvider } from "@/context/Page";
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { BrowserHistoryProvider } from "@/context/BrowserHistory";
 
 const theme = createTheme({

@@ -1,13 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 
-interface SearchContextProps {
-    searchValue: string;
-    setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-    handleSearch: () => void;
-}
-
-const SearchContext = createContext<SearchContextProps | undefined>(undefined);
+export const SearchContext = createContext({
+    searchValue: '',
+    setSearchValue: (searchValue: string) => {},
+    handleSearch: () => {}
+});
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [searchValue, setSearchValue] = useState('');
@@ -25,10 +23,3 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     );
 };
 
-export const useSearch = () => {
-    const context = useContext(SearchContext);
-    if (!context) {
-        throw new Error('useSearch must be used within a SearchProvider');
-    }
-    return context;
-};

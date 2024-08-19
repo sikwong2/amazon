@@ -6,7 +6,7 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
-import { SearchProvider } from '../context/SearchContext';
+import { SearchProvider } from '../context/Search';
 import TopBar from '@/components/TopBar';
 
 
@@ -55,7 +55,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
   const { query } = router.query;
 
   return (
-    <SearchProvider>
+    <>
       <TopBar />
       <Box aria-label="search-results" bgcolor="#E4E6E6" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }, margin: 'auto', padding: 2 }}>
@@ -75,7 +75,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
           </Grid>
         </Box>
       </Box>
-    </SearchProvider>
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { LoginContext } from '@/context/Login';
-import { useSearch } from '@/context/SearchContext';
+import { SearchContext } from '@/context/Search';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
@@ -101,7 +101,7 @@ export default function TopBar() {
 	const loginContext = React.useContext(LoginContext);
 	const pageContext = React.useContext(PageContext);
 	const cartContext = React.useContext(CartContext);
-	const { searchValue, setSearchValue, handleSearch } = useSearch();
+	const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
