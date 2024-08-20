@@ -7,6 +7,7 @@ export const TypographyHover = styled(Typography)(({ theme }) => ({
   '&:hover': {
     color: '#D77B21',
     textDecoration: 'underline',
+    cursor: 'pointer'
   },
   '&.Mui-selected': {
     color: '#0F1111',

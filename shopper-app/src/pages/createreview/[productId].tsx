@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { Container, Rating, Stack, Typography } from '@mui/material';
+import { Container, Dialog, DialogActions, Rating, Stack, TextField, Typography } from '@mui/material';
 import { NewReview } from '@/graphql/review/schema';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
@@ -14,6 +14,7 @@ import CustomDivider from '@/components/Divider';
 import { TypographyHover } from '@/components/TypographyHover';
 import { LoginContext } from "@/context/Login";
 import TopBar from '@/components/TopBar';
+import { AddImage } from '@/components/AddImage';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = {
@@ -67,9 +68,13 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   const { productId } = router.query;
   const [value, setValue] = React.useState<number | null>(0);
   const [review, setReview] = React.useState<NewReview>({ name: '', title: '', rating: 0, content: ''});
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = React.useState<string[]>([]);
   const {userName, id, accessToken} = React.useContext(LoginContext); 
+  const [open, setOpen] = React.useState(false);
+  const imgre = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/
+  const [image, setImage] = React.useState('');
 
+  
 
   React.useEffect(() => {
     if (!userName || !id || !accessToken) {
@@ -87,6 +92,11 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
     r.rating = value as number;
     r.content = data.get('Content')!.toString();
     console.log(r);
+    if (r.name == '' || r.content == '' || r.title == '') {
+      console.log('empty targets');
+    } else {
+
+    }
   };
 
   const onClear = () => {
@@ -106,7 +116,15 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       </Grid>
       <Grid item lg={10} sm={9} xs={8}>
         <Box display="flex" justifyContent="flex-start" >
-          <Typography mt='2rem'>
+          <Typography mt='2rem' ml='0.5rem'
+            sx={{
+              wordWrap: 'break-word',
+              display: '-webkit-box',
+              overflow: 'hidden',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 3,
+            }}
+          >
             {product.name}
           </Typography>
         </Box>
@@ -146,7 +164,8 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
 
   const headline = (
     <Box mb='1rem' mt='1rem'>
-      <Typography variant='h5'>
+      <Typography variant='h5' 
+      >
         Add a headline
       </Typography>
       <CustomTextField
@@ -199,6 +218,91 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   </Box>
   );
 
+  const handleOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleAddImage = (i: string) => {
+    const allimages = images.concat([i]);
+    setImages(allimages);
+    setImage('');
+    setOpen(false);
+  }
+  
+  const handleRemoveImage = (id: number) => {
+    const allimages = images.filter((_, i) => i !== id);
+    setImages(allimages);
+  }
+
+  const handleImageInputChange = (event: any) => {
+    setImage(event.target.value);
+  }
+
+  const handleCancel = () => {
+    setImage('');
+  }
+  
+
+  const dialog = (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      fullWidth
+      maxWidth='md'
+    >
+      <Box
+        marginX="5%"
+      >
+        <TextField
+          autoFocus
+          fullWidth
+          required
+          margin="normal"
+          id="image"
+          name="image"
+          inputProps={{ "data-testid": "image-input" }}
+          label="Image Link"
+          variant="outlined"
+          value={image}
+          onChange={handleImageInputChange}
+        /> 
+      </Box>
+      {
+      imgre.test(image) && 
+        <Box display='flex' justifyContent='center'>
+          <Box
+            sx={{ gridColumn: 'span 2', maxWidth: '20rem', maxHeight: '20rem', width: 'auto', height: 'auto' }}
+            component="img"
+            src={image}
+          />
+        </Box>
+
+      }
+      <DialogActions>
+        <CustomButton
+          onClick={handleCancel}
+          name="Clear"
+          label='Clear'
+        >
+          Clear
+        </CustomButton>
+        <CustomButton
+          disabled={imgre.test(image) ? false : true}
+          onClick={() => handleAddImage(image)}
+          aria-label="postImage"
+          name="postImage"
+          label="postImage"
+        > 
+          Post
+        </CustomButton>
+      </DialogActions>
+    </Dialog>
+  )
+
   const imagesUpload = (
     <Box mb='1rem' mt='1rem'>
       <Typography variant='h5'>
@@ -207,6 +311,19 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       <Typography variant='subtitle2' color='gray'>
         Shoppers find images more helpful than text alone.
       </Typography>
+      <Stack direction='row' spacing='0.5rem'>
+        {images?.map((image, id) => (
+            <Box
+                sx={{ maxWidth: '100px', maxHeight: '100px', width: 'auto', height: 'auto', objectFit: 'contain' }}
+                component="img"
+                key={id}
+                src={image}
+                onClick={() => handleRemoveImage(id)}
+            />
+        ))}
+        <AddImage onClick={handleOpen}/>
+      </Stack>
+
     </Box>
   );
 
@@ -255,6 +372,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
           </Box>
         </Grid>
       </Grid>
+      {dialog}
     </Container>
     </>
   )
