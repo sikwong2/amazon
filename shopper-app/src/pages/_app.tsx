@@ -9,6 +9,7 @@ import { CartProvider } from "@/context/Cart";
 import { PageProvider } from "@/context/Page";
 import { SearchProvider } from '@/context/Search';
 import { BrowserHistoryProvider } from "@/context/BrowserHistory";
+import { CategoryProvider } from "@/context/Category";
 
 const theme = createTheme({
   typography: {
@@ -24,7 +25,9 @@ const App = ({ Component, pageProps }: AppProps) => {
           <PageProvider>
             <CartProvider>
               <BrowserHistoryProvider>
-                <Component {...pageProps} />
+                <CategoryProvider>
+                  <Component {...pageProps} />
+                </CategoryProvider>
               </BrowserHistoryProvider>
             </CartProvider>
           </PageProvider>
