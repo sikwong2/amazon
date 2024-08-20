@@ -1,9 +1,6 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box'
-import CustomRating from './Rating';
-import { RatingHistogram } from '@/graphql/review/schema';
 import { Typography } from '@mui/material';
-import CustomLinearProgress from './RatingHistogramBar';
 import {Grid} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { Review } from '@/graphql/review/schema';
@@ -34,7 +31,7 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
       <Box>
         {review.images?.map((image: string)=>(
           <Box
-            sx={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }}
+            sx={{ maxWidth: '150px', maxHeight: '200px', width: 'auto', height: 'auto' }}
             component="img"
             src={image}
           />

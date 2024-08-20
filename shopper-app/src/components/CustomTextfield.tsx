@@ -4,7 +4,7 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { useInput } from '@mui/base/useInput';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { InputLabel } from '@mui/material';
+import { InputBase, InputLabel, InputBaseProps } from '@mui/material';
 
 const CustomInput = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
@@ -24,12 +24,31 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
+const CustomTextInput = React.forwardRef(function CustomInput(
+  props: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  ref: React.ForwardedRef<HTMLTextAreaElement>,
+) {
+  const { getRootProps, getInputProps } = useInput(props);
+
+  const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
+  inputProps.ref = useForkRef(inputProps.ref, ref);
+
+  return (
+    <div {...getRootProps()} style={{ width: '100%' }}>
+      <TextArea {...props} {...inputProps} />
+    </div>
+  );
+});
+
 export default function CustomTextField({
   label = '',
   placeholder = '',
   width = '100%',
   height = '2rem',
   inputLabel = '',
+  multiline = false,
   ...rest
 }) {
   return (
@@ -41,17 +60,48 @@ export default function CustomTextField({
           {inputLabel}
         </InputLabel>
       )}
-      <CustomInput
+      { multiline ?
+      <CustomTextInput
         aria-label={label}
         id={label}
         name={label}
         placeholder={placeholder}
         style={{ width, height }}
         {...rest} // for other props
-      />
+      /> :
+      <CustomInput
+      aria-label={label}
+      id={label}
+      name={label}
+      placeholder={placeholder}
+      style={{ width, height }}
+      {...rest} // for other props
+    />
+      }
     </>
   );
 }
+
+export const TextArea = styled('textarea')(
+  () => `
+  width: 100%;
+  font-family: 'Amazon Ember', sans-serif;
+  font-size: 80%;
+  line-height: normal;
+  padding: 10px 7px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #888C8C;
+  box-shadow: 0 1px 2px rgba(15,17,17,.15) inset;
+  resize: none;
+  &:focus {
+    background-color: #F7FEFF;
+    border: 1px solid #007185;
+    outline: none;
+    box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgba(15,17,17,.15) inset
+  }
+`,
+);
 
 const InputElement = styled('input')(
   () => `

@@ -14,7 +14,7 @@ export const TypographyHover = styled(Typography)(({ theme }) => ({
     textDecoration: 'none',
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: '12px',
+    fontSize: '14px',
     lineHeight: '18px', // Adjust lineHeight for small screens if necessary
   },
 }));

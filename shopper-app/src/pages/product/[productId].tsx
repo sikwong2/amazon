@@ -27,6 +27,7 @@ import { BrowserHistoryEntry } from '@/graphql/member/schema';
 import CustomRatingHistogram from '@/components/RatingHistogram';
 import { RatingHistogram } from '@/graphql/review/schema';
 import { Review } from '@/graphql/review/schema';
+import ReviewDisplayItem from '@/components/ReviewDisplayItem';
 
 interface Product {
   name: string;
@@ -413,6 +414,12 @@ export default function Product({ product }: ProductProp) {
       </Box>
     </CustomCard>
   );
+  
+  // needs sign in context bc redirects to home if not signed in
+  const createReviewEvent = () => {
+    // pageContext.setPage(`/createreview/${productId as string}`);
+    router.push(`/createreview/${productId as string}`);
+  }
 
   const WriteAReview = (
     <Box width='100%'>
@@ -423,7 +430,7 @@ export default function Product({ product }: ProductProp) {
         <Typography sx={{paddingBottom: '16px'}}>
           Share your thoughts with other customers
         </Typography>
-        <CustomButton variant="outlined" label='write a review' pill fullWidth>
+        <CustomButton variant="outlined" label='write a review' pill fullWidth onClick={createReviewEvent}>
           Write a customer review
         </CustomButton>
       <CustomDivider sx={{mb: '1rem', mt:'2rem'}}/>
@@ -447,9 +454,11 @@ export default function Product({ product }: ProductProp) {
         <Typography>
           No customer reviews
         </Typography> :
-        <Typography>
-          Reviews here
-        </Typography>
+        <Box width="100%">
+          {reviews.map((review, index) => (
+            <ReviewDisplayItem review={review} index={index}/>
+          ))}
+        </Box>
       }
     </Box>
   );
