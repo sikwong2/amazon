@@ -22,6 +22,7 @@ import router from "next/router";
 import CustomDivider from "./Divider";
 import { LoginContext } from "@/context/Login";
 import { SearchContext } from "@/context/Search";
+import {CategoryContext } from "@/context/Category";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -51,9 +52,9 @@ const fetchCategories = async (): Promise<string[]> => {
   }
 };
 
-export default function ButtonAppBar() {
+export default function CategoryTopBar() {
   const [open, setOpen] = React.useState(false);
-  const [categories, setCategories] = React.useState<string[]>([]);
+  const { categories, setCategories, selectedCategory, setSelectedCategory } = React.useContext(CategoryContext);
   const loginContext = React.useContext(LoginContext);
   const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
 
@@ -62,6 +63,7 @@ export default function ButtonAppBar() {
   }
 
   const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
     setSearchValue(category);
     handleSearch(category);
   }
@@ -150,13 +152,13 @@ export default function ButtonAppBar() {
       </AppBar>
       <Box sx={{ width: '365px', pt:1, pb:4 }} role="presentation" onClick={() => toggleDrawer(false)}>
         {drawerListContents.map((section, index) => (
-          <>
+          <React.Fragment key={section.title}>
             <Typography fontSize='1.13rem' fontWeight='bold' sx={{ p:'0.8rem 1.25rem 0.3rem 2.25rem', color: '#111', letterSpacing:'0.5px'}}>
               {section.title}
             </Typography>
             <List disablePadding>
               {section.content.map((text, index) => (
-                <ListItem key={index} disablePadding>
+                <ListItem key={`${section.title}-${index}`} disablePadding>
                   <ListItemButton disableGutters sx={{ 
                       p:'0.8rem 1.25rem 0.8rem 2.25rem',
                       '&:hover': {
@@ -191,7 +193,7 @@ export default function ButtonAppBar() {
             {section.title !== 'Help & Settings' &&
               <CustomDivider sx={{ my:0.8 }} />
             }
-          </>
+          </React.Fragment>
         ))}
       </Box>
     </>
@@ -206,7 +208,7 @@ export default function ButtonAppBar() {
       '&::-webkit-scrollbar': { display: 'none'}    // hide scrollbar for WebKit browsers
     }}>
       {categories.slice(0, 10).map((cat) => 
-        <Button variant='text' aria-label={`${cat}-button`} onClick={() => handleCategoryClick(cat)} 
+        <Button variant='text' key={cat} aria-label={`${cat}-button`} onClick={() => handleCategoryClick(cat)} 
           sx={{
             color: 'white',
             border: 'none',
