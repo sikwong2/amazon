@@ -23,6 +23,7 @@ import Logo from './Logo';
 import LanguageButton from './Language';
 import CustomButton from './Button';
 import CategoryTopBar from './CategoryTopBar';
+import { CategoryContext } from '@/context/Category';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	backgroundColor: '#131921',
@@ -102,19 +103,20 @@ export default function TopBar() {
 	const pageContext = React.useContext(PageContext);
 	const cartContext = React.useContext(CartContext);
 	const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
+	const { categories, setCategories, selectedCategory, setSelectedCategory } = React.useContext(CategoryContext);
+	const [searchField, setSearchField] = React.useState('');
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
-	const [category, setCategory] = useState('All');	// TODO: make this a context??
-
 	const router = useRouter();
 
 	const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValue(event.target.value);
+		setSearchField(event.target.value);
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
+			setSearchValue(searchField);
 			handleSearch();
 		}
 	};
@@ -147,6 +149,12 @@ export default function TopBar() {
 	const handleMenuClose = () => {
 		setMenuOpen(false);
 	};
+
+	const handleDropdownSelect = (category: string) => {
+    setSelectedCategory(category);
+    setSearchValue(category);
+    handleSearch(category);
+  }
 
 	const fetchUserInfo = async (memberId: string): Promise<MemberInfo | undefined> => {
 		try {
@@ -254,9 +262,9 @@ export default function TopBar() {
 				<CustomDropdown 
 					label={'category'} 
 					variant='noLabel'
-					values={[]}  // TODO: get all categories from DB 
-					selectedValue={category} 
-					setSelectedValue={setCategory}
+					values={categories}
+					selectedValue={selectedCategory} 
+					setSelectedValue={handleDropdownSelect}
 					sx={{
 						display: 'flex',
 						flexGrow: 0,
@@ -276,7 +284,6 @@ export default function TopBar() {
 						'& .MuiInputBase-root': {
 							color: '#555',
 							flexGrow: 0,
-							maxWidth: '20vh',
 							overflow: 'hidden',
 							textOverflow: 'clip',
 						},
@@ -288,7 +295,7 @@ export default function TopBar() {
 			</CategoryDropdownWrapper>
 			<SearchInput
 				placeholder={t("topbar.Search") as string}
-				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+				inputProps={{ 'aria-label': 'search', value: searchField, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
 				sx={{ flexGrow: 1 }}
 			/>
 			<SearchIconWrapper aria-label='search-icon' onClick={() => handleSearch()}>
