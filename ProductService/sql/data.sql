@@ -363,7 +363,6 @@ DELETE FROM product;
     ('clothing'),
     ('shoes'),
     ('unisex'),
-    ('women’s shoes'),
     ('nike'),
     ('men’s shoes'),
     ('Shoes by Nike'),
