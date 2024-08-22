@@ -109,6 +109,11 @@ export default function TopBar() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
 	const router = useRouter();
+	
+	// Add 'All departments' to dropdown + sort alphabetically
+	const dropdownCategories = [...categories];
+	dropdownCategories.sort((a, b) => a.localeCompare(b));
+	dropdownCategories.unshift('All Departments');
 
 	const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchField(event.target.value);
@@ -262,8 +267,8 @@ export default function TopBar() {
 				<CustomDropdown 
 					label={'category'} 
 					variant='noLabel'
-					values={categories}
-					selectedValue={selectedCategory} 
+					values={dropdownCategories}
+					selectedValue={selectedCategory } 
 					setSelectedValue={handleDropdownSelect}
 					sx={{
 						display: 'flex',
@@ -289,7 +294,7 @@ export default function TopBar() {
 							textOverflow: 'clip',
 						},
 						'&& .MuiSelect-select.MuiSelect-select': {
-							px:'4px'
+							px:'4px',
 						},
 					}}
 				/>
