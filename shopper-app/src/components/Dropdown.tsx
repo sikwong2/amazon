@@ -35,7 +35,7 @@ export default function CustomDropdown({
   return (
     <ThemeProvider theme={dropdownTheme}>
       <Box {...rest}>
-      <FormControl>
+        <FormControl>
           <Select
             labelId={label}
             id={label}
@@ -47,7 +47,7 @@ export default function CustomDropdown({
             input={<BootstrapInput />}
           >
             {values.map((value) => (
-              <MenuItem key={value} value={value} aria-label='option' sx={{textTransform:'capitalize'}}>
+              <MenuItem key={value} value={value === 'All Departments' ? 'All' : value} aria-label='option' sx={{textTransform:'capitalize'}}>
                 {value}
               </MenuItem>
             ))}

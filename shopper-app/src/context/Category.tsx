@@ -16,7 +16,7 @@ export const CategoryProvider = ({ children }: PropsWithChildren<{}>) => {
 
   useEffect(() => { // runs only client side during initial render
     if (isBrowser) {
-      setSelectedCategory(sessionStorage.getItem('selectedCategory') || '');
+      setSelectedCategory(sessionStorage.getItem('selectedCategory') || 'All Departments');
       setIsRendered(true);
     }
   }, []);
