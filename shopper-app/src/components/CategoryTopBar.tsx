@@ -2,6 +2,7 @@
 // source: https://mui.com/material-ui/react-drawer/
 
 import * as React from "react";
+import { useTranslation } from 'next-i18next';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -53,6 +54,7 @@ const fetchCategories = async (): Promise<string[]> => {
 };
 
 export default function CategoryTopBar() {
+  const { t } = useTranslation('common');
   const [open, setOpen] = React.useState(false);
   const { categories, setCategories, selectedCategory, setSelectedCategory } = React.useContext(CategoryContext);
   const loginContext = React.useContext(LoginContext);
@@ -93,27 +95,27 @@ export default function CategoryTopBar() {
   const signInHandler = (loginContext.accessToken.length > 0 ? handleSignOut : handleSignIn);
   const drawerListContents= [
     {
-      'title': 'Trending', 
+      'title': t('categoryTopbar.title.trending'), 
       'content': ['Best Sellers', 'New Releases', 'Movers & Shakers'],
       'clickHandler': [handleCategoryClick]
     },
     {
-      'title': 'Digital Content & Devices', 
+      'title': t('categoryTopbar.title.digital-content'), 
       'content': ['Prime Video', 'Amazon Music', 'Echo & Alexa', 'Fire Tablets', 'Fire TV', 'Kindle E-readers & Books', 'Audible Books & Originals', 'Amazon Photos', 'Amazon Appstore'],
       'clickHandler': [handleCategoryClick]
     },
     {
-      'title': 'Shop by Department', 
+      'title': t('categoryTopbar.title.by-department'), 
       'content': categories.slice(0, 15),
       'clickHandler': [handleCategoryClick]
     },
     {
-      'title': 'Programs & Features', 
+      'title': t('categoryTopbar.title.programs'),
       'content': ['Medical Care & Pharmacy', 'Amazon Physical Stores', 'Amazon Business', 'Subscribe & Save'],
       'clickHandler': [handleCategoryClick]
     },
     {
-      'title': 'Help & Settings',
+      'title': t('categoryTopbar.title.help'),
       'content': ['Your Account', 'English', 'United States', signInText],
       'clickHandler': [handleYourAccountClick, handleLanguageClick, handleLanguageClick, signInHandler]
     },
@@ -146,7 +148,7 @@ export default function CategoryTopBar() {
         <Toolbar sx={{ ml:3 }}>
           <AccountCircleIcon sx={{ fontSize:'1.8rem' }}/>
           <Typography fontWeight='bold' fontSize='1.1rem' letterSpacing='1px' sx={{ pl:'8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '250px' }}>
-            Hello, {loginContext.accessToken.length > 0 ? loginContext.userName : 'sign in'}
+            {t('topbar.Hello')}, {loginContext.accessToken.length > 0 ? loginContext.userName : 'sign in'}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -167,7 +169,7 @@ export default function CategoryTopBar() {
                     }}
                     onClick={() => section.clickHandler[section.clickHandler.length > 1 ? index : 0](text)}
                   >
-                    {section.title === 'Help & Settings' && (text === 'English' || text === 'United States') && 
+                    {section.title === t('categoryTopbar.title.help') && (text === 'English' || text === 'United States') && 
                       <ListItemIcon sx={{ minWidth:0, justifyContent:'center', pr:'12px' }}>
                         {text === 'English' && <LanguageIcon fontSize='small' sx={{ ml:-0.5, height:'1rem', color:'#bfbdbd' }}/>}
                         {text === 'United States' && <US style={{ height: '0.6rem' }} title="United States" />}
@@ -181,7 +183,7 @@ export default function CategoryTopBar() {
                         color:'#111',
                       }
                     }}/>
-                    {section.title !== 'Trending' && section.title !== 'Help & Settings' && 
+                    {section.title !== t('categoryTopbar.title.trending') && section.title !== t('categoryTopbar.title.help') && 
                       <IconButton edge="end" aria-label="delete" sx={{ p:0, m:0 }}>
                         <ArrowForwardIosIcon fontSize='small' sx={{ height:'1rem' }}/>
                       </IconButton>
@@ -190,7 +192,7 @@ export default function CategoryTopBar() {
                 </ListItem>
               ))}
             </List>
-            {section.title !== 'Help & Settings' &&
+            {section.title !== t('categoryTopbar.title.help') &&
               <CustomDivider sx={{ my:0.8 }} />
             }
           </React.Fragment>

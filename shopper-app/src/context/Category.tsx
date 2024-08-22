@@ -7,7 +7,6 @@ export const CategoryContext = createContext({
   setSelectedCategory: (newCategory: string) => {},
 });
 
-// TODO: get categories from DB
 export const CategoryProvider = ({ children }: PropsWithChildren<{}>) => {
   const isBrowser = typeof window !== 'undefined';
   const [categories, setCategories] = useState<string[]>([]);
