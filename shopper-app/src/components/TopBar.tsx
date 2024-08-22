@@ -268,6 +268,7 @@ export default function TopBar() {
 					sx={{
 						display: 'flex',
 						flexGrow: 0,
+						textTransform:'capitalize',
 						'& .MuiFormControl-root': {
 							borderTopRightRadius: 0,
 							borderBottomRightRadius: 0,
