@@ -268,7 +268,7 @@ export default function TopBar() {
 					label={'category'} 
 					variant='noLabel'
 					values={dropdownCategories}
-					selectedValue={selectedCategory } 
+					selectedValue={selectedCategory} 
 					setSelectedValue={handleDropdownSelect}
 					sx={{
 						display: 'flex',

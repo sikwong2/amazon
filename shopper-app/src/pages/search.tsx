@@ -6,9 +6,7 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
-import { SearchProvider } from '../context/Search';
 import TopBar from '@/components/TopBar';
-
 
 const fetchProducts = async (name: string): Promise<Product[]> => {
   try {
