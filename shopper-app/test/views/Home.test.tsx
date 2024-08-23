@@ -5,7 +5,7 @@ import { setupServer } from 'msw/node';
 
 import { Home } from '@/views/Home';
 import { LoginProvider } from '@/context/Login';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { LoginContext } from '@/context/Login';
 
 let apiCalled = false;
