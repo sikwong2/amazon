@@ -53,7 +53,7 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
 
   return (
     <>
-      <Box width='100%'>
+      <Box width='100%' minWidth='300px'>
         <Box display="flex" alignItems="left">
           <Typography variant='h5'>
             Customer reviews

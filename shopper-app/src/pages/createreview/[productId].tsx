@@ -95,8 +95,60 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
     if (r.name == '' || r.content == '' || r.title == '') {
       console.log('empty targets');
     } else {
+      let query;
+      console.log(images);
+      if (images.length != 0) {
+        query = {query: `mutation postReview{ postReview( 
+          memberId: "${id}",
+          productId: "${productId as string}",
+          newReview: {content: "${r.content}",
+          rating: ${r.rating},
+          title: "${r.title}",
+          name: "${r.name}",
+          images: ${JSON.stringify(images)}}
+          ) {
+          id
+        }}`}
+      } else {
+        query = {query: `mutation postReview{
+          postReview(
+            memberId: "${id}", 
+            productId: "${productId as string}",
+            newReview: {content: "${r.content}", rating: ${r.rating}, title: "${r.title}", name: "${r.name}"}
+          ) {
+          content
+          id
+          images
+          name
+          posted
+          product_id
+          shopper_id
+          rating
+          title
+        }
+        }`}
+      }
 
-    }
+      console.log(query);
+
+      fetch('/api/graphql', {
+        method: 'POST',
+        body: JSON.stringify(query),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((json) => {
+          if (json.errors) {
+            alert(`${json.errors[0].message}`);
+          } else {
+            router.push(`/product/${productId as string}`);
+          }
+        });
+    };
   };
 
   const onClear = () => {
@@ -116,7 +168,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       </Grid>
       <Grid item lg={10} sm={9} xs={8}>
         <Box display="flex" justifyContent="flex-start" >
-          <Typography mt='2rem' ml='0.5rem'
+          <Typography mt='1.5rem' ml='0.5rem'
             sx={{
               wordWrap: 'break-word',
               display: '-webkit-box',
@@ -176,6 +228,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
         name="Title"
         sx={{ mb: '0.5rem',  mt: '0.5rem'}}
         autoFocus
+        width='98%'
       />
     </Box>
   );
@@ -196,6 +249,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       rows={3}
       sx={{ mb: '0.5rem',  mt: '0.5rem'}}
       autoFocus
+      width='98%'
     />
   </Box>
   );
@@ -214,6 +268,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       multiline={false}
       sx={{ mb: '0.5rem',  mt: '0.5rem'}}
       autoFocus
+      width='98%'
     />
   </Box>
   );
@@ -255,20 +310,20 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       maxWidth='md'
     >
       <Box
-        marginX="5%"
+        m="1rem"
       >
-        <TextField
-          autoFocus
-          fullWidth
-          required
-          margin="normal"
+        <Typography variant='h5' mb='1rem'>
+          Add a photo
+        </Typography>
+        <CustomTextField
           id="image"
           name="image"
           inputProps={{ "data-testid": "image-input" }}
-          label="Image Link"
-          variant="outlined"
+          placeholder="Image Link"
           value={image}
           onChange={handleImageInputChange}
+          width='98%'
+          autoFocus
         /> 
       </Box>
       {
@@ -311,8 +366,9 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       <Typography variant='subtitle2' color='gray'>
         Shoppers find images more helpful than text alone.
       </Typography>
-      <Stack direction='row' spacing='0.5rem'>
+      <Grid container spacing='0.5rem' sx={{ mb: '0.5rem',  mt: '0.5rem'}}>
         {images?.map((image, id) => (
+          <Grid item xs='auto' display='flex' justifyContent='center'>
             <Box
                 sx={{ maxWidth: '100px', maxHeight: '100px', width: 'auto', height: 'auto', objectFit: 'contain' }}
                 component="img"
@@ -320,9 +376,12 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
                 src={image}
                 onClick={() => handleRemoveImage(id)}
             />
+          </Grid>
         ))}
-        <AddImage onClick={handleOpen}/>
-      </Stack>
+        <Grid item xs='auto' display='flex' justifyContent='center'>
+          <AddImage onClick={handleOpen}/>
+        </Grid>
+      </Grid>
 
     </Box>
   );
@@ -359,16 +418,18 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
             {imagesUpload}
             <CustomDivider/>
             {name}
-            <CustomButton
-              type="submit"
-              label="continue"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ height: '30px', fontSize: '12px' }}
-            >
-              Create Review
-            </CustomButton>
+            <Box display="flex" justifyContent='center'>
+              <CustomButton
+                type="submit"
+                label="continue"
+                variant="contained"
+                color="primary"
+                sx={{ height: '30px', width:'100%', fontSize: '12px' }}
+              >
+                Create Review
+              </CustomButton>
+            </Box>
+            
           </Box>
         </Grid>
       </Grid>

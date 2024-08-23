@@ -42,9 +42,10 @@ export class ReviewController extends Controller {
     return await new ReviewService()
       .findReview(shopperId, productId)
       .then(async (exists: boolean): Promise <Review | undefined> => {
-        if (exists) {
-          this.setStatus(409);
-        } else {
+        // if (exists) {
+        //   console.log("Review Already Exists");
+        //   this.setStatus(409);
+        // } else {
           return await new ReviewService()
             .createReview(NewReview, shopperId, productId)
             .then(async (result: Review | undefined): Promise <Review | undefined> => {
@@ -53,7 +54,7 @@ export class ReviewController extends Controller {
               }
               return result;
             })
-        }
+        // }
       })
       
   }

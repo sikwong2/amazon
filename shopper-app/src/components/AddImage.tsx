@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 export function AddImage({...rest}: BoxProps) {
   return(
     <Box
-      sx={{border: '0.15rem dashed gray', cursor: 'pointer', borderRadius: '10px', mt:'0.5rem'}}
+      sx={{border: '0.15rem dashed gray', cursor: 'pointer', borderRadius: '10px'}}
       width='100px' height='100px' 
       display="flex"
       justifyContent="center"

@@ -66,7 +66,8 @@ export class ReviewService {
       };
 
       const {rows} = await pool.query(query);
-      return {id: rows[0].id, ...rows[0].data};
+      console.log(rows);
+      return {id: rows[0].id, product_id: rows[0].product_id, shopper_id: rows[0].shopper_id, ...rows[0].data};
     
     } catch (e) {
       console.error('Problem Creating Review', e);

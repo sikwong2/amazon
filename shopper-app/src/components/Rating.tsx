@@ -13,7 +13,7 @@ export default function CustomRating({ rating, ...rest }: CustomRatingProps) {
     <>
       <Box display="flex" alignItems="center">
         <span style={{ fontSize: '0.9em', verticalAlign: 'top', marginTop: 3, marginRight: 3 }}>
-          {rating}
+          {rating.toFixed(2)}
         </span>
         <Rating
           aria-label="rating"

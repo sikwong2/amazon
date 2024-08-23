@@ -456,7 +456,9 @@ export default function Product({ product }: ProductProp) {
         </Typography> :
         <Box width="100%">
           {reviews.map((review, index) => (
-            <ReviewDisplayItem review={review} index={index}/>
+            <Box sx={{mb: '1.5rem'}}>
+              <ReviewDisplayItem review={review} index={index}/>
+            </Box>
           ))}
         </Box>
       }
@@ -481,10 +483,11 @@ export default function Product({ product }: ProductProp) {
         <CustomDivider sx={{marginTop: '0.5rem', marginBottom: '0.5rem'}}/>
         
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={3} >
+          <Grid item xs={12} sm={3}>
             {Ratings}
           </Grid>
-          <Grid item xs={12} sm={9}>
+          <Grid item sm={0.5} xs={12}/>
+          <Grid item xs={12} sm={8.5}>
             {Reviews}
           </Grid>
         </Grid>
