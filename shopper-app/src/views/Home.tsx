@@ -66,7 +66,7 @@ const advertisements: Image[] = [
 
 const categories: string[] = [
   'furniture',
-  'electronics',
+  'Electronics',
   'sports',
   'apple',
   'shrek',

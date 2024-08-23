@@ -171,7 +171,7 @@ DELETE FROM product;
     'name', 'adidas Women’s Ultraboost 22 Running Shoe', 'price', 39.87, 'stock', 3, 'rating', 4.4, 
     'image', ARRAY['https://a.media-amazon.com/images/I/41QsH5MGLfL._AC_SL1000_.jpg', 'https://a.media-amazon.com/images/I/41yVmXXOfBL._AC_.jpg', 'https://a.media-amazon.com/images/I/41yVmXXOfBL._AC_.jpg', 'https://a.media-amazon.com/images/I/41emF7hRtwL._AC_.jpg', 'https://a.media-amazon.com/images/I/41BIjGe3HKL._AC_.jpg', 'https://a.media-amazon.com/images/I/41D6gL5x0BL._AC_.jpg', 'https://a.media-amazon.com/images/I/519jeZ6fSqL._AC_.jpg', 'https://a.media-amazon.com/images/I/613AEaD2LkL._AC_.jpg', 'https://a.media-amazon.com/images/I/51l9qOOF-7L._AC_.jpg'], 
     'description', ARRAY['BOOST midsole', 'Imported', 'Lace closure'], 
-    'category', ARRAY['Ultraboost', 'women’s shoes', 'women’s clothes', 'adidas', 'running shoe', 'clothing', 'shoes', 'Clothing, Shoes & Jewelry']
+    'category', ARRAY['Ultraboost', 'Women’s shoes', 'women’s clothes', 'adidas', 'running shoe', 'clothing', 'shoes', 'Clothing, Shoes & Jewelry']
   ));
   INSERT INTO product(id, data) VALUES ('1c966d34-5079-4ead-82df-3aecc4b10d06', jsonb_build_object(
     'name', 'adidas Men’s Essentials Fleece Hoodie', 'price', 37.50, 'stock', 1000, 'rating', 4.7, 
@@ -197,7 +197,7 @@ DELETE FROM product;
     'name', 'Nike Air Force 1 Low Women’s', 'price', 82.43, 'stock', 1000, 'rating', 4.6, 
     'image', ARRAY['https://f.media-amazon.com/images/I/61VTTRwFUdL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61mkgKBrwPL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71qFlQucWlL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71eRiDk-W0L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71kFpb7CTGL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/61CKnwS9B3L._AC_SL1500_.jpg'], 
     'description', ARRAY['Closure.type : Lace-Up', 'Heel.type : Flat', 'Height map : Low Top', 'Material : Nike Materials', 'Outer.material : Nike Materials'], 
-    'category', ARRAY['women’s shoes', 'nike', 'sports', 'shoes', 'clothing', 'Clothing, Shoes & Jewelry']
+    'category', ARRAY['Women’s shoes', 'nike', 'sports', 'shoes', 'clothing', 'Clothing, Shoes & Jewelry']
   ));
   INSERT INTO product(id, data) VALUES ('c3816390-dbbc-4fdb-8de6-4287dbf15999', jsonb_build_object(
     'name', 'Nike Men’s Sneaker,Running Shoes', 'price', 104.95, 'stock', 10000, 'rating', 4.6, 
@@ -549,7 +549,7 @@ DELETE FROM product;
   -- adidas Women’s Ultraboost 22 Running Shoe
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='Ultraboost')),
-    ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='women’s shoes')),
+    ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='Women’s shoes')),
     ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='women’s clothes')),
     ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='adidas')),
     ('572d681e-c916-46f2-9754-896590d82f3a', (SELECT id FROM category WHERE name ='running shoe')),
@@ -584,7 +584,7 @@ DELETE FROM product;
     ('91341777-8bfc-4dcf-97a8-29c6542c744e', (SELECT id FROM category WHERE name='Clothing, Shoes & Jewelry'));
   -- Nike Air Force 1 Low Women’s
     INSERT INTO product_category (product_id, category_id) VALUES 
-    ('d0eeec78-99ef-4736-8256-c04043110873', (SELECT id FROM category WHERE name='women’s shoes')),
+    ('d0eeec78-99ef-4736-8256-c04043110873', (SELECT id FROM category WHERE name='Women’s shoes')),
     ('d0eeec78-99ef-4736-8256-c04043110873', (SELECT id FROM category WHERE name='nike')),
     ('d0eeec78-99ef-4736-8256-c04043110873', (SELECT id FROM category WHERE name='sports')),
     ('d0eeec78-99ef-4736-8256-c04043110873', (SELECT id FROM category WHERE name='shoes')),
