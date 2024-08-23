@@ -209,7 +209,7 @@ export default function CategoryTopBar() {
       msOverflowStyle: 'none',    // hide scrollbar for Internet Explorer + Edge
       '&::-webkit-scrollbar': { display: 'none'}    // hide scrollbar for WebKit browsers
     }}>
-      {categories.slice(0, 10).map((cat) => 
+      {categories.slice(0, 13).map((cat) => 
         <Button variant='text' key={cat} aria-label={`${cat}-button`} onClick={() => handleCategoryClick(cat)} 
           sx={{
             color: 'white',
