@@ -3,10 +3,6 @@ import { Review, NewReview, RatingHistogram } from './schema';
 export class ReviewService {
   public async postReview(newReview: NewReview, memberId: string, productId: string): Promise <Review> {
     try {
-      console.log(newReview);
-      console.log(JSON.stringify(newReview));
-      console.log(memberId);
-      console.log(productId);
 
       const res = await fetch(
         `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/review/create/${memberId}/${productId}`,
@@ -20,7 +16,6 @@ export class ReviewService {
       );
 
       const json = await res.json();
-      console.log(json);
       return json;
     } catch (e) {
       console.log(e);

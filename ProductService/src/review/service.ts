@@ -33,7 +33,6 @@ export class ReviewService {
 
   public async createReview(review: NewReview, shopper_id: string, product_id: string): Promise <Review | undefined> {
     try {
-      console.log('creating review');
       const posted = new Date();
       let create  = 
           `INSERT INTO review(product_id, shopper_id, data)
@@ -66,7 +65,6 @@ export class ReviewService {
       };
 
       const {rows} = await pool.query(query);
-      console.log(rows);
       return {id: rows[0].id, product_id: rows[0].product_id, shopper_id: rows[0].shopper_id, ...rows[0].data};
     
     } catch (e) {
