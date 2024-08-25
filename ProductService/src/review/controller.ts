@@ -42,6 +42,7 @@ export class ReviewController extends Controller {
     return await new ReviewService()
       .findReview(shopperId, productId)
       .then(async (exists: boolean): Promise <Review | undefined> => {
+        // will comment back in when edit review page is done 
         // if (exists) {
         //   console.log("Review Already Exists");
         //   this.setStatus(409);

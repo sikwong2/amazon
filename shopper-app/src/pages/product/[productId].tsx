@@ -254,8 +254,6 @@ export default function Product({ product }: ProductProp) {
       try {
         const ratings = await fetchRatings(productId as string);
         setRatings(ratings);
-        console.log('hihihi');
-        console.log(ratings);
       } catch(e) {
         console.log(e);
       }
@@ -264,8 +262,6 @@ export default function Product({ product }: ProductProp) {
       try {
         const reviews = await fetchReviews(productId as string);
         setReviews(reviews);
-        console.log('whaihesoihrgs');
-        console.log(reviews);
       } catch(e) {
         console.log(e);
       }
@@ -422,16 +418,16 @@ export default function Product({ product }: ProductProp) {
   }
 
   const WriteAReview = (
-    <Box width='100%'>
+    <Box width='100%' maxWidth='100%'>
       <CustomDivider sx={{mb: '1rem', mt:'1rem'}}/>
         <Typography variant='h5' sx={{paddingBottom: '8px'}}>
-          Review this product
+          {t('reviews.products.review-product')}
         </Typography>
         <Typography sx={{paddingBottom: '16px'}}>
-          Share your thoughts with other customers
+          {t('reviews.products.review-product-subtitle')}
         </Typography>
         <CustomButton variant="outlined" label='write a review' pill fullWidth onClick={createReviewEvent}>
-          Write a customer review
+          {t('reviews.products.review-product-button')}
         </CustomButton>
       <CustomDivider sx={{mb: '1rem', mt:'2rem'}}/>
     </Box>
@@ -439,20 +435,20 @@ export default function Product({ product }: ProductProp) {
 
   const Ratings = (
     <Grid container>
-      <Grid item sx={{mb: '1rem', mt: '1rem'}} sm={12}>
+      <Grid item sx={{mb: '1rem', mt: '1rem'}} sm={12} xs={12}>
         <CustomRatingHistogram ratingHistogram={ratings} />
       </Grid>
-      <Grid item sx={{mb: '1rem'}} sm={12}> 
+      <Grid item sx={{mb: '1rem'}} sm={12} xs={12}> 
         {WriteAReview}
       </Grid>
     </Grid>
   )
 
   const Reviews = (
-    <Box maxWidth='100%' width='100%' sx={{mb: '1rem', mt: '1rem'}}>
+    <Box maxWidth='100%' width='100%' sx={{mb: '1rem', mt: '1rem', pl: '1rem'}}>
       {ratings.total == 0 ? 
         <Typography>
-          No customer reviews
+          {t('reviews.products.no-reviews')}
         </Typography> :
         <Box width="100%">
           {reviews.map((review, index) => (
@@ -486,7 +482,7 @@ export default function Product({ product }: ProductProp) {
           <Grid item xs={12} sm={3}>
             {Ratings}
           </Grid>
-          <Grid item sm={0.5} xs={12}/>
+          {/* <Grid item sm={0.5} xs={12}/> */}
           <Grid item xs={12} sm={8.5}>
             {Reviews}
           </Grid>

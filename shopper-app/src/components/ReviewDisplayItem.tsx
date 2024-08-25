@@ -7,17 +7,8 @@ import { Review } from '@/graphql/review/schema';
 import {Rating} from '@mui/material';
 import CustomButton from './Button';
 import CustomDivider from './Divider';
-
-const renderTime = (date: Date) => {
-  const d = new Date(date);
-  const dateString =
-    `${d.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    })}`;
-  return dateString;
-};
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const renderDay = (date: Date) => {
   const d = new Date(date);
@@ -28,7 +19,7 @@ const renderDay = (date: Date) => {
 };
 
 export default function ReviewListItem({ review, index}: {review: Review, index: number}) {
-  console.log(review);
+  const { t } = useTranslation('common');
   const d = new Date(review.posted);
   const date = renderDay(d);
 
@@ -67,7 +58,7 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
             </Typography>
           </Stack>
           <Typography color='rgb(94,95,95)' variant='subtitle2' flex={1}>
-              Reviewed in the United States on {date}
+              {t('reviews.review-display.reviewed-in')} {date}
             </Typography>
         </Grid>
       </Grid>
@@ -88,18 +79,18 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
         </Box>
       </Stack>
       <Typography color='rgb(94,95,95)' variant='subtitle2' mt='0.3rem'>
-        X people found this helpful
+        X {t('reviews.review-display.helpful-subtitle')}
       </Typography>
       <Stack direction='row' width='200px' mt='0.5rem' spacing='0.5rem'>
         <Box width='100%'>
           <CustomButton label='helpful' variant='outlined' pill sx={{minWidth: '50px', width:'100%'}}>
-              Helpful
+              {t('reviews.review-display.helpful-button')}
           </CustomButton>
         </Box>
         <Divider orientation="vertical" flexItem sx={{ borderRightWidth: 1 }} />
         <Box width='100%'>
           <CustomButton label='report' variant='text' pill sx={{minWidth: '50px', width:'100%'}}>
-            Report
+            {t('reviews.review-display.report-button')}
           </CustomButton>
         </Box>
 

@@ -5,17 +5,21 @@ import { RatingHistogram } from '@/graphql/review/schema';
 import { Typography } from '@mui/material';
 import CustomLinearProgress from './RatingHistogramBar';
 import {Grid} from '@mui/material';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 interface HistogramBarProps {
   star: number,
   value: number
+  t: any
 }
 
-const HistogramBar = ({star, value}: HistogramBarProps) => (
+
+const HistogramBar = ({star, value, t}: HistogramBarProps) => (
   <Grid container rowSpacing='0.5rem' columnSpacing='0.5rem' alignItems='left' >
     <Grid item xs={2} alignContent='center'>
       <Typography>
-        {star} star
+        {star} {t('reviews.rating-histogram.star')}
       </Typography>
     </Grid>
     <Grid item xs={8} alignContent='center'>
@@ -44,6 +48,7 @@ function getValue(reviewNumber: number, total: number) {
 }
 
 export default function CustomRatingHistogram({ratingHistogram}: RatingHistogramProps) {
+  const { t } = useTranslation('common');
   const fiveStarValue = getValue(ratingHistogram.fiveStar, ratingHistogram.total);
   const fourStarValue = getValue(ratingHistogram.fourStar, ratingHistogram.total);
   const threeStarValue = getValue(ratingHistogram.threeStar, ratingHistogram.total);
@@ -56,7 +61,7 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
       <Box width='100%' minWidth='300px'>
         <Box display="flex" alignItems="left">
           <Typography variant='h5'>
-            Customer reviews
+            {t('reviews.rating-histogram.custom-reviews')}
           </Typography>
         </Box>
         <Box marginBottom='8px'>
@@ -64,15 +69,15 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
         </Box>
         <Box marginBottom='16px'>
           <Typography variant='subtitle2'>
-            {ratingHistogram.total} global ratings
+            {ratingHistogram.total} {t('reviews.rating-histogram.global-ratings')}
           </Typography>
         </Box>
         <Box>
-          <HistogramBar star={5} value={fiveStarValue} key='histogrambar-fiveStar'/>
-          <HistogramBar star={4} value={fourStarValue} key='histogrambar-fourStar'/>
-          <HistogramBar star={3} value={threeStarValue} key='histogrambar-threeStar'/>
-          <HistogramBar star={2} value={twoStarValue} key='histogrambar-twoStar'/>
-          <HistogramBar star={1} value={oneStarValue} key='histogrambar-oneStar'/>
+          <HistogramBar star={5} value={fiveStarValue} t={t} key='histogrambar-fiveStar'/>
+          <HistogramBar star={4} value={fourStarValue} t={t} key='histogrambar-fourStar'/>
+          <HistogramBar star={3} value={threeStarValue} t={t} key='histogrambar-threeStar'/>
+          <HistogramBar star={2} value={twoStarValue} t={t} key='histogrambar-twoStar'/>
+          <HistogramBar star={1} value={oneStarValue} t={t} key='histogrambar-oneStar'/>
         </Box>
       
       </Box>

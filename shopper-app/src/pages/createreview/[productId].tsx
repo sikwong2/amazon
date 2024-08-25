@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { Container, Dialog, DialogActions, Rating, Stack, TextField, Typography } from '@mui/material';
+import { Avatar, Container, Dialog, DialogActions, Rating, Stack, TextField, Typography } from '@mui/material';
 import { NewReview } from '@/graphql/review/schema';
 import CustomTextField from '@/components/CustomTextfield';
 import CustomButton from '@/components/Button';
@@ -15,6 +15,7 @@ import { TypographyHover } from '@/components/TypographyHover';
 import { LoginContext } from "@/context/Login";
 import TopBar from '@/components/TopBar';
 import { AddImage } from '@/components/AddImage';
+import CustomLink from '@/components/Link';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = {
@@ -87,16 +88,16 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const r = review;
-    r.name = data.get('Name')!.toString();
+    r.name = userName;
     r.title = data.get('Title')!.toString();
     r.rating = value as number;
     r.content = data.get('Content')!.toString();
-    console.log(r);
+
     if (r.name == '' || r.content == '' || r.title == '') {
-      console.log('empty targets');
+      alert(`Please fill in all fields`);
     } else {
       let query;
-      console.log(images);
+
       if (images.length != 0) {
         query = {query: `mutation postReview{ postReview( 
           memberId: "${id}",
@@ -129,7 +130,6 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
         }`}
       }
 
-      console.log(query);
 
       fetch('/api/graphql', {
         method: 'POST',
@@ -154,6 +154,24 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   const onClear = () => {
     setValue(0);
   }
+
+  // blue bar on top 
+  // Edit name doesn't work, currently links to home, needs to link to edit name page
+  const header = (
+    <Box sx={{backgroundColor: 'rgb(233,250,255)'}} width="100%" flexGrow={1} height='4rem'>
+      <Container maxWidth='md'>
+        <Stack direction='row' spacing='1rem' alignItems='center' pt='0.7rem'>
+          <Avatar/>
+          <Typography>
+            {userName}
+          </Typography>
+          <CustomLink href='/' label='editUserName'>
+            {t('reviews.create-review.edit')}
+          </CustomLink>
+        </Stack>
+      </Container>
+    </Box>
+  );
 
   const productDisplay = (
     <Grid container mt="1rem" mb='1rem'>
@@ -189,7 +207,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       <Stack direction='row'>
         <Box flexGrow={1}>
           <Typography variant='h5'>
-            Overall Rating
+          {t('reviews.create-review.overall-rating')}
           </Typography>
           <Rating
             aria-label="rating"
@@ -207,7 +225,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
           />
         </Box>
         <TypographyHover onClick={onClear}>
-          Clear
+          {t('reviews.create-review.clear')}
         </TypographyHover>
       </Stack>
 
@@ -218,11 +236,11 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
     <Box mb='1rem' mt='1rem'>
       <Typography variant='h5' 
       >
-        Add a headline
+        {t('reviews.create-review.headline')}
       </Typography>
       <CustomTextField
         label="title"
-        placeholder="What's most important to know?"
+        placeholder={t('reviews.create-review.headline-placeholder') || ""}
         required
         type="title"
         name="Title"
@@ -236,11 +254,11 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   const content = (
     <Box mb='1rem' mt='1rem'>
     <Typography variant='h5'>
-      Add a written review
+      {t('reviews.create-review.content')}
     </Typography>
     <CustomTextField
       label="content"
-      placeholder="What did you like or dislike? What did you use this product for?"
+      placeholder={t('reviews.create-review.content-placeholder') || ""}
       required
       type="content"
       name="Content"
@@ -254,14 +272,15 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   </Box>
   );
 
+  
   const name = (
     <Box mb='1rem' mt='1rem'>
     <Typography variant='h5'>
-      Add a preferred name
+      {t('reviews.create-review.name')}
     </Typography>
     <CustomTextField
       label="name"
-      placeholder="Fill out your name"
+      placeholder={t('reviews.create-review.name-placeholder') || ""}
       required
       type="name"
       name="Name"
@@ -313,13 +332,13 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
         m="1rem"
       >
         <Typography variant='h5' mb='1rem'>
-          Add a photo
+          {t('reviews.create-review.images')}
         </Typography>
         <CustomTextField
           id="image"
           name="image"
           inputProps={{ "data-testid": "image-input" }}
-          placeholder="Image Link"
+          placeholder={t('reviews.create-review.images-placeholder') || ""}
           value={image}
           onChange={handleImageInputChange}
           width='98%'
@@ -343,7 +362,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
           name="Clear"
           label='Clear'
         >
-          Clear
+          {t('reviews.create-review.clear')}
         </CustomButton>
         <CustomButton
           disabled={imgre.test(image) ? false : true}
@@ -352,7 +371,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
           name="postImage"
           label="postImage"
         > 
-          Post
+          {t('reviews.create-review.post')}
         </CustomButton>
       </DialogActions>
     </Dialog>
@@ -361,10 +380,10 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   const imagesUpload = (
     <Box mb='1rem' mt='1rem'>
       <Typography variant='h5'>
-        Add a photo
+        {t('reviews.create-review.images')}
       </Typography>
       <Typography variant='subtitle2' color='gray'>
-        Shoppers find images more helpful than text alone.
+        {t('reviews.create-review.images-subtitle')}
       </Typography>
       <Grid container spacing='0.5rem' sx={{ mb: '0.5rem',  mt: '0.5rem'}}>
         {images?.map((image, id) => (
@@ -390,6 +409,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
   return(
     <>
     <TopBar/>
+    {header}
     <Container
       component="main"
       sx={{
@@ -404,7 +424,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       <Grid container display="flex" justifyContent="center">
         <Grid item lg={8} sm={12} xs={12}>
           <Typography variant="h4">
-            Create Review
+            {t('reviews.create-review.create')}
           </Typography>
           {productDisplay}
           <CustomDivider/>
@@ -416,8 +436,8 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
             {content}
             <CustomDivider/>
             {imagesUpload}
-            <CustomDivider/>
-            {name}
+            <CustomDivider sx={{mb: '1rem'}}/>
+            {!userName && name}
             <Box display="flex" justifyContent='center'>
               <CustomButton
                 type="submit"
@@ -426,7 +446,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
                 color="primary"
                 sx={{ height: '30px', width:'100%', fontSize: '12px' }}
               >
-                Create Review
+                {t('reviews.create-review.create')}
               </CustomButton>
             </Box>
             
