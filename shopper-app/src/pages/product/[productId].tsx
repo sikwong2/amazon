@@ -452,7 +452,7 @@ export default function Product({ product }: ProductProp) {
         </Typography> :
         <Box width="100%">
           {reviews.map((review, index) => (
-            <Box sx={{mb: '1.5rem'}}>
+            <Box sx={{mb: '1.5rem'}} key={'box'+index}>
               <ReviewDisplayItem review={review} index={index}/>
             </Box>
           ))}

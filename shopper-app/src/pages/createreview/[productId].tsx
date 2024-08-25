@@ -387,7 +387,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       </Typography>
       <Grid container spacing='0.5rem' sx={{ mb: '0.5rem',  mt: '0.5rem'}}>
         {images?.map((image, id) => (
-          <Grid item xs='auto' display='flex' justifyContent='center'>
+          <Grid item xs='auto' display='flex' justifyContent='center' key={'grid'+id}>
             <Box
                 sx={{ maxWidth: '100px', maxHeight: '100px', width: 'auto', height: 'auto', objectFit: 'contain' }}
                 component="img"

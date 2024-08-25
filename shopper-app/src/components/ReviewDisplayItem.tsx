@@ -69,11 +69,12 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
           </Typography>
         </Box>
         <Box mt='0.5rem' mb='0.2rem'>
-          {review.images?.map((image: string)=>(
+          {review.images?.map((image: string, id)=>(
             <Box
               sx={{ maxWidth: '150px', maxHeight: '88px', width: 'auto', height: '88px' }}
               component="img"
               src={image}
+              key={'display-image'+id}
             />
           ))}
         </Box>
