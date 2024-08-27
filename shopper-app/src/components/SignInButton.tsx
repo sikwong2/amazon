@@ -7,11 +7,13 @@ import { useRouter } from 'next/router';
 import CustomDivider from './Divider';
 import {Divider} from '@mui/material';
 import { PageContext } from '@/context/Page';
+import { LoginContext } from '@/context/Login';
 
 export default function SignInButton() {
   const { t } = useTranslation('common');
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const pageContext = React.useContext(PageContext);
+  const loginContext = React.useContext(LoginContext);
   //pageContext.setPage() 
 
   const router = useRouter();
@@ -28,23 +30,77 @@ export default function SignInButton() {
     setAnchorEl(null);
   };
 
+  const handleNavigation = (page: string) => {
+    switch (page) {
+      case 'account':
+        pageContext.setPage('account')
+        router.push('/')
+        break;
+      case 'orderHistory':
+        pageContext.setPage('orderHistory')
+        router.push('/');
+        break;
+      case 'comingSoon':
+        pageContext.setPage('comingSoon')
+        router.push('/')
+        break;
+      default:
+        break;
+    }
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? 'sign-in-popover' : undefined;
 
   const popoverContentBoxLeft = (
     <div>
-    <h1> Your Lists </h1>
-    <div> <a href="www.google.com" className='link-no-underline'> Create a List </a> </div>
-    <div> <a href="www.google.com" className='link-no-underline'> Find a List or Registry  </a> </div>
+    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }} > Your Lists </h1>
+    <div> <a className='link-no-underline'> Create a List </a> </div>
+    <div> <a className='link-no-underline'> Find a List or Registry  </a> </div>
     </div> 
   )
 
   const popoverContentBoxRight = (
     <div>
-    <h1> Your Account </h1>
+    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> Your Account </h1>
       <div className="link-container">
-        <a href="#/account" onClick={() => pageContext.setPage('account')}className='link-no-underline'> Account </a>
+        <a  onClick={() => handleNavigation('account')}className='link-no-underline'> Account </a>
       </div>
+      <div className="link-container">
+        <a  onClick={() => handleNavigation('orderHistory')} className='link-no-underline'> Orders </a>
+      </div> 
+       <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Recommendations </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Browsing History </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Watchlist </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Video Purchases & Rentals </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Kindle Unlimited </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Content & Devices </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Subscribe & Save Items </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Memberships & Subscriptions </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Prime Membership </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Amazon Credit Cards </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Music Library </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Start a Selling Account </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Register for a free Business Account </a>
+      </div>      <div className="link-container">
+        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Customer Service </a>
+      </div>     
+
+
+
     </div>
   )
 
@@ -52,18 +108,16 @@ export default function SignInButton() {
     <Box
       sx={{
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        mt: 2,
+        marginTop: 'px'
       }}
     >
-      <Box sx={{ flex: 1, textAlign: 'center' }}>{popoverContentBoxLeft}</Box>
+      <Box sx={{ flex: 1, textAlign: 'left'}}>{popoverContentBoxLeft}</Box>
       <Divider
         orientation="vertical"
         flexItem
-        sx={{ mx: 2, height: '100px', borderWidth: '1px' }} // Adjust height and margin as needed
+        sx={{ mx: 2, height: '330px', mt: '10px', borderWidth: '1px' }} 
       />
-      <Box sx={{ flex: 1, textAlign: 'center' }}>{popoverContentBoxRight}</Box>
+      <Box sx={{ flex: 1, textAlign: 'left' }}>{popoverContentBoxRight}</Box>
     </Box>
   )
 
