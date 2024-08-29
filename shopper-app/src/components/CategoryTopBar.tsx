@@ -59,6 +59,7 @@ export default function CategoryTopBar() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } = React.useContext(CategoryContext);
   const loginContext = React.useContext(LoginContext);
   const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
+  const today = new Date();
 
   const toggleDrawer = (newState: boolean) => {
     setOpen(newState);
@@ -96,7 +97,7 @@ export default function CategoryTopBar() {
   const drawerListContents= [
     {
       'title': t('categoryTopbar.title.trending'), 
-      'content': ['Best Sellers', 'New Releases', 'Movers & Shakers'],
+      'content': [categories[today.getDate() % categories.length], categories[(today.getDate() % categories.length) + 1], categories[(today.getDate() % categories.length) + 2]],
       'clickHandler': [handleCategoryClick]
     },
     {
@@ -181,6 +182,7 @@ export default function CategoryTopBar() {
                         fontSize:'0.88rem',
                         lineHeight:'normal',
                         color:'#111',
+                        textTransform: 'capitalize'
                       }
                     }}/>
                     {section.title !== t('categoryTopbar.title.trending') && section.title !== t('categoryTopbar.title.help') && 
