@@ -18,7 +18,7 @@ export class ReviewService {
       const json = await res.json();
       return json;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       throw new Error('error in ReviewService: postReview');
     }
   }
@@ -38,7 +38,7 @@ export class ReviewService {
       const json = await res.json();
       return json;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       throw new Error('error in ReviewService: getProductReviews');
     }
   }
@@ -57,7 +57,7 @@ export class ReviewService {
       const json = await res.json();
       return json;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       throw new Error('error in ReviewService: getShopperReviews');
     }
   }
@@ -76,7 +76,7 @@ export class ReviewService {
       const json = await res.json();
       return json;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       throw new Error('error in ReviewService: getRatings');
     }
   }

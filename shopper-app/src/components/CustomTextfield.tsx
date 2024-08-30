@@ -24,7 +24,7 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-const CustomTextInput = React.forwardRef(function CustomInput(
+const CustomTextArea = React.forwardRef(function CustomInput(
   props: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   ref: React.ForwardedRef<HTMLTextAreaElement>,
 ) {
@@ -61,7 +61,7 @@ export default function CustomTextField({
         </InputLabel>
       )}
       { multiline ?
-      <CustomTextInput
+      <CustomTextArea
         aria-label={label}
         id={label}
         name={label}

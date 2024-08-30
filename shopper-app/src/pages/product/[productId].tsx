@@ -411,9 +411,7 @@ export default function Product({ product }: ProductProp) {
     </CustomCard>
   );
   
-  // needs sign in context bc redirects to home if not signed in
   const createReviewEvent = () => {
-    // pageContext.setPage(`/createreview/${productId as string}`);
     router.push(`/createreview/${productId as string}`);
   }
 
