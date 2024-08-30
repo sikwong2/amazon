@@ -15,7 +15,6 @@ export class CategoryService {
         },
       );
       const json = await res.json();
-      console.log("getAllCategories: ", json);
       return json;
     } catch (e) {
       console.error(e);
@@ -35,7 +34,6 @@ export class CategoryService {
         },
       );
       const json = await res.json();
-      console.log("product categories: ", json);
       return json;
     } catch (e) {
       console.error(e);
