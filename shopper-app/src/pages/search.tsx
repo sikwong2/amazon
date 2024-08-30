@@ -6,9 +6,7 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
-import { SearchProvider } from '../context/SearchContext';
 import TopBar from '@/components/TopBar';
-
 
 const fetchProducts = async (name: string): Promise<Product[]> => {
   try {
@@ -55,9 +53,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
   const { query } = router.query;
 
   return (
-    <SearchProvider>
+    <>
       <TopBar />
-      <Box aria-label="search-results" bgcolor="#E4E6E6" margin={1}>
+      <Box aria-label="search-results" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }, margin: 'auto', padding: 2 }}>
           <Typography variant="h4" gutterBottom>
             {t('search.results-for')} {query}
@@ -75,7 +73,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
           </Grid>
         </Box>
       </Box>
-    </SearchProvider>
+    </>
   );
 };
 

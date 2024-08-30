@@ -48,6 +48,15 @@
     "Account": "Account & Lists",
     "Returns": "Returns"
   },
+  "categoryTopbar": {
+    "title": {
+      "trending": "Trending",
+      "digital-content": "Digital Content & Devices",
+      "by-department": "Shop by Department",
+      "programs": "Programs & Features",
+      "help": "Help & Settings"
+    }
+  },
   "home": {
     "pick-up": "Pick up where you left off",
     "keep-shopping": "Keep shopping for",

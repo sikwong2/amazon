@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { OrderHistory } from '@/views/OrderHistory';
 import { LoginContext, LoginProvider } from '@/context/Login';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { PageContext } from '@/context/Page';
 
 // https://www.npmjs.com/package/next-router-mock

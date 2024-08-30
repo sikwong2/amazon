@@ -48,6 +48,15 @@
     "Account": "帐户和列表",
     "Returns": "退货"
   },
+  "categoryTopbar": {
+    "title": {
+      "trending": "趋势",
+      "digital-content": "数字内容和设备",
+      "by-dsepartment": "按部门选购",
+      "programs": "程序和功能",
+      "help": "帮助和设置"
+    }
+  },
   "home": {
     "pick-up": "继续逛",
     "keep-shopping": "继续买",

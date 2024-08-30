@@ -2,7 +2,7 @@ import { graphql, HttpResponse } from 'msw'
 import { fireEvent, render, screen } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { LoginContext } from '@/context/Login';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { PageContext } from '@/context/Page';
 import { Cart } from '@/views/Cart';
 import { CartContext } from '@/context/Cart';
