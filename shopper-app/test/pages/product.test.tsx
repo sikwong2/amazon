@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { render, screen } from '@testing-library/react';
 
 import { fireEvent } from '@testing-library/react';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { PageProvider } from '@/context/Page';
 import { LoginContext } from '../../src/context/Login';
 

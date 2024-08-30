@@ -3,7 +3,7 @@ import { getServerSideProps } from '@/pages';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { render, screen } from '@testing-library/react';
 import Index from '@/pages';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import { PageProvider, PageContext } from '@/context/Page';
 import { LoginContext, LoginProvider } from '../../src/context/Login';
 
