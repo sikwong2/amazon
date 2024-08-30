@@ -101,7 +101,6 @@ export default function SignOutButton(){
       <div className="link-container">
         <a onClick={() => handleNavigation('orderHistory')} className='link-no-underline'> Orders </a>
       </div>
-
       <div className="link-container">
         <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Keep Shopping For </a>
       </div>

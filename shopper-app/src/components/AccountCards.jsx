@@ -32,15 +32,17 @@ const TitleAndDescription = ({ title, description }) => {
   );
 };
 
-export default function OutlinedCard({ image, alt, title, description }) {
+export default function OutlinedCard({ image, alt, title, description, onClick }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: 1 }}>
       <Card sx={{
-        width: 350, minHeight: 120, boxShadow: 'none', borderRadius: '12px', padding: 1, border: '1px solid', // Explicitly set border width
+        width: 350, minHeight: 120, boxShadow: 'none', borderRadius: '12px', padding: 1, border: '1px solid', 
         borderColor: 'rgba(0, 0, 0, 0.2)', variant: "outlined", 
         '&:hover': {
           backgroundColor: 'rgba(0, 0, 0, 0.05)',
-        }, }}>
+        },}}
+        onClick={onClick}
+        >
         <CardContent sx={{ display: 'flex', alignItems: 'center', padding: '5px' }}>
           <Image image={image} alt={alt} />
           <TitleAndDescription title={title} description={description} />
