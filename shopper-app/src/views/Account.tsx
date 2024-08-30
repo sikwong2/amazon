@@ -11,7 +11,7 @@ import AccountCardBox from "@/components/AccountCardBox"
 export function Account() {
   const pageContext = React.useContext(PageContext);
   const router = useRouter();
-  
+
   const title = () => {
     return (
       <h1> Your Account </h1>
