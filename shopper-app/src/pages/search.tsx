@@ -55,7 +55,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
   return (
     <>
       <TopBar />
-      <Box aria-label="search-results" bgcolor="#E4E6E6" margin={1}>
+      <Box aria-label="search-results" margin={1}>
         <Box sx={{ maxWidth: { md: '80%', sm: '100%' }, margin: 'auto', padding: 2 }}>
           <Typography variant="h4" gutterBottom>
             {t('search.results-for')} {query}
