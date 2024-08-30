@@ -1,5 +1,5 @@
 import { pool } from '../db';
-import { NewReview, Review } from '.';
+import { NewReview, RatingHistogram, Review } from '.';
 
 export class ReviewService {
 
@@ -65,7 +65,7 @@ export class ReviewService {
       };
 
       const {rows} = await pool.query(query);
-      return {id: rows[0].id, ...rows[0].data};
+      return {id: rows[0].id, product_id: rows[0].product_id, shopper_id: rows[0].shopper_id, ...rows[0].data};
     
     } catch (e) {
       console.error('Problem Creating Review', e);
@@ -119,7 +119,7 @@ export class ReviewService {
     return reviews;
   }
 
-  public async getProductRating(productId: string): Promise <number> {
+  public async getProductRating(productId: string): Promise <RatingHistogram> {
     const select = `SELECT data->>'rating' AS rating FROM review WHERE product_id = $1 ORDER BY data->>'posted' DESC`;
     const query = {
       text: select,
@@ -127,17 +127,38 @@ export class ReviewService {
     };
     const {rows} = await pool.query(query);
     let reviewTotal: number = 0;
+    let fiveStar: number = 0;
+    let fourStar: number = 0;
+    let threeStar: number = 0;
+    let twoStar: number = 0;
+    let oneStar: number = 0;
     let length = 0;
     for (const row of rows) {
       if ((row.rating != "0")) {
         reviewTotal = reviewTotal + (+row.rating);
         length += 1;
       }
+      if (row.rating == "5") {
+        fiveStar += 1;
+      } else if (row.rating == "4") {
+        fourStar += 1;
+      } else if (row.rating == "3") {
+        threeStar += 1;
+      } else if (row.rating == "2") {
+        twoStar += 1;
+      } else if (row.rating == "1") {
+        oneStar += 1;
+      }
     }
-    if (length == 0) {
-      return 0;
-    }
-    return reviewTotal / length;
+    return {
+      average: length != 0 ? (reviewTotal / length) : 0,
+      total: length,
+      fiveStar: fiveStar,
+      fourStar: fourStar,
+      threeStar: threeStar,
+      twoStar: twoStar,
+      oneStar: oneStar
+    };
   }
 
   public async deleteReview(reviewId: string): Promise <Review | undefined> {

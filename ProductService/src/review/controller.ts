@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Delete, Query, Route, Body, Request, Path, Response, Put, SuccessResponse } from 'tsoa';
-import { NewReview, Review } from '.';
+import { NewReview, RatingHistogram, Review } from '.';
 import { ReviewService } from './service';
 
 @Route('review')
@@ -27,7 +27,7 @@ export class ReviewController extends Controller {
   @Get('/rating/{productId}')
   public async getAllRatingsUnderProduct(
     @Path() productId: string
-  ): Promise <number> {
+  ): Promise <RatingHistogram> {
     return new ReviewService().getProductRating(productId);
   }
 
@@ -42,9 +42,11 @@ export class ReviewController extends Controller {
     return await new ReviewService()
       .findReview(shopperId, productId)
       .then(async (exists: boolean): Promise <Review | undefined> => {
-        if (exists) {
-          this.setStatus(409);
-        } else {
+        // will comment back in when edit review page is done 
+        // if (exists) {
+        //   console.log("Review Already Exists");
+        //   this.setStatus(409);
+        // } else {
           return await new ReviewService()
             .createReview(NewReview, shopperId, productId)
             .then(async (result: Review | undefined): Promise <Review | undefined> => {
@@ -53,7 +55,7 @@ export class ReviewController extends Controller {
               }
               return result;
             })
-        }
+        // }
       })
       
   }

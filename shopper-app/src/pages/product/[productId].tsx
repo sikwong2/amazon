@@ -24,6 +24,10 @@ import RandomDeliveryDate from '@/components/DeliveryDate';
 import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
 import { BrowserHistoryEntry } from '@/graphql/member/schema';
+import CustomRatingHistogram from '@/components/RatingHistogram';
+import { RatingHistogram } from '@/graphql/review/schema';
+import { Review } from '@/graphql/review/schema';
+import ReviewDisplayItem from '@/components/ReviewDisplayItem';
 
 interface Product {
   name: string;
@@ -38,6 +42,9 @@ interface Product {
 interface ProductProp {
   product: Product;
 }
+
+
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = {
@@ -65,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       ...(await serverSideTranslations(context.locale ?? 'en', ['common'])),
-      product: return_product,
+      product: return_product
     },
   };
 };
@@ -122,14 +129,97 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
     });
     const json = await res.json();
     if (json.errors) {
-      console.log(json.errors[0].message);
+      console.error(json.errors[0].message);
       throw new Error(json.errors[0].message);
     }
     return json.data.addBrowserHistory;
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error('Error in fetching addBrowserHistory')
   }
+}
+
+const fetchRatings = async (productId: string): Promise<RatingHistogram> => {
+  const queryratings = {
+    query: `query getRatings{
+      getRatings(productId: "${productId}") {
+        total,
+        average,
+        oneStar,
+        twoStar,
+        threeStar,
+        fourStar,
+        fiveStar
+      }
+    }`
+  };
+  const res2 = await fetch('http://localhost:3000/api/graphql', {
+    method: 'POST',
+    body: JSON.stringify(queryratings),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  const json2 = await res2.json();
+  let return_ratings = {
+    average: 0,
+    total: 0,
+    oneStar: 0,
+    twoStar: 0,
+    threeStar: 0,
+    fourStar: 0,
+    fiveStar: 0
+  };
+  if (json2.errors) {
+    console.error('Error retrieving ratings: ', json2.errors);
+  }
+  const data2 = await json2.data;
+  
+  if (!data2 || !data2.getRatings) {
+    console.error('No ratings returned');
+  } else {
+    return_ratings = data2.getRatings;
+  }
+  return return_ratings;
+}
+
+const fetchReviews = async (productId: string): Promise<Review[]> => {
+  const query = {
+    query: `query getProductReviews{
+      getProductReviews(productId: "${productId}") {
+        content,
+        id,
+        images,
+        name,
+        posted,
+        product_id,
+        rating,
+        shopper_id,
+        title
+      }
+    }`
+  };
+  const res = await fetch('http://localhost:3000/api/graphql', {
+    method: 'POST',
+    body: JSON.stringify(query),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  const json = await res.json();
+  let reviews = [];
+  if (json.errors) {
+    console.error('Error retrieving reviews: ', json.errors);
+  }
+  const data = await json.data;
+  
+  if (!data || !data.getProductReviews) {
+    console.error('No ratings returned');
+  } else {
+    reviews = data.getProductReviews;
+  }
+  return reviews;
+
 }
 
 export default function Product({ product }: ProductProp) {
@@ -141,7 +231,8 @@ export default function Product({ product }: ProductProp) {
   const { productId } = router.query;
   const { accessToken, id } = useContext(LoginContext);
   const { productHistory, addProductToHistory} = useContext(BrowserHistoryContext);
-  
+  const [ratings, setRatings] = useState({average: 0, total: 0, oneStar: 0, twoStar: 0, threeStar: 0, fourStar: 0, fiveStar: 0});
+  const [reviews, setReviews] = useState<Review[]>([]);
   // strict mode renders the useEffect component twice... T______T
   // https://taig.medium.com/prevent-react-from-triggering-useeffect-twice-307a475714d7
   const initialized = React.useRef(false);
@@ -156,12 +247,31 @@ export default function Product({ product }: ProductProp) {
           await addBrowserHistory(id, productId as string);
         }
       } catch(e) {
-        console.log(e);
+        console.error(e);
       }
     };
+    const fetchRatingHistogram = async () => {
+      try {
+        const ratings = await fetchRatings(productId as string);
+        setRatings(ratings);
+      } catch(e) {
+        console.error(e);
+      }
+    };
+    const fetchReviewsEvent = async () => {
+      try {
+        const reviews = await fetchReviews(productId as string);
+        setReviews(reviews);
+      } catch(e) {
+        console.error(e);
+      }
+    };
+
     if (!initialized.current) {
       initialized.current = true
       fetchBrowserHistory();
+      fetchRatingHistogram();
+      fetchReviewsEvent();
     }
   }, []);
 
@@ -300,6 +410,54 @@ export default function Product({ product }: ProductProp) {
       </Box>
     </CustomCard>
   );
+  
+  const createReviewEvent = () => {
+    router.push(`/createreview/${productId as string}`);
+  }
+
+  const WriteAReview = (
+    <Box width='100%' maxWidth='100%'>
+      <CustomDivider sx={{mb: '1rem', mt:'1rem'}}/>
+        <Typography variant='h5' sx={{paddingBottom: '8px'}}>
+          {t('reviews.products.review-product')}
+        </Typography>
+        <Typography sx={{paddingBottom: '16px'}}>
+          {t('reviews.products.review-product-subtitle')}
+        </Typography>
+        <CustomButton variant="outlined" label='write a review' pill fullWidth onClick={createReviewEvent}>
+          {t('reviews.products.review-product-button')}
+        </CustomButton>
+      <CustomDivider sx={{mb: '1rem', mt:'2rem'}}/>
+    </Box>
+  )
+
+  const Ratings = (
+    <Grid container>
+      <Grid item sx={{mb: '1rem', mt: '1rem'}} sm={12} xs={12}>
+        <CustomRatingHistogram ratingHistogram={ratings} />
+      </Grid>
+      <Grid item sx={{mb: '1rem'}} sm={12} xs={12}> 
+        {WriteAReview}
+      </Grid>
+    </Grid>
+  )
+
+  const Reviews = (
+    <Box maxWidth='100%' width='100%' sx={{mb: '1rem', mt: '1rem', pl: '1rem'}}>
+      {ratings.total == 0 ? 
+        <Typography>
+          {t('reviews.products.no-reviews')}
+        </Typography> :
+        <Box width="100%">
+          {reviews.map((review, index) => (
+            <Box sx={{mb: '1.5rem'}} key={'box'+index}>
+              <ReviewDisplayItem review={review} index={index}/>
+            </Box>
+          ))}
+        </Box>
+      }
+    </Box>
+  );
 
   return (
     <>
@@ -314,6 +472,17 @@ export default function Product({ product }: ProductProp) {
           </Grid>
           <Grid item xs={12} sm={2.5}>
             {RightContainer}
+          </Grid>
+        </Grid>
+        <CustomDivider sx={{marginTop: '0.5rem', marginBottom: '0.5rem'}}/>
+        
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={3}>
+            {Ratings}
+          </Grid>
+          {/* <Grid item sm={0.5} xs={12}/> */}
+          <Grid item xs={12} sm={8.5}>
+            {Reviews}
           </Grid>
         </Grid>
       </Box>

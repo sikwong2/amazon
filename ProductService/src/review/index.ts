@@ -25,3 +25,12 @@ export interface Review {
  */
 export type Image = string;
 
+export interface RatingHistogram {
+  average: number,
+  total: number,
+  fiveStar: number,
+  fourStar: number,
+  threeStar: number,
+  twoStar: number,
+  oneStar: number
+}

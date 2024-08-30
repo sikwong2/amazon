@@ -173,5 +173,40 @@
     "learn-more": "Learn More",
     "shopping-on-Amazon": "You are shopping on Amazon.com",
     "change-country": "Change country/region."
+  },
+  "reviews": {
+    "rating-histogram": {
+      "custom-reviews": "Customer Reviews",
+      "global-ratings": "global ratings",
+      "star": "star"
+    },
+    "create-review": {
+      "create": "Create Review",
+      "overall-rating": "Overall Rating",
+      "clear": "Clear",
+      "headline": "Add a headline",
+      "headline-placeholder": "What's most important to know?",
+      "content": "Add a written review",
+      "content-placeholder": "What did you like or dislike? What did you use this product for?",
+      "name": "Add a preferred name",
+      "name-placeholder": "Fill out your name",
+      "images": "Add a photo",
+      "images-placeholder": "Image Link",
+      "images-subtitle": "Shoppers find images more helpful than text alone.",
+      "edit": "Edit",
+      "post": "Post"
+    },
+    "products": {
+      "review-product": "Review this product",
+      "review-product-subtitle": "Share your thoughts with other customers",
+      "review-product-button": "Write a customer review",
+      "no-reviews": "No customer reviews" 
+    },
+    "review-display": {
+      "reviewed-in": "Reviewed in the United States on",
+      "helpful-subtitle": "people found this helpful",
+      "helpful-button": "Helpful",
+      "report-button": "Report"
+    }
   }
 }
