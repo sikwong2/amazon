@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { Divider } from "@mui/material";
 import AccountCardBox from "@/components/AccountCardBox"
 
-
 export function Account() {
   const pageContext = React.useContext(PageContext);
   const router = useRouter();

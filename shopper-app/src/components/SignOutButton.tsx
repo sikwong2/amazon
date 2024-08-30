@@ -54,9 +54,8 @@ export default function SignOutButton(){
 
   const handleNavigation = (page: string) => {
     switch (page) {
-      case 'account':
-        pageContext.setPage('account')
-        router.push('/') 
+      case 'account': 
+        router.push('/account') 
         break;
       case 'orderHistory':
         pageContext.setPage('orderHistory')

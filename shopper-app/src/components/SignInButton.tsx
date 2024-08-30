@@ -33,8 +33,7 @@ export default function SignInButton() {
   const handleNavigation = (page: string) => {
     switch (page) {
       case 'account':
-        pageContext.setPage('account')
-        router.push('/')
+        router.push('/account') 
         break;
       case 'orderHistory':
         pageContext.setPage('orderHistory')
