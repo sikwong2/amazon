@@ -129,12 +129,12 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
     });
     const json = await res.json();
     if (json.errors) {
-      console.log(json.errors[0].message);
+      console.error(json.errors[0].message);
       throw new Error(json.errors[0].message);
     }
     return json.data.addBrowserHistory;
   } catch (e) {
-    console.log(e)
+    console.error(e)
     throw new Error('Error in fetching addBrowserHistory')
   }
 }
@@ -247,7 +247,7 @@ export default function Product({ product }: ProductProp) {
           await addBrowserHistory(id, productId as string);
         }
       } catch(e) {
-        console.log(e);
+        console.error(e);
       }
     };
     const fetchRatingHistogram = async () => {
@@ -255,7 +255,7 @@ export default function Product({ product }: ProductProp) {
         const ratings = await fetchRatings(productId as string);
         setRatings(ratings);
       } catch(e) {
-        console.log(e);
+        console.error(e);
       }
     };
     const fetchReviewsEvent = async () => {
@@ -263,7 +263,7 @@ export default function Product({ product }: ProductProp) {
         const reviews = await fetchReviews(productId as string);
         setReviews(reviews);
       } catch(e) {
-        console.log(e);
+        console.error(e);
       }
     };
 
