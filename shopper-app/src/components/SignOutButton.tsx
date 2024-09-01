@@ -68,77 +68,69 @@ export default function SignOutButton(){
       default:
         break;
     }
+  }; 
+
+  const makeList = (arr: any) => {
+    return (
+      <div>
+        {arr.map((obj: any, index: any) => (
+          <div key={index} className='link-container'>
+            <a onClick={() => { handleNavigation(obj.onClick) }} className='link-no-underline'>
+              {obj.name}
+            </a>
+          </div>
+        ))}
+      </div>
+    );
   };
+
+  const rightSideListArr = [
+    { name: 'Account', onClick: 'account' },
+    { name: 'Orders', onClick: 'orderHistory' },
+    { name: 'Keep Shopping For', onClick: 'comingSoon' },
+    { name: 'Recommendations', onClick: 'comingSoon' },
+    { name: 'Browsing History', onClick: 'comingSoon' },
+    { name: 'Recalls and Product Safety Alerts', onClick: 'comingSoon' },
+    { name: 'Watchlist', onClick: 'comingSoon' },
+    { name: 'Video Purchases & Rentals', onClick: 'comingSoon' },
+    { name: 'Kindle Unlimited', onClick: 'comingSoon' },
+    { name: 'Content Library', onClick: 'comingSoon' },
+    { name: 'Devices', onClick: 'comingSoon' },
+    { name: 'Subscribe & Save Items', onClick: 'comingSoon' },
+    { name: 'Memberships & Subscriptions', onClick: 'comingSoon' },
+    { name: 'Prime Membership', onClick: 'comingSoon' },
+    { name: 'Amazon Credit Cards', onClick: 'comingSoon' },
+    { name: 'Music Library', onClick: 'comingSoon' },
+    { name: 'Start a Selling Account', onClick: 'comingSoon' },
+    { name: 'Register for a free Business Account', onClick: 'comingSoon' },
+    { name: 'Customer Service', onClick: 'comingSoon' },
+    { name: 'Switch Accounts', onClick: 'comingSoon' },
+  ];
+
+  const leftSideListArrTop = [
+    {name: 'Shopping List', onClick: 'comingSoon'},
+    {name: 'Wish List', onClick: 'comingSoon'}
+  ]
+
+  const leftSideListArrBottom = [
+    {name: 'Creat a List', onClick: 'comingSoon'},
+    {name: 'Find a List or Registry', onClick: 'comingSoon'}, 
+    {name: 'Your Saved Books', onClick: 'comingSoon'},
+  ]
 
   const popoverContentBoxLeft = (
     <div>
       <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> Your Lists </h1>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Shopping List  </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Wish List </a>
-      </div>
+      {makeList(leftSideListArrTop)} 
       <Divider sx={{ mt: '10px', borderWidth: '1px', mb: '10px'}}></Divider>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Create a List  </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Find a List or Registry </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Your Saved Books </a>
-      </div>
+      {makeList(leftSideListArrBottom)} 
     </div>
   )
 
   const popoverContentBoxRight = (
     <div>
       <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}>Your Account</h1>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('account')} className='link-no-underline'> Account </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('orderHistory')} className='link-no-underline'> Orders </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Keep Shopping For </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Recommendations </a>
-      </div>
-      <div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Browsing History </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Recalls and Product Safety Alerts </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Watchlist </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Video Purchases & Rentals </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Kindle Unlimited </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Content Library </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Devices </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Subscribe & Save Items </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Memberships & Subscriptions </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Prime Membership </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Amazon Credit Cards </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'>  Music Library </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Start a Selling Account </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Register for a free buisness Account </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Customer Service </a>
-      </div><div className="link-container">
-        <a onClick={() => handleNavigation('comingSoon')} className='link-no-underline'> Switch Accounts </a>
-      </div>
+      {makeList(rightSideListArr)} 
       <div className="link-container">
         <a onClick={handleSignOut} className='link-no-underline'> Sign Out </a>
       </div> 
