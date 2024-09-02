@@ -9,6 +9,9 @@ import CustomButton from './Button';
 import CustomDivider from './Divider';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { LoginContext } from '@/context/Login';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 
 const renderDay = (date: Date) => {
   const d = new Date(date);
@@ -18,10 +21,38 @@ const renderDay = (date: Date) => {
   return dateString;
 };
 
+const fetchAddLike = async (reviewId: string, memberId: string): Promise <any> => {
+  const query = {
+    query: `mutation addLike {
+      addLike(reviewId: "${reviewId}", memberId: "${memberId}")
+    }`
+  };
+  fetch('/api/graphql', {
+    method: 'POST',
+    body: JSON.stringify(query),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((res) => {
+    return res.json();
+  })
+}
+
+
 export default function ReviewListItem({ review, index}: {review: Review, index: number}) {
   const { t } = useTranslation('common');
   const d = new Date(review.posted);
   const date = renderDay(d);
+  const [clicked, setClicked] = React.useState(false);
+  const {accessToken, id} = React.useContext(LoginContext);
+
+  const handleOnClick = () => {
+    setClicked(true);
+    if (accessToken && id) {
+      fetchAddLike(review.id, id);
+    }
+  }
 
   return (
     <Box width="100%" key={index+'-reviewitem'+review.id}>
@@ -80,19 +111,29 @@ export default function ReviewListItem({ review, index}: {review: Review, index:
         </Box>
       </Stack>
       <Typography color='rgb(94,95,95)' variant='subtitle2' mt='0.3rem'>
-        X {t('reviews.review-display.helpful-subtitle')}
+        {review.total_likes} {t('reviews.review-display.helpful-subtitle')}
       </Typography>
-      <Stack direction='row' width='200px' mt='0.5rem' spacing='0.5rem'>
+      <Stack direction='row' width='100%' mt='0.5rem' spacing='0.5rem'>
         <Box width='100%'>
-          <CustomButton label='helpful' variant='outlined' pill sx={{minWidth: '50px', width:'100%'}}>
+          {!clicked ?
+            <CustomButton
+              label='helpful'
+              variant='outlined'
+              pill
+              sx={{maxWidth:'100px', width:'100%'}}
+              onClick={(handleOnClick)}
+            >
               {t('reviews.review-display.helpful-button')}
-          </CustomButton>
-        </Box>
-        <Divider orientation="vertical" flexItem sx={{ borderRightWidth: 1 }} />
-        <Box width='100%'>
-          <CustomButton label='report' variant='text' pill sx={{minWidth: '50px', width:'100%'}}>
-            {t('reviews.review-display.report-button')}
-          </CustomButton>
+            </CustomButton>
+            :
+            <Stack direction='row'>
+              <CheckCircleIcon fontSize='small' sx={{color: 'green', mr: '0.2rem'}}/>
+              <Typography color="green" variant='subtitle2'>
+                {t('reviews.review-display.thank-you')}
+              </Typography>
+            </Stack>
+
+          }
         </Box>
 
       </Stack>

@@ -9,9 +9,10 @@ export class ReviewController extends Controller {
   public async getAllReviewsUnderProduct(
     @Path() productId: string,
     @Query() page?: number,
-    @Query() size?: number
+    @Query() size?: number,
+    @Query() sortByHelpful?: boolean
   ): Promise <Review[]> {
-    return new ReviewService().getReviews(productId, page, size);
+    return new ReviewService().getReviews(productId, page, size, sortByHelpful);
   }
 
   @Get('/shopper/{shopperId}')
@@ -114,6 +115,15 @@ export class ReviewController extends Controller {
       }
     })
   }
+
+  @Post('like/{reviewId}/{shopperId}')
+  public async createLike(
+    @Path() reviewId: string,
+    @Path() shopperId: string
+  ): Promise <boolean> {
+    return new ReviewService().addLike(reviewId, shopperId);
+  }
+
 
   
 }
