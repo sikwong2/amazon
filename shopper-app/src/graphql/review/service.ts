@@ -24,10 +24,10 @@ export class ReviewService {
   }
 
 
-  public async getProductReviews(productId: string, page: number, size: number): Promise <Review[]> {
+  public async getProductReviews(productId: string, page: number, size: number, helpful: boolean): Promise <Review[]> {
     try {
       const res = await fetch(
-        `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/review/product/${productId}?page=${page}&size=${size}`,
+        `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/review/product/${productId}?page=${page}&size=${size}&sortByHelpful=${helpful}`,
         {
           method: 'GET',
           headers: {
@@ -78,6 +78,26 @@ export class ReviewService {
     } catch (e) {
       console.error(e);
       throw new Error('error in ReviewService: getRatings');
+    }
+  }
+
+  public async createLike(reviewId: string, memberId: string): Promise <Boolean> {
+    try {
+
+      const res = await fetch(
+        `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/review/like/${reviewId}/${memberId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        },
+      );
+      const json = await res.json();
+      return json;
+    } catch (e) {
+      console.error(e);
+      throw new Error('error in ReviewService: createLike');
     }
   }
 }

@@ -48,6 +48,8 @@ export class Review {
   name!: string;
   @Field()
   rating!: number
+  @Field()
+  total_likes!: number
 }
 
 @ObjectType()

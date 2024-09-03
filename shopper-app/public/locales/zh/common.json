@@ -200,13 +200,19 @@
       "review-product": "评论此产品",
       "review-product-subtitle": "与其他客户分享你的想法",
       "review-product-button": "写客户评论",
-      "no-reviews": "没有客户评论"
+      "no-reviews": "没有客户评论",
+      "top-reviews-us": "来自美国的热门评论",
+      "from-us": "来自美国",
+      "most-recent": "最新",
+      "top-reviews": "热门评论",
+      "sort-by": "排序方式"
     },
     "review-display": {
       "reviewed-in": "在美国审查于",
       "helpful-subtitle": "人们觉得这有帮助",
       "helpful-button": "有帮助",
-      "report-button": "举报"
+      "report-button": "举报",
+      "thank-you": "感谢你的反馈。"
     }
   }
 }

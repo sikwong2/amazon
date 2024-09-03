@@ -17,9 +17,10 @@ export class ReviewResolver {
   async getProductReviews(
     @Arg('productId') productId: string,
     @Arg('page', () => Int, { defaultValue: 0 }) page: number,
-    @Arg('size', () => Int, { defaultValue: 10 }) size: number
+    @Arg('size', () => Int, { defaultValue: 10 }) size: number,
+    @Arg('helpful', () => Boolean, { defaultValue: true }) helpful: boolean
   ): Promise <Review[]> {
-    return await new ReviewService().getProductReviews(productId, page, size);
+    return await new ReviewService().getProductReviews(productId, page, size, helpful);
   }
 
   @Query(() => [Review])
@@ -36,6 +37,14 @@ export class ReviewResolver {
     @Arg('productId') productId: string
   ): Promise <RatingHistogram> {
     return await new ReviewService().getRatings(productId);
+  }
+
+  @Mutation(() => Boolean)
+  async addLike(
+    @Arg('reviewId') reviewId: string,
+    @Arg('memberId') memberId: string
+  ): Promise <Boolean> {
+    return await new ReviewService().createLike(reviewId, memberId);
   }
 
 }

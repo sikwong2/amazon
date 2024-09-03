@@ -15,7 +15,8 @@ export interface Review {
   title: string,
   posted: Date,
   name: string,
-  rating: number
+  rating: number,
+  total_likes: number
 }
 
 /**

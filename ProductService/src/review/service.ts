@@ -65,7 +65,13 @@ export class ReviewService {
       };
 
       const {rows} = await pool.query(query);
-      return {id: rows[0].id, product_id: rows[0].product_id, shopper_id: rows[0].shopper_id, ...rows[0].data};
+      return {
+        id: rows[0].id,
+        product_id: rows[0].product_id,
+        shopper_id: rows[0].shopper_id,
+        ...rows[0].data,
+        total_likes: 0
+      };
     
     } catch (e) {
       console.error('Problem Creating Review', e);
@@ -73,10 +79,25 @@ export class ReviewService {
     }
   }
 
-  public async getReviews(productId: string, page: number = 0, size: number = 10): Promise <Review[]> {
-    const select = `SELECT * FROM review WHERE product_id = $1 
-      ORDER BY data->>'posted' 
-      DESC LIMIT $2 OFFSET $3`;
+  public async getReviews(productId: string, page: number = 0, size: number = 10, helpful = false): Promise <Review[]> {
+    const select = `SELECT 
+      review.*, 
+        COALESCE(like_counts.total_likes, 0) AS total_likes
+      FROM 
+        review
+      LEFT JOIN 
+        (SELECT review_id, COUNT(*) AS total_likes 
+        FROM like_count 
+        GROUP BY review_id) AS like_counts
+      ON 
+        review.id = like_counts.review_id
+      WHERE 
+        review.product_id = $1
+      ORDER BY 
+        ${helpful ? 'total_likes DESC' : 'data->>\'posted\' DESC'}
+      LIMIT $2 OFFSET $3;`;
+    
+    
     const query = {
       text: select,
       values: [productId, size, `${page * 10}` ]
@@ -89,7 +110,8 @@ export class ReviewService {
           id: row.id,
           shopper_id: row.shopper_id,
           product_id: row.product_id,
-          ...row.data
+          ...row.data,
+          total_likes: row.total_likes
         }
       )
     }
@@ -97,9 +119,25 @@ export class ReviewService {
   }
 
   public async getShopperReviews(shopperId: string, page: number = 0, size: number = 10): Promise <Review[]> {
-    const select = `SELECT * FROM review WHERE shopper_id = $1 
-      ORDER BY data->>'posted' 
-      DESC LIMIT $2 OFFSET $3`;
+    const select = `
+      SELECT 
+        review.*, 
+        COALESCE(like_counts.total_likes, 0) AS total_likes
+      FROM 
+        review
+      LEFT JOIN 
+        (SELECT review_id, COUNT(*) AS total_likes 
+         FROM like_count 
+         GROUP BY review_id) AS like_counts
+      ON 
+        review.id = like_counts.review_id
+      WHERE 
+        review.shopper_id = $1
+      ORDER BY 
+        data->>'posted' DESC
+      LIMIT $2 OFFSET $3;
+    `;
+
     const query = {
       text: select,
       values: [shopperId, size, `${page * 10}` ]
@@ -112,7 +150,8 @@ export class ReviewService {
           id: row.id,
           shopper_id: row.shopper_id,
           product_id: row.product_id,
-          ...row.data
+          ...row.data,
+          total_likes: row.total_likes
         }
       )
     }
@@ -175,7 +214,8 @@ export class ReviewService {
       id: rows[0].id, 
       shopper_id: rows[0].shopper_id,
       product_id: rows[0].product_id,
-      ...rows[0].data
+      ...rows[0].data,
+      total_likes: 0 
     };
   }
   
@@ -225,11 +265,30 @@ export class ReviewService {
         id: rows[0].id,
         shopper_id: rows[0].shopper_id,
         product_id: rows[0].product_id, 
-        ...rows[0].data 
+        ...rows[0].data,
+        total_likes: 0 // not the real value, but dont think its needed
       };
     } catch (e) {
       console.error("Problem Editing Review", e);
       return undefined;
+    }
+  }
+
+  // adds new row to like_count to indicate like from user for a review
+  public async addLike(reviewId: string, shopperId: string): Promise<boolean>{
+    try {
+      // ON CONFILCT - https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT
+      const insert = `INSERT INTO like_count(review_id, shopper_id) VALUES ($1, $2) ON CONFLICT (review_id, shopper_id) DO NOTHING RETURNING *`;
+      const query = {
+        text: insert,
+        values: [reviewId, shopperId]
+      };
+
+      const {rows} = await pool.query(query);
+      return rows.length > 0;
+    } catch(e) {
+      console.log(e);
+      return false;
     }
   }
 

@@ -200,13 +200,19 @@
       "review-product": "Review this product",
       "review-product-subtitle": "Share your thoughts with other customers",
       "review-product-button": "Write a customer review",
-      "no-reviews": "No customer reviews" 
+      "no-reviews": "No customer reviews",
+      "top-reviews-us": "Top reviews from the United States",
+      "from-us": "From the United States",
+      "most-recent": "Most recent",
+      "top-reviews": "Top reviews",
+      "sort-by": "Sort By"
     },
     "review-display": {
       "reviewed-in": "Reviewed in the United States on",
       "helpful-subtitle": "people found this helpful",
       "helpful-button": "Helpful",
-      "report-button": "Report"
+      "report-button": "Report",
+      "thank-you": "Thank you for your feedback."
     }
   }
 }
