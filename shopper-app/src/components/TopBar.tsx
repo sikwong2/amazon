@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { LoginContext } from '@/context/Login';
-import { useSearch } from '@/context/SearchContext';
+import { SearchContext } from '@/context/Search';
 import { PageContext } from '@/context/Page';
 import { CartContext } from '@/context/Cart';
 import { MemberInfo } from '@/graphql/member/schema';
@@ -23,7 +23,8 @@ import Logo from './Logo';
 import LanguageButton from './Language';
 import CustomButton from './Button';
 import SignInButton from './SignInButton';
-import SignOutButton from './SignOutButton';
+import SignOutButton from './SignOutButton';import CategoryTopBar from './CategoryTopBar';
+import { CategoryContext } from '@/context/Category';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	backgroundColor: '#131921',
@@ -102,20 +103,26 @@ export default function TopBar() {
 	const loginContext = React.useContext(LoginContext);
 	const pageContext = React.useContext(PageContext);
 	const cartContext = React.useContext(CartContext);
-	const { searchValue, setSearchValue, handleSearch } = useSearch();
+	const { searchValue, setSearchValue, handleSearch } = React.useContext(SearchContext);
+	const { categories, setCategories, selectedCategory, setSelectedCategory } = React.useContext(CategoryContext);
+	const [searchField, setSearchField] = React.useState('');
 	const [deliveryAddress, setDeliveryAddress] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [numberOfItems, setNumberOfItems] = useState(0);  // This will hold the total count of items
-	const [category, setCategory] = useState('All');	// TODO: make this a context??
-
 	const router = useRouter();
+	
+	// Add 'All departments' to dropdown + sort alphabetically
+	const dropdownCategories = [...categories];
+	dropdownCategories.sort((a, b) => a.localeCompare(b));
+	dropdownCategories.unshift('All Departments');
 
 	const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchValue(event.target.value);
+		setSearchField(event.target.value);
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
+			setSearchValue(searchField);
 			handleSearch();
 		}
 	};
@@ -148,6 +155,12 @@ export default function TopBar() {
 	const handleMenuClose = () => {
 		setMenuOpen(false);
 	};
+
+	const handleDropdownSelect = (category: string) => {
+    setSelectedCategory(category);
+    setSearchValue(category);
+    handleSearch(category);
+  }
 
 	const fetchUserInfo = async (memberId: string): Promise<MemberInfo | undefined> => {
 		try {
@@ -255,12 +268,13 @@ export default function TopBar() {
 				<CustomDropdown 
 					label={'category'} 
 					variant='noLabel'
-					values={[]}  // TODO: get all categories from DB 
-					selectedValue={category} 
-					setSelectedValue={setCategory}
+					values={dropdownCategories}
+					selectedValue={selectedCategory} 
+					setSelectedValue={handleDropdownSelect}
 					sx={{
 						display: 'flex',
 						flexGrow: 0,
+						textTransform:'capitalize',
 						'& .MuiFormControl-root': {
 							borderTopRightRadius: 0,
 							borderBottomRightRadius: 0,
@@ -277,22 +291,21 @@ export default function TopBar() {
 						'& .MuiInputBase-root': {
 							color: '#555',
 							flexGrow: 0,
-							maxWidth: '20vh',
 							overflow: 'hidden',
 							textOverflow: 'clip',
 						},
 						'&& .MuiSelect-select.MuiSelect-select': {
-							px:'4px'
+							px:'4px',
 						},
 					}}
 				/>
 			</CategoryDropdownWrapper>
 			<SearchInput
 				placeholder={t("topbar.Search") as string}
-				inputProps={{ 'aria-label': 'search', value: searchValue, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
+				inputProps={{ 'aria-label': 'search', value: searchField, onChange: handleSearchInputChange, onKeyDown: handleKeyDown }}
 				sx={{ flexGrow: 1 }}
 			/>
-			<SearchIconWrapper aria-label='search-icon' onClick={handleSearch}>
+			<SearchIconWrapper aria-label='search-icon' onClick={() => handleSearch()}>
 				<StyledSearchIcon fontSize='medium'/>
 			</SearchIconWrapper>
 		</Search>
@@ -489,39 +502,42 @@ export default function TopBar() {
 	)
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
-			<StyledAppBar position="static">
-				<Toolbar>
-					<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-						<Logo 
-							width={60} 
-							sx={{ 
-								padding: '5px',
-								'&:hover': {
-									backgroundColor: '#131921',
-									outline: '1px solid white',
-									borderRadius: '2px',
-									border: 'none'
-								},
-							}}
-						/>
-            <Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
-						  {addressButton}
-            </Box>
-						{searchBar}
-					</Box>
-					<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-					  <LanguageButton />
-						{loginContext.accessToken.length === 0 && <SignInButton/>}
-						{loginContext.accessToken.length > 0 && <SignOutButton />}
-						{orderHistoryButton}
-						{cartButton}
-					</Box>
-					<Box sx={{ display: {xs: 'block', sm: 'none' } }}>
-						{menuButton}
-					</Box>
-				</Toolbar>
-			</StyledAppBar>
-		</Box>
+		<>
+			<Box sx={{ flexGrow: 1 }}>
+				<StyledAppBar position="static">
+					<Toolbar>
+						<Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+							<Logo 
+								width={60} 
+								sx={{ 
+									padding: '5px',
+									'&:hover': {
+										backgroundColor: '#131921',
+										outline: '1px solid white',
+										borderRadius: '2px',
+										border: 'none'
+									},
+								}}
+							/>
+							<Box sx={{ display: {xs:'none', sm:'none', md: 'flex'}, pl: 1, maxWidth: '20vh' }}>
+								{addressButton}
+							</Box>
+							{searchBar}
+						</Box>
+						<Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+							<LanguageButton />
+							{loginContext.accessToken.length === 0 && <SignInButton/>}
+							{loginContext.accessToken.length > 0 && <SignOutButton/>}
+							{orderHistoryButton}
+							{cartButton}
+						</Box>
+						<Box sx={{ display: {xs: 'block', sm: 'none' } }}>
+							{menuButton}
+						</Box>
+					</Toolbar>
+				</StyledAppBar>
+			</Box>
+			<CategoryTopBar />
+		</>
 	);
 }

@@ -7,7 +7,6 @@ import { Cart } from '@/views/Cart';
 import { Checkout } from '@/views/Checkout';
 import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
-import { SearchProvider } from '../context/SearchContext';
 import Footer from '@/components/Footer';
 import { Account } from '@/views/Account';
 import { ComingSoon } from '@/views/ComingSoon';

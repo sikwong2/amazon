@@ -8,7 +8,7 @@ import { CartContext, CartProvider } from '@/context/Cart';
 
 
 import { Checkout } from '@/views/Checkout';
-import { SearchProvider } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/Search';
 import React from 'react';
 
 jest.mock('next/router', () => jest.requireActual('next-router-mock'));

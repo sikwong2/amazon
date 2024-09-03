@@ -17,6 +17,7 @@ import { RedirectNonShopper } from './RedirectNonShopper';
 import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
 import { BrowserHistoryEntry } from '@/graphql/member/schema';
+import { CategoryContext } from '@/context/Category';
 
 const advertisements: Image[] = [
   {
@@ -65,7 +66,7 @@ const advertisements: Image[] = [
 
 const categories: string[] = [
   'furniture',
-  'electronics',
+  'Electronics',
   'sports',
   'apple',
   'shrek',
@@ -207,6 +208,7 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
   }
 }
 
+
 // outer container of ads / cards once signed in
 // carosoul component
 // card of category component
@@ -216,6 +218,7 @@ export function Home() {
   const [browserHistoryImages, setBrowserHistoryImages] = React.useState<Image[]>([]);
   const { t } = useTranslation('common');
   const loginContext = React.useContext(LoginContext);
+  const categoryContext = React.useContext(CategoryContext);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -285,6 +288,8 @@ export function Home() {
     };
   
     fetchData();
+    categoryContext.setSelectedCategory('All');
+    sessionStorage.setItem('category', 'All Departments');
   }, []);
 
   const easyReturns = (
@@ -380,7 +385,7 @@ export function Home() {
                   position: 'absolute',
                   top: '250px',
                   width: '100%',
-                  zIndex: '800'
+                  zIndex: 2
                 }}
                 justifyItems='center'
               >
@@ -391,7 +396,7 @@ export function Home() {
                   background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
                   position: 'absolute',
                   top: '400px',
-                  zIndex:'500'
+                  zIndex: 1
                 }}
                 width="100%"
                 height={200}

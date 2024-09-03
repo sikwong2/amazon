@@ -48,6 +48,15 @@
     "Account": "帐户和列表",
     "Returns": "退货"
   },
+  "categoryTopbar": {
+    "title": {
+      "trending": "趋势",
+      "digital-content": "数字内容和设备",
+      "by-dsepartment": "按部门选购",
+      "programs": "程序和功能",
+      "help": "帮助和设置"
+    }
+  },
   "home": {
     "pick-up": "继续逛",
     "keep-shopping": "继续买",
@@ -164,5 +173,46 @@
     "learn-more": "了解更多",
     "shopping-on-Amazon": "您正在 Amazon.com 上购物",
     "change-country": "更改国家/地区"
+  },
+  "reviews": {
+    "rating-histogram": {
+      "custom-reviews": "客户评论",
+      "global-ratings": "全球评分",
+      "star": "星"
+    },
+    "create-review": {
+      "create": "创建评论",
+      "overall-rating": "总体评分",
+      "clear": "清除",
+      "headline": "添加标题",
+      "headline-placeholder": "最重要的是什么？",
+      "content": "添加书面评论",
+      "content-placeholder": "你喜欢或不喜欢什么？你用这个产品做什么？",
+      "name": "添加首选姓名",
+      "name-placeholder": "填写你的姓名",
+      "images": "添加照片",
+      "images-placeholder": "照片链接",
+      "images-subtitle": "购物者认为图片比纯文本更有帮助。",
+      "edit": "编辑",
+      "post": "发布"
+    },
+    "products": {
+      "review-product": "评论此产品",
+      "review-product-subtitle": "与其他客户分享你的想法",
+      "review-product-button": "写客户评论",
+      "no-reviews": "没有客户评论",
+      "top-reviews-us": "来自美国的热门评论",
+      "from-us": "来自美国",
+      "most-recent": "最新",
+      "top-reviews": "热门评论",
+      "sort-by": "排序方式"
+    },
+    "review-display": {
+      "reviewed-in": "在美国审查于",
+      "helpful-subtitle": "人们觉得这有帮助",
+      "helpful-button": "有帮助",
+      "report-button": "举报",
+      "thank-you": "感谢你的反馈。"
+    }
   }
 }
