@@ -119,10 +119,6 @@ export class ReviewService {
   }
 
   public async getShopperReviews(shopperId: string, page: number = 0, size: number = 10): Promise <Review[]> {
-    // const select = `SELECT * FROM review WHERE shopper_id = $1 
-    //   ORDER BY data->>'posted' 
-    //   DESC LIMIT $2 OFFSET $3`;
-
     const select = `
       SELECT 
         review.*, 

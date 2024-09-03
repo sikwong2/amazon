@@ -344,7 +344,7 @@ export default function Product({ product }: ProductProp) {
       <CustomLink href={`/product/${productId}`} label="visit-product-store">
         {t('product.visit-amazon')}
       </CustomLink>
-      <CustomRating rating={product.rating} size="small" />
+      <CustomRating rating={ratings.total > 0 ? ratings.average : product.rating} size="small" />
       <Box aria-label="amazons-choice">
         <AmazonChoice sx={{ mt: 1 }} />
         <Typography display="inline" sx={{ ml: 2 }}>

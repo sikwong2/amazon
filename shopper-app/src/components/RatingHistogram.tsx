@@ -18,7 +18,7 @@ interface HistogramBarProps {
 const HistogramBar = ({star, value, t}: HistogramBarProps) => (
   <Grid container rowSpacing='0.5rem' columnSpacing='0.5rem' alignItems='left' >
     <Grid item xs={2} alignContent='center'>
-      <Typography>
+      <Typography color='rgb(64,112,132)'>
         {star} {t('reviews.rating-histogram.star')}
       </Typography>
     </Grid>
@@ -26,7 +26,7 @@ const HistogramBar = ({star, value, t}: HistogramBarProps) => (
       <CustomLinearProgress value={value}/>
     </Grid>
     <Grid item xs={2} alignContent='center'>
-      <Typography textAlign='right'>
+      <Typography textAlign='right' color='rgb(64,112,132)'>
         {value}%
       </Typography>
     </Grid>
@@ -68,7 +68,7 @@ export default function CustomRatingHistogram({ratingHistogram}: RatingHistogram
           <CustomRating rating={ratingHistogram.average} key='ratinghistogram-ratings'/>
         </Box>
         <Box marginBottom='16px'>
-          <Typography variant='subtitle2'>
+          <Typography variant='subtitle2' color='rgb(96,96,96)'>
             {ratingHistogram.total} {t('reviews.rating-histogram.global-ratings')}
           </Typography>
         </Box>

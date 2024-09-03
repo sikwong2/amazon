@@ -13,7 +13,7 @@ CREATE TABLE review(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(), produc
 
 -- https://stackoverflow.com/questions/36169733/how-to-implement-a-likes-system
 DROP TABLE IF EXISTS like_count CASCADE;
-CREATE TABLE like_count(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(), review_id UUID REFERENCES review(id) ON DELETE CASCADE, shopper_id UUID NOT NULL, UNIQUE(review_id, shopper_id));
+CREATE TABLE like_count(review_id UUID REFERENCES review(id) ON DELETE CASCADE, shopper_id UUID NOT NULL, UNIQUE(review_id, shopper_id));
 -- Index to count # of likes faster https://www.atlassian.com/data/databases/how-does-indexing-work
 DROP INDEX IF EXISTS like_count_index CASCADE;
 CREATE INDEX like_count_index ON like_count(review_id);
