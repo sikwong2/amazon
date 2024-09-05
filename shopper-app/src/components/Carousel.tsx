@@ -40,7 +40,13 @@ export default function ImageCarousel({ images, height, mobile, ...rest }: Image
             borderRadius: 0
         }
       }}
-      navButtonsWrapperProps={mobile ? {} : {   // Move the buttons to the bottom. Unsetting top here to override default style.
+      navButtonsWrapperProps={mobile ? {
+          style: {
+            bottom: 'unset',
+            top: '-20%'
+          }
+        }
+         : {   // Move the buttons to the bottom. Unsetting top here to override default style.
         style: {
             bottom: 'unset',
             top: '15%'
@@ -49,8 +55,8 @@ export default function ImageCarousel({ images, height, mobile, ...rest }: Image
       fullHeightHover={mobile ? true : false}
       animation="slide"
       indicators={false}
-      height={height}
-      navButtonsAlwaysVisible={true}>
+      height={(height > 479 && mobile) ? 479 : height}
+      navButtonsAlwaysVisible={mobile ? false : true}>
       {images.map((item, i) => (
         <Item key={i} item={item} mobile={mobile} {...rest} />
       ))}
@@ -77,7 +83,7 @@ function Item({ item, mobile, ...rest }: ItemProps) {
         style={mobile ? {
           width: '100%',
           height: '100%',
-          objectFit: 'contain'
+          objectFit: 'fill'
         } : 
         {
           width: '100%',

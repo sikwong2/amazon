@@ -52,6 +52,9 @@ const advertisementsMobile: Image[] = [
   },
   {
     image: 'https://f.media-amazon.com/images/I/71PzKDtWDjL._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/61ah+QDzDNL._SR1236,1080_.jpg'
   }
 ]
 
@@ -373,6 +376,22 @@ export function Home() {
     </>
   )
 
+  const adCarousel = (
+    <Box
+    position="static"
+    justifyContent="center"
+    alignItems="center"
+    bgcolor="#FFFFFF"
+  >
+    { !isSmallScreen ?
+
+        <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
+       :
+        <ImageCarousel images={advertisementsMobile} height={screen.width} mobile={true}/>
+    }
+    </Box>
+
+  )
 
   if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
     return <RedirectNonShopper />;
@@ -389,15 +408,7 @@ export function Home() {
           justifyContent="center"
           margin="auto"
         >
-          <Box
-            position="static"
-            justifyContent="center"
-            alignItems="center"
-            bgcolor="#FFFFFF"
-          >
-            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
-          </Box>
-          
+          {adCarousel}
           {adheader}
 
           {Object.entries(categoriesData).slice(3,numberOfCategories).map(([category, images]) => (
