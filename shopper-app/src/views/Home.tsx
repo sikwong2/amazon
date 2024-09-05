@@ -347,7 +347,7 @@ export function Home() {
   const adheader = (
     <>
       {
-        !isSmallScreen &&
+        !isSmallScreen ?
         <React.Fragment>
           <Box
             sx={{
@@ -371,7 +371,31 @@ export function Home() {
             height={200}
             />
           <Box bgcolor='#E4E6E6' width="100%" height={50}/>
-        </React.Fragment>
+        </React.Fragment> :
+        <React.Fragment>
+        {/* <Box
+          sx={{
+            position: 'absolute',
+            top: '200px',
+            width: '100%',
+            zIndex: 2
+          }}
+          justifyItems='center'
+        >
+
+        </Box> */}
+        <Box
+          sx={{
+            background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+            position: 'absolute',
+            zIndex: 10
+          }}
+          top={screen.width/1.5}
+          width="100%"
+          height={screen.width/3 + 1}
+          />
+        <Box bgcolor='#E4E6E6' width="100%" height={screen.width/6}/>
+      </React.Fragment>
       }
     </>
   )

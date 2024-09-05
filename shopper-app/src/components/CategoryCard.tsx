@@ -29,7 +29,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
         margin: 1,
         alignItems: 'center',
         maxHeight: '100%',
-        maxWidth: isSmallScreen ? '100%' : '400px',
+        maxWidth: isSmallScreen ? '100%' : '600px',
         justifyContent: 'center',
         display: 'flex',
         flexGrow: 1,
