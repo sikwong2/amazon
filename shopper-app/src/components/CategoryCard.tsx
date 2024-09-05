@@ -3,13 +3,7 @@ import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/router';
-
-export type Image = {
-  image: string;
-  id: string;
-  description: string;
-  title: string;
-};
+import type { Image } from './Carousel';
 
 export interface CategoryCardProps {
   images: Image[];
@@ -75,7 +69,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
               }}
               component="img"
               src={image.image}
-              onClick={() => handleProductRedirect(image.id)}
+              onClick={() => image.id ? handleProductRedirect(image.id) : () => {}}
             />
             <Typography
               align="left"

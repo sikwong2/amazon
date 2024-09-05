@@ -22,46 +22,37 @@ import { CategoryContext } from '@/context/Category';
 const advertisements: Image[] = [
   {
     image: 'https://m.media-amazon.com/images/I/61JRTDaOgTL._SX3000_.jpg',
-    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
-    description: 'Adidas ad',
-    title: 'Adidas shoes'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/717a5OeZ6iL._SX3000_.jpg',
-    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
-    description: 'Adidas Sea ad',
-    title: 'Adidas women shoes'
+    image: 'https://m.media-amazon.com/images/I/717a5OeZ6iL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/517HzrpIwAL._SX3000_.jpg',
-    id: 'd0eeec78-99ef-4736-8256-c04043110873',
-    description: 'Nike ad',
-    title: 'Nike shoes'
+    image: 'https://m.media-amazon.com/images/I/517HzrpIwAL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71UY8rxRxUL._SX3000_.jpg',
-    id: 'd9b42b3d-aa46-4791-8470-c9417d1db025',
-    description: 'Samsung Galaxy ad',
-    title: 'Samsung'
+    image: 'https://m.media-amazon.com/images/I/71UY8rxRxUL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71cpVVPylML._SX3000_.jpg',
-    id: 'c85ddd6d-c3ef-4ba2-8951-a6f377c4fe94',
-    description: 'Spalding basketball ad',
-    title: 'Spalding'
+    image: 'https://m.media-amazon.com/images/I/71cpVVPylML._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71BewpxvEZL._SX3000_.jpg',
-    id: 'fcdfc6a7-3e50-4909-818c-379f75b4320a',
-    description: 'Apple ad',
-    title: 'Macbooks'
+    image: 'https://m.media-amazon.com/images/I/71BewpxvEZL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/61AHFjQsfDL._SX3000_.jpg',
-    id: 'fcab207a-fd48-4e81-a15d-a754f49fcd15',
-    description: 'Lamp ad',
-    title: 'Lamps'
+    image: 'https://m.media-amazon.com/images/I/61AHFjQsfDL._SX3000_.jpg'
   },
+];
+
+const advertisementsMobile: Image[] = [
+  {
+    image: 'https://f.media-amazon.com/images/I/510M0VKiq6L._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/61cMpe5aQuL._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/71PzKDtWDjL._SR1236,1080_.jpg'
+  }
 ]
 
 const categories: string[] = [
@@ -113,7 +104,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
     }
     return json.data.getByCategory;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('Unable to fetch products');
   }
 };
@@ -137,7 +128,7 @@ const fetchProduct = async (productId: string): Promise<Product> => {
     }
     return json.data.getByProductId;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('');
   }
 }
@@ -169,23 +160,20 @@ const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEnt
     }
     return json.data.getBrowserHistory;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('');
   }
 }
 
 // adds product id to browser history backend
-const addBrowserHistory = async (memberId: string, productId: string): Promise<BrowserHistoryEntry> => {
+const addBrowserHistory = async (memberId: string, productId: string): Promise<boolean> => {
   try {
     const query = `
       mutation addBrowserHistory {
         addBrowserHistory(
           memberId: "${memberId}"
           productId: "${productId}"
-        ) {
-          product_id
-          timestamp
-        } 
+        )
       }
     `;
     const res = await fetch(
@@ -333,7 +321,7 @@ export function Home() {
   );
 
 
-  const logoutGrid = (
+  const categorycards = (
     <Grid container spacing={0} justifyContent='center'>
       {(browserHistoryImages.length >= 1) && <Grid item xs={12} sm={4} md={3} key={'browserhistory'}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -352,6 +340,38 @@ export function Home() {
       </Grid>
     </Grid>
   );
+
+  const adheader = (
+    <>
+      {
+        !isSmallScreen &&
+        <React.Fragment>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '250px',
+              width: '100%',
+              zIndex: 2
+            }}
+            justifyItems='center'
+          >
+            {categorycards}
+          </Box>
+          <Box
+            sx={{
+              background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+              position: 'absolute',
+              top: '400px',
+              zIndex: 1
+            }}
+            width="100%"
+            height={200}
+            />
+          <Box bgcolor='#E4E6E6' width="100%" height={50}/>
+        </React.Fragment>
+      }
+    </>
+  )
 
 
   if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
@@ -377,34 +397,8 @@ export function Home() {
           >
             <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
           </Box>
-          {
-            !isSmallScreen &&
-            <React.Fragment>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '250px',
-                  width: '100%',
-                  zIndex: 2
-                }}
-                justifyItems='center'
-              >
-                {logoutGrid}
-              </Box>
-              <Box
-                sx={{
-                  background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
-                  position: 'absolute',
-                  top: '400px',
-                  zIndex: 1
-                }}
-                width="100%"
-                height={200}
-                />
-              <Box bgcolor='#E4E6E6' width="100%" height={50}/>
-            </React.Fragment>
-          }
-
+          
+          {adheader}
 
           {Object.entries(categoriesData).slice(3,numberOfCategories).map(([category, images]) => (
             <MultiImageCarousel

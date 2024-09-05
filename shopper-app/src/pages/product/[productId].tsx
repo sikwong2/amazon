@@ -113,10 +113,7 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
         addBrowserHistory(
           memberId: "${memberId}"
           productId: "${productId}"
-        ) {
-          product_id
-          timestamp
-        } 
+        )
       }
     `;
     const res = await fetch(

@@ -13,9 +13,9 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export type Image = {
   image: string;
-  id: string;
-  description: string;
-  title: string;
+  id?: string;
+  description?: string;
+  title?: string;
 };
 
 interface ImageCarouselProps extends BoxProps {
@@ -70,7 +70,7 @@ function Item({ item, mobile, ...rest }: ItemProps) {
       height="100%"
       width="100%"
       sx={{ backgroundColor: 'E4E6E6', cursor: 'pointer' }}
-      onClick={() => handleProductRedirect(item.id)}
+      onClick={() => item.id ? handleProductRedirect(item.id) : () => {}}
       {...rest}
     >
       <img
@@ -85,8 +85,8 @@ function Item({ item, mobile, ...rest }: ItemProps) {
           objectFit: 'cover'
         } 
       }
-        alt={item.description}
-        src={item.image}
+        alt={item.description || "image"}
+        src={item.image || "Image Title"}
       />
     </Box>
   );
