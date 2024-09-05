@@ -4,7 +4,9 @@
   "go-to-signup": "Create an account",
   "buying-for-work": "Buying for work?",
   "vendor-account": "Create a free vendor account",
+  "coming-soon": "COMING SOON",
   "here": "here",
+  "sign-out": "Sign Out",
   "login": {
     "title": "UCSC-Amazon Shopper Login",
     "signin": "Sign in",
@@ -213,6 +215,69 @@
       "helpful-button": "Helpful",
       "report-button": "Report",
       "thank-you": "Thank you for your feedback."
+    }
+  },
+  "sign-in-button": {
+    "right-side-array": {
+      "your-lists": "Your Lists",
+      "your-account": "Your Account",
+      "account": "Account",
+      "orders": "Orders",
+      "recommendations": "Recommendations",
+      "browsing-history": "Browsing History",
+      "watchlist": "Watchlist",
+      "video-purchases-rentals": "Video Purchases & Rentals",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-devices": "Content & Devices",
+      "subscribe-save-items": "Subscribe & Save Items",
+      "memberships-subscriptions": "Memberships & Subscriptions",
+      "prime-membership": "Prime Membership",
+      "amazon-credit-cards": "Amazon Credit Cards",
+      "music-library": "Music Library",
+      "start-selling-account": "Start a Selling Account",
+      "register-free-business-account": "Register for a Free Business Account",
+      "customer-service": "Customer Service"
+    },
+    "left-side-array": {
+      "your-lists": "Your Lists",
+      "create-a-list": "Create a List",
+      "find-a-list-or-registry": "Find a List or Registry"
+    }
+  },
+  "sign-out-button": {
+    "account-holder": "Account Holder",
+    "your-lists": "Your Lists",
+    "your-account": "Your Account",
+    "right-side-arr": {
+      "account": "Account",
+      "orders": "Orders",
+      "keep-shopping-for": "Keep Shopping For",
+      "recommendations": "Recommendations",
+      "browsing-history": "Browsing History",
+      "recalls-product-safety-alerts": "Recalls and Product Safety Alerts",
+      "watchlist": "Watchlist",
+      "video-purchases-rentals": "Video Purchases & Rentals",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-library": "Content Library",
+      "devices": "Devices",
+      "subscribe-save-items": "Subscribe & Save Items",
+      "memberships-subscriptions": "Memberships & Subscriptions",
+      "prime-membership": "Prime Membership",
+      "amazon-credit-cards": "Amazon Credit Cards",
+      "music-library": "Music Library",
+      "start-selling-account": "Start a Selling Account",
+      "register-free-business-account": "Register for a Free Business Account",
+      "customer-service": "Customer Service",
+      "switch-accounts": "Switch Accounts"
+    },
+    "left-side-arr-top": {
+      "shopping-list": "Shopping List",
+      "wish-list": "Wish List"
+    },
+    "left-side-arr-bottom": {
+      "create-a-list": "Create a List",
+      "find-a-list-or-registry": "Find a List or Registry",
+      "your-saved-books": "Your Saved Books"
     }
   }
 }

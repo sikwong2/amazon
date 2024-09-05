@@ -5,6 +5,8 @@
   "here": "这里",
   "buying-for-work": "买东西为了工作？",
   "vendor-account": "创建免费供应商帐户",
+  "coming-soon": "即将推出",
+  "sign-out": "登出", 
   "login": {
     "title": "UCSC-亚马逊购物者登录",
     "signin": "登入",
@@ -213,6 +215,69 @@
       "helpful-button": "有帮助",
       "report-button": "举报",
       "thank-you": "感谢你的反馈。"
+    }
+  },
+  "sign-in-button": {
+    "your-lists": "你的列表",
+    "your-account": "你的帐户",
+    "right-side-array": {
+      "account": "帐户",
+      "orders": "订单",
+      "recommendations": "推荐",
+      "browsing-history": "浏览历史",
+      "watchlist": "观察清单",
+      "video-purchases-rentals": "视频购买与租赁",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-devices": "内容与设备",
+      "subscribe-save-items": "订阅与节省项目",
+      "memberships-subscriptions": "会员与订阅",
+      "prime-membership": "Prime 会员",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "music-library": "音乐库",
+      "start-selling-account": "开始销售帐户",
+      "register-free-business-account": "注册免费商业账户",
+      "customer-service": "客户服务"
+    },
+    "left-side-array": {
+      "your-lists": "你的列表",
+      "create-a-list": "创建列表",
+      "find-a-list-or-registry": "查找列表或注册表"
+    }
+  },
+  "sign-out-button":{
+    "account-holder": "账户持有人",
+    "your-lists": "你的列表",
+    "your-account": "你的帐户",
+    "right-side-arr": {
+      "account": "帐户",
+      "orders": "订单",
+      "keep-shopping-for": "继续购物",
+      "recommendations": "推荐",
+      "browsing-history": "浏览历史",
+      "recalls-product-safety-alerts": "召回和产品安全提醒",
+      "watchlist": "观察清单",
+      "video-purchases-rentals": "视频购买与租赁",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-library": "内容库",
+      "devices": "设备",
+      "subscribe-save-items": "订阅与节省项目",
+      "memberships-subscriptions": "会员与订阅",
+      "prime-membership": "Prime 会员",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "music-library": "音乐库",
+      "start-selling-account": "开始销售帐户",
+      "register-free-business-account": "注册免费商业账户",
+      "customer-service": "客户服务",
+      "switch-accounts": "切换帐户"
+    },
+    "left-side-arr-top": {
+      "shopping-list": "购物清单",
+      "wish-list": "愿望清单"
+    },
+    "left-side-arr-bottom": {
+      "create-a-list": "创建列表",
+      "find-a-list-or-registry": "查找列表或注册表",
+      "your-saved-books": "您保存的书籍"
     }
   }
 }

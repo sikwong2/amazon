@@ -64,42 +64,42 @@ export default function SignInButton() {
   };
 
   const rightSideArray = [
-    { name: 'Account', onClick: 'account' },
-    { name: 'Orders', onClick: 'orderHistory' },
-    { name: 'Recommendations', onClick: 'comingSoon' },
-    { name: 'Browsing History', onClick: 'comingSoon' },
-    { name: 'Watchlist', onClick: 'comingSoon' },
-    { name: 'Video Purchases & Rentals', onClick: 'comingSoon' },
-    { name: 'Kindle Unlimited', onClick: 'comingSoon' },
-    { name: 'Content & Devices', onClick: 'comingSoon' },
-    { name: 'Subscribe & Save Items', onClick: 'comingSoon' },
-    { name: 'Memberships & Subscriptions', onClick: 'comingSoon' },
-    { name: 'Prime Membership', onClick: 'comingSoon' },
-    { name: 'Amazon Credit Cards', onClick: 'comingSoon' },
-    { name: 'Music Library', onClick: 'comingSoon' },
-    { name: 'Start a Selling Account', onClick: 'comingSoon' },
-    { name: 'Register for a free Business Account', onClick: 'comingSoon' },
-    { name: 'Customer Service', onClick: 'comingSoon' }
+    { name: t('sign-in-button.right-side-array.account'), onClick: 'account' },
+    { name: t('sign-in-button.right-side-array.orders'), onClick: 'orderHistory' },
+    { name: t('sign-in-button.right-side-array.recommendations'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.browsing-history'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.watchlist'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.video-purchases-rentals'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.kindle-unlimited'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.content-devices'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.subscribe-save-items'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.memberships-subscriptions'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.prime-membership'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.amazon-credit-cards'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.music-library'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.start-selling-account'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.register-free-business-account'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.right-side-array.customer-service'), onClick: 'comingSoon' }
   ];
 
   const leftSideArray = [
-    {name: 'Your Lists', onClick: 'comingSoon'},
-    {name: 'Create a List', onClick: 'comingSoon'}, 
-    {name: 'Find a List or Registry', onClick: 'comingSoon'}
-  ]
+    { name: t('sign-in-button.left-side-array.your-lists'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.left-side-array.create-a-list'), onClick: 'comingSoon' },
+    { name: t('sign-in-button.left-side-array.find-a-list-or-registry'), onClick: 'comingSoon' }
+  ];
   const open = Boolean(anchorEl);
   const id = open ? 'sign-in-popover' : undefined;
 
   const popoverContentBoxLeft = (
     <div>
-    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }} > Your Lists </h1>
+    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }} > {t('sign-in-button.your-lists')} </h1>
     {makeList(leftSideArray)} 
     </div> 
   )
 
   const popoverContentBoxRight = (
     <div>
-    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> Your Account </h1>
+    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-in-button.your-account')}</h1>
      {makeList(rightSideArray)} 
     </div>
   )
@@ -150,7 +150,7 @@ export default function SignInButton() {
             padding: '12px',
           }}
         >
-          Sign In
+          {t('login.signin')}
         </CustomButton>
       </Box>
       <CustomDivider/>

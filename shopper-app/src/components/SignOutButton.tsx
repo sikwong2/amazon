@@ -1,6 +1,5 @@
 import CustomButton from "./Button"
 import {Card} from "@mui/material";
-import CustomDivider from "./Divider";
 import { PageContext } from "@/context/Page";
 import { Divider } from "@mui/material";
 import { Box } from "@mui/system"
@@ -85,42 +84,42 @@ export default function SignOutButton(){
   };
 
   const rightSideListArr = [
-    { name: 'Account', onClick: 'account' },
-    { name: 'Orders', onClick: 'orderHistory' },
-    { name: 'Keep Shopping For', onClick: 'comingSoon' },
-    { name: 'Recommendations', onClick: 'comingSoon' },
-    { name: 'Browsing History', onClick: 'comingSoon' },
-    { name: 'Recalls and Product Safety Alerts', onClick: 'comingSoon' },
-    { name: 'Watchlist', onClick: 'comingSoon' },
-    { name: 'Video Purchases & Rentals', onClick: 'comingSoon' },
-    { name: 'Kindle Unlimited', onClick: 'comingSoon' },
-    { name: 'Content Library', onClick: 'comingSoon' },
-    { name: 'Devices', onClick: 'comingSoon' },
-    { name: 'Subscribe & Save Items', onClick: 'comingSoon' },
-    { name: 'Memberships & Subscriptions', onClick: 'comingSoon' },
-    { name: 'Prime Membership', onClick: 'comingSoon' },
-    { name: 'Amazon Credit Cards', onClick: 'comingSoon' },
-    { name: 'Music Library', onClick: 'comingSoon' },
-    { name: 'Start a Selling Account', onClick: 'comingSoon' },
-    { name: 'Register for a free Business Account', onClick: 'comingSoon' },
-    { name: 'Customer Service', onClick: 'comingSoon' },
-    { name: 'Switch Accounts', onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.account'), onClick: 'account' },
+    { name: t('sign-out-button.right-side-arr.orders'), onClick: 'orderHistory' },
+    { name: t('sign-out-button.right-side-arr.keep-shopping-for'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.recommendations'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.browsing-history'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.recalls-product-safety-alerts'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.watchlist'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.video-purchases-rentals'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.kindle-unlimited'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.content-library'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.devices'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.subscribe-save-items'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.memberships-subscriptions'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.prime-membership'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.amazon-credit-cards'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.music-library'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.start-selling-account'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.register-free-business-account'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.customer-service'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.right-side-arr.switch-accounts'), onClick: 'comingSoon' },
   ];
 
   const leftSideListArrTop = [
-    {name: 'Shopping List', onClick: 'comingSoon'},
-    {name: 'Wish List', onClick: 'comingSoon'}
-  ]
+    { name: t('sign-out-button.left-side-arr-top.shopping-list'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.left-side-arr-top.wish-list'), onClick: 'comingSoon' }
+  ];
 
   const leftSideListArrBottom = [
-    {name: 'Creat a List', onClick: 'comingSoon'},
-    {name: 'Find a List or Registry', onClick: 'comingSoon'}, 
-    {name: 'Your Saved Books', onClick: 'comingSoon'},
-  ]
+    { name: t('sign-out-button.left-side-arr-bottom.create-a-list'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.left-side-arr-bottom.find-a-list-or-registry'), onClick: 'comingSoon' },
+    { name: t('sign-out-button.left-side-arr-bottom.your-saved-books'), onClick: 'comingSoon' }
+  ];
 
   const popoverContentBoxLeft = (
     <div>
-      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> Your Lists </h1>
+      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-out-button.your-lists')} </h1>
       {makeList(leftSideListArrTop)} 
       <Divider sx={{ mt: '10px', borderWidth: '1px', mb: '10px'}}></Divider>
       {makeList(leftSideListArrBottom)} 
@@ -129,10 +128,10 @@ export default function SignOutButton(){
 
   const popoverContentBoxRight = (
     <div>
-      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}>Your Account</h1>
+      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}>{t('sign-out-button.your-account')}</h1>
       {makeList(rightSideListArr)} 
       <div className="link-container">
-        <a onClick={handleSignOut} className='link-no-underline'> Sign Out </a>
+        <a onClick={handleSignOut} className='link-no-underline'> {t('sign-out')} </a>
       </div> 
     </div>
   )
@@ -161,7 +160,7 @@ export default function SignOutButton(){
         p: '14px 14px 7px 14px',
         fontSize: '11px',
         width: '450px',
-        height: '530px',
+        height: '560px',
         '& .MuiTypography-root': {
           fontSize: '11px',
         },
@@ -185,7 +184,7 @@ export default function SignOutButton(){
           />
           <Box> 
             <Typography> {loginContext.userName} </Typography>
-            <Typography color="text.secondary"> Account holder </Typography>
+            <Typography color="text.secondary"> {t('sign-out-button.account-holder')} </Typography>
           </Box>
         </Card>     
      </Box>

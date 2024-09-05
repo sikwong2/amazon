@@ -37,7 +37,7 @@ export default function OutlinedCard({ image, alt, title, description, onClick }
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: 1 }}>
       <Card sx={{
         width: 350, minHeight: 120, boxShadow: 'none', borderRadius: '12px', padding: 1, border: '1px solid', 
-        borderColor: 'rgba(0, 0, 0, 0.2)', variant: "outlined", 
+        borderColor: 'rgba(0, 0, 0, 0.2)', variant: "outlined", cursor: 'pointer',
         '&:hover': {
           backgroundColor: 'rgba(0, 0, 0, 0.05)',
         },}}
