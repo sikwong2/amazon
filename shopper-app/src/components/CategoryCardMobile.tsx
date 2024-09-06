@@ -62,7 +62,7 @@ export default function CategoryCardMobile({ image, title }: CategoryCardMobileP
             }}
             mb='0.4rem'
             component="img"
-            src={image.image}
+            src={image ? image.image : ''}
             onClick={() => image.id ? handleProductRedirect(image.id) : () => {}}
           />
         </Box>

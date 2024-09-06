@@ -59,24 +59,8 @@ const advertisementsMobile: Image[] = [
   }
 ]
 
-const categories: string[] = [
-  'furniture',
-  'Electronics',
-  'sports',
-  'apple',
-  'shrek',
-  'home',
-  'shoes',
-  'clothing',
-  'adidas',
-  'nike',
-  'gaming',
-  'couch',
-  'storage', 
-  'kitchen',
-]
 
-const getRandomCategory = () => {
+const getRandomCategory = (categories: any) => {
   const randomElement = categories[Math.floor(Math.random() * categories.length)];
   return randomElement;
 }
@@ -200,6 +184,35 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<b
   }
 }
 
+const fetchCategories = async (): Promise<string[]> => {
+  try {
+    const query = {
+      query: `query getAllCategories {
+      getAllCategories {
+        name
+      }
+    }`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.error('Error fetching categoriess: ', json.errors);
+      throw new Error('Error fetching categoriess: ', json.errors);
+    }
+    return json.data.getAllCategories.map((cat: { name: string }) => {return cat.name});
+  } catch (error) {
+    console.error('Error fetching categories: ', error);
+    throw error;
+  }
+};
+
+
 
 // outer container of ads / cards once signed in
 // carosoul component
@@ -214,6 +227,9 @@ export function Home() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
+  let categories: string[] = [];
+ 
+
   // used to determine how many categories there are
   const numberOfCategories = 8;
   const {productHistory} = React.useContext(BrowserHistoryContext);
@@ -221,9 +237,10 @@ export function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
+        categories = await fetchCategories();
         const fetchedData: { [key: string]: Image[] } = {};
         for (let i = 0; i <= numberOfCategories; i++) {
-          const category = getRandomCategory();
+          const category = getRandomCategory(categories);
           const products = await fetchProducts(category);
           fetchedData[category] = products.map((product) => ({
             image: product.image[0],
@@ -292,7 +309,8 @@ export function Home() {
         width: 'auto',
         height: 'auto',
         margin: 1,
-        maxWidth: '300px',
+        mt: 2,
+        maxWidth: (isSmallScreen || isMedScreen) ? 240 : 300,
         alignItems: 'start',
         justifyContent: 'center',
         display: (isSmallScreen || isMedScreen) ? 'none' : 'flex',
@@ -327,7 +345,7 @@ export function Home() {
 
   const categorycards = (
     <Grid container spacing={0} justifyContent='center'>
-      {(browserHistoryImages.length >= 1) && <Grid item xs={12} sm={4} md={3} key={'browserhistory'}>
+      {(browserHistoryImages.length >= 1 && isSmallScreen) && <Grid item xs={0} sm={0} md={3} key={'browserhistory'}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <CategoryCard images={browserHistoryImages} title={t('home.browsing-history')}/>
         </Box>
@@ -335,11 +353,11 @@ export function Home() {
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
         <Grid item xs={12} sm={4} md={3} key={category}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CategoryCard images={images} title={t(`home.${category}`)} />
+            <CategoryCard images={images} title={`${category}`} />
           </Box>
         </Grid>
       ))}
-      <Grid item xs={0} sm={0} md={3}>
+      <Grid item xs={0} sm={4} md={3}>
         {browserHistoryImages.length < 1 && easyReturns}
       </Grid>
     </Grid>
@@ -349,7 +367,7 @@ export function Home() {
     <Grid container alignItems='center' justifyContent='center'>
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
         <Grid item xs={4}>
-          <CategoryCardMobile image={images[0]} title={t(`home.${category}`)} />
+          <CategoryCardMobile image={images[0]} title={`${category}`} />
         </Grid>
       ))}
     </Grid>
@@ -365,7 +383,8 @@ export function Home() {
               position: 'absolute',
               top: '250px',
               width: '100%',
-              zIndex: 2
+              zIndex: 2,
+              overflow: 'hidden'
             }}
             justifyItems='center'
           >
@@ -379,7 +398,7 @@ export function Home() {
               zIndex: 1
             }}
             width="100%"
-            height={200}
+            height={201}
             />
           <Box bgcolor='#E4E6E6' width="100%" height={50}/>
         </React.Fragment> :
@@ -452,7 +471,7 @@ export function Home() {
               key={category}
               images={images}
               height={200}
-              title={t(`home.top-sellers-${category}`)}
+              title={`Top sellers in ${category}`}
             />
           ))}
         </Box>
