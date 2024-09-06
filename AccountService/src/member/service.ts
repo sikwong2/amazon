@@ -151,6 +151,7 @@ export class MemberService {
       const {rows} = await pool.query(query);
       return rows;
     } catch(e) {
+      console.error(e);
       return undefined;
     }
 
@@ -171,6 +172,7 @@ export class MemberService {
         return false;
       }
     } catch(e) {
+      console.error(e);
       return false;
     }
     
