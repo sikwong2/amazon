@@ -387,7 +387,7 @@ export function Home() {
         <Box
           sx={{
             position: 'absolute',
-            top: screen.width < 500 ? 260 : screen.width / 1.5,
+            top: screen.width < 500 ? screen.width / 1.5 : 320,
             width: '100%',
             zIndex: 5000,
             overflow: 'hidden'
@@ -406,7 +406,7 @@ export function Home() {
           width="100%"
           height={screen.width < 500 ? screen.width/3 + 1 : 170}
           />
-        <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/6 : 60}/>
+        <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/5 : 60}/>
       </React.Fragment>
       }
     </>
