@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/material';
 import ImageCarousel from '@/components/Carousel';
 import type { Image } from '@/components/Carousel';
@@ -18,6 +18,7 @@ import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
 import { BrowserHistoryEntry } from '@/graphql/member/schema';
 import { CategoryContext } from '@/context/Category';
+import CategoryCardMobile from '@/components/CategoryCardMobile';
 
 const advertisements: Image[] = [
   {
@@ -344,6 +345,16 @@ export function Home() {
     </Grid>
   );
 
+  const categorycardsMobile = (
+    <Grid container alignItems='center' justifyContent='center'>
+      {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
+        <Grid item xs={4}>
+          <CategoryCardMobile image={images[0]} title={t(`home.${category}`)} />
+        </Grid>
+      ))}
+    </Grid>
+  );
+
   const adheader = (
     <>
       {
@@ -373,28 +384,29 @@ export function Home() {
           <Box bgcolor='#E4E6E6' width="100%" height={50}/>
         </React.Fragment> :
         <React.Fragment>
-        {/* <Box
+        <Box
           sx={{
             position: 'absolute',
-            top: '200px',
+            top: screen.width < 500 ? 260 : screen.width / 1.5,
             width: '100%',
-            zIndex: 2
+            zIndex: 5000,
+            overflow: 'hidden'
           }}
-          justifyItems='center'
+          justifyItems='left'
         >
-
-        </Box> */}
+          {categorycardsMobile}
+        </Box>
         <Box
           sx={{
             background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
             position: 'absolute',
             zIndex: 10
           }}
-          top={screen.width/1.5}
+          top={screen.width < 500 ? screen.width/1.5 : 310}
           width="100%"
-          height={screen.width/3 + 1}
+          height={screen.width < 500 ? screen.width/3 + 1 : 170}
           />
-        <Box bgcolor='#E4E6E6' width="100%" height={screen.width/6}/>
+        <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/6 : 60}/>
       </React.Fragment>
       }
     </>
