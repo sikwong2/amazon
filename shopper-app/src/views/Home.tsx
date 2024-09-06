@@ -345,7 +345,7 @@ export function Home() {
 
   const categorycards = (
     <Grid container spacing={0} justifyContent='center'>
-      {(browserHistoryImages.length >= 1 && isSmallScreen) && <Grid item xs={0} sm={0} md={3} key={'browserhistory'}>
+      {(browserHistoryImages.length >= 1 && !isSmallScreen && !isMedScreen) && <Grid item xs={0} sm={4} md={3} key={'browserhistory'}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <CategoryCard images={browserHistoryImages} title={t('home.browsing-history')}/>
         </Box>
