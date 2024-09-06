@@ -366,7 +366,7 @@ export function Home() {
   const categorycardsMobile = (
     <Grid container alignItems='center' justifyContent='center'>
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
-        <Grid item xs={4}>
+        <Grid item xs={4} key={category + 'mobile'}>
           <CategoryCardMobile image={images[0]} title={`${category}`} />
         </Grid>
       ))}
