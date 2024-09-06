@@ -32,7 +32,7 @@ const TitleAndDescription = ({ title, description }) => {
   );
 };
 
-export default function OutlinedCard({ image, alt, title, description, onClick }) {
+export default function AccountLogoCards ({ image, alt, title, description, onClick }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: 1 }}>
       <Card sx={{

@@ -279,5 +279,97 @@
       "find-a-list-or-registry": "查找列表或注册表",
       "your-saved-books": "您保存的书籍"
     }
+  },
+  "account-page":{
+    "account": {
+      "your-orders": {
+        "title": "您的订单",
+        "description": "追踪、退货、取消订单、下载发票或再次购买"
+      },
+      "login-security": {
+        "title": "登录和安全",
+        "description": "编辑登录信息、姓名和手机号"
+      },
+      "prime": {
+        "title": "Prime 会员",
+        "description": "管理您的会员资格、查看福利和付款设置"
+      },
+      "your-addresses": {
+        "title": "您的地址",
+        "description": "编辑、删除或设定默认地址"
+      },
+      "your-business-account": {
+        "title": "您的商业账户",
+        "description": "免费注册以享受商业专属价格并安排适合您营业时间的送货"
+      },
+      "gift-cards": {
+        "title": "礼品卡",
+        "description": "查看余额或兑换礼品卡，并购买新礼品卡"
+      },
+      "your-payments": {
+        "title": "您的支付方式",
+        "description": "查看所有交易，管理支付方式和设置"
+      },
+      "your-amazon-family": {
+        "title": "您的亚马逊家庭",
+        "description": "在一个地方管理个人资料、共享和权限"
+      },
+      "digital-services": {
+        "title": "数字服务和设备支持",
+        "description": "解决设备问题，管理或取消数字订阅"
+      },
+      "archived-orders": {
+        "title": "存档订单",
+        "description": "查看和管理您的存档订单"
+      },
+      "your-lists": {
+        "title": "您的列表",
+        "description": "查看、修改和分享您的列表，或创建新列表"
+      },
+      "customer-service": {
+        "title": "客户服务",
+        "description": "浏览自助服务选项、帮助文章或联系我们"
+      },
+      "your-messages": {
+        "title": "您的消息",
+        "description": "管理您的账户安全设置"
+      }
+    },
+    "ordering-and-shopping-preferences-box": {
+      "your-addresses": {
+        "name": "您的地址"
+      },
+      "your-payments": {
+        "name": "您的支付方式"
+      },
+      "your-transactions": {
+        "name": "您的交易"
+      },
+      "your-amazon-profile": {
+        "name": "您的亚马逊个人资料"
+      },
+      "1-click-settings": {
+        "name": "一键设置"
+      },
+      "amazon-key-settings": {
+        "name": "亚马逊钥匙设置"
+      },
+      "language-preferences": {
+        "name": "语言偏好"
+      },
+      "manage-saved-ids": {
+        "name": "管理已保存的ID"
+      },
+      "coupons": {
+        "name": "优惠券"
+      },
+      "product-vouchers": {
+        "name": "产品优惠券"
+      },
+      "vat-registration-number": {
+        "name": "增值税注册号"
+      }
+    }
   }
+  
 }

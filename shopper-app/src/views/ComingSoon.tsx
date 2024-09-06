@@ -1,4 +1,5 @@
 import TopBar from "@/components/TopBar"
+import { Typography } from "@mui/material";
 import { useTranslation } from 'next-i18next';
 
 
@@ -8,7 +9,7 @@ export function ComingSoon() {
     <div style={{ display: 'flex', justifyContent: "center", flexDirection: 'column' }}>
       <TopBar />
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
-        <h1>{t('coming-soon')}</h1> {/* Correct key access */}
+        <Typography variant="h4">{t('coming-soon')}</Typography> {/* Adjust the variant as needed */}
       </div>
     </div>
   )

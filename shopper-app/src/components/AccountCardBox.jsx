@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { PageContext } from '@/context/Page';
 import { useRouter } from 'next/router';
 
-export default function OutlinedCard({ title, list }) {
+export default function AccountCardBox ({ title, list }) {
   const pageContext = React.useContext(PageContext);
   const router = useRouter();
   const handleNavigation = (page) => {
