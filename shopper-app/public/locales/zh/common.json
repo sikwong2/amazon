@@ -281,6 +281,7 @@
     }
   },
   "account-page":{
+    "your-account": "你的帐户",
     "account": {
       "your-orders": {
         "title": "您的订单",
@@ -414,6 +415,15 @@
       "manage-apps-services-data-access": "管理具有数据访问权限的应用和服务",
       "close-your-amazon-account": "关闭您的亚马逊账户",
       "privacy-notice": "隐私声明"
+    },
+    "titles": {
+      "ordering-and-shopping-preferences": "订单和购物偏好",
+      "digital-content-and-devices": "数字内容和设备",
+      "memberships-and-subscriptions": "会员和订阅",
+      "communication-and-content": "通信和内容",
+      "shopping-programs-and-rentals": "购物计划和租赁",
+      "other-programs": "其他计划",
+      "manage-your-data": "管理您的数据"
     }
   }
 }

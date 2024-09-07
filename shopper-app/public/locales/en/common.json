@@ -282,6 +282,7 @@
   },
   "account-page": {
     "account": {
+      "your-account": "Your Account",
       "your-orders": {
         "title": "Your Orders",
         "description": "Track, return, cancel an order, download invoice or buy again"
@@ -414,6 +415,15 @@
       "manage-apps-services-data-access": "Manage apps & services with data access",
       "close-your-amazon-account": "Close Your Amazon Account",
       "privacy-notice": "Privacy Notice"
+    },
+    "titles": {
+      "ordering-and-shopping-preferences": "Ordering and Shopping preferences",
+      "digital-content-and-devices": "Digital content and devices",
+      "memberships-and-subscriptions": "Memberships and subscriptions",
+      "communication-and-content": "Communication and content",
+      "shopping-programs-and-rentals": "Shopping programs and rentals",
+      "other-programs": "Other programs",
+      "manage-your-data": "Manage your data"
     }
   }
 }

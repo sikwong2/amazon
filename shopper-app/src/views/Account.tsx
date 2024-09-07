@@ -15,7 +15,7 @@ export function Account() {
 
   const title = () => {
     return (
-      <h1> Your Account </h1>
+      <h1> {t("account-page.your-account")} </h1>
     )
   }
 
@@ -256,44 +256,44 @@ export function Account() {
       <Grid container spacing={0.1}>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Ordering and Shopping preferences"
-            list = {orderAndShoppingPreferencesArr}
+            title={t('account-page.titles.ordering-and-shopping-preferences')}
+            list={orderAndShoppingPreferencesArr}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Digital content and devices"
+            title={t('account-page.titles.digital-content-and-devices')}
             list={digitalContentAndDevices}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Memberships and subscriptions"
-            list = {membershipsAndSubscriptions}
+            title={t('account-page.titles.memberships-and-subscriptions')}
+            list={membershipsAndSubscriptions}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Communication and content"
-            list = {communicationAndContent}
+            title={t('account-page.titles.communication-and-content')}
+            list={communicationAndContent}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Shopping programs and rentals"
-            list = {shoppingProgramsAndRentals}
+            title={t('account-page.titles.shopping-programs-and-rentals')}
+            list={shoppingProgramsAndRentals}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Other programs"
-            list = {otherPrograms}
+            title={t('account-page.titles.other-programs')}
+            list={otherPrograms}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <AccountCardBox
-            title="Manage your data"
-            list = {manageYourData}
+            title={t('account-page.titles.manage-your-data')}
+            list={manageYourData}
           />
         </Grid>
       </Grid>
