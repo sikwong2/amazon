@@ -163,90 +163,92 @@ export function Account() {
   }
 
   const orderAndShoppingPreferencesArr = [
-    { name: t('account-page.ordering-and-shopping-preferences-box.your-addresses.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.your-payments.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.your-transactions.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.your-amazon-profile.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.1-click-settings.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.amazon-key-settings.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.language-preferences.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.manage-saved-ids.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.coupons.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.product-vouchers.name'), onClick: 'comingSoon' },
-    { name: t('account-page.ordering-and-shopping-preferences-box.vat-registration-number.name'), onClick: 'comingSoon' }
+    { name: t('account-page.ordering-and-shopping-preferences-box.your-addresses'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.your-payments'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.your-transactions'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.your-amazon-profile'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.1-click-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.amazon-key-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.language-preferences'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.manage-saved-ids'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.coupons'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.product-vouchers'), onClick: 'comingSoon' },
+    { name: t('account-page.ordering-and-shopping-preferences-box.vat-registration-number'), onClick: 'comingSoon' }
   ];
 
   const digitalContentAndDevices = [
-    { name: 'All things Alexa', onClick: 'comingSoon' },
-    { name: 'Manage content and devices', onClick: 'comingSoon' },
-    { name: 'Manage Digital Delivery', onClick: 'comingSoon' },
-    { name: 'Your apps', onClick: 'comingSoon' },
-    { name: 'Prime Video settings', onClick: 'comingSoon' },
-    { name: 'Amazon Music settings', onClick: 'comingSoon' },
-    { name: 'Manage Amazon Drive and photos', onClick: 'comingSoon' },
-    { name: 'Twitch settings', onClick: 'comingSoon' },
-    { name: 'Audible settings', onClick: 'comingSoon' },
-    { name: 'Amazon Coins', onClick: 'comingSoon' },
-    { name: 'Digital gifts you\'ve received', onClick: 'comingSoon' },
-    { name: 'Digital and device forum', onClick: 'comingSoon' },
-    { name: 'Comixology settings', onClick: 'comingSoon' }
+    { name: t('account-page.digital-content-and-devices-box.all-things-alexa'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.manage-content-and-devices'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.manage-digital-delivery'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.your-apps'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.prime-video-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.amazon-music-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.manage-amazon-drive-and-photos'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.twitch-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.audible-settings'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.amazon-coins'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.digital-gifts-received'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.digital-and-device-forum'), onClick: 'comingSoon' },
+    { name: t('account-page.digital-content-and-devices-box.comixology-settings'), onClick: 'comingSoon' }
   ];
+
 
   const membershipsAndSubscriptions = [
-    { name: 'Memberships and subscriptions', onClick: 'comingSoon' },
-    { name: 'Kindle Unlimited', onClick: 'comingSoon' },
-    { name: 'Prime Video Channels', onClick: 'comingSoon' },
-    { name: 'Music Unlimited', onClick: 'comingSoon' },
-    { name: 'Subscribe & Save', onClick: 'comingSoon' },
-    { name: 'Amazon Kids+', onClick: 'comingSoon' },
-    { name: 'Audible membership', onClick: 'comingSoon' },
-    { name: 'Your Essentials', onClick: 'comingSoon' },
-    { name: 'Magazine subscriptions', onClick: 'comingSoon' },
-    { name: 'One Medical membership for Prime members', onClick: 'comingSoon' },
-    { name: 'Other subscriptions', onClick: 'comingSoon' }
+    { name: t('account-page.memberships-and-subscriptions-box.memberships-and-subscriptions'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.kindle-unlimited'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.prime-video-channels'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.music-unlimited'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.subscribe-and-save'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.amazon-kids-plus'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.audible-membership'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.your-essentials'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.magazine-subscriptions'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.one-medical-membership'), onClick: 'comingSoon' },
+    { name: t('account-page.memberships-and-subscriptions-box.other-subscriptions'), onClick: 'comingSoon' }
   ];
 
+
   const communicationAndContent = [
-    { name: 'Email subscriptions', onClick: 'comingSoon' },
-    { name: 'Advertising preferences', onClick: 'comingSoon' },
-    { name: 'Communication preferences', onClick: 'comingSoon' },
-    { name: 'Shipment updates via text', onClick: 'comingSoon' },
-    { name: 'Alexa shopping notifications', onClick: 'comingSoon' },
-    { name: 'Videos you\'ve uploaded', onClick: 'comingSoon' },
-    { name: 'Purchase Reminders', onClick: 'comingSoon' }
+    { name: t('account-page.communication-and-content-box.email-subscriptions'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.advertising-preferences'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.communication-preferences'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.shipment-updates-via-text'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.alexa-shopping-notifications'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.videos-you-uploaded'), onClick: 'comingSoon' },
+    { name: t('account-page.communication-and-content-box.purchase-reminders'), onClick: 'comingSoon' }
   ];
 
   const shoppingProgramsAndRentals = [
-    { name: 'Buy now, pay over time', onClick: 'comingSoon' },
-    { name: 'Third Party Credit Card Installment', onClick: 'comingSoon' },
-    { name: 'Manage Your Amazon Family', onClick: 'comingSoon' },
-    { name: 'Rentals by Amazon', onClick: 'comingSoon' },
-    { name: 'Amazon Household', onClick: 'comingSoon' },
-    { name: 'No-Rush rewards summary', onClick: 'comingSoon' },
-    { name: 'Teens Program', onClick: 'comingSoon' },
-    { name: 'Pets', onClick: 'comingSoon' },
-    { name: 'Shop with Points', onClick: 'comingSoon' },
-    { name: 'Amazon Second Chance', onClick: 'comingSoon' },
-    { name: 'Benefits balance', onClick: 'comingSoon' }
+    { name: t('account-page.shopping-programs-and-rentals-box.buy-now-pay-over-time'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.third-party-credit-card-installment'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.manage-your-amazon-family'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.rentals-by-amazon'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.amazon-household'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.no-rush-rewards-summary'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.teens-program'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.pets'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.shop-with-points'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.amazon-second-chance'), onClick: 'comingSoon' },
+    { name: t('account-page.shopping-programs-and-rentals-box.benefits-balance'), onClick: 'comingSoon' }
   ];
 
   const otherPrograms = [
-    { name: 'Account Linking', onClick: 'comingSoon' },
-    { name: 'Amazon credit cards', onClick: 'comingSoon' },
-    { name: 'Your seller account', onClick: 'comingSoon' },
-    { name: 'Amazon Pay', onClick: 'comingSoon' },
-    { name: 'Manage your trade-ins', onClick: 'comingSoon' },
-    { name: 'Amazon Web Services', onClick: 'comingSoon' },
-    { name: 'Amazon tax exemption program', onClick: 'comingSoon' },
-    { name: 'Your Interests', onClick: 'comingSoon' },
-    { name: 'In-Store Promo Wallet', onClick: 'comingSoon' }
+    { name: t('account-page.other-programs-box.account-linking'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.amazon-credit-cards'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.your-seller-account'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.amazon-pay'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.manage-your-trade-ins'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.amazon-web-services'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.amazon-tax-exemption-program'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.your-interests'), onClick: 'comingSoon' },
+    { name: t('account-page.other-programs-box.in-store-promo-wallet'), onClick: 'comingSoon' }
   ];
 
   const manageYourData = [
-    { name: 'Request your data', onClick: 'comingSoon' },
-    { name: 'Manage apps & services with data access', onClick: 'comingSoon' },
-    { name: 'Close Your Amazon Account', onClick: 'comingSoon' },
-    { name: 'Privacy Notice', onClick: 'comingSoon' }
+    { name: t('account-page.manage-your-data-box.request-your-data'), onClick: 'comingSoon' },
+    { name: t('account-page.manage-your-data-box.manage-apps-services-data-access'), onClick: 'comingSoon' },
+    { name: t('account-page.manage-your-data-box.close-your-amazon-account'), onClick: 'comingSoon' },
+    { name: t('account-page.manage-your-data-box.privacy-notice'), onClick: 'comingSoon' }
   ];
 
   const accountCardGridLinks = () => {

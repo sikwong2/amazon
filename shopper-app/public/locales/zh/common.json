@@ -336,40 +336,84 @@
       }
     },
     "ordering-and-shopping-preferences-box": {
-      "your-addresses": {
-        "name": "您的地址"
-      },
-      "your-payments": {
-        "name": "您的支付方式"
-      },
-      "your-transactions": {
-        "name": "您的交易"
-      },
-      "your-amazon-profile": {
-        "name": "您的亚马逊个人资料"
-      },
-      "1-click-settings": {
-        "name": "一键设置"
-      },
-      "amazon-key-settings": {
-        "name": "亚马逊钥匙设置"
-      },
-      "language-preferences": {
-        "name": "语言偏好"
-      },
-      "manage-saved-ids": {
-        "name": "管理已保存的ID"
-      },
-      "coupons": {
-        "name": "优惠券"
-      },
-      "product-vouchers": {
-        "name": "产品优惠券"
-      },
-      "vat-registration-number": {
-        "name": "增值税注册号"
-      }
+      "your-addresses": "您的地址",
+      "your-payments": "您的支付方式",
+      "your-transactions": "您的交易",
+      "your-amazon-profile": "您的亚马逊个人资料",
+      "1-click-settings": "一键设置",
+      "amazon-key-settings": "亚马逊钥匙设置",
+      "language-preferences": "语言偏好",
+      "manage-saved-ids": "管理已保存的ID",
+      "coupons": "优惠券",
+      "product-vouchers": "产品优惠券",
+      "vat-registration-number": "增值税注册号"
+    }, 
+    "digital-content-and-devices-box": {
+      "all-things-alexa": "所有关于Alexa",
+      "manage-content-and-devices": "管理内容和设备",
+      "manage-digital-delivery": "管理数字交付",
+      "your-apps": "您的应用程序",
+      "prime-video-settings": "Prime视频设置",
+      "amazon-music-settings": "亚马逊音乐设置",
+      "manage-amazon-drive-and-photos": "管理亚马逊云盘和照片",
+      "twitch-settings": "Twitch设置",
+      "audible-settings": "Audible设置",
+      "amazon-coins": "亚马逊硬币",
+      "digital-gifts-received": "您收到的数字礼物",
+      "digital-and-device-forum": "数字与设备论坛",
+      "comixology-settings": "Comixology设置"
+    },
+    "memberships-and-subscriptions-box": {
+      "memberships-and-subscriptions": "会员和订阅",
+      "kindle-unlimited": "Kindle Unlimited",
+      "prime-video-channels": "Prime 视频频道",
+      "music-unlimited": "音乐无限",
+      "subscribe-and-save": "订阅与节省",
+      "amazon-kids-plus": "Amazon Kids+",
+      "audible-membership": "Audible 会员",
+      "your-essentials": "您的必需品",
+      "magazine-subscriptions": "杂志订阅",
+      "one-medical-membership": "Prime 会员的 One Medical 会员",
+      "other-subscriptions": "其他订阅"
+    },
+    "communication-and-content-box": {
+      "email-subscriptions": "电子邮件订阅",
+      "advertising-preferences": "广告偏好",
+      "communication-preferences": "通信偏好",
+      "shipment-updates-via-text": "通过短信更新发货信息",
+      "alexa-shopping-notifications": "Alexa 购物通知",
+      "videos-you-uploaded": "您上传的视频",
+      "purchase-reminders": "购买提醒"
+    },
+    "shopping-programs-and-rentals-box": {
+      "buy-now-pay-over-time": "立即购买，分期付款",
+      "third-party-credit-card-installment": "第三方信用卡分期付款",
+      "manage-your-amazon-family": "管理您的亚马逊家庭",
+      "rentals-by-amazon": "亚马逊租赁",
+      "amazon-household": "亚马逊家庭",
+      "no-rush-rewards-summary": "无需急速奖励摘要",
+      "teens-program": "青少年计划",
+      "pets": "宠物",
+      "shop-with-points": "使用积分购物",
+      "amazon-second-chance": "亚马逊第二次机会",
+      "benefits-balance": "福利余额"
+    },
+    "other-programs-box": {
+      "account-linking": "账户链接",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "your-seller-account": "您的卖家账户",
+      "amazon-pay": "亚马逊支付",
+      "manage-your-trade-ins": "管理您的以旧换新",
+      "amazon-web-services": "亚马逊网络服务",
+      "amazon-tax-exemption-program": "亚马逊免税计划",
+      "your-interests": "您的兴趣",
+      "in-store-promo-wallet": "店内促销钱包"
+    },
+    "manage-your-data-box": {
+      "request-your-data": "请求您的数据",
+      "manage-apps-services-data-access": "管理具有数据访问权限的应用和服务",
+      "close-your-amazon-account": "关闭您的亚马逊账户",
+      "privacy-notice": "隐私声明"
     }
   }
-  
 }

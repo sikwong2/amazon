@@ -336,39 +336,84 @@
       }
     },
     "ordering-and-shopping-preferences-box": {
-      "your-addresses": {
-        "name": "Your Addresses"
-      },
-      "your-payments": {
-        "name": "Your Payments"
-      },
-      "your-transactions": {
-        "name": "Your Transactions"
-      },
-      "your-amazon-profile": {
-        "name": "Your Amazon Profile"
-      },
-      "1-click-settings": {
-        "name": "1-Click Settings"
-      },
-      "amazon-key-settings": {
-        "name": "Amazon Key Settings"
-      },
-      "language-preferences": {
-        "name": "Language Preferences"
-      },
-      "manage-saved-ids": {
-        "name": "Manage Saved IDs"
-      },
-      "coupons": {
-        "name": "Coupons"
-      },
-      "product-vouchers": {
-        "name": "Product Vouchers"
-      },
-      "vat-registration-number": {
-        "name": "VAT Registration Number"
-      }
+      "your-addresses": "Your Addresses",
+      "your-payments": "Your Payments",
+      "your-transactions": "Your Transactions",
+      "your-amazon-profile": "Your Amazon Profile",
+      "1-click-settings": "1-Click Settings",
+      "amazon-key-settings": "Amazon Key Settings",
+      "language-preferences": "Language Preferences",
+      "manage-saved-ids": "Manage Saved IDs",
+      "coupons": "Coupons",
+      "product-vouchers": "Product Vouchers",
+      "vat-registration-number": "VAT Registration Number"
+    },
+    "digital-content-and-devices-box": {
+      "all-things-alexa": "All Things Alexa",
+      "manage-content-and-devices": "Manage Content and Devices",
+      "manage-digital-delivery": "Manage Digital Delivery",
+      "your-apps": "Your Apps",
+      "prime-video-settings": "Prime Video Settings",
+      "amazon-music-settings": "Amazon Music Settings",
+      "manage-amazon-drive-and-photos": "Manage Amazon Drive and Photos",
+      "twitch-settings": "Twitch Settings",
+      "audible-settings": "Audible Settings",
+      "amazon-coins": "Amazon Coins",
+      "digital-gifts-received": "Digital Gifts You've Received",
+      "digital-and-device-forum": "Digital and Device Forum",
+      "comixology-settings": "Comixology Settings"
+    },
+    "memberships-and-subscriptions-box": {
+      "memberships-and-subscriptions": "Memberships and subscriptions",
+      "kindle-unlimited": "Kindle Unlimited",
+      "prime-video-channels": "Prime Video Channels",
+      "music-unlimited": "Music Unlimited",
+      "subscribe-and-save": "Subscribe & Save",
+      "amazon-kids-plus": "Amazon Kids+",
+      "audible-membership": "Audible membership",
+      "your-essentials": "Your Essentials",
+      "magazine-subscriptions": "Magazine subscriptions",
+      "one-medical-membership": "One Medical membership for Prime members",
+      "other-subscriptions": "Other subscriptions"
+    },
+    "communication-and-content-box": {
+      "email-subscriptions": "Email subscriptions",
+      "advertising-preferences": "Advertising preferences",
+      "communication-preferences": "Communication preferences",
+      "shipment-updates-via-text": "Shipment updates via text",
+      "alexa-shopping-notifications": "Alexa shopping notifications",
+      "videos-you-uploaded": "Videos you've uploaded",
+      "purchase-reminders": "Purchase Reminders"
+    },
+    "shopping-programs-and-rentals-box": {
+      "buy-now-pay-over-time": "Buy now, pay over time",
+      "third-party-credit-card-installment": "Third Party Credit Card Installment",
+      "manage-your-amazon-family": "Manage Your Amazon Family",
+      "rentals-by-amazon": "Rentals by Amazon",
+      "amazon-household": "Amazon Household",
+      "no-rush-rewards-summary": "No-Rush rewards summary",
+      "teens-program": "Teens Program",
+      "pets": "Pets",
+      "shop-with-points": "Shop with Points",
+      "amazon-second-chance": "Amazon Second Chance",
+      "benefits-balance": "Benefits balance"
+    },
+    "other-programs-box": {
+      "account-linking": "Account Linking",
+      "amazon-credit-cards": "Amazon credit cards",
+      "your-seller-account": "Your seller account",
+      "amazon-pay": "Amazon Pay",
+      "manage-your-trade-ins": "Manage your trade-ins",
+      "amazon-web-services": "Amazon Web Services",
+      "amazon-tax-exemption-program": "Amazon tax exemption program",
+      "your-interests": "Your Interests",
+      "in-store-promo-wallet": "In-Store Promo Wallet"
+    },
+    "manage-your-data-box": {
+      "request-your-data": "Request your data",
+      "manage-apps-services-data-access": "Manage apps & services with data access",
+      "close-your-amazon-account": "Close Your Amazon Account",
+      "privacy-notice": "Privacy Notice"
     }
   }
 }
