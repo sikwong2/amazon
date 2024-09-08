@@ -15,7 +15,6 @@ export default function SignInButton() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const pageContext = React.useContext(PageContext);
   const loginContext = React.useContext(LoginContext);
-  //pageContext.setPage() 
 
   const router = useRouter();
 

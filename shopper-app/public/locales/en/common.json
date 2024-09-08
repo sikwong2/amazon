@@ -281,8 +281,8 @@
     }
   },
   "account-page": {
+    "your-account": "Your Account",
     "account": {
-      "your-account": "Your Account",
       "your-orders": {
         "title": "Your Orders",
         "description": "Track, return, cancel an order, download invoice or buy again"
