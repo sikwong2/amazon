@@ -38,127 +38,122 @@ export function Account() {
     }
   };
 
-  const accountCardGrid = () => {
+  const mapAccountCardGrid = (arr: any) => {
     return (
       <Grid container spacing={0.1}>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-orders.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/order._CB660668735_.png"}
-            description={t('account-page.account.your-orders.description')}
-            alt="Orders"
-            onClick={() => handleNavigation('orderHistory')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.login-security.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/security._CB659600413_.png"}
-            description={t('account-page.account.login-security.description')}
-            alt="Login&security"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.prime.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_prime._CB433666831_.png"}
-            description={t('account-page.account.prime.description')}
-            alt="Prime"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-addresses.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_address_book._CB613924977_.png"}
-            description={t('account-page.account.your-addresses.description')}
-            alt="Addresses"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-business-account.title')}
-            image={"https://m.media-amazon.com/images/G/01/AmazonBusiness/YAPATF/amazon_business_yap_atf._CB588250197_.jpg"}
-            description={t('account-page.account.your-business-account.description')}
-            alt="Business-account"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.gift-cards.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/contact-us/GiftCard_icon_01._CB660349069_.png"}
-            description={t('account-page.account.gift-cards.description')}
-            alt="Gift-card"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-payments.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/payment._CB660668735_.png"}
-            description={t('account-page.account.your-payments.description')}
-            alt="Payments"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-amazon-family.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/account._CB660668669_.png"}
-            description={t('account-page.account.your-amazon-family.description')}
-            alt="Family"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.digital-services.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/digital_devices._CB660668735_.png"}
-            description={t('account-page.account.digital-services.description')}
-            alt="Digital-services"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.archived-orders.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/10_archived_orders._CB654640573_.png"}
-            description={t('account-page.account.archived-orders.description')}
-            alt="Archived-orders"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-lists.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/11_lists._CB654640573_.png"}
-            description={t('account-page.account.your-lists.description')}
-            alt="Lists"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.customer-service.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/contact_us._CB659962323_.png"}
-            description={t('account-page.account.customer-service.description')}
-            alt="Customer"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AccountLogoCards
-            title={t('account-page.account.your-messages.title')}
-            image={"https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/9_messages._CB654640573_.jpg"}
-            description={t('account-page.account.your-messages.description')}
-            alt="Messages"
-            onClick={() => handleNavigation('comingSoon')}
-          />
-        </Grid>
+        {arr.map((item: any, index: number) => (
+          <Grid key={index} item xs={12} sm={6} md={4}>
+            <AccountLogoCards
+              title={t(item.title)}
+              image={item.image}
+              description={t(item.description)}
+              alt={item.alt}
+              onClick={() => handleNavigation(item.onClick)}
+            />
+          </Grid>
+        ))}
       </Grid>
+    );
+  };
+
+  const accountCardData = [
+  {
+    title: 'account-page.account.your-orders.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/order._CB660668735_.png',
+    description: 'account-page.account.your-orders.description',
+    alt: 'Orders',
+    onClick: 'orderHistory',
+  },
+  {
+    title: 'account-page.account.login-security.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/security._CB659600413_.png',
+    description: 'account-page.account.login-security.description',
+    alt: 'Login & Security',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.prime.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_prime._CB433666831_.png',
+    description: 'account-page.account.prime.description',
+    alt: 'Prime',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-addresses.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_address_book._CB613924977_.png',
+    description: 'account-page.account.your-addresses.description',
+    alt: 'Addresses',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-business-account.title',
+    image: 'https://m.media-amazon.com/images/G/01/AmazonBusiness/YAPATF/amazon_business_yap_atf._CB588250197_.jpg',
+    description: 'account-page.account.your-business-account.description',
+    alt: 'Business-account',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.gift-cards.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/contact-us/GiftCard_icon_01._CB660349069_.png',
+    description: 'account-page.account.gift-cards.description',
+    alt: 'Gift-card',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-payments.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/payment._CB660668735_.png',
+    description: 'account-page.account.your-payments.description',
+    alt: 'Payments',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-amazon-family.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/account._CB660668669_.png',
+    description: 'account-page.account.your-amazon-family.description',
+    alt: 'Family',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.digital-services.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/digital_devices._CB660668735_.png',
+    description: 'account-page.account.digital-services.description',
+    alt: 'Digital-services',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.archived-orders.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/10_archived_orders._CB654640573_.png',
+    description: 'account-page.account.archived-orders.description',
+    alt: 'Archived-orders',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-lists.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/11_lists._CB654640573_.png',
+    description: 'account-page.account.your-lists.description',
+    alt: 'Lists',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.customer-service.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/contact_us._CB659962323_.png',
+    description: 'account-page.account.customer-service.description',
+    alt: 'Customer',
+    onClick: 'comingSoon',
+  },
+  {
+    title: 'account-page.account.your-messages.title',
+    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/9_messages._CB654640573_.jpg',
+    description: 'account-page.account.your-messages.description',
+    alt: 'Messages',
+    onClick: 'comingSoon',
+  },
+];
+
+
+  const accountCardGrid = () => {
+    return (
+      mapAccountCardGrid(accountCardData)
     )
   }
 
@@ -323,7 +318,6 @@ export function Account() {
             {accountCardGridLinks()}
           </Box>
         </Box>
-
       </div>
     </div>
   );
