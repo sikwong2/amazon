@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { Divider } from "@mui/material";
 import AccountCardBox from "@/components/AccountCardBox"
 import { useTranslation } from 'next-i18next';
+import Typography from '@mui/material/Typography'; 
+
 
 export function Account() {
   const pageContext = React.useContext(PageContext);
@@ -15,8 +17,10 @@ export function Account() {
 
   const title = () => {
     return (
-      <h1> {t("account-page.your-account")} </h1>
-    )
+      <Typography variant="h4">
+        {t("account-page.your-account")}
+      </Typography>
+    );
   }
 
   const handleNavigation = (page: string) => {
@@ -48,7 +52,8 @@ export function Account() {
               image={item.image}
               description={t(item.description)}
               alt={item.alt}
-              onClick={() => handleNavigation(item.onClick)}
+              onClick={() => handleNavigation(item.onClick)} 
+              square={item.square}
             />
           </Grid>
         ))}
@@ -73,10 +78,11 @@ export function Account() {
   },
   {
     title: 'account-page.account.prime.title',
-    image: 'https://m.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_prime._CB433666831_.png',
+    image: 'https://f.media-amazon.com/images/G/01/x-locale/cs/help/images/gateway/self-service/fshub/fshub_prime._CB433666831_.png',
     description: 'account-page.account.prime.description',
     alt: 'Prime',
     onClick: 'comingSoon',
+    square: true,
   },
   {
     title: 'account-page.account.your-addresses.title',
@@ -91,6 +97,7 @@ export function Account() {
     description: 'account-page.account.your-business-account.description',
     alt: 'Business-account',
     onClick: 'comingSoon',
+    square: true,
   },
   {
     title: 'account-page.account.gift-cards.title',

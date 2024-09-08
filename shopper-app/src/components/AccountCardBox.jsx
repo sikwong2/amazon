@@ -33,7 +33,7 @@ export default function AccountCardBox ({ title, list }) {
       <div>
         {
           arr.map((item, index) => (
-            <div key={index} className="link-container">
+            <div key={index} className="link-container" color='#007185'>
               <a onClick={() => handleNavigation(item.onClick)} className='link-no-underline-blue'>
                 {item.name}
               </a>
@@ -50,7 +50,7 @@ export default function AccountCardBox ({ title, list }) {
         <Typography sx={{ fontSize: 18, fontWeight: 'bold', marginBottom: 0.5 }} color="text.primary">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="#007185">
           {mappedOutLinks(description)}
         </Typography>
       </Box>

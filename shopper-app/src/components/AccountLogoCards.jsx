@@ -5,15 +5,16 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
-const Image = ({ image, alt }) => {
+const Image = ({ image, alt, square}) => {
   return (
     <Avatar
       alt={alt}
       src={image}
       sx={{
-        width: 56,
+        width: 60,
         height: 56,
         marginRight: 2,
+        borderRadius: square ? 0: '50%',
       }}
     />
   );
@@ -25,14 +26,14 @@ const TitleAndDescription = ({ title, description }) => {
       <Typography sx={{ fontSize: 18, fontWeight: 'bold', marginBottom: 0.5 }} color="text.primary">
         {title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography variant="body2" color="#565959">
         {description}
       </Typography>
     </Box>
   );
 };
 
-export default function AccountLogoCards ({ image, alt, title, description, onClick }) {
+export default function AccountLogoCards ({ image, alt, title, description, onClick, square }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: 1 }}>
       <Card sx={{
@@ -44,7 +45,7 @@ export default function AccountLogoCards ({ image, alt, title, description, onCl
         onClick={onClick}
         >
         <CardContent sx={{ display: 'flex', alignItems: 'center', padding: '5px' }}>
-          <Image image={image} alt={alt} />
+          <Image image={image} alt={alt} square={square}/>
           <TitleAndDescription title={title} description={description} />
         </CardContent>
       </Card>
