@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { PageContext } from '@/context/Page';
 import { useRouter } from 'next/router';
+import CustomLink from './Link';
 
 export default function AccountCardBox ({ title, list }) {
   const pageContext = React.useContext(PageContext);
@@ -33,10 +34,15 @@ export default function AccountCardBox ({ title, list }) {
       <div>
         {
           arr.map((item, index) => (
-            <div key={index} className="link-container" color='#007185'>
-              <a onClick={() => handleNavigation(item.onClick)} className='link-no-underline-blue'>
-                {item.name}
-              </a>
+            <div key={index}  color='#007185'>
+              <CustomLink
+                href={item.href || '#'}  
+                label={item.name}         
+                variant='blue1'           
+                onClick={() => handleNavigation(item.onClick)}  
+              >
+                {item.name}               
+              </CustomLink>
             </div>
           ))
         }
