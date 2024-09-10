@@ -192,7 +192,9 @@ export default function SignOutButton(){
     </Box>
   );
 
-  
+ const navigateToAccountPage = () => {
+  router.push('./account')
+ } 
 
   const usernameButton  = (
     <CustomButton
@@ -211,8 +213,7 @@ export default function SignOutButton(){
           borderRadius: '2px',
           border: 'none'
         },
-      }}
-      onClick={handleSignOut}
+      }} 
       caps={false}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>

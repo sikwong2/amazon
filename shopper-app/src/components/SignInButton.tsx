@@ -157,12 +157,16 @@ export default function SignInButton() {
     </Box>
   );
 
+  const navigateToAccountPage = () => {
+    router.push("/account")
+  }
+
   return (
-    <Box sx={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+    <Box onMouseEnter={handleOpen} sx={{ height: '60px', display: 'flex', alignItems: 'center' }}>
       <Button
         aria-describedby={id}
-        onMouseEnter={handleOpen}
-        onClick={handleOpen}
+        onClick={navigateToAccountPage}
+        // onMouseEnter={handleOpen}
         sx={{
           width: { xs: '100%', sm: 'auto' },
           p: '0px 9px 10px 9px',
@@ -173,6 +177,7 @@ export default function SignInButton() {
           textTransform: 'none',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
+          
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left', lineHeight: 1, width: '100%', maxWidth: '20vh', pt: '10px' }}>
