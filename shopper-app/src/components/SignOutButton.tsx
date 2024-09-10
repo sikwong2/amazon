@@ -13,6 +13,8 @@ import { useRouter } from "next/router";
 import { Popover } from "@mui/material";
 import CustomCard from "./Card";
 import { Avatar } from "@mui/material";
+import { useEffect } from "react";
+import { Account } from "@/views/Account";
 
 const customButtonStyles: React.CSSProperties = {
   backgroundColor: 'inherit',
@@ -23,6 +25,7 @@ const customButtonStyles: React.CSSProperties = {
 };
 
 export default function SignOutButton(){
+  const [isHovering, setIsHovering] = useState(false);
   const loginContext = React.useContext(LoginContext);
 	const { t } = useTranslation('common');
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -117,6 +120,17 @@ export default function SignOutButton(){
     { name: t('sign-out-button.left-side-arr-bottom.your-saved-books'), onClick: 'comingSoon' }
   ];
 
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isHovering) {
+      timer = setTimeout(() => {
+        console.log('hover')
+        setAnchorEl(document.getElementById('sign-out-button'));
+      }, 300); // Adjust delay as necessary
+    }
+    return () => clearTimeout(timer);
+  }, [isHovering]);
+
   const popoverContentBoxLeft = (
     <div>
       <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-out-button.your-lists')} </h1>
@@ -192,16 +206,17 @@ export default function SignOutButton(){
     </Box>
   );
 
- const navigateToAccountPage = () => {
-  router.push('./account')
- } 
-
   const usernameButton  = (
     <CustomButton
       style={customButtonStyles}
-      label='sign-out'
+      label='sign-out-button'
+      id = 'sign-out-button'
       variant='text'
-      onMouseEnter={handleOpen}
+      onClick={(e) => {
+        console.log('clicked')
+        handleNavigation('account')
+      }}
+      // onMouseEnter={handleOpen}
       sx={{
         width: { xs: '100%', sm: 'auto' },
         p: '0px 9px 10px 9px',
@@ -233,7 +248,13 @@ export default function SignOutButton(){
   )
 
       return (
-        <Box sx={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ height: '60px', display: 'flex', alignItems: 'center' }}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => {
+            setIsHovering(false);
+            handleClose(); // Close popover when mouse leaves
+          }} 
+        >
           {usernameButton}    
           <Popover
             id={id}
@@ -246,7 +267,7 @@ export default function SignOutButton(){
             }}
             slotProps={{
               paper: {
-                onMouseEnter: () => setAnchorEl(anchorEl),
+                // onMouseEnter: () => setAnchorEl(anchorEl),
                 onMouseLeave: handleClose,
                 sx: {
                   position: 'absolute',
