@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Box, Typography, Popover, Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -13,6 +13,7 @@ import { on } from 'events';
 export default function SignInButton() {
   const { t } = useTranslation('common');
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
   const pageContext = React.useContext(PageContext);
   const loginContext = React.useContext(LoginContext);
 
@@ -86,6 +87,17 @@ export default function SignInButton() {
     { name: t('sign-in-button.left-side-array.create-a-list'), onClick: 'comingSoon' },
     { name: t('sign-in-button.left-side-array.find-a-list-or-registry'), onClick: 'comingSoon' }
   ];
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isHovering) {
+      timer = setTimeout(() => {
+        console.log('hover')
+        setAnchorEl(document.getElementById('sign-in-button'));
+      }, 300); // Adjust delay as necessary
+    }
+    return () => clearTimeout(timer);
+  }, [isHovering]);
   const open = Boolean(anchorEl);
   const id = open ? 'sign-in-popover' : undefined;
 
@@ -162,11 +174,20 @@ export default function SignInButton() {
   }
 
   return (
-    <Box onMouseEnter={handleOpen} sx={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ height: '60px', display: 'flex', alignItems: 'center' }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => {
+        setIsHovering(false);
+        handleClose(); // Close popover when mouse leaves
+      }}   
+    >
       <Button
-        aria-describedby={id}
-        onClick={navigateToAccountPage}
-        // onMouseEnter={handleOpen}
+        id='sign-in-button'
+        aria-describedby={id}     
+        onClick={(e) => {
+          console.log('clicked')
+          handleNavigation('account')
+        }}
         sx={{
           width: { xs: '100%', sm: 'auto' },
           p: '0px 9px 10px 9px',
@@ -205,7 +226,7 @@ export default function SignInButton() {
         }}
         slotProps={{
           paper: {
-            onMouseEnter: () => setAnchorEl(anchorEl),
+            // onMouseEnter: () => setAnchorEl(anchorEl),
             onMouseLeave: handleClose,
             sx: {
               position: 'absolute',
