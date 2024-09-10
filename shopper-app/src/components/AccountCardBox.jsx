@@ -7,7 +7,7 @@ import { PageContext } from '@/context/Page';
 import { useRouter } from 'next/router';
 import CustomLink from './Link';
 
-export default function AccountCardBox ({ title, list }) {
+export default function AccountCardBox ({ title, list, sx }) {
   const pageContext = React.useContext(PageContext);
   const router = useRouter();
   const handleNavigation = (page) => {
@@ -31,10 +31,10 @@ export default function AccountCardBox ({ title, list }) {
 
   const mappedOutLinks = (arr) => {
     return (
-      <div>
+      <Box>
         {
           arr.map((item, index) => (
-            <div key={index}  color='#007185'>
+            <Box key={index}  color='#007185'>
               <CustomLink
                 href={item.href || '#'}  
                 label={item.name}         
@@ -43,10 +43,10 @@ export default function AccountCardBox ({ title, list }) {
               >
                 {item.name}               
               </CustomLink>
-            </div>
+            </Box>
           ))
         }
-      </div>
+      </Box>
     );
   };
 
@@ -77,4 +77,5 @@ export default function AccountCardBox ({ title, list }) {
       </Card>
     </Box>
   );
+  
 }

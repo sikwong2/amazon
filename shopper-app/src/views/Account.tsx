@@ -254,18 +254,32 @@ export function Account() {
   ];
 
   const mapAccountCardGridLinks = (arr: any) => {
+    // return (
+    //   <Grid container spacing={0.1}>
+    //     {
+    //       arr.map((obj: any, index: any) => (
+    //         <Grid key={index} item xs={12} sm={4}>
+    //           <AccountCardBox
+    //             title={obj.title}
+    //             list={obj.list}
+    //           />
+    //         </Grid>
+    //       ))
+    //     }
+    //   </Grid>
+    // );
+
     return (
-      <Grid container spacing={0.1}>
-        {
-          arr.map((obj: any, index: any) => (
-            <Grid key={index} item xs={12} sm={4}>
-              <AccountCardBox
-                title={obj.title}
-                list={obj.list}
-              />
-            </Grid>
-          ))
-        }
+      <Grid container spacing={0.1} alignItems="stretch">
+        {accountCardGridLinksData.map((item, index) => (
+          <Grid key={index} item xs={12} sm={4} display="flex">
+            <AccountCardBox
+              title={item.title}
+              list={item.list}
+              sx={{ flex: 1 }} // This ensures each AccountCardBox takes equal height in the row
+            />
+          </Grid>
+        ))}
       </Grid>
     );
   };
@@ -310,8 +324,8 @@ export function Account() {
   };
 
   return (
-    <div>
-      <div style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}>
+    <Box>
+      <Box style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}>
         <TopBar />
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{
@@ -332,7 +346,7 @@ export function Account() {
             {accountCardGridLinks()}
           </Box>
         </Box>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

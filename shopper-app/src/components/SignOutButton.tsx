@@ -74,15 +74,32 @@ export default function SignOutButton(){
 
   const makeList = (arr: any) => {
     return (
-      <div>
+      <Box>
         {arr.map((obj: any, index: any) => (
-          <div key={index} className='link-container'>
-            <a onClick={() => { handleNavigation(obj.onClick) }} className='link-no-underline'>
+          <Box key={index} margin-top= '5px'>
+            <a
+              onClick={() => { handleNavigation(obj.onClick) }}
+              style={{
+                textDecoration: 'none',
+                color: 'gray',
+                cursor: 'pointer',
+                paddingBottom: '6px', // Add padding-bottom here
+                display: 'inline-block'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textDecoration = 'underline';
+                e.currentTarget.style.color = 'orange';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textDecoration = 'none';
+                e.currentTarget.style.color = 'gray';
+              }}
+            >
               {obj.name}
             </a>
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
     );
   };
 
@@ -132,22 +149,41 @@ export default function SignOutButton(){
   }, [isHovering]);
 
   const popoverContentBoxLeft = (
-    <div>
+    <Box>
       <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-out-button.your-lists')} </h1>
       {makeList(leftSideListArrTop)} 
       <Divider sx={{ mt: '10px', borderWidth: '1px', mb: '10px'}}></Divider>
       {makeList(leftSideListArrBottom)} 
-    </div>
+    </Box>
   )
 
   const popoverContentBoxRight = (
-    <div>
+    <Box>
       <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}>{t('sign-out-button.your-account')}</h1>
       {makeList(rightSideListArr)} 
-      <div className="link-container">
-        <a onClick={handleSignOut} className='link-no-underline'> {t('sign-out')} </a>
-      </div> 
-    </div>
+      <Box className="link-container">
+        <a
+          onClick={handleSignOut}
+          style={{
+            textDecoration: 'none',
+            color: 'gray',
+            cursor: 'pointer',
+            paddingBottom: '6px', 
+            display: 'inline-block'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.textDecoration = 'underline';
+            e.currentTarget.style.color = 'orange';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.textDecoration = 'none';
+            e.currentTarget.style.color = 'gray';
+          }}
+        >
+          {t('sign-out')} 
+        </a>
+      </Box> 
+    </Box>
   )
 
   const popoverContentBox = (
@@ -267,7 +303,6 @@ export default function SignOutButton(){
             }}
             slotProps={{
               paper: {
-                // onMouseEnter: () => setAnchorEl(anchorEl),
                 onMouseLeave: handleClose,
                 sx: {
                   position: 'absolute',

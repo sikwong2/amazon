@@ -51,15 +51,32 @@ export default function SignInButton() {
 
   const makeList = (arr: any) => {
     return (
-      <div>
+      <Box>
         {arr.map((obj: any, index: any) => (
-          <div key={index} className='link-container'>
-            <a onClick={() => { handleNavigation(obj.onClick) }} className='link-no-underline'>
+          <Box key={index} margin-top='5px'>
+            <a
+              onClick={() => { handleNavigation(obj.onClick) }}
+              style={{
+                textDecoration: 'none',
+                color: 'gray',
+                cursor: 'pointer',
+                paddingBottom: '6px', // Add padding-bottom here
+                display: 'inline-block'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textDecoration = 'underline';
+                e.currentTarget.style.color = 'orange';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textDecoration = 'none';
+                e.currentTarget.style.color = 'gray';
+              }}
+            >
               {obj.name}
             </a>
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
     );
   };
 
@@ -102,17 +119,17 @@ export default function SignInButton() {
   const id = open ? 'sign-in-popover' : undefined;
 
   const popoverContentBoxLeft = (
-    <div>
+    <Box>
     <h1 style={{ fontSize: '17px', fontWeight: 'bold' }} > {t('sign-in-button.your-lists')} </h1>
     {makeList(leftSideArray)} 
-    </div> 
+    </Box> 
   )
 
   const popoverContentBoxRight = (
-    <div>
+    <Box>
     <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-in-button.your-account')}</h1>
      {makeList(rightSideArray)} 
-    </div>
+    </Box>
   )
 
   const popoverContentBox = (
@@ -226,7 +243,6 @@ export default function SignInButton() {
         }}
         slotProps={{
           paper: {
-            // onMouseEnter: () => setAnchorEl(anchorEl),
             onMouseLeave: handleClose,
             sx: {
               position: 'absolute',
