@@ -8,4 +8,4 @@ CREATE TABLE account(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(), data 
 
 CREATE TABLE apikeytable (account_id UUID REFERENCES account(id), api_key text UNIQUE NOT NULL, active boolean DEFAULT true);
 
-CREATE TABLE history(account_id UUID REFERENCES account(id), product_id UUID NOT NULL, timestamp TIMESTAMPTZ DEFAULT NOW());
+CREATE TABLE history(account_id UUID REFERENCES account(id), product_id UUID NOT NULL, timestamp TIMESTAMPTZ DEFAULT NOW(), UNIQUE(account_id, product_id));

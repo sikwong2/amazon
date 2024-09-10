@@ -28,9 +28,15 @@ export const BrowserHistoryProvider = ({children}:  PropsWithChildren<{}>) => {
   }, []);
 
   const addProductToHistory = (product: BrowserHistoryProduct) => {
-    const updatedHistory: BrowserHistoryProduct[] = [...productHistory, product];
-    setProductHistory(updatedHistory);
-    sessionStorage.setItem('productHistory', JSON.stringify(updatedHistory));
+    const productExists = productHistory.some(
+      (historyItem) => historyItem.productId === product.productId
+    );
+  
+    if (!productExists) {
+      const updatedHistory: BrowserHistoryProduct[] = [...productHistory, product];
+      setProductHistory(updatedHistory);
+      sessionStorage.setItem('productHistory', JSON.stringify(updatedHistory));
+    }
   }
 
   return (

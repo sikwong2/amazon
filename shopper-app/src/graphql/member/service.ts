@@ -65,7 +65,7 @@ export class MemberService {
     }
   }
 
-  async addBrowserHistory(memberId: string, productId: string): Promise<BrowserHistoryEntry> {
+  async addBrowserHistory(memberId: string, productId: string): Promise<boolean> {
     try {
       const res = await fetch(
         `http://localhost:${process.env.ACCOUNT_SERVICE_PORT}/api/v0/account/${memberId}/browser-history/${productId}`,
