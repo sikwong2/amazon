@@ -136,7 +136,6 @@ export default function SignInButton() {
     <Box
       sx={{
         display: 'flex',
-        marginTop: 'px'
       }}
     >
       <Box sx={{ flex: 1, textAlign: 'left'}}>{popoverContentBoxLeft}</Box>
