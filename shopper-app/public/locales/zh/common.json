@@ -5,6 +5,8 @@
   "here": "这里",
   "buying-for-work": "买东西为了工作？",
   "vendor-account": "创建免费供应商帐户",
+  "coming-soon": "即将推出",
+  "sign-out": "登出", 
   "login": {
     "title": "UCSC-亚马逊购物者登录",
     "signin": "登入",
@@ -213,6 +215,215 @@
       "helpful-button": "有帮助",
       "report-button": "举报",
       "thank-you": "感谢你的反馈。"
+    }
+  },
+  "sign-in-button": {
+    "your-lists": "你的列表",
+    "your-account": "你的帐户",
+    "right-side-array": {
+      "account": "帐户",
+      "orders": "订单",
+      "recommendations": "推荐",
+      "browsing-history": "浏览历史",
+      "watchlist": "观察清单",
+      "video-purchases-rentals": "视频购买与租赁",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-devices": "内容与设备",
+      "subscribe-save-items": "订阅与节省项目",
+      "memberships-subscriptions": "会员与订阅",
+      "prime-membership": "Prime 会员",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "music-library": "音乐库",
+      "start-selling-account": "开始销售帐户",
+      "register-free-business-account": "注册免费商业账户",
+      "customer-service": "客户服务"
+    },
+    "left-side-array": {
+      "your-lists": "你的列表",
+      "create-a-list": "创建列表",
+      "find-a-list-or-registry": "查找列表或注册表"
+    }
+  },
+  "sign-out-button":{
+    "account-holder": "账户持有人",
+    "your-lists": "你的列表",
+    "your-account": "你的帐户",
+    "right-side-arr": {
+      "account": "帐户",
+      "orders": "订单",
+      "keep-shopping-for": "继续购物",
+      "recommendations": "推荐",
+      "browsing-history": "浏览历史",
+      "recalls-product-safety-alerts": "召回和产品安全提醒",
+      "watchlist": "观察清单",
+      "video-purchases-rentals": "视频购买与租赁",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-library": "内容库",
+      "devices": "设备",
+      "subscribe-save-items": "订阅与节省项目",
+      "memberships-subscriptions": "会员与订阅",
+      "prime-membership": "Prime 会员",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "music-library": "音乐库",
+      "start-selling-account": "开始销售帐户",
+      "register-free-business-account": "注册免费商业账户",
+      "customer-service": "客户服务",
+      "switch-accounts": "切换帐户"
+    },
+    "left-side-arr-top": {
+      "shopping-list": "购物清单",
+      "wish-list": "愿望清单"
+    },
+    "left-side-arr-bottom": {
+      "create-a-list": "创建列表",
+      "find-a-list-or-registry": "查找列表或注册表",
+      "your-saved-books": "您保存的书籍"
+    }
+  },
+  "account-page":{
+    "your-account": "你的帐户",
+    "account": {
+      "your-orders": {
+        "title": "您的订单",
+        "description": "追踪、退货、取消订单、下载发票或再次购买"
+      },
+      "login-security": {
+        "title": "登录和安全",
+        "description": "编辑登录信息、姓名和手机号"
+      },
+      "prime": {
+        "title": "Prime 会员",
+        "description": "管理您的会员资格、查看福利和付款设置"
+      },
+      "your-addresses": {
+        "title": "您的地址",
+        "description": "编辑、删除或设定默认地址"
+      },
+      "your-business-account": {
+        "title": "您的商业账户",
+        "description": "免费注册以享受商业专属价格并安排适合您营业时间的送货"
+      },
+      "gift-cards": {
+        "title": "礼品卡",
+        "description": "查看余额或兑换礼品卡，并购买新礼品卡"
+      },
+      "your-payments": {
+        "title": "您的支付方式",
+        "description": "查看所有交易，管理支付方式和设置"
+      },
+      "your-amazon-family": {
+        "title": "您的亚马逊家庭",
+        "description": "在一个地方管理个人资料、共享和权限"
+      },
+      "digital-services": {
+        "title": "数字服务和设备支持",
+        "description": "解决设备问题，管理或取消数字订阅"
+      },
+      "archived-orders": {
+        "title": "存档订单",
+        "description": "查看和管理您的存档订单"
+      },
+      "your-lists": {
+        "title": "您的列表",
+        "description": "查看、修改和分享您的列表，或创建新列表"
+      },
+      "customer-service": {
+        "title": "客户服务",
+        "description": "浏览自助服务选项、帮助文章或联系我们"
+      },
+      "your-messages": {
+        "title": "您的消息",
+        "description": "管理您的账户安全设置"
+      }
+    },
+    "ordering-and-shopping-preferences-box": {
+      "your-addresses": "您的地址",
+      "your-payments": "您的支付方式",
+      "your-transactions": "您的交易",
+      "your-amazon-profile": "您的亚马逊个人资料",
+      "1-click-settings": "一键设置",
+      "amazon-key-settings": "亚马逊钥匙设置",
+      "language-preferences": "语言偏好",
+      "manage-saved-ids": "管理已保存的ID",
+      "coupons": "优惠券",
+      "product-vouchers": "产品优惠券",
+      "vat-registration-number": "增值税注册号"
+    }, 
+    "digital-content-and-devices-box": {
+      "all-things-alexa": "所有关于Alexa",
+      "manage-content-and-devices": "管理内容和设备",
+      "manage-digital-delivery": "管理数字交付",
+      "your-apps": "您的应用程序",
+      "prime-video-settings": "Prime视频设置",
+      "amazon-music-settings": "亚马逊音乐设置",
+      "manage-amazon-drive-and-photos": "管理亚马逊云盘和照片",
+      "twitch-settings": "Twitch设置",
+      "audible-settings": "Audible设置",
+      "amazon-coins": "亚马逊硬币",
+      "digital-gifts-received": "您收到的数字礼物",
+      "digital-and-device-forum": "数字与设备论坛",
+      "comixology-settings": "Comixology设置"
+    },
+    "memberships-and-subscriptions-box": {
+      "memberships-and-subscriptions": "会员和订阅",
+      "kindle-unlimited": "Kindle Unlimited",
+      "prime-video-channels": "Prime 视频频道",
+      "music-unlimited": "音乐无限",
+      "subscribe-and-save": "订阅与节省",
+      "amazon-kids-plus": "Amazon Kids+",
+      "audible-membership": "Audible 会员",
+      "your-essentials": "您的必需品",
+      "magazine-subscriptions": "杂志订阅",
+      "one-medical-membership": "Prime 会员的 One Medical 会员",
+      "other-subscriptions": "其他订阅"
+    },
+    "communication-and-content-box": {
+      "email-subscriptions": "电子邮件订阅",
+      "advertising-preferences": "广告偏好",
+      "communication-preferences": "通信偏好",
+      "shipment-updates-via-text": "通过短信更新发货信息",
+      "alexa-shopping-notifications": "Alexa 购物通知",
+      "videos-you-uploaded": "您上传的视频",
+      "purchase-reminders": "购买提醒"
+    },
+    "shopping-programs-and-rentals-box": {
+      "buy-now-pay-over-time": "立即购买，分期付款",
+      "third-party-credit-card-installment": "第三方信用卡分期付款",
+      "manage-your-amazon-family": "管理您的亚马逊家庭",
+      "rentals-by-amazon": "亚马逊租赁",
+      "amazon-household": "亚马逊家庭",
+      "no-rush-rewards-summary": "无需急速奖励摘要",
+      "teens-program": "青少年计划",
+      "pets": "宠物",
+      "shop-with-points": "使用积分购物",
+      "amazon-second-chance": "亚马逊第二次机会",
+      "benefits-balance": "福利余额"
+    },
+    "other-programs-box": {
+      "account-linking": "账户链接",
+      "amazon-credit-cards": "亚马逊信用卡",
+      "your-seller-account": "您的卖家账户",
+      "amazon-pay": "亚马逊支付",
+      "manage-your-trade-ins": "管理您的以旧换新",
+      "amazon-web-services": "亚马逊网络服务",
+      "amazon-tax-exemption-program": "亚马逊免税计划",
+      "your-interests": "您的兴趣",
+      "in-store-promo-wallet": "店内促销钱包"
+    },
+    "manage-your-data-box": {
+      "request-your-data": "请求您的数据",
+      "manage-apps-services-data-access": "管理具有数据访问权限的应用和服务",
+      "close-your-amazon-account": "关闭您的亚马逊账户",
+      "privacy-notice": "隐私声明"
+    },
+    "titles": {
+      "ordering-and-shopping-preferences": "订单和购物偏好",
+      "digital-content-and-devices": "数字内容和设备",
+      "memberships-and-subscriptions": "会员和订阅",
+      "communication-and-content": "通信和内容",
+      "shopping-programs-and-rentals": "购物计划和租赁",
+      "other-programs": "其他计划",
+      "manage-your-data": "管理您的数据"
     }
   }
 }

@@ -4,7 +4,9 @@
   "go-to-signup": "Create an account",
   "buying-for-work": "Buying for work?",
   "vendor-account": "Create a free vendor account",
+  "coming-soon": "COMING SOON",
   "here": "here",
+  "sign-out": "Sign Out",
   "login": {
     "title": "UCSC-Amazon Shopper Login",
     "signin": "Sign in",
@@ -213,6 +215,215 @@
       "helpful-button": "Helpful",
       "report-button": "Report",
       "thank-you": "Thank you for your feedback."
+    }
+  },
+  "sign-in-button": {
+    "your-lists": "Your Lists",
+    "your-account": "Your Account",
+    "right-side-array": {
+      "account": "Account",
+      "orders": "Orders",
+      "recommendations": "Recommendations",
+      "browsing-history": "Browsing History",
+      "watchlist": "Watchlist",
+      "video-purchases-rentals": "Video Purchases & Rentals",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-devices": "Content & Devices",
+      "subscribe-save-items": "Subscribe & Save Items",
+      "memberships-subscriptions": "Memberships & Subscriptions",
+      "prime-membership": "Prime Membership",
+      "amazon-credit-cards": "Amazon Credit Cards",
+      "music-library": "Music Library",
+      "start-selling-account": "Start a Selling Account",
+      "register-free-business-account": "Register for a Free Business Account",
+      "customer-service": "Customer Service"
+    },
+    "left-side-array": {
+      "your-lists": "Your Lists",
+      "create-a-list": "Create a List",
+      "find-a-list-or-registry": "Find a List or Registry"
+    }
+  },
+  "sign-out-button": {
+    "account-holder": "Account Holder",
+    "your-lists": "Your Lists",
+    "your-account": "Your Account",
+    "right-side-arr": {
+      "account": "Account",
+      "orders": "Orders",
+      "keep-shopping-for": "Keep Shopping For",
+      "recommendations": "Recommendations",
+      "browsing-history": "Browsing History",
+      "recalls-product-safety-alerts": "Recalls and Product Safety Alerts",
+      "watchlist": "Watchlist",
+      "video-purchases-rentals": "Video Purchases & Rentals",
+      "kindle-unlimited": "Kindle Unlimited",
+      "content-library": "Content Library",
+      "devices": "Devices",
+      "subscribe-save-items": "Subscribe & Save Items",
+      "memberships-subscriptions": "Memberships & Subscriptions",
+      "prime-membership": "Prime Membership",
+      "amazon-credit-cards": "Amazon Credit Cards",
+      "music-library": "Music Library",
+      "start-selling-account": "Start a Selling Account",
+      "register-free-business-account": "Register for a Free Business Account",
+      "customer-service": "Customer Service",
+      "switch-accounts": "Switch Accounts"
+    },
+    "left-side-arr-top": {
+      "shopping-list": "Shopping List",
+      "wish-list": "Wish List"
+    },
+    "left-side-arr-bottom": {
+      "create-a-list": "Create a List",
+      "find-a-list-or-registry": "Find a List or Registry",
+      "your-saved-books": "Your Saved Books"
+    }
+  },
+  "account-page": {
+    "your-account": "Your Account",
+    "account": {
+      "your-orders": {
+        "title": "Your Orders",
+        "description": "Track, return, cancel an order, download invoice or buy again"
+      },
+      "login-security": {
+        "title": "Login & Security",
+        "description": "Edit login information, name, and mobile number"
+      },
+      "prime": {
+        "title": "Prime Membership",
+        "description": "Manage your membership, view benefits, and payment settings"
+      },
+      "your-addresses": {
+        "title": "Your Addresses",
+        "description": "Edit, remove, or set default address"
+      },
+      "your-business-account": {
+        "title": "Your Business Account",
+        "description": "Sign up for free to enjoy business-exclusive pricing and schedule deliveries to fit your business hours"
+      },
+      "gift-cards": {
+        "title": "Gift Cards",
+        "description": "View balance or redeem a card, and purchase a new Gift Card"
+      },
+      "your-payments": {
+        "title": "Your Payments",
+        "description": "View all transactions, manage payment methods and settings"
+      },
+      "your-amazon-family": {
+        "title": "Your Amazon Family",
+        "description": "Manage profiles, sharing, and permissions in one place"
+      },
+      "digital-services": {
+        "title": "Digital Services and Device Support",
+        "description": "Troubleshoot device issues, manage or cancel digital subscriptions"
+      },
+      "archived-orders": {
+        "title": "Archived Orders",
+        "description": "View and manage your archived orders"
+      },
+      "your-lists": {
+        "title": "Your Lists",
+        "description": "View, modify, and share your list, or create new ones"
+      },
+      "customer-service": {
+        "title": "Customer Service",
+        "description": "Browse self-service options, help articles, or contact us"
+      },
+      "your-messages": {
+        "title": "Your Messages",
+        "description": "Manage your account security settings"
+      }
+    },
+    "ordering-and-shopping-preferences-box": {
+      "your-addresses": "Your Addresses",
+      "your-payments": "Your Payments",
+      "your-transactions": "Your Transactions",
+      "your-amazon-profile": "Your Amazon Profile",
+      "1-click-settings": "1-Click Settings",
+      "amazon-key-settings": "Amazon Key Settings",
+      "language-preferences": "Language Preferences",
+      "manage-saved-ids": "Manage Saved IDs",
+      "coupons": "Coupons",
+      "product-vouchers": "Product Vouchers",
+      "vat-registration-number": "VAT Registration Number"
+    },
+    "digital-content-and-devices-box": {
+      "all-things-alexa": "All Things Alexa",
+      "manage-content-and-devices": "Manage Content and Devices",
+      "manage-digital-delivery": "Manage Digital Delivery",
+      "your-apps": "Your Apps",
+      "prime-video-settings": "Prime Video Settings",
+      "amazon-music-settings": "Amazon Music Settings",
+      "manage-amazon-drive-and-photos": "Manage Amazon Drive and Photos",
+      "twitch-settings": "Twitch Settings",
+      "audible-settings": "Audible Settings",
+      "amazon-coins": "Amazon Coins",
+      "digital-gifts-received": "Digital Gifts You've Received",
+      "digital-and-device-forum": "Digital and Device Forum",
+      "comixology-settings": "Comixology Settings"
+    },
+    "memberships-and-subscriptions-box": {
+      "memberships-and-subscriptions": "Memberships and subscriptions",
+      "kindle-unlimited": "Kindle Unlimited",
+      "prime-video-channels": "Prime Video Channels",
+      "music-unlimited": "Music Unlimited",
+      "subscribe-and-save": "Subscribe & Save",
+      "amazon-kids-plus": "Amazon Kids+",
+      "audible-membership": "Audible membership",
+      "your-essentials": "Your Essentials",
+      "magazine-subscriptions": "Magazine subscriptions",
+      "one-medical-membership": "One Medical membership for Prime members",
+      "other-subscriptions": "Other subscriptions"
+    },
+    "communication-and-content-box": {
+      "email-subscriptions": "Email subscriptions",
+      "advertising-preferences": "Advertising preferences",
+      "communication-preferences": "Communication preferences",
+      "shipment-updates-via-text": "Shipment updates via text",
+      "alexa-shopping-notifications": "Alexa shopping notifications",
+      "videos-you-uploaded": "Videos you've uploaded",
+      "purchase-reminders": "Purchase Reminders"
+    },
+    "shopping-programs-and-rentals-box": {
+      "buy-now-pay-over-time": "Buy now, pay over time",
+      "third-party-credit-card-installment": "Third Party Credit Card Installment",
+      "manage-your-amazon-family": "Manage Your Amazon Family",
+      "rentals-by-amazon": "Rentals by Amazon",
+      "amazon-household": "Amazon Household",
+      "no-rush-rewards-summary": "No-Rush rewards summary",
+      "teens-program": "Teens Program",
+      "pets": "Pets",
+      "shop-with-points": "Shop with Points",
+      "amazon-second-chance": "Amazon Second Chance",
+      "benefits-balance": "Benefits balance"
+    },
+    "other-programs-box": {
+      "account-linking": "Account Linking",
+      "amazon-credit-cards": "Amazon credit cards",
+      "your-seller-account": "Your seller account",
+      "amazon-pay": "Amazon Pay",
+      "manage-your-trade-ins": "Manage your trade-ins",
+      "amazon-web-services": "Amazon Web Services",
+      "amazon-tax-exemption-program": "Amazon tax exemption program",
+      "your-interests": "Your Interests",
+      "in-store-promo-wallet": "In-Store Promo Wallet"
+    },
+    "manage-your-data-box": {
+      "request-your-data": "Request your data",
+      "manage-apps-services-data-access": "Manage apps & services with data access",
+      "close-your-amazon-account": "Close Your Amazon Account",
+      "privacy-notice": "Privacy Notice"
+    },
+    "titles": {
+      "ordering-and-shopping-preferences": "Ordering and Shopping preferences",
+      "digital-content-and-devices": "Digital content and devices",
+      "memberships-and-subscriptions": "Memberships and subscriptions",
+      "communication-and-content": "Communication and content",
+      "shopping-programs-and-rentals": "Shopping programs and rentals",
+      "other-programs": "Other programs",
+      "manage-your-data": "Manage your data"
     }
   }
 }
