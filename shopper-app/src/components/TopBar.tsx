@@ -463,7 +463,7 @@ export default function TopBar() {
 
 	const menuButton = (
 		<>
-		<MenuIcon onClick={handleMenuOpen} aria-label='menu' style={{ marginTop: '5px' }}/> 
+		<MenuIcon onClick={handleMenuOpen} aria-label='menu' sx={{ mt: 1 }}/> 
 		<Menu
 			anchorEl={null}
 			open={menuOpen}
@@ -479,21 +479,25 @@ export default function TopBar() {
 			MenuListProps={{
 				sx: customButtonStyles
 			}}
+			sx={{
+				'& .MuiPaper-root': {
+					color: 'white',
+					bgcolor: '#232f3e',
+					maxWidth: '200px',
+				},
+				'& .MuiList-root': {
+					p: 0
+				},
+			}}
 		>
-			<MenuItem>
-				{loginContext.accessToken.length === 0 && signInButton}
-				{loginContext.accessToken.length > 0 && helloUsernameButton}
-			</MenuItem>
-			<MenuItem>
-				<LanguageButton sx={{ ml: 2, width:'100%' }} variant='text' />
-			</MenuItem>
-			<MenuItem sx={{ ml:2 }}>
+			<MenuItem sx={{ ml:'15px' }}>
+				{loginContext.accessToken.length === 0 ? signInButton : helloUsernameButton}
+			</MenuItem> 
+			<MenuItem sx={{ mx: 1}}>
 				{addressButton}
 			</MenuItem>
 			<MenuItem>
 				{orderHistoryButton}
-			</MenuItem>
-			<MenuItem>
 				{cartButton}
 			</MenuItem>
 		</Menu>
