@@ -109,7 +109,6 @@ export default function SignInButton() {
     let timer: NodeJS.Timeout;
     if (isHovering) {
       timer = setTimeout(() => {
-        console.log('hover')
         setAnchorEl(document.getElementById('sign-in-button'));
       }, 300); // Adjust delay as necessary
     }
@@ -120,14 +119,18 @@ export default function SignInButton() {
 
   const popoverContentBoxLeft = (
     <Box>
-    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }} > {t('sign-in-button.your-lists')} </h1>
+      <Typography component="h1" sx={{ fontSize: '15px !important', fontWeight: '700 !important' }}>
+        {t('sign-in-button.your-lists')}
+      </Typography>
     {makeList(leftSideArray)} 
     </Box> 
   )
 
   const popoverContentBoxRight = (
     <Box>
-    <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-in-button.your-account')}</h1>
+      <Typography component="h1" sx={{ fontSize: '15px !important', fontWeight: '700 !important' }}>
+        {t('sign-in-button.your-account')}
+      </Typography>
      {makeList(rightSideArray)} 
     </Box>
   )
@@ -185,10 +188,6 @@ export default function SignInButton() {
     </Box>
   );
 
-  const navigateToAccountPage = () => {
-    router.push("/account")
-  }
-
   return (
     <Box sx={{ height: '60px', display: 'flex', alignItems: 'center' }}
       onMouseEnter={() => setIsHovering(true)}
@@ -201,7 +200,6 @@ export default function SignInButton() {
         id='sign-in-button'
         aria-describedby={id}     
         onClick={(e) => {
-          console.log('clicked')
           handleNavigation('account')
         }}
         sx={{

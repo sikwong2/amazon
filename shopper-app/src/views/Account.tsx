@@ -254,21 +254,6 @@ export function Account() {
   ];
 
   const mapAccountCardGridLinks = (arr: any) => {
-    // return (
-    //   <Grid container spacing={0.1}>
-    //     {
-    //       arr.map((obj: any, index: any) => (
-    //         <Grid key={index} item xs={12} sm={4}>
-    //           <AccountCardBox
-    //             title={obj.title}
-    //             list={obj.list}
-    //           />
-    //         </Grid>
-    //       ))
-    //     }
-    //   </Grid>
-    // );
-
     return (
       <Grid container spacing={0.1} alignItems="stretch">
         {accountCardGridLinksData.map((item, index) => (

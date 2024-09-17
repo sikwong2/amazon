@@ -39,14 +39,6 @@ export default function SignOutButton(){
     loginContext.setRole('');
   } 
 
-  const handleSignIn = () => {
-    router.push('/login')
-  }
-
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -141,7 +133,6 @@ export default function SignOutButton(){
     let timer: NodeJS.Timeout;
     if (isHovering) {
       timer = setTimeout(() => {
-        console.log('hover')
         setAnchorEl(document.getElementById('sign-out-button'));
       }, 300); // Adjust delay as necessary
     }
@@ -150,7 +141,9 @@ export default function SignOutButton(){
 
   const popoverContentBoxLeft = (
     <Box>
-      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}> {t('sign-out-button.your-lists')} </h1>
+      <Typography variant="h6" sx={{ fontSize: '15px !important', fontWeight: '700 !important' }}>
+        {t('sign-out-button.your-lists')}
+      </Typography>
       {makeList(leftSideListArrTop)} 
       <Divider sx={{ mt: '10px', borderWidth: '1px', mb: '10px'}}></Divider>
       {makeList(leftSideListArrBottom)} 
@@ -159,7 +152,9 @@ export default function SignOutButton(){
 
   const popoverContentBoxRight = (
     <Box>
-      <h1 style={{ fontSize: '17px', fontWeight: 'bold' }}>{t('sign-out-button.your-account')}</h1>
+      <Typography variant="h6" sx={{ fontSize: '15px !important', fontWeight: '700 !important' }}>
+        {t('sign-out-button.your-account')}
+      </Typography>
       {makeList(rightSideListArr)} 
       <Box className="link-container">
         <a
@@ -252,7 +247,6 @@ export default function SignOutButton(){
         console.log('clicked')
         handleNavigation('account')
       }}
-      // onMouseEnter={handleOpen}
       sx={{
         width: { xs: '100%', sm: 'auto' },
         p: '0px 9px 10px 9px',
