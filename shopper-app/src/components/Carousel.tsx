@@ -13,9 +13,9 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export type Image = {
   image: string;
-  id: string;
-  description: string;
-  title: string;
+  id?: string;
+  description?: string;
+  title?: string;
 };
 
 interface ImageCarouselProps extends BoxProps {
@@ -40,7 +40,13 @@ export default function ImageCarousel({ images, height, mobile, ...rest }: Image
             borderRadius: 0
         }
       }}
-      navButtonsWrapperProps={mobile ? {} : {   // Move the buttons to the bottom. Unsetting top here to override default style.
+      navButtonsWrapperProps={mobile ? {
+          style: {
+            bottom: 'unset',
+            top: '-20%'
+          }
+        }
+         : {   // Move the buttons to the bottom. Unsetting top here to override default style.
         style: {
             bottom: 'unset',
             top: '15%'
@@ -49,8 +55,8 @@ export default function ImageCarousel({ images, height, mobile, ...rest }: Image
       fullHeightHover={mobile ? true : false}
       animation="slide"
       indicators={false}
-      height={height}
-      navButtonsAlwaysVisible={true}>
+      height={(height > 479 && mobile) ? 479 : height}
+      navButtonsAlwaysVisible={mobile ? false : true}>
       {images.map((item, i) => (
         <Item key={i} item={item} mobile={mobile} {...rest} />
       ))}
@@ -70,14 +76,14 @@ function Item({ item, mobile, ...rest }: ItemProps) {
       height="100%"
       width="100%"
       sx={{ backgroundColor: 'E4E6E6', cursor: 'pointer' }}
-      onClick={() => handleProductRedirect(item.id)}
+      onClick={() => item.id ? handleProductRedirect(item.id) : () => {}}
       {...rest}
     >
       <img
         style={mobile ? {
           width: '100%',
           height: '100%',
-          objectFit: 'contain'
+          objectFit: 'fill'
         } : 
         {
           width: '100%',
@@ -85,8 +91,8 @@ function Item({ item, mobile, ...rest }: ItemProps) {
           objectFit: 'cover'
         } 
       }
-        alt={item.description}
-        src={item.image}
+        alt={item.description || "image"}
+        src={item.image || "Image Title"}
       />
     </Box>
   );

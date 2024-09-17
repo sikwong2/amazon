@@ -104,20 +104,13 @@ export class MemberController extends Controller {
   }
 
   @Post('{memberId}/browser-history/{productId}')
-  @Response('400', 'Bad Request')
   @SuccessResponse('201', 'Created')
   public async addBrowserHistory(
     @Path('memberId') memberId: UUID,
     @Path('productId') productId: UUID
-  ): Promise<BrowserHistoryEntry | undefined> {
+  ): Promise<boolean> {
     return new MemberService()
       .addBrowserHistory(memberId, productId)
-      .then(async (response: BrowserHistoryEntry | undefined): Promise<BrowserHistoryEntry | undefined> => {
-        if (response == undefined) {
-          this.setStatus(400);
-        }
-        return response;
-      })
   }
 
   @Delete('{memberId}/browser-history')

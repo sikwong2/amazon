@@ -3,13 +3,7 @@ import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/router';
-
-export type Image = {
-  image: string;
-  id: string;
-  description: string;
-  title: string;
-};
+import type { Image } from './Carousel';
 
 export interface CategoryCardProps {
   images: Image[];
@@ -30,12 +24,12 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
       type='pointy'
       elevation={0}
       sx={{
-        width: isSmallScreen ? '100%' : 'auto',
+        width: 'auto',
         height: 'auto',
-        margin: 1,
+        margin: 2,
         alignItems: 'center',
         maxHeight: '100%',
-        maxWidth: isSmallScreen ? '100%' : '400px',
+        maxWidth: '400px',
         justifyContent: 'center',
         display: 'flex',
         flexGrow: 1,
@@ -53,7 +47,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
         alignItems="start"
         justifyContent="center"
       >
-        <Typography sx={{ gridColumn: 'span 2', mb: 0.1, fontWeight: 'bold', fontSize: '21px', marginBottom: '10px' }} align="left" >
+        <Typography textTransform='capitalize' sx={{ gridColumn: 'span 2', mb: 0.1, fontWeight: 'bold', fontSize: '21px', marginBottom: '10px' }} align="left" >
           {title}
         </Typography>
         {images.slice(0, 4).map((image, key) => (
@@ -75,7 +69,7 @@ export default function CategoryCard({ images, title }: CategoryCardProps) {
               }}
               component="img"
               src={image.image}
-              onClick={() => handleProductRedirect(image.id)}
+              onClick={() => image.id ? handleProductRedirect(image.id) : () => {}}
             />
             <Typography
               align="left"

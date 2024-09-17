@@ -43,11 +43,11 @@ export class MemberResolver {
       .getBrowserHistory(memberId, size, page)
   }
 
-  @Mutation((returns) => BrowserHistoryEntry)
+  @Mutation((returns) => Boolean)
   async addBrowserHistory(
     @Arg('memberId') memberId: string,
     @Arg('productId') productId: string,
-  ): Promise <BrowserHistoryEntry> {
+  ): Promise <Boolean> {
     return new MemberService()
       .addBrowserHistory(memberId, productId)
   }

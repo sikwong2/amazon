@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/material';
 import ImageCarousel from '@/components/Carousel';
 import type { Image } from '@/components/Carousel';
@@ -18,70 +18,49 @@ import { LoginContext } from '@/context/Login';
 import { BrowserHistoryContext } from '@/context/BrowserHistory';
 import { BrowserHistoryEntry } from '@/graphql/member/schema';
 import { CategoryContext } from '@/context/Category';
+import CategoryCardMobile from '@/components/CategoryCardMobile';
 
 const advertisements: Image[] = [
   {
     image: 'https://m.media-amazon.com/images/I/61JRTDaOgTL._SX3000_.jpg',
-    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
-    description: 'Adidas ad',
-    title: 'Adidas shoes'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/717a5OeZ6iL._SX3000_.jpg',
-    id: '2f804cfb-c81a-43e2-9e78-9160332e46bd',
-    description: 'Adidas Sea ad',
-    title: 'Adidas women shoes'
+    image: 'https://m.media-amazon.com/images/I/717a5OeZ6iL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/517HzrpIwAL._SX3000_.jpg',
-    id: 'd0eeec78-99ef-4736-8256-c04043110873',
-    description: 'Nike ad',
-    title: 'Nike shoes'
+    image: 'https://m.media-amazon.com/images/I/517HzrpIwAL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71UY8rxRxUL._SX3000_.jpg',
-    id: 'd9b42b3d-aa46-4791-8470-c9417d1db025',
-    description: 'Samsung Galaxy ad',
-    title: 'Samsung'
+    image: 'https://m.media-amazon.com/images/I/71UY8rxRxUL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71cpVVPylML._SX3000_.jpg',
-    id: 'c85ddd6d-c3ef-4ba2-8951-a6f377c4fe94',
-    description: 'Spalding basketball ad',
-    title: 'Spalding'
+    image: 'https://m.media-amazon.com/images/I/71cpVVPylML._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/71BewpxvEZL._SX3000_.jpg',
-    id: 'fcdfc6a7-3e50-4909-818c-379f75b4320a',
-    description: 'Apple ad',
-    title: 'Macbooks'
+    image: 'https://m.media-amazon.com/images/I/71BewpxvEZL._SX3000_.jpg'
   },
   {
-    image: 'https://m.media-amazon.com/images/I/61AHFjQsfDL._SX3000_.jpg',
-    id: 'fcab207a-fd48-4e81-a15d-a754f49fcd15',
-    description: 'Lamp ad',
-    title: 'Lamps'
+    image: 'https://m.media-amazon.com/images/I/61AHFjQsfDL._SX3000_.jpg'
   },
+];
+
+const advertisementsMobile: Image[] = [
+  {
+    image: 'https://f.media-amazon.com/images/I/510M0VKiq6L._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/61cMpe5aQuL._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/71PzKDtWDjL._SR1236,1080_.jpg'
+  },
+  {
+    image: 'https://f.media-amazon.com/images/I/61ah+QDzDNL._SR1236,1080_.jpg'
+  }
 ]
 
-const categories: string[] = [
-  'furniture',
-  'Electronics',
-  'sports',
-  'apple',
-  'shrek',
-  'home',
-  'shoes',
-  'clothing',
-  'adidas',
-  'nike',
-  'gaming',
-  'couch',
-  'storage', 
-  'kitchen',
-]
 
-const getRandomCategory = () => {
+const getRandomCategory = (categories: any) => {
   const randomElement = categories[Math.floor(Math.random() * categories.length)];
   return randomElement;
 }
@@ -113,7 +92,7 @@ const fetchProducts = async (category: string): Promise<Product[]> => {
     }
     return json.data.getByCategory;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('Unable to fetch products');
   }
 };
@@ -137,7 +116,7 @@ const fetchProduct = async (productId: string): Promise<Product> => {
     }
     return json.data.getByProductId;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('');
   }
 }
@@ -169,23 +148,20 @@ const fetchBrowserHistory = async (memberId: string): Promise<[BrowserHistoryEnt
     }
     return json.data.getBrowserHistory;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     throw new Error('');
   }
 }
 
 // adds product id to browser history backend
-const addBrowserHistory = async (memberId: string, productId: string): Promise<BrowserHistoryEntry> => {
+const addBrowserHistory = async (memberId: string, productId: string): Promise<boolean> => {
   try {
     const query = `
       mutation addBrowserHistory {
         addBrowserHistory(
           memberId: "${memberId}"
           productId: "${productId}"
-        ) {
-          product_id
-          timestamp
-        } 
+        )
       }
     `;
     const res = await fetch(
@@ -208,6 +184,35 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
   }
 }
 
+const fetchCategories = async (): Promise<string[]> => {
+  try {
+    const query = {
+      query: `query getAllCategories {
+      getAllCategories {
+        name
+      }
+    }`,
+    };
+    const res = await fetch('/api/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await res.json();
+    if (json.errors) {
+      console.error('Error fetching categoriess: ', json.errors);
+      throw new Error('Error fetching categoriess: ', json.errors);
+    }
+    return json.data.getAllCategories.map((cat: { name: string }) => {return cat.name});
+  } catch (error) {
+    console.error('Error fetching categories: ', error);
+    throw error;
+  }
+};
+
+
 
 // outer container of ads / cards once signed in
 // carosoul component
@@ -222,6 +227,9 @@ export function Home() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isMedScreen = useMediaQuery(theme.breakpoints.down('md'));
+  let categories: string[] = [];
+ 
+
   // used to determine how many categories there are
   const numberOfCategories = 8;
   const {productHistory} = React.useContext(BrowserHistoryContext);
@@ -229,9 +237,10 @@ export function Home() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
+        categories = await fetchCategories();
         const fetchedData: { [key: string]: Image[] } = {};
         for (let i = 0; i <= numberOfCategories; i++) {
-          const category = getRandomCategory();
+          const category = getRandomCategory(categories);
           const products = await fetchProducts(category);
           fetchedData[category] = products.map((product) => ({
             image: product.image[0],
@@ -300,7 +309,8 @@ export function Home() {
         width: 'auto',
         height: 'auto',
         margin: 1,
-        maxWidth: '300px',
+        mt: 2,
+        maxWidth: (isSmallScreen || isMedScreen) ? 240 : 300,
         alignItems: 'start',
         justifyContent: 'center',
         display: (isSmallScreen || isMedScreen) ? 'none' : 'flex',
@@ -333,9 +343,9 @@ export function Home() {
   );
 
 
-  const logoutGrid = (
+  const categorycards = (
     <Grid container spacing={0} justifyContent='center'>
-      {(browserHistoryImages.length >= 1) && <Grid item xs={12} sm={4} md={3} key={'browserhistory'}>
+      {(browserHistoryImages.length >= 1 && !isSmallScreen && !isMedScreen) && <Grid item xs={0} sm={4} md={3} key={'browserhistory'}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <CategoryCard images={browserHistoryImages} title={t('home.browsing-history')}/>
         </Box>
@@ -343,16 +353,100 @@ export function Home() {
       {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
         <Grid item xs={12} sm={4} md={3} key={category}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CategoryCard images={images} title={t(`home.${category}`)} />
+            <CategoryCard images={images} title={`${category}`} />
           </Box>
         </Grid>
       ))}
-      <Grid item xs={0} sm={0} md={3}>
+      <Grid item xs={0} sm={4} md={3}>
         {browserHistoryImages.length < 1 && easyReturns}
       </Grid>
     </Grid>
   );
 
+  const categorycardsMobile = (
+    <Grid container alignItems='center' justifyContent='center'>
+      {Object.entries(categoriesData).slice(0,3).map(([category, images], index) => (
+        <Grid item xs={4} key={category + 'mobile'}>
+          <CategoryCardMobile image={images[0]} title={`${category}`} />
+        </Grid>
+      ))}
+    </Grid>
+  );
+
+  const adheader = (
+    <>
+      {
+        !isSmallScreen ?
+        <React.Fragment>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '250px',
+              width: '100%',
+              zIndex: 2,
+              overflow: 'hidden'
+            }}
+            justifyItems='center'
+          >
+            {categorycards}
+          </Box>
+          <Box
+            sx={{
+              background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+              position: 'absolute',
+              top: '400px',
+              zIndex: 1
+            }}
+            width="100%"
+            height={201}
+            />
+          <Box bgcolor='#E4E6E6' width="100%" height={50}/>
+        </React.Fragment> :
+        <React.Fragment>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: screen.width < 500 ? screen.width / 1.5 : 320,
+            width: '100%',
+            zIndex: 5000,
+            overflow: 'hidden'
+          }}
+          justifyItems='left'
+        >
+          {categorycardsMobile}
+        </Box>
+        <Box
+          sx={{
+            background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
+            position: 'absolute',
+            zIndex: 10
+          }}
+          top={screen.width < 500 ? screen.width/1.5 : 310}
+          width="100%"
+          height={screen.width < 500 ? screen.width/3 + 1 : 170}
+          />
+        <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/5 : 60}/>
+      </React.Fragment>
+      }
+    </>
+  )
+
+  const adCarousel = (
+    <Box
+    position="static"
+    justifyContent="center"
+    alignItems="center"
+    bgcolor="#FFFFFF"
+  >
+    { !isSmallScreen ?
+
+        <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
+       :
+        <ImageCarousel images={advertisementsMobile} height={screen.width} mobile={true}/>
+    }
+    </Box>
+
+  )
 
   if (loginContext.role !== 'shopper' && loginContext.accessToken !== '') {
     return <RedirectNonShopper />;
@@ -369,49 +463,15 @@ export function Home() {
           justifyContent="center"
           margin="auto"
         >
-          <Box
-            position="static"
-            justifyContent="center"
-            alignItems="center"
-            bgcolor="#FFFFFF"
-          >
-            <ImageCarousel images={ads} height={isSmallScreen ? 300 : 600} mobile={isSmallScreen}/>
-          </Box>
-          {
-            !isSmallScreen &&
-            <React.Fragment>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '250px',
-                  width: '100%',
-                  zIndex: 2
-                }}
-                justifyItems='center'
-              >
-                {logoutGrid}
-              </Box>
-              <Box
-                sx={{
-                  background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
-                  position: 'absolute',
-                  top: '400px',
-                  zIndex: 1
-                }}
-                width="100%"
-                height={200}
-                />
-              <Box bgcolor='#E4E6E6' width="100%" height={50}/>
-            </React.Fragment>
-          }
-
+          {adCarousel}
+          {adheader}
 
           {Object.entries(categoriesData).slice(3,numberOfCategories).map(([category, images]) => (
             <MultiImageCarousel
               key={category}
               images={images}
               height={200}
-              title={t(`home.top-sellers-${category}`)}
+              title={`Top sellers in ${category}`}
             />
           ))}
         </Box>

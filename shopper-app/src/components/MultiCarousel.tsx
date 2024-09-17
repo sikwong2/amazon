@@ -4,19 +4,13 @@ import 'react-multi-carousel/lib/styles.css';
 import Box from '@mui/material/Box';
 import { useRouter } from 'next/router';
 import { BoxProps } from '@mui/material/Box';
-import Image from 'next/image';
 import CustomCard from './Card';
 import { Typography } from '@mui/material';
+import type { Image } from './Carousel';
 
 // Carousel taken from https://www.npmjs.com/package/react-multi-carousel
 // ** Note: this is different than the Carousel component for ImageCarousel
 
-export type Image = {
-  image: string;
-  id: string;
-  description: string;
-  title: string;
-};
 
 interface MultiImageCarouselProps extends BoxProps {
   images: Image[];
@@ -111,7 +105,7 @@ function Item({ item, height, ...rest }: ItemProps) {
       maxHeight={height}
       sx={{ backgroundColor: '#FFFFFF', cursor: 'pointer', m: '0 0 14px'}}
       overflow="hidden"
-      onClick={() => handleProductRedirect(item.id)}
+      onClick={() => item.id ? handleProductRedirect(item.id) : () => {}}
       {...rest}
     >
       <img
