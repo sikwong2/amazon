@@ -35,14 +35,16 @@ export default function AccountCardBox ({ title, list, sx }) {
         {
           arr.map((item, index) => (
             <Box key={index}  color='#007185'>
-              <CustomLink
-                href={item.href || '#'}  
-                label={item.name}         
-                variant='blue1'           
-                onClick={() => handleNavigation(item.onClick)}  
-              >
-                {item.name}               
-              </CustomLink>
+              <Typography variant="body2" color="#007185">
+                <CustomLink
+                  href={item.href || '#'}  
+                  label={item.name}         
+                  variant='blue1'           
+                  onClick={() => handleNavigation(item.onClick)}  
+                >
+                  {item.name}               
+                </CustomLink>
+              </Typography>
             </Box>
           ))
         }
@@ -56,9 +58,7 @@ export default function AccountCardBox ({ title, list, sx }) {
         <Typography sx={{ fontSize: 18, fontWeight: 'bold', marginBottom: 0.5 }} color="text.primary">
           {title}
         </Typography>
-        <Typography variant="body2" color="#007185">
-          {mappedOutLinks(description)}
-        </Typography>
+        {mappedOutLinks(description)}
       </Box>
     );
   };
