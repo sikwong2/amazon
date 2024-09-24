@@ -117,7 +117,7 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
       }
     `;
     const res = await fetch(
-      `/api/graphql`, {
+      `http://localhost:3000/api/graphql`, {
       method: 'POST',
       body: JSON.stringify({ query }),
       headers: {
