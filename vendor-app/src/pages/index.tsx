@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 });
 
 export default function Index() {
-  const title = 'CSE187 Vendor App';
+  const title = 'Ucsc-Amazon Vendor';
   return (
     <Fragment>
       <Head>

@@ -8,6 +8,7 @@ import { Checkout } from '@/views/Checkout';
 import { OrderHistory } from '@/views/OrderHistory';
 import { Home } from '@/views/Home';
 import { ComingSoon } from '@/views/ComingSoon';
+import Head from 'next/head';
 
 // this must be in page-level components (not in components in /view)
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
@@ -19,9 +20,12 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 // use Link to navigate to another page
 export default function Index() {
   const pageContext = React.useContext(PageContext);
-
+  const title = "Ucsc-Amazon"
   return (
     <Fragment>
+      <Head>
+        <title> {title} </title>
+      </Head>
       {pageContext.page === 'home' && <Home />}
       {pageContext.page === 'cart' && <Cart />}
       {pageContext.page === 'checkout' && <Checkout />}

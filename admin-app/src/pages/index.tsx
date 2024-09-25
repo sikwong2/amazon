@@ -15,13 +15,13 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
 });
 
 export default function Index() {
-  const title = 'CSE187 Admin App';
+  const title = 'Ucsc-Amazon Admin';
   return (
     <Fragment>
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <App />
       <Footer />
