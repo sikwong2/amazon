@@ -76,9 +76,8 @@ export default function CategoryTopBar() {
     console.log("go to change language page");
   }
 
-  // TODO: link to your account page
   const handleYourAccountClick = () => {
-    console.log("go to your account page");
+    router.push('/account');
   }
 
   const handleSignIn = () => {
