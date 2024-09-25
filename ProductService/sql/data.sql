@@ -304,7 +304,7 @@ DELETE FROM product;
     ('Sports & Outdoors'),
     ('Home, Garden & Tools'),
     ('Pet Supplies'),
-    ('Homeade'),
+    ('Homemade'),
     ('Beauty & Health'),
     ('Toys, Kids & Baby'),
     ('Food & Grocery'),
