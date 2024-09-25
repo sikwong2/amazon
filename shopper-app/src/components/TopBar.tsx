@@ -335,7 +335,6 @@ export default function TopBar() {
 					{'& ' + t("topbar.Orders")}
 				</Typography>
 			</Box>
-			{searchValue + '123'}
 		</Box>
 	</CustomButton>
 	)
