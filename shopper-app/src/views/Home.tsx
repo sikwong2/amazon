@@ -411,9 +411,9 @@ export function Home() {
           sx={{
             position: 'absolute',
             top: screen.width < 500 ? screen.width / 1.5 : 320,
-            width: '100vw',
+            width: '100%',
             zIndex: 3,
-            overflow: 'clip'
+            overflow: 'clip',
           }}
           justifyItems='left'
         >

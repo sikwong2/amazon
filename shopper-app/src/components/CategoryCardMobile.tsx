@@ -30,7 +30,7 @@ export default function CategoryCardMobile({ image, title }: CategoryCardMobileP
         height: '180px',
         margin: 0.75,
         alignItems: 'top',
-        maxHeight: '100%',
+        maxHeight: '50vw',
         maxWidth: screen.width < 500 ? screen.width / 3 - 12 : 140,
         justifyContent: 'center',
         display: 'flex',
