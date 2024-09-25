@@ -411,9 +411,9 @@ export function Home() {
           sx={{
             position: 'absolute',
             top: screen.width < 500 ? screen.width / 1.5 : 320,
-            width: '100%',
-            zIndex: 5000,
-            overflow: 'hidden'
+            width: '100vw',
+            zIndex: 3,
+            overflow: 'clip'
           }}
           justifyItems='left'
         >
@@ -423,10 +423,11 @@ export function Home() {
           sx={{
             background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
             position: 'absolute',
-            zIndex: 10
+            zIndex: 2,
           }}
           top={screen.width < 500 ? screen.width/1.5 : 310}
           width="100%"
+          maxWidth="auto"
           height={screen.width < 500 ? screen.width/3 + 1 : 170}
           />
         <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/5 : 60}/>

@@ -26,16 +26,17 @@ export default function CategoryCardMobile({ image, title }: CategoryCardMobileP
       type='rounded'
       elevation={0}
       sx={{
-        width: 'auto',
+        width: '100%',
         height: '180px',
-        margin: 1,
+        margin: 0.75,
         alignItems: 'top',
         maxHeight: '100%',
         maxWidth: screen.width < 500 ? screen.width / 3 - 12 : 140,
         justifyContent: 'center',
         display: 'flex',
         padding: 0,
-        overflow: 'hidden'
+        overflow: 'clip',
+        boxSizing: 'border-box',
       }}
     >
       <Stack width={screen.width < 500 ? screen.width / 3 - 16 : 128} height='176px' direction='column' display='flex' alignItems='center' margin='0.4rem' >
