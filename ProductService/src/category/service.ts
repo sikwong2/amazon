@@ -10,6 +10,20 @@ export class CategoryService {
     return rows;
   }
 
+  public async getCategoriesWithMinProduct(count: number): Promise<Category[]> {
+    const select = ` SELECT c.id, c.name
+      FROM category c
+      JOIN product_category pc ON c.id = pc.category_id
+      GROUP BY c.id
+      HAVING COUNT(pc.product_id) >= $1;`;
+    const query = {
+      text: select,
+      values: [count]
+    };
+    const {rows} = await pool.query(query);
+    return rows;
+  }
+
   public async getCategoriesOfProducts(productId: string): Promise<Category[]> {
     const select = {
       text: 'SELECT category_id as id, name FROM category c JOIN product_category pc ON c.id = pc.category_id WHERE pc.product_id = $1',

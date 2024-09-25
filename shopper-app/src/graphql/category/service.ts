@@ -40,4 +40,23 @@ export class CategoryService {
       throw new Error('error in CategoryService: getCategoriesOfProduct');
     }
   }
+
+  public async getCategoriesWithMinProducts(count: number): Promise<[Category]> {
+    try {
+      const res = await fetch(
+        `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/category/min-products/${count}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const json = await res.json();
+      return json;
+    } catch (e) {
+      console.error(e);
+      throw new Error('error in CategoryService: getCategoriesWithMinProducts');
+    }
+  }
 }

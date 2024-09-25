@@ -187,12 +187,13 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<b
 const fetchCategories = async (): Promise<string[]> => {
   try {
     const query = {
-      query: `query getAllCategories {
-      getAllCategories {
-        name
-      }
-    }`,
+      query: `query getCategoriesWithMinProducts {
+        getCategoriesWithMinProducts(count: 4) {
+          name
+        }
+      }`,
     };
+
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -200,12 +201,15 @@ const fetchCategories = async (): Promise<string[]> => {
         'Content-Type': 'application/json',
       },
     });
+
     const json = await res.json();
+    
     if (json.errors) {
-      console.error('Error fetching categoriess: ', json.errors);
-      throw new Error('Error fetching categoriess: ', json.errors);
+      console.error('Error fetching categories with minimum products: ', json.errors);
+      throw new Error('Error fetching categories with minimum products: ', json.errors);
     }
-    return json.data.getAllCategories.map((cat: { name: string }) => {return cat.name});
+
+    return json.data.getCategoriesWithMinProducts.map((cat: { name: string }) => cat.name);
   } catch (error) {
     console.error('Error fetching categories: ', error);
     throw error;
@@ -408,8 +412,8 @@ export function Home() {
             position: 'absolute',
             top: screen.width < 500 ? screen.width / 1.5 : 320,
             width: '100%',
-            zIndex: 5000,
-            overflow: 'hidden'
+            zIndex: 3,
+            overflow: 'clip',
           }}
           justifyItems='left'
         >
@@ -419,10 +423,11 @@ export function Home() {
           sx={{
             background: 'linear-gradient(to bottom, transparent, #E4E6E6)',
             position: 'absolute',
-            zIndex: 10
+            zIndex: 2,
           }}
           top={screen.width < 500 ? screen.width/1.5 : 310}
           width="100%"
+          maxWidth="auto"
           height={screen.width < 500 ? screen.width/3 + 1 : 170}
           />
         <Box bgcolor='#E4E6E6' width="100%" height={screen.width < 500 ? screen.width/5 : 60}/>

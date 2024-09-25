@@ -15,4 +15,11 @@ export class CategoryResolver {
   ): Promise<[Category]> {
     return await new CategoryService().getCategoriesOfProduct(productId);
   }
+
+  @Query(() => [Category])
+  async getCategoriesWithMinProducts(
+    @Arg('count') count: number
+  ): Promise<[Category]> {
+    return await new CategoryService().getCategoriesWithMinProducts(count);
+  }
 }

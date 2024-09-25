@@ -16,6 +16,13 @@ export class CategoryController extends Controller {
     return await new CategoryService().getCategoriesOfProducts(productId);
   }
 
+  @Get('/min-products/{count}')
+  public async getCategoriesWithMinProducts(
+    @Path() count: number
+  ): Promise<Category[]> {
+    return await new CategoryService().getCategoriesWithMinProduct(count);
+  }
+
   @Get('/name/{categoryId}')
   @Response('404', 'Category Not Found')
   public async getCategoryById(
