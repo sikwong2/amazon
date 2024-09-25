@@ -187,12 +187,13 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<b
 const fetchCategories = async (): Promise<string[]> => {
   try {
     const query = {
-      query: `query getAllCategories {
-      getAllCategories {
-        name
-      }
-    }`,
+      query: `query getCategoriesWithMinProducts {
+        getCategoriesWithMinProducts(count: 4) {
+          name
+        }
+      }`,
     };
+
     const res = await fetch('/api/graphql', {
       method: 'POST',
       body: JSON.stringify(query),
@@ -200,12 +201,15 @@ const fetchCategories = async (): Promise<string[]> => {
         'Content-Type': 'application/json',
       },
     });
+
     const json = await res.json();
+    
     if (json.errors) {
-      console.error('Error fetching categoriess: ', json.errors);
-      throw new Error('Error fetching categoriess: ', json.errors);
+      console.error('Error fetching categories with minimum products: ', json.errors);
+      throw new Error('Error fetching categories with minimum products: ', json.errors);
     }
-    return json.data.getAllCategories.map((cat: { name: string }) => {return cat.name});
+
+    return json.data.getCategoriesWithMinProducts.map((cat: { name: string }) => cat.name);
   } catch (error) {
     console.error('Error fetching categories: ', error);
     throw error;
