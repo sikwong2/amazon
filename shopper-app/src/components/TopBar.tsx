@@ -118,11 +118,11 @@ export default function TopBar() {
 
 	const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchField(event.target.value);
+		setSearchValue(event.target.value);
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
-			setSearchValue(searchField);
 			handleSearch();
 		}
 	};
@@ -130,13 +130,6 @@ export default function TopBar() {
 	const handleSignIn = () => {
 		router.push('/login');
 	};
-
-	const handleSignOut = () => {
-		loginContext.setUserName('');
-		loginContext.setAccessToken('');
-		loginContext.setId('');
-		loginContext.setRole('');
-	}
 
 	const handleOrders = () => {
 		pageContext.setPage('orderHistory');
@@ -172,7 +165,7 @@ export default function TopBar() {
 				}
 			}`,
 			};
-			const res = await fetch('/api/graphql', {
+			const res = await fetch('http://localhost:3000/api/graphql', {
 				method: 'POST',
 				body: JSON.stringify(query),
 				headers: {
@@ -181,7 +174,7 @@ export default function TopBar() {
 			});
 			const json = await res.json();
 			if (json.errors) {
-				console.log('GraphQL Errors:', json.errors);
+				console.error('GraphQL Errors:', json.errors);
 				throw new Error('Error fetching user info');
 			}
 			return json.data.getMemberInfo;
