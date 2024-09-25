@@ -131,13 +131,6 @@ export default function TopBar() {
 		router.push('/login');
 	};
 
-	const handleSignOut = () => {
-		loginContext.setUserName('');
-		loginContext.setAccessToken('');
-		loginContext.setId('');
-		loginContext.setRole('');
-	}
-
 	const handleOrders = () => {
 		pageContext.setPage('orderHistory');
 		router.push('/');
@@ -172,7 +165,7 @@ export default function TopBar() {
 				}
 			}`,
 			};
-			const res = await fetch('/api/graphql', {
+			const res = await fetch('http://localhost:3000/api/graphql', {
 				method: 'POST',
 				body: JSON.stringify(query),
 				headers: {
