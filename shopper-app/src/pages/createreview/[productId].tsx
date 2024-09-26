@@ -131,7 +131,7 @@ export default function CreateReviewPage({ product }: CreateReviewProp) {
       }
 
 
-      fetch('http://localhost:3000/api/graphql', {
+      fetch('/api/graphql', {
         method: 'POST',
         body: JSON.stringify(query),
         headers: {

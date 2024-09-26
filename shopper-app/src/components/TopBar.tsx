@@ -165,7 +165,7 @@ export default function TopBar() {
 				}
 			}`,
 			};
-			const res = await fetch('http://localhost:3000/api/graphql', {
+			const res = await fetch('/api/graphql', {
 				method: 'POST',
 				body: JSON.stringify(query),
 				headers: {

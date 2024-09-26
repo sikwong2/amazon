@@ -117,7 +117,7 @@ const addBrowserHistory = async (memberId: string, productId: string): Promise<B
       }
     `;
     const res = await fetch(
-      `http://localhost:3000/api/graphql`, {
+      `/api/graphql`, {
       method: 'POST',
       body: JSON.stringify({ query }),
       headers: {
@@ -150,7 +150,7 @@ const fetchRatings = async (productId: string): Promise<RatingHistogram> => {
       }
     }`
   };
-  const res2 = await fetch('http://localhost:3000/api/graphql', {
+  const res2 = await fetch('/api/graphql', {
     method: 'POST',
     body: JSON.stringify(queryratings),
     headers: {
@@ -197,7 +197,7 @@ const fetchReviews = async (productId: string, helpful: boolean): Promise<Review
       }
     }`
   };
-  const res = await fetch('http://localhost:3000/api/graphql', {
+  const res = await fetch('/api/graphql', {
     method: 'POST',
     body: JSON.stringify(query),
     headers: {
