@@ -2,6 +2,9 @@
 
 This project is a clone of Amazon developed as a school project by CSE187 Group 2. The project is structured as with multiple services and applications, including account microservice, order microservice, product microservice, and separate front-end applications for admin, vendor, and shopper interfaces. The project leverages Docker for containerization. The outer root directory docker-compose.yml contains the database used by all services.
 
+Check it out here:
+https://www.ucsc-amazon.com/
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
