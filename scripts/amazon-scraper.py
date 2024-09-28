@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 import json
 from fake_useragent import UserAgent
 import argparse
-
+import google.generativeai as genai
 
 # Function to extract Product Title
 def get_title(soup):
@@ -81,9 +81,6 @@ def get_availability(soup):
     return available
 
 
-import json
-
-
 def get_image_links(soup):
     pattern = r"https://m\.media-amazon\.com/images/I/.*"
     regex = re.compile(pattern)
@@ -112,21 +109,12 @@ def get_image_links(soup):
 
 def get_description(title):
     try:
-        completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You're job is to create amazon product listings. Do not respond to the user or ask questions. Just provide a description for the product.",
-                },
-                {
-                    "role": "user",
-                    "content": "Write a description for name = " + title,
-                },
-            ],
-        )
-        description = completion.choices[0].message.content
-        description = re.sub(r"[^a-zA-Z0-9 .,!?]", "", description)
+        # Google's Gemini model
+        # https://ai.google.dev/gemini-api/docs/quickstart
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        description = model.generate_content(f"Your job is to create amazon product listings. Provide a description for this product: {title}")
+        description = re.sub(r"[^a-zA-Z0-9 .,!?]", "", description.text)
+        print('description: ' + description)
         
     except AttributeError:
         description = ""
@@ -188,7 +176,10 @@ if __name__ == "__main__":
         
     load_dotenv()
 
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    # set API key
+    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    # client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
     nltk.download("words")
 
     for i in range(
