@@ -12,6 +12,10 @@ from fake_useragent import UserAgent
 import argparse
 import google.generativeai as genai
 
+# LINKS:
+# https://oxylabs.io/blog/how-to-scrape-amazon-product-data
+# https://www.digitalocean.com/community/tutorials/scrape-amazon-product-information-beautiful-soup#python-script-to-extract-product-details-across-multiple-webpages
+
 # Function to extract Product Title
 def get_title(soup):
 
@@ -53,8 +57,15 @@ def get_price(soup):
 
 # Function to extract Product Rating
 def get_rating(soup):
-    return random.randint(0, 5)
-
+    try:
+        rating = soup.find("i", attrs={'class':'a-icon a-icon-star a-star-4-5'}).string.strip()
+    except AttributeError:
+        try:
+            rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
+        except:
+            rating = ""
+    print(rating[:3])
+    return rating[:3]
 
 # Function to extract Number of User Reviews
 def get_review_count(soup):
@@ -167,7 +178,7 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
-    
+
     # Parse the arguments
     args = parser.parse_args()
 
