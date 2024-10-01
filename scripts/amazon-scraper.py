@@ -58,14 +58,13 @@ def get_price(soup):
 # Function to extract Product Rating
 def get_rating(soup):
     try:
-        rating = soup.find("i", attrs={'class':'a-icon a-icon-star a-star-4-5'}).string.strip()
+        rating = soup.find("i", attrs={'class':'a-size-base a-color-base'}).string.strip()
     except AttributeError:
         try:
             rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
         except:
             rating = ""
-    print(rating[:3])
-    return rating[:3]
+    return rating.replace('out of 5 stars', '')
 
 # Function to extract Number of User Reviews
 def get_review_count(soup):
