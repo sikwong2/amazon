@@ -29,13 +29,14 @@ def get_title(soup):
         # Title as a string value
         title_string = title_value.strip()
         
-        title_string = re.sub(r"[^a-zA-Z0-9 .,!?]", "", title_string)
+        # title_string = re.sub(r"[^a-zA-Z0-9 .,!?\-/&]", "", title_string)
 
     except AttributeError as e:
+        print('get_title() failed: ', e)
         title_string = ""
 
+    print('title_string: ', title_string)
     return title_string
-
 
 # Function to extract Product Price
 def get_price(soup):
@@ -52,8 +53,8 @@ def get_price(soup):
     except AttributeError:
         price = None
 
+    print('price: ', price)
     return price
-
 
 # Function to extract Product Rating
 def get_rating(soup):
@@ -64,7 +65,8 @@ def get_rating(soup):
             rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
         except:
             rating = ""
-    return rating.replace('out of 5 stars', '')
+    print('rating: ', rating)
+    return rating.replace(' out of 5 stars', '')
 
 # Function to extract Number of User Reviews
 def get_review_count(soup):
@@ -76,8 +78,8 @@ def get_review_count(soup):
     except AttributeError:
         review_count = ""
 
+    print('review_count: ', review_count)
     return review_count
-
 
 # Function to extract Availability Status
 def get_availability(soup):
@@ -88,8 +90,8 @@ def get_availability(soup):
     except AttributeError:
         available = ""
 
+    print('available: ', available)
     return available
-
 
 def get_image_links(soup):
     pattern = r"https://m\.media-amazon\.com/images/I/.*"
@@ -114,27 +116,56 @@ def get_image_links(soup):
     if len(image_links) > 5:
         image_links = random.sample(image_links, 5)
 
+    print('images: ', image_links)
     return image_links
 
-
-def get_description(title):
+def generate_description(title):
     try:
         # Google's Gemini model
         # https://ai.google.dev/gemini-api/docs/quickstart
         model = genai.GenerativeModel('gemini-1.5-flash')
         description = model.generate_content(f"Your job is to create amazon product listings. Provide a description for this product: {title}")
         description = re.sub(r"[^a-zA-Z0-9 .,!?]", "", description.text)
-        print('description: ' + description)
         
     except AttributeError:
         description = ""
 
+    print('description: ' + description)
     return description
 
+def get_about_this_item(soup, title):
+    about_section = []
+    
+    try:
+        # Locate the unordered list
+        about_list = soup.find('ul', attrs={'class': 'a-unordered-list a-vertical a-spacing-mini'})
+        # Find all list items within the unordered list
+        items = about_list.find_all('li', attrs={'class': 'a-spacing-mini'})
+        
+        # Loop through each list item and extract the text
+        for item in items:
+            text = item.find('span', class_='a-list-item').get_text(strip=True).replace("\"", "\'")
+            about_section.append(text)
+    
+    except AttributeError:
+        try:
+            # try to get book description
+            book_description = soup.find('div', attrs={"id": "bookDescription_feature_div"}).string.strip()
+            about_section.append(book_description)
+        except:
+            try: 
+                # try to get product description
+                product_description = soup.find('div', attrs={'id': 'productDescription'})
+                about_section.append(product_description)
+            except:
+                # If can't find product description or book description, use Gemini to generate one
+                about_section.append(generate_description(title))
+    
+    print('about_section: ', json.dumps(about_section))
+    return json.dumps(about_section)
 
 def get_stock():
     return random.randint(0, 100)
-
 
 def get_product_link(soup):
     # Regex to match Amazon product ID
@@ -152,19 +183,17 @@ def get_product_link(soup):
     # If no product link was found, return None
     return None
 
-
 def generate_random_word():
     word_list = words.words()
     random_word = random.choice(word_list)
     return random_word
-
 
 def generate_curl_command(
     url, bearer_token, name, price, stock, rating, image, category, description
 ):
     image_with_quotes = "[" + ", ".join([json.dumps(img) for img in image]) + "]"
 
-    curl_command = f"""curl -k -X 'POST' \\\n  '{url}' \\\n  -H 'accept: application/json' \\\n  -H 'Authorization: Bearer {bearer_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{{\n  "name": "{name}",\n  "price": {price},\n  "stock": {stock},\n  "rating": {rating},\n  "image": {image_with_quotes},\n  "category": {category},\n  "description": ["{description}"]\n}}'\n"""
+    curl_command = f"""curl -k -X 'POST' \\\n  '{url}' \\\n  -H 'accept: application/json' \\\n  -H 'Authorization: Bearer {bearer_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{{\n  "name": "{name}",\n  "price": {price},\n  "stock": {stock},\n  "rating": {rating},\n  "image": {image_with_quotes},\n  "category": {category},\n  "description": {description}\n}}'\n"""
     return curl_command
 
 
@@ -241,15 +270,15 @@ if __name__ == "__main__":
         name = get_title(soup)
         
         if name == "":
-            name = random_word
+            print("Failed to scrape title, probably not a product page. Skipping")
+            continue        # chat/gemini can't generate description off of one word
         
         price = get_price(soup)
         stock = get_stock()
         rating = get_rating(soup)
         image = get_image_links(soup)
         category = f'["Generated"]'
-        description = get_description(name)
-    
+        description = get_about_this_item(soup, name)
 
         # Skip this iteration if any variable is missing
         if not all([name, price, stock, rating, image, category, description]):
