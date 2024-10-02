@@ -15,6 +15,7 @@ import google.generativeai as genai
 # LINKS:
 # https://oxylabs.io/blog/how-to-scrape-amazon-product-data
 # https://www.digitalocean.com/community/tutorials/scrape-amazon-product-information-beautiful-soup#python-script-to-extract-product-details-across-multiple-webpages
+# https://www.scrapingbee.com/blog/web-scraping-amazon/#how-to-extract-amazoncomhttpamazoncom-product-information
 
 # Function to extract Product Title
 def get_title(soup):
@@ -35,8 +36,8 @@ def get_title(soup):
         print('get_title() failed: ', e)
         title_string = ""
 
-    print('title_string: ', title_string)
-    return title_string
+    print('title_string: ', title_string.replace("'", "’"))
+    return title_string.replace("'", "’")
 
 # Function to extract Product Price
 def get_price(soup):
@@ -50,8 +51,10 @@ def get_price(soup):
         price = price + price_decimal
         price = float(price.replace(",", ""))
 
-    except AttributeError:
-        price = None
+    except AttributeError as e:
+        # if can't scrape price, generate random price
+        print('get_price() error: ', e)
+        price = round(random.uniform(0.99, 9999.99), 2)
 
     print('price: ', price)
     return price
@@ -65,7 +68,14 @@ def get_rating(soup):
             rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
         except:
             rating = ""
-    print('rating: ', rating)
+
+    print('OGrating: ', rating)
+    # if cannot find rating, randomize one
+    if (re.match(r'^[0-5]\.[0-9]?.*$', rating) == None):
+        rating = str(round(random.uniform(3.0, 5.0), 1))
+
+    match = re.match(r'^([0-5]\.[0-9]?).*$', rating)
+    print('rating: ', match.group(0))
     return rating.replace(' out of 5 stars', '')
 
 # Function to extract Number of User Reviews
@@ -144,24 +154,28 @@ def get_about_this_item(soup, title):
         
         # Loop through each list item and extract the text
         for item in items:
-            text = item.find('span', class_='a-list-item').get_text(strip=True).replace("\"", "\'")
+            text = item.find('span', class_='a-list-item').get_text(strip=True).replace("\"", "’").replace("'", "’")
             about_section.append(text)
     
-    except AttributeError:
+    except:
         try:
             # try to get book description
             book_description = soup.find('div', attrs={"id": "bookDescription_feature_div"}).string.strip()
+            print('book description: ',soup.find('div', attrs={"id": "bookDescription_feature_div"}))
             about_section.append(book_description)
         except:
             try: 
                 # try to get product description
-                product_description = soup.find('div', attrs={'id': 'productDescription'})
+                product_description = soup.find('div', attrs={'id': 'productDescription'}).string.strip()
                 about_section.append(product_description)
             except:
                 # If can't find product description or book description, use Gemini to generate one
                 about_section.append(generate_description(title))
-    
-    print('about_section: ', json.dumps(about_section))
+
+    # If can't find about-this-item or product description, generate a product description
+    if(about_section == []): about_section.append(generate_description(title))
+
+    print('about_section: ', about_section)
     return json.dumps(about_section)
 
 def get_stock():
@@ -206,7 +220,7 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
-
+    
     # Parse the arguments
     args = parser.parse_args()
 
@@ -277,7 +291,7 @@ if __name__ == "__main__":
         stock = get_stock()
         rating = get_rating(soup)
         image = get_image_links(soup)
-        category = f'["Generated"]'
+        category = f'["Generated"]' # TODO
         description = get_about_this_item(soup, name)
 
         # Skip this iteration if any variable is missing
