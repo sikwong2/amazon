@@ -94,7 +94,7 @@ def get_review_count(soup):
 # Function to extract Availability Status
 def get_availability(soup):
     try:
-        available = soup.find("div", attrs={"class": "availability"})
+        available = soup.find("div", attrs={"id": "availability"})
         available = available.find("span").string.strip()
 
     except AttributeError:
@@ -107,8 +107,8 @@ def get_availability(soup):
 def get_image_links(searchpage):
     image_links = re.findall('"hiRes":"(.+?)"', searchpage.text)
 
-    print('images: ', image_links)
     # max of 10 images
+    print('images: ', image_links)
     return image_links[:10]
 
 # Function to AI generate product description
@@ -162,10 +162,12 @@ def get_about_this_item(soup, title):
     print('about_section: ', about_section)
     return json.dumps(about_section)
 
-# TODO: utilize get_availability()
 # Function to generate random product stock
-def get_stock():
-    return random.randint(0, 100)
+def get_stock(soup):
+    if(get_availability(soup) == 'In Stock'):
+        return random.randint(10, 1000)
+    else:
+        return random.randint(1, 10)
 
 # Function to extract product link
 def get_product_link(soup):
@@ -209,7 +211,7 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
-    
+
     # Parse the arguments
     args = parser.parse_args()
 
@@ -281,7 +283,7 @@ if __name__ == "__main__":
             continue        # chat/gemini can't generate description off of one word
         
         price = get_price(soup)
-        stock = get_stock()
+        stock = get_stock(soup)
         rating = get_rating(soup)
         image = get_image_links(webpage)
         category = f'["Generated"]' # TODO
