@@ -37,7 +37,7 @@ def get_title(soup):
         title_string = ""
 
     print('title_string: ', title_string.replace("'", "’").replace("\"", "’"))
-    return title_string.replace("'", "’").replace("\"", "’")
+    return json.dumps(title_string.replace("'", "’"))[1:-1]   # remove extra quotes
 
 # Function to extract Product Price
 def get_price(soup):
@@ -60,6 +60,7 @@ def get_price(soup):
     return price
 
 # Function to extract Product Rating
+# TODO: sometimes not finding rating?
 def get_rating(soup):
     try:
         rating = soup.find("i", attrs={'class':'a-size-base a-color-base'}).string.strip()
@@ -100,15 +101,15 @@ def get_availability(soup):
     except AttributeError:
         available = ""
 
-    print('available: ', available)
+    print(f"available: *{available}*")
     return available
 
 # Function to extract Product Images
 def get_image_links(searchpage):
     image_links = re.findall('"hiRes":"(.+?)"', searchpage.text)
 
-    # max of 10 images
     print('images: ', image_links)
+    # max of 10 images
     return image_links[:10]
 
 # Function to AI generate product description
@@ -138,33 +139,34 @@ def get_about_this_item(soup, title):
         
         # Loop through each list item and extract the text
         for item in items:
-            text = item.find('span', class_='a-list-item').get_text(strip=True).replace("\"", "’").replace("'", "’")
+            text = item.find('span', class_='a-list-item').get_text(strip=True).replace("'", "’")
             about_section.append(text)
     
     except:
         try:
             # try to get book description
-            print('*****book description: ', soup.find('div', attrs={"id": "bookDescription_feature_div"}))
-            book_description = soup.find('div', attrs={"id": "bookDescription_feature_div"}).string.strip()
-            about_section.append(book_description)
+            book_description_div = soup.find('div', attrs={"id": "bookDescription_feature_div"})
+            book_description_text = book_description_div.find('span').get_text(strip=True)
+            about_section.append(book_description_text.replace("'", "’"))
         except:
             try: 
                 # try to get product description
                 product_description = soup.find('div', attrs={'id': 'productDescription'}).string.strip()
-                about_section.append(product_description)
+                about_section.append(product_description.replace("'", "’"))
             except:
                 # If can't find product description or book description, use Gemini to generate one
-                about_section.append(generate_description(title))
+                about_section.append(generate_description(title).replace("'", "’"))
 
     # If can't find about-this-item or product description, generate a product description
-    if(about_section == []): about_section.append(generate_description(title))
+    if(about_section == []): about_section.append(generate_description(title).replace("'", "’"))
 
     print('about_section: ', about_section)
     return json.dumps(about_section)
 
 # Function to generate random product stock
 def get_stock(soup):
-    if(get_availability(soup) == 'In Stock'):
+    availability = get_availability(soup)
+    if(availability == '' or availability == 'In Stock'):
         return random.randint(10, 1000)
     else:
         return random.randint(1, 10)
@@ -211,7 +213,7 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
-
+   
     # Parse the arguments
     args = parser.parse_args()
 
