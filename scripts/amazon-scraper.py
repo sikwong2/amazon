@@ -36,8 +36,8 @@ def get_title(soup):
         print('get_title() failed: ', e)
         title_string = ""
 
-    print('title_string: ', title_string.replace("'", "’"))
-    return title_string.replace("'", "’")
+    print('title_string: ', title_string.replace("'", "’").replace("\"", "’"))
+    return title_string.replace("'", "’").replace("\"", "’")
 
 # Function to extract Product Price
 def get_price(soup):
@@ -108,7 +108,8 @@ def get_image_links(searchpage):
     image_links = re.findall('"hiRes":"(.+?)"', searchpage.text)
 
     print('images: ', image_links)
-    return image_links
+    # max of 10 images
+    return image_links[:10]
 
 # Function to AI generate product description
 def generate_description(title):
@@ -143,8 +144,8 @@ def get_about_this_item(soup, title):
     except:
         try:
             # try to get book description
+            print('*****book description: ', soup.find('div', attrs={"id": "bookDescription_feature_div"}))
             book_description = soup.find('div', attrs={"id": "bookDescription_feature_div"}).string.strip()
-            print('*****book description: ',soup.find('div', attrs={"id": "bookDescription_feature_div"}))
             about_section.append(book_description)
         except:
             try: 
