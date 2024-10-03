@@ -103,32 +103,14 @@ def get_availability(soup):
     print('available: ', available)
     return available
 
-def get_image_links(soup):
-    pattern = r"https://m\.media-amazon\.com/images/I/.*"
-    regex = re.compile(pattern)
-
-    # Find all image tags on the page
-    image_tags = soup.find_all("img")
-
-    # Filter the image tags based on the regex and extract the URLs from the 'data-a-dynamic-image' attribute
-    image_links = []
-    for img in image_tags:
-        if img.get("data-a-dynamic-image"):
-            dynamic_images = json.loads(img.get("data-a-dynamic-image"))
-            image_links.extend(
-                [url for url in dynamic_images.keys() if regex.match(url)]
-            )
-
-    if not image_links:
-        return None
-
-    # Select five random images
-    if len(image_links) > 5:
-        image_links = random.sample(image_links, 5)
+# Function to extract Product Images
+def get_image_links(searchpage):
+    image_links = re.findall('"hiRes":"(.+?)"', searchpage.text)
 
     print('images: ', image_links)
     return image_links
 
+# Function to AI generate product description
 def generate_description(title):
     try:
         # Google's Gemini model
@@ -140,9 +122,10 @@ def generate_description(title):
     except AttributeError:
         description = ""
 
-    print('description: ' + description)
+    print('description has been generated')
     return description
 
+# Function to extract product info
 def get_about_this_item(soup, title):
     about_section = []
     
@@ -161,7 +144,7 @@ def get_about_this_item(soup, title):
         try:
             # try to get book description
             book_description = soup.find('div', attrs={"id": "bookDescription_feature_div"}).string.strip()
-            print('book description: ',soup.find('div', attrs={"id": "bookDescription_feature_div"}))
+            print('*****book description: ',soup.find('div', attrs={"id": "bookDescription_feature_div"}))
             about_section.append(book_description)
         except:
             try: 
@@ -178,9 +161,12 @@ def get_about_this_item(soup, title):
     print('about_section: ', about_section)
     return json.dumps(about_section)
 
+# TODO: utilize get_availability()
+# Function to generate random product stock
 def get_stock():
     return random.randint(0, 100)
 
+# Function to extract product link
 def get_product_link(soup):
     # Regex to match Amazon product ID
     regex = re.compile(r"/dp/([A-Z0-9]{10})")
@@ -197,11 +183,13 @@ def get_product_link(soup):
     # If no product link was found, return None
     return None
 
+# Function to generate a random word
 def generate_random_word():
     word_list = words.words()
     random_word = random.choice(word_list)
     return random_word
 
+# Function to generate curl commands
 def generate_curl_command(
     url, bearer_token, name, price, stock, rating, image, category, description
 ):
@@ -242,7 +230,11 @@ if __name__ == "__main__":
         ua = UserAgent()
 
         HEADERS = {
-            "User-Agent": ua.random,
+            'User-Agent': ('Mozilla/5.0 (X11; Linux x86_64)'
+                    'AppleWebKit/537.36 (KHTML, like Gecko)'
+                    'Chrome/44.0.2403.157 Safari/537.36'),
+            # Random user-agent fails too often
+            # "User-Agent": ua.random,
             "Accept-Language": "en-US, en;q=0.5",
         }
         random_word = generate_random_word()
@@ -290,7 +282,7 @@ if __name__ == "__main__":
         price = get_price(soup)
         stock = get_stock()
         rating = get_rating(soup)
-        image = get_image_links(soup)
+        image = get_image_links(webpage)
         category = f'["Generated"]' # TODO
         description = get_about_this_item(soup, name)
 
