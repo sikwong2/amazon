@@ -113,6 +113,7 @@ def get_image_links(searchpage):
     return image_links[:10]
 
 # Function to AI generate product description
+# TODO: better prompt
 def generate_description(title):
     try:
         # Google's Gemini model
@@ -176,27 +177,30 @@ def get_stock(soup):
 
 # Function to extract best seller categories
 def get_best_sellers(soup):
-    categories = ["Generated"]
+    categories = []
     try:
-
+        # Find parent of Best Sellers Rank under Product Details
         best_sellers_li = soup.find('span', attrs={"class": "a-text-bold"}, string=' Best Sellers Rank: ').parent
         
         # Find first category
         first_rank = best_sellers_li.find(string=re.compile(r'#\d+[,\d]* in'))
         if(first_rank):
-            # Clean up category text
+            # Remove rank text
             cleaned_first_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', first_rank.strip())
-            categories.append(cleaned_first_category)
-        # TODO: fix clean up 
+            # Remove parenthesis
+            cleaned_first_category = re.sub(r'\(.*\)?', '', cleaned_first_category)
+            categories.append(cleaned_first_category.strip())
 
         # Find rest of best seller ranks in list
         best_seller_ranks_list = best_sellers_li.find_all('li')
         # Clean up category text
         for category in best_seller_ranks_list:
-            category_text = category.get_text(strip=True)
+            category_text = category.get_text()
             # Remove rank text
             cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
-            categories.append(json.dumps(cleaned_category))
+            # Remove parenthesis
+            cleaned_category = re.sub(r'\(.*\)?', '', cleaned_category)
+            categories.append((cleaned_category.strip()))
 
     except AttributeError as e:
         print('error getting best sellers1: ', e)
@@ -228,7 +232,8 @@ def get_categories(soup):
     best_sellers = get_best_sellers(soup)
     # breadcrumb_categories = get_breadcrumb(soup)
 
-    return best_sellers
+    # ?randomize order??
+    return json.dumps(best_sellers + ["Generated"])
 
 # Function to extract product link
 def get_product_link(soup):
