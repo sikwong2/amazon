@@ -146,8 +146,11 @@ def get_about_this_item(soup, title):
         try:
             # try to get book description
             book_description_div = soup.find('div', attrs={"id": "bookDescription_feature_div"})
-            book_description_text = book_description_div.find('span').get_text(strip=True)
-            about_section.append(book_description_text.replace("'", "’"))
+            book_description_texts = book_description_div.find_all('span')
+            book_description = ""
+            for text in book_description_texts:
+                book_description += text.get_text(strip=True) + " "
+            about_section.append(book_description.replace("'", "’"))
         except:
             try: 
                 # try to get product description
