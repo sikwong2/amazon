@@ -174,6 +174,62 @@ def get_stock(soup):
     else:
         return random.randint(1, 10)
 
+# Function to extract best seller categories
+def get_best_sellers(soup):
+    categories = ["Generated"]
+    try:
+
+        best_sellers_li = soup.find('span', attrs={"class": "a-text-bold"}, string=' Best Sellers Rank: ').parent
+        
+        # Find first category
+        first_rank = best_sellers_li.find(string=re.compile(r'#\d+[,\d]* in'))
+        if(first_rank):
+            # Clean up category text
+            cleaned_first_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', first_rank.strip())
+            categories.append(cleaned_first_category)
+        # TODO: fix clean up 
+
+        # Find rest of best seller ranks in list
+        best_seller_ranks_list = best_sellers_li.find_all('li')
+        # Clean up category text
+        for category in best_seller_ranks_list:
+            category_text = category.get_text(strip=True)
+            # Remove rank text
+            cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
+            categories.append(json.dumps(cleaned_category))
+
+    except AttributeError as e:
+        print('error getting best sellers1: ', e)
+
+        try:
+            # ! DOESN't WORK
+            # Find Best Sellers Rank row in the Item details table
+            best_sellers_rank_row = soup.find('th', string='Best Sellers Rank')
+            # .find_next('td')
+            # Find all categories listed
+            best_seller_categories = best_sellers_rank_row.find_all('span')
+            # Clean up category text
+            for category in best_seller_categories:
+                category_text = category.get_text(strip=True)
+                # Remove rank text
+                cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
+                categories.appened(cleaned_category)
+        except AttributeError as e:
+            print('error getting best sellers2: ', e)
+
+    print('best_sellers: ', categories)
+    return categories
+
+# Function to extract categories from breadcrumb
+# def get_breadcrumb(soup):
+
+# Function to extract product categories
+def get_categories(soup):
+    best_sellers = get_best_sellers(soup)
+    # breadcrumb_categories = get_breadcrumb(soup)
+
+    return best_sellers
+
 # Function to extract product link
 def get_product_link(soup):
     # Regex to match Amazon product ID
@@ -291,7 +347,7 @@ if __name__ == "__main__":
         stock = get_stock(soup)
         rating = get_rating(soup)
         image = get_image_links(webpage)
-        category = f'["Generated"]' # TODO
+        category = get_categories(soup)
         description = get_about_this_item(soup, name)
 
         # Skip this iteration if any variable is missing
