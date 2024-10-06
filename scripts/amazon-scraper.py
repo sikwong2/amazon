@@ -110,7 +110,7 @@ def get_image_links(searchpage):
 
     print('images: ', image_links)
     # max of 10 images
-    return image_links[:10]
+    return list(set(image_links[:10]))
 
 # Function to AI generate product description
 # TODO: better prompt
@@ -178,7 +178,9 @@ def get_stock(soup):
 # Function to extract best seller categories
 def get_best_sellers(soup):
     categories = []
+    best_seller_ranks = []
     try:
+        print('***try normal product info')
         # Find parent of Best Sellers Rank under Product Details
         best_sellers_li = soup.find('span', attrs={"class": "a-text-bold"}, string=' Best Sellers Rank: ').parent
         
@@ -189,51 +191,53 @@ def get_best_sellers(soup):
             cleaned_first_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', first_rank.strip())
             # Remove parenthesis
             cleaned_first_category = re.sub(r'\(.*\)?', '', cleaned_first_category)
-            categories.append(cleaned_first_category.strip())
+            categories.append(cleaned_first_category.replace("'", "’").strip())
 
         # Find rest of best seller ranks in list
-        best_seller_ranks_list = best_sellers_li.find_all('li')
-        # Clean up category text
-        for category in best_seller_ranks_list:
-            category_text = category.get_text()
-            # Remove rank text
-            cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
-            # Remove parenthesis
-            cleaned_category = re.sub(r'\(.*\)?', '', cleaned_category)
-            categories.append((cleaned_category.strip()))
+        best_seller_ranks = best_sellers_li.find_all('li')
 
     except AttributeError as e:
         print('error getting best sellers1: ', e)
 
         try:
-            # ! DOESN't WORK
+            print('***try item details table')
             # Find Best Sellers Rank row in the Item details table
-            best_sellers_rank_row = soup.find('th', string='Best Sellers Rank')
-            # .find_next('td')
-            # Find all categories listed
-            best_seller_categories = best_sellers_rank_row.find_all('span')
-            # Clean up category text
-            for category in best_seller_categories:
-                category_text = category.get_text(strip=True)
-                # Remove rank text
-                cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
-                categories.appened(cleaned_category)
+            best_sellers_rank_row = soup.find("th", string=" Best Sellers Rank ").find_next('td')
+
+            # Find best seller ranks in table row
+            best_seller_ranks = best_sellers_rank_row.find_all('span')
+
         except AttributeError as e:
+            print('***failed both')
             print('error getting best sellers2: ', e)
+    
+    # Clean up category text
+    for category in best_seller_ranks:
+        category_text = category.get_text()
+        # Remove rank text
+        cleaned_category = re.sub(r'#\d+[,\d]*\s+in\s+', '', category_text.strip())
+        # Remove parenthesis
+        cleaned_category = re.sub(r'\(.*\)?', '', cleaned_category)
+        
+        categories.append(cleaned_category.replace("'", "’").strip())
 
     print('best_sellers: ', categories)
     return categories
 
 # Function to extract categories from breadcrumb
-# def get_breadcrumb(soup):
+def get_breadcrumb(soup):
+    categories = []
+
+    return categories
 
 # Function to extract product categories
 def get_categories(soup):
-    best_sellers = get_best_sellers(soup)
-    # breadcrumb_categories = get_breadcrumb(soup)
+    best_seller_categories = get_best_sellers(soup)
+    breadcrumb_categories = get_breadcrumb(soup)
+    categories_set = list(set(best_seller_categories + breadcrumb_categories))
+    random.shuffle(categories_set)
 
-    # ?randomize order??
-    return json.dumps(best_sellers + ["Generated"])
+    return json.dumps(categories_set + ["Generated"])
 
 # Function to extract product link
 def get_product_link(soup):
@@ -277,7 +281,7 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
-   
+
     # Parse the arguments
     args = parser.parse_args()
 
