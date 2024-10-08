@@ -106,9 +106,10 @@ def get_availability(soup):
 
 # Function to extract Product Images
 def get_image_links(searchpage):
+    # Find hi-res images
     image_links = re.findall('"hiRes":"(.+?)"', searchpage.text)
 
-    print('images: ', image_links)
+    print('images: ', image_links[:10])
     # max of 10 images
     return list(set(image_links[:10]))
 
@@ -162,7 +163,7 @@ def get_about_this_item(soup, title):
                 about_section.append(generate_description(title).replace("'", "’"))
 
     # If can't find about-this-item or product description, generate a product description
-    if(about_section == []): about_section.append(generate_description(title).replace("'", "’"))
+    if(about_section == [] or about_section == ['']): about_section.append(generate_description(title).replace("'", "’"))
 
     print('about_section: ', about_section)
     return json.dumps(about_section)
@@ -180,7 +181,6 @@ def get_best_sellers(soup):
     categories = []
     best_seller_ranks = []
     try:
-        print('***try normal product info')
         # Find parent of Best Sellers Rank under Product Details
         best_sellers_li = soup.find('span', attrs={"class": "a-text-bold"}, string=' Best Sellers Rank: ').parent
         
@@ -200,7 +200,6 @@ def get_best_sellers(soup):
         print('error getting best sellers1: ', e)
 
         try:
-            print('***try item details table')
             # Find Best Sellers Rank row in the Item details table
             best_sellers_rank_row = soup.find("th", string=" Best Sellers Rank ").find_next('td')
 
@@ -208,7 +207,6 @@ def get_best_sellers(soup):
             best_seller_ranks = best_sellers_rank_row.find_all('span')
 
         except AttributeError as e:
-            print('***failed both')
             print('error getting best sellers2: ', e)
     
     # Clean up category text
@@ -228,6 +226,22 @@ def get_best_sellers(soup):
 def get_breadcrumb(soup):
     categories = []
 
+    try:
+        # Find breadcrumb div 
+        breadcrumb_div = soup.find('div', attrs={"id": "wayfinding-breadcrumbs_feature_div"})
+
+        # Find categories in breadcrumb list, skipping commas
+        breadcrumb_categories = breadcrumb_div.find_all('a', attrs={'class': 'a-link-normal a-color-tertiary'})
+
+        for category in breadcrumb_categories:
+            # Strip text away 
+            category_text = category.get_text()
+            categories.append(category_text.replace("'", "’").strip())
+
+    except AttributeError as e:
+        print('error getting breadcrumb categories: ', e)
+
+    print('breadcrumb: ', categories)
     return categories
 
 # Function to extract product categories
