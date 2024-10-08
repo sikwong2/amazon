@@ -114,14 +114,17 @@ def get_image_links(searchpage):
     return list(set(image_links[:10]))
 
 # Function to AI generate product description
-# TODO: better prompt
 def generate_description(title):
     try:
         # Google's Gemini model
         # https://ai.google.dev/gemini-api/docs/quickstart
         model = genai.GenerativeModel('gemini-1.5-flash')
-        description = model.generate_content(f"Your job is to create amazon product listings. Provide a description for this product: {title}")
-        description = re.sub(r"[^a-zA-Z0-9 .,!?]", "", description.text)
+        description = model.generate_content(f'Your job is to create Amazon "About this item" product descriptions. For each product, create multiple short descriptions of 1-2 lines highlighting product features and providing extra information about the product for potential buyers. Please generate the short descriptions in the format of a Python dictionary of strings, with each string being a description about some product I will specify below. Make sure each short description is encapsulated in its own double quotes and separated by commas in the Python list. Your output should something like this: "["some description here", "another description here", "another description here"]". Notice the use of square brackets and double quotes. Do not respond with any questions or remarks, only the python dictionary. Do not include any extra labels or information that is not relevant to the product description. Here is the product "{title}"')
+        description = description.text
+
+        # Clean text
+        for str in description:
+            str = json.dumps(str.replace("'", "’").strip())
         
     except AttributeError:
         description = ""
@@ -163,7 +166,7 @@ def get_about_this_item(soup, title):
                 about_section.append(generate_description(title).replace("'", "’"))
 
     # If can't find about-this-item or product description, generate a product description
-    if(about_section == [] or about_section == ['']): about_section.append(generate_description(title).replace("'", "’"))
+    if(about_section == [] or about_section == ['']): return generate_description(title)
 
     print('about_section: ', about_section)
     return json.dumps(about_section)
@@ -295,6 +298,11 @@ if __name__ == "__main__":
     parser.add_argument('url', type=str, help='The URL to send the requests to')
     parser.add_argument('access_token', type=str, help='The access token for authentication')
     parser.add_argument('number', type=int, help='The number of curl commands to generate')
+   
+    # url
+    # https://ucsc-amazon.com/vendorapi/v0/product
+    # access_token
+    # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZjI4ZmFhNGMtYWM0YS00MjhmLWI1MTEtYWNjNmNhOTFmM2ZjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzcwOTE4OX0.ZaWmIhXK6EJTt1-Kt-0aJa4BiPsuRPMcjA1aQ9AjCdY
 
     # Parse the arguments
     args = parser.parse_args()
