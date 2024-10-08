@@ -36,8 +36,8 @@ def get_title(soup):
         print('get_title() failed: ', e)
         title_string = ""
 
-    print('title_string: ', title_string.replace("'", "’").replace("\"", "’"))
-    return json.dumps(title_string.replace("'", "’"))[1:-1]   # remove extra quotes
+    print('title: ', title_string.replace("'", "’").replace("\"", "’"))
+    return title_string.replace("'", "’")
 
 # Function to extract Product Price
 def get_price(soup):
@@ -124,7 +124,7 @@ def generate_description(title):
 
         # Clean text
         for str in description:
-            str = json.dumps(str.replace("'", "’").strip())
+            str = str.replace("'", "’").strip()
         
     except AttributeError:
         description = ""
@@ -163,13 +163,13 @@ def get_about_this_item(soup, title):
                 about_section.append(product_description.replace("'", "’"))
             except:
                 # If can't find product description or book description, use Gemini to generate one
-                about_section.append(generate_description(title).replace("'", "’"))
+                about_section = generate_description(title).replace("'", "’")
 
     # If can't find about-this-item or product description, generate a product description
-    if(about_section == [] or about_section == ['']): return generate_description(title)
+    if(about_section == [] or about_section == ['']): about_section = generate_description(title)
 
     print('about_section: ', about_section)
-    return json.dumps(about_section)
+    return about_section
 
 # Function to generate random product stock
 def get_stock(soup):
@@ -254,7 +254,7 @@ def get_categories(soup):
     categories_set = list(set(best_seller_categories + breadcrumb_categories))
     random.shuffle(categories_set)
 
-    return json.dumps(categories_set + ["Generated"])
+    return categories_set + ["Generated1"]
 
 # Function to extract product link
 def get_product_link(soup):
@@ -268,6 +268,7 @@ def get_product_link(soup):
     if product_link_tag:
         product_link = "https://www.amazon.com" + product_link_tag["href"]
         print(product_link)
+        print("\n****************************************\n")
         return product_link
 
     # If no product link was found, return None
@@ -288,6 +289,33 @@ def generate_curl_command(
     curl_command = f"""curl -k -X 'POST' \\\n  '{url}' \\\n  -H 'accept: application/json' \\\n  -H 'Authorization: Bearer {bearer_token}' \\\n  -H 'Content-Type: application/json' \\\n  -d '{{\n  "name": "{name}",\n  "price": {price},\n  "stock": {stock},\n  "rating": {rating},\n  "image": {image_with_quotes},\n  "category": {category},\n  "description": {description}\n}}'\n"""
     return curl_command
 
+# Function to send post requests to create products
+def create_product(
+    url, bearer_token, name, price, stock, rating, image, category, description
+):
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {bearer_token}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "name": name,
+        "price": price,
+        "stock": stock,
+        "rating": rating,
+        "image": image,
+        "category": category,
+        "description": description
+    }
+
+    # Send POST request (disabled SSL verification)
+    response = requests.post(url, headers=headers, data=json.dumps(data), verify=False)
+
+
+    print("\n****************************************")
+    print("*****SENDING POST REQUEST*****\n")
+    print(response.status_code)
+    print(response.json()) if (response.status_code != 200) else print('Successfully Created Product!')
 
 if __name__ == "__main__":
     
@@ -329,7 +357,9 @@ if __name__ == "__main__":
         }
         random_word = generate_random_word()
         print()
-        print(f"\n**********Iteration: {i}**********\n")
+        print("\n****************************************")
+        print(f'Iteration: {i+1}')
+        print("****************************************\n")
         print(f"Random Search Term: {random_word}")
 
         SEARCH_URL = "https://www.amazon.com/s?k=" + random_word
@@ -380,6 +410,9 @@ if __name__ == "__main__":
         if not all([name, price, stock, rating, image, category, description]):
             print("Missing data")
             continue
+
+        # Send POST requests to create product
+        create_product(args.url, args.token, name, price, stock , rating, image, category, description)
 
         curl_command = generate_curl_command(
             args.url,
