@@ -313,9 +313,14 @@ def create_product(
 
 
     print("\n****************************************")
-    print("*****SENDING POST REQUEST*****\n")
+    print("\nSENDING POST REQUEST")
     print(response.status_code)
-    print(response.json()) if (response.status_code != 200) else print('Successfully Created Product!')
+    if (response.status_code != 200):
+        print(response.json()) 
+        return False
+    else:
+        print('Successfully Created Product!')
+        return True
 
 if __name__ == "__main__":
     
@@ -335,11 +340,14 @@ if __name__ == "__main__":
         
     load_dotenv()
 
-    # set API key
+    # Set API key
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
     # client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     nltk.download("words")
+
+    # Track success count
+    success = 0
 
     for i in range(
         args.number
@@ -412,21 +420,22 @@ if __name__ == "__main__":
             continue
 
         # Send POST requests to create product
-        create_product(args.url, args.token, name, price, stock , rating, image, category, description)
+        if(create_product(args.url, args.token, name, price, stock , rating, image, category, description)): success += 1
 
-        curl_command = generate_curl_command(
-            args.url,
-            args.token,
-            name,
-            price,
-            stock,
-            rating,
-            image,
-            category,
-            description,
-        )
+        # curl_command = generate_curl_command(
+        #     args.url,
+        #     args.token,
+        #     name,
+        #     price,
+        #     stock,
+        #     rating,
+        #     image,
+        #     category,
+        #     description,
+        # )
 
-        # Write the curl command to a .sh script
-        with open("curl_commands.sh", "a") as file:
-            file.write(curl_command + "\n")
-        print("Curl command written to file\n")
+        # # Write the curl command to a .sh script
+        # with open("curl_commands.sh", "a") as file:
+        #     file.write(curl_command + "\n")
+        # print("Curl command written to file\n")
+    print(f"Successful requests: {success}/{args.number}" )
