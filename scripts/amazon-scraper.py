@@ -295,15 +295,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate curl commands")
 
     # Add the arguments
-    parser.add_argument('url', type=str, help='The URL to send the requests to')
-    parser.add_argument('access_token', type=str, help='The access token for authentication')
-    parser.add_argument('number', type=int, help='The number of curl commands to generate')
+    parser.add_argument('-u', '--url', type=str, help='The URL to send the requests to', default='https://ucsc-amazon.com/vendorapi/v0/product')
+    parser.add_argument('-t', '--token', type=str, help='The access token for authentication')
+    parser.add_argument('-n', '--number', type=int, help='The number of curl commands to generate', default=1)
    
-    # url
-    # https://ucsc-amazon.com/vendorapi/v0/product
-    # access_token
-    # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZjI4ZmFhNGMtYWM0YS00MjhmLWI1MTEtYWNjNmNhOTFmM2ZjIiwiYWNjb3VudF9pZCI6IjMzZDY0NmRmLTFmNGEtNDEzMC04NTkwLTcyMGY0NWJhNDE3OSIsImlhdCI6MTcxNzcwOTE4OX0.ZaWmIhXK6EJTt1-Kt-0aJa4BiPsuRPMcjA1aQ9AjCdY
-
     # Parse the arguments
     args = parser.parse_args()
 
@@ -334,7 +329,7 @@ if __name__ == "__main__":
         }
         random_word = generate_random_word()
         print()
-        print(f"Iteration: {i}")
+        print(f"\n**********Iteration: {i}**********\n")
         print(f"Random Search Term: {random_word}")
 
         SEARCH_URL = "https://www.amazon.com/s?k=" + random_word
@@ -383,19 +378,12 @@ if __name__ == "__main__":
 
         # Skip this iteration if any variable is missing
         if not all([name, price, stock, rating, image, category, description]):
-            print("name=", name)
-            print("price=", price)
-            print("stock=", stock)
-            print("rating=", rating)
-            print("image=", image)
-            print("category=", category)
-            print("description=", description)
             print("Missing data")
             continue
 
         curl_command = generate_curl_command(
             args.url,
-            args.access_token,
+            args.token,
             name,
             price,
             stock,
