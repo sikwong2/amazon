@@ -46,7 +46,7 @@ export class ProductController extends Controller {
     @Query() size?: number,
     @Query() order?: Order,
     @Query() sort?: Sort
-  ): Promise<Product[]> {
+  ): Promise<{ products: Product[], totalProducts: number }> {
     const p: number = page ? (page - 1) : 0;
     const s: number = size ? size : 30;
     const o = order ? order : 'price';

@@ -56,6 +56,7 @@ export class ProductService {
     }
   }
 
+  // TODO: check if this is used
   public async getByCategory(
     category: string,
     page: number = 1,
@@ -91,7 +92,7 @@ export class ProductService {
     }
   }
 
-  public async getByName(name: string, page: number = 1, size: number = 30, order: string = 'price', sort: string = 'DESC'): Promise<Product[]> {
+  public async getByName(name: string, page: number = 1, size: number = 30, order: string = 'price', sort: string = 'DESC'): Promise<{ products: Product[], totalProducts: number }> {
     try {
       const res = await fetch(
         `http://localhost:${process.env.PRODUCT_SERVICE_PORT}/api/v0/product/name/${name}?page=${page}&size=${size}&order=${order}&sort=${sort}`, {
@@ -102,7 +103,7 @@ export class ProductService {
         }
       );
       const json = await res.json();
-      const products: Product[] = json.map((item: any) => ({
+      const products: Product[] = json.products.map((item: any) => ({
         id: item.id,
         name: item.data.name,
         price: item.data.price,
@@ -111,7 +112,7 @@ export class ProductService {
         rating: item.data.rating,
         category: item.data.category
       }));
-      return products;
+      return { products, totalProducts: json.totalProducts };
     } catch(e) {
       console.log(e);
       throw new Error('error in ProductService: getByName')

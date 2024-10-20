@@ -1,4 +1,4 @@
-import { Product, ProductArgs } from './schema';
+import { PaginatedProducts, Product, ProductArgs } from './schema';
 import { ProductService } from './service';
 import { Query, Resolver, Arg, Args } from 'type-graphql';
 
@@ -25,11 +25,11 @@ export class ProductResolver {
   }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    @Query(returns => [Product])
+    @Query(() => PaginatedProducts)
     async getByName(
       @Arg('name') name: string,
       @Args() {page, size, order, sort}: ProductArgs
-    ): Promise <Product[]> {
+    ): Promise <PaginatedProducts> {
       return new ProductService().getByName(name, page, size, order, sort)
     }
 }

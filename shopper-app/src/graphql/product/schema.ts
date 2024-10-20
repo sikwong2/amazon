@@ -34,3 +34,12 @@ export class ProductArgs {
   @Field()
   sort?: string;
 }
+
+@ObjectType()
+export class PaginatedProducts {
+  @Field(() => [Product])
+  products!: Product[];
+
+  @Field()
+  totalProducts!: number;
+}
