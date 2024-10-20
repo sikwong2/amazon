@@ -298,7 +298,6 @@ DELETE FROM product;
 -- CATEGORY TABLE
   INSERT INTO category (name) VALUES
     ('Movies & TV'),
-    ('Video Games'),
     ('Clothing, Shoes & Jewelry'),
     ('Electronics'),
     ('Health & Household'),
@@ -306,15 +305,16 @@ DELETE FROM product;
     ('Home & Kitchen'),
     ('Patio, Lawn & Garden'),
     ('Pet Supplies'),
-    ('Handmade'),
     ('Beauty & Personal Care'),
     ('Toys & Games'),
     ('Grocery & Gourmet Food'),
-    ('Automotive'),
     ('Industrial and Scientific'),
     ('Computers & Accessories'),
-    ('Traditional Laptop Computers').
+    ('Automotive'),
+    ('Traditional Laptop Computers'),
     ('Tools & Home Improvement'),
+    ('Video Games'),
+    ('Handmade'),
     ('movie'),
     ('dvd'),
     ('shrek'),
@@ -435,21 +435,21 @@ DELETE FROM product;
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Electronics')),
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='apple')),
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='sale')),
-    ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Traditional Laptop Computers')),
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple 2023 MacBook Pro
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Electronics')),
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='apple')),
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='sale')),
-    ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Traditional Laptop Computers')),
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple 2024 MacBook Air
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Electronics')),
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='apple')),
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='sale')),
-    ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Traditional Laptop Computers')),
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple AirTag 4 Pack
     INSERT INTO product_category (product_id, category_id) VALUES 
