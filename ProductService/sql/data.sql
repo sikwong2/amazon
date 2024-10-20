@@ -17,26 +17,26 @@ DELETE FROM product;
     'name', 'Shrek DVD', 'price', 19.99, 'stock', 1, 'rating', 4.8, 
     'image', ARRAY['https://m.media-amazon.com/images/I/51JSHMYGTYL._AC_UF894,1000_QL80_.jpg'], 
     'description', ARRAY['Once upon a time in a far away swamp, there lived an ornery ogre named Shrek whose precious solitude is suddenly shattered by an invasion of annoying fairy-tale characters. There are blind mice in his food, a big, bad wolf in his bed, three little homeless pigs and more, all banished from their kingdom by the evil Lord Farquaad.'], 
-    'category', ARRAY['movie', 'dvd', 'shrek', 'Movies, Music & Games']
+    'category', ARRAY['movie', 'dvd', 'shrek', 'Movies & TV']
   ));
   INSERT INTO product(id, data) VALUES ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', jsonb_build_object(
     'name', 'Shrek 2 DVD', 'price', 19.99, 'stock', 1, 'rating', 4.8, 
     'image', ARRAY['https://m.media-amazon.com/images/I/71HQiOZsZ6L._AC_UF1000,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/71GIXaa-bhL._SL1050_.jpg'], 
     'description', ARRAY['Lovable ogre Shrek has his marriage to a princess come under fire from her parents and a meddling fairy godmother in this sequel.'], 
-    'category', ARRAY['dvd', 'movie', 'shrek', 'Movies, Music & Games']
+    'category', ARRAY['dvd', 'movie', 'shrek', 'Movies & TV']
   ));
   INSERT INTO product(id, data) VALUES ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', jsonb_build_object(
     'name', 'Shrek 3 DVD',
     'price', 19.99, 'stock', 1, 'rating', 4.7, 
     'image', ARRAY['https://m.media-amazon.com/images/I/81uE-9vcOEL._AC_UF1000,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/81g1PEZNi6L._SY445_.jpg'], 
     'description', ARRAY['Get ready for Thirds - the greatest fairytale never told continues with a while new hilarious comedy of royal proportions. When his frog-in-law suddenly croaks, Shrek embarks on another whirlwind adventure with Donkey and Puss In Boots to find the rightful heir to the throne.'], 
-    'category', ARRAY['shrek', 'dvd', 'movie', 'Movies, Music & Games']
+    'category', ARRAY['shrek', 'dvd', 'movie', 'Movies & TV']
   ));
   INSERT INTO product(id, data) VALUES ('e64edcc9-3262-49b8-bda4-066c34089e05', jsonb_build_object(
     'name', 'Shrek Forever After DVD', 'price', 19.99, 'stock', 1, 'rating', 4.8, 
     'image', ARRAY['https://m.media-amazon.com/images/I/8148AAppyOL._AC_UF894,1000_QL80_.jpg', 'https://m.media-amazon.com/images/I/81ztdNcQmZL._SL1500_.jpg'], 
     'description', ARRAY['The further adventures of the giant green ogre, Shrek, living in the land of Far, Far Away'], 
-    'category', ARRAY['movie', 'dvd', 'shrek', 'Movies, Music & Games']
+    'category', ARRAY['movie', 'dvd', 'shrek', 'Movies & TV']
   ));
 
   -- Macbooks
@@ -45,21 +45,21 @@ DELETE FROM product;
     'price', 849, 'stock', 200, 'rating', 4.8, 
     'image', ARRAY['https://m.media-amazon.com/images/I/719C6bJv8jL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61XufEFo1dL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61HS4BY-4rL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81jcKZq-EOL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61GAbMHjeYL._AC_SL1500_.jpg'], 
     'description', ARRAY['STRIKINGLY THIN DESIGN — The redesigned MacBook Air is more portable than ever and weighs just 2.7 pounds. It’s the incredibly capable laptop that lets you work, play or create just about anything — anywhere.', 'SUPERCHARGED BY M2 — Get more done faster with a next-generation 8-core CPU, up to 10-core GPU and up to 24GB of unified memory.', 'UP TO 18 HOURS OF BATTERY LIFE — Go all day and into the night, thanks to the power-efficient performance of the Apple M2 chip.', 'BIG, BEAUTIFUL DISPLAY — The 13.6-inch Liquid Retina display features over 500 nits of brightness, P3 wide color and support for 1 billion colors for vibrant images and incredible detail.', 'ADVANCED CAMERA AND AUDIO — Look sharp and sound great with a 1080p FaceTime HD camera, three-mic array and four-speaker sound system with Spatial Audio.', 'VERSATILE CONNECTIVITY — MacBook Air features a MagSafe charging port, two Thunderbolt ports and a headphone jack.', 'EASY TO USE — Your Mac feels familiar from the moment you turn it on, and works seamlessly with all your Apple devices.'], 
-    'category', ARRAY['Electronics', 'sale', 'apple', 'Computers']
+    'category', ARRAY['Electronics', 'sale', 'apple', 'Traditional Laptop Computers', 'Computers & Accessories']
   ));
   INSERT INTO product(id, data) VALUES ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', jsonb_build_object(
     'name', 'Apple 2023 MacBook Pro Laptop M3 Max chip with 16-core CPU, 40-core GPU: 16.2-inch Liquid Retina XDR Display, 48GB Unified Memory, 1TB SSD Storage. Works with iPhone/iPad; Space Black', 
     'price', 3699, 'stock', 4, 'rating', 4.6, 
     'image', ARRAY['https://m.media-amazon.com/images/I/618d5bS2lUL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71qArNmCH8L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71Dr4KUCjgL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71b7B8OVHvL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/718n279cEAL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61tt5IdGE3L._AC_SL1500_.jpg'], 
     'description', ARRAY['SUPERCHARGED BY M3 PRO OR M3 MAX — The Apple M3 Pro chip, with a 12-core CPU and 18-core GPU, delivers amazing performance for demanding workflows like manipulating gigapixel panoramas or compiling millions of lines of code. M3 Max, with an up to 16-core CPU and up to 40-core GPU, drives extreme performance for the most advanced workflows like rendering intricate 3D content or developing transformer models with billions of parameters.', 'UP TO 22 HOURS OF BATTERY LIFE — Go all day thanks to the power-efficient design of Apple silicon. The MacBook Pro laptop delivers the same exceptional performance whether it’s running on battery or plugged in. (Battery life varies by use and configuration. See apple.com/batteries for more information.)', 'BRILLIANT PRO DISPLAY — The 16.2-inch Liquid Retina XDR display features Extreme Dynamic Range, over 1000 nits of brightness for stunning HDR content, up to 600 nits of brightness for SDR content, and pro reference modes for doing your best work on the go. (The display has rounded corners at the top. When measured diagonally, the screen is 16.2 inches. Actual viewable area is less.)', 'FULLY COMPATIBLE — All your pro apps run lightning fast — including Adobe Creative Cloud, Apple Xcode, Microsoft 365, SideFX Houdini, MathWorks MATLAB, Medivis SurgicalAR, and many of your favorite iPhone and iPad apps. And with macOS, work and play on your Mac are even more powerful. Elevate your presence on video calls. Access information in all-new ways. And discover even more ways to personalize your Mac. (Apps are available on the App Store.)', 'ADVANCED CAMERA AND AUDIO — Look sharp and sound great with a 1080p FaceTime HD camera, a studio-quality three-mic array, and a six-speaker sound system with Spatial Audio.', 'CONNECT IT ALL — This MacBook Pro features a MagSafe charging port, three Thunderbolt 4 ports, an SDXC card slot, an HDMI port, and a headphone jack. Enjoy fast wireless connectivity with Wi-Fi 6E and Bluetooth 5.3. And you can connect up to two external displays with M3 Pro, or up to four with M3 Max. (Wi‑Fi 6E available in countries and regions where supported.)', 'MAGIC KEYBOARD WITH TOUCH ID — The backlit Magic Keyboard has a full-height function key row and Touch ID, which gives you a fast, easy, secure way to unlock your laptop and sign in to apps and sites.'], 
-    'category', ARRAY['apple', 'sale', 'Electronics', 'Computers']
+    'category', ARRAY['apple', 'sale', 'Electronics', 'Traditional Laptop Computers', 'Computers & Accessories']
   ));
   INSERT INTO product(id, data) VALUES ('88db3140-54d2-4f1f-a552-7454bf55dcaf', jsonb_build_object(
     'name', 'Apple 2024 MacBook Air 13-inch Laptop with M3 chip: 13.6-inch Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera, Touch ID; Space Gray',
     'price', 999, 'stock', 100, 'rating', 4.5, 
     'image', ARRAY['https://m.media-amazon.com/images/I/71ItMeqpN3L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/617cNLYnypL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61S2t5yhVSL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71njQte16FL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/612Tf3UgLbL._AC_SL1500_.jpg'], 
     'description', ARRAY['LEAN. MEAN. M3 MACHINE — The blazing-fast MacBook Air with the M3 chip is a superportable laptop that sails through work and play.', 'PORTABLE DESIGN — Lightweight and under half an inch thin, so you can take MacBook Air anywhere you go.', 'GET MORE DONE FASTER — The powerful 8-core CPU and up to 10-core GPU of the Apple M3 chip keep things running smoothly.', 'UP TO 18 HOURS OF BATTERY LIFE — Amazing, all-day battery life so you can leave the power adapter at home.', 'A BRILLIANT DISPLAY — The 13.6-inch Liquid Retina display supports 1 billion colors.', 'LOOK SHARP, SOUND GREAT — Everything looks and sounds amazing with a 1080p FaceTime HD camera, three mics, and four speakers with Spatial Audio.', 'APPS FLY WITH APPLE SILICON — All your favorites, from Microsoft 365 to Adobe Creative Cloud, run lightning fast in macOS.'], 
-    'category', ARRAY['apple', 'sale', 'Electronics', 'Computers']
+    'category', ARRAY['Computer & Accessories', 'apple', 'sale', 'Electronics', 'Traditional Laptop Computers']
   ));
 
   -- Apple
@@ -67,7 +67,7 @@ DELETE FROM product;
     'name', 'Apple AirTag 4 Pack', 'price', 78.99, 'stock', 1000, 'rating', 4.8, 
     'image', ARRAY['https://f.media-amazon.com/images/I/71gY9E+cTaS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71JJueCRWJS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/91bsFWILPGS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81Lq1AfCYpS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZMyXWM9CS._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YziLCAJSS._AC_SL1500_.jpg'], 
     'description', ARRAY['Keep track of and find your items alongside friends and devices in the Find My app', 'Simple one-tap setup instantly connects AirTag with your iPhone or iPad', 'Play a sound on the built-in speaker to help find your things, or just ask Siri for help', 'Precision Finding with Ultra Wideband technology leads you right to your nearby AirTag on select iPhone models', 'Find items further away with the help of hundreds of millions of Apple devices in the Find My network', 'Put AirTag into Lost Mode to be automatically notified when it’s detected in the Find My network', 'All communication with the Find My network is anonymous and encrypted for privacy, Location data and history are never stored on AirTag', 'Replaceable battery lasts over a year', 'AirTag is IP67 water and dust resistant', 'Make AirTag yours with a range of colorful accessories, sold separately'], 
-    'category', ARRAY['AirTags', 'apple', 'sale', 'Electronics', 'Pet Supplies', 'Smart Home']
+    'category', ARRAY['AirTags', 'apple', 'sale', 'Electronics', 'Pet Supplies', 'Tools & Home Improvement']
   ));
   INSERT INTO product(id, data) VALUES ('caeb49c7-69bc-4ed9-ab3e-8cef39ed6c1d', jsonb_build_object(
     'name', 'Apple AirPods (2nd Generation) Wireless Ear Buds, Bluetooth Headphones with Lightning Charging Case Included, Over 24 Hours of Battery Life, Effortless Setup for iPhone', 
@@ -115,19 +115,19 @@ DELETE FROM product;
     'name', 'PESRAE Floor Lamp, Remote Control with 4 Color Temperatures, Torchiere Floor lamp for Bedroom, Standing Lamps for Living Room, Bulb Included (Glossy Black)', 'price', 43.99, 'stock', 500, 'rating', 4.6, 
     'image', ARRAY['https://m.media-amazon.com/images/I/51zuboQ4c2L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81n+YGlN8uS._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61pAWjfWIdS._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71YUbvFOtiL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71ndCFYTunS._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711GkYlDRhL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81QO2hB-0NL._AC_SL1500_.jpg'], 
     'description', ARRAY['9W LED dimmable remote-control bulb included; Floor lamp with 9W dimmer remote control led bulb that can be remotely controlled within 49ft', 'Stepless brightness and optional color temperature; use the remote control to adjust the brightness by stepless from 5% to 100% and color temperature from 3000k to 6000k, replaceable bulb design, which means you can choose different lights to match different scene you need', 'Multiple switching modes; This floor lamps comes with remote control and foot switch, The combination of traditional foot switch and remote control makes the tall lamps more convenient and fit for living room, bedrooms, The remote control is magnetic so you can attach it to the to a lamp or any metal surface to prevent losing it.', 'Easy to assembly; It is easy to Install, No extra tools are required, you only need to screw all the parts of the pole together to complete the assembly of this torchiere floor lamp, assembly has never been easier', 'Space-saving corner lamp; Standing lamp great for reading room and living room, the sky torchiere floor lamp easily fits beside the couch or in the corner'], 
-    'category', ARRAY['lamp', 'sale', 'furniture', 'Home, Garden & Tools', 'Home, Garden & Tools']
+    'category', ARRAY['lamp', 'sale', 'furniture', 'Home & Kitchen']
   ));
   INSERT INTO product(id, data) VALUES ('460ee6d3-e911-4b39-87f8-d342831f2b28', jsonb_build_object(
     'name', 'luckystyle Floor Lamp,Super Bright Dimmable LED Lamps for Living Room, Custom Color Temperature Standing Lamp with Remote Push Button, Adjustable Gooseneck Reading Floor Lamp for Bedroom Office Black', 'price', 33.99, 'stock', 400, 'rating', 4.6, 
     'image', ARRAY['https://m.media-amazon.com/images/I/61tKBisT-fL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71vu9HQ7WpL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61lHE0UiJ+L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61ai7mJm0oL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71dhdGHpP1L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61skUFU5uqL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71OtmralpVL._AC_SL1500_.jpg'], 
     'description', ARRAY['Upgraded Base and Lamp Head: The newly upgraded tall lamps for living room has a metal base that is heavy enough to keep it firmly placed. And it is balanced on a low pile carpet or hard floor without feeling top-heavy. With a higher quality lamp head, no flashing and blue light. Protect the eyes of you and your family. The office floor lamp are specially designed to provide bright, non-dazzling lighting.', '2 Types Control: 50ft distance remote control precisely control the LED floor reading lamps even if there are obstacles. Sensitive button control. Due to the intelligent inner build-in components of the reading light floor lamp. The magnetic remote attracts iron firmly and won’t drop. Handy to be used.', 'Versatile and Dimmable Lights: 5%-100% stepless dimmable brightness, 4 colors temperatures(3000K-6500K), you can customize your favorable lights of floor lamps for bedrooms. Click button to change the color white, cold white, warm white, warm, craft lighting floor lamp could help you to deal with the dark, gloomy in your room.', 'Timer Setting: The living room lamp has a timing function of 30 minutes and one hour, you can set the time to turn on or off according to your needs.', 'Long Lifespan and Energy Saving: An adjustable gooseneck that allows you to rotate the flexible floor pole lamp head to any direction and angle, fixed to any position you like. The gooseneck tube is strong enough to hold it in position so it doesn’t flip or droop around when you try to adjust it. The light life of up to 100,000 hours, can reduce the cost of maintenance and replacement, completely save money and energy.'], 
-    'category', ARRAY['furniture', 'sale', 'lamp', 'Home, Garden & Tools', 'Home, Garden & Tools']
+    'category', ARRAY['furniture', 'sale', 'lamp', 'Home & Kitchen']
   ));
   INSERT INTO product(id, data) VALUES ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', jsonb_build_object(
     'name', 'Standing Lamp, Led Floor Lamp with 3 Levels Dimmable Brightness, Drop-Resistant White Lampshade, Rotary Switch, Industrial Metal Floor Lamp for Living Room Bedroom Study Office Kid’s Room', 'price', 17.99, 'stock', 300, 'rating', 4.3, 
     'image', ARRAY['https://m.media-amazon.com/images/I/51sZ7VI6iTL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71ERyrroAJL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61YSjKfT1cL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/619PNJZ+5bL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71lauGialiL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71dAavusJ7L._AC_SL1500_.jpg'], 
     'description', ARRAY['Stylish Minimalist Design: This Floor lamp can easily be placed behind a sofa or next to a cabinet for easy space saving. In addition, the simple and modern design makes it not only a floor lamp for bedroom, living room, office or classroom, but also a perfect choice for home decoration. The standing lamp fits well with urban, mid-century modern, casual, or contemporary decor.', '3-Level Adjustable Brightness: This LED floor lamp features three brightness settings with a unique dimming sequence: Low-Off-Medium-Off-High-Off. This versatility makes it suitable for various activities such as reading, working, or everyday use. Each lighting mode offers gentle, eye-soothing illumination that is both functional and aesthetically pleasing.', 'E26 Bulbs Compatible: Equipped with an E26 socket, this tall lamp boasts excellent heat dissipation, ensuring a longer lifespan. It is compatible with various types of 3-level dimmable bulbs, although it is recommended to use three-way incandescent bulbs for optimal performance. (Note: 3-level dimming bulb not included, maximum 100W)', 'Safe & Easy Assembly: Simple and easy to assemble without extra tools, you just need to screw all the parts of the modern floor lamp working together by following the instruction. The bottom of the corner lamp adopts a weighted and stable design to prevent tipping and can be used near the elderly, children and pets; the lampshade is also made of resin plastic, which avoids the risk of breakage of the traditional glass lampshade.', 'Ideal Gifts for Decorative: This floor lamps for living room is a perfect holiday gift and birthday gift for mothers, fathers, wives, husbands, children, and friends. The Black Floor Lamp is also suitable for living room, bedroom, reading room, office, library, kitchen, coffee shop, hotel, restaurant, etc.'], 
-    'category', ARRAY['home', 'sale', 'furniture', 'lamp', 'Home, Garden & Tools']
+    'category', ARRAY['home', 'sale', 'furniture', 'lamp', 'Home & Kitchen']
   ));
 
   -- Furniture 
@@ -136,28 +136,28 @@ DELETE FROM product;
     'price', 9.99, 'stock', 1000, 'rating', 4.5, 
     'image', ARRAY['https://f.media-amazon.com/images/I/814NZrz8EfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71YUh1Ig0cL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81UllOVS0SL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/81NMIJaQQrL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/714BuQE5sNL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71J8lLcvgkL._AC_SL1500_.jpg'], 
     'description', ARRAY['【Package Contains】 4 kinds of faux plants indoor, these artificial potted plants are made of friendly plastic', '【Perfect Size】The fake house plants are 7" tall and 2.5" wide, and the pot is 2.5" tall and 2.9" wide The size is just right for room decor', '【Long Life Span】The fake potted plants is designed with unique craftsmanship and looks like real. It doesn’t require special care, and it can maintain its fresh appearance', '【Fake Plants Decor】The small plants can be used in any scene. You can put these plants on windowsill, office,kitchen,desk, bathroom or put them in office to decorate your place well', '【Warm Tips】The leaves of these fake green plants can be adjusted freely. The leaves may be squeezed due to transportation. When you receive them, please comb the leaves to make them look plump and lush'], 
-    'category', ARRAY['Fake Plants', 'sale', 'plants', 'furniture', 'Food & Grocery']
+    'category', ARRAY['Fake Plants', 'sale', 'plants', 'furniture', 'Grocery & Gourmet Food']
   ));
   INSERT INTO product(id, data) VALUES ('09cc271a-0f26-45d1-a774-4443fc732a45', jsonb_build_object(
     'name', 'Small Table Lamp for Bedroom - Bedside Lamps for Nightstand, Minimalist Night Stand Light Lamp with Square Fabric Shade, Desk Reading Lamp for Kids Room Living Room Office Dorm', 
     'price', 9.48, 'stock', 10, 'rating', 4.6, 
     'image', ARRAY['https://f.media-amazon.com/images/I/61xxhaeUKIL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OK2yiVw5L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71OQHbKCvJL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71D3pJ5j7mL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/7104yZrIByL._AC_SL1500_.jpg'], 
     'description', ARRAY['✪CHOICE FOR BETTER LIFE-The Cord, Socket and Plug of Aooshine bedside table lamp are UL listed. By giving products the listed, you don’t have to worry about the material problem. This Nightstand lamp comes with ON/OFF switch control, easy to install and use. Please note not included bulb. Please use the LED bulb only.', '✪MINIMALIST DESIGN-The elegant sleek look of this table lamp elevates the aesthetic of your home, an open-top cloth shade of beige linen hovers over a petite black base. The size and the design make this accent lamp a splendid accoutrement for guest cottages and professional offices alike.', '✪Comfortable Glow-Our small desk Lamp creates a nice and comforting feeling in the house when spending time with your family as the linen fabric shade softens the light. Lamps for nightstand is Not Dimmable.', '✪VERSATILE-With E26 universal standard base(Bulb not included), this minimalist rectangle table lamp is best for bedroom, living room, baby room, office, coffee table, college dorm, cafe, bookcase in your library or den. This night stand lights is also a great gift for your family and friend.(Please use the LED bulb, max watt of the LED bulb is 20W)', '✪BUY WITH CONFIDENCE-Having adhered the most demanding quality control procedures. Any problems, please tell us directly, and we will provide best service as we can.'], 
-    'category', ARRAY['Bedside Table Lamps', 'furniture', 'Home, Garden & Tools', 'lamp']
+    'category', ARRAY['Bedside Table Lamps', 'furniture', 'Home & Kitchen', 'lamp']
   ));
   INSERT INTO product(id, data) VALUES ('e6c295cf-8037-40f7-b402-38db13bcef37', jsonb_build_object(
     'name', 'SUNMORY Floor Lamp with Shelves, Modern Square Standing Lamp with 3 Color Temperature Bulb, Corner Display Bookshelf Lamp for Living Room and Bedroom(Black)', 
     'price', 45.99, 'stock', 100, 'rating', 4.6, 
     'image', ARRAY['https://f.media-amazon.com/images/I/71YNhyHG-IL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/713ckbMCzAL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ltoje4a+L._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/41rwaPMyeGL._AC_SL1230_.jpg', 'https://f.media-amazon.com/images/I/715faTljdeS._AC_SL1500_.jpg'], 
     'description', ARRAY['【3-Color Temperatures LED Bulb Included】SUNMORY shelf lamp includes a 9 Watt, 800 lumen power saving LED bulb ,so you don’t need to buy extra bulb.The LED lamp bulb is 3 color temp : 3000K/5000K/4000K.You can switch different color temperatures according to different scenes.Also can work with smart outlets that are Alexa, Google Home Assistant, or Apple HomeKit enabled(requires smart outlet sold separately).', '【Non-glaring Cloth Lampshade】This shelf floor lamp is equipped with a high-quality off-white cloth lampshade and opens upwards. With the built-in three-color temperature bulb, it can be used for both functional lighting and ambient lighting.', '【Storage & Display】This tall lamp has 3 layers of high density fiberboard, each with a maximum weight of more than 50 pounds. On the shelf, you can put decorations such as vases and photo frames, as well as daily necessities such as books and mobile phones. So it can be used as a corner lamp to decorate your living room or as a skinny nightstand with lamp to bring you life convenience.It is very suitable as a gift for Mothers Day, Thanksgiving Day, or Christmas.', '【Minimalist Design & Versatile Style】The contemporary stand up lamp matches asian, mid century modern, rustic, country and farmhouse decor thanks to its diverse lighting effects and simple lines.', '【Easy to Assemble】SUNMORY shelf floor lamp has been improved in craftsmanship and simplified the installation steps. Compared with other similar products, it will save you 30% percent of installation time.The accompanying package comes with the tools needed for assembly and an instruction manual containing text and video installation steps. Simple repetitive operations are very easy for most people. Warm Tip: Please tighten each post to keep the whole lamp stable.'], 
-    'category', ARRAY['Floor Lamps by SUNMORY', 'lamp', 'Home, Garden & Tools', 'furniture']
+    'category', ARRAY['Floor Lamps by SUNMORY', 'lamp', 'Home & Kitchen', 'furniture']
   ));
   INSERT INTO product(id, data) VALUES ('da627ad0-e44c-42e3-8990-a94aa2303ee5', jsonb_build_object(
     'name', 'LED Floor Lamp for Living Room, Dimmable Standing Lamps with Foot Switch,Remote Custom Color Temperature Black Pole Lamp with Lampshade,12W Led Bulb Tall Lamps for Bedroom Office Kid Room', 
     'price', 35.99, 'stock', 100, 'rating', 4.8, 
     'image', ARRAY['https://f.media-amazon.com/images/I/71sGZjaa6kL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71ZofmHnMfL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71tNSdGeSUL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71o8KbxGhvL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/612IRIotvSL._AC_SL1500_.jpg', 'https://f.media-amazon.com/images/I/71pl6QBEJeL._AC_SL1500_.jpg'], 
     'description', ARRAY['Multi-Function Dimmable Lamp: Vertical lamp includes an 12W dimmable LED bulbs that can be set to different color temperatures (3000K-6500K). 5%-100% dimmable brightness can be used to create different atmospheres and customize your favorite bedroom floor lamp.', 'Types Control: 50ft distance remote control precisely control the LED floor lamps even if there are obstacles. The magnetic remote attracts iron firmly and won’t drop. Sensitive Foot Switch.Handy to be used.', 'Stable Base&Linen LampShade: The newly upgraded tall lamps for living room has a metal base that is heavy enough to keep it firmly placed. The lampshade is made of linen material, which effectively blocks some of the light emitted from the bulb, making the light comfortable and soft.', 'Timer&Night Mode: After setting timer, the light will be turned off automatically to save energy. Night light mode creates a soft the comfort atmosphere to help you and your family sleep in peace.', 'The Perfect Gift:Luckystyle standing lamp is a good choice as the gift for wedding, moving, new baby or any festival. The floor lamp features a modern minimalist design that fits any decor.Decorations for bedrooms, living rooms, nurseries, offices and studies.'], 
-    'category', ARRAY['LED Floor Lamps', 'lamp', 'Home, Garden & Tools', 'furniture']
+    'category', ARRAY['LED Floor Lamps', 'lamp', 'Home & Kitchen', 'furniture']
   ));
 
   -- Adidas
@@ -255,21 +255,21 @@ DELETE FROM product;
     'price', 219.99, 'stock', 23, 'rating', 3.0, 
     'image', ARRAY['https://m.media-amazon.com/images/I/91AYz7vbfbL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71ahNlkv-NL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91DxC2k45mL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81dZ6MQ7N-L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/915zXzIo4tL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91h4LwAlzhL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/811JjH+dIdL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/717I8WoFx-L._AC_SL1500_.jpg'], 
     'description', ARRAY['Your sectional couch sofa will be delivered in two packages. If you do not receive all of them at the same time, please contact us, or just wait a bit as the other one is running to you whip and spur.', 'Made of high-density sponge, covered with breathable soft linen fabric, the high-resilience couch will provide you comfortable and soft cloud touch experience. The cushions are vacuum-packed. Thus, in order to get the best experience, please wait 48 hours to let it become the original shape.', 'Constructed from solid natural wood, S-shaped alloy springs, and high elastic bandages, the couch is durable and stable for long-term use. The cushion covers are removable and washable, easy for you to keep clean.', 'The reversible ottoman has multipurpose uses. Usually, you can put it on the left or right side to make it a side chaise recliner. Also, you can function it as a separate sofa stool, placing it anywhere you want in the room.', 'VICTONE small L-shaped couch is perfect for space-limited apartments, student dormitories, or offices. If you want a set of comfortable sofa but your room is not big enough, our sofa will be your first choice!'], 
-    'category', ARRAY['Convertible Sectional Sofa Couch', 'couch', 'sofa', 'furniture', 'sale', 'Home, Garden & Tools']
+    'category', ARRAY['Convertible Sectional Sofa Couch', 'couch', 'sofa', 'furniture', 'sale', 'Home & Kitchen']
   ));
   INSERT INTO product(id, data) VALUES ('67714aeb-e478-4e41-ace2-b823c07f1798', jsonb_build_object(
     'name', 'VanAcc 89 Inch Sofa, Comfy Sofa Couch with Extra Deep Seats, Modern Sofa- 3 Seater Sofa, Couch for Living Room Apartment Lounge, Beige Chenille', 
     'price', 269.99, 'stock', 84, 'rating', 4.0, 
     'image', ARRAY['https://m.media-amazon.com/images/I/81yBP3yD4ZL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81Yu5Pq-MDL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81dSkvG4Z+L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/818wwFaKzEL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81vhbf0y9PL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81a7bEyx96L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81+MRpRlQDL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81kcgq7JovL._AC_SL1500_.jpg'], 
     'description', ARRAY['【Spacious & Comfy Couch】VanAcc sofa provides perfect setting for leisure life. Comfy couch features 24in deep seating area, spacious armrest and thickend cushion, can meet your resting needs easily.', '【Fluffy Chenille Fabric】Upholstered in cloud-like chenille fabric, creamy couch offers a soft touch while providing a fuzzy texture. Chenille fabric decorates your home with warmth and calmness.', '【Modern Minimalist Couch】Straight clean edges and sleek track arms are hallmarks of modern style. Linear and minimalistic, the seat cushions are designed to fits with the armrests, lefting a simple look.', '【Sturdy Construction】Equipped with awesome hardwood underframe and steel frame back, deep seat sofa is designed to ensure solidity and durability. Featured with 900lbs weight capacity.', '【Straightforward Assembly】VanAcc deap seat sofa takes 2 people 15 minutes to assemble. Everything is packed in 1 box.2 back pillows are stored inside the armrests.'], 
-    'category', ARRAY['Comfy Sofa Couch', 'sofa', 'couch', 'furniture', 'Home, Garden & Tools']
+    'category', ARRAY['Comfy Sofa Couch', 'sofa', 'couch', 'furniture', 'Home & Kitchen']
   ));
   INSERT INTO product(id, data) VALUES ('cb20e870-9d2d-4a36-9338-91847dca1d9d', jsonb_build_object(
     'name', 'Flamaker Futon Sofa Bed Modern Folding Futon Set Faux Leather Convertible Recliner Lounge for Living Room with 2 Cup Holders, Removable Armrests (Faux Leather, Black)', 
     'price', 149.98, 'stock', 6, 'rating', 3.8, 
     'image', ARRAY['https://m.media-amazon.com/images/I/71FKOHNHRjL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/8100nQ2ryAL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71y99po8BsL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81u+RW8bUOL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/51nYgQT9ujL._AC_SL1230_.jpg', 'https://m.media-amazon.com/images/I/81WidOqVigL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711btx4L-gL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81ovMZbehzL._AC_SL1500_.jpg'], 
     'description', ARRAY['BACKREST ADJUSTABLE: The futon sofa bed has 3 positions adjustable back, among 120°, 160° and 180°, which allows you to get cozy in any scenario. By easy adjusting the back angle, you will get comfy position to watch TV, play games or take a nap.', 'CONVERTIBLE SOFA BED: This folding futon can be quickly and easily transformed into a comfy bed, to take a nap, or use as a guest bed, and the 2 removable armrests can be turned into pillows, providing you with certain support at sleep.', 'COZY TIME: The seat cushion is filled with high-resilient sponge, featuring soft and supportive, and covered by quality PU leather delivering exceptional comfort. Just make a cup of coffee and put it in the removable cupholder, sharing a leisure time with family or friends.', 'HIGH-QUALITY MATERIAL: Our futon sofa is made of smooth and selective PU leather, which is skin friendly and durable in use. The chrome metal legs help increase much stability that can hold up to 500 lbs.', 'MODERN FUTON SOFA: The delicate PU and glossy metal match adds simple and fashionable style to your living room, bedroom, office, guest room or study. Cuddle up in the soft comfort with this futon sofa bed from Flamaker.', 'EASY TO ASSEMBLE: Crafted for convenient shipment and easy assembly. Only few steps need, easy to follow the instructions, an adult can finish the assembling work within 20 minutes.', 'EXCELLENT CUSTOMER SERVICE: How to solve your problems quickly? Of course, contact the SELLER via Amazon! Our professional service team will respond to you within 24 hours. We hope you can get good service and satisfied shopping experience.'], 
-    'category', ARRAY['Futon Sofa Bed', 'sofa', 'couch', 'futon', 'Home, Garden & Tools', 'bedroom', 'furniture']
+    'category', ARRAY['Futon Sofa Bed', 'sofa', 'couch', 'futon', 'Home & Kitchen', 'bedroom', 'furniture']
   ));
 
   -- Cabinets
@@ -278,40 +278,43 @@ DELETE FROM product;
     'price', 89.99, 'stock', 5, 'rating', 4.3, 
     'image', ARRAY['https://m.media-amazon.com/images/I/81LZsH9QerL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/711N8gkAb+L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71bpCCmcqDL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71z7qdQdB9L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/712nU6kUiVL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91o5+LHF9OL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81ndlJKMc1L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81hvv36BahL._AC_SL1500_.jpg'], 
     'description', ARRAY['DECORATE YOUR TIME, IT’S WORTH: Scientific design, greatly improving space utilization. The drawer, doors and opening shelves combination enriches the visual level, which not only effectively blocks dust, but also turns storage into a display art. The floor storage cabinet with shelves which has 3 adjustable heights can bigger and higher things', 'FIND THE SECRET TO A FRESH LIFE: Pairing door with 3 shelves, this storage cabinet provides display and storage functions for your various items, such as daily necessities, tableware, medicines, etc, these personal effects can place by category. You can sit back relax and know that everything is within your reach', 'FOLLOW YOUR CHOOSE: This floor storage cabinet is designed for various places - home office, living room, kitchen, entryway, restroom. It can also be used as display shelf or file cabinets', 'DURABLE MATERIAL: Free standing buffet cabinet made of durable natural particle board which promises a long lifespan. Environmentally friendly lacquered surface ensures no harm and easier to clean', 'EASY ASSEMBLY: WEENFON separated out the hardware for each step. Each step has its own, clearly numbered, bag of screws/parts, as fun as Lego build'], 
-    'category', ARRAY['Storage Cabinets by WEENFON', 'cabinet', 'storage', 'drawer', 'kitchen', 'bathroom', 'Home, Garden & Tools', 'furniture', 'sale']
+    'category', ARRAY['Storage Cabinets by WEENFON', 'cabinet', 'storage', 'drawer', 'kitchen', 'bathroom', 'Home & Kitchen', 'furniture', 'sale']
   ));
   INSERT INTO product(id, data) VALUES ('6b506670-603b-42e3-acea-6706dde5ff94', jsonb_build_object(
     'name', 'Yaheetech Wooden Floor Cabinet, Side Storage Organizer with 4 Drawers and 1 Cupboard, Freestanding Entryway Storage Unit Console Table, Bathroom Furniture Home Decor, White', 
     'price', 74.99, 'stock', 45, 'rating', 4.5, 
     'image', ARRAY['https://m.media-amazon.com/images/I/71254NAyE5L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71zXzycl9gL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/71laQYJOHEL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91CO7lEUr4L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81o5R4-qgYL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/819rWHvx2nL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/61OkdnTr-qL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/717uSHqB2xL._AC_SL1500_.jpg'], 
     'description', ARRAY['Sturdy construction: This free-standing cabinet is built in a solid structure with high load capacity up to 45 kg / 99 lb, meets your basic storage requirements.', 'Ideal space saver: Four drawers with cutout handles and one cupboard with a customizable shelf for you to organize different items like cosmetics, toiletries, towels, toilet paper, etc. A great option for tucking away bathroom clutter.', 'Waterproof surface: Painted MDF can withstand the humidity and prevent moisture, specially designed for humid occasions, perfect storage for bathroom and kitchen.', 'All-matching design: This bathroom storage cabinet showcases a sleek rectangular design with beadboard panels on the faces of drawers and door, making it an aesthetically-pleasing fit for any home décor from traditional to modern.', 'Easy to assemble: Comes with all necessary hardware and an illustrated instruction manual to help quick and effortless setup.'], 
-    'category', ARRAY['Floor Cabinets', 'cabinet', 'storage', 'drawer', 'bathroom', 'kitchen', 'Home, Garden & Tools', 'furniture', 'sale']
+    'category', ARRAY['Floor Cabinets', 'cabinet', 'storage', 'drawer', 'bathroom', 'kitchen', 'Home & Kitchen', 'furniture', 'sale']
   ));
   INSERT INTO product(id, data) VALUES ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', jsonb_build_object(
     'name', 'ZeHuoGe Sideboard Buffet Accent Cabinet with Natural Rattan & Iron Legs, Sideboard Buffet Storage Cabinet,for Dining Room, Living Room, Kitchen (Rattan)', 
     'price', 48.89, 'stock', 14, 'rating', 4.1, 
     'image', ARRAY['https://m.media-amazon.com/images/I/914qUnxjFjL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91V3VGwrDYL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81hTyzwPChL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/819YuXldD5L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81v9Ee0bt4L._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/913cmNVjuML._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/81CysooVGbL._AC_SL1500_.jpg', 'https://m.media-amazon.com/images/I/91QUaYCuURL._AC_SL1500_.jpg'], 
     'description', ARRAY['【Natural Rattan Door Sideboard&Buffet】The raw material of the door panel with handle is made of natural rattan.', '【Classic Accent Cabinet 】Symmetrical 2 Magnetic Door Design, prominent round door handle, convenient opening and closing, moderate length, not easy to bump even when walking around the cabinet.', '【Adjustable Storage Shelf】3 adjustable holes are built in the cabinet, and the internal shelf is detachable, which is convenient for free combination and storage of items.', '【Sturdy and Stable Iron Frame Support】The horizontal bar under the panel has a reinforcing effect and can also increase the load-bearing capacity of the entire cabinet.', '【Multifunction Storage Cabinet】The metal base has strong stability and less contact with the ground, which is convenient for cleaning and cleaning.It can be used as cupboard, sideboard&buffet, storage cabinet, TV cabinet, living room decoration cabinet, console, accent cabinet, etc.'], 
-    'category', ARRAY['Kitchen Storage', 'cabinet', 'storage', 'kitchen', 'furniture', 'Home, Garden & Tools']
+    'category', ARRAY['Kitchen Storage', 'cabinet', 'storage', 'kitchen', 'furniture', 'Home & Kitchen']
   ));
 
 -- CATEGORY TABLE
   INSERT INTO category (name) VALUES
-    ('Movies, Music & Games'),
+    ('Movies & TV'),
+    ('Video Games'),
     ('Clothing, Shoes & Jewelry'),
     ('Electronics'),
-    ('Household, Health & Baby Care'),
+    ('Health & Household'),
     ('Sports & Outdoors'),
-    ('Home, Garden & Tools'),
+    ('Home & Kitchen'),
+    ('Patio, Lawn & Garden'),
     ('Pet Supplies'),
-    ('Homemade'),
-    ('Beauty & Health'),
-    ('Toys, Kids & Baby'),
-    ('Food & Grocery'),
+    ('Handmade'),
+    ('Beauty & Personal Care'),
+    ('Toys & Games'),
+    ('Grocery & Gourmet Food'),
     ('Automotive'),
     ('Industrial and Scientific'),
-    ('Computers'),
-    ('Smart Home'),
+    ('Computers & Accessories'),
+    ('Traditional Laptop Computers').
+    ('Tools & Home Improvement'),
     ('movie'),
     ('dvd'),
     ('shrek'),
@@ -408,50 +411,53 @@ DELETE FROM product;
     ('6a2212e5-af0b-4472-a724-537bdc6c571c', (SELECT id FROM category WHERE name='movie')),
     ('6a2212e5-af0b-4472-a724-537bdc6c571c', (SELECT id FROM category WHERE name='dvd')),
     ('6a2212e5-af0b-4472-a724-537bdc6c571c', (SELECT id FROM category WHERE name='shrek')),
-    ('6a2212e5-af0b-4472-a724-537bdc6c571c', (SELECT id FROM category WHERE name='Movies, Music & Games'));
+    ('6a2212e5-af0b-4472-a724-537bdc6c571c', (SELECT id FROM category WHERE name='Movies & TV'));
   -- Shrek 2
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', (SELECT id FROM category WHERE name='movie')),
     ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', (SELECT id FROM category WHERE name='dvd')),
     ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', (SELECT id FROM category WHERE name='shrek')),
-    ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', (SELECT id FROM category WHERE name='Movies, Music & Games'));
+    ('20c6f7dd-e9c0-45a2-bef8-5f42597e4ca8', (SELECT id FROM category WHERE name='Movies & TV'));
   -- Shrek 3
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', (SELECT id FROM category WHERE name='movie')),
     ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', (SELECT id FROM category WHERE name='dvd')),
     ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', (SELECT id FROM category WHERE name='shrek')),
-    ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', (SELECT id FROM category WHERE name='Movies, Music & Games'));
+    ('fb31be70-f4f3-4ccc-b483-14e831dc61d1', (SELECT id FROM category WHERE name='Movies & TV'));
   -- Shrek Forever After
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('e64edcc9-3262-49b8-bda4-066c34089e05', (SELECT id FROM category WHERE name='movie')),
     ('e64edcc9-3262-49b8-bda4-066c34089e05', (SELECT id FROM category WHERE name='dvd')),
     ('e64edcc9-3262-49b8-bda4-066c34089e05', (SELECT id FROM category WHERE name='shrek')),
-    ('e64edcc9-3262-49b8-bda4-066c34089e05', (SELECT id FROM category WHERE name='Movies, Music & Games'));
+    ('e64edcc9-3262-49b8-bda4-066c34089e05', (SELECT id FROM category WHERE name='Movies & TV'));
   -- Apple 2022 MacBook Air
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Electronics')),
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='apple')),
     ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='sale')),
-    ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Computers'));
+    ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('fcdfc6a7-3e50-4909-818c-379f75b4320a', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple 2023 MacBook Pro
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Electronics')),
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='apple')),
     ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='sale')),
-    ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Computers'));
+    ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('8e2b4bd2-e946-45c5-9796-d23baa2b0ae5', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple 2024 MacBook Air
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Electronics')),
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='apple')),
     ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='sale')),
-    ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Computers'));
+    ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Traditional Laptop Computers'));
+    ('88db3140-54d2-4f1f-a552-7454bf55dcaf', (SELECT id FROM category WHERE name='Computers & Accessories'));
   -- Apple AirTag 4 Pack
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='AirTags')),
     ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='apple')),
     ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='sale')),
     ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='Electronics')),
-    ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='Smart Home')),
+    ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='Tools & Home Improvement')),
     ('090bafa5-dcf1-47c4-9b06-e76280aa75c0', (SELECT id FROM category WHERE name='Pet Supplies'));
   -- Apple AirPods (2nd Generation)
     INSERT INTO product_category (product_id, category_id) VALUES 
@@ -498,19 +504,19 @@ DELETE FROM product;
     ('fcab207a-fd48-4e81-a15d-a754f49fcd15', (SELECT id FROM category WHERE name='lamp')),
     ('fcab207a-fd48-4e81-a15d-a754f49fcd15', (SELECT id FROM category WHERE name='sale')),
     ('fcab207a-fd48-4e81-a15d-a754f49fcd15', (SELECT id FROM category WHERE name='furniture')),
-    ('fcab207a-fd48-4e81-a15d-a754f49fcd15', (SELECT id FROM category WHERE name='Home, Garden & Tools'));
+    ('fcab207a-fd48-4e81-a15d-a754f49fcd15', (SELECT id FROM category WHERE name='Home & Kitchen'));
   -- luckystyle Floor Lamp
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('460ee6d3-e911-4b39-87f8-d342831f2b28', (SELECT id FROM category WHERE name='furniture')),
     ('460ee6d3-e911-4b39-87f8-d342831f2b28', (SELECT id FROM category WHERE name='sale')),
     ('460ee6d3-e911-4b39-87f8-d342831f2b28', (SELECT id FROM category WHERE name='lamp')),
-    ('460ee6d3-e911-4b39-87f8-d342831f2b28', (SELECT id FROM category WHERE name='Home, Garden & Tools'));
+    ('460ee6d3-e911-4b39-87f8-d342831f2b28', (SELECT id FROM category WHERE name='Home & Kitchen'));
   -- Standing Lamp, Led Floor Lamp
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='home')),
     ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='sale')),
     ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='furniture')),
-    ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('3f97fbe9-b883-463c-83cd-3d9e536a1d42', (SELECT id FROM category WHERE name='lamp'));
   -- Der Rose 4 Packs Fake Plants
     INSERT INTO product_category (product_id, category_id) VALUES 
@@ -518,10 +524,10 @@ DELETE FROM product;
     ('131d1d6a-d21b-4918-8fd9-4c24367618b4', (SELECT id FROM category WHERE name='sale')),
     ('131d1d6a-d21b-4918-8fd9-4c24367618b4', (SELECT id FROM category WHERE name='plants')),
     ('131d1d6a-d21b-4918-8fd9-4c24367618b4', (SELECT id FROM category WHERE name='furniture')),
-    ('131d1d6a-d21b-4918-8fd9-4c24367618b4', (SELECT id FROM category WHERE name='Food & Grocery'));
+    ('131d1d6a-d21b-4918-8fd9-4c24367618b4', (SELECT id FROM category WHERE name='Grocery & Gourmet Food'));
   -- Small Table Lamp for Bedroom
     INSERT INTO product_category (product_id, category_id) VALUES 
-    ('09cc271a-0f26-45d1-a774-4443fc732a45', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('09cc271a-0f26-45d1-a774-4443fc732a45', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('09cc271a-0f26-45d1-a774-4443fc732a45', (SELECT id FROM category WHERE name='sale')),
     ('09cc271a-0f26-45d1-a774-4443fc732a45', (SELECT id FROM category WHERE name='furniture')),
     ('09cc271a-0f26-45d1-a774-4443fc732a45', (SELECT id FROM category WHERE name='lamp'));
@@ -529,13 +535,13 @@ DELETE FROM product;
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('e6c295cf-8037-40f7-b402-38db13bcef37', (SELECT id FROM category WHERE name = 'Floor Lamps by SUNMORY')),
     ('e6c295cf-8037-40f7-b402-38db13bcef37', (SELECT id FROM category WHERE name = 'lamp')),
-    ('e6c295cf-8037-40f7-b402-38db13bcef37', (SELECT id FROM category WHERE name = 'Home, Garden & Tools')),
+    ('e6c295cf-8037-40f7-b402-38db13bcef37', (SELECT id FROM category WHERE name = 'Home & Kitchen')),
     ('e6c295cf-8037-40f7-b402-38db13bcef37', (SELECT id FROM category WHERE name = 'furniture'));
   -- LED Floor Lamp for Living Room
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('da627ad0-e44c-42e3-8990-a94aa2303ee5', (SELECT id FROM category WHERE name = 'LED Floor Lamps')),
     ('da627ad0-e44c-42e3-8990-a94aa2303ee5', (SELECT id FROM category WHERE name = 'lamp')),
-    ('da627ad0-e44c-42e3-8990-a94aa2303ee5', (SELECT id FROM category WHERE name = 'Home, Garden & Tools')),
+    ('da627ad0-e44c-42e3-8990-a94aa2303ee5', (SELECT id FROM category WHERE name = 'Home & Kitchen')),
     ('da627ad0-e44c-42e3-8990-a94aa2303ee5', (SELECT id FROM category WHERE name = 'furniture'));
   -- adidas Women’s Grand Court 2.0 Tennis Shoe
     INSERT INTO product_category (product_id, category_id) VALUES 
@@ -651,21 +657,21 @@ DELETE FROM product;
     ('39432e80-2d72-4496-a6fd-bfb79f499956', (SELECT id FROM category WHERE name='sofa')),
     ('39432e80-2d72-4496-a6fd-bfb79f499956', (SELECT id FROM category WHERE name='furniture')),
     ('39432e80-2d72-4496-a6fd-bfb79f499956', (SELECT id FROM category WHERE name='sale')),
-    ('39432e80-2d72-4496-a6fd-bfb79f499956', (SELECT id FROM category WHERE name='Home, Garden & Tools'));
+    ('39432e80-2d72-4496-a6fd-bfb79f499956', (SELECT id FROM category WHERE name='Home & Kitchen'));
   -- VanAcc 89 Inch Sofa
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='Comfy Sofa Couch')),
     ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='sofa')),
     ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='couch')),
     ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='furniture')),
-    ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='Home, Garden & Tools'));
+    ('67714aeb-e478-4e41-ace2-b823c07f1798', (SELECT id FROM category WHERE name='Home & Kitchen'));
   -- Flamaker Futon Sofa Bed
     INSERT INTO product_category (product_id, category_id) VALUES 
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='Futon Sofa Bed')),
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='sofa')),
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='couch')),
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='futon')),
-    ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='bedroom')),
     ('cb20e870-9d2d-4a36-9338-91847dca1d9d', (SELECT id FROM category WHERE name='furniture'));
   -- WEENFON Bathroom Cabinet
@@ -676,7 +682,7 @@ DELETE FROM product;
     ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='drawer')),
     ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='kitchen')),
     ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='bathroom')),
-    ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='furniture')),
     ('be38c711-ddd8-4779-a93f-d77e82227187', (SELECT id FROM category WHERE name='sale'));
   -- Yaheetech Wooden Floor Cabinet
@@ -687,7 +693,7 @@ DELETE FROM product;
     ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='drawer')),
     ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='bathroom')),
     ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='kitchen')),
-    ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='sale')),
     ('6b506670-603b-42e3-acea-6706dde5ff94', (SELECT id FROM category WHERE name='furniture'));
   -- ZeHuoGe Sideboard Buffet Accent Cabinet
@@ -696,5 +702,5 @@ DELETE FROM product;
     ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='cabinet')),
     ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='storage')),
     ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='kitchen')),
-    ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='Home, Garden & Tools')),
+    ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='Home & Kitchen')),
     ('315cd52a-4905-4c42-a0a7-0551a6bb69c3', (SELECT id FROM category WHERE name='furniture'));
