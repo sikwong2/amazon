@@ -18,7 +18,12 @@ export default function Footer() {
     <React.Fragment>
       <Box
         bgcolor="#232f3e"
-        sx={{ fullWidth: 1 }}
+        sx={{ fullWidth: 1,
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          height: '50px', 
+        }}
         display="flex"
         alignItems="center"
         justifyContent="center"
