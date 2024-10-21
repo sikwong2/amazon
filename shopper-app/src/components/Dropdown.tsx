@@ -45,6 +45,11 @@ export default function CustomDropdown({
             renderValue={() => variant==='label' ? `${label}: ${selectedValue}` : selectedValue}
             onChange={handleChange}
             input={<BootstrapInput />}
+            MenuProps={{
+              PaperProps: {
+                sx: { maxWidth:'250px' }
+              },
+            }}
           >
             {values.map((value) => (
               <MenuItem key={value} value={value === 'All Departments' ? 'All' : value} aria-label='option' sx={{textTransform:'capitalize'}}>
