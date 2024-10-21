@@ -481,7 +481,6 @@ export function Home() {
           ))}
         </Box>
       </Box>
-      <Footer />
     </React.Fragment>
   );
 }
