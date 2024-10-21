@@ -64,20 +64,24 @@ const handlers = [
     }),
     rest.get(`http://localhost:3012/api/v0/product/name/test?page=1&size=30&order=DESC&sort=price`, async ({ request }) => {
         return HttpResponse.json(
-          [
-            {
-              id: '2fdfda40-8522-4e8d-9021-9f12ecba20cd',
-              data: {
-                name: 'string',
-                price: 100,
-                stock: 100,
-                image: ['string'],
-                rating: 5,
-                category: ['string'],
-                description: ['string']
-              }
-            }
-          ]
+          {
+            products:
+              [
+                {
+                  id: '2fdfda40-8522-4e8d-9021-9f12ecba20cd',
+                  data: {
+                    name: 'string',
+                    price: 100,
+                    stock: 100,
+                    image: ['string'],
+                    rating: 5,
+                    category: ['string'],
+                    description: ['string']
+                  }
+                }
+              ],
+            totalProducts: 1
+          }
         );
       }),
   rest.get('http://localhost:3012/api/v0/product/2fdfda40-8522-4e8d-9021-9f12ecba20cd', async ({ request }) => {
@@ -182,7 +186,7 @@ test('Get by Name', async () => {
       }`
     })
     .then((res) => {
-      expect(res.body.data.getByName[0].name).toBe('string')
+      expect(res.body.data.getByName.products[0].name).toBe('string')
 
     })
 })
