@@ -106,7 +106,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
 
   if (searchQuery) {
-    const { products: fetchedProducts, totalProducts } = await fetchProducts(searchQuery, page, size);
+    const { products: fetchedProducts, totalProducts } = await fetchProducts(encodeURIComponent(searchQuery), page, size);
     products = fetchedProducts;
     totalPages = Math.ceil(totalProducts / size);
   }
