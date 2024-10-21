@@ -190,7 +190,7 @@ test('Get product by name 1 size', async () => {
   await supertest(server)
     .get('/api/v0/product/name/sale?page=1&size=1')
     .then((res) => {
-      expect(res.body.length).toBe(2);
+      expect(res.body.products.length).toBe(2);
       expect(res.body.products[0].data.name).toBe('expensive');
     });
 });
