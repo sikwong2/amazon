@@ -90,7 +90,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products, totalPages }) => {
             ))}
           </Grid>
         </Box>
-        <PageSelector currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/>
+        {totalPages > 0 && <PageSelector currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/> }
       </Box>
     </>
   );
@@ -100,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query, locale } = context;
   let products: Product[] = [];
   const page = query.page ? parseInt(query.page as string, 10) : 1;
-  const size = 30;
+  const size = 30;    // ! default page size
   let totalPages = 1;
 
   const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
