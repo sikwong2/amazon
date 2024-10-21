@@ -137,7 +137,7 @@ export default function CategoryTopBar() {
 
   const DrawerList = (
     <>
-      <AppBar position='static' sx={{
+      <AppBar position='sticky' sx={{
         backgroundColor: '#232f3e',
         boxShadow:'none',
         '& .MuiToolbar-root': {
