@@ -186,7 +186,7 @@ test('Get by Name', async () => {
       }`
     })
     .then((res) => {
-      expect(res.body.data.getByName.products[0].name).toBe('string')
+      expect(res.body.data?.getByName.products[0].name).toBe('string')
 
     })
 })
