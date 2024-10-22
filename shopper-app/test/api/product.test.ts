@@ -172,12 +172,11 @@ test('Get by category', async () => {
     })
     .then((res) => {
       expect(res.body.data.getByCategory[0].name).toBe('string')
-
     })
-})
-
-test('Get by Name', async () => {
-  await supertest(server)
+  })
+  
+  test('Get by Name', async () => {
+    await supertest(server)
     .post('/api/graphql')
     .send({
       query: `query name {
@@ -186,7 +185,7 @@ test('Get by Name', async () => {
       }`
     })
     .then((res) => {
+      console.log(res.body);
       expect(res.body.data?.getByName.products.length).toBe(1)
-
     })
 })
