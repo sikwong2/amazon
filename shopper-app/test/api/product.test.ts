@@ -179,12 +179,12 @@ test('Get by category', async () => {
     await supertest(server)
     .post('/api/graphql')
     .send({
-      query: `query name {
+      query: `query getByName {
         getByName(name: "test", size: 30, page: 1, order: "DESC", sort: "price")
         { id, price, image, stock, rating, name, category }
       }`
     })
     .then((res) => {
-      expect(res.body.data?.name.products.length).toBe(1)
+      expect(res.body.data?.getByName.products.length).toBe(1)
     })
 })
