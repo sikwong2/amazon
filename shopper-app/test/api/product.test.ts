@@ -182,6 +182,6 @@ test('Get by category', async () => {
       }`
     })
     .then((res) => {
-      expect(res.body.data.getByName.products.length).toBe(undefined)
+      expect(res.body.data).toBe(undefined)
     })
 })
