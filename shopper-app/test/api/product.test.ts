@@ -185,7 +185,6 @@ test('Get by category', async () => {
       }`
     })
     .then((res) => {
-      console.log(res.body);
-      expect(res.body.data?.getByName.products.length).toBe(1)
+      expect(res.body.data?.name.products.length).toBe(1)
     })
 })
