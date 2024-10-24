@@ -4,34 +4,29 @@ import { Button, Box } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Typography } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-export default function PageSelector({ lastPage = true, ...rest }) {
-  const [pageNum, setPageNum] = useState(1);
+interface PageSelectorProps {
+  currentPage: number,
+  totalPages: number,
+  onPageChange: (page: number) => void
+}
+
+export default function PageSelector({ currentPage, totalPages, onPageChange }: PageSelectorProps) {
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    onPageChange(value);
+  };
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-      }}
-    >
-      <Button
-        disabled={pageNum == 1}
-        onClick={() => {
-          setPageNum(pageNum - 1);
-        }}
-      >
-        <ArrowBackIosNewIcon />
-      </Button>
-      <Typography aria-label="pageNum">{pageNum}</Typography>
-      <Button
-        disabled={lastPage}
-        onClick={() => {
-          setPageNum(pageNum + 1);
-        }}
-      >
-        <ArrowForwardIosIcon />
-      </Button>
+    <Box sx={{
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      mb: 3,
+    }}>
+      <Pagination page={currentPage} count={totalPages} variant="outlined" shape="rounded" onChange={handleChange}/>
+
     </Box>
   );
 }

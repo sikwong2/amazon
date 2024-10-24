@@ -1,4 +1,15 @@
 body {
   font-family: 'Amazon Ember', Helvetica, sans-serif;
   margin: 0px;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+/* Make footer stay at bottom of page */
+/* https://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height-b */
+body::after {
+  content: '';
+  display: block;
+  height: 50px;
 }

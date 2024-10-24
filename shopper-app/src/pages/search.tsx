@@ -3,22 +3,25 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import SearchResultCard from '@/components/SearchResultsCard';
 import { Product } from '@/graphql/product/schema';
 import TopBar from '@/components/TopBar';
+import PageSelector from '@/components/PageSelector';
 
-const fetchProducts = async (name: string): Promise<Product[]> => {
+const fetchProducts = async (name: string, page: number = 1, size: number = 3): Promise<{ products: Product[], totalProducts: number }> => {
   try {
     const query = {
       query: `query getByName {
-        getByName(name: "${name}", page: 1, size: 100, order: "price", sort: "DESC") {
-          id
-          price
-          name
-          rating
-          image
-          category
+        getByName(name: "${name}", page: ${page}, size: ${size}, order: "price", sort: "DESC") {
+          products {
+            id
+            price
+            name
+            rating
+            image
+          }
+          totalProducts
         }
       }`,
     };
@@ -36,7 +39,7 @@ const fetchProducts = async (name: string): Promise<Product[]> => {
       console.error('GraphQL Errors:', json.errors);
       throw new Error(json.errors[0].message);
     }
-    return json.data.getByName;
+    return { products: json.data.getByName.products, totalProducts: json.data.getByName.totalProducts };
   } catch (e) {
     console.error('Fetch Products Error:', e);
     throw new Error('Unable to fetch products');
@@ -44,13 +47,28 @@ const fetchProducts = async (name: string): Promise<Product[]> => {
 };
 
 interface SearchPageProps {
-  products: Product[];
+  products: Product[],
+  totalPages: number,
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
+const SearchPage: React.FC<SearchPageProps> = ({ products, totalPages }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { query } = router.query;
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const handlePageChange = (newPage: number) => {
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: newPage },
+    });
+  };
+
+  React.useEffect(() => {
+    if (router.query) {
+      setCurrentPage(parseInt(router.query.page as string, 10) || 1);
+    }
+  }, [router.query.page]);
 
   return (
     <>
@@ -72,6 +90,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
             ))}
           </Grid>
         </Box>
+        {totalPages > 0 && <PageSelector currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/> }
       </Box>
     </>
   );
@@ -80,16 +99,22 @@ const SearchPage: React.FC<SearchPageProps> = ({ products }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query, locale } = context;
   let products: Product[] = [];
+  const page = query.page ? parseInt(query.page as string, 10) : 1;
+  const size = 30;    // ! default page size
+  let totalPages = 1;
 
   const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;
 
   if (searchQuery) {
-    products = await fetchProducts(searchQuery);
+    const { products: fetchedProducts, totalProducts } = await fetchProducts(encodeURIComponent(searchQuery), page, size);
+    products = fetchedProducts;
+    totalPages = Math.ceil(totalProducts / size);
   }
 
   return {
     props: {
       products,
+      totalPages,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   };

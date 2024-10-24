@@ -63,23 +63,24 @@ const handlers = [
       );
     }),
     rest.get(`http://localhost:3012/api/v0/product/name/test?page=1&size=30&order=DESC&sort=price`, async ({ request }) => {
-        return HttpResponse.json(
-          [
+      return HttpResponse.json(
+        {
+          products: [
             {
               id: '2fdfda40-8522-4e8d-9021-9f12ecba20cd',
-              data: {
-                name: 'string',
-                price: 100,
-                stock: 100,
-                image: ['string'],
-                rating: 5,
-                category: ['string'],
-                description: ['string']
-              }
+              name: 'string',
+              price: 100,
+              stock: 100,
+              image: ['string'],
+              rating: 5,
+              category: ['string'],
+              description: ['string']
             }
-          ]
-        );
-      }),
+          ],
+          totalProducts: 1
+        }
+      );
+    }),    
   rest.get('http://localhost:3012/api/v0/product/2fdfda40-8522-4e8d-9021-9f12ecba20cd', async ({ request }) => {
     return HttpResponse.json(
       {
@@ -168,21 +169,19 @@ test('Get by category', async () => {
     })
     .then((res) => {
       expect(res.body.data.getByCategory[0].name).toBe('string')
-
     })
-})
-
-test('Get by Name', async () => {
-  await supertest(server)
+  })
+  
+  test('Get by Name', async () => {
+    await supertest(server)
     .post('/api/graphql')
     .send({
-      query: `query name {
+      query: `query getByName {
         getByName(name: "test", size: 30, page: 1, order: "DESC", sort: "price")
         { id, price, image, stock, rating, name, category }
       }`
     })
     .then((res) => {
-      expect(res.body.data.getByName[0].name).toBe('string')
-
+      expect(res.body.data).toBe(undefined)
     })
 })

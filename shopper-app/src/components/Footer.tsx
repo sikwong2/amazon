@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, styled } from '@mui/material';
+import { styled } from '@mui/material';
 import { Box } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 
@@ -17,8 +17,13 @@ export default function Footer() {
   return (
     <React.Fragment>
       <Box
-        bgcolor="#222F3E"
-        sx={{ fullWidth: 1 }}
+        bgcolor="#232f3e"
+        sx={{ fullWidth: 1,
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          height: '50px', 
+        }}
         display="flex"
         alignItems="center"
         justifyContent="center"

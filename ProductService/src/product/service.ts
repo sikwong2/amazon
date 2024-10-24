@@ -93,7 +93,7 @@ export class ProductService {
     return products;
   }
 
-  public async getByName(name: string, page: number, size: number, order: Order, sort: Sort): Promise<Product[]> {
+  public async getByName(name: string, page: number, size: number, order: Order, sort: Sort): Promise<{ products: Product[], totalProducts: number }> {
     let select;
     if (order === 'price' || order === 'rating' || order === 'stock') {
       select = `SELECT id, data FROM product 
@@ -107,11 +107,20 @@ export class ProductService {
       LIMIT $2 OFFSET $3`;
     }
 
-    const query = {
+    const productQuery = {
       text: select,
-      values: [name, size, `${page * 30}`]
+      values: [name, size, page]
     }
-    const {rows} = await pool.query(query);
+
+    const totalMatchesQuery = {
+      text: `SELECT COUNT(*) FROM product 
+            WHERE (data->>'name' ILIKE '%' || $1 || '%' OR data->>'category' ILIKE '%' || $1 || '%')`,
+      values: [name]
+    }
+
+    const {rows} = await pool.query(productQuery);
+    const totalMatches = await pool.query(totalMatchesQuery);
+
     const products: Product[] = [];
     for (const row of rows) {
       products.push({
@@ -121,7 +130,9 @@ export class ProductService {
         }
       })
     }
-    return products;
+    const totalProducts = parseInt(totalMatches.rows[0].count, 10);
+
+    return {products, totalProducts};
   }
   
   public async makeProduct(product: NewProduct): Promise<Product | undefined> {
