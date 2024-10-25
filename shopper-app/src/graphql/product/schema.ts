@@ -35,7 +35,7 @@ export class ProductArgs {
   sort?: string;
 }
 
-@ObjectType()
+@ObjectType('PaginatedProducts')
 export class PaginatedProducts {
   @Field(() => [Product])
   products!: Product[];
