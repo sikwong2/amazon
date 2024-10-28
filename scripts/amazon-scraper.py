@@ -1,3 +1,4 @@
+import ast
 from bs4 import BeautifulSoup
 import requests
 import nltk
@@ -119,15 +120,16 @@ def generate_description(title):
         # Google's Gemini model
         # https://ai.google.dev/gemini-api/docs/quickstart
         model = genai.GenerativeModel('gemini-1.5-flash')
-        description = model.generate_content(f'Your job is to create Amazon "About this item" product descriptions. For each product, create multiple short descriptions of 1-2 lines highlighting product features and providing extra information about the product for potential buyers. Please generate the short descriptions in the format of a Python dictionary of strings, with each string being a description about some product I will specify below. Make sure each short description is encapsulated in its own double quotes and separated by commas in the Python list. Your output should something like this: "["some description here", "another description here", "another description here"]". Notice the use of square brackets and double quotes. Do not respond with any questions or remarks, only the python dictionary. Do not include any extra labels or information that is not relevant to the product description. Here is the product "{title}"')
-        description = description.text
+        description = model.generate_content(f"Your job is to create Amazon 'About this item' product descriptions. For each product, create multiple short descriptions of 1-2 lines highlighting product features and providing extra information about the product for potential buyers. Please generate the short descriptions in the format of a Python dictionary of strings, with each string being a description about some product I will specify below. Make sure each short description is encapsulated in its own single quotes and separated by commas in the Python list. Your output should something like this: '['some description here', 'another description here', 'another description here']'. Notice the use of square brackets and single quotes. Do not respond with any questions or remarks, only the python dictionary. Do not include any extra labels or information that is not relevant to the product description. If you cannot generate a product description, return an empty string. Here is the product '{title}'")
+        # Convert string containing Python literal list to an actual list
+        description = ast.literal_eval(description.text)    
 
         # Clean text
         for str in description:
             str = str.replace("'", "’").strip()
         
     except AttributeError:
-        description = ""
+        description = []
 
     print('description has been generated')
     return description
@@ -163,12 +165,11 @@ def get_about_this_item(soup, title):
                 about_section.append(product_description.replace("'", "’"))
             except:
                 # If can't find product description or book description, use Gemini to generate one
-                about_section = generate_description(title).replace("'", "’")
+                about_section = generate_description(title)
 
     # If can't find about-this-item or product description, generate a product description
     if(about_section == [] or about_section == ['']): about_section = generate_description(title)
 
-    print('about_section: ', about_section)
     return about_section
 
 # Function to generate random product stock
