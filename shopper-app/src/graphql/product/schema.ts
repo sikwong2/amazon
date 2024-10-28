@@ -41,5 +41,6 @@ export class PaginatedProducts {
   products!: Product[];
 
   @Field()
+  @Min(0)
   totalProducts!: number;
 }
