@@ -10,6 +10,7 @@ import { PageProvider } from "@/context/Page";
 import { SearchProvider } from '@/context/Search';
 import { BrowserHistoryProvider } from "@/context/BrowserHistory";
 import { CategoryProvider } from "@/context/Category";
+import Footer from "@/components/Footer";
 
 const theme = createTheme({
   typography: {
@@ -19,21 +20,24 @@ const theme = createTheme({
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider theme={theme}>
-      <LoginProvider>
-        <SearchProvider>
-          <PageProvider>
-            <CartProvider>
-              <BrowserHistoryProvider>
-                <CategoryProvider>
-                  <Component {...pageProps} />
-                </CategoryProvider>
-              </BrowserHistoryProvider>
-            </CartProvider>
-          </PageProvider>
-        </SearchProvider>
-      </LoginProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        <LoginProvider>
+          <SearchProvider>
+            <PageProvider>
+              <CartProvider>
+                <BrowserHistoryProvider>
+                  <CategoryProvider>
+                    <Component {...pageProps} />
+                  </CategoryProvider>
+                </BrowserHistoryProvider>
+              </CartProvider>
+            </PageProvider>
+          </SearchProvider>
+        </LoginProvider>
+      </ThemeProvider>
+      <Footer/>
+    </>
   );
 };
 
