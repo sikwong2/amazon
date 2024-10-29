@@ -9,7 +9,9 @@ import { Product } from '@/graphql/product/schema';
 import TopBar from '@/components/TopBar';
 import PageSelector from '@/components/PageSelector';
 
-const fetchProducts = async (name: string, page: number = 1, size: number = 3): Promise<{ products: Product[], totalProducts: number }> => {
+const DEFAULT_PAGE_SIZE = 32;
+
+const fetchProducts = async (name: string, page: number = 1, size: number = DEFAULT_PAGE_SIZE): Promise<{ products: Product[], totalProducts: number }> => {
   try {
     const query = {
       query: `query getByName {
@@ -100,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query, locale } = context;
   let products: Product[] = [];
   const page = query.page ? parseInt(query.page as string, 10) : 1;
-  const size = 30;    // ! default page size
+  const size = DEFAULT_PAGE_SIZE;
   let totalPages = 1;
 
   const searchQuery = Array.isArray(query.query) ? query.query[0] : query.query;

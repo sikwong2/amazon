@@ -109,7 +109,7 @@ export class ProductService {
 
     const productQuery = {
       text: select,
-      values: [name, size, page]
+      values: [name, size, page*size]
     }
 
     const totalMatchesQuery = {
