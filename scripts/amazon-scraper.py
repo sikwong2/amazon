@@ -122,14 +122,15 @@ def generate_description(title):
         model = genai.GenerativeModel('gemini-1.5-flash')
         description = model.generate_content(f"Your job is to create Amazon 'About this item' product descriptions. For each product, create multiple short descriptions of 1-2 lines highlighting product features and providing extra information about the product for potential buyers. Please generate the short descriptions in the format of a Python dictionary of strings, with each string being a description about some product I will specify below. Make sure each short description is encapsulated in its own single quotes and separated by commas in the Python list. Your output should something like this: '['some description here', 'another description here', 'another description here']'. Notice the use of square brackets and single quotes. Do not respond with any questions or remarks, only the python dictionary. Do not include any extra labels or information that is not relevant to the product description. If you cannot generate a product description, return an empty string. Here is the product '{title}'")
         # Convert string containing Python literal list to an actual list
-        description = ast.literal_eval(description.text)    
+        description = ast.literal_eval(description.text.strip())    
 
         # Clean text
         for str in description:
             str = str.replace("'", "’").strip()
         
-    except AttributeError:
-        description = []
+    except (AttributeError, SyntaxError) as e:
+        print('Error generating description: ', e)
+        return []
 
     print('description has been generated')
     return description
@@ -255,7 +256,7 @@ def get_categories(soup):
     categories_set = list(set(best_seller_categories + breadcrumb_categories))
     random.shuffle(categories_set)
 
-    return categories_set + ["Generated1"]
+    return categories_set + ["Generated"]
 
 # Function to extract product link
 def get_product_link(soup):
@@ -378,6 +379,10 @@ if __name__ == "__main__":
             searchpage = requests.get(SEARCH_URL, headers=HEADERS)
         except requests.exceptions.RequestException as e:
             print(f"Error: {e}")
+            continue
+
+        if(not searchpage):
+            print("Could not send GET to search URL: ", searchpage.status_code)
             continue
         
         search_soup = BeautifulSoup(searchpage.content, "lxml")
